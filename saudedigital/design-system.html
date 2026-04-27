@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema de Design — Saúde Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .ds-hero{padding:36px 24px 12px}
+  .ds-hero .container{max-width:1200px;margin:0 auto}
+  .ds-grid{max-width:1200px;margin:0 auto;padding:24px;display:grid;gap:32px}
+  .ds-section{display:grid;grid-template-columns:220px 1fr;gap:24px}
+  .ds-section .meta h3{margin:0 0 6px;font-size:18px;font-weight:600}
+  .ds-section .meta p{margin:0;color:var(--ink-3);font-size:13px;line-height:1.5}
+  .ds-section .meta .anchor{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);margin-bottom:8px}
+  .ds-section .body{display:grid;gap:16px}
+
+  .swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .sw{border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;background:#fff}
+  .sw .chip{height:80px}
+  .sw .lbl{padding:8px 10px;font-size:11px;display:flex;justify-content:space-between;color:var(--ink-3)}
+  .sw .lbl b{color:var(--ink);font-weight:600}
+
+  .type-row{display:grid;grid-template-columns:120px 1fr 200px;gap:16px;align-items:baseline;padding:12px 0;border-top:1px solid var(--line-2)}
+  .type-row:first-child{border-top:0}
+  .type-row .name{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .type-row .specs{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:right}
+
+  .demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .demo{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:16px}
+  .demo h5{margin:0 0 12px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+  .demo .row-wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .principle{padding:18px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .principle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .principle h4{margin:8px 0 6px;font-size:15px;font-weight:600}
+  .principle p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55}
+
+  .anchor-bar{position:sticky;top:56px;z-index:5;background:rgba(250,250,247,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:0 24px}
+  .anchor-bar .inner{max-width:1200px;margin:0 auto;display:flex;gap:18px;height:42px;align-items:center;font-size:12px;overflow-x:auto}
+  .anchor-bar a{color:var(--ink-3);font-weight:500;white-space:nowrap}
+  .anchor-bar a:hover{color:var(--ink);text-decoration:none}
+
+  .phone-demo{background:repeating-linear-gradient(135deg,var(--bg-2) 0 8px,var(--bg) 8px 16px);padding:24px;border:1px solid var(--line);border-radius:var(--r-2);display:flex;justify-content:center}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Ministério da Saúde — MISAU</span><span class="sep">·</span>
+  <span>Sistema de Design v0.4</span>
+  <span style="margin-left:auto"><a href="DESIGN-system.md" style="color:#cfe1d6">DESIGN-system.md ↗</a></span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Saúde Moçambique</span><small>Plataforma Nacional de Saúde</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema de design</a>
+    <a href="emr.html">EMR</a>
+    <a href="ehealth.html">App do Cidadão</a>
+    <a href="pharmacy.html">Farmácia</a>
+    <a href="audit.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="index.html" class="btn ghost sm">← Voltar</a>
+  </div>
+</header>
+
+<div class="anchor-bar">
+  <div class="inner">
+    <a href="#principios">Princípios</a>
+    <a href="#cor">Cor</a>
+    <a href="#tipografia">Tipografia</a>
+    <a href="#botoes">Botões</a>
+    <a href="#campos">Campos</a>
+    <a href="#cards">Cards</a>
+    <a href="#tabelas">Tabelas</a>
+    <a href="#badges">Estados</a>
+    <a href="#nav">Navegação</a>
+    <a href="#telefone">Quadro de telefone</a>
+    <a href="#padroes">Padrões</a>
+  </div>
+</div>
+
+<section class="ds-hero">
+  <div class="container">
+    <div class="t-overline" style="color:var(--green-700)">00 · Fundamentos</div>
+    <h1 class="t-display" style="margin:10px 0 12px">Sistema de Design</h1>
+    <p class="t-lead" style="max-width:760px;color:var(--ink-2)">Linguagem visual partilhada entre EMR, App do Cidadão, Sistema de Farmácia e Auditoria. Tom institucional, sóbrio e acessível — concebido para tablets de gama baixa, ecrãs com luz solar directa e utilizadores em todo o espectro de literacia digital.</p>
+  </div>
+</section>
+
+<div class="ds-grid">
+
+<section class="ds-section" id="principios">
+  <div class="meta">
+    <div class="anchor">§ 01 / Princípios</div>
+    <h3>Tom institucional</h3>
+    <p>O que separa um portal público de uma aplicação de consumo. Aplicar a cada decisão de UI.</p>
+  </div>
+  <div class="body">
+    <div class="principles">
+      <div class="principle">
+        <div class="num">01</div>
+        <h4>Calmo, não promocional</h4>
+        <p>Sem gradientes, sem efeitos de vidro, sem sombras teatrais. Blocos de cor sólidos, hierarquia tipográfica clara, espaço em branco generoso. A informação é o herói.</p>
+      </div>
+      <div class="principle">
+        <div class="num">02</div>
+        <h4>Previsível antes de elegante</h4>
+        <p>Layouts alinhados à grelha. Formulários parecem formulários. Os mesmos componentes em todas as superfícies. Confiança vem de repetição.</p>
+      </div>
+      <div class="principle">
+        <div class="num">03</div>
+        <h4>Para luz solar e tablets baratos</h4>
+        <p>Contraste alto (texto AA+, sem cinzentos sobre cinzentos). Alvos de toque ≥44 px. Corpo ≥16 px em mobile, ≥14 px em desktop. Suporta 7″ Android em paisagem.</p>
+      </div>
+      <div class="principle">
+        <div class="num">04</div>
+        <h4>Português moçambicano</h4>
+        <p>Toda a UI em PT-MZ. Nomes, províncias, distritos e quadros clínicos realistas. Sem <em>lorem ipsum</em>. Codificação clínica em CID-10 PT.</p>
+      </div>
+      <div class="principle">
+        <div class="num">05</div>
+        <h4>Estado sempre visível</h4>
+        <p>Conectividade, fila de sincronização, identidade de quem está autenticado, estado de prescrição. Nunca esconder estado crítico atrás de menus.</p>
+      </div>
+      <div class="principle">
+        <div class="num">06</div>
+        <h4>Confirmação para acções clínicas</h4>
+        <p>Prescrever, dispensar, fundir registos, override de emergência: dois toques mínimo, com justificação obrigatória onde aplicável. Acção destrutiva nunca um único clique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="cor">
+  <div class="meta">
+    <div class="anchor">§ 02 / Cor</div>
+    <h3>Paleta institucional</h3>
+    <p>Verde MISAU como primária. Azul-tinta para estrutura. Estados clínicos em âmbar e vermelho — usados apenas onde significam algo.</p>
+  </div>
+  <div class="body">
+    <div>
+      <div class="t-overline" style="margin-bottom:8px">Primária — Verde institucional</div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:var(--green-900)"></div><div class="lbl"><b>green-900</b><span>#0F3D27</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--green-700)"></div><div class="lbl"><b>green-700</b><span>#1B5E3F</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--green-600)"></div><div class="lbl"><b>green-600</b><span>#247A52</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--green-100)"></div><div class="lbl"><b>green-100</b><span>#E4EFE9</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--blue-900)"></div><div class="lbl"><b>blue-900</b><span>#152A45</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--blue-700)"></div><div class="lbl"><b>blue-700</b><span>#1F3A5F</span></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="t-overline" style="margin:14px 0 8px">Neutros</div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="lbl"><b>ink</b><span>#1A1A1A</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--ink-2)"></div><div class="lbl"><b>ink-2</b><span>#3A3A3A</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--ink-3)"></div><div class="lbl"><b>ink-3</b><span>#5E5E5E</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--line)"></div><div class="lbl"><b>line</b><span>#D9D7CF</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--bg-2)"></div><div class="lbl"><b>bg-2</b><span>#F2F1EB</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--bg);border-bottom:1px solid var(--line)"></div><div class="lbl"><b>bg</b><span>#FAFAF7</span></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="t-overline" style="margin:14px 0 8px">Estados clínicos — usar apenas com significado</div>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:var(--good-700)"></div><div class="lbl"><b>good-700</b><span>OK · Sucesso</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--amber-500)"></div><div class="lbl"><b>amber-500</b><span>Aviso · Atenção</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--red-500)"></div><div class="lbl"><b>red-500</b><span>Urgência · Crítico</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--good-100)"></div><div class="lbl"><b>good-100</b><span>Fundo OK</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--amber-100)"></div><div class="lbl"><b>amber-100</b><span>Fundo aviso</span></div></div>
+        <div class="sw"><div class="chip" style="background:var(--red-100)"></div><div class="lbl"><b>red-100</b><span>Fundo crítico</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="tipografia">
+  <div class="meta">
+    <div class="anchor">§ 03 / Tipografia</div>
+    <h3>IBM Plex Sans &amp; Mono</h3>
+    <p>Sans-serif sóbrio para tudo. Mono para identificadores, códigos, datas técnicas e dosagens.</p>
+  </div>
+  <div class="body">
+    <div class="card"><div class="bd">
+      <div class="type-row"><div class="name">display</div><div class="t-display">Saúde para todos.</div><div class="specs">Plex Sans · 44/48 · 600 · -2%</div></div>
+      <div class="type-row"><div class="name">h1</div><div class="t-h1">Painel de hoje</div><div class="specs">Plex Sans · 32/36 · 600 · -1.5%</div></div>
+      <div class="type-row"><div class="name">h2</div><div class="t-h2">Pacientes em sala de espera</div><div class="specs">Plex Sans · 24/28 · 600 · -1%</div></div>
+      <div class="type-row"><div class="name">h3</div><div class="t-h3">Receita médica nº 4128-A</div><div class="specs">Plex Sans · 18/22 · 600</div></div>
+      <div class="type-row"><div class="name">h4</div><div class="t-h4">Sintoma principal</div><div class="specs">Plex Sans · 15/20 · 600</div></div>
+      <div class="type-row"><div class="name">lead</div><div class="t-lead">Triagem orientada por enfermeiros, com escalonamento opcional para consulta médica em vídeo.</div><div class="specs">Plex Sans · 16/24 · 400</div></div>
+      <div class="type-row"><div class="name">body</div><div class="t-body">Beatriz Machava · 34 anos · BI 110xxx — última consulta a 12/03/2026 no Centro de Saúde de Maxixe.</div><div class="specs">Plex Sans · 14/20 · 400</div></div>
+      <div class="type-row"><div class="name">meta</div><div class="t-meta">Validade: 30 dias · Prescritor: Dr. Adérito Mucopo</div><div class="specs">Plex Sans · 12/16 · 400</div></div>
+      <div class="type-row"><div class="name">overline</div><div class="t-overline">Hipótese diagnóstica</div><div class="specs">Plex Sans · 11/14 · 600 · CAPS</div></div>
+      <div class="type-row"><div class="name">mono</div><div class="mono" style="font-size:14px">Rx-2026-04-MZ-0184128A · BI 110456789B</div><div class="specs">Plex Mono · 14/18 · 400</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="ds-section" id="botoes">
+  <div class="meta">
+    <div class="anchor">§ 04 / Botões</div>
+    <h3>Acções</h3>
+    <p>Primária para a próxima acção esperada. Secundária para alternativas. Destrutiva para acções clínicas reversíveis com confirmação. Ghost para hierarquia baixa.</p>
+  </div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="demo">
+        <h5>Variantes</h5>
+        <div class="row-wrap">
+          <button class="btn">Guardar consulta</button>
+          <button class="btn secondary">Cancelar</button>
+          <button class="btn ghost">Saltar</button>
+          <button class="btn danger">Override de emergência</button>
+          <button class="btn amber">Sinalizar suspeita</button>
+          <button class="btn" disabled>Indisponível</button>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Tamanhos</h5>
+        <div class="row-wrap">
+          <button class="btn xl">Iniciar dispensa</button>
+          <button class="btn lg">Continuar</button>
+          <button class="btn">Padrão</button>
+          <button class="btn sm">Editar</button>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Bloco (mobile)</h5>
+        <div class="col" style="max-width:280px">
+          <button class="btn block lg">Pedir triagem</button>
+          <button class="btn secondary block lg">Ver receita actual</button>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Estados focáveis</h5>
+        <div class="row-wrap">
+          <button class="btn" style="outline:2px solid #ffbf47;outline-offset:1px">Foco (teclado)</button>
+          <button class="btn" style="background:var(--green-900)">Pressionado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="campos">
+  <div class="meta">
+    <div class="anchor">§ 05 / Campos</div>
+    <h3>Inputs &amp; formulários</h3>
+    <p>Formulários clínicos densos com secções agrupadas, validação inline e gravação de rascunho. Sem floating labels.</p>
+  </div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="demo">
+        <h5>Tipos de campo</h5>
+        <div class="col">
+          <div class="field"><label>Bilhete de identidade</label><input class="input" placeholder="Ex.: 110456789B" /><span class="hint">Formato: 9 dígitos + 1 letra</span></div>
+          <div class="field"><label>Telefone</label><input class="input" value="+258 84 123 4567" /></div>
+          <div class="field"><label>Província</label>
+            <select class="select"><option>Maputo Cidade</option><option>Inhambane</option><option>Nampula</option><option>Zambézia</option><option>Sofala</option></select>
+          </div>
+          <div class="field"><label>Data de nascimento</label><input class="input" placeholder="DD/MM/AAAA" value="14/06/1991" /></div>
+          <div class="field"><label>Sintoma principal</label><textarea class="textarea" placeholder="Descreva em poucas palavras...">Febre alta há 3 dias, calafrios à noite</textarea></div>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Estados de validação</h5>
+        <div class="col">
+          <div class="field"><label>BI</label><input class="input" value="110456789B" style="border-color:var(--good-700)" /><span class="hint" style="color:var(--good-700)">✓ Verificado contra DNI</span></div>
+          <div class="field"><label>BI</label><input class="input" value="110xxx" style="border-color:var(--red-500)" /><span class="err">BI não encontrado. <a href="#">Criar registo temporário</a></span></div>
+          <div class="field"><label>Pesquisa de medicamento</label><input class="input" placeholder="Ex.: Artemether-Lumefantrina" value="Arte" /><span class="hint">3 sugestões correspondem</span></div>
+          <div class="field"><label>Notas SOAP</label><textarea class="textarea" disabled>Aguarda diagnóstico antes de editar...</textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="cards">
+  <div class="meta">
+    <div class="anchor">§ 06 / Cards</div>
+    <h3>Cards de domínio</h3>
+    <p>Padrões reutilizados: paciente, encontro, prescrição, entrada de auditoria. Densidade alta sem ruído visual.</p>
+  </div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="card">
+        <div class="hd"><h4 class="t-h4">Paciente</h4><span class="badge">Activo</span></div>
+        <div class="bd">
+          <div class="row" style="gap:12px">
+            <div class="av lg green">BM</div>
+            <div>
+              <div style="font-weight:600">Beatriz Machava</div>
+              <div class="t-meta">F · 34 anos · BI 110456789B</div>
+              <div class="t-meta">Maxixe, Inhambane · +258 84 123 4567</div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="grid g-2" style="gap:8px">
+            <div class="kv"><span class="k">Alergias</span><span class="v">Penicilina</span></div>
+            <div class="kv"><span class="k">Crónicas</span><span class="v">HTA · DM tipo 2</span></div>
+            <div class="kv"><span class="k">Última consulta</span><span class="v">12/03/2026</span></div>
+            <div class="kv"><span class="k">US habitual</span><span class="v">CS Maxixe</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd"><h4 class="t-h4">Encontro · 12/03/2026</h4><span class="badge green">Concluído</span></div>
+        <div class="bd">
+          <div class="t-overline" style="color:var(--ink-3)">Hipótese diagnóstica</div>
+          <div style="margin:4px 0 10px">Malária simples não complicada (B54)</div>
+          <div class="t-overline" style="color:var(--ink-3)">Plano</div>
+          <div class="t-body">Artemether-Lumefantrina 80/480 mg · 6 doses · 3 dias. Paracetamol 500 mg SOS.</div>
+          <div class="hr"></div>
+          <div class="t-meta">Dra. Cláudia Tembe · Tec. de Medicina · CS Maxixe</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd"><h4 class="t-h4">Receita Rx-2026-04-MZ-018</h4><span class="badge amber">Parcialmente dispensada</span></div>
+        <div class="bd">
+          <div class="row" style="align-items:flex-start">
+            <div class="qr" aria-hidden="true"></div>
+            <div class="col" style="gap:6px;flex:1">
+              <div><b>Beatriz Machava</b> · 34 a · F</div>
+              <div class="t-meta mono">Rx-2026-04-MZ-018</div>
+              <div class="t-meta">Validade até 28/04/2026 · 2 dos 3 itens dispensados</div>
+              <div class="tag-strip"><span class="badge green">Artemether-Lum.</span><span class="badge green">Paracetamol</span><span class="badge amber">Sulfato Ferroso · em falta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd"><h4 class="t-h4">Entrada de auditoria</h4><span class="badge red">Sinalizada</span></div>
+        <div class="bd">
+          <div class="row">
+            <div class="av amber">AM</div>
+            <div>
+              <div><b>Adérito Mucopo</b> · Médico</div>
+              <div class="t-meta">Hospital Provincial de Inhambane · 14/04/2026 22:48</div>
+            </div>
+          </div>
+          <div class="hr"></div>
+          <div class="t-meta"><b>Acedeu:</b> Encontro 12/03/2026 · Notas SOAP · Resultado de laboratório</div>
+          <div class="t-meta"><b>Motivo declarado:</b> Override de emergência — paciente inconsciente no SU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="tabelas">
+  <div class="meta">
+    <div class="anchor">§ 07 / Tabelas</div>
+    <h3>Tabelas clínicas densas</h3>
+    <p>Cabeçalho fixo, linhas com altura confortável (44 px), seleccionáveis. Para listas de pacientes, encontros e dispensas.</p>
+  </div>
+  <div class="body">
+    <div class="card" style="overflow:hidden">
+      <table class="table">
+        <thead><tr>
+          <th style="width:32px"></th><th>Paciente</th><th>BI</th><th>Idade</th><th>Sintoma</th><th>Triagem</th><th>Estado</th><th></th>
+        </tr></thead>
+        <tbody>
+          <tr><td><div class="av sm green">BM</div></td><td>Beatriz Machava</td><td class="mono">110456789B</td><td>34</td><td>Febre + calafrios</td><td><span class="badge red">Vermelho</span></td><td>Em consulta</td><td><a href="#">Abrir</a></td></tr>
+          <tr class="sel"><td><div class="av sm">JM</div></td><td>João Matavele</td><td class="mono">209887412C</td><td>62</td><td>Tosse 2 sem.</td><td><span class="badge amber">Amarelo</span></td><td>Sala 2</td><td><a href="#">Abrir</a></td></tr>
+          <tr><td><div class="av sm">EC</div></td><td>Esperança Chissano</td><td class="mono">TMP-2026-0481</td><td>27</td><td>Dor abdominal</td><td><span class="badge">Verde</span></td><td>Aguarda</td><td><a href="#">Abrir</a></td></tr>
+          <tr><td><div class="av sm amber">HN</div></td><td>Helena Nhachote</td><td class="mono">182331904A</td><td>5</td><td>IRA · febre 39°</td><td><span class="badge red">Vermelho</span></td><td>Em consulta</td><td><a href="#">Abrir</a></td></tr>
+          <tr><td><div class="av sm">RM</div></td><td>Rogério Manjate</td><td class="mono">301229811A</td><td>71</td><td>Controlo HTA</td><td><span class="badge">Verde</span></td><td>Aguarda</td><td><a href="#">Abrir</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="badges">
+  <div class="meta">
+    <div class="anchor">§ 08 / Estados</div>
+    <h3>Badges &amp; conectividade</h3>
+    <p>Vocabulário de estado partilhado entre superfícies. Triagem usa Manchester (verde/amarelo/vermelho).</p>
+  </div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="demo">
+        <h5>Estado de receita</h5>
+        <div class="row-wrap">
+          <span class="badge">Pendente</span>
+          <span class="badge amber">Parcialmente dispensada</span>
+          <span class="badge green">Dispensada</span>
+          <span class="badge dark">Expirada</span>
+          <span class="badge red">Sinalizada</span>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Triagem (Manchester)</h5>
+        <div class="row-wrap">
+          <span class="badge red">Vermelho · Imediata</span>
+          <span class="badge amber">Amarelo · 60 min</span>
+          <span class="badge">Verde · Não urgente</span>
+          <span class="badge blue">Azul · Não clínica</span>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Auditoria</h5>
+        <div class="row-wrap">
+          <span class="badge">Acesso normal</span>
+          <span class="badge amber">Fora do âmbito</span>
+          <span class="badge red">Override de emergência</span>
+          <span class="badge red"><span class="dot"></span>Sinalizado pelo paciente</span>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Conectividade (clínico)</h5>
+        <div class="col" style="gap:8px;align-items:flex-start">
+          <span class="conn"><span class="d"></span> Sincronizado · há 12s</span>
+          <span class="conn amber"><span class="d"></span> A sincronizar · 8 alterações</span>
+          <span class="conn off"><span class="d"></span> Offline · 14 alterações em fila</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="nav">
+  <div class="meta">
+    <div class="anchor">§ 09 / Navegação</div>
+    <h3>Top bar, side rail, tab bar</h3>
+    <p>Top bar para EMR e Farmácia. Side rail para auditoria/admin. Tab bar inferior para mobile (máx. 4 itens).</p>
+  </div>
+  <div class="body">
+    <div class="demo">
+      <h5>Top bar (EMR)</h5>
+      <div style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden">
+        <div class="topbar" style="background:#fff">
+          <div class="brand"><span class="mark"></span><span class="stack"><span>Saúde Moçambique</span><small>EMR · CS Maxixe</small></span></div>
+          <nav class="nav"><a class="active">Painel</a><a>Pacientes</a><a>Consultas</a><a>Receitas</a><a>Lab</a></nav>
+          <div class="right">
+            <span class="conn"><span class="d"></span> Sincronizado</span>
+            <div class="idbadge">
+              <div class="av sm green">CT</div>
+              <div class="who"><b>Cláudia Tembe</b><span>Tec. Medicina · CS Maxixe</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="demo">
+      <h5>Side rail (Auditoria)</h5>
+      <div style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;display:flex;height:280px">
+        <aside class="rail" style="min-height:auto;width:200px">
+          <div class="br"><div class="brand" style="color:#fff"><span class="mark"></span><span class="stack" style="color:#fff"><span>Auditoria</span><small style="color:#8baa97">Direcção Provincial</small></span></div></div>
+          <nav>
+            <div class="group">Visão geral</div>
+            <a class="active">Painel</a>
+            <a>Anomalias</a>
+            <div class="group">Drill-down</div>
+            <a>Por clínico</a>
+            <a>Por paciente</a>
+            <a>Sinalizações</a>
+          </nav>
+        </aside>
+        <div style="flex:1;background:var(--bg);padding:16px"><div class="t-overline">Pré-visualização</div><h3 class="t-h2" style="margin-top:6px">Painel de auditoria</h3><p class="t-meta">2 432 acessos hoje · 4 anomalias</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="telefone">
+  <div class="meta">
+    <div class="anchor">§ 10 / Quadro de telefone</div>
+    <h3>Mobile (eHealth)</h3>
+    <p>Quadro Android 360×760, status bar institucional, tab bar inferior com 4 itens. Tudo o que é mobile renderiza dentro deste quadro.</p>
+  </div>
+  <div class="body">
+    <div class="phone-demo">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:42</span><div class="icons"><span>•••</span><span>4G</span><span>87%</span></div></div>
+          <div style="padding:14px;flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px">
+            <div class="row spread">
+              <div>
+                <div class="t-overline" style="color:var(--green-700)">Bom dia</div>
+                <div style="font-size:20px;font-weight:600;margin-top:2px">Beatriz Machava</div>
+                <div class="t-meta">BI 110456789B · Maxixe</div>
+              </div>
+              <div class="av lg green">BM</div>
+            </div>
+            <button class="btn xl block">Pedir triagem</button>
+            <div class="grid g-2">
+              <div class="card"><div class="bd" style="padding:12px"><div class="t-overline">Receitas</div><div style="font-size:22px;font-weight:600">2</div><div class="t-meta">1 a dispensar</div></div></div>
+              <div class="card"><div class="bd" style="padding:12px"><div class="t-overline">Acessos</div><div style="font-size:22px;font-weight:600">7</div><div class="t-meta">esta semana</div></div></div>
+            </div>
+            <div class="card"><div class="hd"><h4 class="t-h4">Consulta recente</h4></div>
+              <div class="bd" style="padding:12px"><div class="t-meta">12/03/2026 · CS Maxixe</div><div style="margin-top:4px">Malária simples — em recuperação</div></div></div>
+          </div>
+          <div class="nav-bottom">
+            <a class="active"><span class="ic"></span><span>Início</span></a>
+            <a><span class="ic"></span><span>Receitas</span></a>
+            <a><span class="ic"></span><span>Registo</span></a>
+            <a><span class="ic"></span><span>Acessos</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-section" id="padroes">
+  <div class="meta">
+    <div class="anchor">§ 11 / Padrões</div>
+    <h3>Modal, banner, toast, vazio</h3>
+    <p>Confirmação em dois passos para acções clínicas. Banners para notificações persistentes. Estados vazios desenhados.</p>
+  </div>
+  <div class="body">
+    <div class="demo-grid">
+      <div class="demo">
+        <h5>Confirmação de dispensa</h5>
+        <div class="modal" style="position:relative;width:auto">
+          <div class="hd"><b>Confirmar dispensa</b><span class="t-meta">Passo 2 de 2</span></div>
+          <div class="bd">
+            <p style="margin:0 0 10px">Confirma dispensa de <b>Artemether-Lumefantrina 80/480 mg</b> a <b>Beatriz Machava</b>?</p>
+            <div class="field"><label>Lote / validade</label><input class="input" value="MZ-AL-2025-118 · 09/2027" /></div>
+          </div>
+          <div class="ft"><button class="btn secondary">Voltar</button><button class="btn">Confirmar dispensa</button></div>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Banners de notificação</h5>
+        <div class="col">
+          <div class="banner"><div class="ic"></div><div><b>Sincronização concluída.</b> 8 encontros enviados ao SIS-MA.</div></div>
+          <div class="banner amber"><div class="ic"></div><div><b>Sem ligação à rede.</b> 14 alterações em fila — serão enviadas automaticamente.</div></div>
+          <div class="banner red"><div class="ic"></div><div><b>Receita expirada.</b> Esta prescrição expirou a 14/04/2026 e não pode ser dispensada.</div></div>
+          <div class="banner blue"><div class="ic"></div><div><b>Override de emergência registado.</b> O paciente será notificado via SMS.</div></div>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Estado vazio</h5>
+        <div style="text-align:center;padding:24px 12px">
+          <div class="placeholder" style="height:80px;width:80px;margin:0 auto 12px;border-radius:50%">∅</div>
+          <h4 class="t-h4">Sem consultas registadas</h4>
+          <p class="t-meta" style="max-width:280px;margin:6px auto 14px">Quando uma unidade sanitária registar uma consulta consigo, aparecerá aqui.</p>
+          <button class="btn secondary sm">Pedir triagem</button>
+        </div>
+      </div>
+      <div class="demo">
+        <h5>Toast</h5>
+        <div style="position:relative;height:120px;background:var(--bg-2);border-radius:var(--r-2);overflow:hidden;border:1px solid var(--line-2)">
+          <div class="toast" style="position:absolute">Receita Rx-2026-04-MZ-018 enviada para a sua conta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer style="padding:32px 24px;border-top:1px solid var(--line);margin-top:24px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div class="t-meta">Sistema de Design v0.4 · criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a></div>
+    <div class="t-meta"><a href="DESIGN-system.md">DESIGN-system.md</a> · <a href="index.html">Voltar ao índice</a></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>App do Cidadão — Saúde Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:#EEEDE7}
+  .page{padding:24px}
+  .page-h{max-width:1400px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px}
+  .grid-phones{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 24px;justify-items:center}
+  .ph-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ph-cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);max-width:340px;text-align:center}
+  .ph-cap b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;font-family:var(--f-sans);font-size:13px}
+
+  /* phone screen layouts */
+  .scr{display:flex;flex-direction:column;height:100%;background:var(--bg)}
+  .scr .head{padding:14px 16px 8px;background:#fff;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .scr .head h1{margin:0;font-size:17px;font-weight:600}
+  .scr .body-s{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+  .scr .foot{padding:12px 16px;background:#fff;border-top:1px solid var(--line)}
+
+  .pill-conn{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;background:var(--green-100);color:var(--green-700);border-radius:11px;font-size:11px;font-weight:500}
+  .pill-conn .d{width:6px;height:6px;border-radius:50%;background:var(--green-700)}
+
+  .home-tile{padding:14px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;display:flex;flex-direction:column;gap:6px}
+  .home-tile .ic{width:32px;height:32px;background:var(--green-100);border-radius:6px}
+  .home-tile h3{margin:0;font-size:14px;font-weight:600}
+  .home-tile p{margin:0;font-size:11px;color:var(--ink-3)}
+
+  .otp-box{width:46px;height:54px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:24px;font-weight:600;text-align:center;line-height:54px}
+  .otp-box.f{border-color:var(--green-700);background:var(--green-100);color:var(--green-900)}
+
+  .lang-row{padding:14px 12px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+  .lang-row.sel{border-color:var(--green-700);background:var(--green-100)}
+
+  .symptom{padding:10px 12px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px}
+  .symptom.sel{border-color:var(--green-700);background:var(--green-100);color:var(--green-900);font-weight:600}
+  .symptom .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line)}
+  .symptom.sel .dot{background:var(--green-700);border-color:var(--green-700)}
+
+  .chat-bub{padding:10px 12px;border-radius:14px;font-size:13px;max-width:78%;line-height:1.4}
+  .chat-bub.them{background:#fff;border:1px solid var(--line-2);align-self:flex-start;border-top-left-radius:4px}
+  .chat-bub.me{background:var(--green-700);color:#fff;align-self:flex-end;border-top-right-radius:4px}
+  .chat-meta{font-size:10px;color:var(--ink-3);align-self:flex-start;margin:0 0 -2px 6px}
+
+  .video-stage{flex:1;background:#0F1A14;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative}
+  .video-pip{position:absolute;right:14px;top:14px;width:78px;height:108px;background:#1f3a2c;border-radius:8px;border:2px solid #0F1A14}
+  .video-controls{display:flex;gap:14px;padding:18px;background:#0F1A14}
+  .vc-btn{width:48px;height:48px;border-radius:50%;background:#243d2f;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
+  .vc-btn.danger{background:var(--red-700)}
+
+  .access-row{padding:12px;border:1px solid var(--line-2);border-radius:var(--r-2);background:#fff;display:flex;gap:10px;align-items:flex-start}
+  .access-row .av{flex:0 0 auto}
+
+  .notif{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);box-shadow:var(--sh-2);display:flex;gap:12px;align-items:flex-start}
+  .notif .av{margin-top:2px}
+  .notif .body{flex:1}
+  .notif .when{font-size:10px;color:var(--ink-3);margin-top:6px}
+
+  .ussd{background:#0a0a0a;color:#A8E0A8;font-family:var(--f-mono);padding:18px 14px;border-radius:6px;font-size:13px;line-height:1.5;border:1px solid #2a2a2a;white-space:pre-line}
+
+  .empty{text-align:center;padding:24px 6px}
+  .empty .pl{width:64px;height:64px;border-radius:50%;margin:0 auto 10px}
+
+  .hist-card{padding:12px;border:1px solid var(--line-2);border-radius:var(--r-2);background:#fff}
+  .hist-card .when{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .hist-card .what{font-weight:600;margin:4px 0 2px}
+  .hist-card .who{font-size:11px;color:var(--ink-3)}
+
+  .stat-bar{height:5px;background:var(--bg-2);border-radius:3px;overflow:hidden}
+  .stat-bar .fill{height:100%;background:var(--green-700);width:34%}
+
+  /* responsive grid: 2 cols when narrow */
+  @media (max-width:1180px){ .grid-phones{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:780px){ .grid-phones{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MISAU · App do Cidadão</span><span class="sep">·</span>
+  <span>Protótipo · 11 ecrãs</span>
+  <span style="margin-left:auto"><a href="index.html" style="color:#cfe1d6">← Pacote de mocks</a></span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Saúde Moçambique</span><small>App do Cidadão · Surface 02</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="emr.html">EMR</a>
+    <a href="ehealth.html" class="active">App</a>
+    <a href="pharmacy.html">Farmácia</a>
+    <a href="audit.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-ehealth.md" class="t-meta">DESIGN-ehealth.md ↗</a>
+    <a href="index.html" class="btn ghost sm">← Voltar</a>
+  </div>
+</header>
+
+<section class="page">
+  <div class="page-h">
+    <div>
+      <div class="t-overline" style="color:var(--blue-700)">Surface 02 · Mobile · Android · PWA</div>
+      <h1 class="t-h1" style="margin:6px 0 6px">App do Cidadão</h1>
+      <p class="t-meta" style="max-width:680px">11 ecrãs cobrindo identificação, triagem, conversa com enfermeiro, vídeo-consulta com médico, receita, registo pessoal, auditoria de acessos, notificação e fallback USSD. Renderizado em quadro de telefone realista.</p>
+    </div>
+    <div class="row" style="gap:8px">
+      <span class="badge">11 ecrãs</span>
+      <span class="badge green">Cobre 11 fluxos</span>
+      <span class="badge blue">PT-MZ + 4 línguas</span>
+    </div>
+  </div>
+
+  <div class="grid-phones" id="phones"></div>
+</section>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState } = React;
+
+function StatusBar(){
+  return (<div className="statusbar"><span>09:42</span><div className="icons"><span style={{fontSize:11}}>4G</span><span style={{fontSize:11}}>•••</span><span style={{fontSize:11}}>87%</span></div></div>);
+}
+function NavBottom({active}){
+  const tabs = [["home","Início"],["rx","Receitas"],["rec","Registo"],["acc","Acessos"]];
+  return (<div className="nav-bottom">{tabs.map(([id,lbl])=>(<a key={id} className={active===id?"active":""}><span className="ic"></span><span>{lbl}</span></a>))}</div>);
+}
+function Phone({children, label, screen}){
+  return (
+    <div className="ph-wrap">
+      <div className="phone"><div className="screen">
+        <StatusBar />
+        {children}
+      </div></div>
+      <div className="ph-cap"><b>{label}</b>{screen}</div>
+    </div>
+  );
+}
+
+/* 1 — Onboarding (OTP step) */
+function S1(){
+  return (
+    <Phone label="01 · Onboarding & identificação" screen="OTP enviado para +258 84 ···· 4567">
+      <div className="scr">
+        <div className="body-s" style={{paddingTop:18}}>
+          <div className="brand"><span className="mark"></span><span className="stack"><span>Saúde Moçambique</span><small>App do Cidadão</small></span></div>
+          <div style={{marginTop:18}}>
+            <div className="t-overline" style={{color:"var(--green-700)"}}>Passo 2 de 3</div>
+            <h2 className="t-h2" style={{margin:"6px 0 6px",fontSize:22}}>Confirme o seu telefone</h2>
+            <p className="t-meta">Enviámos um código de 6 dígitos para <b>+258 84 ···· 4567</b>.</p>
+          </div>
+          <div className="row" style={{gap:8,justifyContent:"space-between",marginTop:8}}>
+            <div className="otp-box f">4</div><div className="otp-box f">8</div><div className="otp-box f">2</div><div className="otp-box f">9</div><div className="otp-box">_</div><div className="otp-box">_</div>
+          </div>
+          <div className="t-meta" style={{textAlign:"center",marginTop:6}}>Reenviar em 00:24</div>
+          <button className="btn xl block" style={{marginTop:14}}>Confirmar</button>
+          <div className="t-meta" style={{textAlign:"center"}}>O seu BI será ligado no próximo passo (opcional). Pode usar a app sem BI.</div>
+        </div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 2 — Home */
+function S2(){
+  return (
+    <Phone label="02 · Início" screen="Estado: Sincronizado · Beatriz Machava">
+      <div className="scr">
+        <div className="body-s">
+          <div className="row spread">
+            <div>
+              <div className="t-overline" style={{color:"var(--green-700)"}}>Bom dia</div>
+              <div style={{fontSize:20,fontWeight:600,marginTop:2,letterSpacing:"-.01em"}}>Beatriz Machava</div>
+              <div className="t-meta">BI 110456789B · Maxixe</div>
+            </div>
+            <div className="av lg green" style={{width:42,height:42,fontSize:14}}>BM</div>
+          </div>
+          <span className="pill-conn"><span className="d"></span> Sincronizado</span>
+          <button className="btn xl block" style={{marginTop:4}}>Pedir triagem agora</button>
+          <div className="grid g-2" style={{gap:10}}>
+            <div className="home-tile"><div className="ic"></div><h3>Receitas</h3><p>1 por dispensar</p></div>
+            <div className="home-tile"><div className="ic" style={{background:"var(--blue-100)"}}></div><h3>Registo</h3><p>4 consultas</p></div>
+            <div className="home-tile"><div className="ic" style={{background:"#FFF3E0"}}></div><h3>Acessos</h3><p>7 esta semana</p></div>
+            <div className="home-tile"><div className="ic" style={{background:"#F2F1EB"}}></div><h3>Familiares</h3><p>2 dependentes</p></div>
+          </div>
+          <div className="card"><div className="bd" style={{padding:12}}>
+            <div className="t-meta">Última consulta · 12/03/2026</div>
+            <div style={{fontWeight:600,marginTop:2}}>Malária simples — em recuperação</div>
+            <div className="t-meta">CS Maxixe · Dra. Cláudia Tembe</div>
+          </div></div>
+          <a className="t-meta" style={{textAlign:"right",fontSize:12}} href="#">Mudar idioma · Português ▾</a>
+        </div>
+        <NavBottom active="home" />
+      </div>
+    </Phone>
+  );
+}
+
+/* 3 — Pedido de triagem */
+function S3(){
+  const [sel, setSel] = useState(["febre","cefaleia"]);
+  const opts = [["febre","Febre"],["cefaleia","Cefaleia"],["calafrios","Calafrios"],["tosse","Tosse"],["diarreia","Diarreia"],["dor-abd","Dor abdominal"],["vomitos","Vómitos"],["pele","Manchas na pele"]];
+  const tog=(k)=>setSel(sel.includes(k)?sel.filter(x=>x!==k):[...sel,k]);
+  return (
+    <Phone label="03 · Pedir triagem" screen="Sintoma principal + foto opcional">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>← voltar</a><h1>Pedir triagem</h1><span style={{width:30}}></span></div>
+        <div className="body-s">
+          <div className="t-overline">Sintoma principal</div>
+          <div className="grid g-2" style={{gap:8}}>
+            {opts.map(([k,l])=>(
+              <div key={k} className={`symptom ${sel.includes(k)?"sel":""}`} onClick={()=>tog(k)}>
+                <span className="dot"></span>{l}
+              </div>
+            ))}
+          </div>
+          <div className="field"><label>Há quanto tempo?</label><select className="select"><option>Há 3 dias</option><option>Hoje</option><option>Esta semana</option></select></div>
+          <div className="field"><label>Descreva por palavras suas</label><textarea className="textarea" defaultValue="Febre alta há 3 dias, muito cansaço, dor de cabeça forte."></textarea></div>
+          <div className="card" style={{padding:12,display:"flex",gap:10,alignItems:"center"}}>
+            <div className="placeholder" style={{width:48,height:48}}>📷</div>
+            <div style={{flex:1}}><b style={{fontSize:13}}>Adicionar foto</b><div className="t-meta">Erupção, ferida, etc. (opcional)</div></div>
+            <button className="btn sm secondary">Anexar</button>
+          </div>
+        </div>
+        <div className="foot"><button className="btn xl block">Enviar para triagem</button></div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 4 — Sala de espera virtual */
+function S4(){
+  return (
+    <Phone label="04 · Fila de triagem" screen="Posição estimada · 7 min">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>← cancelar</a><h1>Aguardando enfermeiro</h1><span style={{width:30}}></span></div>
+        <div className="body-s" style={{justifyContent:"center"}}>
+          <div style={{textAlign:"center",margin:"20px 0"}}>
+            <div className="t-overline" style={{color:"var(--green-700)"}}>Posição na fila</div>
+            <div style={{fontSize:64,fontWeight:600,letterSpacing:"-.03em",marginTop:6,color:"var(--green-700)"}}>3</div>
+            <div className="t-meta">de 14 · estimativa 7 minutos</div>
+          </div>
+          <div className="stat-bar"><div className="fill"></div></div>
+          <div className="card"><div className="bd" style={{padding:12}}>
+            <div className="t-overline">O seu pedido</div>
+            <div style={{fontWeight:600,margin:"4px 0"}}>Febre + cefaleia</div>
+            <div className="t-meta">Há 3 dias · enviado às 09:38</div>
+          </div></div>
+          <div className="banner blue" style={{padding:10}}><div className="ic"></div><div style={{fontSize:12}}>Enquanto espera, mantenha-se hidratada e descanse. Se sentir piora, ligue <b>1490</b>.</div></div>
+        </div>
+        <div className="foot"><button className="btn block secondary">Cancelar pedido</button></div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 5 — Chat com enfermeiro */
+function S5(){
+  return (
+    <Phone label="05 · Conversa com enfermeiro" screen="Triagem por texto · Aida Tovela">
+      <div className="scr">
+        <div className="head">
+          <a style={{fontSize:13,color:"var(--ink-3)"}}>←</a>
+          <div style={{textAlign:"center",lineHeight:1.1}}>
+            <div style={{fontSize:14,fontWeight:600}}>Aida Tovela</div>
+            <div className="t-meta" style={{fontSize:10}}>Enfermeira · CS Maxixe · online</div>
+          </div>
+          <span style={{width:30}}></span>
+        </div>
+        <div className="body-s" style={{background:"#EEEDE7",padding:"12px 12px"}}>
+          <span className="chat-meta">Hoje 09:46</span>
+          <div className="chat-bub them">Olá Beatriz, sou a enfermeira Aida. Vi que tem febre há 3 dias. Tem viajado recentemente?</div>
+          <div className="chat-bub me">Sim, fui a Massinga há uma semana visitar a minha mãe.</div>
+          <div className="chat-bub them">Obrigada. Está com calafrios à noite?</div>
+          <div className="chat-bub me">Sim, e dor de cabeça forte.</div>
+          <div className="chat-bub them">A combinação de sintomas e a viagem sugerem suspeita de malária. Vou pedir que faça um teste rápido. Pode ir hoje ao CS Maxixe?</div>
+          <div className="chat-bub them" style={{background:"var(--green-100)",borderColor:"#BDDFCB",color:"var(--green-900)"}}>
+            <b>Encaminhamento</b><br/>Triagem: <b>amarela</b> · CS Maxixe · hoje até 12:00
+          </div>
+        </div>
+        <div className="foot" style={{display:"flex",gap:8,padding:"10px 12px"}}>
+          <input className="input" placeholder="Escrever mensagem..." />
+          <button className="btn sm secondary" style={{height:36,width:36}}>📷</button>
+          <button className="btn sm" style={{height:36}}>Enviar</button>
+        </div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 6 — Vídeo-consulta */
+function S6(){
+  return (
+    <Phone label="06 · Vídeo-consulta com médico" screen="Escalonamento · Dr. Adérito Mucopo · banda fraca">
+      <div className="scr" style={{background:"#0F1A14"}}>
+        <div className="video-stage">
+          <div className="placeholder" style={{width:160,height:200,borderRadius:8,background:"#1f3a2c",borderColor:"#2a4d3a",color:"#5e8a72"}}>vídeo do médico</div>
+          <div style={{textAlign:"center",color:"#cfe1d6"}}>
+            <div style={{fontWeight:600,fontSize:15}}>Dr. Adérito Mucopo</div>
+            <div style={{fontSize:11,opacity:.8}}>Médico · HP Inhambane · 02:14</div>
+          </div>
+          <div className="video-pip"></div>
+          <div style={{position:"absolute",left:14,top:14,padding:"6px 10px",background:"rgba(255,255,255,.1)",borderRadius:4,color:"#fff",fontSize:11}}>Banda fraca · alternar para áudio?</div>
+        </div>
+        <div className="video-controls" style={{justifyContent:"center"}}>
+          <div className="vc-btn">🔇</div>
+          <div className="vc-btn">📞</div>
+          <div className="vc-btn">📷</div>
+          <div className="vc-btn danger">⏻</div>
+        </div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 7 — Receita recebida */
+function S7(){
+  return (
+    <Phone label="07 · Receita recebida" screen="QR de dispensa + lista de medicamentos">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>←</a><h1>Receita médica</h1><a style={{fontSize:13,color:"var(--ink-3)"}}>···</a></div>
+        <div className="body-s" style={{alignItems:"center"}}>
+          <div className="qr lg" aria-hidden="true"></div>
+          <div style={{textAlign:"center"}}>
+            <div className="t-meta mono" style={{fontSize:11}}>Rx-2026-04-MZ-018</div>
+            <div className="badge amber" style={{marginTop:6}}>Válida até 28/04/2026</div>
+          </div>
+          <div className="card" style={{width:"100%"}}><div className="bd" style={{padding:12}}>
+            <div className="t-overline">Medicamentos</div>
+            <ul style={{margin:"6px 0 0",paddingLeft:18,fontSize:13}}>
+              <li><b>Artemether-Lumefantrina</b> 80/480 mg — 4 cp · 2× dia · 3 dias</li>
+              <li><b>Paracetamol</b> 500 mg — 1 cp · SOS · 5 dias</li>
+            </ul>
+            <div className="t-meta" style={{marginTop:8}}>Prescrito por Dra. Cláudia Tembe · CS Maxixe</div>
+          </div></div>
+          <div className="card" style={{width:"100%"}}><div className="bd" style={{padding:12}}>
+            <div className="row spread">
+              <div><b style={{fontSize:13}}>Farmácia mais próxima</b><div className="t-meta">Farmácia Maxixe Central · 800m</div></div>
+              <span className="badge green">Stock OK</span>
+            </div>
+          </div></div>
+        </div>
+        <div className="foot" style={{display:"flex",gap:8}}>
+          <button className="btn block secondary">Partilhar</button>
+          <button className="btn block">Encontrar farmácia</button>
+        </div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 8 — Meu registo */
+function S8(){
+  return (
+    <Phone label="08 · O meu registo de saúde" screen="Linguagem clara · não-clínica">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>←</a><h1>O meu registo</h1><a style={{fontSize:13,color:"var(--ink-3)"}}>⓵</a></div>
+        <div className="body-s">
+          <div className="card" style={{background:"var(--green-100)",borderColor:"#BDDFCB"}}><div className="bd" style={{padding:12}}>
+            <div className="t-overline" style={{color:"var(--green-700)"}}>Resumo de saúde</div>
+            <div style={{fontWeight:600,marginTop:4}}>Tem tensão alta controlada e diabetes tipo 2.</div>
+            <div className="t-meta">É alérgica a Penicilina. Está grávida (28 semanas).</div>
+          </div></div>
+          <div className="t-overline" style={{marginTop:4}}>Consultas recentes</div>
+          <div className="hist-card">
+            <div className="when">15 Abril 2026 · hoje</div>
+            <div className="what">Suspeita de malária — está em tratamento</div>
+            <div className="who">CS Maxixe · Dra. Cláudia Tembe</div>
+          </div>
+          <div className="hist-card">
+            <div className="when">12 Março 2026</div>
+            <div className="what">Acompanhamento da tensão arterial</div>
+            <div className="who">CS Maxixe · Cláudia Tembe</div>
+          </div>
+          <div className="hist-card">
+            <div className="when">04 Fevereiro 2026</div>
+            <div className="what">Consulta pré-natal — 14 semanas</div>
+            <div className="who">CS Maxixe · Aida Tovela</div>
+          </div>
+          <a className="t-meta" style={{textAlign:"center",fontSize:12,marginTop:4}} href="#">Ver tudo (12 consultas)</a>
+        </div>
+        <NavBottom active="rec" />
+      </div>
+    </Phone>
+  );
+}
+
+/* 9 — Auditoria de acessos (paciente) */
+function S9(){
+  return (
+    <Phone label="09 · Quem acedeu ao meu registo" screen="Trilha de auditoria · sinalizar suspeito">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>←</a><h1>Acessos ao meu registo</h1><a style={{fontSize:13,color:"var(--ink-3)"}}>⓵</a></div>
+        <div className="body-s">
+          <div className="row spread"><span className="t-meta">Últimos 30 dias</span><span className="badge">7 acessos</span></div>
+          <div className="access-row">
+            <div className="av green">CT</div>
+            <div style={{flex:1}}>
+              <div style={{fontWeight:600}}>Cláudia Tembe</div>
+              <div className="t-meta">Tec. Medicina · CS Maxixe</div>
+              <div className="t-meta">Hoje 09:18 · viu perfil + histórico</div>
+              <div className="row" style={{gap:6,marginTop:6}}><span className="badge green">Normal</span><span className="badge">Consulta</span></div>
+            </div>
+          </div>
+          <div className="access-row" style={{borderColor:"#E5B7AE",background:"#FCEFEC"}}>
+            <div className="av amber">AM</div>
+            <div style={{flex:1}}>
+              <div style={{fontWeight:600}}>Adérito Mucopo</div>
+              <div className="t-meta">Médico · HP Inhambane</div>
+              <div className="t-meta">14/04 22:48 · viu medicação + lab</div>
+              <div className="row" style={{gap:6,marginTop:6}}><span className="badge red">Override de emergência</span></div>
+              <a href="#" style={{fontSize:12,color:"var(--red-700)",fontWeight:600,marginTop:6,display:"inline-block"}}>Não fui eu — sinalizar</a>
+            </div>
+          </div>
+          <div className="access-row">
+            <div className="av">FM</div>
+            <div style={{flex:1}}>
+              <div style={{fontWeight:600}}>Farmácia Maxixe Central</div>
+              <div className="t-meta">Sara Nhaca · Farmacêutica</div>
+              <div className="t-meta">12/03 11:14 · dispensou Rx-2026-03-MZ-014</div>
+              <div className="row" style={{gap:6,marginTop:6}}><span className="badge">Receita</span></div>
+            </div>
+          </div>
+        </div>
+        <NavBottom active="acc" />
+      </div>
+    </Phone>
+  );
+}
+
+/* 10 — Notificação push */
+function S10(){
+  return (
+    <Phone label="10 · Notificação de acesso" screen="Push + banner in-app">
+      <div className="scr" style={{background:"linear-gradient(180deg,#1F3A5F 0%,#152A45 60%)",color:"#fff"}}>
+        <div style={{padding:"40px 16px 16px",textAlign:"center"}}>
+          <div style={{fontSize:60,fontWeight:600,letterSpacing:"-.03em",lineHeight:1}}>09:42</div>
+          <div style={{fontSize:13,opacity:.8,marginTop:6}}>Quarta, 15 de Abril</div>
+        </div>
+        <div style={{padding:"4px 12px"}}>
+          <div className="notif">
+            <div className="av green">SM</div>
+            <div className="body">
+              <div className="row spread"><b style={{fontSize:13}}>Saúde Moçambique</b><span className="t-meta" style={{fontSize:10}}>agora</span></div>
+              <div style={{fontSize:13,marginTop:4,lineHeight:1.4,color:"var(--ink)"}}>O seu registo foi consultado em <b>CS Maxixe</b> pela enfermeira <b>Cláudia Tembe</b>. Toque para ver detalhes.</div>
+            </div>
+          </div>
+          <div className="notif" style={{marginTop:10}}>
+            <div className="av amber">SM</div>
+            <div className="body">
+              <div className="row spread"><b style={{fontSize:13}}>Saúde Moçambique · Override</b><span className="t-meta" style={{fontSize:10}}>14 Abr 22:48</span></div>
+              <div style={{fontSize:13,marginTop:4,lineHeight:1.4,color:"var(--ink)"}}>Acesso de emergência ao seu registo no <b>HP Inhambane</b>. Razão: paciente inconsciente. Reveja se foi consigo.</div>
+            </div>
+          </div>
+          <div className="notif" style={{marginTop:10}}>
+            <div className="av">SM</div>
+            <div className="body">
+              <div className="row spread"><b style={{fontSize:13}}>SMS · Saúde MZ</b><span className="t-meta" style={{fontSize:10}}>+258 1490</span></div>
+              <div style={{fontSize:12,marginTop:4,lineHeight:1.4,color:"var(--ink-2)",fontFamily:"var(--f-mono)"}}>SAUDE MZ: A sua receita Rx-2026-04-MZ-018 foi emitida. Use o codigo na farmacia. Validade 28/04. Resp 1 p/ ajuda.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Phone>
+  );
+}
+
+/* 11 — USSD fallback */
+function S11(){
+  return (
+    <Phone label="11 · USSD para sem-smartphone" screen="*166# · não colide com *660# Pensa">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>←</a><h1>Sem smartphone?</h1><span style={{width:30}}></span></div>
+        <div className="body-s">
+          <div className="banner blue" style={{padding:12}}><div className="ic"></div><div>
+            <b>Familiares e vizinhos podem usar a Saúde MZ por <span className="mono">*166#</span></b>
+            <div style={{fontSize:12,marginTop:4}}>Disponível em todos os telefones Tmcel, Vodacom e Movitel. Funciona sem internet.</div>
+          </div></div>
+          <div className="t-overline">Como funciona</div>
+          <div className="ussd">{`Saude MZ
+1. Pedir triagem
+2. Ver receita activa
+3. Confirmar consulta
+4. Sinalizar acesso
+5. Falar c/ enfermeiro
+6. Mudar idioma
+
+Resp:`}</div>
+          <div className="card"><div className="bd" style={{padding:12}}>
+            <div className="t-overline">Idiomas</div>
+            <div className="row" style={{flexWrap:"wrap",gap:6,marginTop:6}}>
+              <span className="badge">Português</span>
+              <span className="badge">Changana</span>
+              <span className="badge">Macua</span>
+              <span className="badge">Sena</span>
+              <span className="badge">Ndau</span>
+            </div>
+          </div></div>
+          <div className="alert-strip" style={{fontSize:11}}><b>Nota:</b>&nbsp;<span className="mono">*660#</span> está reservado ao serviço Pensa — escolhemos <span className="mono">*166#</span> para evitar colisão.</div>
+        </div>
+        <div className="foot"><button className="btn block secondary">Imprimir cartão informativo</button></div>
+      </div>
+    </Phone>
+  );
+}
+
+/* extra: language selector (referenced but compact) */
+function S12(){
+  const [lang, setLang] = useState("pt");
+  const opts = [["pt","Português","Idioma oficial"],["ch","Changana","Sul de Moçambique"],["ma","Macua","Norte"],["se","Sena","Centro"],["nd","Ndau","Centro-Sofala"]];
+  return (
+    <Phone label="12 · Selector de idioma" screen="Português + 4 línguas locais (placeholder)">
+      <div className="scr">
+        <div className="head"><a style={{fontSize:13,color:"var(--ink-3)"}}>←</a><h1>Idioma</h1><span style={{width:30}}></span></div>
+        <div className="body-s">
+          <p className="t-meta">A app está disponível em Português. As traduções para línguas locais estão em revisão.</p>
+          {opts.map(([k,n,sub])=>(
+            <div key={k} className={`lang-row ${lang===k?"sel":""}`} onClick={()=>setLang(k)}>
+              <div><b style={{fontSize:14}}>{n}</b><div className="t-meta">{sub}</div></div>
+              {lang===k ? <span className="badge green">Activo</span> : <span className="t-meta">Em revisão</span>}
+            </div>
+          ))}
+        </div>
+        <div className="foot"><button className="btn block">Aplicar</button></div>
+      </div>
+    </Phone>
+  );
+}
+
+function App(){
+  return (<>{[S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12].map((C,i)=><C key={i} />)}</>);
+}
+ReactDOM.createRoot(document.getElementById("phones")).render(<App />);
+</script>
+</body>
+</html>

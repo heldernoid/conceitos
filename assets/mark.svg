@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-labelledby="mark-title mark-desc">
+  <title id="mark-title">Conceitos — sol nascente sobre horizonte</title>
+  <desc id="mark-desc">Marca original: semicírculo solar dourado com raios coral acima de uma linha de horizonte verde, com pequenos traços a sugerir terra abaixo. Usada sobre fundo verde escuro.</desc>
+
+  
+  <circle cx="130" cy="130" r="118" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="1"></circle>
+  <circle cx="130" cy="130" r="110" fill="none" stroke="#ffffff" stroke-opacity=".28" stroke-width="1"></circle>
+
+  
+  <g stroke="#E07A5F" stroke-width="3.4" stroke-linecap="round">
+    
+    <line x1="130" y1="56" x2="130" y2="78"></line>
+    
+    <line x1="106" y1="62" x2="113" y2="82"></line>
+    <line x1="154" y1="62" x2="147" y2="82"></line>
+    
+    <line x1="84" y1="76" x2="96" y2="92"></line>
+    <line x1="176" y1="76" x2="164" y2="92"></line>
+    
+    <line x1="66" y1="96" x2="82" y2="106" stroke-width="2.8"></line>
+    <line x1="194" y1="96" x2="178" y2="106" stroke-width="2.8"></line>
+    <line x1="50" y1="128" x2="68" y2="134" stroke-width="2.8"></line>
+    <line x1="210" y1="128" x2="192" y2="134" stroke-width="2.8"></line>
+  </g>
+
+  
+  <path d="M70 152 a60 60 0 0 1 120 0 z" fill="#E8B547"></path>
+  
+  
+
+
+  
+  <line x1="36" y1="152" x2="224" y2="152" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"></line>
+
+  
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-opacity=".82">
+    <line x1="44" y1="172" x2="56" y2="172"></line>
+    <line x1="64" y1="178" x2="80" y2="178"></line>
+    <line x1="88" y1="172" x2="98" y2="172"></line>
+    <line x1="106" y1="180" x2="120" y2="180"></line>
+    <line x1="128" y1="174" x2="138" y2="174"></line>
+    <line x1="146" y1="180" x2="160" y2="180"></line>
+    <line x1="168" y1="172" x2="178" y2="172"></line>
+    <line x1="186" y1="178" x2="200" y2="178"></line>
+    <line x1="208" y1="172" x2="218" y2="172"></line>
+    <line x1="74" y1="190" x2="90" y2="190" stroke-opacity=".5"></line>
+    <line x1="170" y1="190" x2="186" y2="190" stroke-opacity=".5"></line>
+  </g>
+
+  
+  <g fill="#ffffff" font-family="IBM Plex Sans, sans-serif" font-weight="600" font-size="11" letter-spacing="3.6">
+    <text x="130" y="220" text-anchor="middle">CONCEITOS</text>
+  </g>
+  
+  <g fill="#ffffff" fill-opacity=".55" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.2">
+    <text x="78" y="220" text-anchor="middle">·</text>
+    <text x="182" y="220" text-anchor="middle">·</text>
+  </g>
+</svg>

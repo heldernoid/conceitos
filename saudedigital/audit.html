@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Auditoria & Supervisão — Saúde Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .au-shell{min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+  .au-body{flex:1;padding:20px 24px;max-width:1500px;margin:0 auto;width:100%}
+  .au-grid{display:grid;grid-template-columns:240px 1fr;gap:24px}
+  .au-side{position:sticky;top:80px;align-self:start}
+  .side-h{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:14px 8px 6px;font-weight:600}
+  .side-link{display:block;padding:8px 10px;border-radius:6px;font-size:13px;color:var(--ink-2);text-decoration:none;cursor:pointer;border:1px solid transparent}
+  .side-link:hover{background:#fff;border-color:var(--line-2)}
+  .side-link.active{background:#fff;border-color:var(--line);color:var(--ink);font-weight:600}
+  .side-link .ct{float:right;color:var(--ink-3);font-family:var(--f-mono);font-size:11px}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);margin-bottom:14px;align-items:center}
+  .filterbar .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .filterbar .seg button{height:30px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .filterbar .seg button:last-child{border-right:0}
+  .filterbar .seg button.on{background:var(--green-100);color:var(--green-900);font-weight:600}
+  .filterbar .ftag{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border:1px dashed var(--line);border-radius:14px;font-size:12px;color:var(--ink-2)}
+
+  .num-big{font-size:34px;font-weight:600;letter-spacing:-.02em;line-height:1}
+  .num-big.warn{color:var(--amber-700)}
+  .num-big.bad{color:var(--red-700)}
+  .num-big.good{color:var(--green-700)}
+  .delta{font-size:11px;display:inline-flex;align-items:center;gap:3px}
+  .delta.up{color:var(--red-700)}
+  .delta.dn{color:var(--green-700)}
+
+  .feed-row{display:grid;grid-template-columns:90px 1fr 1fr 110px 110px 80px;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line-2);align-items:center;font-size:13px}
+  .feed-row.head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2)}
+  .feed-row .ts{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .feed-row.flag{background:#FCEFEC}
+  .feed-row.warn{background:#FFFBEF}
+
+  .case-card{padding:12px 14px;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:36px 1fr 140px 100px;gap:12px;align-items:flex-start;cursor:pointer}
+  .case-card:hover{background:var(--bg-2)}
+  .case-dot{width:10px;height:10px;border-radius:50%;margin-top:6px}
+
+  .heat{display:grid;grid-template-columns:120px repeat(24,1fr);gap:2px}
+  .heat .lab{font-size:10px;color:var(--ink-3);font-family:var(--f-mono)}
+  .heat .cell{height:14px;border-radius:2px;background:var(--green-100)}
+
+  .bar-row{display:flex;align-items:center;gap:10px;font-size:13px;padding:6px 0}
+  .bar-row .lab{width:160px;color:var(--ink-2)}
+  .bar-row .bar{flex:1;height:8px;background:var(--bg-2);border-radius:4px;overflow:hidden;position:relative}
+  .bar-row .fill{height:100%;background:var(--green-700)}
+  .bar-row .v{width:50px;text-align:right;font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+
+  .timeline{padding:10px 0}
+  .timeline .ev{display:grid;grid-template-columns:130px 18px 1fr;gap:10px;padding:8px 12px;align-items:flex-start}
+  .timeline .ev .dot{width:10px;height:10px;border-radius:50%;background:var(--green-700);margin-top:5px;border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
+  .timeline .ev.warn .dot{background:var(--amber-700)}
+  .timeline .ev.bad .dot{background:var(--red-700)}
+  .timeline .ev .ts{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .pill{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:11px;font-size:11px;font-weight:500}
+  .pill.live{background:var(--green-100);color:var(--green-700)}
+  .pill.live .d{width:6px;height:6px;border-radius:50%;background:var(--green-700);animation:p 1.6s infinite}
+  @keyframes p{50%{opacity:.3}}
+
+  .pol-card{padding:14px;border:1px solid var(--line-2);border-radius:var(--r-2);background:#fff;display:flex;flex-direction:column;gap:6px}
+  .pol-card .ttl{font-weight:600;font-size:14px}
+  .pol-card .v{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+
+  .right-col{display:flex;flex-direction:column;gap:14px}
+
+  .badge.role-doc{background:#EAF1FB;color:var(--blue-700);border-color:#BFCBDD}
+  .badge.role-nurse{background:var(--green-100);color:var(--green-700);border-color:#BDDFCB}
+  .badge.role-pharm{background:#F5EAFA;color:#5C2E86;border-color:#D8C3E5}
+  .badge.role-admin{background:#FFF4DD;color:var(--amber-700);border-color:#E7D49C}
+  .badge.role-pat{background:var(--bg-2);color:var(--ink-2);border-color:var(--line)}
+
+  .toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
+  .crumb{font-size:12px;color:var(--ink-3)}
+
+  .table-tight{width:100%;border-collapse:collapse;font-size:13px}
+  .table-tight th,.table-tight td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line-2)}
+  .table-tight th{background:var(--bg-2);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useMemo } = React;
+
+const ME = { name:"Tomás Bivane", role:"Auditor MISAU · DPI", initials:"TB" };
+
+function Header({tab, setTab}){
+  const tabs=[["over","Visão geral"],["feed","Eventos"],["cases","Casos abertos"],["queries","Consultas e relatórios"],["policy","Políticas & papéis"]];
+  return (<>
+    <div className="govstrip">
+      <span>República de Moçambique</span><span className="sep">·</span>
+      <span>MISAU · Direcção de Protecção da Informação (DPI)</span><span className="sep">·</span>
+      <span>Auditoria & Supervisão</span>
+      <span style={{marginLeft:"auto"}}><a href="index.html" style={{color:"#cfe1d6"}}>← Pacote de mocks</a></span>
+    </div>
+    <header className="topbar">
+      <a href="index.html" className="brand"><span className="mark"></span><span className="stack"><span>Saúde Moçambique</span><small>Auditoria · Painel central</small></span></a>
+      <nav className="nav">
+        {tabs.map(([id,lbl])=>(<a key={id} className={tab===id?"active":""} href="#" onClick={(e)=>{e.preventDefault();setTab(id)}}>{lbl}</a>))}
+      </nav>
+      <div className="right">
+        <span className="pill live"><span className="d"></span>Stream ao vivo</span>
+        <a href="DESIGN-audit.md" className="t-meta">DESIGN-audit.md ↗</a>
+        <div className="idbadge">
+          <div className="av sm green">{ME.initials}</div>
+          <div className="who"><b>{ME.name}</b><span>{ME.role}</span></div>
+        </div>
+      </div>
+    </header>
+  </>);
+}
+
+function Side({tab, setTab}){
+  const items={
+    over:["Indicadores nacionais","Mapa de actividade","Top eventos críticos"],
+    feed:["Tudo (live)","Override de emergência","Sinalizado por paciente","Acessos fora do horário","Acessos cross-facility","Erros de autenticação"],
+    cases:["Em revisão (8)","A aguardar resposta (3)","Resolvidos esta semana","Arquivados"],
+    queries:["Construtor","Saved · ANARME","Saved · Inhambane","Saved · Pediatria","Relatórios mensais","Exportações"],
+    policy:["Papéis","Regras de override","Retenção de dados","Auditores","Logs do auditor"],
+  };
+  const counts={over:"",feed:"23k/dia",cases:"11",queries:"34",policy:""};
+  return (
+    <aside className="au-side">
+      <div className="side-h">Surface · Auditoria</div>
+      {Object.keys(items).map(k=>(
+        <div key={k}>
+          <div className={"side-link "+(tab===k?"active":"")} onClick={()=>setTab(k)}>
+            {({over:"Visão geral",feed:"Stream de eventos",cases:"Casos",queries:"Consultas",policy:"Políticas"})[k]}
+            {counts[k] && <span className="ct">{counts[k]}</span>}
+          </div>
+          {tab===k && <div style={{margin:"4px 0 10px 6px",borderLeft:"1px solid var(--line-2)",paddingLeft:8}}>
+            {items[k].map((x,i)=>(<div key={i} className="side-link" style={{fontSize:12,padding:"5px 8px",color:"var(--ink-3)"}}>{x}</div>))}
+          </div>}
+        </div>
+      ))}
+      <div className="side-h" style={{marginTop:18}}>Suporte</div>
+      <div className="side-link" style={{fontSize:12}}>Manual do auditor</div>
+      <div className="side-link" style={{fontSize:12}}>Linha DPI · 1490</div>
+    </aside>
+  );
+}
+
+/* OVERVIEW */
+function Overview(){
+  return (
+    <>
+    <div className="toolbar">
+      <div>
+        <div className="t-overline" style={{color:"var(--ink-3)"}}>Visão geral · 15 Abril 2026 · 09:42</div>
+        <h1 className="t-h1" style={{margin:"4px 0 0"}}>Painel nacional de auditoria</h1>
+        <p className="t-meta">Activos: 1 482 unidades sanitárias · 14 217 profissionais · 1 904 farmácias</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <div className="seg" style={{display:"inline-flex",border:"1px solid var(--line)",borderRadius:"var(--r-2)",overflow:"hidden"}}>
+          <button style={{height:32,padding:"0 12px",border:0,background:"#fff",fontSize:12}}>24h</button>
+          <button style={{height:32,padding:"0 12px",border:0,background:"var(--green-100)",color:"var(--green-900)",fontSize:12,fontWeight:600,borderLeft:"1px solid var(--line)",borderRight:"1px solid var(--line)"}}>7 dias</button>
+          <button style={{height:32,padding:"0 12px",border:0,background:"#fff",fontSize:12}}>30 dias</button>
+          <button style={{height:32,padding:"0 12px",border:0,background:"#fff",fontSize:12,borderLeft:"1px solid var(--line)"}}>Ano</button>
+        </div>
+        <button className="btn secondary">Exportar PDF</button>
+      </div>
+    </div>
+
+    <div className="kpi-grid" style={{marginBottom:14}}>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Eventos auditáveis</div><div className="num-big">1.42M</div><div className="delta dn">▼ 4% vs sem. anterior</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Override de emergência</div><div className="num-big warn">128</div><div className="delta up">▲ 11% — investigar</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Sinalizados por pacientes</div><div className="num-big bad">14</div><div className="delta up">▲ 2 esta semana</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Casos abertos</div><div className="num-big">11</div><div className="delta">SLA médio · 3.1 dias</div></div>
+    </div>
+
+    <div className="grid" style={{gridTemplateColumns:"1.4fr 1fr",gap:18}}>
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Mapa de actividade · província</h3><span className="t-meta">Acessos por 1 000 habitantes</span></div>
+        <div className="pb">
+          {[
+            ["Maputo Cidade",96,"green"],["Maputo Província",78,"green"],["Inhambane",54,"green"],
+            ["Gaza",47,"green"],["Sofala",62,"green"],["Manica",41,"green"],["Tete",38,"amber"],
+            ["Zambézia",29,"amber"],["Nampula",33,"amber"],["Cabo Delgado",17,"red"],["Niassa",21,"amber"],
+          ].map(([p,v,c],i)=>(
+            <div key={i} className="bar-row">
+              <span className="lab">{p}</span>
+              <span className="bar"><span className="fill" style={{width:(v)+"%",background: c==="red"?"var(--red-700)":c==="amber"?"var(--amber-700)":"var(--green-700)"}}></span></span>
+              <span className="v">{v}</span>
+            </div>
+          ))}
+          <div className="t-meta" style={{marginTop:10}}>Cabo Delgado e Niassa abaixo da meta — equipa de implantação MISAU em curso. Ver caso #IMP-014.</div>
+        </div>
+      </div>
+      <div className="right-col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Top eventos críticos · 24h</h3><a className="t-meta" href="#">Ver todos →</a></div>
+          <div>
+            <div className="case-card" style={{gridTemplateColumns:"12px 1fr 90px"}}>
+              <span className="case-dot" style={{background:"var(--red-700)"}}></span>
+              <div><b style={{fontSize:13}}>Override sem motivo registado</b><div className="t-meta">HC Beira · Dr. R. Massingue · 14:22</div></div>
+              <span className="badge red">Crítico</span>
+            </div>
+            <div className="case-card" style={{gridTemplateColumns:"12px 1fr 90px"}}>
+              <span className="case-dot" style={{background:"var(--amber-700)"}}></span>
+              <div><b style={{fontSize:13}}>5 acessos cross-facility no mesmo BI</b><div className="t-meta">Diferentes províncias em 22 min · BI 309887412C</div></div>
+              <span className="badge amber">Alto</span>
+            </div>
+            <div className="case-card" style={{gridTemplateColumns:"12px 1fr 90px"}}>
+              <span className="case-dot" style={{background:"var(--amber-700)"}}></span>
+              <div><b style={{fontSize:13}}>Receita possivelmente alterada</b><div className="t-meta">Rx-…091 · sinalizada por farmácia FM-088</div></div>
+              <span className="badge amber">Alto</span>
+            </div>
+            <div className="case-card" style={{gridTemplateColumns:"12px 1fr 90px"}}>
+              <span className="case-dot" style={{background:"var(--ink-3)"}}></span>
+              <div><b style={{fontSize:13}}>Picos de erro de auth · Maxixe</b><div className="t-meta">23 falhas em 4 min · 03:11</div></div>
+              <span className="badge">Médio</span>
+            </div>
+          </div>
+        </div>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Conformidade · 7 dias</h3></div>
+          <div className="pb">
+            <div className="bar-row"><span className="lab">Override c/ motivo</span><span className="bar"><span className="fill" style={{width:"94%"}}></span></span><span className="v">94%</span></div>
+            <div className="bar-row"><span className="lab">Notificação ao paciente</span><span className="bar"><span className="fill" style={{width:"99%"}}></span></span><span className="v">99%</span></div>
+            <div className="bar-row"><span className="lab">2FA em sessões</span><span className="bar"><span className="fill" style={{width:"88%",background:"var(--amber-700)"}}></span></span><span className="v">88%</span></div>
+            <div className="bar-row"><span className="lab">Logs íntegros (hash)</span><span className="bar"><span className="fill" style={{width:"100%"}}></span></span><span className="v">100%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="panel" style={{marginTop:18}}>
+      <div className="ph"><h3 className="t-h3">Mapa de calor · acessos por hora · últimos 7 dias</h3><span className="t-meta">Verde mais escuro = mais acessos · linhas tracejadas marcam fora-de-horário</span></div>
+      <div className="pb">
+        <div className="heat">
+          <span className="lab"></span>
+          {Array.from({length:24}).map((_,h)=>(<span key={h} className="lab" style={{textAlign:"center"}}>{h.toString().padStart(2,"0")}</span>))}
+          {["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"].map((d,r)=>(
+            <React.Fragment key={d}>
+              <span className="lab">{d}</span>
+              {Array.from({length:24}).map((_,h)=>{
+                const business = h>=7&&h<=19;
+                const intensity = business ? Math.min(1, .3 + Math.sin((h-7)/12*Math.PI)*.7 + (r<5?.1:-.1) + (Math.random()*.1)) : Math.random()*.18;
+                const color = `oklch(${0.95-intensity*0.5} ${0.05+intensity*0.05} 150)`;
+                return <span key={h} className="cell" style={{background:color, outline: !business && intensity>.12 ? "1px dashed var(--amber-700)" : "none"}}></span>;
+              })}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className="t-meta" style={{marginTop:10}}>5 células fora-de-horário tracejadas requerem revisão · maioria são overrides legítimos em hospitais provinciais (HP Beira, HC Quelimane).</div>
+      </div>
+    </div>
+    </>
+  );
+}
+
+/* EVENT FEED */
+const EVENTS = [
+  {ts:"09:41:08", actor:"Cláudia Tembe", role:"nurse", roleLbl:"Tec. Medicina", action:"Viu perfil + histórico", subject:"Beatriz Machava", at:"CS Maxixe", st:"ok"},
+  {ts:"09:38:42", actor:"Sara Nhaca", role:"pharm", roleLbl:"Farmacêutica", action:"Dispensou Rx-…018 (parcial)", subject:"Beatriz Machava", at:"FM-088 Maxixe", st:"ok"},
+  {ts:"09:34:11", actor:"Adérito Mucopo", role:"doc", roleLbl:"Médico", action:"Vídeo-consulta · 02:14", subject:"Beatriz Machava", at:"HP Inhambane", st:"ok"},
+  {ts:"09:22:51", actor:"Aida Tovela", role:"nurse", roleLbl:"Enfermeira", action:"Triagem por chat", subject:"Beatriz Machava", at:"CS Maxixe", st:"ok"},
+  {ts:"08:54:02", actor:"—", role:"pat", roleLbl:"Sistema", action:"Receita Rx-…091 sinalizada por farmácia", subject:"—", at:"FM-088 Maxixe", st:"flag"},
+  {ts:"03:11:14", actor:"helena.n@misau.gov.mz", role:"admin", roleLbl:"Sessão", action:"23 erros de auth em 4 min", subject:"—", at:"CS Maxixe", st:"warn"},
+  {ts:"22:48:33", actor:"Adérito Mucopo", role:"doc", roleLbl:"Médico", action:"Override de emergência", subject:"Beatriz Machava", at:"HP Inhambane", st:"flag"},
+  {ts:"21:14:09", actor:"Délio Chongo", role:"pharm", roleLbl:"Farmacêutico", action:"Dispensou substância controlada (Tabela II)", subject:"João Matavele", at:"FM-091 Avenida", st:"ok"},
+  {ts:"19:02:17", actor:"Cláudia Tembe", role:"nurse", roleLbl:"Tec. Medicina", action:"Editou diagnóstico (HTA → HTA + DM2)", subject:"Helena Nhachote", at:"CS Maxixe", st:"ok"},
+  {ts:"18:48:01", actor:"R. Massingue", role:"doc", roleLbl:"Médico", action:"Override sem motivo registado", subject:"M. Cossa", at:"HC Beira", st:"flag"},
+  {ts:"17:33:55", actor:"Aida Tovela", role:"nurse", roleLbl:"Enfermeira", action:"Encaminhamento amarelo", subject:"Beatriz Machava", at:"CS Maxixe", st:"ok"},
+  {ts:"16:10:22", actor:"Sistema", role:"admin", roleLbl:"Sistema", action:"Backup integridade · OK", subject:"—", at:"DC Maputo", st:"ok"},
+];
+function Feed(){
+  const [filter, setFilter] = useState("all");
+  const rows = EVENTS.filter(e => filter==="all" || (filter==="flag"&&e.st==="flag") || (filter==="warn"&&e.st==="warn") || (filter==="ok"&&e.st==="ok"));
+  return (<>
+    <div className="toolbar">
+      <div>
+        <div className="crumb">Auditoria / Stream de eventos</div>
+        <h1 className="t-h1" style={{margin:"4px 0 0"}}>Eventos · ao vivo</h1>
+        <p className="t-meta">23 712 eventos hoje · 4 sinalizados · stream com atraso de ~2 s</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn secondary">Pausar</button>
+        <button className="btn secondary">Exportar (CSV)</button>
+        <button className="btn">Criar consulta</button>
+      </div>
+    </div>
+
+    <div className="filterbar">
+      <div className="seg">
+        <button className={filter==="all"?"on":""} onClick={()=>setFilter("all")}>Tudo · 23 712</button>
+        <button className={filter==="flag"?"on":""} onClick={()=>setFilter("flag")}>Sinalizados · 4</button>
+        <button className={filter==="warn"?"on":""} onClick={()=>setFilter("warn")}>Avisos · 11</button>
+        <button className={filter==="ok"?"on":""} onClick={()=>setFilter("ok")}>OK</button>
+      </div>
+      <span className="ftag">Província: todas ✕</span>
+      <span className="ftag">Papel: todos ✕</span>
+      <span className="ftag">+ filtro</span>
+      <div style={{flex:1}}></div>
+      <span className="pill live"><span className="d"></span>Ao vivo</span>
+    </div>
+
+    <div className="panel">
+      <div className="feed-row head">
+        <span>Hora</span><span>Quem</span><span>Acção · Sujeito</span><span>Onde</span><span>Papel</span><span>Estado</span>
+      </div>
+      {rows.map((e,i)=>(
+        <div key={i} className={"feed-row "+(e.st==="flag"?"flag":e.st==="warn"?"warn":"")}>
+          <span className="ts">{e.ts}</span>
+          <div><b style={{fontSize:13}}>{e.actor}</b><div className="t-meta">{e.roleLbl}</div></div>
+          <div><b style={{fontSize:13}}>{e.action}</b><div className="t-meta">{e.subject!=="—"?"Sobre: "+e.subject:"—"}</div></div>
+          <span className="t-meta">{e.at}</span>
+          <span className={"badge role-"+e.role}>{e.roleLbl}</span>
+          <span>{e.st==="flag"? <span className="badge red">Sinalizado</span> : e.st==="warn"? <span className="badge amber">Aviso</span> : <span className="badge green">OK</span>}</span>
+        </div>
+      ))}
+      <div className="pb t-meta" style={{textAlign:"center"}}>← carregar mais · 23 700 anteriores →</div>
+    </div>
+
+    <div className="t-meta" style={{marginTop:8}}><b>Integridade dos logs.</b>&nbsp;Cada bloco horário é assinado e encadeado (hash anterior + actual). Toda a alteração ou apagamento estraga a cadeia e gera alarme. Última verificação: 09:00 · OK.</div>
+  </>);
+}
+
+/* CASE DETAIL */
+function CaseDetail({onBack}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();onBack()}}>Casos</a> / CASE-2026-04-018 · Override em HP Inhambane</div>
+    <div className="toolbar" style={{marginTop:8}}>
+      <div>
+        <div className="row" style={{gap:8,marginBottom:6}}>
+          <span className="badge mono">CASE-2026-04-018</span>
+          <span className="badge red">Em revisão</span>
+          <span className="badge amber">Override de emergência</span>
+          <span className="badge">SLA · 4 dias restantes</span>
+        </div>
+        <h1 className="t-h1" style={{margin:0}}>Override de emergência sem registo de motivo claro</h1>
+        <p className="t-meta">Aberto 14/04 23:02 por sinalização da paciente Beatriz Machava · Investigador: {ME.name}</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn secondary">Solicitar resposta ao profissional</button>
+        <button className="btn secondary">Anexar evidência</button>
+        <button className="btn">Resolver</button>
+      </div>
+    </div>
+
+    <div className="grid" style={{gridTemplateColumns:"1.5fr 1fr",gap:18,marginTop:8}}>
+      <div className="col" style={{gap:14}}>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Linha temporal</h3></div>
+          <div className="timeline">
+            <div className="ev"><span className="ts">14/04 22:43</span><span className="dot"></span><div><b>Paciente atendida na urgência · HP Inhambane</b><div className="t-meta">Triagem laranja · suspeita de malária · acompanhada pelo marido</div></div></div>
+            <div className="ev warn"><span className="ts">14/04 22:48</span><span className="dot"></span><div><b>Override de emergência iniciado</b><div className="t-meta">Dr. Adérito Mucopo · motivo: "paciente inconsciente"</div></div></div>
+            <div className="ev"><span className="ts">14/04 22:48</span><span className="dot"></span><div><b>Acedido: medicação activa, alergias, último laboratório</b><div className="t-meta">Sem edição · só leitura</div></div></div>
+            <div className="ev"><span className="ts">14/04 22:51</span><span className="dot"></span><div><b>SMS automática à paciente</b><div className="t-meta">"O seu registo foi consultado em emergência no HP Inhambane às 22:48"</div></div></div>
+            <div className="ev bad"><span className="ts">14/04 23:02</span><span className="dot"></span><div><b>Paciente sinalizou: "Não fui eu"</b><div className="t-meta">Via app · diz ter estado em casa</div></div></div>
+            <div className="ev"><span className="ts">14/04 23:04</span><span className="dot"></span><div><b>Caso aberto automaticamente</b><div className="t-meta">SLA: 7 dias · investigador atribuído</div></div></div>
+            <div className="ev"><span className="ts">15/04 09:14</span><span className="dot"></span><div><b>Investigador adicionou nota</b><div className="t-meta">"Ligar à urgência HP Inhambane para confirmar identificação da paciente atendida"</div></div></div>
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Provas e anexos</h3></div>
+          <div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}>
+              <span className="placeholder" style={{width:36,height:36,fontSize:9}}>doc</span>
+              <div><b style={{fontSize:13}}>Log assinado da sessão (auth.json)</b><div className="t-meta">SHA-256 · íntegro · 14/04 22:46–22:53</div></div>
+              <a href="#" className="t-meta">Ver →</a>
+            </div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}>
+              <span className="placeholder" style={{width:36,height:36,fontSize:9}}>doc</span>
+              <div><b style={{fontSize:13}}>Registo da urgência · HP Inhambane</b><div className="t-meta">Folha de admissão 22:43 · paciente identificada como "Beatriz M., 34 a"</div></div>
+              <a href="#" className="t-meta">Ver →</a>
+            </div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}>
+              <span className="placeholder" style={{width:36,height:36,fontSize:9}}>📞</span>
+              <div><b style={{fontSize:13}}>Chamada de verificação à paciente</b><div className="t-meta">15/04 09:12 · 6m24s · resumo: "esteve em casa, sente-se bem"</div></div>
+              <a href="#" className="t-meta">Ouvir →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="right-col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Pessoas envolvidas</h3></div>
+          <div className="pb col" style={{gap:10}}>
+            <div className="row" style={{gap:10}}>
+              <div className="av lg green">BM</div>
+              <div><b>Beatriz Machava</b><div className="t-meta">Paciente · BI 110456789B</div><div className="t-meta">Maxixe · 34 a</div></div>
+            </div>
+            <div className="hr"></div>
+            <div className="row" style={{gap:10}}>
+              <div className="av lg amber">AM</div>
+              <div><b>Dr. Adérito Mucopo</b><div className="t-meta">Médico · OM 2114</div><div className="t-meta">HP Inhambane · contratado 2018</div></div>
+            </div>
+            <div className="hr"></div>
+            <div className="row" style={{gap:10}}>
+              <div className="av lg">EU</div>
+              <div><b>Equipa de Urgência · HP Inhambane</b><div className="t-meta">Dir. clínica: Dr. F. Sumbane</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Hipóteses</h3></div>
+          <div className="pb col" style={{gap:8,fontSize:13}}>
+            <div className="row" style={{gap:8}}><span className="badge green">Mais provável</span><div>Identidade trocada na urgência: outra paciente com nome semelhante foi registada como BM. Consultar livro de admissão.</div></div>
+            <div className="row" style={{gap:8}}><span className="badge amber">Plausível</span><div>Override legítimo, paciente não recordou. Verificar via familiar.</div></div>
+            <div className="row" style={{gap:8}}><span className="badge red">Improvável</span><div>Acesso indevido pelo médico. Sem padrão histórico; investigar sessões anteriores.</div></div>
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Decisão</h3></div>
+          <div className="pb col" style={{gap:10}}>
+            <select className="select"><option>Selecionar…</option><option>Resolver · sem irregularidade</option><option>Resolver · falha de processo (formação)</option><option>Escalar · suspeita de uso indevido</option><option>Escalar · ANARME / OM</option></select>
+            <textarea className="textarea" placeholder="Justificação · ficará no log público da auditoria"></textarea>
+            <div className="t-meta">Decisões são assinadas digitalmente e visíveis ao profissional e à paciente.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+/* CASES LIST */
+function Cases({openCase}){
+  const cases=[
+    {id:"CASE-2026-04-018", sev:"red", title:"Override de emergência sem motivo claro", who:"HP Inhambane · Dr. A. Mucopo", age:"3h", sla:"4d"},
+    {id:"CASE-2026-04-017", sev:"red", title:"Receita Rx-…091 possivelmente alterada", who:"FM-088 Maxixe · sinalizada", age:"5h", sla:"6d"},
+    {id:"CASE-2026-04-016", sev:"amber", title:"5 acessos cross-facility no mesmo BI · 22 min", who:"Vários · BI 309887412C", age:"8h", sla:"6d"},
+    {id:"CASE-2026-04-015", sev:"amber", title:"Override em massa · 18 pacientes em 14 min", who:"HC Beira · Dr. R. Massingue", age:"1d", sla:"5d"},
+    {id:"CASE-2026-04-014", sev:"amber", title:"Acesso fora-de-horário sistemático", who:"CS Quelimane · 3 contas", age:"2d", sla:"4d"},
+    {id:"CASE-2026-04-013", sev:"grey", title:"Picos de erros de auth · CS Maxixe", who:"Sistema · 23 falhas / 4 min", age:"3d", sla:"3d"},
+    {id:"CASE-2026-04-012", sev:"grey", title:"Tabela II · saldo divergente em 2 cp", who:"FM-091 Avenida", age:"4d", sla:"2d"},
+    {id:"CASE-2026-04-011", sev:"amber", title:"Paciente sinalizou acesso não reconhecido", who:"CS Massinga · paciente J. Matavele", age:"5d", sla:"1d"},
+  ];
+  const colour={red:"var(--red-700)",amber:"var(--amber-700)",grey:"var(--ink-3)"};
+  return (<>
+    <div className="toolbar">
+      <div>
+        <div className="crumb">Auditoria / Casos abertos</div>
+        <h1 className="t-h1" style={{margin:"4px 0 0"}}>Casos abertos · 11</h1>
+        <p className="t-meta">SLA padrão: 7 dias · 2 casos próximos do prazo · todos atribuídos</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn secondary">Atribuir múltiplos</button>
+        <button className="btn">Novo caso</button>
+      </div>
+    </div>
+    <div className="filterbar">
+      <div className="seg"><button className="on">Em revisão · 8</button><button>A aguardar resposta · 3</button><button>Resolvidos · 14</button></div>
+      <span className="ftag">Severidade · todas ✕</span>
+      <span className="ftag">Investigador · {ME.name} ✕</span>
+      <span className="ftag">+ filtro</span>
+    </div>
+    <div className="panel">
+      <div className="case-card" style={{background:"var(--bg-2)",fontSize:11,textTransform:"uppercase",letterSpacing:".06em",color:"var(--ink-3)",fontWeight:600}}>
+        <span></span><span>Caso · Resumo</span><span>SLA</span><span></span>
+      </div>
+      {cases.map(c=>(
+        <div key={c.id} className="case-card" onClick={openCase}>
+          <span className="case-dot" style={{background:colour[c.sev]}}></span>
+          <div>
+            <div className="row" style={{gap:6,alignItems:"center"}}>
+              <span className="badge mono">{c.id}</span>
+              {c.sev==="red"?<span className="badge red">Crítico</span>:c.sev==="amber"?<span className="badge amber">Alto</span>:<span className="badge">Médio</span>}
+            </div>
+            <div style={{fontWeight:600,marginTop:4}}>{c.title}</div>
+            <div className="t-meta">{c.who} · aberto há {c.age}</div>
+          </div>
+          <div><div className="t-meta">Restam</div><div style={{fontWeight:600}}>{c.sla}</div></div>
+          <div><div className="av sm green">{ME.initials}</div></div>
+        </div>
+      ))}
+    </div>
+  </>);
+}
+
+/* QUERIES */
+function Queries(){
+  return (<>
+    <div className="toolbar">
+      <div>
+        <div className="crumb">Auditoria / Consultas e relatórios</div>
+        <h1 className="t-h1" style={{margin:"4px 0 0"}}>Construtor de consultas</h1>
+        <p className="t-meta">Estruture perguntas sobre actividade · resultados são auditáveis</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn secondary">Carregar consulta guardada</button>
+        <button className="btn">Executar</button>
+      </div>
+    </div>
+
+    <div className="grid" style={{gridTemplateColumns:"1.4fr 1fr",gap:18}}>
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Construir</h3><span className="t-meta">Linguagem natural · estruturada</span></div>
+        <div className="pb col" style={{gap:14}}>
+          <div className="field"><label>Mostrar-me</label>
+            <select className="select"><option>acessos a registos</option><option>dispensas de medicamentos</option><option>sessões de profissionais</option><option>overrides de emergência</option></select></div>
+          <div className="field"><label>Onde</label>
+            <select className="select"><option>papel = "Médico"</option><option>papel = "Enfermeiro"</option><option>papel = "Farmacêutico"</option></select></div>
+          <div className="field"><label>E</label>
+            <select className="select"><option>tipo = "override de emergência"</option><option>fora-de-horário = sim</option><option>cross-facility = sim</option></select></div>
+          <div className="field"><label>E</label>
+            <select className="select"><option>província = "Sofala"</option><option>província = "Cabo Delgado"</option><option>província = qualquer</option></select></div>
+          <div className="field"><label>Período</label>
+            <select className="select"><option>Últimos 30 dias</option><option>Últimos 7 dias</option><option>Personalizado…</option></select></div>
+          <div className="field"><label>Agrupar por</label>
+            <select className="select"><option>profissional</option><option>unidade sanitária</option><option>dia</option></select></div>
+
+          <div className="alert-strip" style={{background:"var(--blue-100)",borderColor:"#BFCBDD",color:"var(--blue-700)"}}><b>Privacidade.</b>&nbsp;Esta consulta retorna metadados, nunca conteúdo clínico. A execução fica registada no seu log de auditor.</div>
+        </div>
+      </div>
+
+      <div className="col" style={{gap:14}}>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Pré-visualização</h3><span className="t-meta">A ser executada · 28 médicos</span></div>
+          <table className="table-tight">
+            <thead><tr><th>Profissional</th><th>Unidade</th><th>Overrides</th><th>%</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. R. Massingue</td><td>HC Beira</td><td>34</td><td>22%</td></tr>
+              <tr><td>Dra. F. Sumbane</td><td>HP Inhambane</td><td>18</td><td>11%</td></tr>
+              <tr><td>Dr. A. Mucopo</td><td>HP Inhambane</td><td>9</td><td>4%</td></tr>
+              <tr><td>Dr. P. Cuna</td><td>HC Quelimane</td><td>7</td><td>3%</td></tr>
+              <tr><td colSpan="4" className="t-meta">+ 24 outros · ver tudo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Consultas guardadas</h3></div>
+          <div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}><span className="placeholder" style={{width:36,height:36,fontSize:9}}>SQ</span>
+              <div><b style={{fontSize:13}}>Top 10 prescritores · Tabela II</b><div className="t-meta">Mensal · Inhambane · partilhada com ANARME</div></div>
+              <a href="#" className="t-meta">Executar →</a></div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}><span className="placeholder" style={{width:36,height:36,fontSize:9}}>SQ</span>
+              <div><b style={{fontSize:13}}>Sessões fora-de-horário</b><div className="t-meta">Diária · todas as províncias</div></div>
+              <a href="#" className="t-meta">Executar →</a></div>
+            <div className="case-card" style={{gridTemplateColumns:"36px 1fr 100px"}}><span className="placeholder" style={{width:36,height:36,fontSize:9}}>SQ</span>
+              <div><b style={{fontSize:13}}>Pacientes c/ &gt; 3 sinalizações</b><div className="t-meta">Semanal · revisão prioritária</div></div>
+              <a href="#" className="t-meta">Executar →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+/* POLICY */
+function Policy(){
+  return (<>
+    <div className="toolbar">
+      <div>
+        <div className="crumb">Auditoria / Políticas & papéis</div>
+        <h1 className="t-h1" style={{margin:"4px 0 0"}}>Políticas, papéis e retenção</h1>
+        <p className="t-meta">Editáveis pela DPI/MISAU · alterações requerem 2 aprovações · todas registadas</p>
+      </div>
+      <button className="btn secondary">Histórico de alterações</button>
+    </div>
+
+    <div className="panel" style={{marginBottom:14}}>
+      <div className="ph"><h3 className="t-h3">Papéis</h3><span className="t-meta">5 papéis · 14 217 contas activas</span></div>
+      <table className="table-tight">
+        <thead><tr><th>Papel</th><th>Acessa</th><th>Pode escrever</th><th>Override</th><th>Contas</th></tr></thead>
+        <tbody>
+          <tr><td><span className="badge role-doc">Médico</span></td><td>Registo completo, lab, imagiologia</td><td>Diagnóstico, prescrição</td><td>Sim · com motivo</td><td>3 218</td></tr>
+          <tr><td><span className="badge role-nurse">Enfermeiro/a · Téc. Medicina</span></td><td>Registo, sinais vitais, vacinas</td><td>Sinais vitais, triagem, encaminhamento</td><td>Limitado · só sinais vitais</td><td>8 904</td></tr>
+          <tr><td><span className="badge role-pharm">Farmacêutico/a</span></td><td>Receitas activas, alergias, interacções</td><td>Dispensa, sinalização</td><td>Não</td><td>1 904</td></tr>
+          <tr><td><span className="badge role-admin">Administrativo</span></td><td>Demografia, marcações</td><td>Marcações, contactos</td><td>Não</td><td>184</td></tr>
+          <tr><td><span className="badge role-pat">Cidadão/ã</span></td><td>O seu registo · trilho de acessos</td><td>Sinalizar, gerir consentimento</td><td>—</td><td>~7M</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div className="grid" style={{gridTemplateColumns:"repeat(3,1fr)",gap:14}}>
+      <div className="pol-card">
+        <div className="v">Política · Override</div>
+        <div className="ttl">Override de emergência</div>
+        <p className="t-meta" style={{margin:0}}>Requer motivo escrito ≥ 12 caracteres · gera SMS automática à paciente · cria evento auditável imediato.</p>
+        <div className="row" style={{gap:6,marginTop:6}}><span className="badge">v3 · activo</span><span className="t-meta">Última alteração: 12/03/2026</span></div>
+      </div>
+      <div className="pol-card">
+        <div className="v">Política · 2FA</div>
+        <div className="ttl">Autenticação dupla</div>
+        <p className="t-meta" style={{margin:0}}>Obrigatória para médicos e farmacêuticos. Enfermeiros e administrativos: opcional · obrigatória para sessões com override.</p>
+        <div className="row" style={{gap:6,marginTop:6}}><span className="badge amber">88% conformidade</span></div>
+      </div>
+      <div className="pol-card">
+        <div className="v">Política · Retenção</div>
+        <div className="ttl">Logs de auditoria</div>
+        <p className="t-meta" style={{margin:0}}>Logs operacionais: <b>10 anos</b>. Conteúdo clínico: <b>vida + 25 anos</b> (Lei 3/2017). Logs do auditor: <b>vida</b>.</p>
+        <div className="row" style={{gap:6,marginTop:6}}><span className="badge green">Conforme</span></div>
+      </div>
+      <div className="pol-card">
+        <div className="v">Política · Cross-facility</div>
+        <div className="ttl">Acesso entre unidades</div>
+        <p className="t-meta" style={{margin:0}}>Permitido com motivo. Acessos em 2 províncias diferentes em &lt; 30 min geram aviso automático e potencial caso.</p>
+      </div>
+      <div className="pol-card">
+        <div className="v">Política · Apagamento</div>
+        <div className="ttl">Direito ao esquecimento</div>
+        <p className="t-meta" style={{margin:0}}>Não aplicável a registos clínicos (saúde pública). Aplicável a contactos não-clínicos · pedido pela paciente · revisão DPI.</p>
+      </div>
+      <div className="pol-card">
+        <div className="v">Política · Auditores</div>
+        <div className="ttl">Auditoria do auditor</div>
+        <p className="t-meta" style={{margin:0}}>Toda a acção do auditor é registada num log separado, acessível apenas ao Inspector-Geral. 4 auditores activos.</p>
+      </div>
+    </div>
+  </>);
+}
+
+function App(){
+  const [tab, setTab] = useState("over");
+  const [showCase, setShowCase] = useState(false);
+  return (
+    <div className="au-shell">
+      <Header tab={tab} setTab={(t)=>{setTab(t);setShowCase(false)}} />
+      <main className="au-body">
+        <div className="au-grid">
+          <Side tab={tab} setTab={(t)=>{setTab(t);setShowCase(false)}} />
+          <div>
+            {tab==="over" && <Overview />}
+            {tab==="feed" && <Feed />}
+            {tab==="cases" && (showCase ? <CaseDetail onBack={()=>setShowCase(false)} /> : <Cases openCase={()=>setShowCase(true)} />)}
+            {tab==="queries" && <Queries />}
+            {tab==="policy" && <Policy />}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

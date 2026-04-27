@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Saúde Moçambique — Mocks Interativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:var(--bg)}
+  .hero{padding:48px 24px 24px}
+  .hero .container{max-width:1200px;margin:0 auto}
+  .hero .eyebrow{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .hero h1{margin:14px 0 12px;font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.05;max-width:880px}
+  .hero p{color:var(--ink-2);font-size:17px;max-width:760px;line-height:1.55}
+  .hero .meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+  .hero .meta .kv .k{font-size:10px}
+  .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:24px}
+  .tile.featured{grid-column:span 2;background:var(--green-700);color:#fff;border-color:var(--green-700)}
+  .tile.featured h3{color:#fff}
+  .tile.featured p{color:#cfe0d6}
+  .tile.featured .num,.tile.featured .users{color:#9bbfa8}
+  .tile.featured .swatch{background:#fff}
+  .tile.featured .swatch::before,.tile.featured .swatch::after{background:var(--green-700)}
+  footer{padding:40px 24px;border-top:1px solid var(--line);margin-top:48px}
+  footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+  footer h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  footer .ack{font-size:12px;color:var(--ink-3);max-width:380px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Ministério da Saúde — MISAU</span><span class="sep">·</span>
+  <span>Protótipo de demonstração</span>
+  <span style="margin-left:auto">Versão 0.4 · Abril 2026</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Saúde Moçambique</span><small>Plataforma Nacional de Saúde</small></span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema de design</a>
+    <a href="emr.html">EMR</a>
+    <a href="ehealth.html">App do Cidadão</a>
+    <a href="pharmacy.html">Farmácia</a>
+    <a href="audit.html">Auditoria</a>
+    <a href="surveillance.html">Vigilância</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span>Pacote de protótipos clicáveis</span><span class="sep">·</span><span>Para revisão por MISAU, clínicos e parceiros</span></div>
+    <h1>Quatro superfícies de produto, um sistema de saúde.</h1>
+    <p>Saúde Moçambique reúne registo clínico, atendimento ao cidadão, dispensa farmacêutica e auditoria de acessos numa única plataforma pública. Estes mocks demonstram fluxos ponta-a-ponta para revisão de stakeholders antes da implementação.</p>
+    <div class="meta">
+      <div class="kv"><span class="k">Idioma</span><span class="v">Português (PT-MZ)</span></div>
+      <div class="kv"><span class="k">Cobertura alvo</span><span class="v">11 províncias · 154 distritos</span></div>
+      <div class="kv"><span class="k">Unidades sanitárias</span><span class="v">≈1 700 públicas</span></div>
+      <div class="kv"><span class="k">Farmácias licenciadas</span><span class="v">≈1 900 ANARME</span></div>
+      <div class="kv"><span class="k">Documentos</span><span class="v">DESIGN-*.md por superfície</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-tiles">
+  <a class="tile featured" href="design-system.html">
+    <div class="row spread">
+      <div class="num">00 · Fundamentos</div>
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)">Comece aqui</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Sistema de Design</h3>
+    <p>Tipografia, paleta, componentes, padrões de estados e quadro de telefone. Reutilizado por todas as superfícies.</p>
+    <div class="users">Equipa de produto · Engenharia · Parceiros</div>
+  </a>
+  <a class="tile" href="emr.html">
+    <div class="num">01 · Web (tablet/desktop)</div>
+    <div class="swatch"></div>
+    <h3>EMR — Aplicação Clínica</h3>
+    <p>Registo electrónico para enfermeiros, técnicos de medicina e médicos. Offline-first em tablets de 7″.</p>
+    <div class="users">Clínicos em CS, HD, HP</div>
+  </a>
+  <a class="tile b" href="ehealth.html">
+    <div class="num">02 · Mobile (Android · PWA)</div>
+    <div class="swatch"></div>
+    <h3>App do Cidadão</h3>
+    <p>Triagem, consulta vídeo, receita digital, registo pessoal e auditoria de acessos para o paciente.</p>
+    <div class="users">Cidadãos com smartphone · USSD para os restantes</div>
+  </a>
+  <a class="tile c" href="pharmacy.html">
+    <div class="num">03 · Web (tablet/telefone)</div>
+    <div class="swatch"></div>
+    <h3>Sistema de Farmácia</h3>
+    <p>Leitura de QR, dispensa, lotes e validade, alerta de prescrição suspeita. Optimizado para fila.</p>
+    <div class="users">Farmacêuticos ANARME-licenciados</div>
+  </a>
+  <a class="tile d" href="audit.html">
+    <div class="num">04 · Web (admin)</div>
+    <div class="swatch"></div>
+    <h3>Auditoria de Acessos</h3>
+    <p>Visão do paciente sobre quem acedeu ao seu registo e visão administrativa para directores e MISAU.</p>
+    <div class="users">Cidadãos · Direcções de US · Direcção Nacional</div>
+  </a>
+  <a class="tile e" href="surveillance.html">
+    <div class="row spread">
+      <div class="num">05 · Próxima iteração</div>
+      <span class="badge amber"><span class="dot"></span>Esboço</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Vigilância e SIS-MA</h3>
+    <p>Painéis de notificação obrigatória, agregação distrital e integração com SIS-MA. Apresentado como esboço para validação.</p>
+    <div class="users">DPS · Direcção de Planificação Cooperativa</div>
+  </a>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:24px">
+  <div class="section-h"><h3 class="t-h3">Como navegar este pacote</h3></div>
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">1. Sistema de Design</div>
+      <p class="t-body" style="margin:8px 0 0">Comece pelo <a href="design-system.html">Sistema de Design</a> — define paleta, tipografia, componentes e estados que todas as superfícies reutilizam.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">2. Superfícies clicáveis</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície abre num documento próprio com navegação interna. Botões avançam para o próximo estado; ramos divergentes (dispensa parcial, escalonamento) estão acessíveis.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">3. Documentos DESIGN-*.md</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície tem um documento autoritativo (ex.: <span class="mono">DESIGN-emr.md</span>) descrevendo princípios, fluxos, componentes, estados e abertos. Para handoff a engenharia.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Saúde Moçambique</span><small>Plataforma Nacional de Saúde</small></span></a>
+      <p class="ack" style="margin-top:14px">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a> para imaginar um sistema end-to-end de eSaúde para Moçambique. Este protótipo não usa dados reais. Conteúdo clínico e nomes são ilustrativos.</p>
+    </div>
+    <div>
+      <h5>Superfícies</h5>
+      <ul>
+        <li><a href="emr.html">EMR clínico</a></li>
+        <li><a href="ehealth.html">App do cidadão</a></li>
+        <li><a href="pharmacy.html">Farmácia</a></li>
+        <li><a href="audit.html">Auditoria</a></li>
+        <li><a href="surveillance.html">Vigilância <span class="muted">(esboço)</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Documentos</h5>
+      <ul>
+        <li><a href="DESIGN-system.md">DESIGN-system.md</a></li>
+        <li><a href="DESIGN-emr.md">DESIGN-emr.md</a></li>
+        <li><a href="DESIGN-ehealth.md">DESIGN-ehealth.md</a></li>
+        <li><a href="DESIGN-pharmacy.md">DESIGN-pharmacy.md</a></li>
+        <li><a href="DESIGN-audit.md">DESIGN-audit.md</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li class="muted">Av. Eduardo Mondlane 1008</li>
+        <li class="muted">Maputo, Moçambique</li>
+        <li class="muted">+258 21 000 000</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

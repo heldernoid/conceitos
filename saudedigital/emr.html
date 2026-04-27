@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>EMR — Saúde Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .emr-shell{display:flex;flex-direction:column;min-height:100vh}
+  .emr-body{flex:1;padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+  .pflist .row-card{display:grid;grid-template-columns:32px 1.4fr 1fr .8fr 1.2fr .9fr 1fr 80px;gap:12px;padding:10px 12px;align-items:center;border-bottom:1px solid var(--line-2);font-size:13px;cursor:pointer}
+  .pflist .row-card:hover{background:var(--bg-2)}
+  .pflist .head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:300px 1fr;gap:20px}
+  .threecol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+  .vlist{display:flex;flex-direction:column}
+  .vlist .item{padding:10px 12px;border-bottom:1px solid var(--line-2);cursor:pointer}
+  .vlist .item:hover{background:var(--bg-2)}
+  .vlist .item.sel{background:var(--blue-100)}
+  .pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:2px;font-size:11px;color:var(--ink-2)}
+  .login-bg{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--bg)}
+  .login-left{background:#0F3D27;color:#dfeae3;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .login-left h1{font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:0;color:#fff;max-width:440px}
+  .login-left .meta{font-size:12px;color:#9bbfa8}
+  .login-right{padding:48px;display:flex;align-items:center;justify-content:center}
+  .login-card{width:380px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--green-100);color:var(--green-900);font-weight:600}
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+  .vital{padding:10px 12px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:var(--r-2)}
+  .vital .vl{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .vital .vv{font-size:18px;font-weight:600}
+  .vital .vu{font-size:11px;color:var(--ink-3)}
+  .icd-result{padding:8px 10px;border:1px solid var(--line-2);border-radius:2px;background:#fff;display:flex;justify-content:space-between;cursor:pointer}
+  .icd-result:hover{background:var(--bg-2)}
+  .icd-result .code{font-family:var(--f-mono);color:var(--blue-700);font-size:12px}
+  .timeline{position:relative;padding-left:18px}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .timeline .tl{position:relative;padding:0 0 14px 0}
+  .timeline .tl::before{content:"";position:absolute;left:-18px;top:5px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid var(--green-700)}
+  .merge-grid{display:grid;grid-template-columns:1fr 60px 1fr;gap:12px;align-items:flex-start}
+  .merge-card{border:1px solid var(--line);border-radius:var(--r-2);background:#fff;padding:14px}
+  .merge-card.win{border-color:var(--green-700);background:var(--green-100)}
+  .merge-arrow{display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-3);padding-top:60px;font-size:20px}
+  .alert-strip{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#FEF6E0;border:1px solid #E7D49C;border-radius:var(--r-2);font-size:12px;color:#5C4500}
+  .crumb{font-size:12px;color:var(--ink-3)}
+  .crumb a{color:var(--ink-3)}
+  .crumb a:hover{color:var(--ink)}
+  .keys{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);background:var(--bg-2);padding:1px 6px;border-radius:2px;border:1px solid var(--line-2)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState, useMemo, useEffect } = React;
+
+/* Demo data */
+const FACILITY = { name: "Centro de Saúde de Maxixe", province: "Inhambane", level: "CS Tipo II" };
+const ME = { name: "Cláudia Tembe", role: "Tec. Medicina", initials: "CT" };
+
+const PATIENTS = [
+  { id: "p1", initials:"BM", name:"Beatriz Machava", sex:"F", age:34, doc:"BI 110456789B", phone:"+258 84 123 4567", district:"Maxixe, Inhambane", reason:"Febre + calafrios há 3 dias", triage:"red", status:"Em consulta", allergies:"Penicilina", chronic:"HTA · DM tipo 2" },
+  { id: "p2", initials:"JM", name:"João Matavele", sex:"M", age:62, doc:"BI 209887412C", phone:"+258 82 988 0011", district:"Inharrime", reason:"Tosse seca há 2 semanas", triage:"amber", status:"Sala 2", allergies:"Nenhuma conhecida", chronic:"HTA" },
+  { id: "p3", initials:"EC", name:"Esperança Chissano", sex:"F", age:27, doc:"TMP-2026-0481", phone:"—", district:"Maxixe", reason:"Dor abdominal baixa", triage:"green", status:"Aguarda", allergies:"—", chronic:"—", temp:true },
+  { id: "p4", initials:"HN", name:"Helena Nhachote", sex:"F", age:5, doc:"BI 182331904A", phone:"+258 86 412 3344", district:"Massinga", reason:"IRA · febre 39°", triage:"red", status:"Em consulta", allergies:"—", chronic:"—" },
+  { id: "p5", initials:"RM", name:"Rogério Manjate", sex:"M", age:71, doc:"BI 301229811A", phone:"+258 84 277 1198", district:"Maxixe", reason:"Controlo HTA", triage:"green", status:"Aguarda", allergies:"AINEs", chronic:"HTA · IRC estádio 2" },
+  { id: "p6", initials:"AN", name:"Aida Nhampossa", sex:"F", age:24, doc:"DIRE 4412211", phone:"+258 87 119 4422", district:"Maxixe", reason:"Pré-natal · 28 sem.", triage:"green", status:"Aguarda", allergies:"—", chronic:"Anemia ligeira" },
+];
+
+const ICD_SUGGEST = [
+  { code:"B54", label:"Malária não especificada", note:"Suspeita malária simples" },
+  { code:"B50.9", label:"Malária por P. falciparum sem complicações" },
+  { code:"J06.9", label:"Infecção respiratória aguda das vias superiores" },
+  { code:"A09", label:"Diarreia e gastroenterite presumivelmente infecciosas" },
+  { code:"I10", label:"Hipertensão essencial (primária)" },
+  { code:"O23", label:"Infecção do tracto urinário na gravidez" },
+];
+
+const MEDS = [
+  { name:"Artemether-Lumefantrina 80/480 mg", form:"Comprimidos", stock:412 },
+  { name:"Paracetamol 500 mg", form:"Comprimidos", stock:1200 },
+  { name:"Amoxicilina 500 mg", form:"Cápsulas", stock:380 },
+  { name:"Sulfato Ferroso 200 mg + Ác. Fólico", form:"Comprimidos", stock:84 },
+  { name:"Sais de reidratação oral", form:"Saquetas", stock:240 },
+  { name:"Hidroclorotiazida 25 mg", form:"Comprimidos", stock:520 },
+];
+
+/* Header */
+function Header({ conn = "ok", screen, setScreen }){
+  const tabs = [
+    { id:"dashboard", lbl:"Painel" },
+    { id:"patients", lbl:"Pacientes" },
+    { id:"queue", lbl:"Sala de espera" },
+    { id:"prescriptions", lbl:"Receitas" },
+    { id:"lab", lbl:"Laboratório" },
+  ];
+  return (
+    <>
+      <div className="govstrip">
+        <span>República de Moçambique</span><span className="sep">·</span>
+        <span>MISAU · {FACILITY.name}</span><span className="sep">·</span>
+        <span>Sessão clínica</span>
+        <span style={{marginLeft:"auto"}}><a href="index.html" style={{color:"#cfe1d6"}}>← Pacote de mocks</a></span>
+      </div>
+      <header className="topbar">
+        <a href="#" onClick={(e)=>{e.preventDefault();setScreen("dashboard")}} className="brand">
+          <span className="mark"></span>
+          <span className="stack"><span>Saúde Moçambique</span><small>EMR · {FACILITY.name}</small></span>
+        </a>
+        <nav className="nav">
+          {tabs.map(t=>(<a key={t.id} className={screen===t.id?"active":""} href="#" onClick={(e)=>{e.preventDefault();setScreen(t.id)}}>{t.lbl}</a>))}
+        </nav>
+        <div className="right">
+          <ConnPill state={conn} />
+          <div className="idbadge">
+            <div className="av sm green">{ME.initials}</div>
+            <div className="who"><b>{ME.name}</b><span>{ME.role} · {FACILITY.level}</span></div>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
+
+function ConnPill({state}){
+  if(state==="ok") return <span className="conn"><span className="d"></span> Sincronizado · há 12s</span>;
+  if(state==="syncing") return <span className="conn amber"><span className="d"></span> A sincronizar · 8 alterações</span>;
+  return <span className="conn off"><span className="d"></span> Offline · 14 em fila</span>;
+}
+
+/* Login */
+function Login({ onSignIn }){
+  const [step, setStep] = useState(1);
+  const [facility, setFacility] = useState("Centro de Saúde de Maxixe");
+  return (
+    <div className="login-bg">
+      <div className="login-left">
+        <a href="index.html" className="brand" style={{color:"#fff"}}>
+          <span className="mark" style={{background:"#fff"}}></span>
+          <span className="stack" style={{color:"#fff"}}><span>Saúde Moçambique</span><small style={{color:"#9bbfa8"}}>EMR Clínico</small></span>
+        </a>
+        <div>
+          <div className="t-overline" style={{color:"#9bbfa8"}}>Sistema clínico nacional</div>
+          <h1 style={{marginTop:14}}>Registo único do paciente, em qualquer ponto da rede.</h1>
+          <p style={{maxWidth:420,color:"#cfe0d6",marginTop:12,fontSize:15}}>Acesso restrito a profissionais de saúde acreditados pela MISAU. Toda a actividade é auditada e disponibilizada ao paciente.</p>
+        </div>
+        <div className="meta">v0.4.2 · Build 1184 · Suporte 24/7: +258 21 000 100</div>
+      </div>
+      <div className="login-right">
+        <div className="login-card">
+          {step===1 && (<>
+            <div className="t-overline" style={{color:"var(--green-700)"}}>Passo 1 de 2</div>
+            <h2 className="t-h2" style={{margin:"6px 0 18px"}}>Iniciar sessão</h2>
+            <div className="col" style={{gap:14}}>
+              <div className="field"><label>Nº profissional ou e-mail</label><input className="input lg" defaultValue="ctembe@misau.gov.mz" /></div>
+              <div className="field"><label>Palavra-passe</label><input className="input lg" type="password" defaultValue="••••••••••" /></div>
+              <button className="btn lg" onClick={()=>setStep(2)}>Continuar</button>
+              <div className="t-meta" style={{textAlign:"center"}}>
+                <a href="#">Esqueci a palavra-passe</a> · <a href="#">Pedir código por SMS</a>
+              </div>
+            </div>
+          </>)}
+          {step===2 && (<>
+            <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();setStep(1)}}>← voltar</a></div>
+            <div className="t-overline" style={{color:"var(--green-700)",marginTop:8}}>Passo 2 de 2</div>
+            <h2 className="t-h2" style={{margin:"6px 0 18px"}}>Selecionar unidade sanitária</h2>
+            <p className="t-meta" style={{marginBottom:14}}>O seu turno define em que unidade está autenticada. Pode mudar depois.</p>
+            <div className="col" style={{gap:8}}>
+              {["Centro de Saúde de Maxixe","Hospital Distrital de Maxixe","Centro de Saúde Rural de Chicuque","Posto de Saúde de Pomene"].map(f=>(
+                <label key={f} className="card" style={{padding:"12px 14px",cursor:"pointer",display:"flex",gap:10,alignItems:"center",borderColor: facility===f? "var(--green-700)":"var(--line)", background: facility===f? "var(--green-100)":"#fff"}}>
+                  <input type="radio" checked={facility===f} onChange={()=>setFacility(f)} />
+                  <div>
+                    <div style={{fontWeight:600}}>{f}</div>
+                    <div className="t-meta">Inhambane · CS Tipo II · 14 colegas em sessão</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <button className="btn lg block" style={{marginTop:14}} onClick={onSignIn}>Entrar como Cláudia Tembe</button>
+            <div className="t-meta" style={{textAlign:"center",marginTop:10}}>Sessão expira após 30 min de inactividade.</div>
+          </>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Dashboard */
+function Dashboard({ go, openPatient, conn }){
+  return (
+    <>
+      <div className="row spread" style={{marginBottom:14}}>
+        <div>
+          <div className="t-overline" style={{color:"var(--ink-3)"}}>Quarta, 15 de Abril de 2026</div>
+          <h1 className="t-h1" style={{marginTop:4}}>Bom dia, Cláudia</h1>
+          <p className="t-meta">Turno 07:00 – 19:00 · 6 pacientes em fila · 3 receitas para revisão</p>
+        </div>
+        <div className="row" style={{gap:8}}>
+          <button className="btn secondary" onClick={()=>go("offline")}>Ver estado offline</button>
+          <button className="btn" onClick={()=>go("search")}>Pesquisar paciente</button>
+        </div>
+      </div>
+      <div className="grid g-4" style={{marginBottom:18}}>
+        <div className="kpi"><div className="lbl">Pacientes hoje</div><div className="num">14</div><div className="delta">+3 vs. ontem · 6 em fila</div></div>
+        <div className="kpi"><div className="lbl">Triagem vermelha</div><div className="num" style={{color:"var(--red-700)"}}>2</div><div className="delta">Helena N. (5a) · Beatriz M. (34a)</div></div>
+        <div className="kpi"><div className="lbl">Resultados de lab</div><div className="num">5</div><div className="delta">3 não revistos</div></div>
+        <div className="kpi"><div className="lbl">Sincronização</div><div className="num" style={{fontSize:18,marginTop:8}}><span className="badge green">8 enviadas</span></div><div className="delta">há 12s · servidor MISAU</div></div>
+      </div>
+      <div className="threecol">
+        <div className="panel">
+          <div className="ph">
+            <div className="row" style={{gap:10}}>
+              <h3 className="t-h3">Sala de espera</h3>
+              <span className="badge">6 pacientes</span>
+            </div>
+            <div className="seg">
+              <button className="on">Hoje</button><button>Vermelho/Amarelo</button><button>Pré-natal</button>
+            </div>
+          </div>
+          <div className="pflist">
+            <div className="row-card head"><span></span><span>Paciente</span><span>Documento</span><span>Idade</span><span>Sintoma principal</span><span>Triagem</span><span>Estado</span><span></span></div>
+            {PATIENTS.map(p=>(
+              <div key={p.id} className="row-card" onClick={()=>openPatient(p)}>
+                <div className={`av sm ${p.triage==="red"?"":"green"}`} style={p.triage==="red"?{background:"var(--red-100)",color:"var(--red-700)"}:{}}>{p.initials}</div>
+                <div><div style={{fontWeight:600}}>{p.name}</div><div className="t-meta">{p.district} · {p.sex}</div></div>
+                <div className="mono" style={{fontSize:12}}>{p.doc}</div>
+                <div>{p.age}</div>
+                <div className="t-meta">{p.reason}</div>
+                <div><TriageBadge t={p.triage} /></div>
+                <div className="t-meta">{p.status}</div>
+                <div><a href="#" onClick={(e)=>{e.preventDefault();openPatient(p)}}>Abrir</a></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="col">
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Resultados de lab</h3><a className="t-meta" href="#">Ver tudo</a></div>
+            <div className="vlist">
+              <div className="item"><div className="row spread"><div><b>Beatriz Machava</b><div className="t-meta">Teste rápido malária — POSITIVO</div></div><span className="badge red">Não revisto</span></div></div>
+              <div className="item"><div className="row spread"><div><b>João Matavele</b><div className="t-meta">Hemograma completo</div></div><span className="badge amber">Não revisto</span></div></div>
+              <div className="item"><div className="row spread"><div><b>Aida Nhampossa</b><div className="t-meta">Análise de urina · normal</div></div><span className="badge green">Revisto</span></div></div>
+            </div>
+          </div>
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Alertas clínicos</h3></div>
+            <div className="pb col" style={{gap:10}}>
+              <div className="alert-strip"><b>Stock baixo:</b>&nbsp;Sulfato Ferroso 200 mg — 84 unidades. Coordenação informada.</div>
+              <div className="alert-strip" style={{background:"var(--blue-100)",borderColor:"#BFCBDD",color:"var(--blue-700)"}}><b>Vigilância:</b>&nbsp;3 casos suspeitos de malária esta semana no distrito de Maxixe.</div>
+              <div className="alert-strip" style={{background:"var(--red-100)",borderColor:"#E5B7AE",color:"var(--red-700)"}}><b>Override pendente:</b>&nbsp;Justifique o acesso ao registo de Adérito Sigaúque (14/04, 22:48).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function TriageBadge({t}){
+  if(t==="red") return <span className="badge red">Vermelho</span>;
+  if(t==="amber") return <span className="badge amber">Amarelo</span>;
+  return <span className="badge">Verde</span>;
+}
+
+/* Patient search */
+function Search({ go, openPatient, openMerge }){
+  const [q, setQ] = useState("");
+  const [tab, setTab] = useState("bi");
+  const filtered = useMemo(()=>{
+    if(!q.trim()) return [];
+    return PATIENTS.filter(p =>
+      p.name.toLowerCase().includes(q.toLowerCase()) ||
+      p.doc.toLowerCase().includes(q.toLowerCase())
+    );
+  }, [q]);
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / Pesquisar paciente</div>
+      <h1 className="t-h1" style={{margin:"8px 0 16px"}}>Pesquisar paciente</h1>
+      <div className="panel" style={{marginBottom:14}}>
+        <div className="ph">
+          <div className="seg">
+            <button className={tab==="bi"?"on":""} onClick={()=>setTab("bi")}>BI / DIRE</button>
+            <button className={tab==="phone"?"on":""} onClick={()=>setTab("phone")}>Telefone</button>
+            <button className={tab==="name"?"on":""} onClick={()=>setTab("name")}>Nome</button>
+            <button className={tab==="tmp"?"on":""} onClick={()=>setTab("tmp")}>Código temporário</button>
+          </div>
+          <span className="t-meta">Pesquisa contra registo nacional · {PATIENTS.length} amostras</span>
+        </div>
+        <div className="pb">
+          <div className="row" style={{gap:10}}>
+            <input className="input lg" style={{flex:1}} placeholder={tab==="bi"?"Ex.: 110456789B":tab==="phone"?"+258 84 123 4567":tab==="tmp"?"TMP-2026-0481":"Ex.: Beatriz Machava"} value={q} onChange={(e)=>setQ(e.target.value)} />
+            <button className="btn lg secondary" onClick={()=>setQ("Beatriz")}>Exemplo</button>
+            <button className="btn lg secondary">Ler BI por câmara</button>
+          </div>
+          <div className="t-meta" style={{marginTop:10}}>Quando o paciente não tem documento físico, crie um <a href="#" onClick={(e)=>{e.preventDefault();go("temp")}}>registo temporário</a>. Ele pode ser ligado a um BI mais tarde.</div>
+        </div>
+      </div>
+
+      {q && (
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Resultados</h3><span className="t-meta">{filtered.length} correspondência(s)</span></div>
+          {filtered.length===0 && (
+            <div className="pb" style={{textAlign:"center",padding:32}}>
+              <div className="t-overline" style={{color:"var(--red-700)"}}>Sem correspondência</div>
+              <p className="t-meta" style={{maxWidth:380,margin:"6px auto 14px"}}>Não foi encontrado nenhum registo com este critério. Pode criar um registo temporário ou rever o documento apresentado.</p>
+              <button className="btn" onClick={()=>go("temp")}>Criar registo temporário</button>
+            </div>
+          )}
+          {filtered.map(p=>(
+            <div key={p.id} className="vlist">
+              <div className="item" onClick={()=>openPatient(p)}>
+                <div className="row spread">
+                  <div className="row" style={{gap:12}}>
+                    <div className="av lg green">{p.initials}</div>
+                    <div>
+                      <div style={{fontWeight:600,fontSize:15}}>{p.name} <span className="t-meta">· {p.sex} · {p.age} a</span></div>
+                      <div className="t-meta">{p.doc} · {p.phone} · {p.district}</div>
+                      <div className="t-meta">Última consulta: 12/03/2026 · {FACILITY.name}</div>
+                    </div>
+                  </div>
+                  <div className="row" style={{gap:8}}>
+                    {p.temp && <span className="badge amber">Registo temporário</span>}
+                    <button className="btn sm secondary">Abrir registo</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+          {q.toLowerCase().includes("bea") && (
+            <div className="alert-strip" style={{margin:14}}>
+              <b>Possível duplicação:</b>&nbsp;Encontramos um registo temporário (TMP-2026-0488) com nome semelhante. <a href="#" onClick={(e)=>{e.preventDefault();openMerge()}}>Rever para fundir →</a>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
+/* Temporary record */
+function TempRecord({ go }){
+  const [step, setStep] = useState(1);
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("search")}}>Pesquisar</a> / Registo temporário</div>
+      <h1 className="t-h1" style={{margin:"8px 0 4px"}}>Criar registo temporário</h1>
+      <p className="t-meta" style={{marginBottom:18}}>Para pacientes sem BI/DIRE no momento. O registo recebe um código TMP e pode ser fundido com um BI mais tarde.</p>
+      <div className="stepper" style={{marginBottom:18}}>
+        <div className={`step ${step>=1?"active":""} ${step>1?"done":""}`}><span className="n">1</span> Identificação</div>
+        <div className="ln"></div>
+        <div className={`step ${step>=2?"active":""} ${step>2?"done":""}`}><span className="n">2</span> Contacto</div>
+        <div className="ln"></div>
+        <div className={`step ${step>=3?"active":""}`}><span className="n">3</span> Confirmação</div>
+      </div>
+      <div className="twocol">
+        <div className="panel" style={{height:"fit-content"}}>
+          <div className="ph"><h3 className="t-h3">Detalhes</h3></div>
+          <div className="pb col" style={{gap:14}}>
+            {step===1 && (<>
+              <div className="grid g-2"><div className="field"><label>Primeiro nome</label><input className="input" defaultValue="Esperança" /></div><div className="field"><label>Apelido</label><input className="input" defaultValue="Chissano" /></div></div>
+              <div className="grid g-2"><div className="field"><label>Sexo</label><select className="select"><option>Feminino</option><option>Masculino</option></select></div><div className="field"><label>Data de nascimento (estimada)</label><input className="input" defaultValue="14/06/1999" /></div></div>
+              <div className="field"><label>Documento apresentado</label>
+                <select className="select"><option>Nenhum documento</option><option>Cédula</option><option>Cartão de eleitor</option><option>BI (sem cópia)</option></select>
+              </div>
+            </>)}
+            {step===2 && (<>
+              <div className="field"><label>Telefone (próprio ou de contacto)</label><input className="input" placeholder="+258" /></div>
+              <div className="field row"><input type="checkbox" /> <span>Não tem telefone</span></div>
+              <div className="grid g-2"><div className="field"><label>Província</label><select className="select"><option>Inhambane</option><option>Maputo</option><option>Nampula</option></select></div><div className="field"><label>Distrito</label><select className="select"><option>Maxixe</option><option>Massinga</option></select></div></div>
+              <div className="field"><label>Bairro / localidade</label><input className="input" defaultValue="Mavila, Maxixe" /></div>
+            </>)}
+            {step===3 && (<>
+              <div className="alert-strip"><b>Atenção:</b>&nbsp;Sem documento, este registo só pode ser fundido com BI por um clínico autorizado.</div>
+              <div className="grid g-2">
+                <div className="kv"><span className="k">Nome</span><span className="v">Esperança Chissano</span></div>
+                <div className="kv"><span className="k">Sexo · Idade</span><span className="v">F · 27</span></div>
+                <div className="kv"><span className="k">Documento</span><span className="v">Nenhum</span></div>
+                <div className="kv"><span className="k">Telefone</span><span className="v">—</span></div>
+              </div>
+              <div className="kv"><span className="k">Código temporário gerado</span><span className="v mono" style={{fontSize:18}}>TMP-2026-0488</span></div>
+            </>)}
+          </div>
+          <div className="ft" style={{padding:"12px 14px",borderTop:"1px solid var(--line-2)",display:"flex",justifyContent:"space-between"}}>
+            <button className="btn ghost" onClick={()=>step>1?setStep(step-1):go("search")}>{step>1?"← Voltar":"Cancelar"}</button>
+            <button className="btn" onClick={()=>step<3?setStep(step+1):go("dashboard")}>{step<3?"Continuar":"Criar registo TMP-2026-0488"}</button>
+          </div>
+        </div>
+        <div className="col">
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Boas práticas</h3></div>
+            <div className="pb col" style={{gap:8,fontSize:13}}>
+              <div>• Nome completo conforme falado pelo paciente.</div>
+              <div>• Se idade desconhecida, escolha 1/1 do ano estimado e marque como "estimada".</div>
+              <div>• Bairro permite ligação a registos vizinhos com mesmo apelido.</div>
+              <div>• Telefone evita duplicação posterior.</div>
+            </div>
+          </div>
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Possíveis duplicados</h3></div>
+            <div className="vlist">
+              <div className="item">
+                <div className="row spread">
+                  <div><b>Esperança Chissano</b><div className="t-meta">F · 27 a · TMP-2026-0481 · Maxixe</div></div>
+                  <span className="badge amber">86% match</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* Patient profile */
+function Patient({ patient, go }){
+  const [tab, setTab] = useState("overview");
+  const p = patient || PATIENTS[0];
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / <a href="#" onClick={(e)=>{e.preventDefault();go("search")}}>Pacientes</a> / {p.name}</div>
+      <div className="row spread" style={{margin:"10px 0 16px"}}>
+        <div className="row" style={{gap:14}}>
+          <div className="av lg green" style={{width:56,height:56,fontSize:18}}>{p.initials}</div>
+          <div>
+            <h1 className="t-h1" style={{margin:0}}>{p.name}</h1>
+            <div className="t-meta" style={{marginTop:4}}>{p.sex} · {p.age} anos · <span className="mono">{p.doc}</span> · {p.phone} · {p.district}</div>
+            <div className="row" style={{gap:6,marginTop:8}}>
+              {p.allergies && p.allergies!=="—" && <span className="badge red">⚠ Alergia: {p.allergies}</span>}
+              {p.chronic && p.chronic!=="—" && <span className="badge amber">{p.chronic}</span>}
+              {p.temp && <span className="badge">Registo temporário</span>}
+              <span className="badge">Pré-natal · 28 sem.</span>
+            </div>
+          </div>
+        </div>
+        <div className="row" style={{gap:8}}>
+          <button className="btn secondary">Imprimir</button>
+          <button className="btn secondary" onClick={()=>go("emergency")}>Override de emergência</button>
+          <button className="btn" onClick={()=>go("encounter")}>Iniciar consulta</button>
+        </div>
+      </div>
+
+      <div className="panel" style={{marginBottom:14}}>
+        <div className="ph" style={{padding:0,borderBottom:"1px solid var(--line-2)"}}>
+          <div style={{display:"flex"}}>
+            {[
+              ["overview","Visão geral"],["history","Histórico"],["meds","Medicação"],["labs","Laboratório"],["access","Acessos"],
+            ].map(([id,lbl])=>(
+              <button key={id} onClick={()=>setTab(id)} style={{
+                background:"transparent",border:0,padding:"14px 16px",cursor:"pointer",fontSize:13,fontWeight:500,
+                color: tab===id?"var(--green-900)":"var(--ink-3)",
+                borderBottom: tab===id?"2px solid var(--green-700)":"2px solid transparent",
+                fontFamily:"inherit"
+              }}>{lbl}</button>
+            ))}
+          </div>
+        </div>
+        {tab==="overview" && (
+          <div className="pb" style={{padding:18}}>
+            <div className="grid g-3">
+              <div>
+                <div className="t-overline" style={{marginBottom:8}}>Sinais vitais — última consulta</div>
+                <div className="grid g-2" style={{gap:8}}>
+                  <div className="vital"><div className="vl">PA</div><div className="vv">142/91</div><div className="vu">mmHg · ↑</div></div>
+                  <div className="vital"><div className="vl">FC</div><div className="vv">88</div><div className="vu">bpm</div></div>
+                  <div className="vital"><div className="vl">Temp</div><div className="vv">38.9</div><div className="vu">°C · febre</div></div>
+                  <div className="vital"><div className="vl">SpO₂</div><div className="vv">96</div><div className="vu">%</div></div>
+                </div>
+              </div>
+              <div>
+                <div className="t-overline" style={{marginBottom:8}}>Condições crónicas</div>
+                <ul style={{margin:0,paddingLeft:18}}>
+                  <li>Hipertensão essencial (I10) — diagnosticada 2022</li>
+                  <li>Diabetes tipo 2 (E11) — diagnosticada 2024</li>
+                  <li>Anemia ligeira — controlo bimensal</li>
+                </ul>
+                <div className="t-overline" style={{margin:"14px 0 6px"}}>Vacinação</div>
+                <div className="t-meta">Tétano 2024 · COVID-19 reforço 2024 · Pendente: Influenza 2026</div>
+              </div>
+              <div>
+                <div className="t-overline" style={{marginBottom:8}}>Acessos recentes ao registo</div>
+                <div className="vlist" style={{border:"1px solid var(--line-2)",borderRadius:4}}>
+                  <div className="item"><div className="row spread"><div><b>Cláudia Tembe</b><div className="t-meta">Tec. Medicina · CS Maxixe · agora</div></div><span className="badge green">Normal</span></div></div>
+                  <div className="item"><div className="row spread"><div><b>Adérito Mucopo</b><div className="t-meta">Médico · HP Inhambane · 14/04 22:48</div></div><span className="badge red">Override</span></div></div>
+                  <div className="item"><div className="row spread"><div><b>Farmácia Maxixe</b><div className="t-meta">Dispensa · 12/03 11:14</div></div><span className="badge">Receita</span></div></div>
+                </div>
+                <div className="t-meta" style={{marginTop:8}}>O paciente vê este registo na sua app.</div>
+              </div>
+            </div>
+          </div>
+        )}
+        {tab==="history" && (
+          <div className="pb" style={{padding:18}}>
+            <div className="timeline">
+              <div className="tl"><b>15/04/2026 · Hoje (em curso)</b><div className="t-meta">{ME.name} · {FACILITY.name}</div><div>Suspeita malária simples — aguarda teste rápido.</div></div>
+              <div className="tl"><b>12/03/2026 · Consulta</b><div className="t-meta">Cláudia Tembe · CS Maxixe</div><div>HTA controlada. Ajuste de dose Hidroclorotiazida.</div></div>
+              <div className="tl"><b>04/02/2026 · Pré-natal</b><div className="t-meta">Aida Tovela · CS Maxixe</div><div>14 semanas. Sem intercorrências.</div></div>
+              <div className="tl"><b>22/11/2025 · Urgência</b><div className="t-meta">Adérito Mucopo · HP Inhambane</div><div>Crise hipertensiva. Internamento 36h.</div></div>
+            </div>
+          </div>
+        )}
+        {tab==="meds" && (
+          <div className="pb" style={{padding:0}}>
+            <table className="table">
+              <thead><tr><th>Medicamento</th><th>Posologia</th><th>Início</th><th>Fim</th><th>Estado</th><th></th></tr></thead>
+              <tbody>
+                <tr><td>Hidroclorotiazida 25 mg</td><td>1 cp/dia · oral</td><td>12/03/2026</td><td>Crónico</td><td><span className="badge green">Activa</span></td><td><a href="#">Renovar</a></td></tr>
+                <tr><td>Sulfato Ferroso 200 mg + Ác. Fólico</td><td>1 cp/dia · oral</td><td>04/02/2026</td><td>Pré-natal</td><td><span className="badge amber">Falta dispensar</span></td><td><a href="#">Ver receita</a></td></tr>
+                <tr><td>Paracetamol 500 mg</td><td>SOS · máx 4×/dia</td><td>22/11/2025</td><td>11/12/2025</td><td><span className="badge dark">Concluída</span></td><td><a href="#">Histórico</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+        {tab==="labs" && (
+          <div className="pb" style={{padding:18}}>
+            <div className="card"><div className="bd">
+              <div className="row spread"><b>Teste rápido malária</b><span className="badge red">POSITIVO · não revisto</span></div>
+              <div className="t-meta" style={{marginTop:4}}>Colhido hoje 09:14 · Lab CS Maxixe</div>
+            </div></div>
+            <div className="card" style={{marginTop:10}}><div className="bd">
+              <div className="row spread"><b>Hemograma completo</b><span className="badge green">Normal</span></div>
+              <div className="t-meta" style={{marginTop:4}}>11/03/2026 · Hb 11.8 g/dL · Leucócitos 7.4×10⁹/L</div>
+            </div></div>
+          </div>
+        )}
+        {tab==="access" && (
+          <div className="pb" style={{padding:0}}>
+            <table className="table">
+              <thead><tr><th>Quando</th><th>Quem</th><th>Função</th><th>Unidade</th><th>O que viu</th><th>Tipo</th></tr></thead>
+              <tbody>
+                <tr><td>15/04 09:18</td><td>Cláudia Tembe</td><td>Tec. Medicina</td><td>CS Maxixe</td><td>Perfil + histórico</td><td><span className="badge green">Normal</span></td></tr>
+                <tr><td>14/04 22:48</td><td>Adérito Mucopo</td><td>Médico</td><td>HP Inhambane</td><td>Perfil + medicação + lab</td><td><span className="badge red">Override</span></td></tr>
+                <tr><td>12/03 11:14</td><td>Farmácia Maxixe (Sara N.)</td><td>Farmacêutica</td><td>FM-088</td><td>Receita Rx-2026-03-MZ-014</td><td><span className="badge">Receita</span></td></tr>
+                <tr><td>04/02 14:02</td><td>Aida Tovela</td><td>Enfermeira</td><td>CS Maxixe</td><td>Perfil + pré-natal</td><td><span className="badge green">Normal</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+/* New encounter */
+function Encounter({ patient, go, openPrescribe }){
+  const [step, setStep] = useState(0);
+  const p = patient || PATIENTS[0];
+  const STEPS = ["Queixa principal","Sinais vitais","Diagnóstico","Plano","SOAP & assinatura"];
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / <a href="#" onClick={(e)=>{e.preventDefault();go("patient")}}>{p.name}</a> / Nova consulta</div>
+      <div className="row spread" style={{margin:"8px 0 16px"}}>
+        <div>
+          <h1 className="t-h1" style={{margin:0}}>Consulta — {p.name}</h1>
+          <div className="t-meta">15/04/2026 · 09:18 · {ME.name} · {FACILITY.name}</div>
+        </div>
+        <div className="row" style={{gap:8}}>
+          <button className="btn ghost">Guardar rascunho</button>
+          <button className="btn secondary" onClick={()=>go("patient")}>Sair sem guardar</button>
+        </div>
+      </div>
+      <div className="stepper" style={{marginBottom:18}}>
+        {STEPS.map((s,i)=>(<React.Fragment key={s}>
+          <div className={`step ${i===step?"active":""} ${i<step?"done":""}`}><span className="n">{i+1}</span> {s}</div>
+          {i<STEPS.length-1 && <div className="ln"></div>}
+        </React.Fragment>))}
+      </div>
+
+      <div className="twocol">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">{STEPS[step]}</h3></div>
+          <div className="pb col" style={{gap:14}}>
+            {step===0 && (<>
+              <div className="field"><label>Queixa principal</label><input className="input lg" defaultValue="Febre alta há 3 dias com calafrios" /></div>
+              <div className="grid g-3" style={{gap:10}}>
+                {["Febre","Cefaleia","Calafrios","Mialgia","Náuseas","Diarreia","Tosse","Disúria"].map(s=>(
+                  <label key={s} className="card" style={{padding:"8px 10px",cursor:"pointer",fontSize:13}}><input type="checkbox" defaultChecked={["Febre","Calafrios"].includes(s)} /> {s}</label>
+                ))}
+              </div>
+              <div className="field"><label>Início dos sintomas</label><input className="input" defaultValue="12/04/2026 (3 dias)" /></div>
+              <div className="field"><label>Notas adicionais</label><textarea className="textarea" defaultValue="Paciente refere que dorme com mosquiteiro mas viajou para Massinga há 5 dias. Sem vómitos."></textarea></div>
+            </>)}
+            {step===1 && (
+              <div className="grid g-3" style={{gap:10}}>
+                <div className="field"><label>Pressão arterial</label><input className="input" defaultValue="138/86 mmHg" /></div>
+                <div className="field"><label>FC</label><input className="input" defaultValue="92 bpm" /></div>
+                <div className="field"><label>FR</label><input className="input" defaultValue="20" /></div>
+                <div className="field"><label>Temperatura</label><input className="input" defaultValue="39.1 °C" /></div>
+                <div className="field"><label>SpO₂</label><input className="input" defaultValue="97%" /></div>
+                <div className="field"><label>Peso</label><input className="input" defaultValue="68 kg" /></div>
+              </div>
+            )}
+            {step===2 && (<>
+              <div className="field"><label>Pesquisar CID-10</label><input className="input lg" defaultValue="malária" /></div>
+              <div className="col" style={{gap:6}}>
+                {ICD_SUGGEST.slice(0,4).map((d,i)=>(
+                  <div key={d.code} className="icd-result" style={i===0?{borderColor:"var(--green-700)",background:"var(--green-100)"}:{}}>
+                    <div><span className="code">{d.code}</span> &nbsp; {d.label}{d.note && <span className="t-meta"> — {d.note}</span>}</div>
+                    <span className="t-meta">{i===0?"✓ seleccionado":"adicionar"}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="alert-strip"><b>Lembrete clínico:</b>&nbsp;Confirmação por teste rápido obrigatória antes de prescrever ACT.</div>
+            </>)}
+            {step===3 && (<>
+              <div className="field"><label>Plano terapêutico</label><textarea className="textarea" defaultValue="ACT (Artemether-Lumefantrina 80/480) — 6 doses em 3 dias. Paracetamol 500 mg SOS para febre. Repouso, hidratação, mosquiteiro reforçado. Reavaliar em 72h."></textarea></div>
+              <div className="row" style={{gap:8}}>
+                <button className="btn" onClick={openPrescribe}>Adicionar receita →</button>
+                <button className="btn secondary">Pedir laboratório</button>
+                <button className="btn secondary">Marcar reavaliação</button>
+              </div>
+              <div className="card" style={{marginTop:6}}>
+                <div className="hd"><h4 className="t-h4">Receita em rascunho</h4><span className="badge amber">Não emitida</span></div>
+                <div className="bd t-meta">Artemether-Lumefantrina 80/480 mg · 6 doses · 3 dias<br/>Paracetamol 500 mg · SOS · máx 4×/dia · 5 dias</div>
+              </div>
+            </>)}
+            {step===4 && (<>
+              <div className="grid g-2" style={{gap:14}}>
+                <div className="field"><label>S — Subjectivo</label><textarea className="textarea" defaultValue="Febre alta há 3 dias, calafrios à noite, cefaleia. Viagem recente a Massinga. Sem vómitos ou diarreia."></textarea></div>
+                <div className="field"><label>O — Objectivo</label><textarea className="textarea" defaultValue="T 39.1, PA 138/86, FC 92, SpO₂ 97. Mucosas coradas. Sem rigidez nuca. Pulmões limpos."></textarea></div>
+                <div className="field"><label>A — Avaliação</label><textarea className="textarea" defaultValue="Malária simples não complicada (B54). Sem critérios de gravidade."></textarea></div>
+                <div className="field"><label>P — Plano</label><textarea className="textarea" defaultValue="ACT 6 doses · Paracetamol SOS · Mosquiteiro · Reavaliação 72h."></textarea></div>
+              </div>
+              <div className="alert-strip">A consulta será assinada como <b>{ME.name}</b> ({ME.role}) e sincronizada com SIS-MA.</div>
+            </>)}
+          </div>
+          <div className="ft" style={{padding:"12px 14px",borderTop:"1px solid var(--line-2)",display:"flex",justifyContent:"space-between"}}>
+            <button className="btn ghost" onClick={()=>step>0?setStep(step-1):go("patient")}>{step>0?"← Voltar":"Cancelar"}</button>
+            <div className="row" style={{gap:8}}>
+              {step<4 && <button className="btn secondary">Guardar e continuar depois</button>}
+              <button className="btn" onClick={()=>step<4?setStep(step+1):go("patient")}>{step<4?"Continuar":"Assinar e guardar"}</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Paciente</h3></div>
+            <div className="pb">
+              <div className="row" style={{gap:10}}><div className="av lg green">{p.initials}</div>
+                <div><b>{p.name}</b><div className="t-meta">{p.sex} · {p.age} a · {p.doc}</div></div>
+              </div>
+              <div className="hr"></div>
+              <div className="kv"><span className="k">Alergias</span><span className="v">{p.allergies}</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Crónicas</span><span className="v">{p.chronic}</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Última consulta</span><span className="v">12/03/2026 · CS Maxixe</span></div>
+            </div>
+          </div>
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Resumo da consulta</h3></div>
+            <div className="pb t-meta">
+              <div>Queixa: febre + calafrios há 3 dias</div>
+              <div>Hipótese: malária simples (B54)</div>
+              <div>Plano: ACT 3 dias + Paracetamol SOS</div>
+              <div>Receita: rascunho</div>
+            </div>
+          </div>
+          <div className="alert-strip" style={{background:"var(--blue-100)",borderColor:"#BFCBDD",color:"var(--blue-700)"}}>
+            <b>Atalhos:</b>&nbsp; <span className="keys">Ctrl+S</span> guarda · <span className="keys">Ctrl+→</span> próximo passo
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* Prescribe modal */
+function Prescribe({ open, onClose, onIssued }){
+  const [step, setStep] = useState(1);
+  const [items, setItems] = useState([
+    { name:"Artemether-Lumefantrina 80/480 mg", dose:"4 cp", freq:"2× dia", dur:"3 dias", route:"oral" },
+    { name:"Paracetamol 500 mg", dose:"1 cp", freq:"SOS · 6/6h", dur:"5 dias", route:"oral" },
+  ]);
+  if(!open) return null;
+  return (
+    <div className="modal-back" onClick={onClose}>
+      <div className="modal" style={{width:680}} onClick={(e)=>e.stopPropagation()}>
+        <div className="hd">
+          <div><b>Nova receita médica</b><div className="t-meta">Beatriz Machava · {step===1?"Passo 1 de 2 · Composição":"Passo 2 de 2 · Confirmação"}</div></div>
+          <button className="btn ghost sm" onClick={onClose}>Fechar</button>
+        </div>
+        <div className="bd">
+          {step===1 && (<>
+            <div className="field"><label>Pesquisar medicamento</label><input className="input" placeholder="Ex.: Artemether" /></div>
+            <div className="col" style={{marginTop:10,gap:8}}>
+              {MEDS.slice(0,3).map(m=>(
+                <div key={m.name} className="icd-result"><div><b>{m.name}</b><div className="t-meta">{m.form} · stock {m.stock}</div></div><button className="btn sm secondary">+ adicionar</button></div>
+              ))}
+            </div>
+            <div className="hr"></div>
+            <div className="t-overline" style={{marginBottom:8}}>Itens da receita ({items.length})</div>
+            <table className="table"><thead><tr><th>Medicamento</th><th>Dose</th><th>Frequência</th><th>Duração</th><th>Via</th><th></th></tr></thead><tbody>
+              {items.map((it,i)=>(<tr key={i}><td>{it.name}</td><td>{it.dose}</td><td>{it.freq}</td><td>{it.dur}</td><td>{it.route}</td><td><a href="#">Editar</a></td></tr>))}
+            </tbody></table>
+            <div className="alert-strip" style={{marginTop:10,background:"var(--blue-100)",borderColor:"#BFCBDD",color:"var(--blue-700)"}}>
+              <b>Verificação:</b>&nbsp; sem interacções clinicamente relevantes; sem alergias declaradas para estes fármacos.
+            </div>
+          </>)}
+          {step===2 && (<>
+            <div className="row" style={{gap:14,alignItems:"flex-start"}}>
+              <div style={{flex:1}}>
+                <div className="kv"><span className="k">Receita</span><span className="v mono">Rx-2026-04-MZ-018</span></div>
+                <div className="kv" style={{marginTop:8}}><span className="k">Validade</span><span className="v">28/04/2026 (14 dias)</span></div>
+                <div className="kv" style={{marginTop:8}}><span className="k">Prescritor</span><span className="v">{ME.name} ({ME.role}) · {FACILITY.name}</span></div>
+                <div className="hr"></div>
+                <ul style={{margin:0,paddingLeft:18,fontSize:13}}>
+                  {items.map((it,i)=>(<li key={i}><b>{it.name}</b> — {it.dose} · {it.freq} · {it.dur}</li>))}
+                </ul>
+              </div>
+              <div className="col" style={{alignItems:"center",gap:6}}>
+                <div className="qr lg" aria-hidden="true"></div>
+                <div className="t-meta mono">Rx-2026-04-MZ-018</div>
+                <div className="t-meta">Pode ser dispensada em qualquer farmácia ANARME</div>
+              </div>
+            </div>
+            <div className="hr"></div>
+            <div className="row" style={{gap:8}}>
+              <label className="row" style={{gap:6,fontSize:13}}><input type="checkbox" defaultChecked /> Enviar SMS ao paciente com QR</label>
+              <label className="row" style={{gap:6,fontSize:13}}><input type="checkbox" defaultChecked /> Mostrar QR na app do cidadão</label>
+            </div>
+          </>)}
+        </div>
+        <div className="ft">
+          {step===2 && <button className="btn ghost" onClick={()=>setStep(1)}>← Editar</button>}
+          <button className="btn secondary" onClick={onClose}>Cancelar</button>
+          <button className="btn" onClick={()=>step===1?setStep(2):onIssued()}>{step===1?"Rever":"Assinar e emitir receita"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Merge */
+function Merge({ go }){
+  const [done, setDone] = useState(false);
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / <a href="#" onClick={(e)=>{e.preventDefault();go("search")}}>Pesquisar</a> / Fundir registos</div>
+      <h1 className="t-h1" style={{margin:"8px 0 4px"}}>Fundir registo temporário com BI</h1>
+      <p className="t-meta" style={{marginBottom:18}}>Compare os dois registos. O registo BI é o registo <b>vencedor</b>; o temporário será arquivado e os encontros migrados.</p>
+      {done ? (
+        <div className="panel">
+          <div className="pb" style={{textAlign:"center",padding:36}}>
+            <div className="badge green" style={{height:28,padding:"0 12px",fontSize:13}}>Fusão concluída</div>
+            <h3 className="t-h3" style={{margin:"12px 0 6px"}}>2 encontros e 1 receita migrados para BI 110456789B.</h3>
+            <p className="t-meta">O registo TMP-2026-0488 foi arquivado e a paciente foi notificada por SMS.</p>
+            <button className="btn" style={{marginTop:14}} onClick={()=>go("patient")}>Abrir registo unificado</button>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="merge-grid">
+            <div className="merge-card">
+              <div className="row spread"><b>Registo temporário</b><span className="badge amber">TMP-2026-0488</span></div>
+              <div className="hr"></div>
+              <div className="kv"><span className="k">Nome</span><span className="v">Esperança Beatriz Machava</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Data nasc.</span><span className="v">14/06/1991 (estimada)</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Telefone</span><span className="v">+258 84 123 4567</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Encontros</span><span className="v">2 · 12/03 e 15/04</span></div>
+            </div>
+            <div className="merge-arrow">→</div>
+            <div className="merge-card win">
+              <div className="row spread"><b>Registo BI · vencedor</b><span className="badge green">110456789B</span></div>
+              <div className="hr"></div>
+              <div className="kv"><span className="k">Nome</span><span className="v">Beatriz Esperança Machava</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Data nasc.</span><span className="v">14/06/1991 (DNI)</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Telefone</span><span className="v">+258 84 123 4567</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Encontros</span><span className="v">12 · desde 2022</span></div>
+            </div>
+          </div>
+          <div className="panel" style={{marginTop:14}}>
+            <div className="ph"><h3 className="t-h3">Verificação</h3><span className="badge amber">96% match</span></div>
+            <div className="pb">
+              <div className="grid g-2" style={{fontSize:13,gap:10}}>
+                <div>✓ Telefone idêntico (+258 84 123 4567)</div>
+                <div>✓ Data de nascimento idêntica</div>
+                <div>✓ Mesmo distrito (Maxixe)</div>
+                <div>✓ Apelido coincide</div>
+                <div>✓ Sexo coincide</div>
+                <div className="muted">✗ Primeiro nome difere (ordem)</div>
+              </div>
+              <div className="hr"></div>
+              <div className="alert-strip">A fusão é <b>irreversível</b>. Para reverter, contacte o suporte MISAU com justificação.</div>
+              <div className="row" style={{gap:6,marginTop:10}}>
+                <label className="row" style={{gap:6,fontSize:13}}><input type="checkbox" defaultChecked /> Confirmo que verifiquei a identidade do paciente fisicamente</label>
+              </div>
+            </div>
+            <div className="ft">
+              <button className="btn secondary" onClick={()=>go("search")}>Cancelar</button>
+              <button className="btn danger" onClick={()=>setDone(true)}>Fundir registos</button>
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
+}
+
+/* Offline state */
+function Offline({ go }){
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / Estado offline</div>
+      <h1 className="t-h1" style={{margin:"8px 0 4px"}}>A trabalhar offline</h1>
+      <p className="t-meta" style={{marginBottom:18}}>O EMR continua funcional sem ligação. Acções clínicas são guardadas localmente e enviadas assim que a rede regressar.</p>
+      <div className="banner amber" style={{marginBottom:18}}><div className="ic"></div><div><b>Sem ligação à rede MISAU desde 09:48</b> — 14 alterações em fila. Estimativa de envio: assim que reconectar (3G/Wi-Fi).</div></div>
+      <div className="threecol">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Fila de sincronização</h3><span className="badge">14 itens</span></div>
+          <table className="table">
+            <thead><tr><th>Tipo</th><th>Paciente</th><th>Detalhe</th><th>Hora</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Consulta</td><td>Beatriz Machava</td><td>SOAP completo + receita Rx-2026-04-MZ-018</td><td>09:18</td><td><span className="badge amber">Aguarda</span></td></tr>
+              <tr><td>Vitais</td><td>Helena Nhachote</td><td>T 39.5 · FC 132 · SpO₂ 94</td><td>09:32</td><td><span className="badge amber">Aguarda</span></td></tr>
+              <tr><td>Receita</td><td>João Matavele</td><td>Amoxicilina 500 mg · 7 dias</td><td>09:41</td><td><span className="badge amber">Aguarda</span></td></tr>
+              <tr><td>Override</td><td>Adérito Sigaúque</td><td>Justificação registada · 1 anexo</td><td>09:45</td><td><span className="badge amber">Aguarda</span></td></tr>
+              <tr><td>Notas</td><td>Aida Nhampossa</td><td>Pré-natal · 28 semanas</td><td>09:46</td><td><span className="badge amber">Aguarda</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="col">
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Disponível offline</h3></div>
+            <div className="pb col" style={{fontSize:13,gap:8}}>
+              <div>✓ Pacientes da unidade nos últimos 90 dias</div>
+              <div>✓ Receitas activas e histórico de 12 meses</div>
+              <div>✓ Catálogo CID-10 e medicamentos MISAU</div>
+              <div>✗ Pesquisa nacional de BI/DIRE</div>
+              <div>✗ Resultados de laboratório fora desta US</div>
+              <div>✗ Vídeo-consulta</div>
+            </div>
+          </div>
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Estado da rede</h3></div>
+            <div className="pb">
+              <div className="kv"><span className="k">Wi-Fi US</span><span className="v">Indisponível</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">3G Tmcel</span><span className="v">Sinal fraco · 1 barra</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Última sincronização</span><span className="v">09:48 (há 22 min)</span></div>
+              <button className="btn block secondary" style={{marginTop:14}}>Tentar sincronizar agora</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* Emergency override */
+function Emergency({ go }){
+  const [step, setStep] = useState(1);
+  const [reason, setReason] = useState("Paciente trazido inconsciente ao Serviço de Urgência. Necessário consultar antecedentes (alergias e medicação) para estabilização.");
+  return (
+    <>
+      <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / Override de emergência</div>
+      <div className="banner red" style={{margin:"8px 0 16px"}}><div className="ic"></div><div><b>Acesso de emergência.</b> A ser usado apenas quando o paciente não pode dar consentimento. Toda a sessão será revista pela direcção da US e pela MISAU.</div></div>
+
+      <div className="twocol">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">{step===1?"Justificação":"Confirmação"}</h3><span className="t-meta">Passo {step} de 2</span></div>
+          <div className="pb col" style={{gap:14}}>
+            {step===1 && (<>
+              <div className="grid g-2" style={{gap:10}}>
+                <div className="field"><label>Paciente</label><input className="input" defaultValue="Adérito Sigaúque · BI 411982200A" /></div>
+                <div className="field"><label>Local</label><input className="input" defaultValue="Sala de Urgências · CS Maxixe" /></div>
+              </div>
+              <div className="field"><label>Tipo de emergência</label>
+                <select className="select"><option>Paciente inconsciente</option><option>Paciente sem capacidade de decisão</option><option>Acidente de viação · vítima múltipla</option><option>Reacção alérgica grave</option></select>
+              </div>
+              <div className="field"><label>Justificação clínica (obrigatória, mín. 80 caracteres)</label>
+                <textarea className="textarea" style={{minHeight:120}} value={reason} onChange={(e)=>setReason(e.target.value)} />
+                <span className="hint">{reason.length} caracteres</span>
+              </div>
+              <div className="field"><label>Testemunha (outro profissional autenticado)</label>
+                <select className="select"><option>Aida Tovela · Enfermeira · CS Maxixe</option><option>Adérito Mucopo · Médico · HP Inhambane</option></select>
+              </div>
+              <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Compreendo que esta acção será notificada ao paciente quando recuperar consciência ou através de contacto declarado.</label>
+            </>)}
+            {step===2 && (<>
+              <div className="kv"><span className="k">Paciente</span><span className="v">Adérito Sigaúque · BI 411982200A</span></div>
+              <div className="kv"><span className="k">Operador</span><span className="v">{ME.name} ({ME.role})</span></div>
+              <div className="kv"><span className="k">Testemunha</span><span className="v">Aida Tovela · Enfermeira</span></div>
+              <div className="kv"><span className="k">Tipo</span><span className="v">Paciente inconsciente</span></div>
+              <div className="kv"><span className="k">Hora</span><span className="v">15/04/2026 09:54</span></div>
+              <div className="hr"></div>
+              <div className="t-overline">Justificação registada</div>
+              <p style={{margin:"6px 0 0"}}>{reason}</p>
+            </>)}
+          </div>
+          <div className="ft" style={{padding:"12px 14px",borderTop:"1px solid var(--line-2)",justifyContent:"space-between"}}>
+            <button className="btn ghost" onClick={()=>step>1?setStep(step-1):go("dashboard")}>{step>1?"← Voltar":"Cancelar"}</button>
+            <button className="btn danger" onClick={()=>step<2?setStep(2):go("patient")}>{step<2?"Continuar":"Confirmar override e abrir registo"}</button>
+          </div>
+        </div>
+        <div className="col">
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">O que acontece a seguir</h3></div>
+            <div className="pb col" style={{fontSize:13,gap:8}}>
+              <div>1. Acesso ao registo concedido por 24h.</div>
+              <div>2. Sessão integralmente registada na trilha de auditoria.</div>
+              <div>3. Paciente notificado por SMS quando recuperar contacto.</div>
+              <div>4. Direcção da US revê em 7 dias; MISAU revê todos mensalmente.</div>
+            </div>
+          </div>
+          <div className="panel">
+            <div className="ph"><h3 className="t-h3">Histórico de overrides desta US</h3></div>
+            <div className="pb t-meta">
+              <div>Mês actual: 4 overrides · 0 sinalizados</div>
+              <div>Média 12 meses: 3.1/mês</div>
+              <div>Última revisão: 28/03/2026 — todas válidas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* Main app */
+function App(){
+  const [auth, setAuth] = useState(false);
+  const [screen, setScreen] = useState("dashboard");
+  const [patient, setPatient] = useState(null);
+  const [presOpen, setPresOpen] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [conn, setConn] = useState("ok");
+
+  // demo: drop conn when on offline screen
+  useEffect(()=>{
+    if(screen==="offline") setConn("offline");
+    else setConn("ok");
+  }, [screen]);
+
+  const showToast = (m)=>{ setToast(m); setTimeout(()=>setToast(null), 3000); };
+
+  if(!auth) return <Login onSignIn={()=>setAuth(true)} />;
+  return (
+    <div className="emr-shell">
+      <Header conn={conn} screen={screen} setScreen={(s)=>setScreen(s)} />
+      <main className="emr-body">
+        {screen==="dashboard" && <Dashboard go={setScreen} openPatient={(p)=>{setPatient(p);setScreen("patient")}} conn={conn} />}
+        {screen==="patients" && <Dashboard go={setScreen} openPatient={(p)=>{setPatient(p);setScreen("patient")}} conn={conn} />}
+        {screen==="queue" && <Dashboard go={setScreen} openPatient={(p)=>{setPatient(p);setScreen("patient")}} conn={conn} />}
+        {screen==="prescriptions" && <RxList go={setScreen} />}
+        {screen==="lab" && <LabList go={setScreen} />}
+        {screen==="search" && <Search go={setScreen} openPatient={(p)=>{setPatient(p);setScreen("patient")}} openMerge={()=>setScreen("merge")} />}
+        {screen==="temp" && <TempRecord go={setScreen} />}
+        {screen==="patient" && <Patient patient={patient} go={setScreen} />}
+        {screen==="encounter" && <Encounter patient={patient} go={setScreen} openPrescribe={()=>setPresOpen(true)} />}
+        {screen==="merge" && <Merge go={setScreen} />}
+        {screen==="offline" && <Offline go={setScreen} />}
+        {screen==="emergency" && <Emergency go={setScreen} />}
+      </main>
+      <Prescribe open={presOpen} onClose={()=>setPresOpen(false)} onIssued={()=>{setPresOpen(false);showToast("Receita Rx-2026-04-MZ-018 assinada e enviada à paciente.")}} />
+      {toast && <div className="toast">{toast}</div>}
+    </div>
+  );
+}
+
+function RxList({go}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / Receitas</div>
+    <h1 className="t-h1" style={{margin:"8px 0 16px"}}>Receitas emitidas</h1>
+    <div className="panel">
+      <div className="ph"><div className="seg"><button className="on">Hoje</button><button>Esta semana</button><button>Pendentes</button></div></div>
+      <table className="table"><thead><tr><th>Receita</th><th>Paciente</th><th>Itens</th><th>Estado</th><th>Validade</th><th></th></tr></thead><tbody>
+        <tr><td className="mono">Rx-2026-04-MZ-018</td><td>Beatriz Machava</td><td>Artemether-Lum, Paracetamol</td><td><span className="badge amber">Parcialmente dispensada</span></td><td>28/04/2026</td><td><a href="#">Ver</a></td></tr>
+        <tr><td className="mono">Rx-2026-04-MZ-014</td><td>João Matavele</td><td>Amoxicilina 500</td><td><span className="badge">Pendente</span></td><td>22/04/2026</td><td><a href="#">Ver</a></td></tr>
+        <tr><td className="mono">Rx-2026-03-MZ-211</td><td>Aida Nhampossa</td><td>Sulfato Ferroso</td><td><span className="badge green">Dispensada</span></td><td>—</td><td><a href="#">Ver</a></td></tr>
+        <tr><td className="mono">Rx-2026-03-MZ-014</td><td>Beatriz Machava</td><td>Hidroclorotiazida</td><td><span className="badge dark">Expirada</span></td><td>11/04/2026</td><td><a href="#">Ver</a></td></tr>
+      </tbody></table>
+    </div>
+  </>);
+}
+function LabList({go}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("dashboard")}}>Painel</a> / Laboratório</div>
+    <h1 className="t-h1" style={{margin:"8px 0 16px"}}>Resultados de laboratório</h1>
+    <div className="panel">
+      <table className="table"><thead><tr><th>Paciente</th><th>Exame</th><th>Resultado</th><th>Recolha</th><th>Estado</th></tr></thead><tbody>
+        <tr><td>Beatriz Machava</td><td>TDR Malária</td><td><span className="badge red">Positivo</span></td><td>15/04 09:14</td><td><span className="badge red">Não revisto</span></td></tr>
+        <tr><td>João Matavele</td><td>Hemograma</td><td>Hb 12.4 · Leu 11.2×10⁹</td><td>15/04 09:30</td><td><span className="badge amber">Não revisto</span></td></tr>
+        <tr><td>Aida Nhampossa</td><td>Análise urina</td><td><span className="badge green">Normal</span></td><td>14/04 16:02</td><td><span className="badge green">Revisto</span></td></tr>
+      </tbody></table>
+    </div>
+  </>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-desc">
+  <title id="og-title">Conceitos — Imaginando um futuro digital para Moçambique</title>
+  <desc id="og-desc">Cartão social: marca de sol nascente à esquerda, nome Conceitos e tagline à direita, sobre fundo creme.</desc>
+
+  
+  <rect width="1200" height="630" fill="#FAFAF7"></rect>
+
+  
+  <line x1="64" y1="64" x2="1136" y2="64" stroke="#D9D7CF" stroke-width="1"></line>
+  <line x1="64" y1="566" x2="1136" y2="566" stroke="#D9D7CF" stroke-width="1"></line>
+
+  
+  <g font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="2" fill="#5E5E5E">
+    <text x="64" y="52">CONCEITOS.ORG · INICIATIVA CÍVICA INDEPENDENTE</text>
+  </g>
+
+  
+  <g transform="translate(96 150)">
+    <circle cx="170" cy="170" r="170" fill="#1B5E3F"></circle>
+    <circle cx="170" cy="170" r="156" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="1"></circle>
+
+    
+    <g stroke="#E07A5F" stroke-width="4.4" stroke-linecap="round" transform="translate(40 30)">
+      <line x1="130" y1="36" x2="130" y2="66"></line>
+      <line x1="98" y1="44" x2="108" y2="72"></line>
+      <line x1="162" y1="44" x2="152" y2="72"></line>
+      <line x1="70" y1="62" x2="86" y2="84"></line>
+      <line x1="190" y1="62" x2="174" y2="84"></line>
+      <line x1="48" y1="86" x2="68" y2="100" stroke-width="3.6"></line>
+      <line x1="212" y1="86" x2="192" y2="100" stroke-width="3.6"></line>
+      <line x1="32" y1="118" x2="56" y2="126" stroke-width="3.6"></line>
+      <line x1="228" y1="118" x2="204" y2="126" stroke-width="3.6"></line>
+    </g>
+
+    
+    <path d="M70 200 a100 100 0 0 1 200 0 z" fill="#E8B547" transform="translate(0 -10)"></path>
+    
+    <line x1="20" y1="190" x2="320" y2="190" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></line>
+
+    
+    <g stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-opacity=".82">
+      <line x1="36" y1="218" x2="58" y2="218"></line>
+      <line x1="68" y1="228" x2="92" y2="228"></line>
+      <line x1="104" y1="218" x2="124" y2="218"></line>
+      <line x1="134" y1="230" x2="158" y2="230"></line>
+      <line x1="170" y1="220" x2="190" y2="220"></line>
+      <line x1="200" y1="230" x2="224" y2="230"></line>
+      <line x1="234" y1="218" x2="256" y2="218"></line>
+      <line x1="266" y1="228" x2="288" y2="228"></line>
+    </g>
+
+    
+    <text x="170" y="298" text-anchor="middle" fill="#ffffff" font-family="IBM Plex Sans, sans-serif" font-weight="600" font-size="14" letter-spacing="6">CONCEITOS</text>
+  </g>
+
+  
+  <g transform="translate(520 0)">
+    
+    <text x="0" y="200" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="2.4" fill="#5E5E5E">CONCEITOS</text>
+
+    
+    <text x="0" y="260" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="76" fill="#1A1A1A" letter-spacing="-1">Conceitos</text>
+
+    
+    <text x="0" y="332" font-family="IBM Plex Sans, sans-serif" font-weight="400" font-size="32" fill="#1A1A1A">
+      <tspan x="0" dy="0">Imaginando um futuro digital</tspan>
+      <tspan x="0" dy="42">para </tspan><tspan font-family="IBM Plex Serif, Georgia, serif" font-style="italic" fill="#1B5E3F">Moçambique</tspan><tspan>.</tspan>
+    </text>
+
+    
+    <line x1="0" y1="430" x2="560" y2="430" stroke="#D9D7CF" stroke-width="1"></line>
+
+    
+    <text x="0" y="470" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#3A3A3A">
+      <tspan x="0">Mocks e protótipos visuais de e-sistemas</tspan>
+      <tspan x="0" dy="26">públicos. Iniciativa cívica, aberta, voluntária.</tspan>
+    </text>
+  </g>
+
+  
+  <g font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="1.4" fill="#5E5E5E">
+    <text x="64" y="596">conceitos.org · iniciativa cívica independente</text>
+    <text x="1136" y="596" text-anchor="end">não-oficial · sem afiliação</text>
+  </g>
+</svg>

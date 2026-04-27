@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema de Farmácia — Saúde Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .ph-shell{display:flex;flex-direction:column;min-height:100vh}
+  .ph-body{flex:1;padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+  .scan-area{background:#0F2A1B;color:#cfe1d6;border-radius:var(--r-2);padding:36px 24px;display:flex;align-items:center;gap:36px;border:1px solid var(--green-900)}
+  .scan-frame{width:240px;height:240px;border:2px dashed #5e8a72;border-radius:8px;position:relative;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);flex:0 0 auto}
+  .scan-frame::before,.scan-frame::after{content:"";position:absolute;width:24px;height:24px;border:3px solid #fff}
+  .scan-frame::before{top:-3px;left:-3px;border-right:0;border-bottom:0}
+  .scan-frame::after{bottom:-3px;right:-3px;border-left:0;border-top:0}
+  .scan-frame .laser{position:absolute;left:14px;right:14px;top:50%;height:2px;background:#A8E0A8;box-shadow:0 0 8px #A8E0A8}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.6fr 1fr;gap:20px}
+  .crumb{font-size:12px;color:var(--ink-3)}
+  .item-row{display:grid;grid-template-columns:24px 1.6fr 1fr 1fr 110px;gap:12px;padding:12px;border-bottom:1px solid var(--line-2);align-items:center}
+  .item-row.ok{background:#F4FAF6}
+  .item-row.partial{background:#FFFBEF}
+  .check{width:18px;height:18px;border:1.5px solid var(--line);border-radius:3px;display:inline-flex;align-items:center;justify-content:center;background:#fff}
+  .check.on{background:var(--green-700);border-color:var(--green-700);color:#fff}
+  .recent-row{display:grid;grid-template-columns:1fr 1fr 90px 90px 80px;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line-2);align-items:center;font-size:13px}
+  .recent-row.head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2)}
+  .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:280px}
+  .keypad button{height:48px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:18px;font-family:var(--f-mono);cursor:pointer}
+  .keypad button.alt{background:var(--bg-2);font-size:14px;font-family:var(--f-sans)}
+  .alert-strip{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;background:#FEF6E0;border:1px solid #E7D49C;border-radius:var(--r-2);font-size:12px;color:#5C4500}
+  .pill-conn{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;background:var(--green-100);color:var(--green-700);border-radius:11px;font-size:11px;font-weight:500}
+  .pill-conn .d{width:6px;height:6px;border-radius:50%;background:var(--green-700)}
+  .num-big{font-size:34px;font-weight:600;letter-spacing:-.02em}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--green-100);color:var(--green-900);font-weight:600}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" data-presets="react">
+const { useState } = React;
+
+const PHARM = { name: "Farmácia Maxixe Central", code:"FM-088", license:"ANARME 014/MZ" };
+const ME = { name: "Sara Nhaca", role: "Farmacêutica · ANARME 8821", initials: "SN" };
+
+const RX = {
+  id: "Rx-2026-04-MZ-018",
+  patient: { name:"Beatriz Machava", sex:"F", age:34, doc:"BI 110456789B", initials:"BM" },
+  prescriber: "Dra. Cláudia Tembe · Tec. Medicina",
+  facility: "Centro de Saúde de Maxixe",
+  issued: "15/04/2026 09:24",
+  validUntil: "28/04/2026",
+  items: [
+    { id:"a", name:"Artemether-Lumefantrina 80/480 mg", form:"Comprimidos", qty:"24 cp", dosage:"4 cp · 2× dia · 3 dias", stock:412 },
+    { id:"b", name:"Paracetamol 500 mg", form:"Comprimidos", qty:"15 cp", dosage:"1 cp · SOS · 5 dias", stock:1200 },
+    { id:"c", name:"Sulfato Ferroso 200 mg + Ác. Fólico", form:"Comprimidos", qty:"30 cp", dosage:"1 cp · dia · 30 dias", stock:0, oos:true },
+  ]
+};
+
+function Header({screen, setScreen}){
+  const tabs=[["home","Dispensar"],["queue","Fila do dia"],["history","Histórico"],["summary","Resumo diário"]];
+  return (<>
+    <div className="govstrip">
+      <span>República de Moçambique</span><span className="sep">·</span>
+      <span>{PHARM.name} · {PHARM.license}</span><span className="sep">·</span>
+      <span>Sessão de farmácia</span>
+      <span style={{marginLeft:"auto"}}><a href="index.html" style={{color:"#cfe1d6"}}>← Pacote de mocks</a></span>
+    </div>
+    <header className="topbar">
+      <a href="#" onClick={(e)=>{e.preventDefault();setScreen("home")}} className="brand">
+        <span className="mark"></span><span className="stack"><span>Saúde Moçambique</span><small>Farmácia · {PHARM.code}</small></span>
+      </a>
+      <nav className="nav">
+        {tabs.map(([id,lbl])=>(<a key={id} className={screen===id?"active":""} href="#" onClick={(e)=>{e.preventDefault();setScreen(id)}}>{lbl}</a>))}
+      </nav>
+      <div className="right">
+        <span className="conn"><span className="d"></span> Sincronizado</span>
+        <div className="idbadge">
+          <div className="av sm green">{ME.initials}</div>
+          <div className="who"><b>{ME.name}</b><span>{ME.role}</span></div>
+        </div>
+      </div>
+    </header>
+  </>);
+}
+
+/* Login */
+function Login({onSignIn}){
+  return (
+    <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1.05fr .95fr",background:"var(--bg)"}}>
+      <div style={{background:"#0F3D27",color:"#dfeae3",padding:48,display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+        <a href="index.html" className="brand" style={{color:"#fff"}}><span className="mark" style={{background:"#fff"}}></span><span className="stack" style={{color:"#fff"}}><span>Saúde Moçambique</span><small style={{color:"#9bbfa8"}}>Sistema de Farmácia</small></span></a>
+        <div>
+          <div className="t-overline" style={{color:"#9bbfa8"}}>Rede ANARME · 1 900 farmácias</div>
+          <h1 style={{margin:"14px 0 12px",color:"#fff",fontSize:34,letterSpacing:"-.01em",lineHeight:1.1,maxWidth:440}}>Dispensa rápida, registo nacional.</h1>
+          <p style={{maxWidth:420,color:"#cfe0d6",fontSize:15}}>Leia o QR da receita, dispense, e a paciente é notificada. Toda a actividade fica registada para auditoria.</p>
+        </div>
+        <div className="t-meta" style={{color:"#9bbfa8"}}>v0.4.2 · Suporte ANARME 24/7: +258 21 000 200</div>
+      </div>
+      <div style={{padding:48,display:"flex",alignItems:"center",justifyContent:"center"}}>
+        <div style={{width:380}}>
+          <div className="t-overline" style={{color:"var(--green-700)"}}>Iniciar turno</div>
+          <h2 className="t-h2" style={{margin:"6px 0 18px"}}>Identificação do farmacêutico</h2>
+          <div className="col" style={{gap:14}}>
+            <div className="field"><label>Farmácia</label><select className="select lg"><option>Farmácia Maxixe Central · FM-088</option><option>Farmácia Avenida · FM-091</option><option>Farmácia Inhambane Cidade · FM-014</option></select></div>
+            <div className="field"><label>Nº ANARME</label><input className="input lg" defaultValue="ANARME 8821 — Sara Nhaca" /></div>
+            <div className="field"><label>PIN</label><input className="input lg" type="password" defaultValue="••••" /></div>
+            <button className="btn lg" onClick={onSignIn}>Iniciar turno</button>
+            <div className="t-meta" style={{textAlign:"center"}}>O turno regista início e fim no relatório diário.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* Home — scan */
+function Home({go, openManual}){
+  return (<>
+    <div className="row spread" style={{marginBottom:14}}>
+      <div>
+        <div className="t-overline" style={{color:"var(--ink-3)"}}>Quarta, 15 de Abril · 09:42</div>
+        <h1 className="t-h1" style={{marginTop:4}}>Dispensar receita</h1>
+        <p className="t-meta">{ME.name} · turno aberto às 08:00 · 14 receitas dispensadas hoje</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn secondary" onClick={()=>go("history")}>Histórico de hoje</button>
+        <button className="btn secondary" onClick={()=>go("summary")}>Resumo diário</button>
+      </div>
+    </div>
+    <div className="grid g-4" style={{marginBottom:18}}>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Hoje</div><div className="num-big">14</div><div className="t-meta">+ 6 vs. mesma hora ontem</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Em fila</div><div className="num-big">3</div><div className="t-meta">próxima: Beatriz M.</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Sinalizadas</div><div className="num-big" style={{color:"var(--red-700)"}}>1</div><div className="t-meta">Rx-…-091 (suspeita)</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Stock crítico</div><div className="num-big" style={{color:"var(--amber-700)"}}>2</div><div className="t-meta">Sulfato ferroso · SRO</div></div>
+    </div>
+
+    <div className="twocol">
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Ler QR da receita</h3><span className="badge green">Câmara activa</span></div>
+        <div className="pb">
+          <div className="scan-area">
+            <div className="scan-frame"><div className="laser"></div><div style={{color:"#9bbfa8",fontSize:11,fontFamily:"var(--f-mono)"}}>Aponte o QR aqui</div></div>
+            <div style={{flex:1}}>
+              <div className="t-overline" style={{color:"#9bbfa8"}}>Modo de leitura</div>
+              <h2 style={{color:"#fff",margin:"6px 0 8px",fontSize:24,letterSpacing:"-.01em"}}>Aponte o telefone da paciente para a câmara</h2>
+              <p style={{color:"#cfe1d6",fontSize:13,maxWidth:380}}>Aceita QR da App do Cidadão e códigos enviados por SMS. Em alternativa, digite o código manualmente.</p>
+              <div className="row" style={{gap:8,marginTop:14}}>
+                <button className="btn lg" onClick={()=>go("rx")}>Demo · Ler Rx-2026-04-MZ-018</button>
+                <button className="btn lg secondary" onClick={openManual}>Inserir código</button>
+              </div>
+            </div>
+          </div>
+          <div className="alert-strip" style={{marginTop:12}}><b>Verificação automática:</b>&nbsp;a receita é validada contra o registo MISAU antes de aparecer. Receitas expiradas ou sinalizadas mostram aviso.</div>
+        </div>
+      </div>
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Recém-dispensadas</h3><span className="t-meta">Esta hora</span></div>
+        <div>
+          <div className="recent-row head"><span>Receita</span><span>Paciente</span><span>Itens</span><span>Hora</span><span>Estado</span></div>
+          <div className="recent-row"><span className="mono">Rx-…018</span><span>Beatriz Machava</span><span>2 / 3</span><span>09:38</span><span><span className="badge amber">Parcial</span></span></div>
+          <div className="recent-row"><span className="mono">Rx-…011</span><span>João Matavele</span><span>1 / 1</span><span>09:22</span><span><span className="badge green">Dispensada</span></span></div>
+          <div className="recent-row"><span className="mono">Rx-…009</span><span>Aida Nhampossa</span><span>1 / 1</span><span>09:08</span><span><span className="badge green">Dispensada</span></span></div>
+          <div className="recent-row"><span className="mono">Rx-…091</span><span>—</span><span>—</span><span>08:54</span><span><span className="badge red">Sinalizada</span></span></div>
+        </div>
+        <div className="pb"><a href="#" onClick={(e)=>{e.preventDefault();go("history")}} className="t-meta">Ver tudo →</a></div>
+      </div>
+    </div>
+  </>);
+}
+
+/* Manual entry modal */
+function Manual({open, onClose, onFound}){
+  const [v, setV] = useState("");
+  if(!open) return null;
+  return (
+    <div className="modal-back" onClick={onClose}>
+      <div className="modal" style={{width:420}} onClick={(e)=>e.stopPropagation()}>
+        <div className="hd"><b>Inserir código de receita</b><button className="btn ghost sm" onClick={onClose}>Fechar</button></div>
+        <div className="bd">
+          <div className="field"><label>Código</label><input className="input lg mono" value={v} onChange={(e)=>setV(e.target.value)} placeholder="Rx-2026-04-MZ-018" /></div>
+          <div className="t-meta" style={{marginBottom:10}}>Use o teclado abaixo se a paciente leu o código por SMS.</div>
+          <div className="keypad">
+            {["1","2","3","4","5","6","7","8","9","-","0","⌫"].map(k=>(
+              <button key={k} className={"-⌫".includes(k)?"alt":""} onClick={()=>setV(k==="⌫"?v.slice(0,-1):v+k)}>{k}</button>
+            ))}
+          </div>
+        </div>
+        <div className="ft"><button className="btn secondary" onClick={onClose}>Cancelar</button><button className="btn" onClick={onFound}>Procurar receita</button></div>
+      </div>
+    </div>
+  );
+}
+
+/* Rx detail */
+function RxDetail({go, openDispense, openSuspicious}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("home")}}>Dispensar</a> / Receita {RX.id}</div>
+    <div className="row spread" style={{margin:"8px 0 16px"}}>
+      <div>
+        <h1 className="t-h1" style={{margin:0}}>Receita médica</h1>
+        <div className="row" style={{gap:8,marginTop:6}}>
+          <span className="badge mono">{RX.id}</span>
+          <span className="badge green">Válida · 13 dias</span>
+          <span className="badge">{RX.facility}</span>
+        </div>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <button className="btn ghost" onClick={()=>go("home")}>Cancelar</button>
+        <button className="btn amber" onClick={openSuspicious}>Sinalizar suspeita</button>
+        <button className="btn" onClick={openDispense}>Iniciar dispensa</button>
+      </div>
+    </div>
+
+    <div className="twocol">
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Itens prescritos</h3><span className="t-meta">3 medicamentos · 2 disponíveis</span></div>
+        <div>
+          <div className="item-row" style={{background:"var(--bg-2)",fontSize:11,textTransform:"uppercase",letterSpacing:".06em",color:"var(--ink-3)",fontWeight:600,borderBottom:"1px solid var(--line)"}}>
+            <span></span><span>Medicamento</span><span>Posologia</span><span>Stock</span><span>Estado</span>
+          </div>
+          {RX.items.map(it=>(
+            <div key={it.id} className="item-row">
+              <span></span>
+              <div><b>{it.name}</b><div className="t-meta">{it.qty} · {it.form}</div></div>
+              <div className="t-meta">{it.dosage}</div>
+              <div>{it.oos? <span className="badge red">Em falta</span> : <span className="badge green">{it.stock}</span>}</div>
+              <div>{it.oos? <span className="badge amber">Dispensa parcial</span> : <span className="badge">A dispensar</span>}</div>
+            </div>
+          ))}
+        </div>
+        <div className="alert-strip" style={{margin:14}}><b>Sulfato Ferroso em rotura.</b>&nbsp;Pode dispensar parcialmente os outros 2 itens; a paciente será notificada para regressar.</div>
+      </div>
+      <div className="col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Paciente</h3></div>
+          <div className="pb">
+            <div className="row" style={{gap:10}}>
+              <div className="av lg green">{RX.patient.initials}</div>
+              <div><b>{RX.patient.name}</b><div className="t-meta">{RX.patient.sex} · {RX.patient.age} a · {RX.patient.doc}</div></div>
+            </div>
+            <div className="hr"></div>
+            <div className="kv"><span className="k">Prescritor</span><span className="v">{RX.prescriber}</span></div>
+            <div className="kv" style={{marginTop:8}}><span className="k">Unidade</span><span className="v">{RX.facility}</span></div>
+            <div className="kv" style={{marginTop:8}}><span className="k">Emitida</span><span className="v">{RX.issued}</span></div>
+            <div className="kv" style={{marginTop:8}}><span className="k">Validade</span><span className="v">{RX.validUntil}</span></div>
+          </div>
+        </div>
+        <div className="alert-strip" style={{background:"var(--blue-100)",borderColor:"#BFCBDD",color:"var(--blue-700)"}}><b>Verificação MISAU:</b>&nbsp; receita autêntica · prescritor activo · paciente identificada.</div>
+      </div>
+    </div>
+  </>);
+}
+
+/* Dispense flow */
+function Dispense({go, onComplete}){
+  const [step, setStep] = useState(1);
+  const [items, setItems] = useState([
+    {id:"a", name:"Artemether-Lumefantrina 80/480 mg", check:true, lot:"MZ-AL-2025-118", exp:"09/2027"},
+    {id:"b", name:"Paracetamol 500 mg", check:true, lot:"MZ-PAR-2025-441", exp:"03/2028"},
+    {id:"c", name:"Sulfato Ferroso 200 mg + Ác. Fólico", check:false, oos:true, lot:"—", exp:"—"},
+  ]);
+  const tog=(id)=>setItems(items.map(it=>it.id===id&&!it.oos?{...it,check:!it.check}:it));
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("home")}}>Dispensar</a> / <a href="#" onClick={(e)=>{e.preventDefault();go("rx")}}>{RX.id}</a> / Dispensar</div>
+    <div className="row spread" style={{margin:"8px 0 16px"}}>
+      <h1 className="t-h1" style={{margin:0}}>Dispensar — {RX.patient.name}</h1>
+      <span className="t-meta">Passo {step} de 3</span>
+    </div>
+    <div className="stepper" style={{marginBottom:18}}>
+      <div className={`step ${step>=1?"active":""} ${step>1?"done":""}`}><span className="n">1</span> Confirmar itens</div><div className="ln"></div>
+      <div className={`step ${step>=2?"active":""} ${step>2?"done":""}`}><span className="n">2</span> Lote / validade</div><div className="ln"></div>
+      <div className={`step ${step>=3?"active":""}`}><span className="n">3</span> Confirmação final</div>
+    </div>
+
+    <div className="twocol">
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">{step===1?"Selecione os itens a dispensar":step===2?"Lote, validade e quantidade":"Confirmação"}</h3></div>
+        <div>
+          {(step===1||step===2) && items.map(it=>(
+            <div key={it.id} className={`item-row ${it.check?"ok":(it.oos?"partial":"")}`}>
+              <span className={`check ${it.check?"on":""}`} onClick={()=>tog(it.id)}>{it.check?"✓":""}</span>
+              <div><b>{it.name}</b><div className="t-meta">{it.qty || ""}</div></div>
+              {step===1 && <div className="t-meta">{it.oos? "Stock 0":"Stock OK"}</div>}
+              {step===2 && (it.check? <input className="input mono" defaultValue={it.lot} /> : <span className="t-meta">—</span>)}
+              {step===2 && (it.check? <input className="input" defaultValue={it.exp} /> : <span className="t-meta">—</span>)}
+              {step===1 && <span></span>}
+              {it.oos? <span className="badge amber">Em falta</span> : it.check? <span className="badge green">Sim</span> : <span className="badge">Não</span>}
+            </div>
+          ))}
+          {step===3 && (
+            <div className="pb">
+              <div className="kv"><span className="k">Receita</span><span className="v mono">{RX.id}</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Paciente</span><span className="v">{RX.patient.name} · {RX.patient.doc}</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Itens dispensados</span><span className="v">2 de 3</span></div>
+              <div className="kv" style={{marginTop:8}}><span className="k">Item em falta</span><span className="v">Sulfato Ferroso 200 mg + Ác. Fólico</span></div>
+              <div className="hr"></div>
+              <div className="alert-strip"><b>Confirmação dupla:</b>&nbsp;esta dispensa é parcial. A paciente será notificada por SMS para regressar pelo item em falta.</div>
+              <div className="row" style={{gap:8,marginTop:10}}>
+                <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Confirmo identidade da paciente (BI ou app)</label>
+              </div>
+              <div className="row" style={{gap:8,marginTop:6}}>
+                <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Aconselhei posologia e efeitos adversos</label>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="ft" style={{padding:"12px 14px",borderTop:"1px solid var(--line-2)",justifyContent:"space-between"}}>
+          <button className="btn ghost" onClick={()=>step>1?setStep(step-1):go("rx")}>{step>1?"← Voltar":"Cancelar"}</button>
+          <button className="btn" onClick={()=>step<3?setStep(step+1):onComplete()}>{step<3?"Continuar":"Confirmar dispensa parcial"}</button>
+        </div>
+      </div>
+      <div className="col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Receita</h3></div>
+          <div className="pb">
+            <div className="qr" style={{margin:"0 auto 10px"}}></div>
+            <div className="t-meta mono" style={{textAlign:"center"}}>{RX.id}</div>
+            <div className="hr"></div>
+            <div className="kv"><span className="k">Paciente</span><span className="v">{RX.patient.name}</span></div>
+            <div className="kv" style={{marginTop:6}}><span className="k">Prescritor</span><span className="v">Cláudia Tembe</span></div>
+            <div className="kv" style={{marginTop:6}}><span className="k">Validade</span><span className="v">{RX.validUntil}</span></div>
+          </div>
+        </div>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Avisos</h3></div>
+          <div className="pb t-meta col" style={{gap:6}}>
+            <div>• Sulfato ferroso em rotura nesta farmácia.</div>
+            <div>• Próxima entrega prevista: 18/04.</div>
+            <div>• A paciente pode tentar Farmácia Avenida (FM-091).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+function Complete({go, onSuspicious}){
+  return (<>
+    <div className="panel" style={{maxWidth:720,margin:"40px auto",textAlign:"center"}}>
+      <div className="pb" style={{padding:36}}>
+        <div style={{width:64,height:64,margin:"0 auto 14px",background:"var(--green-100)",border:"2px solid var(--green-700)",color:"var(--green-700)",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",fontSize:28,fontWeight:700}}>✓</div>
+        <h2 className="t-h2" style={{margin:"0 0 6px"}}>Dispensa registada</h2>
+        <p className="t-meta">2 itens dispensados a Beatriz Machava · 1 item em falta · paciente notificada por SMS</p>
+        <div className="hr"></div>
+        <div className="grid g-3" style={{textAlign:"left"}}>
+          <div className="kv"><span className="k">Receita</span><span className="v mono">Rx-2026-04-MZ-018</span></div>
+          <div className="kv"><span className="k">Hora</span><span className="v">15/04 09:46</span></div>
+          <div className="kv"><span className="k">Farmacêutica</span><span className="v">Sara Nhaca</span></div>
+        </div>
+        <div className="row" style={{gap:8,justifyContent:"center",marginTop:18}}>
+          <button className="btn secondary" onClick={()=>go("home")}>Voltar à fila</button>
+          <button className="btn" onClick={()=>go("controlled")}>Próximo: substância controlada</button>
+        </div>
+        <div style={{marginTop:14}}>
+          <a href="#" onClick={(e)=>{e.preventDefault();onSuspicious()}} className="t-meta">Ainda assim sinalizar como suspeita →</a>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+/* Suspicious flag */
+function Suspicious({open, onClose, onSubmit}){
+  if(!open) return null;
+  return (
+    <div className="modal-back" onClick={onClose}>
+      <div className="modal" style={{width:540}} onClick={(e)=>e.stopPropagation()}>
+        <div className="hd"><div><b>Sinalizar receita suspeita</b><div className="t-meta">Rx-2026-04-MZ-018 · Beatriz Machava</div></div><button className="btn ghost sm" onClick={onClose}>Fechar</button></div>
+        <div className="bd col" style={{gap:12}}>
+          <div className="field"><label>Motivo</label>
+            <select className="select"><option>Identificação não corresponde</option><option>QR / código não legível</option><option>Quantidade fora do habitual</option><option>Receita possivelmente alterada</option><option>Outro</option></select>
+          </div>
+          <div className="field"><label>Descrição</label><textarea className="textarea" placeholder="Detalhes para a equipa de auditoria"></textarea></div>
+          <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Bloquear esta receita até revisão</label>
+          <div className="alert-strip"><b>Atenção:</b>&nbsp;a sinalização é enviada à direcção da farmácia, ao prescritor e à equipa de auditoria MISAU. Falsas sinalizações são auditadas.</div>
+        </div>
+        <div className="ft"><button className="btn secondary" onClick={onClose}>Cancelar</button><button className="btn amber" onClick={onSubmit}>Submeter sinalização</button></div>
+      </div>
+    </div>
+  );
+}
+
+/* Controlled substance gate */
+function Controlled({go}){
+  const [step, setStep] = useState(1);
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("home")}}>Dispensar</a> / Substância controlada</div>
+    <div className="banner red" style={{margin:"10px 0 16px"}}><div className="ic"></div><div><b>Substância controlada — Tabela II.</b> Dispensa requer confirmação dupla com PIN do farmacêutico responsável.</div></div>
+
+    <div className="twocol">
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">{step===1?"Verificação 1 · Identidade":"Verificação 2 · PIN do responsável"}</h3><span className="t-meta">Passo {step} de 2</span></div>
+        <div className="pb col" style={{gap:14}}>
+          {step===1 && (<>
+            <div className="kv"><span className="k">Medicamento</span><span className="v">Tramadol 50 mg · Rx-2026-04-MZ-022</span></div>
+            <div className="kv"><span className="k">Paciente</span><span className="v">João Matavele · BI 209887412C</span></div>
+            <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Verifiquei o BI físico do paciente</label>
+            <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" defaultChecked /> Confirmei que é o paciente nominado na receita</label>
+            <label className="row" style={{gap:8,fontSize:13}}><input type="checkbox" /> Paciente é representado por familiar (anexar autorização)</label>
+          </>)}
+          {step===2 && (<>
+            <div className="alert-strip"><b>Substância controlada</b>: a dispensa fica registada no livro digital de estupefacientes da farmácia.</div>
+            <div className="field"><label>Farmacêutico responsável</label><select className="select"><option>Sara Nhaca · ANARME 8821</option><option>Délio Chongo · ANARME 4112</option></select></div>
+            <div className="field"><label>PIN de confirmação</label><input className="input lg" type="password" placeholder="••••" /></div>
+            <div className="grid g-2" style={{gap:10}}>
+              <div className="field"><label>Lote</label><input className="input mono" defaultValue="MZ-TRA-2025-072" /></div>
+              <div className="field"><label>Quantidade dispensada</label><input className="input" defaultValue="14 cp (de 14)" /></div>
+            </div>
+          </>)}
+        </div>
+        <div className="ft" style={{justifyContent:"space-between"}}>
+          <button className="btn ghost" onClick={()=>step>1?setStep(step-1):go("home")}>{step>1?"← Voltar":"Cancelar"}</button>
+          <button className="btn danger" onClick={()=>step<2?setStep(2):go("home")}>{step<2?"Continuar":"Confirmar dispensa controlada"}</button>
+        </div>
+      </div>
+      <div className="col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Registo do livro digital</h3></div>
+          <div className="pb t-meta col" style={{gap:6}}>
+            <div>Tabela II · Tramadol</div>
+            <div>Saldo antes: 84 cp</div>
+            <div>Após dispensa: 70 cp</div>
+            <div>Próxima conciliação: 30/04</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+/* Daily summary */
+function Summary({go}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("home")}}>Dispensar</a> / Resumo diário</div>
+    <div className="row spread" style={{margin:"8px 0 16px"}}>
+      <div>
+        <h1 className="t-h1" style={{margin:0}}>Resumo do dia · 15/04/2026</h1>
+        <p className="t-meta">Turno 08:00 – 17:30 · {ME.name}</p>
+      </div>
+      <div className="row" style={{gap:8}}>
+        <div className="seg"><button className="on">Hoje</button><button>Semana</button><button>Mês</button></div>
+        <button className="btn secondary">Imprimir</button>
+        <button className="btn">Fechar turno</button>
+      </div>
+    </div>
+    <div className="grid g-4" style={{marginBottom:18}}>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Receitas</div><div className="num-big">42</div><div className="t-meta">36 totais · 5 parciais · 1 sinalizada</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Itens dispensados</div><div className="num-big">118</div><div className="t-meta">média 2.8 por receita</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Substâncias controladas</div><div className="num-big">3</div><div className="t-meta">Tabela II · todas conformes</div></div>
+      <div className="panel" style={{padding:14}}><div className="t-overline">Tempo médio fila</div><div className="num-big">04:12</div><div className="t-meta">−1m vs. ontem</div></div>
+    </div>
+    <div className="twocol">
+      <div className="panel">
+        <div className="ph"><h3 className="t-h3">Top medicamentos dispensados</h3></div>
+        <table className="table">
+          <thead><tr><th>Medicamento</th><th>Receitas</th><th>Unidades</th><th>Stock final</th></tr></thead>
+          <tbody>
+            <tr><td>Paracetamol 500 mg</td><td>22</td><td>540 cp</td><td>660</td></tr>
+            <tr><td>Artemether-Lumefantrina 80/480</td><td>9</td><td>216 cp</td><td>196</td></tr>
+            <tr><td>Amoxicilina 500 mg</td><td>7</td><td>112 cp</td><td>268</td></tr>
+            <tr><td>Hidroclorotiazida 25 mg</td><td>5</td><td>150 cp</td><td>370</td></tr>
+            <tr><td>Sulfato Ferroso + Ác. Fólico</td><td>4</td><td>—</td><td><span className="badge red">Rotura</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="col">
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Sinalizações</h3></div>
+          <div className="pb t-meta col" style={{gap:6}}>
+            <div>1 · Rx-…091 · QR ilegível · em revisão</div>
+          </div>
+        </div>
+        <div className="panel">
+          <div className="ph"><h3 className="t-h3">Reposição sugerida</h3></div>
+          <div className="pb col" style={{gap:6}}>
+            <div className="row spread"><b>Sulfato Ferroso</b><span className="badge red">Crítico</span></div>
+            <div className="row spread"><b>Sais de Reidratação Oral</b><span className="badge amber">Baixo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>);
+}
+
+/* History list */
+function History({go}){
+  return (<>
+    <div className="crumb"><a href="#" onClick={(e)=>{e.preventDefault();go("home")}}>Dispensar</a> / Histórico</div>
+    <h1 className="t-h1" style={{margin:"8px 0 16px"}}>Receitas dispensadas hoje</h1>
+    <div className="panel">
+      <table className="table">
+        <thead><tr><th>Receita</th><th>Paciente</th><th>Itens</th><th>Hora</th><th>Estado</th><th></th></tr></thead>
+        <tbody>
+          <tr><td className="mono">Rx-…018</td><td>Beatriz Machava</td><td>2/3 (parcial)</td><td>09:46</td><td><span className="badge amber">Parcial</span></td><td><a href="#">Ver</a></td></tr>
+          <tr><td className="mono">Rx-…011</td><td>João Matavele</td><td>1/1</td><td>09:22</td><td><span className="badge green">Dispensada</span></td><td><a href="#">Ver</a></td></tr>
+          <tr><td className="mono">Rx-…009</td><td>Aida Nhampossa</td><td>1/1</td><td>09:08</td><td><span className="badge green">Dispensada</span></td><td><a href="#">Ver</a></td></tr>
+          <tr><td className="mono">Rx-…007</td><td>Helena Nhachote (mãe)</td><td>2/2</td><td>08:54</td><td><span className="badge green">Dispensada</span></td><td><a href="#">Ver</a></td></tr>
+          <tr><td className="mono">Rx-…091</td><td>—</td><td>0/1</td><td>08:54</td><td><span className="badge red">Sinalizada</span></td><td><a href="#">Ver</a></td></tr>
+          <tr><td className="mono">Rx-…003</td><td>Rogério Manjate</td><td>1/1</td><td>08:30</td><td><span className="badge green">Dispensada</span></td><td><a href="#">Ver</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </>);
+}
+
+function App(){
+  const [auth, setAuth] = useState(false);
+  const [screen, setScreen] = useState("home");
+  const [manual, setManual] = useState(false);
+  const [suspicious, setSuspicious] = useState(false);
+  const [toast, setToast] = useState(null);
+
+  const go = (s)=>setScreen(s);
+  const showToast = (m)=>{ setToast(m); setTimeout(()=>setToast(null), 3000); };
+
+  if(!auth) return <Login onSignIn={()=>setAuth(true)} />;
+  return (
+    <div className="ph-shell">
+      <Header screen={screen} setScreen={setScreen} />
+      <main className="ph-body">
+        {screen==="home" && <Home go={go} openManual={()=>setManual(true)} />}
+        {screen==="rx" && <RxDetail go={go} openDispense={()=>go("dispense")} openSuspicious={()=>setSuspicious(true)} />}
+        {screen==="dispense" && <Dispense go={go} onComplete={()=>go("complete")} />}
+        {screen==="complete" && <Complete go={go} onSuspicious={()=>setSuspicious(true)} />}
+        {screen==="controlled" && <Controlled go={go} />}
+        {screen==="summary" && <Summary go={go} />}
+        {screen==="history" && <History go={go} />}
+        {screen==="queue" && <History go={go} />}
+      </main>
+      <Manual open={manual} onClose={()=>setManual(false)} onFound={()=>{setManual(false);go("rx")}} />
+      <Suspicious open={suspicious} onClose={()=>setSuspicious(false)} onSubmit={()=>{setSuspicious(false);showToast("Receita sinalizada e bloqueada para revisão.")}} />
+      {toast && <div className="toast">{toast}</div>}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
