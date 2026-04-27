@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/mark.svg" width="120" alt="Conceitos · sol nascente sobre horizonte" style="background:#1B5E3F;border-radius:50%;padding:4px">
+  <img src="assets/mark-bg.svg" width="120" alt="Conceitos · sol nascente sobre horizonte">
   <h1>Conceitos</h1>
   <p>Imaginando um futuro digital para Moçambique.</p>
   <a href="https://conceitos.org">conceitos.org</a>
