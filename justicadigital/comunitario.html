@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Tribunal Comunitário · Mediação — Justiça Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  /* Tribunal Comunitário · tablet-only · larger touch targets */
+  .tabframe{display:flex;justify-content:center;padding:16px 0}
+  .tablet-shell{width:100%;background:#fff;border-bottom:1px solid var(--line);display:flex;flex-direction:column;min-height:680px}
+  .tab-top{height:56px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--line);background:#fff}
+  .tab-top .br{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+  .tab-top .br .mk{width:22px;height:22px;background:var(--slate-700);border-radius:1px;position:relative}
+  .tab-top .br .mk::before{content:"";position:absolute;left:0;top:50%;width:100%;height:2px;background:var(--brass-500);transform:translateY(-50%)}
+  .tab-top .lang{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;height:36px}
+  .tab-top .lang button{padding:0 12px;border:0;background:#fff;font-family:inherit;font-size:13px;color:var(--ink-2);cursor:pointer;border-right:1px solid var(--line);font-weight:500}
+  .tab-top .lang button:last-child{border-right:0}
+  .tab-top .lang button.on{background:var(--slate-700);color:#fff}
+
+  .big-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:32px 18px;text-align:center;cursor:pointer;min-height:200px;text-decoration:none;color:var(--ink);transition:border-color .15s,background .15s}
+  .big-btn:hover{border-color:var(--slate-700);text-decoration:none}
+  .big-btn .ic{width:64px;height:64px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:600}
+  .big-btn .ic.green{background:var(--good-100);color:var(--good-700)}
+  .big-btn .ic.slate{background:var(--slate-100);color:var(--slate-700)}
+  .big-btn .ic.brass{background:var(--brass-100);color:var(--brass-700)}
+  .big-btn .ic.grey{background:var(--bg-2);color:var(--ink-3)}
+  .big-btn b{font-size:18px;font-weight:600}
+  .big-btn span{font-size:13px;color:var(--ink-3)}
+  .big-btn .badge-count{position:absolute;top:14px;right:14px;background:var(--red-500);color:#fff;font-size:11px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600}
+  .big-btn{position:relative}
+
+  .case-chip-big{padding:10px 14px;border-radius:4px;font-size:13px;font-weight:500;background:#fff;border:1px solid var(--line);cursor:pointer}
+  .case-chip-big.on{background:var(--slate-700);color:#fff;border-color:var(--slate-700)}
+
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1280px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-wrap{max-width:1280px;margin:0 auto;padding:16px 24px}
+  .scene-end{padding:24px 24px 12px;max-width:1280px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:8px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+
+  .pill-presence{padding:14px;background:#fff;border:1px solid var(--line);border-radius:6px;display:flex;align-items:center;gap:14px}
+  .pill-presence.absent{opacity:.5}
+
+  .signature-pad{height:120px;background:repeating-linear-gradient(0deg,var(--bg-2) 0 23px,var(--line-2) 23px 24px);border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:13px;position:relative}
+  .signature-pad svg{position:absolute;left:0;top:0}
+
+  .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:240px}
+  .keypad button{height:60px;border:1px solid var(--line);background:#fff;font-family:var(--f-mono);font-size:22px;font-weight:600;border-radius:4px;cursor:pointer;color:var(--ink)}
+  .keypad button:hover{background:var(--bg-2)}
+  .keypad button:last-child{grid-column:2}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MJCR · Tribunal Supremo · DJD</span><span class="sep">·</span>
+  <span>Tribunal Comunitário v0.3</span>
+  <span style="margin-left:auto">DESIGN-comunitario.md · Lei 4/92</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Tribunal Comunitário</span><small>Mediação · Lei 4/92</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-mjcr.html">Portal MJCR</a>
+    <a href="comunitario.html" class="active">T. Comunitário</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="registos.html">Registos</a>
+  </nav>
+  <div class="right">
+    <span class="conn amber"><span class="d"></span> 3 em fila · sync</span>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. PIN do juiz</a>
+    <a href="#cena-2">2. Início</a>
+    <a href="#cena-3">3. Receber queixa</a>
+    <a href="#cena-4">4. Convocar</a>
+    <a href="#cena-5">5. Audiência</a>
+    <a href="#cena-6">6. Acordo (Changana)</a>
+    <a href="#cena-7">7. Assinar · homologar</a>
+    <a href="#cena-8">8. Sem acordo · escalar</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · PIN =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding</div>
+    <h2>PIN do juiz comunitário · 4 dígitos · biometria opcional</h2>
+    <p>Sem password. Tablet partilhado entre juiz e assistente. PIN identifica quem registou cada acto.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Tribunal Comunitário · Bairro da Polana Caniço</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn amber"><span class="d"></span>3 em fila</span>
+          <div class="lang">
+            <button class="on">PT</button>
+            <button>Macua</button>
+            <button>Changana</button>
+            <button>Sena</button>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:560px">
+        <div style="background:var(--slate-900);color:#fff;padding:48px;display:flex;flex-direction:column;justify-content:center">
+          <div class="t-overline" style="color:#8a8f9c">Tribunal Comunitário</div>
+          <h1 style="font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:14px 0 14px;color:#fff">Bairro da Polana Caniço</h1>
+          <div class="t-meta" style="color:#c8ccd3;font-size:13px;line-height:1.6;max-width:380px">Cidade de Maputo · ZN-018<br/>Lei 4/92 · Decreto 4/93<br/>Juízes eleitos pela comunidade em assembleia, mandato 5 anos.</div>
+          <div style="margin-top:48px;font-size:11px;color:#8a8f9c">v0.3 · Abril 2026</div>
+        </div>
+        <div style="padding:48px;display:flex;flex-direction:column;justify-content:center">
+          <div class="t-overline">Iniciar sessão</div>
+          <div class="t-h2" style="margin:8px 0 4px">Olá, António Mahique</div>
+          <div class="t-meta" style="margin-bottom:20px">Juiz comunitário · eleito em 2024</div>
+          <div class="row" style="gap:8px;margin-bottom:18px">
+            <div class="input mono lg" style="text-align:center;width:42px;height:48px;font-size:22px;display:flex;align-items:center;justify-content:center;background:var(--slate-100)">●</div>
+            <div class="input mono lg" style="text-align:center;width:42px;height:48px;font-size:22px;display:flex;align-items:center;justify-content:center;background:var(--slate-100)">●</div>
+            <div class="input mono lg" style="text-align:center;width:42px;height:48px;font-size:22px;display:flex;align-items:center;justify-content:center;background:var(--slate-100)">●</div>
+            <div class="input mono lg" style="text-align:center;width:42px;height:48px;font-size:22px;display:flex;align-items:center;justify-content:center;background:#fff;border-color:var(--slate-700);outline:2px solid var(--slate-700)"></div>
+          </div>
+          <div class="keypad">
+            <button>1</button><button>2</button><button>3</button>
+            <button>4</button><button>5</button><button>6</button>
+            <button>7</button><button>8</button><button>9</button>
+            <button>0</button>
+          </div>
+          <a href="#cena-2" class="btn lg block" style="margin-top:18px">Entrar</a>
+          <p class="t-meta" style="margin:12px 0 0;font-size:11px">Olvidou o PIN? Pedir novo PIN ao assistente · Olga Tembe.</p>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Sem password. Sem 2FA. Tablet de uso partilhado.</span><a class="btn secondary sm" href="#cena-2">Início →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · INÍCIO =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Início · 4 grandes botões</div>
+    <h2>Navegação reduzida ao mínimo · texto grande · ícones · língua activa visível</h2>
+    <p>Juiz comunitário entra e vê de imediato o que precisa fazer hoje. Tudo a 1 toque de distância.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Tribunal Comunitário · Bairro da Polana Caniço</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn amber"><span class="d"></span>3 em fila</span>
+          <div class="lang">
+            <button class="on">PT</button>
+            <button>Macua</button>
+            <button>Changana</button>
+            <button>Sena</button>
+          </div>
+          <div class="idbadge"><span class="av sm">AM</span><div class="who"><b>António Mahique</b><span>Juiz comunitário</span></div></div>
+        </div>
+      </div>
+      <div style="padding:32px">
+        <div class="row spread" style="margin-bottom:18px">
+          <div>
+            <div class="t-overline">28 de Abril de 2026 · terça-feira</div>
+            <div class="t-h2" style="margin-top:4px">Bom dia, António.</div>
+            <div class="t-meta" style="margin-top:4px">Tens 2 audiências hoje e 1 acordo por homologar.</div>
+          </div>
+          <div class="row">
+            <span class="badge"><span class="dot"></span>14 processos activos</span>
+            <span class="badge brass"><span class="dot"></span>62 acordos · 2026</span>
+          </div>
+        </div>
+        <div class="grid g-2" style="gap:16px">
+          <a class="big-btn" href="#cena-3">
+            <div class="ic green">+</div>
+            <b>Receber nova queixa</b>
+            <span>Alguém quer apresentar uma disputa</span>
+          </a>
+          <a class="big-btn" href="#cena-5">
+            <div class="ic slate">📅</div>
+            <b>Audiências de hoje</b>
+            <span>2 marcadas · próxima 14:00</span>
+            <span class="badge-count">2</span>
+          </a>
+          <a class="big-btn" href="#cena-7">
+            <div class="ic brass">✓</div>
+            <b>Acordos por homologar</b>
+            <span>1 a aguardar selo</span>
+            <span class="badge-count">1</span>
+          </a>
+          <a class="big-btn" href="#">
+            <div class="ic grey">📂</div>
+            <b>Arquivo</b>
+            <span>Consultar acordos passados</span>
+          </a>
+        </div>
+
+        <div class="banner amber" style="margin-top:18px"><span class="ic"></span><div><b>3 alterações em fila para sincronizar.</b> Sem sinal há 22 minutos. Vão sincronizar quando voltar a haver. Não percas trabalho — está tudo guardado.</div></div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← PIN</a><a class="btn secondary sm" href="#cena-3">Receber queixa →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · RECEBER QUEIXA =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Receber queixa · queixoso presente</div>
+    <h2>Maria Cuamba apresenta-se com disputa de fronteira de quintal contra João Macia</h2>
+    <p>Identidade · natureza · texto livre OU gravação de voz na língua escolhida.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Receber queixa</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn amber"><span class="d"></span>3 em fila</span>
+          <div class="lang">
+            <button class="on">PT</button>
+            <button>Macua</button>
+            <button>Changana</button>
+            <button>Sena</button>
+          </div>
+        </div>
+      </div>
+      <div style="padding:24px">
+        <div class="stepper" style="margin-bottom:18px">
+          <div class="step done"><div class="n">1</div>Identidade</div><div class="ln"></div>
+          <div class="step active"><div class="n">2</div>Disputa</div><div class="ln"></div>
+          <div class="step"><div class="n">3</div>Outra parte</div><div class="ln"></div>
+          <div class="step"><div class="n">4</div>Audiência</div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div class="hd"><b>Quem traz a queixa</b></div>
+            <div class="bd col">
+              <div class="row" style="gap:14px">
+                <span class="av lg green">MC</span>
+                <div>
+                  <div style="font-size:18px;font-weight:600">Maria do Rosário Cuamba</div>
+                  <div class="t-meta">BI 110100442918 · 38 anos · Bairro da Polana Caniço, R. das Acácias 218</div>
+                </div>
+              </div>
+              <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12.5px"><b>Identidade verificada via eBI Governo Digital.</b> Foto e morada confirmadas.</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Natureza da disputa</b></div>
+            <div class="bd">
+              <div class="tag-strip" style="gap:10px">
+                <span class="case-chip-big on">🏘️ Terra · fronteira</span>
+                <span class="case-chip-big">👨‍👩‍👧 Família</span>
+                <span class="case-chip-big">🏠 Vizinhança</span>
+                <span class="case-chip-big">💰 Dívida</span>
+                <span class="case-chip-big">🔓 Furto pequeno</span>
+                <span class="case-chip-big">⋯ Outro</span>
+              </div>
+              <hr class="hr">
+              <div class="t-overline">Resumo · em PT (escolhida pela queixosa)</div>
+              <div class="textarea" style="min-height:120px;font-size:15px;line-height:1.6;background:#fff;padding:12px;color:var(--ink)">A minha vizinha do lado, Sra. João Macia, mudou a parede do quintal há duas semanas e tirou-me cerca de dois metros de terreno. Eu plantei lá uma mangueira em 2018 e agora a árvore ficou do lado dela. Já falámos duas vezes mas não nos entendemos. Quero que a parede volte para o sítio antigo.</div>
+              <div class="row spread" style="margin-top:10px">
+                <button class="btn secondary sm">🎤 Gravar voz em vez disso</button>
+                <span class="t-meta">418 caracteres</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <div class="hd"><b>Outra parte · contra quem é a queixa</b></div>
+          <div class="bd grid g-2" style="gap:14px">
+            <div class="field">
+              <label>Nome completo</label>
+              <input class="input lg" value="João Macia" />
+            </div>
+            <div class="field">
+              <label>BI · ou nome dos pais se não souber</label>
+              <input class="input lg mono" value="110100099876" />
+            </div>
+            <div class="field">
+              <label>Bairro / morada</label>
+              <input class="input lg" value="Polana Caniço, R. das Acácias 220 (vizinho)" />
+            </div>
+            <div class="field">
+              <label>Telemóvel · se conhece</label>
+              <input class="input lg mono" value="+258 84 392 1144" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:18px">
+          <span class="t-meta">Vai criar processo <b class="mono">C-2026-MAP-PCN-00128</b></span>
+          <div class="row">
+            <a href="#cena-2" class="btn ghost">Cancelar</a>
+            <a href="#cena-4" class="btn lg">Próximo · convocar →</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Início</a><a class="btn secondary sm" href="#cena-4">Convocar →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · CONVOCAR =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Convocar · SMS + edital impresso</div>
+    <h2>Modelo de convocatória · gerado em ambas as línguas se necessário</h2>
+    <p>SMS automático para a outra parte. Modelo PDF impresso em mão se não tem contacto.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Convocatória · C-2026-MAP-PCN-00128</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn amber"><span class="d"></span>3 em fila</span>
+          <div class="lang"><button class="on">PT</button><button>Macua</button><button>Changana</button><button>Sena</button></div>
+        </div>
+      </div>
+      <div style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card">
+          <div class="hd"><b>Marcar audiência</b></div>
+          <div class="bd col">
+            <div class="field">
+              <label>Data · sugerida 7-14 dias depois</label>
+              <input class="input lg" value="Quarta · 7 de Maio de 2026" />
+            </div>
+            <div class="field">
+              <label>Hora</label>
+              <input class="input lg" value="14:00" />
+            </div>
+            <div class="field">
+              <label>Local</label>
+              <input class="input lg" value="Sede do Tribunal Comunitário · Bairro Polana Caniço · sala da assembleia" />
+            </div>
+
+            <hr class="hr">
+
+            <div class="t-overline">Como convocar a outra parte</div>
+            <label class="row" style="gap:10px;font-size:14px"><input type="checkbox" checked /> SMS para +258 84 392 1144 (J. Macia)</label>
+            <label class="row" style="gap:10px;font-size:14px"><input type="checkbox" checked /> Imprimir convocatória para entregar em mão (assistente Olga Tembe)</label>
+            <label class="row" style="gap:10px;font-size:14px"><input type="checkbox" /> Notificação no Cidadão app (se J. Macia tem app)</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Pré-visualizar SMS · em PT</b><div class="row"><span class="seg"><button class="on">PT</button><button>Changana</button></span></div></div>
+          <div class="bd">
+            <div style="background:#f3f8e9;border:1px solid #c6d5a8;border-radius:8px;padding:14px;font-size:13px;line-height:1.55;font-family:var(--f-sans)">
+              Sr. João Macia, foi apresentada uma queixa contra si pela Sra. Maria Cuamba (vizinha) sobre fronteira de quintal. Tribunal Comunitário do Bairro Polana Caniço marcou audiência para Quarta 7 Mai 2026 às 14:00 na sede do tribunal. Por favor compareça. Lei 4/92.
+            </div>
+            <div class="t-meta" style="margin-top:8px;font-size:11px">SMS de 304 caracteres · 2 mensagens · enviado pelo número oficial DJD-1467</div>
+
+            <hr class="hr">
+
+            <div class="t-overline" style="margin-bottom:8px">Convocatória impressa · A4</div>
+            <div class="acta" style="font-size:11px">
+              <div class="hd" style="padding:10px 14px"><div class="ti" style="font-size:13px">Convocatória · Tribunal Comunitário</div><div class="t-meta mono">C-2026-MAP-PCN-00128</div></div>
+              <div class="bd" style="padding:14px;font-family:var(--f-serif);font-size:11.5px;line-height:1.6">
+                <p style="margin:0 0 8px"><b>Sr. João Macia</b>, BI 110100099876, residente no Bairro da Polana Caniço, R. das Acácias 220.</p>
+                <p style="margin:0 0 8px">Foi apresentada queixa contra si por <b>Sra. Maria do Rosário Cuamba</b>, sobre disputa de fronteira de quintal.</p>
+                <p style="margin:0 0 8px">Fica V. Exa. <b>convocado</b> para comparecer no dia <b>7 de Maio de 2026</b>, pelas <b>14h00</b>, no Tribunal Comunitário do Bairro Polana Caniço.</p>
+                <p style="margin:0">A não comparência poderá determinar a marcação de nova audiência ou a remessa do caso ao Tribunal Judicial competente, nos termos da Lei 4/92.</p>
+              </div>
+              <div class="ft" style="font-size:10px;display:flex;justify-content:space-between"><span><b>O Juiz Comunitário,</b> António Mahique</span><span class="seal">Tribunal Comunitário</span></div>
+            </div>
+          </div>
+          <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center">
+            <span class="t-meta">Modelo · DJD</span>
+            <button class="btn secondary">⤓ Imprimir A4</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:0 24px 24px">
+        <div class="row spread" style="border-top:1px solid var(--line);padding-top:14px">
+          <span class="t-meta">Audiência marcada para 7 Mai · convocatória vai sincronizar com sinal.</span>
+          <a class="btn lg" href="#cena-5">Marcar e enviar →</a>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Receber queixa</a><a class="btn secondary sm" href="#cena-5">Audiência →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · AUDIÊNCIA =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Audiência de mediação · em curso</div>
+    <h2>Partes presentes · timer · notas · decisão de momento</h2>
+    <p>Audiência ao ar livre na sede do tribunal. Juiz e assistente registam acto.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Audiência · C-2026-MAP-PCN-00128</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="badge red"><span class="dot"></span>● em curso · 14:18</span>
+          <span class="conn"><span class="d"></span>Online</span>
+          <div class="lang"><button class="on">PT</button><button>Macua</button><button>Changana</button><button>Sena</button></div>
+        </div>
+      </div>
+      <div style="padding:24px">
+        <div class="row spread" style="margin-bottom:14px">
+          <div>
+            <div class="t-overline">Audiência de mediação · 7 de Maio de 2026</div>
+            <div class="t-h2" style="margin-top:4px">Cuamba ⚖ Macia · disputa de fronteira de quintal</div>
+          </div>
+          <div class="row">
+            <button class="btn secondary lg">⏸ Pausa</button>
+            <button class="btn lg">Decisão de momento →</button>
+          </div>
+        </div>
+
+        <div class="grid g-3" style="gap:14px;margin-bottom:18px">
+          <div class="pill-presence">
+            <span class="av lg green">MC</span>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:600">Maria Cuamba</div>
+              <div class="t-meta">Queixosa</div>
+            </div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Presente</span>
+          </div>
+          <div class="pill-presence">
+            <span class="av lg green">JM</span>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:600">João Macia</div>
+              <div class="t-meta">Outra parte</div>
+            </div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Presente</span>
+          </div>
+          <div class="pill-presence">
+            <span class="av lg amber">SF</span>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:600">Sra. Filomena</div>
+              <div class="t-meta">Testemunha · vizinha</div>
+            </div>
+            <span class="badge amber" style="font-size:10px"><span class="dot"></span>Voluntária</span>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1.5fr 1fr;gap:16px">
+          <div class="card">
+            <div class="hd"><b>Notas da audiência</b><span class="t-meta">guardado às 14:18</span></div>
+            <div class="bd">
+              <div class="textarea" style="min-height:240px;font-size:15px;line-height:1.7;background:#fff;padding:14px;color:var(--ink)">14:00 · audiência aberta. Ambas partes presentes.
+
+14:04 · Sra. Cuamba expõe a disputa: parede mudou em finais de Março, terreno reduzido em ~2m, mangueira plantada em 2018 ficou do lado da Sra. Macia.
+
+14:09 · Sr. Macia responde: pensava que a fronteira era a vala de água da chuva, mãe dele dizia ser ali. Mostra esboço antigo desenhado a lápis.
+
+14:14 · Sra. Filomena (vizinha) confirma que a mangueira foi plantada pela Sra. Cuamba, viu na altura. Fronteira tradicional era marcada por uma pedra grande que entretanto foi removida.
+
+14:18 · proposta do juiz: parede volta 1m para trás (acordo a meio-caminho), mangueira fica em terreno comum partilhado, ambas podem colher fruta.
+
+[a aguardar resposta das partes...]</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="hd"><b>Resultado possível</b></div>
+              <div class="bd col">
+                <button class="btn brass block lg">📜 Acordo alcançado</button>
+                <button class="btn secondary block">↻ Adiar para nova audiência</button>
+                <button class="btn danger block">✕ Sem acordo · escalar tribunal</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Cronómetro</b></div>
+              <div class="bd" style="text-align:center">
+                <div class="mono" style="font-size:36px;font-weight:600">00:18:42</div>
+                <div class="t-meta">audiência iniciou às 14:00</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Disputa anterior?</b></div>
+              <div class="bd">
+                <div class="t-meta" style="font-size:12px">Sem registo de disputas prévias entre as partes neste tribunal.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Convocar</a><a class="btn secondary sm" href="#cena-6">Acordo (Changana) →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · ACORDO MULTILINGUE =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F6 — Redigir acordo · bilíngue Changana ↔ Português</div>
+    <h2>Modelo de 4 secções · partes preferem Changana · cópia em PT para arquivo</h2>
+    <p>Tradução é responsabilidade do juiz/assistente — não automática. Texto institucional ("Lei 4/92") fica em PT.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Redigir acordo · C-2026-MAP-PCN-00128</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn amber"><span class="d"></span>3 em fila</span>
+          <div class="lang"><button>PT</button><button>Macua</button><button class="on">Changana</button><button>Sena</button></div>
+        </div>
+      </div>
+      <div style="padding:20px">
+        <div class="banner brass" style="margin-bottom:14px"><span class="ic"></span><div><b>Acordo bilíngue.</b> Versão em Changana é a versão lida pelas partes. Versão em Português é gerada em paralelo para arquivo institucional. Ambas são assinadas.</div></div>
+
+        <div class="grid g-2" style="gap:14px">
+          <div class="card">
+            <div class="hd"><b>📜 Acordo · Changana</b><span class="badge"><span class="dot"></span>Versão lida</span></div>
+            <div class="bd">
+              <div class="acta" style="background:#FAF7EC;border-color:#D9C99A">
+                <div class="hd" style="background:linear-gradient(180deg,#FAF7EC 0%,#F0E6CC 100%);border-color:#D9C99A;text-align:center">
+                  <div class="ti" style="font-family:var(--f-serif)">Mphakanyiso wo Hlawuriwa</div>
+                  <div class="t-meta" style="margin-top:4px">Mediação acordada · AC-2026-05-PCN-0042</div>
+                </div>
+                <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7;padding:16px">
+                  <p style="margin:0 0 10px"><b>1. Vavanhu</b> (Partes)<br/>Maria Cuamba na João Macia, va Bairro Polana Caniço.</p>
+                  <p style="margin:0 0 10px"><b>2. Mhaka</b> (Disputa)<br/>Khurikondzo wa misava ya muti — masirha ma cinciwile, mukabe wo mango wu sele tlhelo ka Macia.</p>
+                  <p style="margin:0 0 10px"><b>3. Mphakanyiso</b> (Acordo)<br/>Masirha ma vuya 1 metro endzhaku. Mukabe wo mango wu sele kona, vumbirhi va kota ku tirhisa, va kota ku tikela mihandzu.</p>
+                  <p style="margin:0 0 10px"><b>4. Tibinzu ta ku endla</b> (Compromissos)<br/>(a) Macia u ta cinca masirha hi 21 wa Mai 2026.<br/>(b) Cuamba u nyikiwa mukabe wo "ku tikela" mihandzu hi swimbirhi.<br/>(c) Loko mhaka yi tlhela yi humelela, vavanhu va vuya ka huvo leyi.</p>
+                </div>
+                <div class="ft" style="font-size:10px"><span>Hash: <b class="mono">a3f8c2d7</b></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>📜 Acordo · Português</b><span class="badge"><span class="dot"></span>Versão arquivo</span></div>
+            <div class="bd">
+              <div class="acta">
+                <div class="hd">
+                  <div class="ti">Acordo de Mediação</div>
+                  <div class="t-meta" style="margin-top:4px">AC-2026-05-PCN-0042</div>
+                </div>
+                <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7;padding:16px">
+                  <p style="margin:0 0 10px"><b>1. Partes</b><br/>Maria do Rosário Cuamba (BI 110100442918) e João Macia (BI 110100099876), ambos do Bairro Polana Caniço.</p>
+                  <p style="margin:0 0 10px"><b>2. Disputa</b><br/>Disputa de fronteira de quintal — parede deslocada, árvore de manga ficou do lado da parte Macia.</p>
+                  <p style="margin:0 0 10px"><b>3. Acordo</b><br/>A parede recuará 1 metro. A árvore de manga permanecerá na zona partilhada, podendo ambas as partes colher os seus frutos.</p>
+                  <p style="margin:0 0 10px"><b>4. Compromissos</b><br/>(a) Sr. Macia compromete-se a deslocar a parede até 21 Mai 2026.<br/>(b) Sra. Cuamba mantém direito de colheita partilhada.<br/>(c) Em caso de novo conflito, partes regressam a este tribunal.</p>
+                </div>
+                <div class="ft" style="font-size:10px"><span>Hash: <b class="mono">a3f8c2d7</b></span><span class="seal">a aguardar selo</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:16px">
+          <span class="t-meta">Versões devem ser equivalentes · juiz é responsável pela tradução · sistema não traduz automaticamente</span>
+          <div class="row">
+            <button class="btn secondary">⤓ Imprimir ambas A4</button>
+            <a class="btn lg" href="#cena-7">Próximo · partes assinam →</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Audiência</a><a class="btn secondary sm" href="#cena-7">Assinar →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · ASSINAR + HOMOLOGAR =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F7 + F8 — Partes assinam · juiz homologa · selo brass</div>
+    <h2>Touch-screen · impressão digital se não souber escrever · QR de validação pública</h2>
+    <p>Acordo recebe selo "Carimbada DJD · Lei 4/92" e ganha força institucional equivalente.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Assinaturas · C-2026-MAP-PCN-00128</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn"><span class="d"></span>Online · vai sincronizar</span>
+          <div class="lang"><button class="on">PT</button><button>Macua</button><button>Changana</button><button>Sena</button></div>
+        </div>
+      </div>
+      <div style="padding:20px">
+
+        <div class="grid g-2" style="gap:14px">
+          <div class="card">
+            <div class="hd"><b>Maria Cuamba · queixosa</b><span class="badge green" style="font-size:10px"><span class="dot"></span>Sabe escrever</span></div>
+            <div class="bd">
+              <p class="t-meta" style="margin:0 0 10px">Por favor assine no espaço abaixo:</p>
+              <div class="signature-pad">
+                <svg width="280" height="80" viewBox="0 0 280 80">
+                  <path d="M20,50 Q40,28 65,38 T120,42 Q140,32 160,46 Q175,55 200,38 Q220,30 245,52 L260,46" stroke="var(--slate-900)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta">Assinada às 14:42</span><button class="btn ghost sm">↻ Repetir</button></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>João Macia · outra parte</b><span class="badge amber" style="font-size:10px"><span class="dot"></span>Impressão digital</span></div>
+            <div class="bd">
+              <p class="t-meta" style="margin:0 0 10px">Sr. Macia indicou não saber escrever. Coloca o polegar direito no ecrã:</p>
+              <div class="signature-pad" style="background:repeating-radial-gradient(circle at center,#9C2A1A 0 1px,transparent 1px 3px);background-size:auto;color:#fff;font-weight:600">
+                <div style="background:#fff;padding:8px 12px;border-radius:4px;color:var(--ink);font-size:12px;font-family:var(--f-mono)">Polegar registado · hash 9c2a1a</div>
+              </div>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta">Impressão digital · 14:43</span><button class="btn ghost sm">↻ Repetir</button></div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:16px">
+          <div class="card">
+            <div class="hd"><b>Homologação pelo juiz comunitário</b></div>
+            <div class="bd">
+              <p class="t-body" style="margin:0 0 12px">Eu, <b>António Mahique</b>, Juiz Comunitário do Bairro da Polana Caniço, eleito em assembleia comunitária de 12 Out 2024, mandato 5 anos, declaro que as partes <b>Maria Cuamba</b> e <b>João Macia</b> alcançaram acordo sobre a disputa de fronteira de quintal nos termos e condições constantes do documento. Homologo o acordo nos termos da <b>Lei 4/92</b>.</p>
+
+              <div class="field">
+                <label>PIN do juiz · 4 dígitos</label>
+                <div class="row" style="gap:8px">
+                  <input class="input mono lg" style="text-align:center;width:48px;height:48px;font-size:22px" value="●" />
+                  <input class="input mono lg" style="text-align:center;width:48px;height:48px;font-size:22px" value="●" />
+                  <input class="input mono lg" style="text-align:center;width:48px;height:48px;font-size:22px" value="●" />
+                  <input class="input mono lg" style="text-align:center;width:48px;height:48px;font-size:22px" value="●" />
+                </div>
+              </div>
+
+              <button class="btn brass lg block" style="margin-top:14px">✓ Homologar · selar com brass</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Pré-visualização do selo</b></div>
+            <div class="bd">
+              <div style="border:2px solid var(--brass-500);background:var(--brass-100);border-radius:6px;padding:18px;text-align:center">
+                <div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--brass-700);margin-bottom:8px">Carimbada DJD · Lei 4/92</div>
+                <div class="qr-square" style="margin:0 auto 8px">
+                  <span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span>
+                  <span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span>
+                  <span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span>
+                  <span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span>
+                  <span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span>
+                  <span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span>
+                  <span></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span>
+                  <span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span>
+                </div>
+                <div class="mono" style="font-size:11px;color:var(--brass-700);font-weight:600">a3f8c2d7-4e91</div>
+                <div class="t-meta" style="margin-top:4px;font-size:10px">justica.gov.mz/v/a3f8c2d7</div>
+              </div>
+              <hr class="hr">
+              <p class="t-meta" style="margin:0;font-size:11.5px">Acordo terá força institucional. SMS automáticos para ambas as partes confirmando homologação. Cidadão app actualiza estado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Acordo</a><a class="btn secondary sm" href="#cena-8">Sem acordo · escalar →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · ESCALAR =================== -->
+<section><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F9 — Sem acordo · escalar para tribunal judicial</div>
+    <h2>Outro caso · 3.ª audiência sem acordo · cross-link directo ao Portal MJCR</h2>
+    <p>Cumpre o art. 8.º da Lei 4/92. Acta de mediação falhada anexada como peça inicial.</p>
+  </div>
+  <div class="scene-wrap">
+    <div class="tabframe"><div class="tablet-shell" style="max-width:980px;border:1px solid var(--line);border-radius:8px;overflow:hidden">
+      <div class="tab-top">
+        <div class="br"><span class="mk"></span><span>Escalar · C-2025-MAP-PCN-04122</span></div>
+        <div style="margin-left:auto" class="row">
+          <span class="conn"><span class="d"></span>Online</span>
+          <div class="lang"><button class="on">PT</button><button>Macua</button><button>Changana</button><button>Sena</button></div>
+        </div>
+      </div>
+      <div style="padding:20px">
+
+        <div class="banner red" style="margin-bottom:14px"><span class="ic"></span><div><b>3 audiências sem acordo.</b> Disputa entre Maria Mussagy e Construtora Beira Lda sobre fronteira de talhão de mercado. Tem de avançar para tribunal judicial — exige produção de prova testemunhal aprofundada e provavelmente perícia.</div></div>
+
+        <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:16px">
+          <div class="card">
+            <div class="hd"><b>Resumo da mediação · será anexado como peça</b></div>
+            <div class="bd">
+              <div class="timeline">
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Queixa recebida</b><div class="t-meta">04 Set 2025 · Maria Mussagy</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>1.ª audiência · sem acordo</b><div class="t-meta">22 Set 2025 · Construtora não compareceu</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>2.ª audiência · sem acordo</b><div class="t-meta">14 Out 2025 · partes não chegaram a entendimento</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>3.ª audiência · sem acordo</b><div class="t-meta">12 Mar 2026 · Construtora insiste em direito de uso</div></div></div>
+                <div class="ev now"><div class="dot"></div><div class="body"><b>Decisão · escalar para tribunal judicial</b><div class="t-meta">28 Abr 2026 · A. Mahique</div></div></div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Razão da escalada</div>
+              <div class="textarea" style="min-height:100px;font-size:14px;line-height:1.6;padding:12px;background:#fff;color:var(--ink)">Disputa envolve sobreposição de DUAT (Construtora invoca licença comercial 2018, Sra. Mussagy invoca posse contínua desde 1996). Resolução exige perícia técnica do Cadastro Predial e produção de prova testemunhal alargada. Mediação comunitária esgotada. Remete-se ao Tribunal Judicial da Cidade de Maputo, secção competente, ao abrigo do art. 8.º da Lei 4/92.</div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <div class="hd"><b>Para onde vai</b></div>
+              <div class="bd col">
+                <div class="row" style="gap:10px"><span class="av sm">TJ</span><div><b style="font-size:13px">TJ Cidade de Maputo</b><div class="t-meta">Secção a determinar pela distribuição automática</div></div></div>
+                <hr class="hr">
+                <div class="t-overline">Espécie sugerida</div>
+                <select class="input"><option>Cível · acção de reivindicação de propriedade</option></select>
+                <div class="t-overline">Cidadão notificado</div>
+                <div class="banner slate" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Maria Mussagy receberá notificação</b> no Cidadão/Justiça app: novo processo será aberto, número será comunicado dentro de 5 dias úteis.</div></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Cross-link</b></div>
+              <div class="bd col">
+                <a href="cadastro.html" class="row spread" style="font-size:12.5px"><span>Ver DUAT envolvida</span><span>→</span></a>
+                <a href="portal-mjcr.html" class="row spread" style="font-size:12.5px"><span>Acompanhar no Portal MJCR</span><span>→</span></a>
+                <a href="cidadao.html" class="row spread" style="font-size:12.5px"><span>Visualizar no Cidadão app</span><span>→</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:16px">
+          <a href="#cena-2" class="btn ghost lg">← Voltar a início</a>
+          <button class="btn danger lg">✕ Confirmar escalada · enviar ao TJ Maputo</button>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Assinar</a><a class="btn secondary sm" href="cidadao.html">Cidadão →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div class="t-meta">Tribunal Comunitário v0.3 · documento autoritativo: <a class="mono" href="DESIGN-comunitario.md">DESIGN-comunitario.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="cidadao.html" class="btn secondary sm">Cidadão →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

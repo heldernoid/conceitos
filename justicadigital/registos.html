@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Registos Públicos · DNRN — Justiça Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .at-body{padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+
+  .twocol{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-family:var(--f-mono)}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:30px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--slate-100);color:var(--slate-900);font-weight:600}
+
+  .signature-pad{height:90px;background:repeating-linear-gradient(0deg,var(--bg-2) 0 23px,var(--line-2) 23px 24px);border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;position:relative}
+  .signature-pad svg{position:absolute;left:10px;top:8px}
+
+  .reg-tabs{display:flex;gap:0;padding:0 20px;border-bottom:1px solid var(--line-2);background:#fff}
+  .reg-tabs a{padding:12px 16px;color:var(--ink-3);font-size:13px;cursor:pointer;border-bottom:2px solid transparent;text-decoration:none}
+  .reg-tabs a.on{color:var(--slate-900);font-weight:600;border-bottom-color:var(--slate-700)}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MJCR · DNRN · DJD</span><span class="sep">·</span>
+  <span>Registos Públicos v0.3</span>
+  <span style="margin-left:auto">DESIGN-registos.md · Lei do Notariado 4/2009</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Registos Públicos</span><small>Civil · Comercial · Predial</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-mjcr.html">Portal MJCR</a>
+    <a href="comunitario.html">Comunitário</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="registos.html" class="active">Registos</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online</span>
+    <div class="idbadge"><span class="av sm">RS</span><div class="who"><b>Drª. Rosa Sumbane</b><span>Conservadora · DNRN Maputo</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Painel</a>
+    <a href="#cena-2">2. Emitir certidão</a>
+    <a href="#cena-3">3. Escritura pública</a>
+    <a href="#cena-4">4. Registar empresa</a>
+    <a href="#cena-5">5. Anular escritura</a>
+    <a href="#cena-6">6. Autenticar · directório</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · PAINEL =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Painel · Conservatória de Maputo</div>
+    <h2>3 pedidos de certidão · 2 escrituras agendadas · 1 empresa pendente NUIT</h2>
+    <p>Drª. Rosa Sumbane abre o seu dia. Pedidos vindos do Cidadão app aparecem em fila.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Certidões emitidas hoje</div><div class="num">42</div><div class="delta">média 5 min/cada</div></div>
+      <div class="kpi"><div class="lbl">Escrituras agendadas</div><div class="num">2</div><div class="delta">próxima 11:00</div></div>
+      <div class="kpi"><div class="lbl">Empresas registadas YTD</div><div class="num" style="color:var(--good-700)">128</div><div class="delta">+22% vs 2025</div></div>
+      <div class="kpi"><div class="lbl">Tempo médio empresa</div><div class="num" style="font-size:22px">22 h</div><div class="delta">prazo legal: 72 h</div></div>
+    </div>
+
+    <div class="reg-tabs" style="border-radius:6px 6px 0 0">
+      <a class="on">Civil</a>
+      <a>Comercial</a>
+      <a>Predial</a>
+      <a>Notariais</a>
+    </div>
+
+    <div class="twocol">
+      <div class="panel" style="border-radius:0 0 6px 6px;border-top:0">
+        <div class="ph"><b>Fila de certidões · Civil</b><span class="seg"><button class="on">Hoje (3)</button><button>Esta semana</button><button>Concluídas</button></span></div>
+        <table class="table">
+          <thead><tr><th>Pedido</th><th>Tipo</th><th>Em nome de</th><th>Pago</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--slate-50);cursor:pointer" onclick="location.hash='#cena-2'"><td class="mono">CRC-2026-04218</td><td>Nascimento</td><td><b>Maria do Rosário Cuamba</b></td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>200 MZN · há 4 min</span></td><td><a href="#cena-2" class="btn sm">Emitir →</a></td></tr>
+            <tr><td class="mono">CRC-2026-04219</td><td>Casamento</td><td>Tomé Massingue · Júlia Macia</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>200 MZN</span></td><td><a href="#" class="btn sm secondary">Emitir</a></td></tr>
+            <tr><td class="mono">CRC-2026-04220</td><td>Óbito</td><td>Manuel Cuamba (†2022)</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>200 MZN</span></td><td><a href="#" class="btn sm secondary">Emitir</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Escrituras agendadas hoje</b><span class="badge brass"><span class="dot"></span>2</span></div>
+          <div class="pb col">
+            <div class="banner brass" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>11:00 · Compra-e-venda imóvel</b><br/>Vendedor: T. Massingue · Comprador: J. Halare<br/>DUAT-2019-MAP-188421 · 940 m² · 8 200 000 MZN</div></div>
+            <div class="banner slate" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>15:00 · Constituição de empresa</b><br/>Padaria Cuamba & Filhos, Lda<br/>Aguarda NUIT · Finanças Digitais há 12 min</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Pendentes · cross-system</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span><b>NUIT a aguardar</b><div class="t-meta">Padaria Cuamba & Filhos · Finanças</div></span><span class="badge amber"><span class="dot"></span>12 min</span></div>
+            <div class="row spread"><span><b>SISA a confirmar</b><div class="t-meta">Compra-e-venda T. Massingue · Finanças</div></span><span class="badge green"><span class="dot"></span>Pago</span></div>
+            <div class="row spread"><span><b>Sentença a integrar</b><div class="t-meta">P-2024-COM-MAP-00284 · DUAT-2023-MAP-014218</div></span><span class="badge red"><span class="dot"></span>Anular</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Estatísticas · Q1 2026</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span>Certidões Civis</span><span class="mono">28 482</span></div>
+            <div class="bar"><div class="fill" style="width:84%"></div></div>
+            <div class="row spread"><span>Escrituras lavradas</span><span class="mono">1 248</span></div>
+            <div class="bar"><div class="fill" style="width:42%;background:var(--brass-500)"></div></div>
+            <div class="row spread"><span>Empresas registadas</span><span class="mono">128</span></div>
+            <div class="bar"><div class="fill" style="width:32%;background:var(--good-700)"></div></div>
+            <div class="row spread"><span>Anulações por sentença</span><span class="mono">12</span></div>
+            <div class="bar"><div class="fill" style="width:8%;background:var(--red-500)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Click em "Emitir →" no primeiro pedido para emitir certidão.</span><a class="btn secondary sm" href="#cena-2">Emitir certidão →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · CERTIDÃO =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Emitir certidão · 3 minutos</div>
+    <h2>Maria pediu certidão de nascimento via app · Drª. Sumbane valida e sela com brass</h2>
+    <p>Cross-cidadão: pago via SISTAFE há 4 minutos. PDF entregue na Carteira em < 5 min.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Pedido CRC-2026-04218 · validar</b><span class="badge"><span class="dot"></span>3 de 3 verificações</span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap:14px">
+            <div class="kv"><span class="k">Pedido por</span><span class="v">Maria do Rosário Cuamba</span><span class="t-meta mono">BI 110100442918 · cross-eBI ✓</span></div>
+            <div class="kv"><span class="k">Tipo</span><span class="v">Certidão de nascimento (de cópia integral)</span></div>
+            <div class="kv"><span class="k">Pago</span><span class="v">200 MZN · M-Pesa · há 4 min</span><span class="t-meta">SISTAFE-2026-184218</span></div>
+            <div class="kv"><span class="k">Finalidade declarada</span><span class="v">Visto Schengen · Embaixada de Portugal</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="banner green"><span class="ic"></span><div><b>Assento localizado · livro 218 · folha 142.</b> Conservatória do Registo Civil de Maputo. Sem rectificações nem averbamentos posteriores. Pode emitir.</div></div>
+
+          <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Dados do assento</div>
+          <div style="background:var(--bg-2);border:1px solid var(--line-2);border-radius:4px;padding:14px;font-family:var(--f-serif);font-size:13.5px;line-height:1.7">
+            <p style="margin:0 0 8px"><b>MARIA DO ROSÁRIO CUAMBA</b>, do sexo feminino, natural da Cidade de Maputo, freguesia de Polana.</p>
+            <p style="margin:0 0 8px">Nascida aos catorze dias do mês de Setembro de mil novecentos e oitenta e sete (14/09/1987), pelas catorze horas e trinta minutos, no Hospital Central de Maputo.</p>
+            <p style="margin:0">Filha de Manuel Cuamba (BI 110100018421) e de Filomena Tembe (BI 110100022184), naturais e residentes em Maputo. Assento n.º 4221 do livro de registo de nascimentos da Conservatória do Registo Civil de Maputo, lavrado em 18 de Setembro de 1987.</p>
+          </div>
+
+          <div class="row spread" style="margin-top:14px">
+            <div class="row" style="gap:10px"><span class="badge green" style="font-size:10px"><span class="dot"></span>BI verificado</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Pagamento confirmado</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Assento localizado</span></div>
+          </div>
+        </div>
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Devolver com observação</button>
+          <div class="row"><button class="btn secondary">Pré-visualizar</button><button class="btn brass">Assinar e selar com brass</button></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="acta">
+          <div class="hd">
+            <div class="ti" style="font-family:var(--f-serif);font-size:14px">República de Moçambique</div>
+            <div class="t-meta" style="margin-top:4px">Conservatória do Registo Civil de Maputo · DNRN</div>
+          </div>
+          <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7">
+            <p style="margin:0 0 14px;text-align:center"><b>Certidão de Cópia Integral · Assento de Nascimento</b><br/><span style="font-family:var(--f-mono);font-size:11px;color:var(--ink-3)">CRC-2026-MAP-184221</span></p>
+
+            <p style="margin:0 0 12px"><b>MARIA DO ROSÁRIO CUAMBA</b>, do sexo feminino, natural da Cidade de Maputo, freguesia de Polana, nascida aos catorze dias do mês de Setembro de mil novecentos e oitenta e sete.</p>
+
+            <p style="margin:0 0 12px">Filha de Manuel Cuamba e Filomena Tembe.</p>
+
+            <p style="margin:0">Conforme assento n.º 4221 do livro de registo de nascimentos da Conservatória do Registo Civil de Maputo. Sem rectificações ou averbamentos posteriores.</p>
+          </div>
+          <div class="ft" style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:11px;line-height:1.5"><b>A Conservadora,</b><br/>Drª. Rosa Sumbane<br/><span class="t-meta">28 Abr 2026 · 09:42 · hash 4af2c18</span></div>
+            <span class="seal">Carimbada DNRN</span>
+          </div>
+        </div>
+
+        <div class="card"><div class="bd">
+          <div class="t-overline">Após emissão</div>
+          <div class="col" style="gap:6px;font-size:12.5px;margin-top:8px">
+            <div class="row spread"><span>📥 PDF gerado</span><span class="t-meta">automático</span></div>
+            <div class="row spread"><span>💼 Adicionado à Carteira do cidadão</span><span class="t-meta">Cidadão app</span></div>
+            <div class="row spread"><span>📩 SMS de confirmação</span><span class="t-meta">+258 84 ••• ••18</span></div>
+            <div class="row spread"><span>📊 Estatísticas DNRN</span><span class="t-meta">tempo de emissão</span></div>
+            <div class="row spread"><span>🌐 Validável em <span class="mono">justica.gov.mz/v/4af2c18</span></span><span></span></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Painel</a><a class="btn secondary sm" href="#cena-3">Escritura pública →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · ESCRITURA =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Escritura pública · compra-e-venda · BCI agência</div>
+    <h2>Tomé Massingue vende parcela 940 m² ao banco BCI por 8 200 000 MZN</h2>
+    <p>Cross-Cadastro (DUAT) · Cross-Finanças (SISA pago) · Cross-eBI (identidades). Partes presentes no cartório.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="banner brass" style="margin-bottom:18px"><span class="ic"></span><div><b>Escritura agendada para hoje 11:00.</b> Ambas as partes confirmaram presença. SISA de 246 000 MZN pago via SISTAFE em 26 Abr. Documentação completa.</div></div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Escritura · pré-visualização</b><span class="seg"><button class="on">Escritura</button><button>Anexos</button><button>Selo</button></span></div>
+        <div class="pb">
+          <div class="acta">
+            <div class="hd">
+              <div class="ti" style="font-family:var(--f-serif);font-size:14px">Escritura Pública de Compra e Venda</div>
+              <div class="t-meta" style="margin-top:4px">ESC-2026-MAP-001284 · Cartório Notarial de Maputo</div>
+            </div>
+            <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.75;padding:18px 22px">
+              <p style="margin:0 0 12px"><b>Aos vinte e oito dias do mês de Abril de dois mil e vinte e seis</b>, no Cartório Notarial de Maputo, perante mim, <b>Drª. Rosa Sumbane</b>, Conservadora e Notária do Distrito de Maputo, e como instrumentários os pelo notário designados, compareceram:</p>
+
+              <p style="margin:0 0 8px"><b>Como vendedor:</b></p>
+              <p style="margin:0 0 12px;padding-left:14px">Tomé Joaquim Massingue, casado, BI n.º 110100884271, NUIT 100 218 091, residente em Maputo, Av. Vladimir Lenine n.º 1248.</p>
+
+              <p style="margin:0 0 8px"><b>Como compradora:</b></p>
+              <p style="margin:0 0 12px;padding-left:14px">BCI · Banco Comercial e de Investimentos, SA, NUIT 400 045 622, com sede em Maputo, Av. 25 de Setembro 1465, representada por <b>Dr. Júlio Halare</b>, BI 110100992184, na qualidade de procurador.</p>
+
+              <p style="margin:0 0 12px">E pelos comparecentes foi dito que pela presente escritura é celebrada a <b>compra e venda</b> da parcela urbana identificada como <b>DUAT-2019-MAP-188421</b>, com a área de novecentos e quarenta metros quadrados (940 m²), sita no Bairro da Polana Caniço, descrita na Conservatória do Registo Predial de Maputo sob o n.º 188421, livro B-184.</p>
+
+              <p style="margin:0 0 12px">O preço da venda é de <b>OITO MILHÕES E DUZENTOS MIL METICAIS</b> (8 200 000,00 MZN), integralmente pago à data desta escritura por transferência bancária, conforme comprovativo anexo.</p>
+
+              <p style="margin:0 0 12px">Sobre esta transmissão foi liquidado o <b>SISA</b> no montante de duzentos e quarenta e seis mil meticais (246 000,00 MZN), conforme guia da Autoridade Tributária n.º AT-SISA-2026-018421, anexa.</p>
+
+              <p style="margin:0 0 12px">Foi exibida certidão predial actualizada e sem ónus, salvo a presente transmissão.</p>
+
+              <p style="margin:0">Lida em voz alta perante os intervenientes, e por estes achada conforme, vai ser assinada.</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:11px;line-height:1.5">
+                <b>Vendedor:</b> T. Massingue · <b>Compradora:</b> BCI / J. Halare<br/>
+                <b>A Notária,</b> Drª. Rosa Sumbane · 28 Abr 2026 · 11:18
+              </div>
+              <span class="seal" style="font-size:10px">A AGUARDAR SELO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Verificações cross-system</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span><b>eBI · vendedor</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>BI 110•••271 ✓</span></div>
+            <div class="row spread"><span><b>eBI · comprador (procurador)</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>BI 110•••184 ✓</span></div>
+            <div class="row spread"><span><b>Procuração</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>14 Abr 2026 · 30 dias</span></div>
+            <hr class="hr">
+            <div class="row spread"><span><b>NUIT · BCI</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>400 045 622</span></div>
+            <div class="row spread"><span><b>SISA pago · Finanças</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>246 000 MZN</span></div>
+            <div class="row spread"><span><b>NUIT vendedor em dia</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>Em dia</span></div>
+            <hr class="hr">
+            <div class="row spread"><span><b>DUAT no Cadastro</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>DUAT-2019-MAP-188421</span></div>
+            <div class="row spread"><span><b>Sem ónus</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>Certidão actualizada</span></div>
+            <div class="row spread"><span><b>Sem processo judicial</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>Limpo</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Assinaturas no cartório</b></div>
+          <div class="pb col">
+            <div>
+              <div class="t-overline" style="margin-bottom:6px">Vendedor · T. Massingue</div>
+              <div class="signature-pad">
+                <svg width="240" height="60" viewBox="0 0 240 60">
+                  <path d="M14,42 Q34,22 60,32 T118,38 Q140,28 162,40 Q180,48 208,32 L226,40" stroke="var(--slate-900)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <div class="t-overline" style="margin-bottom:6px">Comprador · J. Halare (procurador BCI)</div>
+              <div class="signature-pad">
+                <svg width="240" height="60" viewBox="0 0 240 60">
+                  <path d="M18,32 Q42,18 68,28 Q92,38 124,30 Q150,22 178,40 L222,32" stroke="var(--slate-900)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <button class="btn brass block">Lavrar selo · concluir escritura</button>
+            <p class="t-meta" style="font-size:11px">Após selo: cross-Cadastro actualiza titular do DUAT, Cidadão notifica vendedor e comprador.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Certidão</a><a class="btn secondary sm" href="#cena-4">Empresa nova →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · EMPRESA =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Registar empresa · Padaria Cuamba & Filhos, Lda</div>
+    <h2>Cross-Finanças NUIT · cross-Cadastro DUAT da sede · sócios identificados</h2>
+    <p>Tempo médio: 22h. Aqui falta NUIT (12 min de espera) e tudo o resto está pronto.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel" style="margin-bottom:18px">
+      <div class="ph" style="padding:18px 20px">
+        <div>
+          <div class="t-overline">Empresa em registo</div>
+          <div class="t-h2" style="margin-top:4px">Padaria Cuamba & Filhos, Lda</div>
+          <div class="t-meta">Constituição · sociedade por quotas · Lei 3/2018</div>
+        </div>
+        <div class="row">
+          <span class="badge amber"><span class="dot"></span>3 de 4 verificações</span>
+          <button class="btn secondary sm">Editar pacto social</button>
+        </div>
+      </div>
+      <div class="pb">
+        <div class="grid g-4" style="gap:14px">
+          <div class="kv"><span class="k">Forma</span><span class="v">Sociedade por quotas (Lda)</span></div>
+          <div class="kv"><span class="k">Capital social</span><span class="v mzn">500 000 <small>MZN</small></span></div>
+          <div class="kv"><span class="k">CAE principal</span><span class="v">10711 · padaria</span></div>
+          <div class="kv"><span class="k">Sede</span><span class="v">Av. Eduardo Mondlane 884 · Maputo</span></div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="grid g-3" style="gap:18px">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Sócios · 3</div>
+            <div class="card"><div class="bd col">
+              <div class="row" style="gap:10px"><span class="av">MC</span><div style="flex:1"><b style="font-size:13px">Maria do Rosário Cuamba</b><div class="t-meta">BI 110•••918 · 50% · 250 000 MZN</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span>eBI ✓</span></div>
+              <div class="row" style="gap:10px"><span class="av">PC</span><div style="flex:1"><b style="font-size:13px">Pedro Cuamba</b><div class="t-meta">BI 110•••284 · 30% · 150 000 MZN</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span>eBI ✓</span></div>
+              <div class="row" style="gap:10px"><span class="av">JC</span><div style="flex:1"><b style="font-size:13px">Júlia Cuamba</b><div class="t-meta">BI 110•••491 · 20% · 100 000 MZN</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span>eBI ✓</span></div>
+              <hr class="hr">
+              <div class="row spread" style="font-size:12.5px"><span>Gerência única</span><span class="mono"><b>M. R. Cuamba</b></span></div>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Documentação</div>
+            <div class="card"><div class="bd col" style="font-size:12.5px">
+              <div class="row spread"><span>Pacto social · acto constitutivo</span><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div>
+              <div class="row spread"><span>Estatutos</span><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div>
+              <div class="row spread"><span>Identificação dos sócios</span><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div>
+              <div class="row spread"><span>Capital social depositado</span><span class="badge green" style="font-size:10px"><span class="dot"></span>BCI · NIB ✓</span></div>
+              <div class="row spread"><span>DUAT da sede</span><span class="badge green" style="font-size:10px"><span class="dot"></span>arrendamento · contrato</span></div>
+              <hr class="hr">
+              <div class="row spread"><b>NUIT · Finanças</b><span class="badge amber" style="font-size:10px"><span class="dot"></span>12 min</span></div>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Cross-Finanças · NUIT</div>
+            <div class="card"><div class="bd">
+              <div class="banner amber" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>A aguardar NUIT da Autoridade Tributária.</b> Pedido enviado às 14:48. Tempo médio: 45 min.</div></div>
+              <hr class="hr">
+              <div class="t-overline" style="margin-bottom:6px">Pré-atribuído (provisório)</div>
+              <div class="mono" style="font-size:18px;font-weight:600">400 ••• •••</div>
+              <p class="t-meta" style="font-size:11px;margin:6px 0 0">Será confirmado pelo SISTAFE. Sem NUIT, registo comercial não é concluído.</p>
+            </div></div>
+
+            <div class="card" style="margin-top:12px"><div class="bd">
+              <div class="t-overline">Após NUIT confirmado</div>
+              <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                <div class="row spread"><span>1. Selar registo comercial</span><span class="t-meta">brass</span></div>
+                <div class="row spread"><span>2. Notificar sócios · Cidadão app</span><span class="t-meta">SMS</span></div>
+                <div class="row spread"><span>3. Publicação no Boletim da República</span><span class="t-meta">automático</span></div>
+                <div class="row spread"><span>4. NUIT activado para facturação</span><span class="t-meta">Finanças</span></div>
+              </div>
+              <hr class="hr">
+              <button class="btn block" disabled>Concluir registo · aguarda NUIT</button>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Escritura</a><a class="btn secondary sm" href="#cena-5">Anular escritura →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · ANULAR ESCRITURA =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Anular escritura registada · two-step</div>
+    <h2>Sentença transitada em julgado · P-2024-COM-MAP-00284 · ordena rectificação</h2>
+    <p>Acto irreversível. Conservadora é obrigada a anular após sentença firme.</p>
+  </div>
+  <div class="at-body" style="position:relative;min-height:580px">
+    <div class="panel" style="opacity:.55;pointer-events:none">
+      <div class="ph"><b>Detalhe da escritura ESC-2023-MAP-014218 · Construtora MZ</b></div>
+      <div class="pb"><div class="t-meta">Escritura registada · DUAT-2023-MAP-014218 · sob acção judicial...</div></div>
+    </div>
+
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:680px">
+        <div class="hd"><div><b>Anular escritura · Construtora MZ, SA</b><div class="t-meta">Acto irreversível. Apenas com sentença transitada em julgado.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner red"><span class="ic"></span><div>Anulação de escritura registada produz efeitos retroactivos. DUAT é cancelado em paralelo (cross-Cadastro). Notificação obrigatória ao titular com 30 dias de antecedência. Possibilidade de embargos.</div></div>
+
+          <div class="kv"><span class="k">Escritura a anular</span><span class="v mono">ESC-2023-MAP-014218</span></div>
+          <div class="kv"><span class="k">Tipo</span><span class="v">Compra-e-venda · DUAT comercial</span></div>
+          <div class="kv"><span class="k">Partes</span><span class="v">Construtora MZ ↔ Município KaMpfumu</span></div>
+          <div class="kv"><span class="k">Data original</span><span class="v">22 Set 2023</span></div>
+
+          <hr class="hr">
+
+          <div class="field">
+            <label>Número de processo · sentença transitada</label>
+            <input class="input mono lg" value="P-2024-COM-MAP-00284" />
+            <span class="hint">Cross-MJCR · sistema verifica trânsito em julgado.</span>
+          </div>
+
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12.5px"><b>Sentença confirmada · transitada em julgado em 18 Abr 2026.</b> 2.ª Sec. Comercial TJ Maputo · Drª. Rosa Sumbane (homónima · sem impedimento). Ordena rectificação cadastral.</div></div>
+
+          <div class="field">
+            <label>Justificação · ≥120 caracteres · cite parte da sentença</label>
+            <textarea class="textarea">Sentença transitada em julgado em 18 Abr 2026 (P-2024-COM-MAP-00284) reconheceu a Imobiliária Polana, Lda como titular legítima de 224 m² da área registada como DUAT-2023-MAP-014218. Tribunal ordenou: (a) anular a escritura ESC-2023-MAP-014218 na parte sobreposta; (b) rectificar o cadastro; (c) emitir nova escritura corrigida sobre 1 256 m² apenas. Procede-se à anulação integral e início imediato do processo de rectificação.</textarea>
+          </div>
+
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Confirmo ter lido a sentença e que ordena a anulação.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Notificarei o titular (Construtora MZ) com 30 dias de antecedência.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Cross-Cadastro: cancelar DUAT-2023-MAP-014218 em paralelo.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Iniciar emissão de nova escritura corrigida sobre 1 256 m².</label>
+
+          <div class="field">
+            <label>OTP da conservadora (SMS)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="3" />
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="4" />
+              <input class="input mono" style="text-align:center;width:42px" value="2" />
+              <input class="input mono" style="text-align:center;width:42px" value="8" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Enviado para R. Sumbane · DNRN · +258 84 ••• ••42</span>
+          </div>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Cancelar</button>
+          <button class="btn danger">Anular escritura · acto irreversível</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Empresa</a><a class="btn secondary sm" href="#cena-6">Autenticar · directório →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · AUTENTICAR + DIRECTÓRIO =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F6+F7 — Autenticar documento · directório de notários</div>
+    <h2>Tradução juramentada inglês ↔ português autenticada · busca pública de notário</h2>
+    <p>Dois fluxos paralelos: notário valida e sela, cidadão consulta directório oficial.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Autenticar tradução · Tomé Massingue</b><span class="badge brass"><span class="dot"></span>Documento original validado</span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap:14px">
+            <div class="kv"><span class="k">Requerente</span><span class="v">Tomé J. Massingue</span><span class="t-meta mono">BI 110•••271 ✓</span></div>
+            <div class="kv"><span class="k">Tipo</span><span class="v">Tradução juramentada · IT → PT</span></div>
+            <div class="kv"><span class="k">Documento original</span><span class="v">Diploma · Politecnico di Milano</span></div>
+            <div class="kv"><span class="k">Tradutor</span><span class="v">Drª. Sofia Antunes · cédula 248</span></div>
+            <div class="kv"><span class="k">Custo</span><span class="v mzn">800 <small>MZN</small></span></div>
+            <div class="kv"><span class="k">Pago</span><span class="v">M-Pesa · há 8 min</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="acta">
+            <div class="hd"><div class="ti" style="font-family:var(--f-serif);font-size:14px">Termo de Autenticação</div><div class="t-meta" style="margin-top:4px;font-family:var(--f-mono)">AUT-2026-MAP-008412</div></div>
+            <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7;padding:18px 22px">
+              <p style="margin:0 0 12px">Aos vinte e oito dias do mês de Abril de dois mil e vinte e seis, no Cartório Notarial de Maputo, perante mim, <b>Drª. Rosa Sumbane</b>, Conservadora e Notária, foi-me apresentado pelo Sr. <b>Tomé Joaquim Massingue</b> (BI 110100884271), o documento intitulado "Diploma di Laurea Magistrale in Ingegneria", emitido pelo Politecnico di Milano em 14 Jul 2014.</p>
+              <p style="margin:0 0 12px">Acompanha tradução juramentada realizada pela Drª. Sofia Antunes (cédula de tradutor n.º 248), declarada fiel e completa.</p>
+              <p style="margin:0">Verificada a autenticidade do documento original e a fidelidade da tradução, <b>autentica-se</b> o conjunto nos termos do art. 38.º da Lei do Notariado 4/2009.</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between"><span style="font-size:11px"><b>A Notária,</b> Drª. R. Sumbane · 28 Abr 2026 · 11:42</span><span class="seal">Carimbada DNRN</span></div>
+          </div>
+
+          <div class="row spread" style="margin-top:14px">
+            <span class="t-meta">Selar e devolver ao requerente · enviar PDF à Carteira do cidadão</span>
+            <button class="btn brass">Lavrar selo · concluir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Directório de notários · OAM/DNRN</b></div>
+          <div class="pb col">
+            <div class="banner slate" style="padding:10px;font-size:12.5px"><span class="ic"></span><div>Lista oficial · sem rating, sem comissão. Pode ser consultada também pelo cidadão.</div></div>
+
+            <div class="field">
+              <label>Pesquisar · bairro, especialidade, língua</label>
+              <input class="input" placeholder="ex: Maputo · escrituras · Changana" />
+            </div>
+
+            <div class="row" style="gap:6px;flex-wrap:wrap">
+              <span class="badge slate"><span class="dot"></span>Maputo</span>
+              <span class="badge"><span class="dot"></span>Escrituras</span>
+              <span class="badge"><span class="dot"></span>Empresas</span>
+            </div>
+
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:10px"><span class="av lg">RS</span><div style="flex:1"><b>Drª. Rosa Sumbane</b><div class="t-meta">DNRN · Maputo · 14 anos</div></div></div>
+              <p class="t-meta" style="font-size:11.5px;margin:6px 0 0">Av. 25 de Setembro 1284 · Maputo · PT, EN, Changana</p>
+              <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Predial</span><span class="badge"><span class="dot"></span>Empresarial</span></div>
+            </div></div>
+
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:10px"><span class="av lg">FT</span><div style="flex:1"><b>Dr. Filipe Tembe</b><div class="t-meta">Cartório privado · 22 anos</div></div></div>
+              <p class="t-meta" style="font-size:11.5px;margin:6px 0 0">Av. Eduardo Mondlane 488 · Maputo · PT, EN, FR</p>
+              <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Civil</span><span class="badge"><span class="dot"></span>Sucessões</span></div>
+            </div></div>
+
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:10px"><span class="av lg">CN</span><div style="flex:1"><b>Drª. Carolina Nhassengo</b><div class="t-meta">Cartório privado · 8 anos</div></div></div>
+              <p class="t-meta" style="font-size:11.5px;margin:6px 0 0">Av. Vladimir Lenine 1248 · Maputo · PT, Macua</p>
+              <div class="row" style="gap:6px;margin-top:6px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Família</span><span class="badge"><span class="dot"></span>Civil</span></div>
+            </div></div>
+
+            <p class="t-meta" style="font-size:11px;text-align:center">+ 84 notários em Maputo · <a href="#">Ver todos →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Anular</a><a class="btn secondary sm" href="index.html">Voltar à visão geral</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Registos Públicos v0.3 · documento autoritativo: <a class="mono" href="DESIGN-registos.md">DESIGN-registos.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="index.html" class="btn secondary sm">Visão geral</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

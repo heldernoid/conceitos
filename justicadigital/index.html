@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Justiça Digital Moçambique — Mocks Interativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:var(--bg)}
+  .hero{padding:48px 24px 24px}
+  .hero .container{max-width:1200px;margin:0 auto}
+  .hero .eyebrow{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .hero h1{margin:14px 0 12px;font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.05;max-width:880px}
+  .hero p{color:var(--ink-2);font-size:17px;max-width:760px;line-height:1.55}
+  .hero .meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+  .hero .meta .kv .k{font-size:10px}
+  .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:24px}
+  .tile.featured{grid-column:span 2;background:var(--slate-800);color:#fff;border-color:var(--slate-800)}
+  .tile.featured h3{color:#fff}
+  .tile.featured p{color:#c8ccd3}
+  .tile.featured .num,.tile.featured .users{color:#8a8f9c}
+  .tile.featured .swatch{background:#fff}
+  footer{padding:40px 24px;border-top:1px solid var(--line);margin-top:48px}
+  footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+  footer h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  footer .ack{font-size:12px;color:var(--ink-3);max-width:380px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MJCR · Tribunal Supremo · DJD · DNRN</span><span class="sep">·</span>
+  <span>Protótipo de demonstração</span>
+  <span style="margin-left:auto">Versão 0.3 · Abril 2026</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Justiça Digital</span><small>Plataforma Judicial Nacional</small></span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-mjcr.html">Portal MJCR</a>
+    <a href="comunitario.html">T. Comunitário</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="registos.html">Registos</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span>Pacote de protótipos clicáveis</span><span class="sep">·</span><span>Para revisão por MJCR, Tribunal Supremo, OAM, juízes comunitários, sociedade civil</span></div>
+    <h1>Cinco superfícies. Justiça acessível, processos transparentes, registos íntegros.</h1>
+    <p>Justiça Digital Moçambique reúne acompanhamento processual, mediação comunitária, registos públicos e cadastro predial numa única plataforma. Reconhece o sistema judicial dual moçambicano — tribunais judiciais e tribunais comunitários — e leva certidões e consulta de processos a qualquer cidadão com NUIT/BI.</p>
+    <div class="meta">
+      <div class="kv"><span class="k">Idioma</span><span class="v">PT-MZ + Macua, Changana, Sena</span></div>
+      <div class="kv"><span class="k">Tribunais judiciais</span><span class="v">154 distritos · 11 províncias</span></div>
+      <div class="kv"><span class="k">Tribunais comunitários</span><span class="v">≈1 645 unidades</span></div>
+      <div class="kv"><span class="k">Conservatórias</span><span class="v">128 (Civil · Comercial · Predial)</span></div>
+      <div class="kv"><span class="k">Documentos</span><span class="v">DESIGN-*.md por superfície</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-tiles">
+  <a class="tile featured" href="design-system.html">
+    <div class="row spread">
+      <div class="num">00 · Fundamentos</div>
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)">Comece aqui</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Sistema de Design</h3>
+    <p>Tipografia, paleta slate, paleta de tipos de processo, componentes (Process card, Acta, QR). Reutilizado por todas as superfícies.</p>
+    <div class="users">Equipa de produto · Engenharia · MJCR · DJD</div>
+  </a>
+
+  <a class="tile" href="portal-mjcr.html">
+    <div class="num">01 · Web (desktop · juízes e oficiais)</div>
+    <div class="swatch"></div>
+    <h3>Portal MJCR — Acompanhamento Processual</h3>
+    <p>Pauta de audiências, despachos, gestão de processos, distribuição automática, integração com Tribunal Supremo e PGR.</p>
+    <div class="users">Juízes · Oficiais · Conservadores · DJD</div>
+  </a>
+
+  <a class="tile b" href="comunitario.html">
+    <div class="num">02 · Tablet (juízes não-letrados · multilingue)</div>
+    <div class="swatch"></div>
+    <h3>Tribunal Comunitário</h3>
+    <p>Mediação comunitária em 4 línguas. Modo offline. Convocação por SMS. Registo de acordos com QR. Escalada para tribunal judicial quando mediação falha.</p>
+    <div class="users">1 645 tribunais comunitários · zonas rurais</div>
+  </a>
+
+  <a class="tile c" href="cidadao.html">
+    <div class="num">03 · Mobile (PWA · cidadão)</div>
+    <div class="swatch"></div>
+    <h3>Cidadão / Justiça</h3>
+    <p>Consultar processo por NUIT/BI · pedir certidão · apresentar queixa · solicitar mediação · agenda de audiência · estado da minha causa.</p>
+    <div class="users">Todos os cidadãos · 4,8 M NUITs</div>
+  </a>
+
+  <a class="tile d" href="cadastro.html">
+    <div class="num">04 · Web + Mobile (DUATs · terra)</div>
+    <div class="swatch"></div>
+    <h3>Cadastro Predial</h3>
+    <p>Mapa interactivo de DUATs (Direito de Uso e Aproveitamento da Terra), conflitos de propriedade, sobreposições, processos abertos sobre cada parcela.</p>
+    <div class="users">Cidadãos · DPCT · municípios · DJD</div>
+  </a>
+
+  <a class="tile e" href="registos.html">
+    <div class="num">05 · Web (conservatórias)</div>
+    <div class="swatch"></div>
+    <h3>Registos Públicos</h3>
+    <p>Conservatórias do Registo Civil, Comercial e Predial em interface unificada. Certidões, escrituras, autenticações.</p>
+    <div class="users">DNRN · Conservadores · Notários · OAM</div>
+  </a>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:24px">
+  <div class="section-h"><h3 class="t-h3">Como navegar este pacote</h3></div>
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">1. Sistema de Design</div>
+      <p class="t-body" style="margin:8px 0 0">Comece pelo <a href="design-system.html">Sistema de Design</a> — define paleta slate, tipografia, componentes (Process card, Acta serifada, QR) que todas as superfícies reutilizam.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">2. Superfícies clicáveis</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície abre num documento próprio com cenas numeradas. Ramos divergentes (mediação falha, conflito sobreposição) acessíveis por cross-link.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">3. Documentos DESIGN-*.md</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície tem um documento autoritativo (ex.: <span class="mono">DESIGN-comunitario.md</span>) com princípios, fluxos, componentes, estados. Para handoff a engenharia.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Justiça Digital</span><small>Plataforma Judicial Nacional</small></span></a>
+      <p class="ack" style="margin-top:14px">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a> para imaginar um sistema end-to-end de justiça digital para Moçambique. O Ministério da Justiça, Assuntos Constitucionais e Religiosos (MJCR), o Tribunal Supremo, a PGR, a OAM e a DNRN são entidades reais; a "Direcção de Justiça Digital" (DJD) é uma unidade operativa fictícia neste exercício. Os tribunais comunitários estão previstos na Lei 4/92. Este protótipo não usa dados reais — nomes, NUITs, números de processo e factos são ilustrativos.</p>
+    </div>
+    <div>
+      <h5>Superfícies</h5>
+      <ul>
+        <li><a href="portal-mjcr.html">Portal MJCR</a></li>
+        <li><a href="comunitario.html">Tribunal Comunitário</a></li>
+        <li><a href="cidadao.html">Cidadão / Justiça</a></li>
+        <li><a href="cadastro.html">Cadastro Predial</a></li>
+        <li><a href="registos.html">Registos Públicos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Documentos</h5>
+      <ul>
+        <li><a href="DESIGN-system.md">DESIGN-system.md</a></li>
+        <li><a href="DESIGN-portal-mjcr.md">DESIGN-portal-mjcr.md</a></li>
+        <li><a href="DESIGN-comunitario.md">DESIGN-comunitario.md</a></li>
+        <li><a href="DESIGN-cidadao.md">DESIGN-cidadao.md</a></li>
+        <li><a href="DESIGN-cadastro.md">DESIGN-cadastro.md</a></li>
+        <li><a href="DESIGN-registos.md">DESIGN-registos.md</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li class="muted">Av. Julius Nyerere</li>
+        <li class="muted">Maputo, Moçambique</li>
+        <li class="muted">+258 21 491 110 (MJCR)</li>
+        <li class="muted">USSD *147# · Justiça</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

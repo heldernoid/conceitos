@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Cidadão / Justiça — Justiça Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .phone-grid{display:grid;grid-template-columns:repeat(2,360px);gap:32px;justify-content:center;padding:24px 0}
+  .phone-grid.three{grid-template-columns:repeat(3,360px)}
+  .phone-cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:center;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1280px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1280px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:8px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+
+  /* Phone screen body */
+  .ph-head{padding:14px 16px;background:#fff;border-bottom:1px solid var(--line)}
+  .ph-head .br{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .ph-head .br .mk{width:18px;height:18px;background:var(--slate-700);border-radius:1px;position:relative}
+  .ph-head .br .mk::before{content:"";position:absolute;left:0;top:50%;width:100%;height:1.5px;background:var(--brass-500);transform:translateY(-50%)}
+  .ph-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+  .ph-body .sect-h{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:600;margin:6px 0 -4px}
+  .mc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px}
+  .mc h4{font-size:14px;font-weight:600;margin:0 0 4px}
+  .mc p{font-size:12.5px;color:var(--ink-3);margin:0;line-height:1.45}
+
+  .toggle-l{display:inline-flex;background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:2px;font-size:11px}
+  .toggle-l span{padding:3px 8px;border-radius:2px;font-weight:500}
+  .toggle-l span.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+
+  .key-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .key-grid button{height:48px;border:1px solid var(--line);background:#fff;font-family:var(--f-mono);font-size:18px;font-weight:600;border-radius:4px}
+
+  .quick{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .quick a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:#fff;border:1px solid var(--line);border-radius:6px;color:var(--ink);text-decoration:none;font-size:11.5px;font-weight:500;text-align:center;line-height:1.3}
+  .quick a .ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MJCR · Tribunal Supremo · DJD</span><span class="sep">·</span>
+  <span>Cidadão / Justiça v0.3</span>
+  <span style="margin-left:auto">DESIGN-cidadao.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Cidadão / Justiça</span><small>App PWA · 4 línguas</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-mjcr.html">Portal MJCR</a>
+    <a href="comunitario.html">T. Comunitário</a>
+    <a href="cidadao.html" class="active">Cidadão</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="registos.html">Registos</a>
+  </nav>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Hoje</a>
+    <a href="#cena-3">3. Detalhe processo</a>
+    <a href="#cena-4">4. Pedir certidão · SISTAFE</a>
+    <a href="#cena-5">5. Solicitar mediação</a>
+    <a href="#cena-6">6. Carteira · OAM</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · ONBOARDING =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding · BI ou NUIT + OTP</div>
+    <h2>Maria do Rosário Cuamba abre a app pela primeira vez</h2>
+    <p>Identidade verificada via eBI Governo Digital. Idioma escolhido. Notificações activadas.</p>
+  </div>
+  <div class="phone-grid three" style="grid-template-columns:repeat(3,360px)">
+
+    <!-- Boas-vindas -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div style="background:var(--slate-900);color:#fff;padding:32px 22px;flex:1;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div class="brand" style="color:#fff"><span class="mark"></span><span class="stack"><span style="color:#fff">Justiça Digital</span><small style="color:#8a8f9c">Plataforma do Cidadão</small></span></div>
+          </div>
+          <div>
+            <div style="font-size:28px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin-bottom:14px">A tua justiça,<br/>no teu bolso.</div>
+            <p style="font-size:13px;color:#c8ccd3;line-height:1.55;margin:0 0 24px">Acompanha processos, pede certidões, apresenta queixa, solicita mediação comunitária. Tudo seguro com BI ou NUIT.</p>
+            <div class="row" style="gap:8px;margin-bottom:14px">
+              <button class="btn lg" style="flex:1;background:#fff;color:var(--slate-900)">Tenho BI</button>
+              <button class="btn secondary lg" style="flex:1;background:transparent;color:#fff;border-color:rgba(255,255,255,.3)">Só NUIT</button>
+            </div>
+            <div class="row spread"><span style="font-size:11px;color:#8a8f9c">Sem internet? USSD <b class="mono">*147#</b></span><span class="toggle-l" style="background:rgba(255,255,255,.1);border:0"><span class="on" style="color:#fff;background:rgba(255,255,255,.18)">PT</span><span style="color:#c8ccd3">Macua</span></span></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">1A · Splash</div>
+    </div>
+
+    <!-- BI + OTP -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Verificar identidade</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 2 de 3</div>
+          <div class="t-h2" style="margin:4px 0">Código por SMS</div>
+          <p class="t-meta">Enviámos 6 dígitos para <span class="mono">+258 84 ••• ••18</span></p>
+          <div class="row" style="gap:6px;margin:14px 0">
+            <input class="input mono lg" style="text-align:center;width:42px" value="3" />
+            <input class="input mono lg" style="text-align:center;width:42px" value="9" />
+            <input class="input mono lg" style="text-align:center;width:42px" value="1" />
+            <input class="input mono lg" style="text-align:center;width:42px" value="2" />
+            <input class="input mono lg" style="text-align:center;width:42px" value="" />
+            <input class="input mono lg" style="text-align:center;width:42px" value="" />
+          </div>
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Identidade verificada via eBI.</b><br/>Maria do Rosário Cuamba · BI 110100442918 · 38 anos · Bairro Polana Caniço.</div></div>
+          <button class="btn lg block" style="margin-top:8px">Continuar</button>
+          <p class="t-meta" style="font-size:11px;text-align:center">Reenviar em 00:32</p>
+        </div>
+      </div></div>
+      <div class="phone-cap">1B · OTP + cross-eBI</div>
+    </div>
+
+    <!-- 4 perguntas -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>77%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Bem-vinda, Maria</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 3 de 3 · 4 perguntas</div>
+          <div class="t-h3" style="margin:4px 0 14px">Personaliza a tua app</div>
+
+          <div class="mc">
+            <h4>1. Bairro</h4>
+            <p>Para tribunal comunitário</p>
+            <select class="input" style="margin-top:8px"><option>Polana Caniço · Cidade de Maputo</option></select>
+          </div>
+
+          <div class="mc">
+            <h4>2. Idioma preferido</h4>
+            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px">
+              <span class="badge slate"><span class="dot"></span>PT-MZ</span>
+              <span class="badge"><span class="dot"></span>Macua</span>
+              <span class="badge"><span class="dot"></span>Changana</span>
+              <span class="badge"><span class="dot"></span>Sena</span>
+            </div>
+          </div>
+
+          <div class="mc">
+            <h4>3. Como queres ser contactada?</h4>
+            <div class="col" style="gap:6px;margin-top:6px;font-size:12.5px">
+              <label class="row" style="gap:8px"><input type="checkbox" checked /> SMS</label>
+              <label class="row" style="gap:8px"><input type="checkbox" checked /> Notificação na app</label>
+              <label class="row" style="gap:8px"><input type="checkbox" /> E-mail</label>
+            </div>
+          </div>
+
+          <div class="mc">
+            <h4>4. Alertas</h4>
+            <p>Audiência marcada, sentença, prazo a expirar</p>
+            <label class="row" style="gap:8px;margin-top:6px;font-size:12.5px"><input type="checkbox" checked /> Activar alertas push</label>
+          </div>
+
+          <button class="btn lg block">Concluir →</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">1C · 4 perguntas</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Identidade via eBI · sem morada manual · sem foto</span><a class="btn secondary sm" href="#cena-2">Hoje →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · HOJE =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Hoje · Maria com 1 processo activo</div>
+    <h2>Próxima audiência amanhã · 1 acordo pendente · 4 atalhos rápidos</h2>
+    <p>Tudo o que importa nas próximas semanas, num ecrã.</p>
+  </div>
+  <div class="phone-grid">
+
+    <!-- Hoje -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head">
+          <div class="row spread">
+            <div class="br"><span class="mk"></span><span>Justiça</span></div>
+            <div class="row" style="gap:6px"><span class="badge"><span class="dot"></span>3</span><span class="av sm">MC</span></div>
+          </div>
+        </div>
+        <div class="ph-body">
+          <div>
+            <div style="font-size:13px;color:var(--ink-3)">Bom dia,</div>
+            <div style="font-size:22px;font-weight:600">Maria.</div>
+          </div>
+
+          <div class="proc-card" style="padding:18px">
+            <div class="lbl">Próxima audiência · amanhã</div>
+            <div class="num" style="font-size:14px;font-family:var(--f-mono);margin-top:4px">P-2026-CIV-MAP-00481</div>
+            <div class="ti" style="font-size:13px;margin-top:10px">Audiência de instrução</div>
+            <div class="meta" style="margin-top:4px">29 Abr · 09:30 · TJ Maputo · Sala 3</div>
+            <div class="row" style="gap:6px;margin-top:14px">
+              <button class="btn sm" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.2)">Como chegar</button>
+              <button class="btn sm" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.2)">Detalhe</button>
+            </div>
+          </div>
+
+          <div class="banner amber" style="padding:10px;font-size:12px"><span class="ic"></span><div><b>Tens 1 acordo de mediação por assinar.</b> Disputa de fronteira · vizinho J. Macia. <a href="#">Abrir →</a></div></div>
+
+          <div class="sect-h">Atalhos</div>
+          <div class="quick">
+            <a href="#cena-4"><div class="ic" style="background:var(--brass-100);color:var(--brass-700)">📜</div>Pedir certidão</a>
+            <a href="#cena-5"><div class="ic" style="background:var(--good-100);color:var(--good-700)">⚖</div>Solicitar mediação</a>
+            <a href="#"><div class="ic" style="background:var(--red-100);color:var(--red-700)">⚠</div>Apresentar queixa</a>
+            <a href="#cena-3"><div class="ic" style="background:var(--slate-100);color:var(--slate-700)">📂</div>Os meus processos</a>
+          </div>
+
+          <div class="sect-h">Notificações · 3 não lidas</div>
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Despacho saneador proferido</h4><span class="t-meta" style="font-size:10px">há 2 dias</span></div>
+            <p style="font-size:12px">P-2026-CIV-MAP-00481 · saneamento · admite-se a acção. Audiência 29 Abr · 09:30.</p>
+          </div>
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Convocatória · vizinho</h4><span class="t-meta" style="font-size:10px">há 4 dias</span></div>
+            <p style="font-size:12px">Tribunal Comunitário marcou audiência de mediação para 7 Mai · 14:00.</p>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <a class="active"><span class="ic"></span>Hoje</a>
+          <a><span class="ic"></span>Processos</a>
+          <a><span class="ic"></span>Pedir</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">2 · Hoje</div>
+    </div>
+
+    <!-- Notificação alerta -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Alerta · push</span></div></div>
+        <div class="ph-body" style="background:var(--slate-900);justify-content:flex-start">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;color:#fff">
+            <div class="row" style="gap:10px;margin-bottom:8px">
+              <div style="width:28px;height:28px;background:var(--slate-700);border-radius:6px;display:flex;align-items:center;justify-content:center">⚖</div>
+              <div style="flex:1"><b style="font-size:13px">Justiça Digital</b><div style="font-size:11px;color:#8a8f9c">há 2 min</div></div>
+            </div>
+            <div style="font-size:14px;line-height:1.45;font-weight:600">Audiência marcada para amanhã 09:30</div>
+            <div style="font-size:13px;line-height:1.5;color:#c8ccd3;margin-top:4px">P-2026-CIV-MAP-00481 · TJ Maputo · Sala 3. Apresenta-te 30 min antes com BI.</div>
+          </div>
+
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;color:#fff;margin-top:10px">
+            <div class="row" style="gap:10px;margin-bottom:8px">
+              <div style="width:28px;height:28px;background:var(--brass-500);border-radius:6px;display:flex;align-items:center;justify-content:center">📜</div>
+              <div style="flex:1"><b style="font-size:13px">Justiça Digital</b><div style="font-size:11px;color:#8a8f9c">há 1 dia</div></div>
+            </div>
+            <div style="font-size:14px;line-height:1.45;font-weight:600">A tua certidão de nascimento expirou</div>
+            <div style="font-size:13px;line-height:1.5;color:#c8ccd3;margin-top:4px">Emitida 14 Mai 2025. Pede uma nova por 200 MZN — paga via M-Pesa.</div>
+          </div>
+
+          <div style="background:rgba(194,57,42,.18);border:1px solid rgba(194,57,42,.5);border-radius:14px;padding:14px;color:#fff;margin-top:10px">
+            <div class="row" style="gap:10px;margin-bottom:8px">
+              <div style="width:28px;height:28px;background:var(--red-500);border-radius:6px;display:flex;align-items:center;justify-content:center">⚠</div>
+              <div style="flex:1"><b style="font-size:13px">Justiça Digital</b><div style="font-size:11px;color:#c8ccd3">há 3 dias</div></div>
+            </div>
+            <div style="font-size:14px;line-height:1.45;font-weight:600">Citação por edital · TJ Maputo</div>
+            <div style="font-size:13px;line-height:1.5;color:#c8ccd3;margin-top:4px">Foste citada como testemunha em P-2026-FAM-MAP-00284. Comparece 12 Mai · 10:00.</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">2B · Notificações push</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Detalhe processo →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · DETALHE PROCESSO =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Detalhe do processo</div>
+    <h2>P-2026-CIV-MAP-00481 · Maria como autora · timeline · próximos passos</h2>
+    <p>Mesmos dados que o Portal MJCR, com vocabulário simplificado e ajuda contextual.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>71%</span></div></div>
+        <div class="ph-head">
+          <div class="row" style="gap:8px"><a href="#cena-2" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Processo</span></div></div>
+        </div>
+        <div class="ph-body">
+          <div class="proc-card" style="padding:18px">
+            <div class="lbl">Cível · acção de despejo</div>
+            <div class="num" style="font-size:14px">P-2026-CIV-MAP-00481</div>
+            <div class="ti" style="font-size:13px;margin-top:10px">Cuamba (eu) · vs · Imobiliária Polana</div>
+            <div class="meta">3.ª Sec. Cível · TJ Maputo</div>
+            <div class="qr" style="width:48px;height:48px"><div class="qr-square" style="width:38px;height:38px;padding:2px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+
+          <div class="row spread" style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 12px">
+            <div>
+              <div class="t-overline">Estado</div>
+              <div style="font-size:14px;font-weight:600;margin-top:2px">Preparando audiência</div>
+            </div>
+            <span class="badge amber"><span class="dot"></span>amanhã 09:30</span>
+          </div>
+
+          <div class="mc">
+            <h4 style="font-size:13px">Como funciona o teu processo</h4>
+            <p style="font-size:12px;line-height:1.5">Pediste despejo da casa que arrendaste à Imobiliária Polana porque querem aumentar a renda 80%. Tribunal já aceitou a acção. Próximo passo é a <b>audiência de instrução</b> onde ambos contam a sua versão. <a href="#">o que é isto?</a></p>
+          </div>
+
+          <div class="sect-h">Cronologia · 7 eventos</div>
+          <div class="card"><div class="bd" style="padding:0 12px">
+            <div class="timeline" style="font-size:12px">
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Petição entregue</b><div class="t-meta">02 Mar 2026</div></div></div>
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Aceite pelo juiz</b><div class="t-meta">06 Mar 2026</div></div></div>
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Vizinha citada</b><div class="t-meta">12 Mar 2026</div></div></div>
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Contestação recebida</b><div class="t-meta">28 Mar 2026</div></div></div>
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Despacho saneador</b><div class="t-meta">04 Abr 2026</div></div></div>
+              <div class="ev now"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Audiência amanhã</b><div class="t-meta">29 Abr 09:30</div></div></div>
+              <div class="ev"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Sentença</b><div class="t-meta">≈ 30 dias depois</div></div></div>
+            </div>
+          </div></div>
+
+          <div class="sect-h">Próximos passos</div>
+          <div class="mc">
+            <h4 style="font-size:13px">Apresenta-te amanhã 09:00</h4>
+            <p style="font-size:12px">Sala 3 · 1.º andar · TJ Maputo · Av. Vladimir Lenine. Leva o BI e o contrato de arrendamento. <a href="#">Como chegar →</a></p>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a class="active"><span class="ic"></span>Processos</a><a><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">3A · Detalhe</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>71%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-3" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Peças do processo</span></div></div></div>
+        <div class="ph-body">
+          <div class="t-overline">14 documentos</div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Petição inicial</h4><span class="t-meta">PDF · 18 págs</span></div>
+            <p style="font-size:12px">Apresentada por adv. L. Sumaila em 02 Mar.</p>
+            <button class="btn ghost sm" style="margin-top:6px;padding:0">📥 Descarregar</button>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Contrato de arrendamento</h4><span class="t-meta">PDF</span></div>
+            <p style="font-size:12px">Documento #2 · contrato 2018.</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Despacho liminar</h4><span class="t-meta">PDF</span></div>
+            <p style="font-size:12px">Juíza M. Cuamba · 06 Mar · admite acção.</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Auto de citação</h4><span class="t-meta">PDF</span></div>
+            <p style="font-size:12px">Vizinha citada por oficial F. Macia · 12 Mar.</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Contestação</h4><span class="t-meta">PDF · 12 págs</span></div>
+            <p style="font-size:12px">Adv. A. Massingue · 28 Mar.</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size:13px">Despacho saneador</h4><span class="t-meta">PDF</span></div>
+            <p style="font-size:12px">Juíza M. Cuamba · 04 Abr.</p>
+            <button class="btn ghost sm" style="margin-top:6px;padding:0">📥 Descarregar</button>
+          </div>
+
+          <p class="t-meta" style="font-size:11px;text-align:center">+ 8 outros documentos · <a href="#">Ver todos →</a></p>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a class="active"><span class="ic"></span>Processos</a><a><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">3B · Peças</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Pedir certidão →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · CERTIDÃO via SISTAFE =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Pedir certidão · pago via SISTAFE</div>
+    <h2>Cross-system · Finanças Digitais paga · Justiça emite · selo brass</h2>
+    <p>Maria precisa de certidão de nascimento para visto Schengen. Pago em M-Pesa, recebido em 3 minutos.</p>
+  </div>
+  <div class="phone-grid three" style="grid-template-columns:repeat(3,360px)">
+
+    <!-- 1. escolher tipo -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:42</span><div class="icons"><span>📶</span><span>📡</span><span>69%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-2" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Pedir</span></div></div></div>
+        <div class="ph-body">
+          <div class="t-h2" style="margin:4px 0">Que certidão precisas?</div>
+
+          <div class="mc" style="border:1px solid var(--slate-700);background:var(--slate-50)">
+            <div class="row spread"><h4>Nascimento</h4><span class="badge brass" style="font-size:10px">200 MZN</span></div>
+            <p>Civil · DNRN · validade 6 meses</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>Casamento</h4><span class="badge brass" style="font-size:10px">200 MZN</span></div>
+            <p>Civil · DNRN · validade 6 meses</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>Óbito</h4><span class="badge brass" style="font-size:10px">200 MZN</span></div>
+            <p>Civil · DNRN · validade 6 meses</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>Comercial · empresa</h4><span class="badge brass" style="font-size:10px">800 MZN</span></div>
+            <p>Comercial · DNRN · 1 mês</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>Predial · imóvel</h4><span class="badge brass" style="font-size:10px">1 200 MZN</span></div>
+            <p>Predial · DNRN · 6 meses</p>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>Processo judicial</h4><span class="badge brass" style="font-size:10px">600 MZN</span></div>
+            <p>Tribunal · onde sou parte</p>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a class="active"><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">4A · Tipo</div>
+    </div>
+
+    <!-- 2. confirmar e pagar via SISTAFE -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:42</span><div class="icons"><span>📶</span><span>📡</span><span>69%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-4" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Certidão · nascimento</span></div></div></div>
+        <div class="ph-body">
+          <div class="mc">
+            <div class="t-overline">Em nome de</div>
+            <div style="font-weight:600;font-size:14px;margin-top:2px">Maria do Rosário Cuamba</div>
+            <div class="t-meta mono">BI 110100442918</div>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">Conservatória</div>
+            <div style="font-weight:600;font-size:14px;margin-top:2px">Conservatória do Registo Civil de Maputo</div>
+            <div class="t-meta">automático · pelo local de nascimento</div>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">Tempo estimado</div>
+            <div style="font-weight:600;font-size:14px;margin-top:2px">2 a 5 minutos</div>
+            <div class="t-meta">PDF entregue na Carteira</div>
+          </div>
+
+          <hr class="hr" />
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="row spread" style="margin-bottom:6px"><span style="font-size:13px">Certidão</span><span class="mono" style="font-size:13px">200,00 MZN</span></div>
+            <div class="row spread" style="margin-bottom:6px;color:var(--ink-3);font-size:12px"><span>Taxa SISTAFE</span><span class="mono">0,00 MZN</span></div>
+            <hr class="hr" style="margin:8px 0">
+            <div class="row spread"><span style="font-weight:600">Total</span><span class="mzn" style="font-size:18px">200,00 <small>MZN</small></span></div>
+          </div>
+
+          <div class="mc" style="background:#FAF1DA;border-color:#D9C99A">
+            <div class="t-overline">Pagar com</div>
+            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px">
+              <span class="badge slate"><span class="dot"></span>M-Pesa</span>
+              <span class="badge"><span class="dot"></span>e-Mola</span>
+              <span class="badge"><span class="dot"></span>BCI</span>
+              <span class="badge"><span class="dot"></span>Cartão</span>
+            </div>
+            <p class="t-meta" style="font-size:11px;margin:8px 0 0">Pagamento processado pela <b>SISTAFE · Finanças Digitais</b>. Recibo NUIT enviado.</p>
+          </div>
+
+          <button class="btn lg block">Pagar 200 MZN com M-Pesa</button>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a class="active"><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">4B · SISTAFE</div>
+    </div>
+
+    <!-- 3. certidão recebida com selo brass -->
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:45</span><div class="icons"><span>📶</span><span>📡</span><span>69%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-4" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Certidão emitida</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner brass"><span class="ic"></span><div><b>Certidão emitida.</b> Válida até 14 Out 2026.</div></div>
+
+          <div class="acta" style="font-size:11px">
+            <div class="hd" style="padding:12px"><div class="ti" style="font-size:13px">Certidão de Nascimento</div><div class="t-meta mono">CRC-2026-MAP-184221</div></div>
+            <div class="bd" style="padding:14px;font-family:var(--f-serif);font-size:11.5px;line-height:1.65">
+              <p style="margin:0 0 8px"><b>MARIA DO ROSÁRIO CUAMBA</b>, do sexo feminino, natural da Cidade de Maputo, freguesia de Polana, nascida aos catorze dias do mês de Setembro de mil novecentos e oitenta e sete (14/09/1987).</p>
+              <p style="margin:0 0 8px">Filha de Manuel Cuamba e Filomena Tembe.</p>
+              <p style="margin:0">Conforme assento n.º 4221 do livro de registo de nascimentos da Conservatória do Registo Civil de Maputo.</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between;font-size:10px">
+              <span>14 Mai 2026 · 09:45<br/>Conservadora R. Sumbane</span>
+              <span class="seal">Carimbada DJD</span>
+            </div>
+          </div>
+
+          <div class="row" style="gap:8px;justify-content:center;margin-top:8px">
+            <div class="qr-square" style="width:96px;height:96px;padding:5px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+            <div>
+              <div class="t-overline" style="font-size:9px">QR · validar</div>
+              <div class="mono" style="font-size:11px;font-weight:600;margin-top:2px">CRC-2026-MAP-184221</div>
+              <div class="mono" style="font-size:10px;color:var(--ink-3);margin-top:2px">justica.gov.mz/v/4af2c18</div>
+            </div>
+          </div>
+
+          <button class="btn block">📥 Descarregar PDF</button>
+          <button class="btn secondary block">📤 Partilhar (e-mail · WhatsApp)</button>
+          <button class="btn ghost block">⤓ Adicionar à Carteira</button>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a class="active"><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">4C · Selo brass</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Detalhe</a><a class="btn secondary sm" href="#cena-5">Mediação →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · SOLICITAR MEDIAÇÃO =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Solicitar mediação comunitária · cross-Tribunal Comunitário</div>
+    <h2>Maria envia pedido de mediação ao Tribunal Comunitário do bairro</h2>
+    <p>Auto-detectado pelo bairro. Disputa em PT — outra parte fala Changana, mas tradução é responsabilidade do tribunal, não da app.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:14</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-2" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Solicitar mediação</span></div></div></div>
+        <div class="ph-body">
+          <div class="mc" style="background:var(--good-100);border-color:#BDDFCB">
+            <div class="row" style="gap:10px;align-items:flex-start">
+              <div style="width:36px;height:36px;background:var(--case-comunitario);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px">⚖</div>
+              <div>
+                <h4>Tribunal Comunitário · Polana Caniço</h4>
+                <p style="font-size:12px">Detectado pelo teu bairro · Lei 4/92 · juiz comunitário António Mahique.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Outra parte · nome</label>
+            <input class="input lg" value="João Macia" />
+          </div>
+          <div class="field">
+            <label>Bairro / morada</label>
+            <input class="input lg" value="Polana Caniço, R. das Acácias 220" />
+          </div>
+          <div class="field">
+            <label>Telemóvel · se conhece</label>
+            <input class="input lg mono" value="+258 84 392 1144" />
+          </div>
+
+          <div class="field">
+            <label>Tipo de disputa</label>
+            <div class="row" style="gap:6px;flex-wrap:wrap">
+              <span class="badge slate"><span class="dot"></span>Terra · fronteira</span>
+              <span class="badge"><span class="dot"></span>Família</span>
+              <span class="badge"><span class="dot"></span>Vizinhança</span>
+              <span class="badge"><span class="dot"></span>Dívida</span>
+              <span class="badge"><span class="dot"></span>Outro</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Conta o que aconteceu</label>
+            <textarea class="textarea" style="font-size:14px;min-height:120px">A minha vizinha, Sr. João Macia, mudou a parede do quintal há duas semanas e tirou-me cerca de dois metros de terreno. Eu plantei uma mangueira em 2018 e agora ficou do lado dela.</textarea>
+          </div>
+
+          <div class="mc" style="background:#FFFBEF;border-color:#E7D49C">
+            <h4 style="font-size:13px">Como funciona</h4>
+            <p style="font-size:12px">O juiz comunitário vai convocar ambas as partes para uma audiência de mediação dentro de 7 a 14 dias. Se chegarem a acordo, é homologado e tem força institucional. Se não, podes avançar para o tribunal judicial.</p>
+          </div>
+
+          <button class="btn lg block">Enviar pedido</button>
+          <p class="t-meta" style="font-size:11px;text-align:center">Sem custo · Lei 4/92</p>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a class="active"><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">5A · Pedir mediação</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:14</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-5" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Pedido recebido</span></div></div></div>
+        <div class="ph-body" style="padding:24px 16px;align-items:center;justify-content:center;flex:1;display:flex">
+          <div style="text-align:center;max-width:280px">
+            <div style="width:72px;height:72px;background:var(--good-100);color:var(--good-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px">✓</div>
+            <div class="t-h2" style="margin-bottom:8px">Pedido enviado</div>
+            <p style="font-size:13.5px;line-height:1.55;color:var(--ink-2)">O juiz comunitário <b>António Mahique</b> recebeu o teu pedido. Vai contactar-te quando marcar a audiência.</p>
+
+            <div class="mc" style="margin-top:18px;text-align:left">
+              <div class="t-overline">Número do processo</div>
+              <div class="mono" style="font-size:14px;font-weight:600;margin-top:2px">C-2026-MAP-PCN-00128</div>
+            </div>
+
+            <div class="mc" style="margin-top:8px;text-align:left">
+              <div class="t-overline">Próximos passos</div>
+              <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                <div class="row" style="gap:8px"><span class="badge green" style="font-size:10px"><span class="dot"></span></span><span><b>Hoje</b> · pedido recebido</span></div>
+                <div class="row" style="gap:8px"><span class="badge amber" style="font-size:10px"><span class="dot"></span></span><span><b>5-14 dias</b> · audiência marcada</span></div>
+                <div class="row" style="gap:8px"><span class="badge" style="font-size:10px"><span class="dot"></span></span><span><b>Audiência</b> · ambas partes presentes</span></div>
+                <div class="row" style="gap:8px"><span class="badge" style="font-size:10px"><span class="dot"></span></span><span><b>Resultado</b> · acordo OU escalada</span></div>
+              </div>
+            </div>
+
+            <button class="btn block" style="margin-top:18px">Voltar à Hoje</button>
+          </div>
+        </div>
+        <div class="nav-bottom"><a class="active"><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a><span class="ic"></span>Pedir</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">5B · Recebido</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Certidão</a><a class="btn secondary sm" href="#cena-6">Carteira · OAM →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · CARTEIRA E OAM =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F · Carteira de certidões + Directório OAM</div>
+    <h2>Documentos válidos numa só carteira · referência directa a advogados sem affiliate</h2>
+    <p>Sem rating, sem chat, sem comissão. OAM é fonte oficial.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:18</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="row spread"><div class="br" style="font-size:13px"><span class="mk"></span><span>A minha carteira</span></div><span class="badge brass" style="font-size:10px">3 válidas</span></div></div>
+        <div class="ph-body">
+          <div class="mc" style="border:1px solid var(--brass-500);background:var(--brass-100)">
+            <div class="row spread"><h4 style="color:var(--brass-700)">Certidão de Nascimento</h4><span class="seal">Carimbada DJD</span></div>
+            <p style="font-size:12px">Emitida 14 Mai 2026 · válida até 14 Out 2026</p>
+            <div class="row" style="gap:6px;margin-top:8px"><button class="btn sm secondary">⤓ PDF</button><button class="btn sm ghost">QR · validar</button></div>
+          </div>
+
+          <div class="mc" style="border:1px solid var(--brass-500);background:var(--brass-100)">
+            <div class="row spread"><h4 style="color:var(--brass-700)">Certidão de Casamento</h4><span class="seal">Carimbada DJD</span></div>
+            <p style="font-size:12px">Emitida 18 Fev 2026 · válida até 18 Ago 2026</p>
+            <div class="row" style="gap:6px;margin-top:8px"><button class="btn sm secondary">⤓ PDF</button><button class="btn sm ghost">QR · validar</button></div>
+          </div>
+
+          <div class="mc" style="border:1px solid var(--brass-500);background:var(--brass-100)">
+            <div class="row spread"><h4 style="color:var(--brass-700)">Acordo de Mediação</h4><span class="seal">Carimbada DJD</span></div>
+            <p style="font-size:12px">Homologado 14 Mai 2026 · vizinho J. Macia · sem prazo</p>
+            <div class="row" style="gap:6px;margin-top:8px"><button class="btn sm secondary">⤓ PDF</button><button class="btn sm ghost">QR · validar</button></div>
+          </div>
+
+          <hr class="hr" />
+
+          <div class="mc" style="opacity:.6">
+            <div class="row spread"><h4 style="font-size:13px">Certidão de Nascimento (anterior)</h4><span class="badge red" style="font-size:10px"><span class="dot"></span>expirada</span></div>
+            <p style="font-size:12px">Emitida 14 Mai 2025 · expirou em Nov 2025</p>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">Notificações oficiais</div>
+            <p style="font-size:12px;margin-top:6px">2 notificações arquivadas · <a href="#">ver →</a></p>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">Recibos SISTAFE</div>
+            <p style="font-size:12px;margin-top:6px">5 pagamentos em 2026 · 1 200 MZN total · <a href="#">ver →</a></p>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a><span class="ic"></span>Pedir</a><a class="active"><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">6A · Carteira</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:21</span><div class="icons"><span>📶</span><span>📡</span><span>61%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-2" style="color:var(--slate-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Directório OAM</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner slate" style="padding:10px;font-size:12px"><span class="ic"></span><div>Lista oficial da <b>Ordem dos Advogados de Moçambique</b>. Sem rating · sem comissão · referência directa.</div></div>
+
+          <div class="field">
+            <label>Pesquisar</label>
+            <input class="input lg" placeholder="bairro, especialidade, nome..." />
+          </div>
+
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <span class="badge slate"><span class="dot"></span>Maputo Cidade</span>
+            <span class="badge"><span class="dot"></span>Família</span>
+            <span class="badge"><span class="dot"></span>Civil</span>
+          </div>
+
+          <div class="mc">
+            <div class="row" style="gap:10px"><span class="av lg">LS</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Dr. Luís Sumaila</div><div class="t-meta">Cédula OAM 2148 · 12 anos</div></div></div>
+            <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Cível</span><span class="badge"><span class="dot"></span>Família</span><span class="badge"><span class="dot"></span>Imobiliário</span></div>
+            <p class="t-meta" style="font-size:11.5px;margin-top:8px">Av. Vladimir Lenine 248 · Maputo · PT, EN</p>
+          </div>
+
+          <div class="mc">
+            <div class="row" style="gap:10px"><span class="av lg">CN</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Drª. Carolina Nhantumbo</div><div class="t-meta">Cédula OAM 3041 · 8 anos</div></div></div>
+            <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Família</span><span class="badge"><span class="dot"></span>Menores</span><span class="badge"><span class="dot"></span>Laboral</span></div>
+            <p class="t-meta" style="font-size:11.5px;margin-top:8px">Av. 24 de Julho 891 · Maputo · PT, Changana</p>
+          </div>
+
+          <div class="mc">
+            <div class="row" style="gap:10px"><span class="av lg">CM</span><div style="flex:1"><div style="font-weight:600;font-size:14px">Dr. Carlos Maússe</div><div class="t-meta">Cédula OAM 4218 · 4 anos</div></div></div>
+            <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap"><span class="badge"><span class="dot"></span>Administrativo</span><span class="badge"><span class="dot"></span>Comercial</span></div>
+            <p class="t-meta" style="font-size:11.5px;margin-top:8px">Av. Eduardo Mondlane 1284 · Maputo</p>
+          </div>
+
+          <p class="t-meta" style="font-size:11px;text-align:center;margin-top:8px">+ 142 advogados em Maputo · <a href="#">Ver todos →</a></p>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Processos</a><a><span class="ic"></span>Pedir</a><a class="active"><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">6B · OAM directório</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Mediação</a><a class="btn secondary sm" href="cadastro.html">Cadastro Predial →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div class="t-meta">Cidadão / Justiça v0.3 · documento autoritativo: <a class="mono" href="DESIGN-cidadao.md">DESIGN-cidadao.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="cadastro.html" class="btn secondary sm">Cadastro Predial →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

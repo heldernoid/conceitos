@@ -19,7 +19,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 02 | [Governo Digital](https://conceitos.org/governodigital/) | Disponível |
 | 03 | [Educação Digital](https://conceitos.org/educacaodigital/) | Disponível |
 | 04 | [Finanças Digitais](https://conceitos.org/financasdigitais/) | Disponível |
-| 05 | Justiça Digital | Em ideação |
+| 05 | [Justiça Digital](https://conceitos.org/justicadigital/) | Disponível |
 
 ### Saúde Digital
 
@@ -36,6 +36,10 @@ Reimaginação da plataforma nacional de educação com cinco superfícies: gest
 ### Finanças Digitais
 
 Reimaginação do sistema fiscal e orçamental com cinco superfícies: portal do cidadão (NUIT e IRS pessoal), declaração comercial (IRPC), eFactura para independentes e comerciantes, portal da Autoridade Tributária e interoperabilidade com a SISTAFE.
+
+### Justiça Digital
+
+Reimaginação do acesso à justiça com cinco superfícies: portal do cidadão (acompanhamento processual e certidões), tribunal comunitário digitalizado, cadastro predial, portal do MJCR e registos públicos (civil, comercial e predial).
 
 ## Estrutura
 
@@ -73,13 +77,23 @@ conceitos/
     ├── design-system.html
     ├── shared/styles.css
     └── DESIGN-*.md
-└── financasdigitais/       # Projecto 04 · Finanças Digitais
+├── financasdigitais/       # Projecto 04 · Finanças Digitais
     ├── index.html
     ├── cidadao.html
     ├── comercial.html
     ├── efactura.html
     ├── portal-at.html
     ├── sistafe.html
+    ├── design-system.html
+    ├── shared/styles.css
+    └── DESIGN-*.md
+└── justicadigital/         # Projecto 05 · Justiça Digital
+    ├── index.html
+    ├── cidadao.html
+    ├── comunitario.html
+    ├── cadastro.html
+    ├── portal-mjcr.html
+    ├── registos.html
     ├── design-system.html
     ├── shared/styles.css
     └── DESIGN-*.md

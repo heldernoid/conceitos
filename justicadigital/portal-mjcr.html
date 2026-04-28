@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Portal MJCR · Acompanhamento Processual — Justiça Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+  .threeone{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+
+  .login-bg{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--bg)}
+  .login-left{background:var(--slate-900);color:#c8ccd3;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .login-left h1{font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:0;color:#fff;max-width:440px}
+  .login-left .meta{font-size:12px;color:#8a8f9c}
+  .login-right{padding:48px;display:flex;align-items:center;justify-content:center}
+  .login-card{width:380px}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--slate-100);color:var(--slate-900);font-weight:600}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-family:var(--f-mono)}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .at-body{padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MJCR · Tribunal Supremo · DJD</span><span class="sep">·</span>
+  <span>Portal MJCR v0.3</span>
+  <span style="margin-left:auto">DESIGN-portal-mjcr.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Portal MJCR</span><small>Acompanhamento Processual</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-mjcr.html" class="active">Portal MJCR</a>
+    <a href="comunitario.html">Comunitário</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="cadastro.html">Cadastro</a>
+    <a href="registos.html">Registos</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online · 4 prazos hoje</span>
+    <div class="idbadge"><span class="av sm">MC</span><div class="who"><b>Drª. Marlene Cuamba</b><span>Juíza · 3.ª Sec. Cível · TJ Maputo</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Login</a>
+    <a href="#cena-2">2. Painel</a>
+    <a href="#cena-3">3. Processo</a>
+    <a href="#cena-4">4. Despacho</a>
+    <a href="#cena-5">5. Audiência</a>
+    <a href="#cena-6">6. Sentenciar revelia</a>
+    <a href="#cena-7">7. Recurso</a>
+    <a href="#cena-8">8. Estatísticas</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · LOGIN =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Sign in & Tribunal bind</div>
+    <h2>Início de sessão · TJ Maputo · 3.ª Secção Cível</h2>
+    <p>OTP obrigatório: o juiz profere despachos, sentencia, arquiva. Acto irrevocável requer prova de identidade.</p>
+  </div>
+  <div style="padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%">
+    <div class="login-bg" style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;min-height:560px">
+      <div class="login-left">
+        <div>
+          <div class="row" style="gap:10px;align-items:center"><span class="brand mark" style="width:28px;height:28px;background:#fff;display:inline-block;position:relative;border-radius:1px"><span style="position:absolute;left:0;top:50%;width:100%;height:2px;background:var(--brass-500);transform:translateY(-50%)"></span><span style="position:absolute;left:50%;top:0;width:2px;height:100%;background:var(--slate-900);transform:translateX(-50%);opacity:.4"></span></span><span style="color:#fff;font-weight:600">Justiça Digital</span></div>
+          <h1 style="margin-top:48px">A justiça, com a calma de uma sala do tribunal.</h1>
+          <p style="color:#c8ccd3;font-size:14px;line-height:1.55;margin-top:14px;max-width:420px">Portal MJCR reúne processos, audiências, despachos, recursos — auditável, partilhado entre juízes e oficiais, sincronizado com Tribunal Supremo, TA, e DJD.</p>
+        </div>
+        <div class="meta">v0.3 · Abril 2026 · Protótipo · DJD</div>
+      </div>
+      <div class="login-right">
+        <div class="login-card">
+          <div class="t-overline">Passo 2 de 3</div>
+          <div class="t-h2" style="margin:8px 0 4px">Código por SMS</div>
+          <p class="t-meta">Enviámos um código de 6 dígitos para <span class="mono">+258 84 ••• ••18</span></p>
+          <div class="row" style="gap:6px;margin:18px 0 14px">
+            <input class="input mono lg" style="text-align:center;width:48px" value="7" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="3" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="9" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="0" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="2" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="" />
+          </div>
+          <a href="#cena-2" class="btn lg block">Continuar</a>
+          <div class="row spread" style="margin-top:14px"><span class="t-meta">Reenviar em 00:42</span><span class="t-meta">Suporte DJD: 1467</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Juízes itinerantes? Selecciona tribunal após OTP.</span><a class="btn secondary sm" href="#cena-2">Avançar para Painel →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · PAINEL =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Painel · Drª. Marlene Cuamba</div>
+    <h2>Pauta de hoje · 4 audiências · 7 despachos pendentes · 3 prazos a expirar</h2>
+    <p>O que decidir antes da sessão da manhã. Avisos do Conselho Superior da Magistratura à direita.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Processos activos</div><div class="num">218</div><div class="delta">3.ª Sec. Cível · TJ Maputo</div></div>
+      <div class="kpi"><div class="lbl">Pauta de hoje</div><div class="num" style="color:var(--amber-700)">4</div><div class="delta">próxima 09:30</div></div>
+      <div class="kpi"><div class="lbl">Despachos pendentes</div><div class="num">7</div><div class="delta">3 com prazo a expirar</div></div>
+      <div class="kpi"><div class="lbl">Sentenciados YTD</div><div class="num" style="color:var(--good-700)">62</div><div class="delta">+18% face 2025</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Pauta de hoje · 28 Abril 2026</b><div class="row"><span class="seg"><button class="on">Hoje</button><button>Esta semana</button><button>Pendentes</button></span><button class="btn sm secondary">⤓ CSV</button></div></div>
+        <table class="table">
+          <thead><tr><th>Hora</th><th>Processo</th><th>Espécie</th><th>Partes</th><th>Diligência</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="cursor:pointer" onclick="location.hash='#cena-3'"><td class="mono">09:30</td><td class="mono">P-2026-CIV-MAP-00481</td><td><span class="case civel">Cível</span></td><td><b>M. Cuamba</b> vs Imobiliária Polana</td><td>Audiência de instrução</td><td><a href="#cena-3" class="btn sm">Abrir →</a></td></tr>
+            <tr style="cursor:pointer" onclick="location.hash='#cena-5'"><td class="mono">10:30</td><td class="mono">P-2025-FAM-MAP-02184</td><td><span class="case familia">Família</span></td><td>Macia / Sumaila · divórcio</td><td>Audiência de discussão</td><td><a href="#cena-5" class="btn sm secondary">Audiência →</a></td></tr>
+            <tr style="background:#FCEFEC;cursor:pointer" onclick="location.hash='#cena-6'"><td class="mono">11:30</td><td class="mono">P-2026-CIV-MAP-00622</td><td><span class="case civel">Cível</span></td><td>BCI vs <b>J. Macia</b></td><td>Réu não compareceu (3.ª)</td><td><a href="#cena-6" class="btn sm">Decidir →</a></td></tr>
+            <tr><td class="mono">14:30</td><td class="mono">P-2026-LAB-MAP-00041</td><td><span class="case laboral">Laboral</span></td><td>Tembe vs Padaria Maputo Lda</td><td>Audiência de tentativa de conciliação</td><td><a href="#cena-3" class="btn sm secondary">Abrir →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Despachos pendentes · 7</b></div>
+          <div class="pb col">
+            <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>P-2026-CIV-MAP-00481 · Despacho saneador</b><br/>Prazo termina hoje 17:00 · após audiência. <a href="#cena-4">Redigir →</a></div></div>
+            <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>P-2026-COM-MAP-00128 · Citação por edital</b><br/>Réu Construtora MZ não localizado. Prazo: 30 Abr.</div></div>
+            <div class="banner slate" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>P-2026-FAM-MAP-00284 · Despacho liminar</b><br/>Petição de divórcio recebida. Prazo: 5 Mai.</div></div>
+            <div style="padding:8px 10px;font-size:12px;color:var(--ink-3)">+ 4 outros despachos. <a href="#">Ver todos →</a></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><b>Avisos do CSM</b></div>
+          <div class="pb col">
+            <div class="banner slate" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Sessão plenária do CSM.</b> 30 Abr · 09:00 · Tribunal Supremo. Reorganização de comarcas em discussão.</div></div>
+            <div class="banner slate" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Operação Encerrar Pendentes 2024.</b> Foco em processos com mais de 24 meses. Prazo: 30 Jun 2026.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Login</a><a class="btn secondary sm" href="#cena-3">Detalhe do processo →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · PROCESSO =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Detalhe do processo · 5 abas</div>
+    <h2>P-2026-CIV-MAP-00481 · Cuamba vs Imobiliária Polana · acção de despejo</h2>
+    <p>Visão geral · Peças · Audiências · Despachos · Histórico. Cronologia imutável.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel">
+      <div class="ph" style="padding:18px 20px">
+        <div class="row" style="gap:18px">
+          <div class="proc-card" style="width:300px;padding:16px">
+            <div class="lbl">Processo · Cível</div>
+            <div class="num" style="font-size:16px">P-2026-CIV-MAP-00481</div>
+            <div class="ti" style="font-size:13px;margin-top:10px">Cuamba vs Imobiliária Polana</div>
+            <div class="meta">3.ª Sec. Cível · TJ Cidade Maputo</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+          <div style="flex:1">
+            <div class="row" style="gap:8px;margin-bottom:8px">
+              <span class="badge slate"><span class="dot"></span>Em instrução</span>
+              <span class="case civel">Cível · acção de despejo</span>
+              <span class="badge"><span class="dot"></span>Público</span>
+            </div>
+            <div class="grid g-3" style="gap:14px">
+              <div class="kv"><span class="k">Autora</span><span class="v">Maria do Rosário Cuamba</span><span class="t-meta mono">BI 110100442918</span></div>
+              <div class="kv"><span class="k">Ré</span><span class="v">Imobiliária Polana, Lda</span><span class="t-meta mono">NUIT 400 304 188</span></div>
+              <div class="kv"><span class="k">Valor da causa</span><span class="v mzn">2 480 000,00 <small>MZN</small></span></div>
+              <div class="kv"><span class="k">Distribuído</span><span class="v">04 Mar 2026</span><span class="t-meta">automático</span></div>
+              <div class="kv"><span class="k">Advogados</span><span class="v">L. Sumaila (autora) · A. Massingue (ré)</span></div>
+              <div class="kv"><span class="k">Próxima diligência</span><span class="v">Audiência hoje · 09:30</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="gap:6px;align-items:flex-end">
+          <div class="row" style="gap:8px">
+            <button class="btn secondary sm">⤓ Dossier PDF</button>
+            <a href="#cena-7" class="btn secondary sm">Recurso</a>
+            <a href="#cena-4" class="btn sm">+ Despacho</a>
+          </div>
+          <span class="t-meta mono">Aberta às 08:42 por M. Cuamba</span>
+        </div>
+      </div>
+
+      <div style="padding:0 20px;border-bottom:1px solid var(--line-2)">
+        <div class="row" style="gap:0">
+          <div style="padding:10px 14px;border-bottom:2px solid var(--slate-700);color:var(--slate-900);font-weight:600;font-size:13px">Visão geral</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Peças <span class="badge" style="font-size:10px;margin-left:6px">14</span></div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Audiências <span class="badge" style="font-size:10px;margin-left:6px">2</span></div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Despachos <span class="badge" style="font-size:10px;margin-left:6px">5</span></div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Histórico</div>
+        </div>
+      </div>
+
+      <div class="pb">
+        <div class="grid g-3">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Cronologia · imutável</div>
+            <div class="card"><div class="bd" style="padding:0 14px">
+              <div class="timeline" style="padding:8px 0">
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Petição inicial entregue</b><div class="t-meta">02 Mar 2026 · 14:38 · adv. L. Sumaila</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Distribuído à 3.ª Secção · automático</b><div class="t-meta">04 Mar 2026 · 09:00</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Despacho liminar · admitida</b><div class="t-meta">06 Mar 2026 · M. Cuamba</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Citação da ré</b><div class="t-meta">12 Mar 2026 · oficial F. Macia</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Contestação apresentada</b><div class="t-meta">28 Mar 2026 · adv. A. Massingue</div></div></div>
+                <div class="ev done"><div class="dot"></div><div class="body"><b>Despacho saneador</b><div class="t-meta">04 Abr 2026 · M. Cuamba</div></div></div>
+                <div class="ev now"><div class="dot"></div><div class="body"><b>Audiência de instrução</b><div class="t-meta">hoje · 28 Abr · 09:30</div></div></div>
+                <div class="ev"><div class="dot"></div><div class="body"><b>Audiência de discussão e julgamento</b><div class="t-meta">a marcar</div></div></div>
+                <div class="ev"><div class="dot"></div><div class="body"><b>Sentença</b><div class="t-meta">prazo legal: 30 dias após julgamento</div></div></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Peças do processo</div>
+            <div class="card"><div class="bd">
+              <div class="col" style="gap:6px">
+                <div class="row spread" style="font-size:12.5px"><span><b>#1</b> · Petição inicial</span><a class="t-meta" href="#">PDF · 18 págs</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#2-4</b> · Documentos · contrato de arrendamento</span><a class="t-meta" href="#">PDF</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#5</b> · Despacho liminar</span><a class="t-meta" href="#">PDF</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#6</b> · Auto de citação</span><a class="t-meta" href="#">PDF</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#7</b> · Contestação</span><a class="t-meta" href="#">PDF · 12 págs</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#8-13</b> · Documentos contestação</span><a class="t-meta" href="#">PDF</a></div>
+                <div class="row spread" style="font-size:12.5px"><span><b>#14</b> · Despacho saneador</span><a class="t-meta" href="#">PDF</a></div>
+              </div>
+              <hr class="hr">
+              <a href="#" class="btn ghost sm" style="padding:0">+ Carregar peça (juiz / oficial) →</a>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Saúde do processo</div>
+            <div class="card"><div class="bd">
+              <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>Tempo desde distribuição</span><span class="mono"><b>55 dias</b></span></div>
+              <div class="bar" style="margin-bottom:8px"><div class="fill" style="width:30%;background:var(--good-700)"></div></div>
+              <p class="t-meta" style="margin:0;font-size:11px">Mediana 3.ª Secção: 184 dias. Está dentro.</p>
+              <hr class="hr">
+              <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>Cumprimento de prazos</span><span class="badge green" style="font-size:10px"><span class="dot"></span>100%</span></div>
+              <div class="row spread" style="font-size:12px"><span>Qualidade de peças</span><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div>
+            </div></div>
+
+            <div class="card" style="margin-top:12px"><div class="bd">
+              <div class="t-overline" style="font-size:10px">Cross-system</div>
+              <div class="col" style="gap:6px;font-size:12.5px;margin-top:8px">
+                <a href="cadastro.html" style="display:flex;justify-content:space-between"><span>DUAT da fracção em causa</span><span>→</span></a>
+                <a href="registos.html" style="display:flex;justify-content:space-between"><span>Escritura de arrendamento</span><span>→</span></a>
+                <a href="#" style="display:flex;justify-content:space-between"><span>Certidão fiscal · NUIT 400 304 188</span><span>→</span></a>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Painel</a><a class="btn secondary sm" href="#cena-4">Proferir despacho →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · DESPACHO =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F5 — Proferir despacho · saneador</div>
+    <h2>Editor com modelo · fundamentação obrigatória · citação de artigos</h2>
+    <p>Documento serifado. Pré-visualização ao lado. Assinatura digital + selo brass ao confirmar.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Editor de despacho · P-2026-CIV-MAP-00481</b><div class="row"><span class="seg"><button>Liminar</button><button class="on">Saneador</button><button>Sentença</button></span></div></div>
+        <div class="bd">
+          <div class="field">
+            <label>Tipo de despacho</label>
+            <select class="input"><option>Despacho saneador (admitir / rejeitar / saneamento)</option></select>
+          </div>
+          <div class="field" style="margin-top:12px">
+            <label>Sumário · 1 linha</label>
+            <input class="input" value="Saneamento: rejeição de excepção dilatória; admite-se a acção de despejo." />
+          </div>
+          <div class="field">
+            <label>Fundamentação · ≥100 caracteres · cite artigos</label>
+            <textarea class="textarea" style="min-height:240px;font-family:var(--f-serif);font-size:14px;line-height:1.7">A ré, na sua contestação, suscitou a excepção dilatória de incompetência absoluta deste tribunal, alegando que o foro competente seria o do lugar do imóvel arrendado. Sucede que, nos termos do art. 73.º do Código de Processo Civil, em accoes relativas ao cumprimento de obrigacoes derivadas de contratos de arrendamento, é competente o tribunal do domicílio do réu, sendo a ré uma sociedade comercial com sede na Cidade de Maputo (NUIT 400 304 188), o que é confirmado pelo registo comercial.
+
+Pelo exposto, julga-se improcedente a excepção arguida.
+
+Mais se decide admitir a accao, designando-se o dia 28 de Abril de 2026, pelas nove horas e trinta minutos, para audiência de instrução, citando-se as partes e seus advogados nos termos legais.
+
+Notifique-se. Cumpra-se.</textarea>
+            <span class="hint">812 / 100 caracteres mínimos · cita art. 73.º CPC</span>
+          </div>
+          <div class="row" style="gap:10px;margin-top:14px">
+            <span class="badge slate"><span class="dot"></span>Rascunho · auto-guardado às 08:46</span>
+            <span class="badge"><span class="dot"></span>Citações verificadas: 1</span>
+          </div>
+        </div>
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Gravar como rascunho</button>
+          <div class="row"><button class="btn secondary">Pré-visualizar</button><button class="btn brass">Assinar e proferir · selar com brass</button></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="acta">
+          <div class="hd">
+            <div class="ti" style="font-family:var(--f-serif);font-size:14px">Tribunal Judicial da Cidade de Maputo</div>
+            <div class="t-meta" style="margin-top:4px">3.ª Secção Cível</div>
+          </div>
+          <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7">
+            <p style="margin:0 0 14px"><b>Despacho saneador</b><br/><span style="font-family:var(--f-mono);font-size:11px;color:var(--ink-3)">Processo P-2026-CIV-MAP-00481 · Cuamba vs Imobiliária Polana, Lda</span></p>
+            <p style="margin:0 0 14px">A ré, na sua contestação, suscitou a excepção dilatória de incompetência absoluta deste tribunal, alegando que o foro competente seria o do lugar do imóvel arrendado.</p>
+            <p style="margin:0 0 14px">Sucede que, nos termos do <i>art. 73.º do Código de Processo Civil</i>, em acções relativas ao cumprimento de obrigações derivadas de contratos de arrendamento, é competente o tribunal do domicílio do réu...</p>
+            <p style="margin:0 0 14px"><b>Pelo exposto, julga-se improcedente a excepção arguida.</b></p>
+            <p style="margin:0 0 14px">Mais se decide admitir a acção, designando-se o dia 28 de Abril de 2026, pelas nove horas e trinta minutos, para audiência de instrução.</p>
+            <p style="margin:0">Notifique-se. Cumpra-se.</p>
+          </div>
+          <div class="ft" style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:11px;line-height:1.5"><b>A juíza,</b><br/>Drª. Marlene Cuamba<br/><span class="t-meta">04 Abr 2026 · 14:32</span></div>
+            <span class="seal">Carimbada DJD</span>
+          </div>
+        </div>
+
+        <div class="card"><div class="bd">
+          <div class="t-overline" style="font-size:10px">Modelos disponíveis</div>
+          <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+            <div class="row spread"><span>Despacho liminar · admitir</span><a class="t-meta" href="#">→</a></div>
+            <div class="row spread"><span>Despacho liminar · rejeitar</span><a class="t-meta" href="#">→</a></div>
+            <div class="row spread"><span>Despacho saneador</span><a class="t-meta" href="#">→</a></div>
+            <div class="row spread"><span>Citação por edital</span><a class="t-meta" href="#">→</a></div>
+            <div class="row spread"><span>Sentença · acção de despejo</span><a class="t-meta" href="#">→</a></div>
+            <div class="row spread"><span>Sentença · à revelia</span><a class="t-meta" href="#">→</a></div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Processo</a><a class="btn secondary sm" href="#cena-5">Audiência →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · AUDIÊNCIA =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Audiência de instrução · acta em curso</div>
+    <h2>Audio gravado · juíza assina ao final · cidadania notificada por SMS</h2>
+    <p>Acta gerada em tempo real durante a sessão. Partes, depoimentos, decisões processuais.</p>
+  </div>
+  <div class="at-body">
+    <div class="banner amber" style="margin-bottom:14px"><span class="ic"></span><div><b>Audiência em curso · iniciou 09:32 · áudio a gravar.</b> Sala 3 do TJ Maputo. Juíza M. Cuamba · secretário R. Halare.</div></div>
+
+    <div class="threeone">
+      <div class="panel">
+        <div class="ph"><b>Acta · audiência de instrução</b><div class="row"><span class="badge red"><span class="dot"></span>● rec · 14:08</span><button class="btn sm secondary">Pausa</button></div></div>
+        <div class="bd">
+          <div class="acta">
+            <div class="hd"><div class="ti">Acta de Audiência de Instrução</div><div class="t-meta mono" style="margin-top:4px">P-2026-CIV-MAP-00481 · 28 Abr 2026</div></div>
+            <div class="bd" style="font-family:var(--f-serif);font-size:13.5px;line-height:1.75">
+              <p style="margin:0 0 12px">Aos vinte e oito dias do mês de Abril de dois mil e vinte e seis, pelas nove horas e trinta minutos, na sala três do Tribunal Judicial da Cidade de Maputo, reuniu-se a 3.ª Secção Cível, presidida pela <b>Mma. Juíza Marlene Cuamba</b>, com a presença do secretário <b>Rui Halare</b>, para a audiência de instrução do processo identificado em epígrafe.</p>
+              <p style="margin:0 0 12px"><b>Compareceram</b> a autora <b>Maria do Rosário Cuamba</b> (BI 110100442918), acompanhada do seu advogado <b>Dr. Luís Sumaila</b> (cédula OAM 2148), e o representante legal da ré <b>Imobiliária Polana, Lda</b>, <b>Sr. Tomé Massingue</b> (BI 110100884271), acompanhado do advogado <b>Dr. Adérito Massingue</b> (cédula OAM 1822).</p>
+              <p style="margin:0 0 12px">A juíza declarou aberta a sessão e questionou se há possibilidade de conciliação entre as partes. <b>Houve interesse manifestado por ambas as partes</b>, tendo a autora indicado que aceitaria a regularização do contrato com pagamento das rendas em atraso (8 meses · 280 000 MZN) em prestações de 60 dias.</p>
+              <p style="margin:0 0 12px">A ré declarou que <i>"a empresa não nega o atraso e propõe pagar em 4 prestações mensais de 70 000 MZN, mantendo o arrendamento"</i>.</p>
+              <p style="margin:0 0 12px">A juíza determinou suspensão da audiência por trinta minutos para <b>tentativa de mediação suplementar</b> entre advogados, ao abrigo do art. 549.º do CPC. <span style="color:var(--slate-500)">[A escrever em tempo real...]</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="ft" style="padding:12px 16px;display:flex;justify-content:space-between;border-top:1px solid var(--line-2)">
+          <span class="t-meta">Auto-guardado · 14:08:42</span>
+          <div class="row"><button class="btn secondary">Suspender audiência</button><button class="btn">Próximo passo →</button></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Presentes</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:10px"><span class="av sm">MC</span><div style="flex:1;font-size:13px"><b>Maria Cuamba</b><div class="t-meta">Autora · BI 110•••918</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span></span></div>
+            <div class="row" style="gap:10px"><span class="av sm">LS</span><div style="flex:1;font-size:13px"><b>Dr. Luís Sumaila</b><div class="t-meta">Adv. da autora · OAM 2148</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span></span></div>
+            <div class="row" style="gap:10px"><span class="av sm">TM</span><div style="flex:1;font-size:13px"><b>Tomé Massingue</b><div class="t-meta">Repr. da ré · BI 110•••271</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span></span></div>
+            <div class="row" style="gap:10px"><span class="av sm">AM</span><div style="flex:1;font-size:13px"><b>Dr. Adérito Massingue</b><div class="t-meta">Adv. da ré · OAM 1822</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span></span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Áudio</b><span class="badge red" style="font-size:10px"><span class="dot"></span>● 38m 14s</span></div>
+          <div class="pb">
+            <div style="display:flex;align-items:center;gap:6px;height:40px">
+              <div style="flex:1;display:flex;align-items:flex-end;gap:1px;height:32px">
+                <div style="width:2px;background:var(--slate-700);height:18%"></div>
+                <div style="width:2px;background:var(--slate-700);height:32%"></div>
+                <div style="width:2px;background:var(--slate-700);height:54%"></div>
+                <div style="width:2px;background:var(--slate-700);height:42%"></div>
+                <div style="width:2px;background:var(--slate-700);height:68%"></div>
+                <div style="width:2px;background:var(--slate-700);height:80%"></div>
+                <div style="width:2px;background:var(--slate-700);height:62%"></div>
+                <div style="width:2px;background:var(--slate-700);height:38%"></div>
+                <div style="width:2px;background:var(--slate-700);height:54%"></div>
+                <div style="width:2px;background:var(--slate-700);height:72%"></div>
+                <div style="width:2px;background:var(--slate-700);height:88%"></div>
+                <div style="width:2px;background:var(--slate-700);height:64%"></div>
+                <div style="width:2px;background:var(--slate-700);height:42%"></div>
+                <div style="width:2px;background:var(--slate-700);height:58%"></div>
+                <div style="width:2px;background:var(--slate-700);height:74%"></div>
+                <div style="width:2px;background:var(--slate-700);height:48%"></div>
+                <div style="width:2px;background:var(--slate-700);height:36%"></div>
+                <div style="width:2px;background:var(--slate-700);height:52%"></div>
+                <div style="width:2px;background:var(--slate-700);height:78%"></div>
+                <div style="width:2px;background:var(--slate-700);height:62%"></div>
+                <div style="width:2px;background:var(--slate-700);height:84%"></div>
+                <div style="width:2px;background:var(--slate-700);height:46%"></div>
+                <div style="width:2px;background:var(--slate-700);height:38%"></div>
+                <div style="width:2px;background:var(--amber-500);height:52%"></div>
+                <div style="width:2px;background:var(--amber-500);height:24%"></div>
+              </div>
+            </div>
+            <p class="t-meta" style="font-size:10px;margin:6px 0 0">Gravação será transcrita pela DJD após sessão. Anexada ao processo como peça #15.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Despacho</a><a class="btn secondary sm" href="#cena-6">Sentenciar revelia →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · SENTENCIAR REVELIA =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F6 — Sentenciar à revelia · two-step</div>
+    <h2>P-2026-CIV-MAP-00622 · BCI vs J. Macia · réu não compareceu nas 3 chamadas</h2>
+    <p>Modal com consequência nomeada. OTP do juiz. Acta gerada. Notificação ao réu por SMS + edital.</p>
+  </div>
+  <div class="at-body" style="position:relative;min-height:580px">
+    <div class="panel" style="opacity:.55;pointer-events:none">
+      <div class="ph"><b>Processo P-2026-CIV-MAP-00622 · BCI vs J. Macia</b></div>
+      <div class="pb"><div class="t-meta">Detalhe do processo...</div></div>
+    </div>
+
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:660px">
+        <div class="hd"><div><b>Sentenciar à revelia · BCI vs J. Macia</b><div class="t-meta">Esta acção é uma sentença final. O réu pode opor-se em 15 dias.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner red"><span class="ic"></span><div>Sentença à revelia produz efeitos imediatos. O réu, devidamente citado, não compareceu nas três chamadas. Nos termos do <i>art. 484.º do Código de Processo Civil</i>, considerados confessados os factos articulados pelo autor.</div></div>
+
+          <div class="kv"><span class="k">Processo</span><span class="v mono">P-2026-CIV-MAP-00622</span></div>
+          <div class="kv"><span class="k">Autor</span><span class="v">BCI · Banco Comercial e de Investimentos, SA · NUIT 400 045 622</span></div>
+          <div class="kv"><span class="k">Réu</span><span class="v">João Macia · BI 110100099876</span></div>
+          <div class="kv"><span class="k">Causa de pedir</span><span class="v">Cobrança de dívida bancária · 482 400,00 MZN</span></div>
+          <div class="kv"><span class="k">Citações</span><span class="v">3 tentativas falhadas · domicílio · trabalho · edital</span></div>
+          <div class="kv"><span class="k"><b>Decisão proposta</b></span><span class="v">Procedência total · condenação no pagamento de 482 400 MZN + juros de mora</span></div>
+
+          <hr class="hr">
+
+          <div class="field">
+            <label>Fundamentação · ≥80 caracteres · cite artigos</label>
+            <textarea class="textarea">Réu citado pessoalmente em 14 Mar, com confirmação por aviso de recepção. Nao compareceu, nao constituiu mandatário, nao apresentou contestação. Nos termos do art. 484.º CPC, consideram-se confessados os factos articulados na petição inicial. Decisão fundamentada nos arts. 1.142.º (mútuo) e 805.º (juros de mora) do Código Civil.</textarea>
+            <span class="hint">328 / 80 caracteres mínimos · cita arts. 484.º CPC, 1.142.º CC, 805.º CC</span>
+          </div>
+
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Confirmo que o réu foi devidamente citado e não compareceu nas 3 chamadas legalmente exigidas.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Tomei conhecimento de que esta sentença será notificada ao réu por SMS + edital, com prazo de oposição de 15 dias.</label>
+
+          <div class="field">
+            <label>OTP do juiz (SMS)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="8" />
+              <input class="input mono" style="text-align:center;width:42px" value="1" />
+              <input class="input mono" style="text-align:center;width:42px" value="4" />
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="2" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Enviado para +258 84 ••• ••18 (Drª. M. Cuamba) às 11:38.</span>
+          </div>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Cancelar · marcar nova citação</button>
+          <button class="btn danger">Sentenciar à revelia · selar com brass</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Audiência</a><a class="btn secondary sm" href="#cena-7">Recurso →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · RECURSO =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F8 — Recurso para Tribunal Supremo</div>
+    <h2>Dossier electrónico · 14 peças · 84 MB · enviado em 4 segundos</h2>
+    <p>Cross-system: Tribunal Supremo recebe automaticamente. Cidadão é notificado.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel" style="margin-bottom:18px">
+      <div class="ph" style="padding:18px 20px">
+        <div>
+          <div class="t-overline">Recurso interposto</div>
+          <div class="t-h2 mono" style="margin-top:4px">R-2026-CIV-MAP-00128</div>
+          <div class="t-meta">Origem · P-2025-CIV-MAP-04218 · Construtores União vs Município KaMpfumu · sentenciado 14 Mar 2026 · recurso interposto pela ré 28 Mar</div>
+        </div>
+        <div class="row">
+          <button class="btn secondary">⤓ Dossier completo</button>
+          <button class="btn">Enviar ao Tribunal Supremo</button>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="grid g-4">
+          <div class="kpi"><div class="lbl">Tipo de recurso</div><div class="num" style="font-size:14px;font-family:var(--f-sans);font-weight:600">Apelação</div><div class="delta">art. 691.º CPC</div></div>
+          <div class="kpi"><div class="lbl">Peças no dossier</div><div class="num">14</div><div class="delta">+ áudio audiência</div></div>
+          <div class="kpi"><div class="lbl">Tamanho</div><div class="num" style="font-size:22px">84,2 MB</div><div class="delta">PDFs + WAV</div></div>
+          <div class="kpi"><div class="lbl">Prazo legal Supremo</div><div class="num" style="font-size:22px">90 dias</div><div class="delta">decisão até 26 Jun</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Cronologia · recurso</b></div>
+        <div class="bd">
+          <div class="timeline">
+            <div class="ev done"><div class="dot"></div><div class="body"><b>Sentença na 1.ª instância</b><div class="t-meta mono">14 Mar 2026 · Drª. M. Cuamba · TJ Maputo</div><p style="font-size:13px;margin:6px 0 0">Procedência total da acção · condenação do Município KaMpfumu no pagamento de 12 480 000 MZN.</p></div></div>
+            <div class="ev done"><div class="dot"></div><div class="body"><b>Recurso interposto pela ré</b><div class="t-meta mono">28 Mar 2026 · adv. C. Maússe (OAM 4218)</div><p style="font-size:13px;margin:6px 0 0">Município alega erro na avaliação da prova testemunhal e violação do art. 615.º CPC.</p></div></div>
+            <div class="ev done"><div class="dot"></div><div class="body"><b>Contra-alegações da autora</b><div class="t-meta mono">14 Abr 2026 · adv. L. Sumaila (OAM 2148)</div></div></div>
+            <div class="ev now"><div class="dot"></div><div class="body"><b>Dossier preparado · pronto a enviar</b><div class="t-meta mono">28 Abr 2026 · 14:42 · M. Cuamba</div></div></div>
+            <div class="ev"><div class="dot"></div><div class="body"><b>Recepção pelo Tribunal Supremo</b><div class="t-meta">após confirmação · automática</div></div></div>
+            <div class="ev"><div class="dot"></div><div class="body"><b>Decisão do Tribunal Supremo</b><div class="t-meta">prazo: 90 dias</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Peças do dossier · 14</b></div>
+          <div class="bd col">
+            <div class="row spread" style="font-size:12.5px"><span><b>#1</b> · Petição inicial · ${"P-2025-CIV-MAP-04218"}</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#2-6</b> · Documentos prova autora</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#7</b> · Contestação Município</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#8</b> · Acta audiência</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#8a</b> · Áudio audiência</span><a class="t-meta" href="#">WAV · 78 MB</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#9</b> · Sentença</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#10</b> · Recurso da ré</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#11</b> · Contra-alegações autora</span><a class="t-meta" href="#">PDF</a></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>#12-14</b> · Outras peças</span><a class="t-meta" href="#">PDF</a></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Notificações</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Pendente</span><span>Autora · L. Sumaila · SMS+e-mail</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Pendente</span><span>Ré · C. Maússe · SMS+e-mail</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Pendente</span><span>Cidadão · M. Cuamba (autora) · push app</span></div>
+            <p class="t-meta" style="margin:8px 0 0;font-size:11px">Disparadas após confirmação do envio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Revelia</a><a class="btn secondary sm" href="#cena-8">Estatísticas →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · ESTATÍSTICAS =================== -->
+<section><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F · Relatório trimestral · 1.º Tri 2026</div>
+    <h2>Auto-gerado · ranking provincial · publicado em dados.justica.gov.mz</h2>
+  </div>
+  <div class="at-body">
+    <div class="panel">
+      <div class="ph" style="padding:16px 20px">
+        <div>
+          <div class="t-overline">Relatório trimestral</div>
+          <div class="t-h2" style="margin-top:4px">1.º Tri 2026 · TJ Cidade de Maputo</div>
+          <div class="t-meta">Para: Tribunal Supremo · Conselho Superior da Magistratura</div>
+        </div>
+        <div class="row">
+          <button class="btn secondary">⤓ PDF</button>
+          <button class="btn">Submeter</button>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="grid g-4" style="margin-bottom:18px">
+          <div class="kpi"><div class="lbl">Processos entrados</div><div class="num" style="font-size:24px">1 484</div><div class="delta">+12% vs Q4 2025</div></div>
+          <div class="kpi"><div class="lbl">Processos sentenciados</div><div class="num" style="color:var(--good-700);font-size:24px">1 218</div><div class="delta">82% taxa de saída</div></div>
+          <div class="kpi"><div class="lbl">Pendentes (acumulado)</div><div class="num" style="color:var(--amber-700);font-size:24px">3 842</div><div class="delta">-7% vs Q4 2025</div></div>
+          <div class="kpi"><div class="lbl">Tempo médio</div><div class="num" style="font-size:24px">184</div><div class="delta">dias por processo</div></div>
+        </div>
+
+        <div class="twocol">
+          <div class="card">
+            <div class="hd"><b>Por espécie · 1.º Tri 2026</b></div>
+            <div class="bd">
+              <table class="table">
+                <thead><tr><th>Espécie</th><th>Entrados</th><th>Sentenciados</th><th>Tempo médio</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="case civel">Cível</span></td><td class="num">624</td><td class="num">512</td><td class="num">218 dias</td></tr>
+                  <tr><td><span class="case criminal">Criminal</span></td><td class="num">418</td><td class="num">348</td><td class="num">142 dias</td></tr>
+                  <tr><td><span class="case familia">Família</span></td><td class="num">218</td><td class="num">194</td><td class="num">98 dias</td></tr>
+                  <tr><td><span class="case laboral">Laboral</span></td><td class="num">142</td><td class="num">124</td><td class="num">156 dias</td></tr>
+                  <tr><td><span class="case comercial">Comercial</span></td><td class="num">82</td><td class="num">40</td><td class="num">312 dias</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Ranking nacional · tempo médio</b></div>
+            <div class="bd">
+              <table class="table">
+                <thead><tr><th>Tribunal</th><th>Tempo</th><th>Pendentes</th></tr></thead>
+                <tbody>
+                  <tr style="background:var(--slate-50)"><td><b>TJ Maputo Cidade</b></td><td class="num">184 dias</td><td class="num">3 842</td></tr>
+                  <tr><td>TJ Sofala</td><td class="num">218 dias</td><td class="num">2 184</td></tr>
+                  <tr><td>TJ Maputo Província</td><td class="num">242 dias</td><td class="num">2 488</td></tr>
+                  <tr><td>TJ Nampula</td><td class="num">282 dias</td><td class="num">2 842</td></tr>
+                  <tr><td>TJ Niassa</td><td class="num">418 dias</td><td class="num">488</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="t-overline" style="margin-bottom:8px">Comentário do Juiz Presidente</div>
+        <div class="field">
+          <textarea class="textarea" style="min-height:120px">Trimestre marcado por aumento de 12% nos processos entrados, atribuível a (1) maior literacia digital permitindo apresentar petições pelo Cidadão/Justiça (38% das entradas), (2) novo regime de citação por edital electrónico (reduziu tempo de citação de 28 para 11 dias). Tempo médio cai de 218 para 184 dias. Operação Encerrar Pendentes 2024 já fechou 482 processos com mais de 24 meses. Recomendo reforço de juízes comerciais — espécie com tempo médio mais alto.</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Recurso</a><a class="btn secondary sm" href="comunitario.html">Tribunal Comunitário →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Portal MJCR v0.3 · documento autoritativo: <a class="mono" href="DESIGN-portal-mjcr.md">DESIGN-portal-mjcr.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="comunitario.html" class="btn secondary sm">Tribunal Comunitário →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
