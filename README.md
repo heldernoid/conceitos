@@ -113,4 +113,4 @@ Contribuições são bem-vindas: crítica de desenho, novas ideias de projectos,
 
 ---
 
-Publicado sob [CC0 1.0 Universal](LICENSE) — domínio público, sem reservas de direitos.
+Publicado sob [CC0 1.0 Universal](LICENSE) - domínio público, sem reservas de direitos.

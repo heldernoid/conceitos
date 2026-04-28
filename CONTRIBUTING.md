@@ -4,7 +4,7 @@ Obrigado pelo interesse. Conceitos é um projecto aberto de imaginação cívica
 
 ## O que é este projecto
 
-Cada entrada no Conceitos é um conjunto de **mocks HTML clicáveis** acompanhado de **documentação de desenho** (`DESIGN-*.md`). Não é software em produção — é uma proposta visual para conversa com cidadãos, técnicos e decisores.
+Cada entrada no Conceitos é um conjunto de **mocks HTML clicáveis** acompanhado de **documentação de desenho** (`DESIGN-*.md`). Não é software em produção - é uma proposta visual para conversa com cidadãos, técnicos e decisores.
 
 A estrutura de cada projecto segue este padrão:
 
