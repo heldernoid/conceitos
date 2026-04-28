@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Empregador / Portal — Trabalho Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+
+  .sceneNav{position:sticky;top:64px;z-index:10;background:rgba(250,248,244,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .at-body{padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--orange-100);color:var(--orange-900);font-weight:600}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-family:var(--f-mono)}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTSS · INSS · IGT</span><span class="sep">·</span>
+  <span>Empregador / Portal v0.3</span>
+  <span style="margin-left:auto">DESIGN-empregador.md</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Empregador / Portal</span><small>Construtora MZ Lda · NUEL E-2014-MAP-001482</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="trabalhador.html">Trabalhador</a>
+    <a href="empregador.html" class="active">Empregador</a>
+    <a href="inss.html">INSS</a>
+    <a href="igt.html">IGT</a>
+    <a href="inefp.html">INEFP</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online · 84 trabalhadores</span>
+    <div class="idbadge"><span class="av sm">EM</span><div class="who"><b>Esmeralda Macuácua</b><span>RH · Construtora MZ Lda</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Painel</a>
+    <a href="#cena-2">2. Onboarding novo trabalhador</a>
+    <a href="#cena-3">3. Processar folha</a>
+    <a href="#cena-4">4. Declaração INSS</a>
+    <a href="#cena-5">5. Auto IGT recebido</a>
+    <a href="#cena-6">6. Rescisão · two-step</a>
+  </div>
+</nav>
+
+<!-- CENA 1 · PAINEL -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F2 — Painel · Construtora MZ Lda · 84 trabalhadores</div>
+    <h2>Folha de Abril a 8 dias · INSS pré-preenchido · 1 inspecção IGT marcada · risco médio</h2>
+    <p>Esmeralda abre o seu mês: o que fazer antes de 30 Abril, o que está em mora, o que vem em Maio.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Trabalhadores activos</div><div class="num">84</div><div class="delta">+2 este mês · 0 saídas</div></div>
+      <div class="kpi"><div class="lbl">Folha de Abril</div><div class="num" style="font-size:22px">1 482 400</div><div class="delta">MZN bruto · processar até 30 Abr</div></div>
+      <div class="kpi"><div class="lbl">INSS prazo</div><div class="num" style="color:var(--amber-700)">8 dias</div><div class="delta">Submeter até 10 Mai</div></div>
+      <div class="kpi"><div class="lbl">Risco IGT</div><div class="num" style="font-size:22px;color:var(--amber-700)">Médio</div><div class="delta">Construção · 1 obra activa</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Próximos prazos · Abril/Maio 2026</b><div class="row"><span class="seg"><button class="on">Hoje</button><button>Esta semana</button><button>Próximo mês</button></span></div></div>
+        <table class="table">
+          <thead><tr><th>Data</th><th>Acção</th><th>Estado</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--orange-50);cursor:pointer" onclick="location.hash='#cena-3'"><td class="mono">30 Abr</td><td><b>Processar folha de Abril</b><div class="t-meta">84 trabalhadores · 1 482 400 MZN bruto</div></td><td><span class="badge orange"><span class="dot"></span>Em rascunho</span></td><td><a href="#cena-3" class="btn sm">Processar →</a></td></tr>
+            <tr style="cursor:pointer" onclick="location.hash='#cena-4'"><td class="mono">10 Mai</td><td><b>Declaração INSS de Abril</b><div class="t-meta">7% sobre folha · ~103 768 MZN</div></td><td><span class="badge"><span class="dot"></span>Pré-preenchida</span></td><td><a href="#cena-4" class="btn sm secondary">Rever →</a></td></tr>
+            <tr><td class="mono">20 Mai</td><td><b>IRPS retido · entrega à AT</b><div class="t-meta">Cross-Finanças · ~124 800 MZN</div></td><td><span class="badge"><span class="dot"></span>Auto-calculado</span></td><td><a href="#" class="btn sm secondary">Rever</a></td></tr>
+            <tr style="background:#FCEFEC;cursor:pointer" onclick="location.hash='#cena-5'"><td class="mono">22 Mai</td><td><b>Resposta a auto IGT</b><div class="t-meta">AI-2026-MAP-04218 · obra Polana · 8 sem EPI</div></td><td><span class="badge red"><span class="dot"></span>14 dias para responder</span></td><td><a href="#cena-5" class="btn sm">Responder →</a></td></tr>
+            <tr><td class="mono">15 Jun</td><td>Inspecção IGT marcada</td><td><span class="badge amber"><span class="dot"></span>Programada</span></td><td><a href="#" class="btn sm secondary">Preparar</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Risk meter da empresa</b></div>
+          <div class="pb col">
+            <div class="risk med"><div class="level"><span></span><span></span><span></span></div><div><b>Risco médio</b><div class="t-meta">Construção · histórico 2 inspecções 2024 sem coima</div></div></div>
+            <hr class="hr">
+            <div class="t-overline">Factores</div>
+            <div class="col" style="gap:6px;font-size:12.5px;margin-top:6px">
+              <div class="row spread"><span>Mora INSS</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Em dia</span></div>
+              <div class="row spread"><span>Trabalhadores não declarados</span><span class="badge green" style="font-size:10px"><span class="dot"></span>0</span></div>
+              <div class="row spread"><span>EPI · obra Polana</span><span class="badge red" style="font-size:10px"><span class="dot"></span>Auto pendente</span></div>
+              <div class="row spread"><span>Acidentes Q1</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>1 leve</span></div>
+              <div class="row spread"><span>Queixas anónimas</span><span class="badge green" style="font-size:10px"><span class="dot"></span>0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Cross-system · alertas</b></div>
+          <div class="pb col">
+            <div class="banner orange" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>2 novos trabalhadores · sem contracto registado.</b> Lei 23/2007 art. 41 obriga registo em 15 dias. <a href="#cena-2">Lavrar →</a></div></div>
+            <div class="banner amber" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>4 trabalhadores podem candidatar-se ao Jovem-Trabalhador.</b> Cross-INEFP · subsídio 30% do salário 6 meses.</div></div>
+            <div class="banner green" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>NUIT da empresa actualizado pela AT.</b> Cross-Finanças · sem acção necessária.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">RBAC · esta vista é da função RH. Contabilista vê só Folha + INSS + IRPS.</span><a class="btn secondary sm" href="#cena-2">Onboarding novo →</a></div></div>
+</section>
+
+<!-- CENA 2 · ONBOARDING -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F3 — Onboarding novo trabalhador · cross-eBI · cross-INSS</div>
+    <h2>Carlos Mahique · pedreiro 2.ª classe · 16 000 MZN/mês · contracto sem termo</h2>
+    <p>BI verificado. NUSS atribuído. Contracto serifado lavrado. Trabalhador notificado.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel" style="margin-bottom:18px">
+      <div class="ph"><b>Onboarding · novo trabalhador</b><div class="stepper" style="margin:0"><div class="step done"><div class="n">1</div>Identidade</div><div class="ln"></div><div class="step done"><div class="n">2</div>Cargo · salário</div><div class="ln"></div><div class="step active"><div class="n">3</div>Contracto</div><div class="ln"></div><div class="step"><div class="n">4</div>Notificar</div></div></div>
+      <div class="pb">
+        <div class="grid g-2" style="gap:24px">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">1. Identidade · cross-eBI</div>
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:14px">
+                <span class="av lg">CM</span>
+                <div>
+                  <div style="font-size:16px;font-weight:600">Carlos Mahique Tembe</div>
+                  <div class="t-meta">BI 110100884291 · 28 anos · Bairro Maxaquene</div>
+                </div>
+              </div>
+              <hr class="hr">
+              <div class="banner green" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>Identidade verificada via eBI.</b> Foto + morada + estado civil correspondem.</div></div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">NUSS</div>
+              <div class="banner orange" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>Não tem NUSS no INSS.</b> Sistema vai inscrever automaticamente após assinatura do contracto. NUSS oficial em 24h.</div></div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Cross-system</div>
+              <div class="col" style="gap:6px;font-size:12.5px">
+                <div class="row spread"><span>BI · eBI Governo</span><span class="badge green" style="font-size:10px"><span class="dot"></span>✓</span></div>
+                <div class="row spread"><span>NUIT · Finanças (1.º emprego)</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Pedido</span></div>
+                <div class="row spread"><span>NUS · Saúde</span><span class="badge green" style="font-size:10px"><span class="dot"></span>8-2918471-2</span></div>
+                <div class="row spread"><span>Antecedentes laborais</span><span class="badge" style="font-size:10px"><span class="dot"></span>1.º emprego formal</span></div>
+              </div>
+            </div></div>
+
+            <div class="card" style="margin-top:14px"><div class="bd">
+              <div class="t-overline">2. Cargo · salário</div>
+              <div class="grid g-2" style="gap:10px;margin-top:8px">
+                <div class="kv"><span class="k">Cargo</span><span class="v">Pedreiro · 2.ª classe</span></div>
+                <div class="kv"><span class="k">Sector</span><span class="v"><span class="sec construcao">Construção</span></span></div>
+                <div class="kv"><span class="k">Local</span><span class="v">Obra Polana · Maputo</span></div>
+                <div class="kv"><span class="k">Horário</span><span class="v">40h/sem · Seg-Sex 07-16h</span></div>
+                <div class="kv"><span class="k">Salário base</span><span class="v mzn" style="font-size:18px">16 000 <small>MZN</small></span></div>
+                <div class="kv"><span class="k">Subsídios</span><span class="v">Risco 5% · transporte 0</span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">3. Contracto · pré-visualização</div>
+            <div class="auto">
+              <div class="hd">
+                <div class="ti" style="font-family:var(--f-serif);font-size:14px">Contracto Individual de Trabalho</div>
+                <div class="t-meta" style="margin-top:4px">CT-2026-MAP-018421 · sem termo</div>
+              </div>
+              <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7;padding:18px 22px">
+                <p style="margin:0 0 12px"><b>Entre:</b> <b>Construtora MZ, Lda</b>, NUEL E-2014-MAP-001482, NUIT 400 184 218, sede em Maputo, Av. 25 de Setembro 1248, representada por Eng. F. Sumbane.</p>
+                <p style="margin:0 0 12px"><b>E:</b> <b>Carlos Mahique Tembe</b>, BI 110100884291, residente em Maputo, Bairro Maxaquene.</p>
+                <p style="margin:0 0 12px"><b>1.</b> O segundo outorgante é admitido como <b>Pedreiro de 2.ª classe</b>, sector Construção.</p>
+                <p style="margin:0 0 12px"><b>2.</b> Salário base: <b>16 000,00 MZN/mês</b>, acrescido de subsídio de risco de 5% (800,00 MZN). Pago até dia 30 de cada mês.</p>
+                <p style="margin:0 0 12px"><b>3.</b> Horário: 40 horas/semana · Segunda a Sexta · 07h00-16h00 · com 1 hora de pausa.</p>
+                <p style="margin:0 0 12px"><b>4.</b> Tipo: <b>sem termo</b>. Início 5 de Maio de 2026.</p>
+                <p style="margin:0 0 12px"><b>5.</b> Período experimental: 90 dias (Lei 23/2007 art. 47).</p>
+                <p style="margin:0">Reger-se-á pela Lei do Trabalho 23/2007 e regulamentos aplicáveis.</p>
+              </div>
+              <div class="ft" style="display:flex;justify-content:space-between;align-items:center">
+                <div style="font-size:11px"><b>Empregador:</b> Eng. F. Sumbane<br/><b>Trabalhador:</b> Carlos Mahique<br/><span class="t-meta">A aguardar assinatura</span></div>
+                <span class="seal" style="font-size:10px">A AGUARDAR SELO</span>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:14px"><div class="bd">
+              <div class="t-overline">Após assinatura</div>
+              <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                <div class="row spread"><span>1. Contracto selado e arquivado</span><span class="t-meta">Cross-MTSS</span></div>
+                <div class="row spread"><span>2. NUSS atribuído (provisório → oficial em 24h)</span><span class="t-meta">Cross-INSS</span></div>
+                <div class="row spread"><span>3. Notificação ao trabalhador</span><span class="t-meta">Trabalhador app</span></div>
+                <div class="row spread"><span>4. Adicionado à folha de Maio</span><span class="t-meta">Auto</span></div>
+                <div class="row spread"><span>5. Inscrito na declaração INSS de Maio</span><span class="t-meta">Auto</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+        <button class="btn ghost">Gravar como rascunho</button>
+        <div class="row"><button class="btn secondary">Pré-visualizar</button><button class="btn">Enviar para assinatura · trabalhador</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Painel</a><a class="btn secondary sm" href="#cena-3">Processar folha →</a></div></div>
+</section>
+
+<!-- CENA 3 · FOLHA -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F4 — Processar folha · Abril 2026 · 84 trabalhadores</div>
+    <h2>Tabela editável · cálculo automático · payslips gerados · pagamento em massa</h2>
+    <p>Bruto → INSS 3% → IRPS retido → líquido. Tudo numa folha. Recibos individuais auto-gerados.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel">
+      <div class="ph" style="padding:14px 16px"><b>Folha · Abril 2026 · 84 trabalhadores</b><div class="row"><span class="seg"><button class="on">Por trabalhador</button><button>Resumo</button><button>Por sector</button></span><button class="btn sm secondary">⤓ CSV</button><button class="btn sm">Submeter folha · todos</button></div></div>
+      <table class="table">
+        <thead><tr><th>NUSS</th><th>Trabalhador</th><th>Cargo</th><th>Dias</th><th>Salário base</th><th>H. extra</th><th>Bruto</th><th>INSS 3%</th><th>IRPS</th><th>Líquido</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">12-4218925-3</td><td><b>Manuel Sitole</b></td><td>Pedreiro 3.ª</td><td class="num">22</td><td class="num">18 000,00</td><td class="num">2 184,00</td><td class="num"><b>20 984,00</b></td><td class="num" style="color:var(--red-700)">−630,00</td><td class="num" style="color:var(--red-700)">−1 412,00</td><td class="num"><b style="color:var(--good-700)">18 942,00</b></td></tr>
+          <tr><td class="mono">12-4218484-1</td><td><b>António Mahique</b></td><td>Pedreiro 1.ª</td><td class="num">22</td><td class="num">22 000,00</td><td class="num">0,00</td><td class="num"><b>22 000,00</b></td><td class="num" style="color:var(--red-700)">−660,00</td><td class="num" style="color:var(--red-700)">−1 580,00</td><td class="num"><b style="color:var(--good-700)">19 760,00</b></td></tr>
+          <tr><td class="mono">12-4218491-8</td><td><b>Júlia Sumane</b></td><td>Encarregada obra</td><td class="num">22</td><td class="num">38 000,00</td><td class="num">3 600,00</td><td class="num"><b>41 600,00</b></td><td class="num" style="color:var(--red-700)">−1 248,00</td><td class="num" style="color:var(--red-700)">−4 240,00</td><td class="num"><b style="color:var(--good-700)">36 112,00</b></td></tr>
+          <tr><td class="mono">12-4218502-2</td><td><b>José Macuácua</b></td><td>Soldador 2.ª</td><td class="num">22</td><td class="num">24 000,00</td><td class="num">1 800,00</td><td class="num"><b>25 800,00</b></td><td class="num" style="color:var(--red-700)">−774,00</td><td class="num" style="color:var(--red-700)">−2 122,00</td><td class="num"><b style="color:var(--good-700)">22 904,00</b></td></tr>
+          <tr style="background:#FCEFEC"><td class="mono">12-4218581-4</td><td><b>Beatriz Cossa</b></td><td>Servente</td><td class="num">14</td><td class="num">8 200,00</td><td class="num">0,00</td><td class="num"><b>8 200,00</b></td><td class="num" style="color:var(--red-700)">−246,00</td><td class="num" style="color:var(--ink-3)">0</td><td class="num"><b style="color:var(--good-700)">7 954,00</b></td></tr>
+          <tr><td class="mono" colspan="3" style="color:var(--ink-3)"><i>… 79 trabalhadores adicionais</i></td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr style="background:var(--orange-50);font-weight:600"><td colspan="6">Total · 84 trabalhadores</td><td class="num">1 482 400,00</td><td class="num" style="color:var(--red-700)">−44 472,00</td><td class="num" style="color:var(--red-700)">−63 510,00</td><td class="num" style="color:var(--good-700)">1 374 418,00</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g-3" style="gap:18px;margin-top:18px">
+      <div class="panel">
+        <div class="ph"><b>Resumo da folha</b></div>
+        <div class="pb col" style="font-size:13px">
+          <div class="row spread"><span>Trabalhadores</span><span class="mono"><b>84</b></span></div>
+          <div class="row spread"><span>Total bruto</span><span class="mono">1 482 400 MZN</span></div>
+          <div class="row spread" style="color:var(--red-700)"><span>− INSS trabalhador (3%)</span><span class="mono">−44 472</span></div>
+          <div class="row spread" style="color:var(--red-700)"><span>− IRPS retido</span><span class="mono">−63 510</span></div>
+          <hr class="hr">
+          <div class="row spread"><b>Líquido (a pagar)</b><span class="mzn" style="font-size:18px;color:var(--good-700)">1 374 418</span></div>
+          <hr class="hr">
+          <div class="row spread"><span>+ INSS empresa (4%)</span><span class="mono">+59 296</span></div>
+          <div class="row spread"><span>= Custo total para empresa</span><span class="mzn">1 541 696 MZN</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Cross-system · após submeter</b></div>
+        <div class="pb col" style="font-size:12.5px">
+          <div class="row spread"><span><b>Cross-Trabalhador app</b></span><span class="badge green" style="font-size:10px"><span class="dot"></span>84 recibos</span></div>
+          <p style="font-size:11px;color:var(--ink-3);margin:0">Cada trabalhador recebe payslip detalhado na app.</p>
+          <hr class="hr">
+          <div class="row spread"><span><b>Cross-INSS</b></span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Pré-preenche declaração</span></div>
+          <p style="font-size:11px;color:var(--ink-3);margin:0">Declaração INSS de Abril fica pronta a submeter.</p>
+          <hr class="hr">
+          <div class="row spread"><span><b>Cross-Finanças · IRPS retido</b></span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Auto-calculado</span></div>
+          <p style="font-size:11px;color:var(--ink-3);margin:0">63 510 MZN entregue até 20 Mai · SISTAFE.</p>
+          <hr class="hr">
+          <div class="row spread"><span><b>Pagamento aos trabalhadores</b></span><span class="badge" style="font-size:10px">Não submetido</span></div>
+          <p style="font-size:11px;color:var(--ink-3);margin:0">M-Pesa institucional · transferência · cheque.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Por sector · Construtora MZ</b></div>
+        <div class="pb col" style="font-size:12px">
+          <div class="row spread"><span class="sec construcao">Construção</span><span class="mono">62 trab · 1 084 MZN k</span></div>
+          <div class="row spread"><span class="sec industria">Indústria · ferro</span><span class="mono">14 trab · 248 MZN k</span></div>
+          <div class="row spread"><span class="sec servicos">Serviços · admin</span><span class="mono">8 trab · 150 MZN k</span></div>
+          <hr class="hr">
+          <div class="t-overline">Distribuição salarial</div>
+          <div style="margin-top:8px">
+            <div class="row spread" style="font-size:11px"><span>< 10 000 MZN</span><span class="mono">14 (17%)</span></div>
+            <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:17%;background:var(--ink-4)"></div></div>
+            <div class="row spread" style="font-size:11px"><span>10 000 - 20 000</span><span class="mono">42 (50%)</span></div>
+            <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:50%"></div></div>
+            <div class="row spread" style="font-size:11px"><span>20 000 - 40 000</span><span class="mono">22 (26%)</span></div>
+            <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:26%;background:var(--orange-500)"></div></div>
+            <div class="row spread" style="font-size:11px"><span>> 40 000 MZN</span><span class="mono">6 (7%)</span></div>
+            <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:7%;background:var(--orange-700)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Onboarding</a><a class="btn secondary sm" href="#cena-4">Declaração INSS →</a></div></div>
+</section>
+
+<!-- CENA 4 · INSS DECLARAÇÃO -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F5 — Declaração INSS · Abril 2026 · pré-preenchida</div>
+    <h2>103 768 MZN total · pago via SISTAFE em 1 clique · cross-Finanças</h2>
+    <p>Pré-preenchida pela folha. Submeter à INSS. Gera guia para SISTAFE. Confirmação automática.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Declaração INSS · Abril 2026</b><span class="badge orange"><span class="dot"></span>Pré-preenchida</span></div>
+        <div class="pb">
+          <div class="banner green" style="margin-bottom:14px"><span class="ic"></span><div><b>Declaração pré-preenchida pela folha de Abril.</b> Verifica e submete · ou edita se houver correcções.</div></div>
+
+          <div class="grid g-2" style="gap:14px">
+            <div class="kv"><span class="k">Empresa</span><span class="v">Construtora MZ, Lda</span><span class="t-meta mono">NUEL E-2014-MAP-001482</span></div>
+            <div class="kv"><span class="k">NUIT</span><span class="v mono">400 184 218</span></div>
+            <div class="kv"><span class="k">Período</span><span class="v">Abril 2026</span></div>
+            <div class="kv"><span class="k">Trabalhadores</span><span class="v">84 · todos com NUSS</span></div>
+            <div class="kv"><span class="k">Folha total bruta</span><span class="v mzn">1 482 400</span></div>
+            <div class="kv"><span class="k">Prazo legal</span><span class="v">10 Mai 2026 (8 dias)</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Cálculo · 7% sobre folha bruta</div>
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:14px;font-family:var(--f-mono);font-size:13px">
+            <div class="row spread" style="padding:6px 0"><span>Folha bruta de Abril</span><span><b>1 482 400,00</b></span></div>
+            <div class="row spread" style="padding:6px 0;border-top:1px solid var(--line-2)"><span>× 3% (descontado dos trabalhadores)</span><span class="mono" style="color:var(--orange-700)">44 472,00</span></div>
+            <div class="row spread" style="padding:6px 0"><span>× 4% (encargo da empresa)</span><span class="mono" style="color:var(--orange-700)">59 296,00</span></div>
+            <hr class="hr">
+            <div class="row spread" style="padding:6px 0;font-weight:600;font-size:14px"><span>Total a entregar à INSS</span><span style="color:var(--good-700)">103 768,00 MZN</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Discrepâncias detectadas</div>
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12.5px"><b>Sem discrepâncias.</b> Todos os 84 trabalhadores têm NUSS válido. Folha cruza com inscrições INSS.</div></div>
+        </div>
+
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Gravar rascunho</button>
+          <div class="row"><button class="btn secondary">Editar declaração</button><button class="btn">Submeter · gerar guia SISTAFE</button></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Histórico INSS · 12 meses</b></div>
+          <div class="pb">
+            <table class="table" style="font-size:12px">
+              <thead><tr><th>Mês</th><th>Folha</th><th>INSS</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr style="background:var(--orange-50)"><td><b>Abril 2026</b></td><td class="num">1 482 k</td><td class="num">103 768</td><td><span class="badge orange" style="font-size:10px"><span class="dot"></span>Em rascunho</span></td></tr>
+                <tr><td>Março</td><td class="num">1 468 k</td><td class="num">102 760</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+                <tr><td>Fevereiro</td><td class="num">1 452 k</td><td class="num">101 640</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+                <tr><td>Janeiro</td><td class="num">1 580 k</td><td class="num">110 600</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago + 13.º</span></td></tr>
+                <tr><td>Dezembro</td><td class="num">1 458 k</td><td class="num">102 060</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+              </tbody>
+            </table>
+            <p class="t-meta" style="font-size:11px;text-align:center;margin-top:8px">Total INSS YTD 2026: <b class="mono">418 768 MZN</b></p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Cross-Finanças · SISTAFE</b></div>
+          <div class="pb col">
+            <div class="banner orange" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>Após submeter a declaração:</b> guia de pagamento gerada automaticamente · pagar via SISTAFE com NUIT 400 184 218.</div></div>
+            <hr class="hr">
+            <div class="t-overline">Métodos de pagamento</div>
+            <div class="col" style="gap:6px;margin-top:6px;font-size:12.5px">
+              <label class="row" style="gap:8px"><input type="radio" name="pm" checked /> M-Pesa institucional</label>
+              <label class="row" style="gap:8px"><input type="radio" name="pm" /> Transferência bancária</label>
+              <label class="row" style="gap:8px"><input type="radio" name="pm" /> Cheque BCI · pagar no balcão</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Folha</a><a class="btn secondary sm" href="#cena-5">Auto IGT →</a></div></div>
+</section>
+
+<!-- CENA 5 · IGT AUTO -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Auto IGT recebido · 14 dias para responder</div>
+    <h2>Obra Polana · 8 trabalhadores sem EPI · auto AI-2026-MAP-04218</h2>
+    <p>Empresa pode regularizar (coima evitada), contestar, ou aceitar coima.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="banner red" style="margin-bottom:18px"><span class="ic"></span><div><b>Auto de notícia recebido em 14 Abr.</b> Tens até 28 Abr para responder. Após esse prazo, IGT pode aplicar coima por incumprimento.</div></div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Auto AI-2026-MAP-04218</b><span class="badge red"><span class="dot"></span>14 dias</span></div>
+        <div class="pb">
+          <div class="auto">
+            <div class="hd" style="position:relative;padding-top:24px">
+              <div class="hivis" style="position:absolute;top:0;left:0;right:0"></div>
+              <div class="ti" style="font-family:var(--f-serif);font-size:14px">Auto de Notícia · IGT</div>
+              <div class="t-meta" style="margin-top:4px">AI-2026-MAP-04218 · lavrado 14 Abr 2026 · 11:24</div>
+            </div>
+            <div class="bd" style="font-family:var(--f-serif);font-size:13px;line-height:1.7;padding:18px 22px">
+              <p style="margin:0 0 12px">Aos catorze dias do mês de Abril de dois mil e vinte e seis, na obra <b>"Edifício Comercial Polana"</b> da Construtora MZ, Lda (NUEL E-2014-MAP-001482), sita na Av. Vladimir Lenine n.º 482, Cidade de Maputo, foi efectuada visita inspectiva ao abrigo da Lei 23/2007 e do Decreto 51/2017.</p>
+              <p style="margin:0 0 12px">Foi constatado que <b>8 dos 14 trabalhadores</b> presentes em obra realizavam tarefas em altura (≥ 2m) <b>sem equipamento de protecção individual (EPI) adequado</b> — nomeadamente capacete, arnês de segurança e calçado de bico-de-aço.</p>
+              <p style="margin:0 0 12px">Esta constatação configura <b>infracção muito grave</b> nos termos do art. 219 da Lei 23/2007, conjugado com o art. 7 do Decreto 51/2017, sujeita a coima de 50 a 100 salários mínimos nacionais.</p>
+              <p style="margin:0">Concede-se à entidade empregadora o prazo de <b>14 dias</b> para resposta, regularização ou contestação.</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between"><span style="font-size:11px"><b>Insp.</b> Carlos Mendonça · IGT Maputo<br/>Cédula 4218 · 14/04/2026 · 11:24</span><span class="seal safety">Hi-vis · IGT</span></div>
+          </div>
+
+          <div class="row" style="gap:6px;margin-top:14px">
+            <button class="btn secondary sm">⤓ PDF auto completo</button>
+            <button class="btn secondary sm">📷 Ver fotografias (8)</button>
+            <button class="btn secondary sm">📍 Ver localização</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>3 caminhos possíveis</b></div>
+          <div class="pb col">
+            <div class="card" style="border:1px solid var(--good-700);background:var(--good-100)"><div class="bd">
+              <div class="row spread"><h4 style="color:var(--good-700)">1. Regularizar</h4><span class="badge green" style="font-size:10px">Sem coima</span></div>
+              <p style="font-size:12px;margin:6px 0 0">Comprar EPI (~84 000 MZN), formar trabalhadores em segurança, evidenciar à IGT em 14 dias. <b>Coima evitada.</b></p>
+              <button class="btn success block sm" style="margin-top:10px">Plano de regularização</button>
+            </div></div>
+
+            <div class="card"><div class="bd">
+              <div class="row spread"><h4>2. Aceitar coima</h4><span class="badge amber" style="font-size:10px">~ 1 282 000 MZN</span></div>
+              <p style="font-size:12px;margin:6px 0 0">50-100 SMN. Salário mínimo 2026: 5 130 MZN. Pagar via SISTAFE em 30 dias. Não evita necessidade de regularização.</p>
+              <button class="btn secondary block sm" style="margin-top:10px">Aceitar coima · pagar</button>
+            </div></div>
+
+            <div class="card"><div class="bd">
+              <div class="row spread"><h4>3. Contestar</h4><span class="badge" style="font-size:10px">Recurso</span></div>
+              <p style="font-size:12px;margin:6px 0 0">Recurso administrativo ao Director da IGT em 14 dias. Suspende prazo de coima até decisão. Pode escalar a tribunal laboral.</p>
+              <button class="btn ghost block sm" style="margin-top:10px">Apresentar contestação</button>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Recomendação do sistema</b></div>
+          <div class="pb">
+            <div class="banner green" style="padding:10px;font-size:12.5px"><span class="ic"></span><div><b>Recomendamos regularizar.</b> Custo do EPI (~84k) é muito menor que coima mínima (~256k @ 50 SMN). Evidência fotográfica e formação OIT-recomendada satisfazem IGT.</div></div>
+            <hr class="hr">
+            <div class="t-overline">Risco de coima por sector</div>
+            <p style="font-size:11.5px;color:var(--ink-3);margin-top:6px">Construção · 2026: <b>62%</b> dos autos por EPI resultam em coima quando não há regularização em 14 dias.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← INSS</a><a class="btn secondary sm" href="#cena-6">Rescisão →</a></div></div>
+</section>
+
+<!-- CENA 6 · RESCISÃO -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F7 — Rescisão · two-step · José Macuácua</div>
+    <h2>Soldador · 4 anos · justa causa por faltas injustificadas · cálculo automático de créditos</h2>
+    <p>Two-step + OTP + justificação ≥100 chars. Cross-IGT. Notificação ao trabalhador.</p>
+  </div>
+  <div class="at-body" style="position:relative;min-height:580px">
+    <div class="panel" style="opacity:.55;pointer-events:none">
+      <div class="ph"><b>Detalhe do trabalhador · José Macuácua · NUSS 12-4218502-2</b></div>
+      <div class="pb"><div class="t-meta">Soldador 2.ª classe · 4 anos · 5 faltas injustificadas em Q1...</div></div>
+    </div>
+
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:680px">
+        <div class="hd"><div><b>Rescindir contracto · José Macuácua</b><div class="t-meta">Acto irreversível. Trabalhador tem direito a impugnar.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner red"><span class="ic"></span><div>Rescisão por justa causa: deve ter procedimento disciplinar, com prova das faltas. Trabalhador pode impugnar à IGT em 30 dias. Se IGT considerar injusta, indemnização pode aplicar-se.</div></div>
+
+          <div class="kv"><span class="k">Trabalhador</span><span class="v">José Macuácua · NUSS 12-4218502-2</span></div>
+          <div class="kv"><span class="k">Cargo</span><span class="v">Soldador · 2.ª classe · 24 000 MZN/mês</span></div>
+          <div class="kv"><span class="k">Antiguidade</span><span class="v">4 anos · desde 14 Mar 2022</span></div>
+          <div class="kv"><span class="k">Causa</span><span class="v">Justa causa · faltas injustificadas (5 em Q1)</span></div>
+
+          <hr class="hr">
+
+          <div class="field">
+            <label>Causa específica</label>
+            <select class="input"><option>Justa causa · faltas injustificadas (Lei 23/2007 art. 71 al. b)</option></select>
+          </div>
+
+          <div class="field">
+            <label>Justificação · ≥100 caracteres</label>
+            <textarea class="textarea">5 faltas injustificadas em Q1 2026 (08 Jan, 14 Fev, 22 Fev, 18 Mar, 28 Mar). Procedimento disciplinar iniciado em 02 Abr com audiência prévia em 14 Abr (ata anexa). Trabalhador foi advertido por escrito em 22 Fev. Faltas continuaram. Lei 23/2007 art. 71 al. b configura justa causa.</textarea>
+            <span class="hint">348 / 100 caracteres mínimos</span>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Cálculo de créditos do trabalhador</div>
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:12px;font-family:var(--f-mono);font-size:12px">
+            <div class="row spread"><span>Salário do mês corrente</span><span>22 000,00</span></div>
+            <div class="row spread"><span>+ Férias proporcionais (4 meses)</span><span class="add" style="color:var(--good-700)">+8 000,00</span></div>
+            <div class="row spread"><span>+ 13.º proporcional (4 meses)</span><span class="add" style="color:var(--good-700)">+8 000,00</span></div>
+            <div class="row spread"><span>+ Subsídio de férias proporcional</span><span class="add" style="color:var(--good-700)">+2 000,00</span></div>
+            <div class="row spread" style="color:var(--ink-3)"><span>− Indemnização (não aplicável · justa causa)</span><span>0,00</span></div>
+            <hr class="hr">
+            <div class="row spread" style="font-weight:600"><span>Total a pagar a J. Macuácua</span><span style="color:var(--good-700)">40 000,00 MZN</span></div>
+          </div>
+
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Tomei conhecimento de que o trabalhador pode impugnar à IGT em 30 dias.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Notificarei o trabalhador formalmente (cross-Trabalhador app + carta registada).</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Cross-IGT será notificada (justa causa exige).</label>
+
+          <div class="field">
+            <label>OTP do gerente (SMS)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="1" />
+              <input class="input mono" style="text-align:center;width:42px" value="4" />
+              <input class="input mono" style="text-align:center;width:42px" value="2" />
+              <input class="input mono" style="text-align:center;width:42px" value="8" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Enviado para Eng. F. Sumbane · gerente · +258 84 ••• ••42</span>
+          </div>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Cancelar</button>
+          <button class="btn danger">Rescindir contracto · acto irreversível</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Auto IGT</a><a class="btn secondary sm" href="inss.html">INSS · admin →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Empregador / Portal v0.3 · documento autoritativo: <a class="mono" href="DESIGN-empregador.md">DESIGN-empregador.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="inss.html" class="btn secondary sm">INSS · admin →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

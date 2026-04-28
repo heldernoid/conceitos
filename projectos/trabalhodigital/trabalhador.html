@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Trabalhador / App — Trabalho Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .phone-grid{display:grid;grid-template-columns:repeat(2,360px);gap:32px;justify-content:center;padding:24px 0}
+  .phone-grid.three{grid-template-columns:repeat(3,360px)}
+  .phone-cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:center;margin-top:10px;text-transform:uppercase;letter-spacing:.06em}
+  .sceneNav{position:sticky;top:64px;z-index:10;background:rgba(250,248,244,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1280px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1280px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:8px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+
+  .ph-head{padding:14px 16px;background:#fff;border-bottom:1px solid var(--line)}
+  .ph-head .br{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+  .ph-head .br .mk{width:18px;height:18px;background:var(--orange-600);border-radius:1px;position:relative;overflow:hidden}
+  .ph-head .br .mk::before{content:"";position:absolute;left:2px;right:2px;top:4px;height:7px;border:1.5px solid #fff;border-radius:7px 7px 1px 1px;border-bottom:0}
+  .ph-head .br .mk::after{content:"";position:absolute;left:1px;right:1px;bottom:4px;height:1.5px;background:#fff}
+  .ph-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+  .ph-body .sect-h{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:600;margin:6px 0 -4px}
+  .mc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px}
+  .mc h4{font-size:14px;font-weight:600;margin:0 0 4px}
+  .mc p{font-size:12.5px;color:var(--ink-3);margin:0;line-height:1.45}
+  .quick{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .quick a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;background:#fff;border:1px solid var(--line);border-radius:6px;color:var(--ink);text-decoration:none;font-size:11.5px;font-weight:500;text-align:center;line-height:1.3}
+  .quick a .ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .toggle-l{display:inline-flex;background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:2px;font-size:10px}
+  .toggle-l span{padding:3px 6px;border-radius:2px;font-weight:500}
+  .toggle-l span.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTSS · INSS · IGT · INEFP · DTD</span><span class="sep">·</span>
+  <span>Trabalhador / App v0.3</span>
+  <span style="margin-left:auto">DESIGN-trabalhador.md</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Trabalhador / App</span><small>PWA · 5 línguas</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="trabalhador.html" class="active">Trabalhador</a>
+    <a href="empregador.html">Empregador</a>
+    <a href="inss.html">INSS</a>
+    <a href="igt.html">IGT</a>
+    <a href="inefp.html">INEFP</a>
+  </nav>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Hoje</a>
+    <a href="#cena-3">3. Salário</a>
+    <a href="#cena-4">4. INSS em mora</a>
+    <a href="#cena-5">5. Subsídio doença</a>
+    <a href="#cena-6">6. Direitos · contracto</a>
+    <a href="#cena-7">7. Curso INEFP</a>
+  </div>
+</nav>
+
+<!-- CENA 1 · ONBOARDING -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F2 — Onboarding · trabalhador sem NUSS</div>
+    <h2>Manuel é pedreiro · primeiro emprego formal · sistema atribui NUSS automaticamente</h2>
+    <p>Cross-eBI verifica BI. Sistema detecta sem NUSS e propõe inscrição imediata.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:42</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div style="background:linear-gradient(180deg,var(--orange-900) 0%,var(--orange-700) 100%);color:#fff;padding:32px 22px;flex:1;display:flex;flex-direction:column;justify-content:space-between">
+          <div class="brand" style="color:#fff"><span class="mark" style="background:#fff"></span><span class="stack"><span style="color:#fff">Trabalho Digital</span><small style="color:#f5d6b8">App do Trabalhador</small></span></div>
+          <div>
+            <div style="font-size:28px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin-bottom:14px">O teu trabalho,<br/>contado por ti.</div>
+            <p style="font-size:13px;color:#f5d6b8;line-height:1.55;margin:0 0 24px">Contracto, salário, INSS, formação, denúncias à IGT.</p>
+            <div class="row" style="gap:8px;margin-bottom:14px">
+              <button class="btn lg" style="flex:1;background:#fff;color:var(--orange-900)">Tenho NUSS</button>
+              <button class="btn secondary lg" style="flex:1;background:transparent;color:#fff;border-color:rgba(255,255,255,.3)">Não tenho NUSS</button>
+            </div>
+            <div class="row spread"><span style="font-size:11px;color:#f5d6b8">Sem internet? <b class="mono">*146#</b></span><span class="toggle-l" style="background:rgba(255,255,255,.1);border:0"><span class="on" style="color:#fff;background:rgba(255,255,255,.18)">PT</span><span style="color:#f5d6b8">Sena</span></span></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">1A · Splash</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:43</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Verificar identidade</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 2 de 4</div>
+          <div class="t-h2" style="margin:4px 0">Identifica-te com o BI</div>
+          <p class="t-meta">Cruzamos com o eBI do Governo Digital.</p>
+          <div class="field"><label>BI · 12 dígitos</label><input class="input lg mono" value="110100442918" /></div>
+          <div class="field"><label>Nome (verificado)</label><input class="input lg" value="Manuel Sitole Cossa" disabled style="background:var(--bg-2);color:var(--ink)" /></div>
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Identidade verificada via eBI.</b><br/>Manuel Sitole Cossa · 32 anos · Bairro Inhagoia, Maputo.</div></div>
+          <hr class="hr">
+          <div class="banner orange" style="padding:10px"><span class="ic"></span><div style="font-size:12.5px"><b>Não tens NUSS no INSS.</b><br/>Inscrição grátis · 24h · dá direito a subsídios e pensão.</div></div>
+          <button class="btn lg block">Continuar · inscrever no INSS</button>
+          <p class="t-meta" style="font-size:11px;text-align:center">Sem custo · Lei 4/2007</p>
+        </div>
+      </div></div>
+      <div class="phone-cap">1B · Cross-eBI</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:44</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Sobre o teu trabalho</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 4 de 4</div>
+          <div class="t-h3" style="margin:4px 0 14px">3 perguntas rápidas</div>
+          <div class="mc">
+            <h4>1. Em que sector trabalhas?</h4>
+            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px">
+              <span class="sec construcao">Construção</span><span class="sec mineracao">Mineração</span><span class="sec agricultura">Agricultura</span><span class="sec pescas">Pescas</span><span class="sec comercio">Comércio</span><span class="sec servicos">Serviços</span><span class="sec domestico">Doméstico</span><span class="sec informal">Informal</span>
+            </div>
+            <p class="t-meta" style="margin-top:8px;font-size:11px">Escolheste: <b style="color:var(--orange-700)">Construção</b></p>
+          </div>
+          <div class="mc">
+            <h4>2. Tens contracto escrito?</h4>
+            <div class="col" style="gap:6px;margin-top:6px;font-size:12.5px">
+              <label class="row" style="gap:8px"><input type="radio" name="ct" checked /> Sim · escrito e assinado</label>
+              <label class="row" style="gap:8px"><input type="radio" name="ct" /> Sim · só verbal</label>
+              <label class="row" style="gap:8px"><input type="radio" name="ct" /> Não tenho</label>
+            </div>
+          </div>
+          <div class="mc">
+            <h4>3. Idioma preferido</h4>
+            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:8px">
+              <span class="badge orange"><span class="dot"></span>PT-MZ</span><span class="badge"><span class="dot"></span>Macua</span><span class="badge"><span class="dot"></span>Changana</span><span class="badge"><span class="dot"></span>Sena</span><span class="badge"><span class="dot"></span>Nyungwe</span>
+            </div>
+          </div>
+          <button class="btn lg block">Concluir · obter NUSS provisório</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">1C · 3 perguntas</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">NUSS provisório imediato · oficial em 24h.</span><a class="btn secondary sm" href="#cena-2">Hoje →</a></div></div>
+</section>
+
+<!-- CENA 2 · HOJE -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F3 — Hoje · Manuel pedreiro · Construtora MZ Lda</div>
+    <h2>Worker card hero · próximo pagamento · INSS em dia · 4 atalhos</h2>
+    <p>Tudo o que importa numa olhada. Carteira INSS digital ao lado.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="row spread"><div class="br"><span class="mk"></span><span>Trabalho</span></div><div class="row" style="gap:6px"><span class="badge"><span class="dot"></span>3</span><span class="av sm">MS</span></div></div></div>
+        <div class="ph-body">
+          <div><div style="font-size:13px;color:var(--ink-3)">Bom dia,</div><div style="font-size:22px;font-weight:600">Manuel.</div></div>
+
+          <div class="worker-card" style="padding:18px">
+            <div class="lbl">Trabalhador · activo</div>
+            <div class="num" style="font-size:14px">NUSS 12-4218925-3</div>
+            <div class="ti" style="font-size:13px;margin-top:10px">Pedreiro · Construtora MZ Lda</div>
+            <div class="meta">Obra Polana · NUEL E-2018-MAP-014218</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+
+          <div class="row spread" style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px">
+            <div><div class="t-overline">Próximo pagamento</div><div style="font-size:18px;font-weight:600;font-family:var(--f-mono);margin-top:2px">~18 942 MZN</div><div class="t-meta" style="font-size:11px">Estimado · 30 Abr · M-Pesa</div></div>
+            <span class="badge green"><span class="dot"></span>Em dia</span>
+          </div>
+
+          <div class="row spread" style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px">
+            <div><div class="t-overline">INSS este mês</div><div style="font-size:14px;font-weight:600;margin-top:2px">630 MZN · pago dia 25</div><div class="t-meta" style="font-size:11px">Patrão pagou parte (1 470 MZN)</div></div>
+            <span class="badge green"><span class="dot"></span>Pago</span>
+          </div>
+
+          <div class="sect-h">Atalhos</div>
+          <div class="quick">
+            <a href="#cena-3"><div class="ic" style="background:var(--orange-100);color:var(--orange-700)">💵</div>Recibos · salário</a>
+            <a href="#cena-4"><div class="ic" style="background:var(--green-100);color:var(--green-700)">📊</div>INSS · descontos</a>
+            <a href="#cena-6"><div class="ic" style="background:var(--steel-100);color:var(--steel-700)">📜</div>Os meus direitos</a>
+            <a href="#"><div class="ic" style="background:var(--red-100);color:var(--red-700)">⚠</div>Denunciar à IGT</a>
+          </div>
+
+          <div class="sect-h">Notificações · 3 não lidas</div>
+          <div class="mc"><div class="row spread"><h4 style="font-size:13px">Recibo de Abril disponível</h4><span class="t-meta" style="font-size:10px">há 2 dias</span></div><p style="font-size:12px">Líquido 18 942 MZN · pagamento 30 Abr.</p></div>
+          <div class="mc"><div class="row spread"><h4 style="font-size:13px">Curso INEFP recomendado</h4><span class="t-meta" style="font-size:10px">há 4 dias</span></div><p style="font-size:12px">Soldadura industrial · 6 semanas · grátis.</p></div>
+        </div>
+        <div class="nav-bottom"><a class="active"><span class="ic"></span>Hoje</a><a><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">2A · Hoje</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Carteira INSS digital</span></div></div>
+        <div class="ph-body">
+          <div style="background:linear-gradient(135deg,var(--orange-900) 0%,var(--orange-700) 100%);border-radius:14px;padding:22px;color:#fff;position:relative;overflow:hidden">
+            <div style="position:absolute;right:-20px;top:-20px;width:100px;height:100px;border:2px solid rgba(255,255,255,.06);border-radius:50%"></div>
+            <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f5d6b8;font-weight:600">República de Moçambique · INSS</div>
+            <div style="font-size:13px;margin-top:14px;color:#f5d6b8">Carteira de Segurança Social</div>
+            <div style="font-size:22px;font-weight:600;font-family:var(--f-mono);margin-top:14px;letter-spacing:.04em">12 421 8925 3</div>
+            <div style="font-size:11px;color:#f5d6b8;margin-top:4px;text-transform:uppercase;letter-spacing:.06em">NUSS · Número Único</div>
+            <hr style="border:0;border-top:1px solid rgba(255,255,255,.18);margin:14px 0">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11px">
+              <div><div style="color:#f5d6b8;text-transform:uppercase;letter-spacing:.05em;font-weight:600;font-size:10px">Nome</div><div style="font-size:13px;font-weight:500;margin-top:2px">Manuel Sitole Cossa</div></div>
+              <div><div style="color:#f5d6b8;text-transform:uppercase;letter-spacing:.05em;font-weight:600;font-size:10px">Inscrito</div><div style="font-size:13px;font-weight:500;margin-top:2px;font-family:var(--f-mono)">14/Mar/2018</div></div>
+              <div><div style="color:#f5d6b8;text-transform:uppercase;letter-spacing:.05em;font-weight:600;font-size:10px">Sector</div><div style="font-size:13px;font-weight:500;margin-top:2px">Construção</div></div>
+              <div><div style="color:#f5d6b8;text-transform:uppercase;letter-spacing:.05em;font-weight:600;font-size:10px">Estado</div><div style="font-size:13px;font-weight:500;margin-top:2px;color:#a8e6c5">Activo</div></div>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:center;padding:8px 0">
+            <div class="qr-square" style="width:140px;height:140px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+          </div>
+          <p class="t-meta" style="font-size:11px;text-align:center;margin:0">QR para IGT scanear em campo · <span class="mono">trabalho.gov.mz/v/8c9d</span></p>
+
+          <div class="mc">
+            <div class="t-overline">Cross-system</div>
+            <div class="col" style="gap:6px;margin-top:8px;font-size:12px">
+              <div class="row spread"><span>BI eBI · Governo Digital</span><span class="badge green" style="font-size:10px"><span class="dot"></span>✓</span></div>
+              <div class="row spread"><span>NUIT · Finanças Digitais</span><span class="badge green" style="font-size:10px"><span class="dot"></span>✓</span></div>
+              <div class="row spread"><span>NUS · Saúde Digital</span><span class="badge green" style="font-size:10px"><span class="dot"></span>✓</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a class="active"><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">2B · Carteira INSS</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Salário →</a></div></div>
+</section>
+
+<!-- CENA 3 · SALÁRIO -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F4 — Salário · payslip detalhado linha-a-linha</div>
+    <h2>Recibo de Abril 2026 · cada desconto explicado · glossário inline</h2>
+    <p>Direitos visíveis. Sem totais escondidos.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>71%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-2" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Recibos</span></div></div></div>
+        <div class="ph-body">
+          <div class="mc" style="border:1px solid var(--orange-600);background:var(--orange-50)">
+            <div class="row spread"><h4 style="color:var(--orange-700)">Abril 2026</h4><span class="badge orange"><span class="dot"></span>Disponível</span></div>
+            <p style="font-size:12px">Líquido 18 942,00 MZN · pagamento 30 Abr</p>
+            <button class="btn sm" style="margin-top:8px">Abrir detalhe →</button>
+          </div>
+          <div class="mc"><div class="row spread"><h4 style="font-size:13px">Março 2026</h4><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></div><p style="font-size:12px">17 480 MZN · 31 Mar via M-Pesa</p></div>
+          <div class="mc"><div class="row spread"><h4 style="font-size:13px">Fevereiro 2026</h4><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></div><p style="font-size:12px">17 480 MZN · 28 Fev</p></div>
+          <div class="mc"><div class="row spread"><h4 style="font-size:13px">Janeiro 2026</h4><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></div><p style="font-size:12px">17 480 MZN + 13.º · 31 Jan</p></div>
+
+          <hr class="hr" />
+
+          <div class="mc">
+            <div class="t-overline">Histórico salarial · 2026</div>
+            <div style="margin-top:10px">
+              <div class="row spread" style="font-size:11px"><span>Janeiro (+ 13.º)</span><span class="mono">17 480</span></div>
+              <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:88%;background:var(--orange-500)"></div></div>
+              <div class="row spread" style="font-size:11px"><span>Fevereiro</span><span class="mono">17 480</span></div>
+              <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:62%"></div></div>
+              <div class="row spread" style="font-size:11px"><span>Março</span><span class="mono">17 480</span></div>
+              <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:62%"></div></div>
+              <div class="row spread" style="font-size:11px"><span>Abril (estimado)</span><span class="mono">18 942</span></div>
+              <div class="bar" style="margin:4px 0 8px"><div class="fill" style="width:68%;background:var(--orange-500)"></div></div>
+            </div>
+            <p class="t-meta" style="font-size:11px;margin:6px 0 0">Salário base 18 000 MZN/mês desde 2024.</p>
+          </div>
+
+          <button class="btn block secondary">📊 Calculadora bruto / líquido</button>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a class="active"><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">3A · Histórico</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>71%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-3" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Recibo · Abril 2026</span></div></div></div>
+        <div class="ph-body">
+          <div class="payslip" style="font-size:11.5px">
+            <div class="row" style="font-family:var(--f-sans);font-size:11px;background:var(--orange-900);color:#fff;padding:10px 12px"><span><b>Manuel Sitole</b><br/><span style="opacity:.7">NUSS 12-4218925-3</span></span><span style="text-align:right">Abril 2026<br/><span style="opacity:.7">REC-2026-04218</span></span></div>
+            <div class="row"><span>Salário base · 22 dias</span><span>18 000,00</span></div>
+            <div class="row add"><span>+ Horas extra · 14h × 1,5</span><span>2 184,00</span></div>
+            <div class="row add"><span>+ Subsídio de risco · 5%</span><span>800,00</span></div>
+            <div class="row add"><span>+ Subsídio de transporte</span><span>0,00</span></div>
+            <div class="row" style="background:var(--bg-2);font-weight:600"><span>Bruto</span><span>20 984,00</span></div>
+            <div class="row deduct"><span>− INSS · 3% trabalhador</span><span>−630,00</span></div>
+            <div class="row deduct"><span>− IRPS retido na fonte</span><span>−1 412,00</span></div>
+            <div class="row deduct"><span>− Sindicato OTM · voluntário</span><span>0,00</span></div>
+            <div class="row" style="background:var(--orange-50);font-weight:600;font-size:13px"><span>Líquido</span><span>18 942,00 MZN</span></div>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">O patrão também paga</div>
+            <div class="col" style="gap:6px;margin-top:8px;font-size:12px">
+              <div class="row spread"><span>+ INSS · 4% sobre bruto</span><span class="mono">+ 840,00 MZN</span></div>
+              <div class="row spread" style="color:var(--ink-3)"><span>(Total INSS Abril: 1 470 MZN)</span><span></span></div>
+            </div>
+            <p class="t-meta" style="font-size:11px;margin:8px 0 0;line-height:1.5">Tu pagas 3% (630), patrão 4% (840). Total <b>7%</b> · Lei 4/2007 art. 48.</p>
+          </div>
+
+          <div class="mc" style="background:#FBEFC9;border-color:#E5D08A">
+            <h4 style="color:var(--safety-700);font-size:13px">O que é IRPS?</h4>
+            <p style="font-size:12px">Imposto sobre Rendimento de Pessoas Singulares. Patrão retém na fonte e entrega à AT (cross-Finanças). Em Maio podes consultar declaração anual via <a href="#">Finanças Digitais</a>.</p>
+          </div>
+
+          <div class="row" style="gap:6px;margin-top:6px"><button class="btn secondary block sm">📥 PDF</button><button class="btn secondary block sm">📤 Partilhar</button></div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a class="active"><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">3B · Payslip</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">INSS em mora →</a></div></div>
+</section>
+
+<!-- CENA 4 · INSS EM MORA -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F5 — INSS em mora · denunciar à IGT</div>
+    <h2>Felizarda · empregada doméstica · INSS em atraso há 4 meses · denúncia em 3 passos</h2>
+    <p>Sistema detecta automaticamente · denúncia anónima ou identificada · cross-IGT.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:22</span><div class="icons"><span>📶</span><span>📡</span><span>48%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Os meus descontos INSS</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner red"><span class="ic"></span><div><b>O teu patrão está em atraso há 4 meses.</b> Sem INSS pago, ficas sem subsídios e pensão. Lei 4/2007 art. 48.</div></div>
+          <div class="mc">
+            <div class="t-overline">2026 · pagamentos INSS</div>
+            <div class="col" style="gap:8px;margin-top:10px">
+              <div class="row spread" style="font-size:12.5px"><div><b>Janeiro 2026</b><div class="t-meta" style="font-size:11px">300 MZN devidos</div></div><span class="badge red"><span class="dot"></span>Em atraso</span></div>
+              <div class="row spread" style="font-size:12.5px"><div><b>Fevereiro 2026</b><div class="t-meta" style="font-size:11px">300 MZN devidos</div></div><span class="badge red"><span class="dot"></span>Em atraso</span></div>
+              <div class="row spread" style="font-size:12.5px"><div><b>Março 2026</b><div class="t-meta" style="font-size:11px">300 MZN devidos</div></div><span class="badge red"><span class="dot"></span>Em atraso</span></div>
+              <div class="row spread" style="font-size:12.5px"><div><b>Abril 2026</b><div class="t-meta" style="font-size:11px">300 MZN devidos</div></div><span class="badge amber"><span class="dot"></span>Pendente</span></div>
+            </div>
+            <hr class="hr">
+            <div class="row spread"><b>Total em atraso</b><span class="mono" style="color:var(--red-700);font-weight:600;font-size:14px">2 800,00 MZN</span></div>
+          </div>
+          <div class="mc" style="background:var(--orange-50);border-color:var(--orange-600)">
+            <h4 style="color:var(--orange-700)">⚠ Tens dois caminhos</h4>
+            <div class="col" style="gap:8px;margin-top:10px;font-size:12.5px">
+              <div class="row" style="gap:8px"><span style="color:var(--orange-700);font-weight:600">1.</span><span><b>Falar com o patrão.</b> 14 dias para regularizar.</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--orange-700);font-weight:600">2.</span><span><b>Denunciar à IGT.</b> Anónimo ou identificado.</span></div>
+            </div>
+            <button class="btn block" style="margin-top:10px">Denunciar à IGT</button>
+            <button class="btn block secondary" style="margin-top:6px">Falar com patrão primeiro</button>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Salário</a><a class="active"><span class="ic"></span>INSS</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">4A · INSS em mora</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:23</span><div class="icons"><span>📶</span><span>📡</span><span>48%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Denunciar · 2 de 3</span></div></div></div>
+        <div class="ph-body">
+          <div class="stepper" style="margin-bottom:8px">
+            <div class="step done"><div class="n">1</div>Problema</div><div class="ln"></div>
+            <div class="step active"><div class="n">2</div>Local</div><div class="ln"></div>
+            <div class="step"><div class="n">3</div>Identificação</div>
+          </div>
+          <div class="mc">
+            <div class="t-overline">Problema escolhido</div>
+            <h4 style="margin:6px 0 0">INSS em mora · 4 meses</h4>
+            <p style="font-size:12px;color:var(--ink-3);margin:4px 0 0">Total devido: 2 800 MZN.</p>
+          </div>
+          <div class="field"><label>Local de trabalho</label><input class="input lg" value="R. da Concha 184 · Polana · Maputo" /></div>
+          <button class="btn secondary block" style="background:var(--bg-2)">📍 Usar localização actual (apenas do local)</button>
+          <div class="banner orange" style="padding:10px;font-size:12px"><span class="ic"></span><div><b>A tua localização nunca é partilhada com o patrão.</b> A IGT recebe coordenadas do local de trabalho que indicas.</div></div>
+          <div class="field"><label>Quem é o patrão?</label><input class="input lg" value="Sra. Beatriz Mahique" /></div>
+          <div class="field"><label>NUEL ou NUIT (opcional)</label><input class="input lg mono" placeholder="100 218 091" /><span class="hint">Patrões individuais nem sempre têm NUEL</span></div>
+          <div class="field"><label>Início do trabalho</label><input class="input lg" value="14 de Setembro de 2022" /></div>
+          <div class="field"><label>Provas (opcional)</label><button class="btn secondary block">📷 Fotografar contracto / mensagem</button></div>
+          <button class="btn lg block">Próximo · identificação</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">4B · 3 passos</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:24</span><div class="icons"><span>📶</span><span>📡</span><span>48%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Denunciar · 3 de 3</span></div></div></div>
+        <div class="ph-body">
+          <div class="t-h3" style="margin:0">Como queres denunciar?</div>
+          <div class="mc" style="border:1px solid var(--orange-600)">
+            <div class="row" style="gap:10px"><div style="width:32px;height:32px;background:var(--orange-100);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange-700);font-size:18px;font-weight:600">A</div><div><h4 style="font-size:14px">Anónima</h4><p style="font-size:12px">A IGT não sabe quem és</p></div></div>
+            <hr class="hr">
+            <div class="col" style="gap:6px;font-size:12px">
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Inspector vai ao local</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Token sem BI / NUSS</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--amber-700)">!</span><span>Sem follow-up directo contigo</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--amber-700)">!</span><span>Sem indemnização</span></div>
+            </div>
+            <button class="btn block" style="margin-top:10px">Submeter anonimamente</button>
+          </div>
+          <div class="mc">
+            <div class="row" style="gap:10px"><div style="width:32px;height:32px;background:var(--good-100);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--good-700);font-size:18px;font-weight:600">I</div><div><h4 style="font-size:14px">Identificada</h4><p style="font-size:12px">A IGT pode contactar-te</p></div></div>
+            <hr class="hr">
+            <div class="col" style="gap:6px;font-size:12px">
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Direito a depoimento</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Direito a indemnização</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Acompanhamento na app</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--amber-700)">!</span><span>Patrão pode saber (proibido retaliar)</span></div>
+            </div>
+            <button class="btn secondary block" style="margin-top:10px">Submeter com identificação</button>
+          </div>
+          <div class="banner safety" style="padding:10px;font-size:12px"><span class="ic"></span><div><b>Retaliação é crime.</b> Despedir, baixar salário, ou ameaçar quem denuncia é crime · Lei 23/2007 art. 65.</div></div>
+        </div>
+      </div></div>
+      <div class="phone-cap">4C · Anónima vs identificada</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Salário</a><a class="btn secondary sm" href="#cena-5">Subsídio →</a></div></div>
+</section>
+
+<!-- CENA 5 · SUBSÍDIO DOENÇA -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Pedir subsídio doença · cross-Saúde</div>
+    <h2>Manuel partiu o braço · 14 dias de baixa · subsídio aprovado em 48h</h2>
+    <p>Cross-NUS Saúde Digital · cálculo automático · pagamento M-Pesa.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>11:42</span><div class="icons"><span>📶</span><span>📡</span><span>54%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Subsídios disponíveis</span></div></div></div>
+        <div class="ph-body">
+          <div class="t-h3" style="margin:0">Que subsídio precisas?</div>
+          <div class="mc" style="border:1px solid var(--orange-600);background:var(--orange-50)">
+            <div class="row spread"><h4 style="color:var(--orange-700)">Doença</h4><span class="badge orange" style="font-size:10px">66% · até 365 dias</span></div>
+            <p>Baixa médica via Saúde Digital</p>
+          </div>
+          <div class="mc"><div class="row spread"><h4>Maternidade</h4><span class="badge" style="font-size:10px;background:var(--sec-domestico);color:#3d2c00;border-color:var(--sec-domestico)">100% · 60 dias</span></div><p>Mães · 60 dias gozados</p></div>
+          <div class="mc"><div class="row spread"><h4>Funeral</h4><span class="badge amber" style="font-size:10px">único</span></div><p>Familiares directos · 6 SMN</p></div>
+          <div class="mc"><div class="row spread"><h4>Velhice (pensão)</h4><span class="badge green" style="font-size:10px">a partir 60 anos</span></div><p>Estimada para Set 2054</p></div>
+          <div class="mc"><div class="row spread"><h4>Invalidez</h4><span class="badge" style="font-size:10px">condicional</span></div><p>Permanente · após junta médica</p></div>
+          <div class="mc"><div class="row spread"><h4>Sobrevivência</h4><span class="badge" style="font-size:10px">condicional</span></div><p>Cônjuge / filhos em caso de óbito</p></div>
+          <p class="t-meta" style="font-size:11px;text-align:center;margin-top:8px">Lei 4/2007 · Decreto 51/2017</p>
+        </div>
+      </div></div>
+      <div class="phone-cap">5A · 6 subsídios</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>11:43</span><div class="icons"><span>📶</span><span>📡</span><span>54%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-5" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Subsídio · doença</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:12.5px"><b>Baixa médica encontrada via Saúde Digital.</b><br/>14 dias · 14-28 Abr · Hospital Central · Dr. P. Macuácua.</div></div>
+          <div class="mc">
+            <div class="t-overline">Cross-Saúde · NUS</div>
+            <div style="margin-top:8px">
+              <div class="row spread" style="font-size:12.5px"><span>NUS</span><span class="mono">8-2184914-0</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>CID-10</span><span class="mono">S52.5</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>Descrição</span><span>Fractura distal do rádio</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>Período</span><span>14 dias</span></div>
+            </div>
+          </div>
+          <div class="mc">
+            <div class="t-overline">Cálculo</div>
+            <div style="margin-top:8px">
+              <div class="row spread" style="font-size:12.5px"><span>Base · 6 meses média</span><span class="mono">18 000</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>÷ 30 dias</span><span class="mono">600/dia</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>× 66% (art. 60)</span><span class="mono">396/dia</span></div>
+              <div class="row spread" style="font-size:12.5px"><span>× 14 dias</span><span class="mono">5 544</span></div>
+              <div class="row spread" style="font-size:12.5px;color:var(--ink-3)"><span>(Patrão paga 3 dias · 1 800)</span><span></span></div>
+            </div>
+            <hr class="hr">
+            <div class="row spread"><b>INSS paga</b><span class="mzn" style="font-size:18px;color:var(--good-700)">5 544 <small>MZN</small></span></div>
+          </div>
+          <div class="banner orange" style="padding:10px;font-size:12px"><span class="ic"></span><div><b>Tens 22 200 MZN saldo INSS-base</b> (4 anos × 7% × salário). Subsídio reduz só 5 544.</div></div>
+          <button class="btn lg block">Submeter pedido</button>
+          <p class="t-meta" style="font-size:11px;text-align:center">Decisão 48h · M-Pesa ≤ 5 dias</p>
+        </div>
+      </div></div>
+      <div class="phone-cap">5B · Cálculo</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Subsídio aprovado</span></div></div></div>
+        <div class="ph-body" style="padding:24px 16px;align-items:center;justify-content:center;flex:1;display:flex">
+          <div style="text-align:center;max-width:280px">
+            <div style="width:72px;height:72px;background:var(--good-100);color:var(--good-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px">✓</div>
+            <div class="t-h2" style="margin-bottom:8px">Subsídio aprovado</div>
+            <p style="font-size:13.5px;line-height:1.55;color:var(--ink-2)">5 544 MZN · 14 dias · M-Pesa em 48h.</p>
+            <div class="mc" style="margin-top:18px;text-align:left">
+              <div class="t-overline">Pagamento</div>
+              <div class="row spread" style="margin-top:6px;font-size:13px"><span>+258 84 218 1184</span><span class="mono" style="color:var(--good-700)">5 544,00</span></div>
+              <div class="t-meta" style="font-size:11px;margin-top:4px">Ordem · INSS-2026-04218</div>
+            </div>
+            <div class="mc" style="margin-top:8px;text-align:left">
+              <div class="t-overline">Cronologia</div>
+              <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                <div class="row" style="gap:8px"><span class="badge green" style="font-size:10px"><span class="dot"></span></span><span><b>Hoje 11:43</b> · pedido submetido</span></div>
+                <div class="row" style="gap:8px"><span class="badge green" style="font-size:10px"><span class="dot"></span></span><span><b>Hoje 11:48</b> · cross-NUS validado</span></div>
+                <div class="row" style="gap:8px"><span class="badge green" style="font-size:10px"><span class="dot"></span></span><span><b>Amanhã</b> · pagamento M-Pesa</span></div>
+              </div>
+            </div>
+            <button class="btn block" style="margin-top:18px">Voltar à Hoje</button>
+          </div>
+        </div>
+        <div class="nav-bottom"><a class="active"><span class="ic"></span>Hoje</a><a><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">5C · Aprovado</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Mora</a><a class="btn secondary sm" href="#cena-6">Direitos →</a></div></div>
+</section>
+
+<!-- CENA 6 · DIREITOS + CONTRACTO -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F · Os meus direitos · contracto serifado</div>
+    <h2>Lei 23/2007 articulada · cálculos personalizados · contracto vigente acessível</h2>
+    <p>Direitos articulados, não escondidos em PDFs.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>21:14</span><div class="icons"><span>📶</span><span>📡</span><span>38%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Os meus direitos</span></div></div></div>
+        <div class="ph-body">
+          <div class="mc" style="background:var(--orange-50);border-color:var(--orange-600)">
+            <div class="row spread"><h4 style="color:var(--orange-700)">Férias devidas</h4><span class="badge orange" style="font-size:10px">22 dias · 18 000 MZN</span></div>
+            <p>Tens direito a 22 dias úteis de férias por cada ano completo (Lei 23/2007 art. 96).</p>
+            <hr class="hr">
+            <div class="t-overline">Calculadora pessoal</div>
+            <div style="margin-top:8px;font-size:12px">
+              <div class="row spread"><span>Antiguidade</span><span class="mono">8 anos · desde Mar/2018</span></div>
+              <div class="row spread"><span>Férias gozadas em 2025</span><span class="mono">12 dias</span></div>
+              <div class="row spread" style="color:var(--good-700);font-weight:600"><span>Férias devidas</span><span class="mono">22 dias</span></div>
+              <div class="row spread"><span>Subsídio de férias</span><span class="mono">18 000 MZN</span></div>
+            </div>
+          </div>
+          <div class="mc">
+            <h4 style="font-size:13px">13.º mês</h4>
+            <p>Pago em Janeiro · 1 mês de salário (Lei 23/2007 art. 110).</p>
+            <p style="font-size:12px;margin-top:6px"><b style="color:var(--good-700)">Recebido:</b> 17 480 MZN · Janeiro 2026 ✓</p>
+          </div>
+          <div class="mc">
+            <h4 style="font-size:13px">Horas extra</h4>
+            <p>+50% nos dias úteis. +100% ao Domingo. Limite: 96h/ano (art. 113).</p>
+            <hr class="hr">
+            <div class="t-overline">Este mês</div>
+            <div style="margin-top:6px;font-size:12px">
+              <div class="row spread"><span>Horas extra</span><span class="mono">14 h</span></div>
+              <div class="row spread"><span>Limite anual restante</span><span class="mono">76 h</span></div>
+              <div class="bar"><div class="fill" style="width:21%;background:var(--orange-500)"></div></div>
+            </div>
+          </div>
+          <div class="mc">
+            <h4 style="font-size:13px">Despedimento</h4>
+            <p>Causa justificada (art. 70). Aviso prévio: 90 dias. Indemnização: 30 dias por ano.</p>
+            <p style="font-size:12px;margin-top:6px"><b>No teu caso:</b> 8 anos × 30 = 240 dias (~6 meses).</p>
+          </div>
+          <button class="btn secondary block">📜 Lei 23/2007 completa</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">6A · Direitos</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>21:15</span><div class="icons"><span>📶</span><span>📡</span><span>38%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#cena-6" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Contracto vigente</span></div></div></div>
+        <div class="ph-body">
+          <div class="auto" style="font-size:11px">
+            <div class="hd" style="padding:12px"><div class="ti" style="font-size:13px">Contracto Individual de Trabalho</div><div class="t-meta mono">CT-2018-MAP-014218</div></div>
+            <div class="bd" style="padding:14px;font-family:var(--f-serif);font-size:11.5px;line-height:1.65">
+              <p style="margin:0 0 8px">Entre <b>Construtora MZ, Lda</b> (NUEL E-2014-MAP-001482) e <b>Manuel Sitole Cossa</b> (BI 110100442918, NUSS 12-4218925-3).</p>
+              <p style="margin:0 0 8px">Categoria: <b>Pedreiro · 3.ª classe</b>.</p>
+              <p style="margin:0 0 8px">Salário: <b>18 000 MZN/mês</b> + risco 5%.</p>
+              <p style="margin:0 0 8px">Horário: 40 h/semana · Seg-Sex 07-16h.</p>
+              <p style="margin:0 0 8px">Tipo: <b>Sem termo</b> · desde 14/Mar/2018.</p>
+              <p style="margin:0">Lei 23/2007.</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between;font-size:10px"><span>Assinado 14 Mar 2018<br/>Autenticado MTSS</span><span class="seal">Carimbada DTD</span></div>
+          </div>
+          <div class="row" style="gap:6px;margin-top:6px"><button class="btn secondary block sm">📥 PDF · 4 págs</button><button class="btn secondary block sm">QR · validar</button></div>
+          <div class="mc">
+            <div class="t-overline">Histórico</div>
+            <div class="timeline" style="margin-top:8px">
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Assinado</b><div class="t-meta">14 Mar 2018</div></div></div>
+              <div class="ev done"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Aumento · 15 000 → 18 000</b><div class="t-meta">14 Mar 2024</div></div></div>
+              <div class="ev now"><div class="dot"></div><div class="body"><b style="font-size:12.5px">Vigente · 8 anos</b><div class="t-meta">desde 14 Mar 2018</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">6B · Contracto</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Subsídio</a><a class="btn secondary sm" href="#cena-7">Curso INEFP →</a></div></div>
+</section>
+
+<!-- CENA 7 · CURSO INEFP -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F7 — Inscrever em curso INEFP · certificado na Carteira</div>
+    <h2>Soldadura industrial · 6 semanas · grátis · subir de pedreiro a soldador</h2>
+    <p>Match automático com o sector. Pré-requisitos verificados.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>21:18</span><div class="icons"><span>📶</span><span>📡</span><span>38%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Formação INEFP</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner orange" style="padding:10px;font-size:12px"><span class="ic"></span><div><b>3 cursos correspondem ao teu perfil.</b> Construção · Maputo · ≤ 30km · grátis ou subsidiado.</div></div>
+          <div class="mc" style="border:1px solid var(--orange-600)">
+            <div class="row spread"><h4 style="color:var(--orange-700);font-size:14px">Soldadura Industrial</h4><span class="badge orange" style="font-size:10px">⭐ Match</span></div>
+            <p style="font-size:12px">6 semanas · INEFP Maputo · presencial</p>
+            <hr class="hr">
+            <div style="font-size:12px">
+              <div class="row spread"><span>Próxima turma</span><span><b>15 Jun 2026</b></span></div>
+              <div class="row spread"><span>Vagas</span><span class="mono">8 / 24</span></div>
+              <div class="row spread"><span>Custo</span><span style="color:var(--good-700);font-weight:600">Grátis</span></div>
+              <div class="row spread"><span>Salário pós-curso</span><span class="mono">~28 000 MZN</span></div>
+              <div class="row spread"><span>Certificação</span><span>OIT · SADC</span></div>
+            </div>
+            <hr class="hr">
+            <div class="t-overline" style="font-size:10px">Pré-requisitos · ✓ verificados</div>
+            <div class="col" style="gap:4px;margin-top:6px;font-size:11.5px">
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>≥ 18 anos · tens 32</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>≥ 6.ª classe · tens 9.ª classe</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>2+ anos no sector · tens 8</span></div>
+              <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>BI / NUSS válidos</span></div>
+            </div>
+            <button class="btn lg block" style="margin-top:12px">Inscrever · grátis</button>
+          </div>
+          <div class="mc">
+            <h4 style="font-size:13px">Encarregado de Obra · gestão</h4>
+            <p style="font-size:11.5px">8 semanas · ISCTE-MZ Maputo · híbrido</p>
+            <div class="row spread" style="margin-top:6px;font-size:11.5px"><span>Próxima turma</span><span class="mono">14 Jul 2026</span></div>
+            <div class="row spread" style="font-size:11.5px"><span>Custo</span><span class="mono">12 000 MZN (até 50% subsídio)</span></div>
+          </div>
+          <div class="mc">
+            <h4 style="font-size:13px">Cofragens Avançadas · prefab</h4>
+            <p style="font-size:11.5px">3 semanas · INEFP Matola</p>
+            <div class="row spread" style="margin-top:6px;font-size:11.5px"><span>Próxima</span><span class="mono">22 Mai 2026</span></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">7A · Curso recomendado</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:14</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap:8px"><a href="#" style="color:var(--orange-700)">←</a><div class="br" style="font-size:13px"><span class="mk"></span><span>Os meus certificados</span></div></div></div>
+        <div class="ph-body">
+          <div class="auto" style="font-size:11px">
+            <div class="hd" style="padding:12px;background:linear-gradient(180deg,#fff 0%,var(--orange-50) 100%)"><div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--orange-700)">Certificado de Formação</div><div class="t-meta" style="margin-top:4px">CERT-2024-INEFP-148218</div></div>
+            <div class="bd" style="padding:14px;font-family:var(--f-serif);font-size:12px;line-height:1.65;text-align:center">
+              <p style="margin:0 0 12px">O Instituto Nacional de Emprego e Formação Profissional certifica que</p>
+              <p style="margin:0 0 12px;font-size:14px;font-weight:600;color:var(--orange-700)">MANUEL SITOLE COSSA</p>
+              <p style="margin:0 0 12px">concluiu com aproveitamento o curso de</p>
+              <p style="margin:0 0 12px;font-size:13px;font-weight:600">Cofragens Industriais · 3 semanas</p>
+              <p style="margin:0">14 Out a 4 Nov 2024 · INEFP Maputo</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between;font-size:10px"><span>Director · Eng. F. Mahique<br/>NUSS 12-4218925-3</span><span class="seal">Carimbada DTD</span></div>
+          </div>
+          <div style="display:flex;justify-content:center;padding:8px 0">
+            <div class="qr-square" style="width:120px;height:120px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+          </div>
+          <div class="mc">
+            <div class="t-overline">Os teus certificados</div>
+            <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+              <div class="row spread"><span><b>Cofragens Industriais</b><div class="t-meta">INEFP · 2024</div></span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Válido</span></div>
+              <div class="row spread"><span><b>1.ª Classe Pedreiro</b><div class="t-meta">INEFP · 2020</div></span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Válido</span></div>
+              <div class="row spread"><span><b>Segurança Construção</b><div class="t-meta">CTM · 2018</div></span><span class="badge" style="font-size:10px"><span class="dot"></span>Caducou</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-bottom"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Salário</a><a><span class="ic"></span>INSS</a><a class="active"><span class="ic"></span>Eu</a></div>
+      </div></div>
+      <div class="phone-cap">7B · Certificado</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Direitos</a><a class="btn secondary sm" href="empregador.html">Empregador →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div class="t-meta">Trabalhador / App v0.3 · documento autoritativo: <a class="mono" href="DESIGN-trabalhador.md">DESIGN-trabalhador.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="empregador.html" class="btn secondary sm">Empregador →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

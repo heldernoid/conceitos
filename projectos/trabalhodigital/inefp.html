@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>INEFP / Emprego e Formação — Trabalho Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+
+  .sceneNav{position:sticky;top:64px;z-index:10;background:rgba(250,248,244,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .at-body{padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:30px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--orange-100);color:var(--orange-900);font-weight:600}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-family:var(--f-mono)}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+  .vaga{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:8px}
+  .vaga:hover{border-color:var(--orange-600)}
+  .vaga .empresa{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .vaga .titulo{font-size:15px;font-weight:600;letter-spacing:-.005em}
+  .vaga .meta{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;color:var(--ink-3)}
+  .vaga .salario{font-family:var(--f-mono);font-weight:600;color:var(--orange-700)}
+
+  .curso{background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:8px}
+  .curso:hover{border-color:var(--orange-600)}
+
+  .public-hero{background:linear-gradient(135deg,var(--orange-900) 0%,var(--orange-700) 100%);color:#fff;padding:48px 24px;border-radius:var(--r-3)}
+  .public-hero h2{font-size:36px;font-weight:600;letter-spacing:-.015em;margin:0 0 14px;color:#fff}
+  .public-hero p{color:#f5d6b8;font-size:15px;line-height:1.6;max-width:600px;margin:0 0 24px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTSS · INEFP · DTD</span><span class="sep">·</span>
+  <span>INEFP / Emprego e Formação v0.3</span>
+  <span style="margin-left:auto">DESIGN-inefp.md</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>INEFP / Emprego e Formação</span><small>Instituto Nacional de Emprego e Formação Profissional</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="trabalhador.html">Trabalhador</a>
+    <a href="empregador.html">Empregador</a>
+    <a href="inss.html">INSS</a>
+    <a href="igt.html">IGT</a>
+    <a href="inefp.html" class="active">INEFP</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online</span>
+    <div class="idbadge"><span class="av sm">FM</span><div class="who"><b>Eng. Filipe Mahique</b><span>Director · INEFP Maputo</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Cidadão · home</a>
+    <a href="#cena-2">2. Pesquisar curso</a>
+    <a href="#cena-3">3. Inscrever-se · cross-Trabalhador</a>
+    <a href="#cena-4">4. Painel admin INEFP</a>
+    <a href="#cena-5">5. Jovem-Trabalhador · subsídio</a>
+    <a href="#cena-6">6. Certificação · selo brass</a>
+    <a href="#cena-7">7. Estatísticas públicas</a>
+  </div>
+</nav>
+
+<!-- CENA 1 · CIDADÃO HOME -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Cidadão · home pública · sem login</div>
+    <h2>Pesquisar vagas e cursos · 12 480 vagas activas · 184 cursos · 4 programas</h2>
+    <p>Pesquisa proeminente. Sem affiliate, sem comissão, sem ads. Vagas publicadas por empregadores via cross-Empregador.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="public-hero" style="margin-bottom:24px">
+      <div class="t-overline" style="color:#f5d6b8;margin-bottom:8px">INEFP · Plataforma Pública</div>
+      <h2>Trabalho. Formação.<br/>Para todos os moçambicanos.</h2>
+      <p>12 480 vagas activas · 184 cursos com vagas · 4 programas de apoio. Grátis. Sem comissão. Cross-Trabalhador, cross-Empregador.</p>
+      <div style="background:#fff;border-radius:6px;padding:6px;display:flex;gap:6px;max-width:680px">
+        <input class="input lg" style="flex:1;border:0" placeholder="Pesquisar vagas e cursos · ex: pedreiro Maputo · soldadura · agricultura" />
+        <select class="select lg" style="width:140px;border:0">
+          <option>Todos os sectores</option>
+          <option>Construção</option>
+          <option>Mineração</option>
+          <option>Serviços</option>
+        </select>
+        <button class="btn lg">Pesquisar</button>
+      </div>
+    </div>
+
+    <div class="grid g-4" style="margin-bottom:24px">
+      <div class="kpi"><div class="lbl">Vagas activas</div><div class="num">12 480</div><div class="delta">+1 248 esta semana</div></div>
+      <div class="kpi"><div class="lbl">Cursos com vagas</div><div class="num">184</div><div class="delta">próximas turmas Mai-Jul</div></div>
+      <div class="kpi"><div class="lbl">Em formação · 2026</div><div class="num">84 218</div><div class="delta">+18% vs 2025</div></div>
+      <div class="kpi"><div class="lbl">Programas activos</div><div class="num" style="font-size:22px">4</div><div class="delta">Jovem-Trab. · Estágio · Reab. · AutoEmp.</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Vagas em destaque · cross-Empregador</b><span class="seg"><button class="on">Todos sectores</button><button>Construção</button><button>Serviços</button><button>Mineração</button></span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap:12px">
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Construtora MZ Lda</span><span class="sec construcao">Construção</span></div>
+              <div class="titulo">4 Pedreiros 1.ª classe</div>
+              <div class="meta"><span>Maputo · Polana</span><span>·</span><span>Sem termo</span><span>·</span><span class="salario">22 000 MZN/mês</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Construção de edifício comercial. Experiência mínima 2 anos. EPI fornecido. Subsídio risco 5%.</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 14 Mai · 28 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Padaria Cuamba & Filhos</span><span class="sec comercio">Comércio</span></div>
+              <div class="titulo">2 Padeiros · 1 Atendente balcão</div>
+              <div class="meta"><span>Maputo · Mafalala</span><span>·</span><span>Sem termo</span><span>·</span><span class="salario">12 000 MZN/mês</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Pequena empresa familiar. Turnos rotativos 04h-12h ou 12h-20h. Treino dado.</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 22 Mai · 12 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Mineradora Tete Sul</span><span class="sec mineracao">Mineração</span></div>
+              <div class="titulo">12 Operários extracção</div>
+              <div class="meta"><span>Tete · Cahora Bassa</span><span>·</span><span>1 ano · renovável</span><span>·</span><span class="salario">28 000 MZN/mês</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Alojamento + alimentação fornecidos. Carteira motorista pesados preferencial. Curso obrigatório de segurança INEFP (2 semanas).</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 28 Mai · 84 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Pescas Sumbane SA</span><span class="sec pescas">Pescas</span></div>
+              <div class="titulo">8 Pescadores · campanha sazonal</div>
+              <div class="meta"><span>Beira</span><span>·</span><span>Termo certo · 6 meses</span><span>·</span><span class="salario">14 000 MZN/mês + bónus</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Campanha do gamba (Maio-Outubro). Embarque sazonal. Sem experiência mínima.</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 5 Mai · 48 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Restaurante Costa Bela</span><span class="sec servicos">Serviços</span></div>
+              <div class="titulo">2 Empregados de mesa</div>
+              <div class="meta"><span>Maputo · Marginal</span><span>·</span><span>Sem termo</span><span>·</span><span class="salario">10 800 MZN/mês + gorjetas</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Turno noite (16h-00h). Curso de atendimento básico INEFP recomendado.</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 18 Mai · 22 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+            <div class="vaga">
+              <div class="row spread"><span class="empresa">Cooperativa Agrícola Tsengule</span><span class="sec agricultura">Agricultura</span></div>
+              <div class="titulo">14 Trabalhadores rurais</div>
+              <div class="meta"><span>Manica · Vanduzi</span><span>·</span><span>Sazonal 4 meses</span><span>·</span><span class="salario">8 200 MZN/mês</span></div>
+              <p class="t-meta" style="font-size:11.5px;margin:2px 0 0">Colheita de batata e cebola. Alojamento fornecido. Transporte semanal a Chimoio.</p>
+              <div class="row spread" style="margin-top:8px"><span class="t-meta" style="font-size:10px">Apresentar até 8 Mai · 48 candidatos</span><button class="btn sm">Candidatar</button></div>
+            </div>
+
+          </div>
+          <div style="text-align:center;padding:14px 0 0">
+            <a href="#" class="btn ghost">Ver todas as 12 480 vagas →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Programas · destaque</b></div>
+          <div class="pb col" style="gap:10px">
+            <div style="background:var(--orange-50);border:1px solid var(--orange-600);border-radius:6px;padding:14px">
+              <div class="row spread"><b style="color:var(--orange-700);font-size:14px">Jovem-Trabalhador</b><span class="badge orange" style="font-size:10px">18-35</span></div>
+              <p style="font-size:12.5px;margin:6px 0 0;color:var(--ink-2)">Empresa que te contrata recebe subsídio 30% por 6 meses. <b>418 vagas activas.</b></p>
+              <a href="#cena-5" class="btn sm" style="margin-top:8px">Ver vagas →</a>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+              <div class="row spread"><b style="font-size:14px">Estágio Profissional</b><span class="badge" style="font-size:10px">recém-formados</span></div>
+              <p style="font-size:12.5px;margin:6px 0 0;color:var(--ink-3)">6 meses · subsídio 50% do salário · cross-empresa. <b>184 vagas.</b></p>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+              <div class="row spread"><b style="font-size:14px">Reabilitação Profissional</b><span class="badge" style="font-size:10px">deficiência</span></div>
+              <p style="font-size:12.5px;margin:6px 0 0;color:var(--ink-3)">Adaptação de posto de trabalho · empregador recebe apoio.</p>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+              <div class="row spread"><b style="font-size:14px">Auto-emprego</b><span class="badge" style="font-size:10px">micro-crédito</span></div>
+              <p style="font-size:12.5px;margin:6px 0 0;color:var(--ink-3)">Formação + micro-crédito até 50 000 MZN para abrir negócio próprio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Cursos populares</b><a href="#cena-2" class="t-meta">Ver todos →</a></div>
+          <div class="pb col" style="gap:8px">
+            <div class="row spread" style="font-size:12.5px"><span><b>Soldadura industrial</b><div class="t-meta" style="font-size:11px">6 sem · INEFP Maputo · grátis</div></span><span class="badge orange" style="font-size:10px">8/24</span></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>Carpintaria de armar</b><div class="t-meta" style="font-size:11px">4 sem · INEFP Beira · grátis</div></span><span class="badge orange" style="font-size:10px">14/28</span></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>Atendimento ao cliente</b><div class="t-meta" style="font-size:11px">2 sem · INEFP Maputo · 800 MZN</div></span><span class="badge orange" style="font-size:10px">22/30</span></div>
+            <div class="row spread" style="font-size:12.5px"><span><b>Operação de empilhadora</b><div class="t-meta" style="font-size:11px">3 sem · INEFP Matola · 1 200 MZN</div></span><span class="badge orange" style="font-size:10px">12/16</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Sem affiliate · sem comissão · sem premium tier · plataforma pública.</span><a class="btn secondary sm" href="#cena-2">Pesquisar curso →</a></div></div>
+</section>
+
+<!-- CENA 2 · CURSO -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Catálogo de cursos · 184 cursos em 12 áreas</div>
+    <h2>Filtros · sector · distância · custo · prazo · certificação OIT/SADC</h2>
+    <p>Cidadão pesquisa Soldadura Industrial. Cursos com pré-requisitos verificáveis automaticamente.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Catálogo · 12 áreas</b><span class="seg"><button>Todas (184)</button><button class="on">Construção (32)</button><button>Indústria (24)</button><button>Serviços (28)</button></span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap:12px">
+
+            <div class="curso" style="border:1px solid var(--orange-600)">
+              <div class="row spread"><span class="empresa">INEFP Maputo</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Soldadura Industrial · MIG/TIG</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0;line-height:1.45">Soldadura industrial completa: técnicas MIG, TIG e arco eléctrico. Formação OIT-reconhecida. Empregabilidade 84% pós-curso.</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração</span><span class="mono">6 semanas</span></div>
+                <div class="row spread"><span>Próxima turma</span><span class="mono"><b>15 Jun 2026</b></span></div>
+                <div class="row spread"><span>Vagas restantes</span><span class="mono">8 / 24</span></div>
+                <div class="row spread"><span>Custo</span><span style="color:var(--good-700);font-weight:600">Grátis</span></div>
+                <div class="row spread"><span>Salário pós-curso</span><span class="mono">~28 000 MZN/mês</span></div>
+                <div class="row spread"><span>Certificação</span><span class="badge" style="font-size:10px"><span class="dot"></span>OIT · SADC</span></div>
+              </div>
+              <button class="btn block sm" style="margin-top:8px">Inscrever-me →</button>
+            </div>
+
+            <div class="curso">
+              <div class="row spread"><span class="empresa">INEFP Matola</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Cofragens Avançadas · prefab</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">Sistemas de cofragem moderna. Construção pré-fabricada. Avanços em segurança.</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração · 3 semanas</span><span class="mono">22 Mai 2026</span></div>
+                <div class="row spread"><span>Vagas</span><span class="mono">14 / 28</span></div>
+                <div class="row spread"><span>Custo · Grátis</span><span></span></div>
+              </div>
+              <button class="btn secondary block sm" style="margin-top:8px">Inscrever-me</button>
+            </div>
+
+            <div class="curso">
+              <div class="row spread"><span class="empresa">INEFP Beira</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Carpintaria de Armar</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">Carpintaria estrutural. Cobertura, tecto, escadas. Cálculo de materiais.</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração · 4 semanas</span><span class="mono">8 Jun 2026</span></div>
+                <div class="row spread"><span>Vagas</span><span class="mono">14 / 28</span></div>
+                <div class="row spread"><span>Custo · Grátis</span><span></span></div>
+              </div>
+              <button class="btn secondary block sm" style="margin-top:8px">Inscrever-me</button>
+            </div>
+
+            <div class="curso">
+              <div class="row spread"><span class="empresa">ISCTE-MZ Maputo</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Encarregado de Obra · gestão</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">Gestão de equipas em obra. Custos, prazos, segurança. Para promoções na carreira.</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração · 8 semanas</span><span class="mono">14 Jul 2026</span></div>
+                <div class="row spread"><span>Vagas · Híbrido</span><span class="mono">22 / 30</span></div>
+                <div class="row spread"><span>Custo</span><span class="mono">12 000 MZN (até 50% subsídio)</span></div>
+              </div>
+              <button class="btn secondary block sm" style="margin-top:8px">Inscrever-me</button>
+            </div>
+
+            <div class="curso">
+              <div class="row spread"><span class="empresa">INEFP Maputo</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Segurança no Trabalho · construção</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">Obrigatório por Lei 23/2007 art. 219. Empresas requerem certificação válida (5 anos).</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração · 1 semana</span><span class="mono">contínua</span></div>
+                <div class="row spread"><span>Vagas</span><span class="mono">28 / 40 (turma semanal)</span></div>
+                <div class="row spread"><span>Custo · Grátis</span><span></span></div>
+              </div>
+              <button class="btn secondary block sm" style="margin-top:8px">Inscrever-me</button>
+            </div>
+
+            <div class="curso">
+              <div class="row spread"><span class="empresa">Centro Técnico Beira</span><span class="sec construcao">Construção</span></div>
+              <h4 style="font-size:15px;font-weight:600;margin:0">Electricidade Industrial</h4>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">Instalações industriais. Quadros eléctricos. Manutenção preventiva.</p>
+              <hr class="hr">
+              <div style="font-size:12px">
+                <div class="row spread"><span>Duração · 5 semanas</span><span class="mono">22 Mai 2026</span></div>
+                <div class="row spread"><span>Vagas</span><span class="mono">12 / 24</span></div>
+                <div class="row spread"><span>Custo</span><span class="mono">2 800 MZN</span></div>
+              </div>
+              <button class="btn secondary block sm" style="margin-top:8px">Inscrever-me</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Filtros</b></div>
+          <div class="pb col" style="gap:14px">
+            <div class="field">
+              <label>Área</label>
+              <select class="input"><option>Construção (32 cursos)</option></select>
+            </div>
+            <div class="field">
+              <label>Localização (raio)</label>
+              <select class="input"><option>≤ 30 km de Maputo</option></select>
+            </div>
+            <div class="field">
+              <label>Custo</label>
+              <select class="input"><option>Grátis ou subsidiado</option></select>
+            </div>
+            <div class="field">
+              <label>Prazo de início</label>
+              <select class="input"><option>Próximas 8 semanas</option></select>
+            </div>
+            <div class="field">
+              <label>Certificação</label>
+              <div class="row" style="gap:6px;flex-wrap:wrap">
+                <span class="badge orange"><span class="dot"></span>OIT</span>
+                <span class="badge orange"><span class="dot"></span>SADC</span>
+                <span class="badge"><span class="dot"></span>Nacional</span>
+              </div>
+            </div>
+            <button class="btn block">Aplicar filtros</button>
+          </div>
+        </div>
+
+        <div class="banner orange"><span class="ic"></span><div><b>Match com o teu perfil.</b> Soldadura Industrial corresponde ao teu sector (Construção). Pré-requisitos verificados automaticamente. <a href="#cena-3">Inscrever →</a></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Home</a><a class="btn secondary sm" href="#cena-3">Inscrever-me →</a></div></div>
+</section>
+
+<!-- CENA 3 · INSCREVER-SE -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Inscrever em curso · cross-Trabalhador · pré-requisitos verificados</div>
+    <h2>Manuel Sitole · Soldadura Industrial · grátis · turma 15 Jun · vagas 8/24</h2>
+    <p>Cross-NUSS valida perfil. Match automático com o sector actual. Notificação na app.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Inscrição · Soldadura Industrial</b><div class="stepper" style="margin:0"><div class="step done"><div class="n">1</div>Curso</div><div class="ln"></div><div class="step done"><div class="n">2</div>Identidade</div><div class="ln"></div><div class="step active"><div class="n">3</div>Confirmar</div></div></div>
+        <div class="pb">
+
+          <div class="row" style="gap:18px;margin-bottom:16px">
+            <div class="worker-card" style="width:280px;padding:16px">
+              <div class="lbl">Trabalhador · cross-NUSS</div>
+              <div class="num" style="font-size:14px">12-4218925-3</div>
+              <div class="ti" style="font-size:13px;margin-top:10px">Manuel Sitole Cossa</div>
+              <div class="meta">Pedreiro 3.ª · Construtora MZ</div>
+            </div>
+            <div style="flex:1">
+              <h3 style="font-size:18px;font-weight:600;margin:0 0 6px">Soldadura Industrial · MIG/TIG</h3>
+              <p class="t-meta" style="margin:0 0 10px">INEFP Maputo · 6 semanas · 15 Jun a 24 Jul 2026 · presencial</p>
+              <div class="row" style="gap:6px;flex-wrap:wrap">
+                <span class="badge orange"><span class="dot"></span>Match perfil</span>
+                <span class="sec construcao">Construção</span>
+                <span class="badge green"><span class="dot"></span>Grátis</span>
+                <span class="badge"><span class="dot"></span>Cert. OIT/SADC</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Pré-requisitos · verificados automaticamente</div>
+          <div class="col" style="gap:8px;font-size:13px">
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>Idade ≥ 18 anos</b> · tens 32</span><span class="t-meta">eBI</span></div>
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>Escolaridade ≥ 6.ª classe</b> · tens 9.ª classe</span><span class="t-meta">eBI · educação</span></div>
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>2+ anos no sector construção</b> · tens 8 anos</span><span class="t-meta">cross-NUSS</span></div>
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>Curso prévio · Cofragens Industriais</b> · concluído 2024</span><span class="t-meta">CERT-2024-INEFP-148218</span></div>
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>BI / NUSS válidos</b></span><span class="t-meta">eBI · INSS</span></div>
+            <div class="row" style="gap:10px;padding:8px 12px;background:var(--good-100);border:1px solid #BDDFCB;border-radius:4px"><span style="color:var(--good-700)">✓</span><span style="flex:1"><b>Sem coima IGT pessoal pendente</b></span><span class="t-meta">cross-IGT</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Compromissos da formação</div>
+          <div class="col" style="gap:6px;font-size:12.5px">
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Presença obrigatória</b> · 80% mínimo (faltas justificadas)</span></div>
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Avaliação prática + teórica</b> · 60% para aprovação</span></div>
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Patrão informado</b> · cross-Empregador app · não pode descontar</span></div>
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Sub. doença permanece</b> durante formação (Lei 4/2007)</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <label class="row" style="gap:8px;font-size:13px"><input type="checkbox" checked /> Comprometo-me a comparecer e completar a formação.</label>
+          <label class="row" style="gap:8px;margin-top:6px;font-size:13px"><input type="checkbox" checked /> Autorizo INEFP a notificar o meu empregador (Construtora MZ) da minha inscrição.</label>
+        </div>
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Voltar</button>
+          <button class="btn">Confirmar inscrição · grátis</button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Detalhe · turma 15 Jun</b></div>
+          <div class="pb">
+            <div class="kv"><span class="k">Datas</span><span class="v">15 Jun – 24 Jul 2026</span></div>
+            <div class="kv" style="margin-top:6px"><span class="k">Horário</span><span class="v">Seg-Sex 14h-17h</span></div>
+            <div class="kv" style="margin-top:6px"><span class="k">Local</span><span class="v">INEFP Maputo · Av. 24 Julho</span></div>
+            <div class="kv" style="margin-top:6px"><span class="k">Formador</span><span class="v">Eng. Manuel Tembe · 22 anos exp.</span></div>
+            <div class="kv" style="margin-top:6px"><span class="k">Vagas restantes</span><span class="v"><b>8 de 24</b></span></div>
+            <div class="kv" style="margin-top:6px"><span class="k">Empregabilidade</span><span class="v" style="color:var(--good-700)"><b>84%</b> em 6 meses</span></div>
+            <hr class="hr">
+            <div class="t-overline">Após conclusão</div>
+            <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+              <div class="row spread"><span>Certificado serifado</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Selo brass</span></div>
+              <div class="row spread"><span>QR validação pública</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>OIT/SADC</span></div>
+              <div class="row spread"><span>Adicionado à Carteira</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Trabalhador app</span></div>
+              <div class="row spread"><span>Notificar potenciais empregadores</span><span class="badge" style="font-size:10px"><span class="dot"></span>Opcional</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Cross-system</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span>Trabalhador app · inscrição</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Auto</span></div>
+            <div class="row spread"><span>Empregador · notificar</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Pendente</span></div>
+            <div class="row spread"><span>INSS · permanece em dia</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Sem alteração</span></div>
+            <div class="row spread"><span>SISTAFE · grátis</span><span class="badge" style="font-size:10px"><span class="dot"></span>N/A</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Catálogo</a><a class="btn secondary sm" href="#cena-4">Painel admin →</a></div></div>
+</section>
+
+<!-- CENA 4 · ADMIN -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F · Painel admin INEFP · Eng. F. Mahique · Director Maputo</div>
+    <h2>184 cursos · 12 480 vagas · 84 218 em formação · 4 218 certificados YTD</h2>
+    <p>Visão directorial. Cursos abertos, próximas turmas, candidatos pendentes, taxa de conclusão.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Em formação · activos</div><div class="num">84 218</div><div class="delta">+18% vs 2025</div></div>
+      <div class="kpi"><div class="lbl">Certificados YTD</div><div class="num">4 218</div><div class="delta">taxa conclusão 78%</div></div>
+      <div class="kpi"><div class="lbl">Vagas publicadas</div><div class="num">12 480</div><div class="delta">+1 248 esta semana</div></div>
+      <div class="kpi"><div class="lbl">Empregabilidade</div><div class="num" style="color:var(--good-700)">68%</div><div class="delta">6 meses pós-curso</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Próximas turmas · Maputo · 8 semanas</b><span class="seg"><button class="on">Todas</button><button>Construção</button><button>Indústria</button><button>Serviços</button></span></div>
+        <table class="table">
+          <thead><tr><th>Curso</th><th>Sector</th><th>Início</th><th>Vagas</th><th>Inscritos</th><th>Estado</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--orange-50)"><td><b>Soldadura Industrial</b></td><td><span class="sec construcao">Construção</span></td><td class="mono">15 Jun</td><td class="num">24</td><td class="num">16</td><td><span class="badge orange"><span class="dot"></span>Em inscrição</span></td><td><a class="btn sm">Gerir</a></td></tr>
+            <tr><td>Cofragens Avançadas</td><td><span class="sec construcao">Construção</span></td><td class="mono">22 Mai</td><td class="num">28</td><td class="num">14</td><td><span class="badge orange"><span class="dot"></span>Em inscrição</span></td><td><a class="btn sm secondary">Gerir</a></td></tr>
+            <tr><td>Carpintaria de Armar</td><td><span class="sec construcao">Construção</span></td><td class="mono">8 Jun</td><td class="num">28</td><td class="num">22</td><td><span class="badge amber"><span class="dot"></span>Quase cheia</span></td><td><a class="btn sm secondary">Gerir</a></td></tr>
+            <tr><td>Atendimento ao Cliente</td><td><span class="sec servicos">Serviços</span></td><td class="mono">12 Mai</td><td class="num">30</td><td class="num">28</td><td><span class="badge red"><span class="dot"></span>Cheia</span></td><td><a class="btn sm secondary">Lista de espera</a></td></tr>
+            <tr><td>Operação Empilhadora</td><td><span class="sec industria">Indústria</span></td><td class="mono">18 Mai</td><td class="num">16</td><td class="num">12</td><td><span class="badge orange"><span class="dot"></span>Em inscrição</span></td><td><a class="btn sm secondary">Gerir</a></td></tr>
+            <tr><td>Encarregado de Obra (híbrido)</td><td><span class="sec construcao">Construção</span></td><td class="mono">14 Jul</td><td class="num">30</td><td class="num">22</td><td><span class="badge orange"><span class="dot"></span>Em inscrição</span></td><td><a class="btn sm secondary">Gerir</a></td></tr>
+            <tr><td>Segurança no Trabalho</td><td><span class="sec construcao">Construção</span></td><td class="mono">contínua</td><td class="num">40/sem</td><td class="num">28</td><td><span class="badge green"><span class="dot"></span>Activa</span></td><td><a class="btn sm secondary">Gerir</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Conclusões a aprovar · 28</b></div>
+          <table class="table" style="font-size:12px">
+            <thead><tr><th>NUSS</th><th>Curso</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr style="cursor:pointer;background:var(--orange-50)" onclick="location.hash='#cena-6'"><td class="mono">12-4218925-3</td><td>Soldadura</td><td><span class="badge orange" style="font-size:10px"><span class="dot"></span>Aprovar</span></td></tr>
+              <tr><td class="mono">12-2418421-5</td><td>Cofragens</td><td><span class="badge orange" style="font-size:10px"><span class="dot"></span>Aprovar</span></td></tr>
+              <tr><td class="mono">12-1842918-2</td><td>Atendimento</td><td><span class="badge orange" style="font-size:10px"><span class="dot"></span>Aprovar</span></td></tr>
+              <tr><td class="mono" colspan="3" style="text-align:center;color:var(--ink-3)"><i>+ 25 outras</i></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Programas activos · subsídios</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span><b>Jovem-Trabalhador</b></span><span class="badge orange" style="font-size:10px">418 colocações</span></div>
+            <div class="bar"><div class="fill" style="width:62%"></div></div>
+            <p class="t-meta" style="font-size:10.5px">Subsídio 30% · 6 meses · 7,8 M MZN/mês total</p>
+            <hr class="hr">
+            <div class="row spread"><span><b>Estágio Profissional</b></span><span class="mono">218 estagiários</span></div>
+            <div class="bar"><div class="fill" style="width:38%"></div></div>
+            <p class="t-meta" style="font-size:10.5px">Subsídio 50% · 6 meses · 4,2 M MZN/mês</p>
+            <hr class="hr">
+            <div class="row spread"><span><b>Auto-emprego · micro-crédito</b></span><span class="mono">84 negócios</span></div>
+            <div class="bar"><div class="fill" style="width:18%"></div></div>
+            <p class="t-meta" style="font-size:10.5px">Até 50k por pessoa · 14% reembolsam · 86% não</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Inscrever</a><a class="btn secondary sm" href="#cena-5">Jovem-Trabalhador →</a></div></div>
+</section>
+
+<!-- CENA 5 · JOVEM-TRABALHADOR -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Programa Jovem-Trabalhador · empresa contrata · subsídio 30%</div>
+    <h2>Padaria Cuamba contrata Carlos Mahique (28) · primeiro emprego formal · subsídio 6 meses</h2>
+    <p>Cross-Empregador anuncia · sistema valida elegibilidade · cross-INSS · cross-SISTAFE.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="banner orange" style="margin-bottom:18px"><span class="ic"></span><div><b>Programa Jovem-Trabalhador · Decreto 51/2017 art. 67.</b> Empresa que contrata jovens 18-35 anos no primeiro emprego formal recebe subsídio de 30% do salário durante 6 meses. Compromisso: manter vínculo por 18 meses pós-subsídio.</div></div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Candidatura JT-2026-MAP-04218 · em análise</b><span class="badge orange"><span class="dot"></span>Pendente aprovação INEFP</span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap:18px">
+            <div>
+              <div class="t-overline" style="margin-bottom:8px">Empresa</div>
+              <div class="card"><div class="bd">
+                <div class="kv"><span class="k">Empresa</span><span class="v">Padaria Cuamba & Filhos, Lda</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">NUEL</span><span class="v mono">E-2020-MAP-014218</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">Sector</span><span class="v"><span class="sec comercio">Comércio</span></span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">Trabalhadores</span><span class="v">8 (PME)</span></div>
+                <hr class="hr">
+                <div class="t-overline">Elegibilidade</div>
+                <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>NUIT em dia · cross-Finanças</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>INSS em dia (4 meses mora regularizada Jan)</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Sem auto IGT activo</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Não usou JT em 2024-2025</span></div>
+                </div>
+              </div></div>
+            </div>
+
+            <div>
+              <div class="t-overline" style="margin-bottom:8px">Candidato</div>
+              <div class="card"><div class="bd">
+                <div class="kv"><span class="k">Nome</span><span class="v">Carlos Mahique Tembe</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">BI</span><span class="v mono">110100884291</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">Idade</span><span class="v">28 anos</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">Cargo</span><span class="v">Padeiro · 2.ª classe</span></div>
+                <div class="kv" style="margin-top:6px"><span class="k">Salário</span><span class="v mzn">14 000 MZN/mês</span></div>
+                <hr class="hr">
+                <div class="t-overline">Elegibilidade</div>
+                <div class="col" style="gap:6px;margin-top:8px;font-size:12.5px">
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Idade 18-35 · 28 anos</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Sem emprego formal anterior · cross-NUSS</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Contracto sem termo</span></div>
+                  <div class="row" style="gap:8px"><span style="color:var(--good-700)">✓</span><span>Salário ≥ SMN (5 130 MZN)</span></div>
+                </div>
+              </div></div>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Cálculo do subsídio</div>
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:14px;font-family:var(--f-mono);font-size:13px">
+            <div class="row spread"><span>Salário bruto Carlos</span><span>14 000,00</span></div>
+            <div class="row spread"><span>× 30% (subsídio Decreto 51/2017)</span><span style="color:var(--orange-700);font-weight:600">4 200,00 / mês</span></div>
+            <div class="row spread"><span>× 6 meses</span><span style="color:var(--orange-700);font-weight:600">25 200,00</span></div>
+            <hr class="hr">
+            <div class="row spread" style="font-weight:600;color:var(--good-700)"><span>Total subsídio · 6 meses</span><span>25 200 MZN</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:8px">Compromissos</div>
+          <div class="col" style="gap:6px;font-size:12.5px">
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Padaria Cuamba</b> · manter Carlos por 18 meses após o subsídio</span></div>
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Padaria Cuamba</b> · pagar salário, INSS, IRPS normalmente · subsídio compensa</span></div>
+            <div class="row" style="gap:8px"><span style="color:var(--orange-700)">•</span><span><b>Penalização</b> · se rescinde sem justa causa nos 24 meses, devolve subsídio + multa 25%</span></div>
+          </div>
+        </div>
+
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Devolver com observação</button>
+          <button class="btn">Aprovar · activar subsídio</button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Cross-system · após aprovação</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span>Padaria Cuamba · Empregador app</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Notificar</span></div>
+            <div class="row spread"><span>Carlos · Trabalhador app</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Notificar</span></div>
+            <div class="row spread"><span>SISTAFE · primeira parcela</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>30 dias</span></div>
+            <div class="row spread"><span>INSS · seguir vínculo</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Activo</span></div>
+            <div class="row spread"><span>IGT · monitorizar 24 meses</span><span class="badge" style="font-size:10px"><span class="dot"></span>Watch</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Estatísticas JT 2026</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span>Candidaturas YTD</span><span class="mono">482</span></div>
+            <div class="row spread"><span>Aprovadas</span><span class="mono">418 (87%)</span></div>
+            <div class="row spread"><span>Em curso · subsídio activo</span><span class="mono">218</span></div>
+            <div class="row spread"><span>Concluídas com sucesso</span><span class="mono">142</span></div>
+            <div class="row spread" style="color:var(--red-700)"><span>Falhadas (rescisão precoce)</span><span class="mono">58 (14%)</span></div>
+            <hr class="hr">
+            <div class="t-overline">Por sector</div>
+            <div style="font-size:11px;margin-top:6px">
+              <div class="row spread"><span>Construção</span><span class="mono">38%</span></div>
+              <div class="row spread"><span>Comércio</span><span class="mono">24%</span></div>
+              <div class="row spread"><span>Serviços</span><span class="mono">22%</span></div>
+              <div class="row spread"><span>Indústria</span><span class="mono">12%</span></div>
+              <div class="row spread"><span>Outros</span><span class="mono">4%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Painel</a><a class="btn secondary sm" href="#cena-6">Certificação →</a></div></div>
+</section>
+
+<!-- CENA 6 · CERTIFICAÇÃO -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F5 — Aprovar conclusão · lavrar certificado · selo brass</div>
+    <h2>Manuel Sitole concluiu Soldadura Industrial · 6 semanas · aprovação 84% · OIT/SADC</h2>
+    <p>Formador submeteu avaliação. Director valida. Certificado serifado · selo brass · QR validação pública.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Conclusão · CERT-2026-INEFP-184218</b><span class="badge orange"><span class="dot"></span>Pendente lavrar</span></div>
+        <div class="pb">
+          <div class="row" style="gap:18px;margin-bottom:14px">
+            <div class="worker-card" style="width:280px;padding:16px">
+              <div class="lbl">Formando</div>
+              <div class="num" style="font-size:14px">12-4218925-3</div>
+              <div class="ti" style="font-size:13px;margin-top:10px">Manuel Sitole Cossa</div>
+              <div class="meta">Pedreiro 3.ª · Construtora MZ</div>
+            </div>
+            <div style="flex:1">
+              <h3 style="font-size:18px;font-weight:600;margin:0 0 6px">Soldadura Industrial · MIG/TIG</h3>
+              <p class="t-meta" style="margin:0 0 10px">15 Jun – 24 Jul 2026 · 6 semanas · INEFP Maputo</p>
+              <div class="grid g-2" style="gap:10px;font-size:12.5px">
+                <div class="kv"><span class="k">Presença</span><span class="v">94% (≥80% min)</span></div>
+                <div class="kv"><span class="k">Avaliação prática</span><span class="v">86% (≥60% min)</span></div>
+                <div class="kv"><span class="k">Avaliação teórica</span><span class="v">82%</span></div>
+                <div class="kv"><span class="k">Nota final</span><span class="v" style="color:var(--good-700);font-weight:600">84% · Aprovado</span></div>
+                <div class="kv"><span class="k">Formador</span><span class="v">Eng. M. Tembe</span></div>
+                <div class="kv"><span class="k">Certificação</span><span class="v">OIT 110 · SADC reconhecida</span></div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom:10px">Pré-visualização do certificado</div>
+          <div class="auto">
+            <div class="hd" style="padding:18px;background:linear-gradient(180deg,#fff 0%,var(--orange-50) 100%);text-align:center">
+              <div style="font-family:var(--f-serif);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">República de Moçambique</div>
+              <div style="font-family:var(--f-serif);font-size:18px;font-weight:600;color:var(--orange-700);margin-top:4px">Certificado de Formação Profissional</div>
+              <div class="t-meta" style="margin-top:6px;font-family:var(--f-mono)">CERT-2026-INEFP-184218</div>
+            </div>
+            <div class="bd" style="padding:24px;font-family:var(--f-serif);font-size:14px;line-height:1.75;text-align:center">
+              <p style="margin:0 0 16px">O Instituto Nacional de Emprego e Formação Profissional certifica que</p>
+              <p style="margin:0 0 16px;font-size:18px;font-weight:600;color:var(--orange-700);letter-spacing:.02em">MANUEL SITOLE COSSA</p>
+              <p style="margin:0 0 4px;font-family:var(--f-mono);font-size:11px;color:var(--ink-3)">BI 110100442918 · NUSS 12-4218925-3</p>
+              <p style="margin:14px 0 16px">concluiu com aproveitamento o curso de</p>
+              <p style="margin:0 0 16px;font-size:16px;font-weight:600">Soldadura Industrial · MIG/TIG</p>
+              <p style="margin:0 0 6px">com a duração de seis semanas e nota final de</p>
+              <p style="margin:0 0 16px;font-size:14px;font-weight:600;color:var(--good-700)">84% (oitenta e quatro por cento)</p>
+              <p style="margin:0;font-size:12px;color:var(--ink-3)">Realizado entre 15 Junho e 24 Julho de 2026 · INEFP Maputo</p>
+              <p style="margin:6px 0 0;font-size:11px;color:var(--ink-3)">Reconhecido pela Organização Internacional do Trabalho · OIT C.110 · e pela SADC</p>
+            </div>
+            <div class="ft" style="display:flex;justify-content:space-between;align-items:center;padding:18px"><div style="font-size:12px;line-height:1.5"><b>Director:</b> Eng. F. Mahique<br/><b>Formador:</b> Eng. M. Tembe<br/><span class="t-meta" style="font-size:10px">25 Jul 2026 · hash 8c9d7e21-4af2</span></div><span class="seal">Carimbada DTD</span></div>
+          </div>
+        </div>
+        <div class="ft" style="padding:12px 16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between">
+          <button class="btn ghost">Devolver para revisão</button>
+          <button class="btn">Lavrar e selar com brass · two-step</button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Validação pública</b></div>
+          <div class="pb" style="text-align:center">
+            <div class="qr-square" style="width:160px;height:160px;margin:0 auto"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+            <p class="t-meta" style="font-size:11px;margin-top:10px">QR · validação pública · sem login</p>
+            <p class="mono" style="font-size:11px;margin:4px 0 0">trabalho.gov.mz/v/8c9d7e21</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Após selar</b></div>
+          <div class="pb col" style="font-size:12.5px">
+            <div class="row spread"><span>Trabalhador app · Carteira</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Adicionar</span></div>
+            <div class="row spread"><span>PDF disponível para download</span><span class="badge orange" style="font-size:10px"><span class="dot"></span>Auto</span></div>
+            <div class="row spread"><span>Empregador app · notificar</span><span class="badge" style="font-size:10px"><span class="dot"></span>Opcional</span></div>
+            <div class="row spread"><span>Estatísticas INEFP · taxa conclusão</span><span class="badge green" style="font-size:10px"><span class="dot"></span>+1</span></div>
+            <div class="row spread"><span>SADC · reconhecimento</span><span class="badge green" style="font-size:10px"><span class="dot"></span>OIT 110</span></div>
+          </div>
+        </div>
+
+        <div class="banner orange"><span class="ic"></span><div><b>Match com vagas em aberto.</b> 18 vagas de soldador na zona Maputo. Sistema vai sugerir ao Manuel automaticamente.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← JT</a><a class="btn secondary sm" href="#cena-7">Estatísticas públicas →</a></div></div>
+</section>
+
+<!-- CENA 7 · ESTATÍSTICAS -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F7 — dados.trabalho.gov.mz · estatísticas públicas</div>
+    <h2>Salário médio por sector · taxa empregabilidade · vagas em aberto · acidentes</h2>
+    <p>Anonimizado, agregado, em open data. Para investigadores, jornalistas, parceiros sociais OTM/CTA.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="banner green" style="margin-bottom:18px"><span class="ic"></span><div><b>Plataforma pública.</b> Dados anonimizados, agregados, sem identificações pessoais. Disponível 24/7 em <span class="mono">dados.trabalho.gov.mz</span> · CC-BY 4.0 · API aberta.</div></div>
+
+    <div class="grid g-2" style="gap:18px;margin-bottom:18px">
+      <div class="panel">
+        <div class="ph"><b>Salário médio por sector · 2026 Q1</b><span class="seg"><button class="on">Mensal</button><button>Anual</button></span></div>
+        <div class="pb col" style="font-size:13px">
+          <div class="row spread"><span class="sec mineracao">Mineração</span><span class="mono"><b>32 480 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:100%;background:var(--sec-mineracao)"></div></div>
+          <div class="row spread"><span class="sec industria">Indústria</span><span class="mono"><b>22 480 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:69%;background:var(--sec-industria)"></div></div>
+          <div class="row spread"><span class="sec construcao">Construção</span><span class="mono"><b>18 800 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:58%;background:var(--sec-construcao)"></div></div>
+          <div class="row spread"><span class="sec servicos">Serviços</span><span class="mono"><b>16 200 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:50%;background:var(--sec-servicos)"></div></div>
+          <div class="row spread"><span class="sec comercio">Comércio</span><span class="mono"><b>12 800 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:39%;background:var(--sec-comercio)"></div></div>
+          <div class="row spread"><span class="sec pescas">Pescas</span><span class="mono"><b>11 200 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:34%;background:var(--sec-pescas)"></div></div>
+          <div class="row spread"><span class="sec agricultura">Agricultura</span><span class="mono"><b>9 400 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:29%;background:var(--sec-agricultura)"></div></div>
+          <div class="row spread"><span class="sec domestico">Doméstico</span><span class="mono"><b>7 800 MZN</b></span></div>
+          <div class="bar"><div class="fill" style="width:24%;background:var(--sec-domestico)"></div></div>
+          <hr class="hr">
+          <div class="row spread"><span><b>Salário Mínimo Nacional</b></span><span class="mono">5 130 MZN</span></div>
+          <div class="row spread"><span><b>Salário médio nacional</b></span><span class="mono">14 800 MZN</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Empregabilidade pós-curso · 2025</b></div>
+        <div class="pb col" style="font-size:13px">
+          <div class="row spread"><span>Soldadura industrial</span><span class="mono"><b>84%</b> · 28 000/mês</span></div>
+          <div class="bar"><div class="fill" style="width:84%;background:var(--good-700)"></div></div>
+          <div class="row spread"><span>Operação empilhadora</span><span class="mono"><b>78%</b> · 22 000</span></div>
+          <div class="bar"><div class="fill" style="width:78%;background:var(--good-700)"></div></div>
+          <div class="row spread"><span>Cofragens industriais</span><span class="mono"><b>72%</b> · 24 000</span></div>
+          <div class="bar"><div class="fill" style="width:72%;background:var(--good-700)"></div></div>
+          <div class="row spread"><span>Carpintaria armar</span><span class="mono"><b>68%</b> · 18 000</span></div>
+          <div class="bar"><div class="fill" style="width:68%;background:var(--good-700)"></div></div>
+          <div class="row spread"><span>Atendimento cliente</span><span class="mono"><b>62%</b> · 12 800</span></div>
+          <div class="bar"><div class="fill" style="width:62%;background:var(--orange-500)"></div></div>
+          <div class="row spread"><span>Encarregado obra</span><span class="mono"><b>58%</b> · 38 000</span></div>
+          <div class="bar"><div class="fill" style="width:58%;background:var(--orange-500)"></div></div>
+          <hr class="hr">
+          <div class="row spread"><span><b>Média todos os cursos</b></span><span class="mono">68% · 6 meses pós-curso</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g-3" style="gap:18px">
+      <div class="panel">
+        <div class="ph"><b>Acidentes trabalho · 2026 Q1</b></div>
+        <div class="pb col" style="font-size:12.5px">
+          <div class="row spread"><span>Total reportados</span><span class="mono"><b>1 842</b></span></div>
+          <div class="row spread"><span>Mortais</span><span class="mono" style="color:var(--red-700)"><b>14</b></span></div>
+          <div class="row spread"><span>Graves</span><span class="mono">218</span></div>
+          <div class="row spread"><span>Leves</span><span class="mono">1 610</span></div>
+          <hr class="hr">
+          <div class="t-overline">Por sector</div>
+          <div class="row spread" style="font-size:11.5px"><span>Construção</span><span class="mono">42%</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Mineração</span><span class="mono">28%</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Pescas</span><span class="mono">12%</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Indústria</span><span class="mono">10%</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Outros</span><span class="mono">8%</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Taxa de informalidade · 2026</b></div>
+        <div class="pb col" style="font-size:12.5px">
+          <div class="row spread"><span>Total força laboral</span><span class="mono"><b>~12,8 M</b></span></div>
+          <div class="row spread"><span>Formal (com NUSS)</span><span class="mono">1,82 M (14%)</span></div>
+          <div class="bar"><div class="fill" style="width:14%;background:var(--good-700)"></div></div>
+          <div class="row spread" style="color:var(--orange-700)"><span>Informal</span><span class="mono">~11 M (86%)</span></div>
+          <div class="bar"><div class="fill" style="width:86%;background:var(--orange-500)"></div></div>
+          <hr class="hr">
+          <div class="t-overline">Por área</div>
+          <div class="row spread" style="font-size:11.5px"><span>Rural · Niassa</span><span class="mono">94% informal</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Rural · Tete</span><span class="mono">88% informal</span></div>
+          <div class="row spread" style="font-size:11.5px"><span>Urbano · C. Maputo</span><span class="mono">52% informal</span></div>
+          <p class="t-meta" style="font-size:10.5px;margin-top:8px">Meta 2030: reduzir informalidade urbana para 35%.</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Vagas em aberto · agora</b></div>
+        <div class="pb col" style="font-size:12.5px">
+          <div class="row spread"><span>Total publicadas</span><span class="mono"><b>12 480</b></span></div>
+          <div class="row spread"><span>Construção</span><span class="mono">3 218 (26%)</span></div>
+          <div class="row spread"><span>Comércio</span><span class="mono">2 482 (20%)</span></div>
+          <div class="row spread"><span>Serviços</span><span class="mono">2 184 (17%)</span></div>
+          <div class="row spread"><span>Indústria</span><span class="mono">1 480 (12%)</span></div>
+          <div class="row spread"><span>Mineração</span><span class="mono">684 (5%)</span></div>
+          <div class="row spread"><span>Pescas</span><span class="mono">418 (3%)</span></div>
+          <div class="row spread"><span>Outros</span><span class="mono">2 014 (16%)</span></div>
+          <hr class="hr">
+          <div class="row spread"><span><b>Tempo médio preenchimento</b></span><span class="mono">22 dias</span></div>
+          <p class="t-meta" style="font-size:10.5px;margin-top:8px">API · trabalho.gov.mz/api/v1/vagas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row spread" style="margin-top:18px;padding:14px 0;border-top:1px solid var(--line)">
+      <div class="t-meta" style="font-size:11.5px">CC-BY 4.0 · API REST aberta · 184 datasets · actualização semanal · cross-INSS, cross-IGT, cross-INEFP, cross-Empregador.</div>
+      <div class="row" style="gap:8px">
+        <button class="btn ghost sm">⤓ CSV completo</button>
+        <button class="btn secondary sm">📋 Documentação API</button>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Certificação</a><a class="btn secondary sm" href="index.html">Voltar à visão geral</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">INEFP / Emprego e Formação v0.3 · documento autoritativo: <a class="mono" href="DESIGN-inefp.md">DESIGN-inefp.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="index.html" class="btn secondary sm">Visão geral</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

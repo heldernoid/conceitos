@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Trabalho Digital Moçambique — Mocks Interativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:var(--bg)}
+  .hero{padding:48px 24px 24px}
+  .hero .container{max-width:1200px;margin:0 auto}
+  .hero .eyebrow{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .hero h1{margin:14px 0 12px;font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.05;max-width:880px}
+  .hero p{color:var(--ink-2);font-size:17px;max-width:760px;line-height:1.55}
+  .hero .meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+  .hero .meta .kv .k{font-size:10px}
+  .hivis-band{height:8px;background:repeating-linear-gradient(45deg,var(--safety-500) 0 18px,#1A1A1A 18px 36px)}
+  .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:24px}
+  .tile.featured{grid-column:span 2;background:var(--orange-800);color:#fff;border-color:var(--orange-800)}
+  .tile.featured h3{color:#fff}
+  .tile.featured p{color:#f5d6b8}
+  .tile.featured .num,.tile.featured .users{color:#c89a72}
+  .tile.featured .swatch{background:#fff}
+  footer{padding:40px 24px;border-top:1px solid var(--line);margin-top:48px}
+  footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+  footer h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  footer .ack{font-size:12px;color:var(--ink-3);max-width:380px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTSS · INSS · IGT · INEFP · DTD</span><span class="sep">·</span>
+  <span>Protótipo de demonstração</span>
+  <span style="margin-left:auto">Versão 0.3 · Abril 2026</span>
+</div>
+<div class="hivis-band"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Trabalho Digital</span><small>Plataforma Nacional do Trabalho</small></span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="trabalhador.html">Trabalhador</a>
+    <a href="empregador.html">Empregador</a>
+    <a href="inss.html">INSS</a>
+    <a href="igt.html">IGT</a>
+    <a href="inefp.html">INEFP</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span>Pacote de protótipos clicáveis</span><span class="sep">·</span><span>Para revisão por MTSS, INSS, IGT, INEFP, OTM e parceiros sociais</span></div>
+    <h1>Cinco superfícies. Trabalho digno, segurança social acessível, contractos verificáveis.</h1>
+    <p>Trabalho Digital Moçambique unifica registo de contractos, descontos para a segurança social, fiscalização do trabalho e formação profissional. Reconhece o tripartismo entre trabalhadores, empregadores e Estado, e leva o INSS, a IGT e o INEFP ao bolso de quem trabalha — formal ou informalmente.</p>
+    <div class="meta">
+      <div class="kv"><span class="k">Idioma</span><span class="v">PT-MZ + Macua, Changana, Sena, Nyungwe</span></div>
+      <div class="kv"><span class="k">Trabalhadores inscritos INSS</span><span class="v">≈1,82 M (28% da força laboral)</span></div>
+      <div class="kv"><span class="k">Empresas registadas</span><span class="v">≈218 k</span></div>
+      <div class="kv"><span class="k">Inspectores IGT</span><span class="v">416 · 11 províncias</span></div>
+      <div class="kv"><span class="k">Documentos</span><span class="v">DESIGN-*.md por superfície</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-tiles">
+  <a class="tile featured" href="design-system.html">
+    <div class="row spread">
+      <div class="num">00 · Fundamentos</div>
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)">Comece aqui</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Sistema de Design</h3>
+    <p>Tipografia, paleta laranja-construção, paleta de sectores económicos, componentes (Worker card, Auto serifado, Risk meter, Payslip). Reutilizado por todas as superfícies.</p>
+    <div class="users">Equipa de produto · Engenharia · MTSS · DTD</div>
+  </a>
+
+  <a class="tile" href="trabalhador.html">
+    <div class="num">01 · Mobile (PWA · trabalhador)</div>
+    <div class="swatch"></div>
+    <h3>Trabalhador / App</h3>
+    <p>Contracto digital, descontos INSS, recibos de salário, formação profissional, queixas à IGT, subsídios. 4 línguas locais.</p>
+    <div class="users">Cidadãos · 6,5 M força laboral</div>
+  </a>
+
+  <a class="tile b" href="empregador.html">
+    <div class="num">02 · Web desktop (RH · contabilidade)</div>
+    <div class="swatch"></div>
+    <h3>Empregador / Portal</h3>
+    <p>Onboarding de trabalhadores, processamento de salários, retenção de IRPS, declarações INSS, contractos. Cross-Finanças.</p>
+    <div class="users">218 k empresas · todas as dimensões</div>
+  </a>
+
+  <a class="tile c" href="inss.html">
+    <div class="num">03 · Web admin (gestão · fiscalização)</div>
+    <div class="swatch"></div>
+    <h3>INSS / Gestão</h3>
+    <p>Inscritos, pensões (velhice, invalidez, sobrevivência), prestações (doença, maternidade), fiscalização cruzada com IGT.</p>
+    <div class="users">1,82 M inscritos · 184 k pensionistas</div>
+  </a>
+
+  <a class="tile d" href="igt.html">
+    <div class="num">04 · Tablet (campo) + Web (admin)</div>
+    <div class="swatch"></div>
+    <h3>IGT / Inspecção</h3>
+    <p>Inspectores em campo, autos de notícia, conciliação, processos contra-ordenacionais, escalada para tribunal laboral.</p>
+    <div class="users">416 inspectores · 11 províncias</div>
+  </a>
+
+  <a class="tile e" href="inefp.html">
+    <div class="num">05 · Web (cidadão + admin)</div>
+    <div class="swatch"></div>
+    <h3>INEFP / Emprego e Formação</h3>
+    <p>Vagas de emprego, cursos certificados, micro-crédito formação, autoemprego, programa Jovem-Trabalhador, certificações OIT.</p>
+    <div class="users">128 k vagas · 84 k em formação</div>
+  </a>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:24px">
+  <div class="section-h"><h3 class="t-h3">Como navegar este pacote</h3></div>
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">1. Sistema de Design</div>
+      <p class="t-body" style="margin:8px 0 0">Comece pelo <a href="design-system.html">Sistema de Design</a> — define paleta laranja-construção, tipografia, componentes (Worker card, Auto serifado, Payslip, Risk meter) que todas as superfícies reutilizam.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">2. Superfícies clicáveis</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície abre num documento próprio com cenas numeradas. Tripartismo aparece em cross-links: trabalhador ↔ empregador ↔ INSS ↔ IGT.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">3. Documentos DESIGN-*.md</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície tem um documento autoritativo (ex.: <span class="mono">DESIGN-igt.md</span>) com princípios, fluxos, componentes, estados. Para handoff a engenharia.</p>
+    </div></div>
+  </div>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:24px">
+  <div class="section-h"><h3 class="t-h3">Princípio organizador · tripartismo</h3></div>
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">Trabalhador</div>
+      <h4 class="t-h4" style="margin:6px 0">Direitos visíveis</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Contracto, salário, descontos, formação, denúncia anónima à IGT. Direitos articulados na própria interface — não escondidos em PDFs.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Empregador</div>
+      <h4 class="t-h4" style="margin:6px 0">Conformidade fácil</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Processamento integrado de salários, retenção automática, declarações INSS pre-preenchidas. Cumprir é mais fácil que evadir.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Estado · INSS+IGT+INEFP</div>
+      <h4 class="t-h4" style="margin:6px 0">Cruzamento triplo</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Declaração patronal cruza com folha real cruza com inspecção em campo. Discrepâncias geram alertas para fiscalização dirigida.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Trabalho Digital</span><small>Plataforma Nacional do Trabalho</small></span></a>
+      <p class="ack" style="margin-top:14px">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a> para imaginar um sistema end-to-end de trabalho digital para Moçambique. O Ministério do Trabalho e Segurança Social (MTSS), o INSS, a IGT, o INEFP, a OTM e os parceiros sociais são entidades reais; a "Direcção de Trabalho Digital" (DTD) é uma unidade operativa fictícia neste exercício. Este protótipo não usa dados reais — nomes, NUITs, números de inscrição e factos são ilustrativos.</p>
+    </div>
+    <div>
+      <h5>Superfícies</h5>
+      <ul>
+        <li><a href="trabalhador.html">Trabalhador</a></li>
+        <li><a href="empregador.html">Empregador</a></li>
+        <li><a href="inss.html">INSS</a></li>
+        <li><a href="igt.html">IGT</a></li>
+        <li><a href="inefp.html">INEFP</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Documentos</h5>
+      <ul>
+        <li><a href="DESIGN-system.md">DESIGN-system.md</a></li>
+        <li><a href="DESIGN-trabalhador.md">DESIGN-trabalhador.md</a></li>
+        <li><a href="DESIGN-empregador.md">DESIGN-empregador.md</a></li>
+        <li><a href="DESIGN-inss.md">DESIGN-inss.md</a></li>
+        <li><a href="DESIGN-igt.md">DESIGN-igt.md</a></li>
+        <li><a href="DESIGN-inefp.md">DESIGN-inefp.md</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li class="muted">Av. 24 de Julho 2351</li>
+        <li class="muted">Maputo, Moçambique</li>
+        <li class="muted">+258 21 318 050 (MTSS)</li>
+        <li class="muted">USSD *146# · Trabalho</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

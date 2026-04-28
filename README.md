@@ -20,6 +20,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 03 | [Educação Digital](https://conceitos.org/projectos/educacaodigital/) | Disponível |
 | 04 | [Finanças Digitais](https://conceitos.org/projectos/financasdigitais/) | Disponível |
 | 05 | [Justiça Digital](https://conceitos.org/projectos/justicadigital/) | Disponível |
+| 06 | [Trabalho Digital](https://conceitos.org/projectos/trabalhodigital/) | Disponível |
 
 ### Saúde Digital
 
@@ -40,6 +41,10 @@ Reimaginação do sistema fiscal e orçamental com cinco superfícies: portal do
 ### Justiça Digital
 
 Reimaginação do acesso à justiça com cinco superfícies: portal do cidadão (acompanhamento processual e certidões), tribunal comunitário digitalizado, cadastro predial, portal do MJCR e registos públicos (civil, comercial e predial).
+
+### Trabalho Digital
+
+Reimaginação do sistema de trabalho e protecção social com cinco superfícies: portal do trabalhador, portal do empregador, INSS (segurança social), IGT (inspecção do trabalho) e INEFP (formação profissional).
 
 ## Estrutura
 
@@ -88,13 +93,23 @@ conceitos/
     │   ├── design-system.html
     │   ├── shared/styles.css
     │   └── DESIGN-*.md
-    └── justicadigital/      # Projecto 05 · Justiça Digital
+    ├── justicadigital/      # Projecto 05 · Justiça Digital
+    │   ├── index.html
+    │   ├── cidadao.html
+    │   ├── comunitario.html
+    │   ├── cadastro.html
+    │   ├── portal-mjcr.html
+    │   ├── registos.html
+    │   ├── design-system.html
+    │   ├── shared/styles.css
+    │   └── DESIGN-*.md
+    └── trabalhodigital/     # Projecto 06 · Trabalho Digital
         ├── index.html
-        ├── cidadao.html
-        ├── comunitario.html
-        ├── cadastro.html
-        ├── portal-mjcr.html
-        ├── registos.html
+        ├── trabalhador.html
+        ├── empregador.html
+        ├── inss.html
+        ├── igt.html
+        ├── inefp.html
         ├── design-system.html
         ├── shared/styles.css
         └── DESIGN-*.md
