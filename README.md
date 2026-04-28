@@ -15,11 +15,11 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 
 | # | Projecto | Estado |
 |---|----------|--------|
-| 01 | [Saúde Digital](https://conceitos.org/saudedigital/) | Disponível |
-| 02 | [Governo Digital](https://conceitos.org/governodigital/) | Disponível |
-| 03 | [Educação Digital](https://conceitos.org/educacaodigital/) | Disponível |
-| 04 | [Finanças Digitais](https://conceitos.org/financasdigitais/) | Disponível |
-| 05 | [Justiça Digital](https://conceitos.org/justicadigital/) | Disponível |
+| 01 | [Saúde Digital](https://conceitos.org/projectos/saudedigital/) | Disponível |
+| 02 | [Governo Digital](https://conceitos.org/projectos/governodigital/) | Disponível |
+| 03 | [Educação Digital](https://conceitos.org/projectos/educacaodigital/) | Disponível |
+| 04 | [Finanças Digitais](https://conceitos.org/projectos/financasdigitais/) | Disponível |
+| 05 | [Justiça Digital](https://conceitos.org/projectos/justicadigital/) | Disponível |
 
 ### Saúde Digital
 
@@ -45,58 +45,59 @@ Reimaginação do acesso à justiça com cinco superfícies: portal do cidadão 
 
 ```
 conceitos/
-├── index.html              # Página de entrada e directório de projectos
-├── assets/                 # Marca, SVGs partilhados
-├── saudedigital/           # Projecto 01 · Saúde Digital
-│   ├── index.html
-│   ├── emr.html
-│   ├── ehealth.html
-│   ├── pharmacy.html
-│   ├── audit.html
-│   ├── surveillance.html
-│   ├── design-system.html
-│   ├── shared/styles.css
-│   └── DESIGN-*.md
-├── governodigital/         # Projecto 02 · Governo Digital
-│   ├── index.html
-│   ├── ebi.html
-│   ├── cidadao.html
-│   ├── balcao.html
-│   ├── orcamento.html
-│   ├── auditoria.html
-│   ├── design-system.html
-│   ├── shared/styles.css
-│   └── DESIGN-*.md
-├── educacaodigital/        # Projecto 03 · Educação Digital
-    ├── index.html
-    ├── sige.html
-    ├── professor.html
-    ├── aluno.html
-    ├── biblioteca.html
-    ├── matriculas.html
-    ├── design-system.html
-    ├── shared/styles.css
-    └── DESIGN-*.md
-├── financasdigitais/       # Projecto 04 · Finanças Digitais
-    ├── index.html
-    ├── cidadao.html
-    ├── comercial.html
-    ├── efactura.html
-    ├── portal-at.html
-    ├── sistafe.html
-    ├── design-system.html
-    ├── shared/styles.css
-    └── DESIGN-*.md
-└── justicadigital/         # Projecto 05 · Justiça Digital
-    ├── index.html
-    ├── cidadao.html
-    ├── comunitario.html
-    ├── cadastro.html
-    ├── portal-mjcr.html
-    ├── registos.html
-    ├── design-system.html
-    ├── shared/styles.css
-    └── DESIGN-*.md
+├── index.html               # Página de entrada e directório de projectos
+├── assets/                  # Marca, SVGs partilhados
+└── projectos/
+    ├── saudedigital/        # Projecto 01 · Saúde Digital
+    │   ├── index.html
+    │   ├── emr.html
+    │   ├── ehealth.html
+    │   ├── pharmacy.html
+    │   ├── audit.html
+    │   ├── surveillance.html
+    │   ├── design-system.html
+    │   ├── shared/styles.css
+    │   └── DESIGN-*.md
+    ├── governodigital/      # Projecto 02 · Governo Digital
+    │   ├── index.html
+    │   ├── ebi.html
+    │   ├── cidadao.html
+    │   ├── balcao.html
+    │   ├── orcamento.html
+    │   ├── auditoria.html
+    │   ├── design-system.html
+    │   ├── shared/styles.css
+    │   └── DESIGN-*.md
+    ├── educacaodigital/     # Projecto 03 · Educação Digital
+    │   ├── index.html
+    │   ├── sige.html
+    │   ├── professor.html
+    │   ├── aluno.html
+    │   ├── biblioteca.html
+    │   ├── matriculas.html
+    │   ├── design-system.html
+    │   ├── shared/styles.css
+    │   └── DESIGN-*.md
+    ├── financasdigitais/    # Projecto 04 · Finanças Digitais
+    │   ├── index.html
+    │   ├── cidadao.html
+    │   ├── comercial.html
+    │   ├── efactura.html
+    │   ├── portal-at.html
+    │   ├── sistafe.html
+    │   ├── design-system.html
+    │   ├── shared/styles.css
+    │   └── DESIGN-*.md
+    └── justicadigital/      # Projecto 05 · Justiça Digital
+        ├── index.html
+        ├── cidadao.html
+        ├── comunitario.html
+        ├── cadastro.html
+        ├── portal-mjcr.html
+        ├── registos.html
+        ├── design-system.html
+        ├── shared/styles.css
+        └── DESIGN-*.md
 ```
 
 ## Tecnologia
@@ -109,7 +110,7 @@ Estes protótipos são conceitos visuais independentes, sem afiliação a qualqu
 
 ## Colaborar
 
-Contribuições são bem-vindas: crítica de desenho, novas ideias de projectos, correcções ou melhorias de acessibilidade. Abre uma issue ou um pull request.
+Contribuições são bem-vindas: crítica de design, novas ideias de projectos, correcções ou melhorias de acessibilidade. Abre uma issue ou um pull request.
 
 ---
 
