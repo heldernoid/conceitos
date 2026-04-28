@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema de Design — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .ds-hero{padding:36px 24px 12px;max-width:1200px;margin:0 auto}
+  .ds-hero h1{font-size:36px;font-weight:600;letter-spacing:-.015em;margin:6px 0 10px}
+  .ds-hero p{color:var(--ink-2);font-size:16px;max-width:720px;line-height:1.55;margin:0}
+  .section{max-width:1200px;margin:0 auto;padding:24px}
+  .section h2{font-size:22px;font-weight:600;margin:0 0 14px;letter-spacing:-.005em}
+  .swatch-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .sw{border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;background:#fff}
+  .sw .chip{height:64px}
+  .sw .meta{padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+  .sw .nm{font-size:12px;font-weight:600}
+  .sw .hex{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .typo-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line-2)}
+  .typo-row .lbl{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .demo{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:18px}
+  .demo h3{margin:0 0 10px;font-size:14px;font-weight:600}
+  .demo .stack{display:flex;flex-direction:column;gap:10px}
+  .demo .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pill-list{display:flex;flex-wrap:wrap;gap:8px}
+  .principle{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .principle .n{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .principle h4{margin:6px 0 4px;font-size:14px;font-weight:600}
+  .principle p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.5}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Unidade de Governação Digital — UGD</span><span class="sep">·</span>
+  <span>Sistema de Design v0.3</span>
+  <span style="margin-left:auto">DESIGN-system.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Governo Digital</span><small>Plataforma Cívica Nacional</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema de design</a>
+    <a href="ebi.html">eBI</a>
+    <a href="cidadao.html">App do Cidadão</a>
+    <a href="balcao.html">Balcão</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="auditoria.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-system.md" class="btn secondary sm">DESIGN-system.md</a>
+  </div>
+</header>
+
+<section class="ds-hero">
+  <div class="t-overline">Fundamentos · v0.3 · Abril 2026</div>
+  <h1>Sistema de Design</h1>
+  <p>Tokens, tipografia, componentes e padrões de estado partilhados pelas cinco superfícies do Governo Digital. Define o que é permitido e o que é interdito. Quando um documento de superfície contradiz este, este vence.</p>
+</section>
+
+<section class="section">
+  <span class="anchor" id="principios"></span>
+  <h2>Princípios</h2>
+  <div class="grid g-3">
+    <div class="principle"><div class="n">01</div><h4>Calmo, não promocional</h4><p>Sem gradientes, sem glassmorphism, sem sombras teatrais. Blocos de cor sólida, hierarquia clara, espaço generoso.</p></div>
+    <div class="principle"><div class="n">02</div><h4>Previsível antes de elegante</h4><p>Layouts alinhados à grelha. Formulários parecem formulários. Mesmos componentes em todas as superfícies.</p></div>
+    <div class="principle"><div class="n">03</div><h4>Construído para luz solar</h4><p>Contraste AA+, alvos ≥44 px, corpo ≥16 px no telemóvel, ≥14 px no desktop. Tablet 7″ em landscape suportado.</p></div>
+    <div class="principle"><div class="n">04</div><h4>Português moçambicano</h4><p>Toda a copy em PT-MZ. Nomes, províncias, distritos e cenários cívicos realistas. UGD identificada como fictícia.</p></div>
+    <div class="principle"><div class="n">05</div><h4>Proveniência sempre visível</h4><p>Número de processo, oficial assinante, timestamp e ministério-fonte expostos — nunca escondidos atrás de menus.</p></div>
+    <div class="principle"><div class="n">06</div><h4>Confirmação para acções cívicas</h4><p>Emitir, assinar, fundir e anular requerem dois toques e (quando aplicável) justificação obrigatória.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="cor"></span>
+  <h2>Paleta</h2>
+
+  <div class="t-overline" style="margin:14px 0 8px">Marca · Navy</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--navy-900)"></div><div class="meta"><span class="nm">navy-900</span><span class="hex">#0E1F36</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--navy-800)"></div><div class="meta"><span class="nm">navy-800</span><span class="hex">#152A45</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--navy-700)"></div><div class="meta"><span class="nm">navy-700</span><span class="hex">#1F3A5F</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--navy-600)"></div><div class="meta"><span class="nm">navy-600</span><span class="hex">#2B4E7E</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--navy-100)"></div><div class="meta"><span class="nm">navy-100</span><span class="hex">#E4E9F1</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--navy-50)"></div><div class="meta"><span class="nm">navy-50</span><span class="hex">#F1F4F9</span></div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Verificação · Verde (uso restrito)</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--green-700)"></div><div class="meta"><span class="nm">green-700</span><span class="hex">#1B5E3F</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--green-100)"></div><div class="meta"><span class="nm">green-100</span><span class="hex">#E4EFE9</span></div></div>
+  </div>
+  <p class="t-meta" style="margin:8px 0 0">Verde é a marca do Saúde Moçambique. Aqui aparece <em>apenas</em> em "assinado / carimbado / verificado pelo Estado".</p>
+
+  <div class="t-overline" style="margin:18px 0 8px">Estado civil</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--good-700)"></div><div class="meta"><span class="nm">good-700</span><span class="hex">#1B6B3A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--amber-500)"></div><div class="meta"><span class="nm">amber-500</span><span class="hex">#C8911E</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--red-500)"></div><div class="meta"><span class="nm">red-500</span><span class="hex">#C2392A</span></div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Fiscal · Ocre (apenas Orçamento Aberto)</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--ochre-700)"></div><div class="meta"><span class="nm">ochre-700</span><span class="hex">#7A5018</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ochre-500)"></div><div class="meta"><span class="nm">ochre-500</span><span class="hex">#B07728</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ochre-100)"></div><div class="meta"><span class="nm">ochre-100</span><span class="hex">#F1E2C7</span></div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Texto · Superfície</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="meta"><span class="nm">ink</span><span class="hex">#1A1A1A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-2)"></div><div class="meta"><span class="nm">ink-2</span><span class="hex">#3A3A3A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-3)"></div><div class="meta"><span class="nm">ink-3</span><span class="hex">#5E5E5E</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg);border-right:1px solid var(--line)"></div><div class="meta"><span class="nm">bg</span><span class="hex">#FAFAF7</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--bg-2)"></div><div class="meta"><span class="nm">bg-2</span><span class="hex">#F2F1EB</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--line)"></div><div class="meta"><span class="nm">line</span><span class="hex">#D9D7CF</span></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="tipografia"></span>
+  <h2>Tipografia</h2>
+  <div class="card"><div class="bd">
+    <div class="typo-row"><div class="lbl">t-display</div><div style="font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.1">Cinco superfícies, um Estado.</div></div>
+    <div class="typo-row"><div class="lbl">t-h1 32/600</div><div class="t-h1">Sistema de Design</div></div>
+    <div class="typo-row"><div class="lbl">t-h2 24/600</div><div class="t-h2">Identidade Civil</div></div>
+    <div class="typo-row"><div class="lbl">t-h3 18/600</div><div class="t-h3">Resumo do requerimento</div></div>
+    <div class="typo-row"><div class="lbl">t-h4 15/600</div><div class="t-h4">Documentos anexos</div></div>
+    <div class="typo-row"><div class="lbl">t-lead 16/1.5</div><div class="t-lead">Submeta o seu requerimento de certidão de nascimento sem ir ao balcão.</div></div>
+    <div class="typo-row"><div class="lbl">t-body 14/1.45</div><div class="t-body">O processo será assinado digitalmente pelo conservador do posto e enviado ao seu telemóvel.</div></div>
+    <div class="typo-row"><div class="lbl">t-meta 12</div><div class="t-meta">Submetido a 04 Abr 2026 · 14:32 · Posto de Inhambane</div></div>
+    <div class="typo-row"><div class="lbl">t-overline</div><div class="t-overline">Identificadores civis</div></div>
+    <div class="typo-row"><div class="lbl">mono</div><div class="mono" style="font-size:14px">110100099876 C · NUIT 401 236 789 · P-2026-0084-MAP</div></div>
+  </div></div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="componentes"></span>
+  <h2>Componentes</h2>
+  <div class="comp-grid">
+
+    <div class="demo">
+      <h3>Botões</h3>
+      <div class="stack">
+        <div class="row">
+          <button class="btn">Submeter requerimento</button>
+          <button class="btn secondary">Cancelar</button>
+          <button class="btn ghost">Voltar</button>
+        </div>
+        <div class="row">
+          <button class="btn success">Assinar e emitir</button>
+          <button class="btn danger">Anular processo</button>
+          <button class="btn amber">Suspender</button>
+        </div>
+        <div class="row">
+          <button class="btn sm">Pequeno</button>
+          <button class="btn">Padrão</button>
+          <button class="btn lg">Grande</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Distintivos · Estado civil</h3>
+      <div class="pill-list">
+        <span class="badge">Rascunho</span>
+        <span class="badge blue"><span class="dot"></span>Em análise</span>
+        <span class="badge amber"><span class="dot"></span>Aguarda pagamento</span>
+        <span class="badge green"><span class="dot"></span>Assinado</span>
+        <span class="badge red"><span class="dot"></span>Rejeitado</span>
+        <span class="badge ochre"><span class="dot"></span>Fiscal</span>
+        <span class="badge dark">UGD interno</span>
+      </div>
+      <div class="pill-list" style="margin-top:14px">
+        <span class="conn"><span class="d"></span> Online · sincronizado</span>
+        <span class="conn amber"><span class="d"></span> 4 em fila</span>
+        <span class="conn off"><span class="d"></span> Offline</span>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Inputs</h3>
+      <div class="stack">
+        <div class="field"><label>BI do requerente</label><input class="input mono" value="110100099876 C" /></div>
+        <div class="field"><label>Província</label><select class="select"><option>Inhambane</option><option>Maputo Cidade</option><option>Sofala</option></select></div>
+        <div class="field"><label>Motivo do pedido</label><textarea class="textarea" placeholder="Mínimo 80 caracteres para acções irreversíveis."></textarea><span class="hint">Mínimo 80 caracteres.</span></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Stepper</h3>
+      <div class="stepper">
+        <div class="step done"><span class="n">1</span> Identificar</div>
+        <span class="ln"></span>
+        <div class="step done"><span class="n">2</span> Anexos</div>
+        <span class="ln"></span>
+        <div class="step active"><span class="n">3</span> Pagamento</div>
+        <span class="ln"></span>
+        <div class="step"><span class="n">4</span> Assinar</div>
+        <span class="ln"></span>
+        <div class="step"><span class="n">5</span> Emitir</div>
+      </div>
+      <div style="margin-top:18px" class="stepper">
+        <div class="step done"><span class="n">1</span> Requerimento</div>
+        <span class="ln"></span>
+        <div class="step active"><span class="n">2</span> Análise</div>
+        <span class="ln"></span>
+        <div class="step"><span class="n">3</span> Assinatura</div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Cartão · com proveniência</h3>
+      <div class="card">
+        <div class="hd"><div><b>Certidão de Nascimento</b><div class="t-meta">P-2026-0084-MAP</div></div><span class="badge green"><span class="dot"></span>Assinado</span></div>
+        <div class="bd">
+          <div class="kv" style="margin-bottom:8px"><span class="k">Requerente</span><span class="v">Felisberta Sumaila Cuamba</span></div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">Posto</span><span class="v">Conservatória de Inhambane · BAÚ Central</span></div>
+          <div class="kv"><span class="k">Assinante</span><span class="v">Tomás A. Macuácua · Conservador</span></div>
+        </div>
+        <div class="ft">
+          <span class="t-meta mono">04 Abr 2026 · 14:32 CAT</span>
+          <button class="btn sm secondary">Verificar QR</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Banners</h3>
+      <div class="stack">
+        <div class="banner blue"><span class="ic"></span><div><b>Documento submetido.</b> O conservador do posto irá rever em até 48 h úteis.</div></div>
+        <div class="banner amber"><span class="ic"></span><div><b>Pagamento pendente.</b> Conclua o pagamento por M-Pesa ou eMola para que o processo avance.</div></div>
+        <div class="banner red"><span class="ic"></span><div><b>Requerimento rejeitado.</b> Veja a justificação e submeta novamente.</div></div>
+        <div class="banner green"><span class="ic"></span><div><b>Certidão assinada e disponível.</b> Pode levantar a versão impressa em qualquer posto BAÚ.</div></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Tabela · processos</h3>
+      <table class="table">
+        <thead><tr><th>Processo</th><th>Tipo</th><th>Estado</th><th>Atribuído</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">P-2026-0084-MAP</td><td>Certidão de nascimento</td><td><span class="badge green"><span class="dot"></span>Assinado</span></td><td>T. Macuácua</td></tr>
+          <tr class="sel"><td class="mono">P-2026-0091-INH</td><td>Renovação BI</td><td><span class="badge blue"><span class="dot"></span>Em análise</span></td><td>J. Massingue</td></tr>
+          <tr><td class="mono">P-2026-0092-NPL</td><td>Antecedentes criminais</td><td><span class="badge amber"><span class="dot"></span>Aguarda pagamento</span></td><td>—</td></tr>
+          <tr><td class="mono">P-2026-0095-SOF</td><td>Fusão duplicado BI</td><td><span class="badge red"><span class="dot"></span>Rejeitado</span></td><td>F. Chongo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="demo">
+      <h3>Barras de execução · Orçamento</h3>
+      <div class="stack">
+        <div>
+          <div class="row spread t-meta" style="margin-bottom:4px"><span>Saúde · 92% executado</span><span class="mono">MZN 28,4 mM / 30,9 mM</span></div>
+          <div class="bar ochre"><div class="fill" style="width:92%"></div></div>
+        </div>
+        <div>
+          <div class="row spread t-meta" style="margin-bottom:4px"><span>Educação · 67% executado</span><span class="mono">MZN 18,1 mM / 27,0 mM</span></div>
+          <div class="bar ochre"><div class="fill" style="width:67%"></div></div>
+        </div>
+        <div>
+          <div class="row spread t-meta" style="margin-bottom:4px"><span>Defesa · 104% — alerta</span><span class="mono">MZN 9,1 mM / 8,7 mM</span></div>
+          <div class="bar red"><div class="fill" style="width:100%"></div></div>
+        </div>
+        <div>
+          <div class="row spread t-meta" style="margin-bottom:4px"><span>Cultura · 38% — sub-execução</span><span class="mono">MZN 0,4 mM / 1,1 mM</span></div>
+          <div class="bar amber"><div class="fill" style="width:38%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>QR · com proveniência</h3>
+      <div class="row" style="align-items:flex-start;gap:18px">
+        <div class="qr"></div>
+        <div>
+          <div class="t-overline">Verificável em ugd.gov.mz/v</div>
+          <div class="t-h4 mono" style="margin:6px 0 4px">P-2026-0084-MAP</div>
+          <div class="t-meta">Emitido 04 Abr 2026 · 14:32 CAT</div>
+          <div class="t-meta">Conservatória de Inhambane</div>
+          <div class="row" style="margin-top:10px"><span class="badge green"><span class="dot"></span>Verificado</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Avatares · sem foto</h3>
+      <div class="row">
+        <span class="av sm">FC</span>
+        <span class="av">FC</span>
+        <span class="av lg">FC</span>
+        <span class="av green lg">TM</span>
+        <span class="av amber lg">JM</span>
+      </div>
+      <p class="t-meta" style="margin:12px 0 0">Iniciais apenas, por defeito. Fotografias só em documentos verificáveis (BI, passaporte) — nunca como avatar de UI.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="proibido"></span>
+  <h2>Proibições</h2>
+  <div class="grid g-3">
+    <div class="card"><div class="bd"><div class="t-overline">Tipografia</div><p class="t-body" style="margin:6px 0 0">Sem peso 700 em produção. Sem fontes display. Mono apenas para identificadores cívicos.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Cor</div><p class="t-body" style="margin:6px 0 0">Vermelho não é o botão "apagar". Verde não é confirmação genérica — apenas "assinado".</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Forma</div><p class="t-body" style="margin:6px 0 0">Raio máximo 6 px. Sem pílulas. Sem cartões 50%-redondos. Sem sombras decorativas.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Movimento</div><p class="t-body" style="margin:6px 0 0">Transições ≤150 ms. Sem animação de entrada. Sem skeleton-shimmer. Sem confetti.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Imagem</div><p class="t-body" style="margin:6px 0 0">Sem ilustrações em estados vazios. Sem stock photography. Sem emoji no chrome.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Identidade</div><p class="t-body" style="margin:6px 0 0">Sem login social. Sem perfis públicos. Sem fotografia de avatar — iniciais apenas.</p></div></div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:32px">
+  <div style="max-width:1200px;margin:0 auto" class="row spread">
+    <div class="t-meta">Sistema de Design v0.3 · documento autoritativo: <a class="mono" href="DESIGN-system.md">DESIGN-system.md</a></div>
+    <div class="row">
+      <a href="index.html" class="btn ghost sm">Visão geral</a>
+      <a href="ebi.html" class="btn secondary sm">Ver superfície eBI →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

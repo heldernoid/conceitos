@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Auditoria de Acessos — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:14px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:10px}
+
+  /* App shell with side rail */
+  .audit-shell{display:flex;min-height:680px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;max-width:1440px;margin:0 auto}
+  .audit-shell .rail{width:220px;background:var(--navy-900);color:#cdd6e3;display:flex;flex-direction:column;flex:0 0 auto}
+  .audit-shell .rail .br{padding:14px 16px;border-bottom:1px solid #1d3148}
+  .audit-shell .rail .br b{color:#fff;font-size:13px;display:block}
+  .audit-shell .rail .br small{font-size:10px;color:#90a4c1;text-transform:uppercase;letter-spacing:.06em}
+  .audit-shell .rail nav{padding:6px;flex:1;overflow-y:auto}
+  .audit-shell .rail nav a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;color:#cdd6e3;font-size:12.5px;border-radius:2px;text-decoration:none}
+  .audit-shell .rail nav a:hover{background:#172a44}
+  .audit-shell .rail nav a.active{background:var(--navy-600);color:#fff;font-weight:500}
+  .audit-shell .rail nav a .b{font-family:var(--f-mono);font-size:10px;background:rgba(255,255,255,.08);padding:2px 6px;border-radius:2px}
+  .audit-shell .rail nav .group{font-size:10px;text-transform:uppercase;color:#8aa1bd;padding:14px 10px 4px;letter-spacing:.08em;font-weight:600}
+  .audit-shell .rail .ft{padding:12px 16px;border-top:1px solid #1d3148;font-size:11px;color:#8aa1bd}
+  .audit-shell .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+  .audit-shell .main .top{height:52px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 18px;justify-content:space-between;flex:0 0 auto}
+  .audit-shell .main .top h1{font-size:15px;font-weight:600;margin:0}
+  .audit-shell .main .body{flex:1;padding:18px;overflow-y:auto}
+
+  .kpi-a{padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);display:flex;flex-direction:column;gap:4px}
+  .kpi-a .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi-a .v{font-size:24px;font-weight:600;letter-spacing:-.01em;font-family:var(--f-mono)}
+  .kpi-a .d{font-size:11px;color:var(--ink-3)}
+
+  .log-row{display:grid;grid-template-columns:120px 1.1fr 1.4fr 1.4fr 1.6fr 110px;gap:12px;padding:9px 12px;align-items:center;font-size:12px;border-bottom:1px solid var(--line-2);cursor:pointer}
+  .log-row:hover{background:var(--bg-2)}
+  .log-row.head{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line);cursor:default}
+  .log-row.head:hover{background:var(--bg-2)}
+  .log-row.flag{background:#FFFBEF}
+
+  .anom-card{padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);border-left:3px solid var(--amber-500)}
+  .anom-card.red{border-left-color:var(--red-500)}
+  .anom-card .ty{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--amber-700);font-weight:600}
+  .anom-card.red .ty{color:var(--red-700)}
+  .anom-card .ti{font-size:13px;font-weight:600;margin:4px 0 2px}
+  .anom-card .sb{font-size:11px;color:var(--ink-3)}
+
+  /* embedded phone for citizen mirror */
+  .mini-phone{width:280px;height:540px;background:#0a0a0a;border-radius:24px;padding:8px;flex:0 0 auto}
+  .mini-phone .screen{width:100%;height:100%;background:var(--bg);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+  .mp-bar{height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:#fff;border-bottom:1px solid var(--line-2);font-size:12px;font-weight:600}
+  .mp-content{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+  .mp-list-item{display:flex;gap:8px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);align-items:center;font-size:11px}
+  .mp-list-item .ic{width:28px;height:28px;background:var(--navy-100);color:var(--navy-700);border-radius:var(--r-2);display:flex;align-items:center;justify-content:center;font-weight:600;flex:0 0 auto;font-size:10px}
+  .mp-list-item .body{flex:1;min-width:0}
+  .mp-list-item .ti{font-size:11px;font-weight:600;line-height:1.25}
+  .mp-list-item .sb{font-size:10px;color:var(--ink-3);margin-top:2px}
+
+  .timeline{display:flex;flex-direction:column;gap:14px;position:relative;padding-left:16px}
+  .timeline::before{content:"";position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:var(--line)}
+  .timeline .t-item{position:relative;padding-left:16px}
+  .timeline .t-item::before{content:"";position:absolute;left:-16px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--navy-700);border:2px solid #fff}
+  .timeline .t-item.done::before{background:var(--good-700)}
+  .timeline .t-item.pending::before{background:var(--bg-2);border-color:var(--line)}
+  .timeline .t-item .h{font-size:13px;font-weight:600}
+  .timeline .t-item .m{font-size:11px;color:var(--ink-3);margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Unidade de Governação Digital — UGD</span><span class="sep">·</span>
+  <span>Auditoria de Acessos · v0.3 (esboço)</span>
+  <span style="margin-left:auto">DESIGN-auditoria.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Auditoria</span><small>UGD · acessos & padrões</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="ebi.html">eBI</a>
+    <a href="cidadao.html">App do Cidadão</a>
+    <a href="balcao.html">Balcão</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="auditoria.html" class="active">Auditoria</a>
+  </nav>
+  <div class="right">
+    <span class="badge amber" style="font-size:11px"><span class="dot"></span>Esboço · v0.3</span>
+    <a href="DESIGN-auditoria.md" class="btn secondary sm">DESIGN-auditoria.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Painel UGD</a>
+    <a href="#cena-2">2. Log de acessos</a>
+    <a href="#cena-3">3. Detalhe de acesso</a>
+    <a href="#cena-4">4. Padrões anómalos</a>
+    <a href="#cena-5">5. Report do cidadão</a>
+    <a href="#cena-6">6. Vista espelhada</a>
+    <a href="#cena-7">7. Decisão · 2 etapas</a>
+    <a href="#cena-8">8. Exportação IGF</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · PAINEL =================== -->
+<section class="scene"><span id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Painel UGD</div>
+    <h2>Vista de operação · 12 analistas, sede em Maputo</h2>
+    <p>KPIs do dia, fila de reports do cidadão, anomalias auto-detectadas. O painel não julga — sinaliza o que merece atenção humana.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe · Analista sénior</small></div>
+        <nav>
+          <div class="group">Operação</div>
+          <a class="active">▦ Painel <span class="b">3</span></a>
+          <a>≡ Log de acessos</a>
+          <a>⚑ Padrões anómalos <span class="b">5</span></a>
+          <div class="group">Reports</div>
+          <a>↑ Em fila <span class="b">3</span></a>
+          <a>⌕ Em investigação <span class="b">7</span></a>
+          <a>✓ Respondidos</a>
+          <div class="group">Exportação</div>
+          <a>⤓ Para IGF</a>
+          <a>⤓ Para Tribunal Administrativo</a>
+          <div class="group">Sistema</div>
+          <a>⚙ Definições</a>
+          <a>↗ Sair</a>
+        </nav>
+        <div class="ft">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--good-700)"></span><span style="color:#fff">Sistema OK</span></div>
+          <div>v0.3 · Maputo HQ</div>
+        </div>
+      </aside>
+      <div class="main">
+        <div class="top">
+          <div>
+            <h1>Painel · 04 Abr 2026</h1>
+          </div>
+          <div class="row"><span class="conn"><span class="d"></span> 12 analistas online</span></div>
+        </div>
+        <div class="body">
+          <div class="grid g-4" style="margin-bottom:16px">
+            <div class="kpi-a"><span class="lbl">Acessos · 24 h</span><span class="v">14 280</span><span class="d">+8% face a ontem</span></div>
+            <div class="kpi-a"><span class="lbl">Reports do cidadão</span><span class="v" style="color:var(--navy-700)">3</span><span class="d">2 em fila · 1 escalonado</span></div>
+            <div class="kpi-a"><span class="lbl">Anomalias auto</span><span class="v" style="color:var(--amber-700)">5</span><span class="d">por triagem</span></div>
+            <div class="kpi-a"><span class="lbl">Provisórios a expirar</span><span class="v" style="color:var(--red-700)">22</span><span class="d">a 7 dias do limite de 90</span></div>
+          </div>
+
+          <div class="grid g-2">
+            <div class="card">
+              <div class="hd"><b>Reports do cidadão · em fila</b><a href="#cena-5" class="t-meta">Ver todos →</a></div>
+              <div>
+                <div class="log-row head" style="grid-template-columns:140px 1fr 110px 80px"><div>Referência</div><div>Cidadão · acesso reportado</div><div>Recebido</div><div>Idade</div></div>
+                <div class="log-row" style="grid-template-columns:140px 1fr 110px 80px" onclick="location.hash='#cena-5'">
+                  <div class="mono">R-2026-AUD-0034</div>
+                  <div><b>F. S. Cuamba</b> · operador desconhecido em Beira <div class="t-meta">12 Mar · sem motivo registado</div></div>
+                  <div class="t-meta">04 Abr 14:52</div>
+                  <div><span class="badge blue" style="font-size:10px"><span class="dot"></span>2 h</span></div>
+                </div>
+                <div class="log-row" style="grid-template-columns:140px 1fr 110px 80px">
+                  <div class="mono">R-2026-AUD-0033</div>
+                  <div><b>P. Nhambinga</b> · operador BAÚ Tete · 28 Mar <div class="t-meta">"motivo não corresponde"</div></div>
+                  <div class="t-meta">04 Abr 11:18</div>
+                  <div><span class="badge blue" style="font-size:10px"><span class="dot"></span>5 h</span></div>
+                </div>
+                <div class="log-row" style="grid-template-columns:140px 1fr 110px 80px">
+                  <div class="mono">R-2026-AUD-0032</div>
+                  <div><b>A. Macuvele</b> · operador Saúde Maxixe · 22 Mar <div class="t-meta">"não estive na consulta"</div></div>
+                  <div class="t-meta">03 Abr 16:40</div>
+                  <div><span class="badge amber" style="font-size:10px"><span class="dot"></span>22 h</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Anomalias auto-detectadas</b><a href="#cena-4" class="t-meta">Ver todas →</a></div>
+              <div class="bd col">
+                <div class="anom-card red">
+                  <div class="ty">Volume atípico</div>
+                  <div class="ti">Operador C. Mucache · BAÚ Beira</div>
+                  <div class="sb">312 consultas hoje · 4,2σ acima da média semanal (média: 78)</div>
+                </div>
+                <div class="anom-card">
+                  <div class="ty">Acessos fora de horário</div>
+                  <div class="ti">Posto BAÚ Mocímboa · 02:14 a 03:38</div>
+                  <div class="sb">7 consultas sem motivo registado · operador: F. Sumaila</div>
+                </div>
+                <div class="anom-card">
+                  <div class="ty">Discrepância de caixa</div>
+                  <div class="ti">Posto BAÚ Tete Central · 4 dias no mês</div>
+                  <div class="sb">Operador L. Macamo · −MZN 320 acumulados</div>
+                </div>
+                <div class="anom-card">
+                  <div class="ty">Provisório não revisto</div>
+                  <div class="ti">Posto BAÚ Niassa · 4 registos</div>
+                  <div class="sb">Override de emergência sem revisão · 84 dias</div>
+                </div>
+                <div class="anom-card">
+                  <div class="ty">Padrão geográfico</div>
+                  <div class="ti">Cabo Delgado · 22 acessos cross-province</div>
+                  <div class="sb">Operadores de Maputo a consultar fichas de C. Delgado · sem motivo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid g-3" style="margin-top:16px">
+            <div class="card"><div class="bd"><div class="t-overline">Acessos por sistema (24h)</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>eBI · web</span><span class="mono">8 412</span></div><div class="bar"><div class="fill" style="width:59%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Balcão · tablet</span><span class="mono">3 870</span></div><div class="bar"><div class="fill" style="width:27%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>App do Cidadão (auto)</span><span class="mono">1 220</span></div><div class="bar"><div class="fill" style="width:9%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Saúde Moçambique (cross)</span><span class="mono">778</span></div><div class="bar"><div class="fill" style="width:5%"></div></div></div>
+              </div>
+            </div></div>
+            <div class="card"><div class="bd"><div class="t-overline">Acessos por província (top)</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Maputo Cidade</span><span class="mono">3 220</span></div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Nampula</span><span class="mono">2 180</span></div><div class="bar"><div class="fill" style="width:67%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Sofala (Beira)</span><span class="mono">1 840</span></div><div class="bar"><div class="fill" style="width:57%"></div></div></div>
+                <div><div class="row spread t-meta" style="margin-bottom:3px"><span>Inhambane</span><span class="mono">1 120</span></div><div class="bar"><div class="fill" style="width:35%"></div></div></div>
+              </div>
+            </div></div>
+            <div class="card"><div class="bd"><div class="t-overline">Tempo médio de resolução de reports</div>
+              <div class="mono" style="font-size:32px;font-weight:600;letter-spacing:-.01em;margin:8px 0 2px;color:var(--navy-700)">22 dias</div>
+              <div class="t-meta">Mediana 18 dias · meta UGD: ≤ 30 dias.</div>
+              <hr class="hr">
+              <div class="row spread"><span class="t-meta">Resolvidos no mês</span><b class="mono">28</b></div>
+              <div class="row spread"><span class="t-meta">Encaminhados ao MP</span><b class="mono">3</b></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Cada acção do analista é, ela própria, registada — auditando os auditores.</span><a class="btn secondary sm" href="#cena-2">Log →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · LOG =================== -->
+<section class="scene"><span id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Log de acessos</div>
+    <h2>Tabela paginada · todas as leituras de todas as superfícies</h2>
+    <p>Filtros por operador, posto, cidadão, tipo, data, sistema. Default: mais recente primeiro.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav>
+          <div class="group">Operação</div>
+          <a>▦ Painel</a>
+          <a class="active">≡ Log de acessos</a>
+          <a>⚑ Padrões <span class="b">5</span></a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="top">
+          <h1>Log de acessos</h1>
+          <div class="row"><span class="t-meta">14 280 eventos hoje</span><button class="btn secondary sm">⤓ CSV</button></div>
+        </div>
+        <div class="body">
+          <div class="card">
+            <div class="bd" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;background:var(--bg-2);border-bottom:1px solid var(--line);padding:10px 12px">
+              <select class="select"><option>Sistema — todos</option><option>eBI</option><option>Balcão</option><option>App do Cidadão</option><option>Saúde Moçambique (cross)</option></select>
+              <select class="select"><option>Posto — todos</option><option>Inhambane Central</option><option>Maputo Central</option><option>Beira</option></select>
+              <select class="select"><option>Tipo — todos</option><option>consulta</option><option>emissão</option><option>fusão</option><option>óbito</option></select>
+              <input class="input mono" placeholder="BI ou NUIT" />
+              <input class="input mono" placeholder="Operador (nome ou ID)" />
+              <input class="input" type="date" value="2026-04-04" />
+            </div>
+            <div>
+              <div class="log-row head"><div>Hora</div><div>Operador</div><div>Posto · sistema</div><div>Cidadão</div><div>Acção · motivo</div><div>Estado</div></div>
+              <div class="log-row"><div class="mono">14:42:11</div><div><b>T. Macuácua</b><div class="t-meta">Conservador · INH-014</div></div><div>Inhambane Central<div class="t-meta">eBI · web</div></div><div>F. S. Cuamba<div class="t-meta mono">110100099876 C</div></div><div><b>Emissão</b> · BI definitivo<div class="t-meta">"Renovação a pedido"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+              <div class="log-row"><div class="mono">14:32:18</div><div><b>T. Macuácua</b><div class="t-meta">Conservador</div></div><div>Inhambane Central<div class="t-meta">eBI · web</div></div><div>F. S. Cuamba</div><div>Consulta · ficha completa<div class="t-meta">"Renovação a pedido"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+              <div class="log-row flag" onclick="location.hash='#cena-3'"><div class="mono">14:22:04</div><div><b>(operador desconhecido)</b><div class="t-meta">ID expirado</div></div><div>Beira<div class="t-meta">eBI · web</div></div><div>F. S. Cuamba</div><div>Consulta<div class="t-meta">— sem motivo —</div></div><div><span class="badge red" style="font-size:10px"><span class="dot"></span>Reportado</span></div></div>
+              <div class="log-row"><div class="mono">14:18:33</div><div><b>F. Chongo</b><div class="t-meta">Operador BAÚ</div></div><div>Inhambane Central<div class="t-meta">Balcão · tablet</div></div><div>S. Dauto</div><div>Consulta · ticket A-016<div class="t-meta">"Certidão da filha"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+              <div class="log-row"><div class="mono">14:15:52</div><div><b>UGD Auto</b><div class="t-meta">Sistema</div></div><div>—<div class="t-meta">Auditoria</div></div><div>(varredura nacional)</div><div>Varredura mensal<div class="t-meta">CRON-monthly-04Abr</div></div><div><span class="badge"><span class="dot"></span>Sistema</span></div></div>
+              <div class="log-row"><div class="mono">14:08:11</div><div><b>R. Nhamburo</b><div class="t-meta">Médico · MISAU</div></div><div>CS Maxixe<div class="t-meta">Saúde MZ · cross</div></div><div>F. S. Cuamba</div><div>Consulta de identidade<div class="t-meta">"Identificar paciente sem BI"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+              <div class="log-row flag"><div class="mono">02:38:14</div><div><b>F. Sumaila</b><div class="t-meta">Operador BAÚ</div></div><div>Mocímboa da Praia<div class="t-meta">eBI · web</div></div><div>(múltiplos)</div><div>Consulta · 7 fichas<div class="t-meta">— sem motivo —</div></div><div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Anomalia</span></div></div>
+              <div class="log-row"><div class="mono">14:05:01</div><div><b>L. Maússe</b><div class="t-meta">Conservador · Maxixe</div></div><div>Maxixe<div class="t-meta">eBI · web</div></div><div>J. Massingue</div><div>Emissão · 2.ª via BI<div class="t-meta">"Perda do BI físico"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+              <div class="log-row"><div class="mono">14:01:48</div><div><b>C. Mucache</b><div class="t-meta">Operador BAÚ · Beira</div></div><div>Beira<div class="t-meta">eBI · web</div></div><div>(múltiplos)</div><div>Consulta · 312 hoje<div class="t-meta">— vários motivos —</div></div><div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Volume atípico</span></div></div>
+              <div class="log-row"><div class="mono">13:58:22</div><div><b>F. Chongo</b><div class="t-meta">Operador BAÚ</div></div><div>Inhambane Central<div class="t-meta">Balcão</div></div><div>E. Mussagy</div><div>Consulta · ticket A-017<div class="t-meta">"Mudança de nome"</div></div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Conforme</span></div></div>
+            </div>
+            <div class="ft" style="padding:12px 14px;border-top:1px solid var(--line-2);justify-content:space-between"><span class="t-meta">10 de 14 280 · página 1 de 1 428</span><div class="row"><button class="btn ghost sm" disabled>← Anterior</button><button class="btn secondary sm">Próxima →</button></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Painel</a><a class="btn secondary sm" href="#cena-3">Detalhe →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · DETALHE =================== -->
+<section class="scene"><span id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Detalhe de um acesso</div>
+    <h2>Acesso em Beira · 12 Mar 2026 · operador desconhecido</h2>
+    <p>Página com o registo completo, snapshot do cidadão à data, outros acessos do mesmo operador no mesmo dia, e link ao processo se houver.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav><a class="active">≡ Log · detalhe</a></nav>
+      </aside>
+      <div class="main">
+        <div class="top">
+          <h1>Acesso · 12 Mar 2026 14:22:04</h1>
+          <span class="badge red"><span class="dot"></span>Reportado pelo cidadão</span>
+        </div>
+        <div class="body">
+          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px">
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Registo do acesso</b><span class="t-meta mono">EVT-2026-IDX-088401392</span></div>
+                <div class="bd">
+                  <div class="grid g-3">
+                    <div class="kv"><span class="k">Quando</span><span class="v mono">12 Mar 2026 · 14:22:04 CAT</span></div>
+                    <div class="kv"><span class="k">Sistema</span><span class="v">eBI · web</span></div>
+                    <div class="kv"><span class="k">Tipo</span><span class="v">Consulta · ficha completa</span></div>
+                    <div class="kv"><span class="k">Posto</span><span class="v">Conservatória de Beira (BAÚ Central)</span></div>
+                    <div class="kv"><span class="k">IP</span><span class="v mono">10.41.22.18 (rede local Beira)</span></div>
+                    <div class="kv"><span class="k">Sessão</span><span class="v mono">SES-2026-BEI-04124</span></div>
+                  </div>
+                  <hr class="hr">
+                  <div class="grid g-2">
+                    <div class="kv"><span class="k">Operador</span><span class="v">Credencial expirada · ID UGD-BEI-076</span></div>
+                    <div class="kv"><span class="k">Função</span><span class="v">Operador BAÚ (cessou 28 Fev 2026)</span></div>
+                    <div class="kv"><span class="k">Cidadão consultado</span><span class="v">Felisberta Sumaila Cuamba · 110100099876 C</span></div>
+                    <div class="kv"><span class="k">Motivo registado</span><span class="v" style="color:var(--red-700)">— em branco —</span></div>
+                  </div>
+                  <hr class="hr">
+                  <div class="banner red"><span class="ic"></span><div><b>Bandeiras automáticas:</b> credencial expirada · sem motivo registado · cidadão fora do território do posto. Reportado pela cidadã na App do Cidadão a 04 Abr.</div></div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Outros acessos do mesmo operador (12 Mar)</b></div>
+                <table class="table">
+                  <thead><tr><th>Hora</th><th>Cidadão</th><th>Tipo</th><th>Motivo</th></tr></thead>
+                  <tbody>
+                    <tr><td class="mono">14:18</td><td>P. Cossa</td><td>Consulta</td><td style="color:var(--red-700)">—</td></tr>
+                    <tr style="background:#FCEFEC"><td class="mono">14:22</td><td><b>F. S. Cuamba</b></td><td>Consulta</td><td style="color:var(--red-700)">—</td></tr>
+                    <tr><td class="mono">14:24</td><td>A. Sitói</td><td>Consulta</td><td style="color:var(--red-700)">—</td></tr>
+                    <tr><td class="mono">14:31</td><td>R. Manhiça</td><td>Consulta</td><td style="color:var(--red-700)">—</td></tr>
+                    <tr><td class="mono">14:48</td><td>(11 fichas)</td><td>Consulta em série</td><td style="color:var(--red-700)">—</td></tr>
+                  </tbody>
+                </table>
+                <div class="ft" style="padding:10px 14px;border-top:1px solid var(--line-2)"><span class="t-meta" style="color:var(--red-700)"><b>Padrão suspeito.</b> 14 consultas em 38 min sem motivo · operador com credencial expirada.</span></div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Próximos passos</b></div>
+                <div class="bd col">
+                  <button class="btn">Abrir investigação formal</button>
+                  <button class="btn secondary">Marcar para revisão pelo director da UGD</button>
+                  <button class="btn secondary">Suspender credencial cautelarmente</button>
+                  <hr class="hr">
+                  <button class="btn ghost">Marcar como conforme</button>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd"><b>Cidadã · contacto</b></div>
+                <div class="bd col">
+                  <div class="kv"><span class="k">Nome</span><span class="v">Felisberta Sumaila Cuamba</span></div>
+                  <div class="kv"><span class="k">App</span><span class="v">Activa · última utilização hoje</span></div>
+                  <div class="kv"><span class="k">Reporte</span><span class="v mono">R-2026-AUD-0034</span></div>
+                  <a href="#cena-5" class="btn secondary">Ver report do cidadão →</a>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd"><b>Histórico do operador</b></div>
+                <div class="bd col">
+                  <div class="kv"><span class="k">Cessação</span><span class="v">28 Fev 2026 · transferência interna não concretizada</span></div>
+                  <div class="kv"><span class="k">Credencial</span><span class="v" style="color:var(--red-700)">Devia ter expirado a 28 Fev — não expirou</span></div>
+                  <div class="kv"><span class="k">Causa</span><span class="v">Erro no processo de off-boarding do posto · UGD-BEI</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Log</a><a class="btn secondary sm" href="#cena-4">Padrões →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · PADRÕES =================== -->
+<section class="scene"><span id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Padrões anómalos</div>
+    <h2>Detecção automática · 4 classes de padrão</h2>
+    <p>Volume atípico · acessos fora do horário · discrepância repetida · provisórios não revistos. Regras estáticas em v0.3 — v0.4 abre discussão sobre detecção mais sofisticada.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav><a>▦ Painel</a><a>≡ Log</a><a class="active">⚑ Padrões anómalos</a></nav>
+      </aside>
+      <div class="main">
+        <div class="top"><h1>Padrões anómalos</h1><span class="t-meta">5 sinalizados · 0 dispensados · 0 escalonados hoje</span></div>
+        <div class="body">
+          <div class="banner blue" style="margin-bottom:14px"><span class="ic"></span><div><b>v0.3 esboço.</b> Regras estáticas; v0.4 abre discussão com UGD sobre detecção mais sofisticada (operadores em postos remotos com conectividade intermitente não devem ser injustamente sinalizados).</div></div>
+
+          <div class="grid g-2">
+            <div class="card">
+              <div class="hd"><b>Volume atípico</b><span class="badge red"><span class="dot"></span>1 sinalizado</span></div>
+              <div class="bd col">
+                <div class="anom-card red">
+                  <div class="ty">3,4σ acima da média semanal</div>
+                  <div class="ti">C. Mucache · BAÚ Beira</div>
+                  <div class="sb">312 consultas hoje · média semanal: 78 · max histórico: 142</div>
+                  <div class="row" style="gap:6px;margin-top:10px"><button class="btn sm">Investigar</button><button class="btn sm secondary">Pedir justificação</button><button class="btn sm ghost">Dispensar</button></div>
+                </div>
+                <hr class="hr">
+                <div class="t-meta"><b>Regra:</b> volume diário > 200 OU > 3σ acima da média do operador na sua função, no seu posto.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Acessos fora de horário</b><span class="badge amber"><span class="dot"></span>1 sinalizado</span></div>
+              <div class="bd col">
+                <div class="anom-card">
+                  <div class="ty">22:00–06:00 sem motivo</div>
+                  <div class="ti">F. Sumaila · BAÚ Mocímboa da Praia</div>
+                  <div class="sb">7 consultas entre 02:14 e 03:38 · sem motivo registado · posto fechado fisicamente</div>
+                  <div class="row" style="gap:6px;margin-top:10px"><button class="btn sm">Investigar</button><button class="btn sm secondary">Pedir justificação</button></div>
+                </div>
+                <hr class="hr">
+                <div class="t-meta"><b>Regra:</b> acessos entre 22:00 e 06:00 do fuso CAT sem motivo registado, em postos não-emergência.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Discrepância de caixa repetida</b><span class="badge amber"><span class="dot"></span>1 sinalizado</span></div>
+              <div class="bd col">
+                <div class="anom-card">
+                  <div class="ty">≥3 dias com discrepância no mês</div>
+                  <div class="ti">L. Macamo · BAÚ Tete Central</div>
+                  <div class="sb">−MZN 320 acumulados em 4 fechos do mês · padrão consistente com erro repetido ou subtracção</div>
+                  <div class="row" style="gap:6px;margin-top:10px"><button class="btn sm">Investigar</button><button class="btn sm secondary">Pedir vídeo de segurança</button></div>
+                </div>
+                <hr class="hr">
+                <div class="t-meta"><b>Regra:</b> ≥3 dias do mês com discrepância de caixa do mesmo sinal, do mesmo operador.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Provisórios não revistos</b><span class="badge amber"><span class="dot"></span>2 sinalizados</span></div>
+              <div class="bd col">
+                <div class="anom-card">
+                  <div class="ty">A 7 dias do limite de 90</div>
+                  <div class="ti">Posto BAÚ Niassa · 4 registos</div>
+                  <div class="sb">Override de emergência por J. Massingue · 84 dias · cidadãos: M. Mussiate · A. Naila · C. Saide · J. Macuvele</div>
+                  <div class="row" style="gap:6px;margin-top:10px"><button class="btn sm">Notificar conservador</button><button class="btn sm secondary">Estender 30 dias</button></div>
+                </div>
+                <div class="anom-card">
+                  <div class="ty">Padrão geográfico</div>
+                  <div class="ti">Cabo Delgado · 22 cross-province</div>
+                  <div class="sb">Operadores de Maputo Cidade a consultar fichas de cidadãos de Cabo Delgado · 22 vezes esta semana · sem motivo cross-system</div>
+                  <div class="row" style="gap:6px;margin-top:10px"><button class="btn sm">Investigar</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Detalhe</a><a class="btn secondary sm" href="#cena-5">Report do cidadão →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · REPORT INVESTIGAÇÃO =================== -->
+<section class="scene"><span id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5/F6 — Report do cidadão · investigação</div>
+    <h2>R-2026-AUD-0034 · F. S. Cuamba · acesso em Beira</h2>
+    <p>Workflow de 5 passos: recepção · triagem · investigação · decisão · notificação. Cada decisão exige justificação ≥ 100 chars e OTP do analista.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav>
+          <a>▦ Painel</a>
+          <div class="group">Reports</div>
+          <a class="active">↑ R-2026-AUD-0034</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="top">
+          <div><h1>Report R-2026-AUD-0034</h1><span class="t-meta">Aberto há 2h 18min · prazo SLA: 30 dias</span></div>
+          <span class="badge blue"><span class="dot"></span>Em investigação</span>
+        </div>
+        <div class="body">
+          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px">
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Workflow</b></div>
+                <div class="bd">
+                  <div class="timeline">
+                    <div class="t-item done"><div class="h">1. Recepção</div><div class="m">04 Abr 14:52 · automaticamente da App do Cidadão</div></div>
+                    <div class="t-item done"><div class="h">2. Triagem</div><div class="m">04 Abr 15:08 · L. Maússe · classificou como prioritário (operador com credencial expirada)</div></div>
+                    <div class="t-item"><div class="h">3. Investigação</div><div class="m">Em curso · cruzamento com log + outros 14 acessos suspeitos do mesmo operador</div></div>
+                    <div class="t-item pending"><div class="h">4. Decisão</div><div class="m">— pendente</div></div>
+                    <div class="t-item pending"><div class="h">5. Notificação</div><div class="m">— pendente · cidadã será notificada via App; operador via canal interno</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Reporte da cidadã (texto integral)</b><span class="t-meta mono">04 Abr 14:52</span></div>
+                <div class="bd">
+                  <p style="margin:0;font-size:13px;line-height:1.55;background:var(--bg-2);padding:14px;border-radius:var(--r-2);border-left:3px solid var(--navy-700)">
+                    "Vi que um operador em Beira consultou a minha ficha em 12 de Março. Eu nunca estive em Beira na minha vida. O motivo do acesso aparece em branco. Não autorizei e não compreendo porquê. Agradeço que verifiquem."
+                  </p>
+                  <hr class="hr">
+                  <div class="grid g-2">
+                    <div class="kv"><span class="k">Tipo de preocupação</span><span class="v">Não estive no balcão neste dia</span></div>
+                    <div class="kv"><span class="k">Identificação</span><span class="v">Identificada · pode ser citada</span></div>
+                    <div class="kv"><span class="k">Acesso reportado</span><span class="v mono">EVT-2026-IDX-088401392</span></div>
+                    <div class="kv"><span class="k">Contacto</span><span class="v mono">+258 84 567 8967</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Comunicação com partes</b></div>
+                <div class="bd col">
+                  <div class="row spread"><span><b>Cidadã · F. S. Cuamba</b><div class="t-meta">via App · acusou recepção</div></span><span class="badge green" style="font-size:10px"><span class="dot"></span>Notificada 15:08</span></div>
+                  <div class="row spread"><span><b>Conservador BAÚ Beira</b><div class="t-meta">solicitada lista de turnos do dia 12 Mar</div></span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda resposta</span></div>
+                  <div class="row spread"><span><b>Operador (credencial expirada)</b><div class="t-meta">não contactado — evidência incompatível com erro</div></span><span class="badge"><span class="dot"></span>Não contactado</span></div>
+                  <div class="row spread"><span><b>UGD-BEI · off-boarding</b><div class="t-meta">solicitado relatório do erro de expiração</div></span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Decidir</b></div>
+                <div class="bd col">
+                  <p class="t-meta" style="margin:0">Quatro saídas possíveis. Cada uma exige justificação ≥ 100 caracteres e OTP do analista.</p>
+                  <button class="btn block secondary">✓ Acesso conforme</button>
+                  <button class="btn block secondary" style="border-color:var(--amber-500);color:var(--amber-700)">⚠ Conforme com recomendação</button>
+                  <a href="#cena-7" class="btn block" style="background:var(--red-700)">⊘ Acesso impróprio</a>
+                  <a href="#cena-7" class="btn block danger">▲ Encaminhar ao Ministério Público</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Vista do cidadão</b></div>
+                <div class="bd col">
+                  <p class="t-meta" style="margin:0">O que F. S. Cuamba vê na sua App neste momento.</p>
+                  <a href="#cena-6" class="btn secondary block">Ver vista espelhada →</a>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Decisões em casos similares</b></div>
+                <div class="bd col" style="font-size:12px">
+                  <div class="kv"><span class="k">Credencial expirada · 2025</span><span class="v">14 casos · 12 impróprios · 2 conforme com recomendação</span></div>
+                  <div class="kv"><span class="k">Cross-province sem motivo</span><span class="v">38 casos · 22 conforme · 16 com recomendação</span></div>
+                  <a href="#" class="t-meta">Ver protocolo de decisão (PDF)</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Padrões</a><a class="btn secondary sm" href="#cena-6">Vista espelhada →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · ESPELHO =================== -->
+<section class="scene"><span id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F7 — Vista espelhada do cidadão</div>
+    <h2>O analista vê exactamente o que F. S. Cuamba vê na sua App</h2>
+    <p>Embebido na UI da Auditoria. Lembrete cultural: o cidadão é a primeira linha de defesa.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav>
+          <a>↑ R-2026-AUD-0034</a>
+          <a class="active" style="padding-left:22px;font-size:11px">Vista espelhada</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="top"><h1>Vista da cidadã · F. S. Cuamba</h1><span class="badge"><span class="dot"></span>Apenas leitura · não regista acesso adicional</span></div>
+        <div class="body">
+          <div style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start">
+            <div class="mini-phone"><div class="screen">
+              <div class="mp-bar"><span>Acessos</span><span style="font-size:10px;font-weight:400;color:var(--ink-3)">14:50</span></div>
+              <div class="mp-content">
+                <div style="font-size:10px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Hoje</div>
+                <div class="mp-list-item"><div class="ic">TM</div><div class="body"><div class="ti">T. Macuácua · Conservador</div><div class="sb">14:32 · Inhambane · consulta para renovação</div></div></div>
+                <div class="mp-list-item"><div class="ic">TM</div><div class="body"><div class="ti">T. Macuácua · Conservador</div><div class="sb">14:42 · Inhambane · assinatura BI</div></div></div>
+                <div style="font-size:10px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-top:6px">Mês anterior</div>
+                <div class="mp-list-item"><div class="ic" style="background:var(--red-100);color:var(--red-700)">?</div><div class="body"><div class="ti">Operador desconhecido · Beira</div><div class="sb">12 Mar · sem motivo registado</div></div><span class="badge amber" style="font-size:9px"><span class="dot"></span>Reportado</span></div>
+                <div style="background:var(--navy-100);border:1px solid #BFCBDD;border-radius:var(--r-2);padding:8px;color:var(--navy-700);font-size:11px;line-height:1.4;margin-top:6px">
+                  <b>Reporte R-2026-AUD-0034</b><br>Em revisão pela UGD desde 04 Abr 15:08.
+                </div>
+              </div>
+            </div></div>
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>O que a cidadã sabe sobre o caso</b></div>
+                <div class="bd col">
+                  <div class="kv"><span class="k">Submeteu reporte</span><span class="v">Hoje 14:52</span></div>
+                  <div class="kv"><span class="k">Recebeu acusação de recepção</span><span class="v">Hoje 15:08 (push + SMS)</span></div>
+                  <div class="kv"><span class="k">Vê estado actual</span><span class="v">"Em revisão pela UGD"</span></div>
+                  <div class="kv"><span class="k">Próxima notificação esperada</span><span class="v">Decisão (até 30 dias úteis)</span></div>
+                </div>
+              </div>
+              <div class="banner blue"><span class="ic"></span><div><b>Princípio.</b> A cidadã vê tudo o que vê o conservador na ficha dela. Esta vista espelhada na Auditoria garante que o analista não tem informação privilegiada que negue à cidadã.</div></div>
+
+              <div class="card">
+                <div class="hd"><b>Histórico de comunicações com a cidadã</b></div>
+                <table class="table">
+                  <thead><tr><th>Data · hora</th><th>Canal</th><th>Conteúdo</th></tr></thead>
+                  <tbody>
+                    <tr><td class="mono">04 Abr 14:52</td><td>App · push</td><td>"Reporte recebido · R-2026-AUD-0034"</td></tr>
+                    <tr><td class="mono">04 Abr 14:52</td><td>SMS</td><td>"UGD: o seu reporte foi recebido. Acompanhe na App."</td></tr>
+                    <tr><td class="mono">04 Abr 15:08</td><td>App · timeline</td><td>"Em investigação · L. Maússe assignada"</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Investigação</a><a class="btn secondary sm" href="#cena-7">Decisão →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · DECISÃO =================== -->
+<section class="scene"><span id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · Confirmação de duas etapas</div>
+    <h2>Decidir "acesso impróprio" · justificação ≥ 100 chars + OTP</h2>
+    <p>Quatro saídas possíveis. Cada decisão é, ela própria, registada no log de auditoria — auditando os auditores.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell" style="position:relative">
+      <aside class="rail" style="opacity:.4;pointer-events:none">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav><a class="active">↑ R-2026-AUD-0034</a></nav>
+      </aside>
+      <div class="main" style="opacity:.4;pointer-events:none">
+        <div class="top"><h1>Report R-2026-AUD-0034</h1></div>
+        <div class="body" style="height:300px"></div>
+      </div>
+      <div class="modal-back" style="position:absolute">
+        <div class="modal" style="width:620px">
+          <div class="hd"><div><b>Decidir: acesso impróprio</b><div class="t-meta">R-2026-AUD-0034 · F. S. Cuamba</div></div><button class="btn ghost btn-icon">×</button></div>
+          <div class="bd col">
+            <div class="banner red"><span class="ic"></span><div>Esta decisão dispara: (1) suspensão da credencial expirada do operador · (2) notificação da cidadã com a decisão e os próximos passos · (3) abertura de processo disciplinar pela UGD-BEI · (4) registo desta decisão no log de auditoria.</div></div>
+            <div class="grid g-2">
+              <div class="kv"><span class="k">Tipo de decisão</span><span class="v" style="color:var(--red-700)">Acesso impróprio</span></div>
+              <div class="kv"><span class="k">Analista</span><span class="v">L. Maússe · ID UGD-AUD-007</span></div>
+              <div class="kv"><span class="k">Director que valida</span><span class="v">A. Sitói · ID UGD-DIR-002</span></div>
+              <div class="kv"><span class="k">Cidadã será notificada</span><span class="v">Sim · App + SMS</span></div>
+            </div>
+            <div class="field">
+              <label>Justificação · mínimo 100 caracteres</label>
+              <textarea class="textarea" style="min-height:120px">A credencial do operador (UGD-BEI-076) expirou a 28 Fev 2026 e não foi desactivada por erro de off-boarding. Entre 12 Mar e a presente data foram detectadas 14 consultas a fichas de cidadãos sem motivo registado, fora do território natural do posto. A cidadã reportou tendo confirmado nunca ter estado em Beira. Recomenda-se: suspensão imediata da credencial, processo disciplinar pelo UGD-BEI, revisão do procedimento de off-boarding em todos os postos. A cidadã será notificada da decisão.</textarea>
+              <span class="hint">622 / mínimo 100 caracteres</span>
+            </div>
+            <div class="field">
+              <label>OTP do analista (SMS para +258 84 ••• ••42)</label>
+              <div class="row" style="gap:6px">
+                <input class="input mono" style="text-align:center;width:42px" value="8" />
+                <input class="input mono" style="text-align:center;width:42px" value="1" />
+                <input class="input mono" style="text-align:center;width:42px" value="2" />
+                <input class="input mono" style="text-align:center;width:42px" value="6" />
+                <input class="input mono" style="text-align:center;width:42px" value="0" />
+                <input class="input mono" style="text-align:center;width:42px" />
+              </div>
+            </div>
+            <label class="row" style="gap:8px"><input type="checkbox" checked /> Confirmo que esta decisão foi revista pelo director da UGD (A. Sitói).</label>
+            <label class="row" style="gap:8px"><input type="checkbox" /> Compreendo que a cidadã será notificada nas próximas 6 h.</label>
+          </div>
+          <div class="ft">
+            <button class="btn ghost">Cancelar</button>
+            <button class="btn danger">Decidir: acesso impróprio</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Espelho</a><a class="btn secondary sm" href="#cena-8">Exportação IGF →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · EXPORTAÇÃO =================== -->
+<section class="scene"><span id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F8 — Exportação para IGF</div>
+    <h2>CSV mensal assinado digitalmente · hash publicado</h2>
+    <p>Janela temporal fechada · CSV assinado pela UGD · hash publicado em orcamento.gov.mz para verificação independente.</p>
+  </div>
+  <div style="padding:0 24px">
+    <div class="audit-shell">
+      <aside class="rail">
+        <div class="br"><b>UGD · Auditoria</b><small>L. Maússe</small></div>
+        <nav><div class="group">Exportação</div><a class="active">⤓ Para IGF</a><a>⤓ Para Tribunal Adm.</a></nav>
+      </aside>
+      <div class="main">
+        <div class="top"><h1>Exportação para IGF · Março 2026</h1><span class="badge"><span class="dot"></span>Pronto a gerar</span></div>
+        <div class="body">
+          <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px">
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Conjunto de eventos a exportar</b></div>
+                <div class="bd">
+                  <div class="grid g-2">
+                    <div class="kv"><span class="k">Janela temporal</span><span class="v mono">01 Mar 2026 00:00 → 31 Mar 2026 23:59 CAT</span></div>
+                    <div class="kv"><span class="k">Total de eventos</span><span class="v mono">412 894</span></div>
+                    <div class="kv"><span class="k">Reports do cidadão (mês)</span><span class="v mono">38</span></div>
+                    <div class="kv"><span class="k">Decisões finais</span><span class="v mono">28 (10 ainda em investigação)</span></div>
+                    <div class="kv"><span class="k">Anomalias confirmadas</span><span class="v mono">14</span></div>
+                    <div class="kv"><span class="k">Encaminhamentos ao MP</span><span class="v mono">3</span></div>
+                  </div>
+                  <hr class="hr">
+                  <div class="t-overline" style="margin-bottom:8px">Conteúdo do CSV</div>
+                  <table class="table">
+                    <thead><tr><th>Coluna</th><th>Tipo</th><th>Notas</th></tr></thead>
+                    <tbody>
+                      <tr><td class="mono">event_id</td><td>string</td><td>EVT-2026-IDX-…</td></tr>
+                      <tr><td class="mono">timestamp_cat</td><td>ISO 8601</td><td>com fuso CAT</td></tr>
+                      <tr><td class="mono">system</td><td>enum</td><td>ebi · balcao · cidadao · saude · auditoria</td></tr>
+                      <tr><td class="mono">action</td><td>enum</td><td>consulta · emissao · fusao · anulacao · obito · override</td></tr>
+                      <tr><td class="mono">operator_id</td><td>string</td><td>UGD interno</td></tr>
+                      <tr><td class="mono">posto_id</td><td>string</td><td>UGD interno</td></tr>
+                      <tr><td class="mono">citizen_bi_hash</td><td>SHA-256</td><td>BI hashado · IGF não vê BI em claro</td></tr>
+                      <tr><td class="mono">reason</td><td>string</td><td>texto livre, vazio se em branco</td></tr>
+                      <tr><td class="mono">flag</td><td>enum</td><td>conforme · anomalia · reportado · em-investigacao · improprio · fraudulento</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Assinatura digital</b></div>
+                <div class="bd col">
+                  <div class="kv"><span class="k">Assinante</span><span class="v">Director da UGD · A. Sitói</span></div>
+                  <div class="kv"><span class="k">Algoritmo</span><span class="v mono">Ed25519</span></div>
+                  <div class="kv"><span class="k">Hash do CSV</span><span class="v mono" style="font-size:11px;word-break:break-all">7a3f9e1c2b8d…(64 chars)</span></div>
+                  <div class="kv"><span class="k">Hash será publicado em</span><span class="v mono">orcamento.gov.mz/auditoria/h</span></div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd"><b>Gerar e enviar</b></div>
+                <div class="bd col">
+                  <button class="btn block lg success">Gerar CSV assinado para IGF</button>
+                  <p class="t-meta" style="margin:0">A geração demora ≈ 90 s. O hash é publicado em simultâneo. A IGF é notificada por email institucional.</p>
+                  <hr class="hr">
+                  <button class="btn secondary block">Pré-visualizar primeiras 100 linhas</button>
+                  <button class="btn ghost block">Cancelar exportação</button>
+                </div>
+              </div>
+              <div class="banner blue"><span class="ic"></span><div><b>Histórico.</b> Última exportação: <a href="#" class="mono">2026-02</a> · 31 Jan a 28 Fev · 384 102 eventos · enviado 02 Mar 2026.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Decisão</a><a class="btn secondary sm" href="index.html">Voltar à visão geral →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Auditoria de Acessos v0.3 (esboço) · documento autoritativo: <a class="mono" href="DESIGN-auditoria.md">DESIGN-auditoria.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="index.html" class="btn secondary sm">Visão geral →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

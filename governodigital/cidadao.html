@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>App do Cidadão — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:14px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:10px}
+  .phones-row{display:flex;gap:24px;justify-content:center;padding:24px;flex-wrap:wrap;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .phone-cap{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .phone-cap .cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;text-align:center}
+  /* In-screen primitives */
+  .ph-bar{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;border-bottom:1px solid var(--line-2)}
+  .ph-bar b{font-size:14px;font-weight:600}
+  .ph-content{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+  .ph-content.tight{padding:0}
+  .ph-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:12px}
+  .ph-card .lbl{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .bi-card{background:linear-gradient(135deg,var(--navy-800) 0%,var(--navy-700) 100%);color:#fff;padding:14px;border-radius:6px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+  .bi-card::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border:1px solid rgba(255,255,255,.08);border-radius:1px;transform:rotate(15deg)}
+  .bi-card .top{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#a8b6cd;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .bi-card .nm{font-size:15px;font-weight:600}
+  .bi-card .num{font-family:var(--f-mono);font-size:12px;color:#cdd6e3}
+  .bi-card .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px;color:#cdd6e3;margin-top:4px}
+  .bi-card .meta b{color:#fff;font-weight:500;font-size:11px}
+  .bi-photo{width:48px;height:60px;background:#cdd6e3;border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--navy-800);font-size:18px;font-weight:600}
+  .ph-list-item{display:flex;gap:10px;padding:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);align-items:center}
+  .ph-list-item .ic{width:34px;height:34px;background:var(--navy-100);color:var(--navy-700);border-radius:var(--r-2);display:flex;align-items:center;justify-content:center;font-weight:600;flex:0 0 auto;font-size:14px}
+  .ph-list-item .ic.green{background:var(--green-100);color:var(--green-700)}
+  .ph-list-item .ic.amber{background:var(--amber-100);color:var(--amber-700)}
+  .ph-list-item .ic.red{background:var(--red-100);color:var(--red-700)}
+  .ph-list-item .body{flex:1;min-width:0}
+  .ph-list-item .ti{font-size:13px;font-weight:600;line-height:1.25}
+  .ph-list-item .sb{font-size:11px;color:var(--ink-3);margin-top:2px}
+  .ph-tab-h{font-size:13px;font-weight:600;margin:4px 0 2px}
+  .ph-tab-h .all{float:right;font-size:11px;color:var(--navy-700);font-weight:500}
+  .ph-banner{background:var(--amber-100);border:1px solid #E7D49C;color:#5C4500;padding:10px;border-radius:var(--r-2);font-size:12px;line-height:1.4}
+  .ph-banner.green{background:var(--green-100);border-color:#BDDFCB;color:var(--green-700)}
+  .ph-banner.blue{background:var(--navy-100);border-color:#BFCBDD;color:var(--navy-700)}
+  .ph-banner.red{background:var(--red-100);border-color:#E5B7AE;color:var(--red-700)}
+  .ph-input{width:100%;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;font-size:14px;font-family:inherit}
+  .ph-btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:var(--r-2);font-size:14px;font-weight:500;background:var(--navy-700);color:#fff;border:0;cursor:pointer;width:100%;font-family:inherit}
+  .ph-btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .ph-step-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-3);margin-bottom:10px}
+  .ph-step-row .n{width:18px;height:18px;border-radius:50%;background:var(--bg-2);color:var(--ink-3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;border:1px solid var(--line)}
+  .ph-step-row .n.on{background:var(--navy-700);color:#fff;border-color:var(--navy-700)}
+  .ph-step-row .n.dn{background:var(--navy-100);color:var(--navy-700);border-color:var(--navy-700)}
+  .ph-step-row .ln{flex:0 0 12px;height:1px;background:var(--line)}
+  .qr-fs{flex:1;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px}
+  .qr-fs .qr-big{width:220px;height:220px;background:#fff;border:1px solid var(--line);background-image:linear-gradient(#000 0 0),linear-gradient(#000 0 0),linear-gradient(#000 0 0),linear-gradient(45deg,#000 25%,transparent 25%,transparent 75%,#000 75%),linear-gradient(45deg,#000 25%,transparent 25%,transparent 75%,#000 75%);background-repeat:no-repeat;background-position:14px 14px,14px 14px,14px 14px,0 0,7px 7px;background-size:48px 5px,5px 48px,48px 48px,14px 14px,14px 14px}
+  .pmt-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line-2)}
+  .pmt-row:last-child{border-bottom:0;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Unidade de Governação Digital — UGD</span><span class="sep">·</span>
+  <span>App do Cidadão · v0.3</span>
+  <span style="margin-left:auto">DESIGN-cidadao.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>App do Cidadão</span><small>Governo Digital</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="ebi.html">eBI</a>
+    <a href="cidadao.html" class="active">App do Cidadão</a>
+    <a href="balcao.html">Balcão</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="auditoria.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-cidadao.md" class="btn secondary sm">DESIGN-cidadao.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Início</a>
+    <a href="#cena-3">3. Carteira · BI</a>
+    <a href="#cena-4">4. QR fullscreen</a>
+    <a href="#cena-5">5. Requerimentos</a>
+    <a href="#cena-6">6. Novo requerimento</a>
+    <a href="#cena-7">7. Pagamento</a>
+    <a href="#cena-8">8. Documento assinado</a>
+    <a href="#cena-9">9. Acessos</a>
+    <a href="#cena-10">10. Reportar acesso</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · ONBOARDING =================== -->
+<section class="scene"><span id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding</div>
+    <h2>Verificação inicial · BI + telefone + OTP</h2>
+    <p>Onboarding é uma vez. Sem carrossel de funcionalidades. Sem login social. O telefone tem de coincidir com o registado na eBI — caso contrário, o cidadão é encaminhado ao posto Balcão.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><span class="icons mono">5G · 87%</span></div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:32px 22px 24px;background:var(--navy-900);color:#fff">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px"><span class="brand mark" style="background:#fff;width:28px;height:28px;display:inline-block;position:relative;border-radius:1px"></span><b style="font-size:14px">Governo Digital</b></div>
+            <h2 style="margin:48px 0 10px;font-size:24px;line-height:1.2;font-weight:600">A sua identidade civil, no seu telefone.</h2>
+            <p style="margin:0;color:#cdd6e3;font-size:13px;line-height:1.55">Mostre o BI digital. Faça pedidos sem ir ao balcão. Veja quem consultou os seus dados.</p>
+          </div>
+          <div>
+            <button class="ph-btn" style="background:#fff;color:var(--navy-900)">Começar</button>
+            <p style="margin:14px 0 0;color:#90a4c1;font-size:11px;text-align:center">v0.3 · UGD · Não recolhe dados sem o seu consentimento.</p>
+          </div>
+        </div>
+      </div></div>
+      <span class="cap">1.1 · Boas-vindas</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><span class="icons mono">5G · 87%</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Voltar</span><b>Verificar identidade</b><span style="width:50px"></span></div>
+        <div class="ph-content">
+          <div class="ph-step-row"><span class="n on">1</span><span>BI</span><span class="ln"></span><span class="n">2</span><span>Telefone</span><span class="ln"></span><span class="n">3</span><span>OTP</span></div>
+          <p style="font-size:14px;line-height:1.5;color:var(--ink-2);margin:0 0 4px">Para começar, introduza o seu número de Bilhete de Identidade.</p>
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-2)">Número do BI</label>
+            <input class="ph-input mono" style="margin-top:6px;font-size:16px;letter-spacing:.04em" value="110100099876 C" />
+            <p style="font-size:11px;color:var(--ink-3);margin:6px 0 0">13 dígitos seguidos da letra de controlo. Encontra-o no seu BI físico.</p>
+          </div>
+          <div style="flex:1"></div>
+          <button class="ph-btn">Continuar</button>
+          <p style="font-size:11px;color:var(--ink-3);margin:0;text-align:center">Não tem BI? <a href="#">Saber como obter um</a></p>
+        </div>
+      </div></div>
+      <span class="cap">1.2 · BI</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:15</span><span class="icons mono">5G · 87%</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Voltar</span><b>Verificar identidade</b><span style="width:50px"></span></div>
+        <div class="ph-content">
+          <div class="ph-step-row"><span class="n dn">✓</span><span>BI</span><span class="ln"></span><span class="n dn">✓</span><span>Tel</span><span class="ln"></span><span class="n on">3</span><span>OTP</span></div>
+          <p style="font-size:14px;line-height:1.5;color:var(--ink-2);margin:0 0 4px">Enviámos um código de 6 dígitos para <b class="mono">+258 84 ••• ••67</b></p>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            <input class="ph-input mono" style="text-align:center;width:42px" value="3" />
+            <input class="ph-input mono" style="text-align:center;width:42px" value="0" />
+            <input class="ph-input mono" style="text-align:center;width:42px" value="2" />
+            <input class="ph-input mono" style="text-align:center;width:42px" value="9" />
+            <input class="ph-input mono" style="text-align:center;width:42px" value="1" />
+            <input class="ph-input mono" style="text-align:center;width:42px" />
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--ink-3);margin-top:8px"><span>Reenviar em 00:38</span><a href="#" style="color:var(--navy-700)">Não recebi</a></div>
+          <div style="flex:1"></div>
+          <a href="#cena-2" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px">Confirmar</a>
+        </div>
+      </div></div>
+      <span class="cap">1.3 · OTP</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Ramo divergente: telefone não coincide com eBI → encaminhar para Balcão</span><a class="btn secondary sm" href="#cena-2">Avançar para Início →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · INÍCIO =================== -->
+<section class="scene"><span id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · Casa (Início)</div>
+    <h2>Vista de entrada · resumo civil</h2>
+    <p>Quatro tabs em baixo. A tab Início mostra um resumo: BI ao topo, requerimento em curso, últimos acessos, avisos do Estado. Sem carrosséis, sem widgets de marketing.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:36</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><b>Olá, Felisberta</b><span class="av sm">FC</span></div>
+        <div class="ph-content">
+
+          <div class="bi-card">
+            <div class="top"><span>Bilhete de Identidade</span><span>VÁLIDO</span></div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="bi-photo">FC</div>
+              <div style="flex:1">
+                <div class="nm">Felisberta Sumaila Cuamba</div>
+                <div class="num">110100099876 C</div>
+              </div>
+            </div>
+            <div class="meta"><div>Validade<br><b>04 Abr 2036</b></div><div>NUIT<br><b class="mono">401 236 789</b></div></div>
+            <a href="#cena-4" style="display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:12px;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:2px;text-decoration:none;margin-top:4px"><span>Mostrar QR para verificação</span><span>→</span></a>
+          </div>
+
+          <div class="ph-banner blue"><b>Renovação concluída há 2 dias.</b> Levante o cartão físico no posto a partir de 11 Abr 2026.</div>
+
+          <div class="ph-tab-h">Em curso <span class="all"><a href="#cena-5" style="color:var(--navy-700);text-decoration:none">Ver tudo →</a></span></div>
+          <div class="ph-list-item">
+            <div class="ic green">✓</div>
+            <div class="body"><div class="ti">Renovação do BI</div><div class="sb">Assinada · 04 Abr · P-2026-0091-INH</div></div>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic">⏱</div>
+            <div class="body"><div class="ti">Antecedentes criminais</div><div class="sb">Em análise · submetida 04 Abr</div></div>
+          </div>
+
+          <div class="ph-tab-h">Acessos recentes <span class="all"><a href="#cena-9" style="color:var(--navy-700);text-decoration:none">12 →</a></span></div>
+          <div class="ph-list-item">
+            <div class="ic">TM</div>
+            <div class="body"><div class="ti">T. Macuácua · Conservador</div><div class="sb">Hoje 14:32 · Inhambane · consulta</div></div>
+          </div>
+
+        </div>
+        <div class="nav-bottom">
+          <a class="active"><div class="ic"></div>Início</a>
+          <a><div class="ic"></div>Carteira</a>
+          <a><div class="ic"></div>Pedidos</a>
+          <a><div class="ic"></div>Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">2.1 · Início</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:36</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><b>Olá, Felisberta</b><span class="av sm">FC</span></div>
+        <div class="ph-content">
+          <div class="ph-banner red"><b>Sem rede.</b> Pode continuar a usar a App. Pedidos novos serão enviados quando a rede regressar.</div>
+          <div class="bi-card" style="opacity:.85">
+            <div class="top"><span>BI · MODO OFFLINE</span><span>VÁLIDO</span></div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="bi-photo">FC</div>
+              <div style="flex:1"><div class="nm">Felisberta Sumaila Cuamba</div><div class="num">110100099876 C</div></div>
+            </div>
+            <div class="meta"><div>Validade<br><b>04 Abr 2036</b></div><div>NUIT<br><b class="mono">401 236 789</b></div></div>
+            <p style="margin:0;color:#cdd6e3;font-size:11px;line-height:1.4">QR para verificação está indisponível offline (medida anti-fraude).</p>
+          </div>
+          <div class="ph-card">
+            <div class="lbl">Última sincronização</div>
+            <div style="font-size:13px;margin-top:4px">04 Abr 2026 · 11:48 — há 2h 48min</div>
+            <button class="ph-btn sec" style="margin-top:10px">Tentar sincronizar agora</button>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <a class="active"><div class="ic"></div>Início</a>
+          <a><div class="ic"></div>Carteira</a>
+          <a><div class="ic"></div>Pedidos</a>
+          <a><div class="ic"></div>Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">2.2 · Início (offline)</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Carteira →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · CARTEIRA =================== -->
+<section class="scene"><span id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F2 — Carteira</div>
+    <h2>BI digital, NUIT, certidões emitidas</h2>
+    <p>Stack vertical de cartões. Cada certidão verificável. Sem swiper — acessibilidade primeiro.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:38</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><b>Carteira</b><span class="av sm">FC</span></div>
+        <div class="ph-content">
+          <div class="ph-tab-h">Identidade</div>
+          <div class="bi-card">
+            <div class="top"><span>BILHETE DE IDENTIDADE</span><span>VÁLIDO</span></div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="bi-photo">FC</div>
+              <div style="flex:1"><div class="nm">Felisberta Sumaila Cuamba</div><div class="num">110100099876 C</div></div>
+            </div>
+            <div class="meta"><div>Validade<br><b>04 Abr 2036</b></div><div>Emissor<br><b>Inhambane</b></div></div>
+            <a href="#cena-4" style="display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:12px;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:2px;text-decoration:none"><span>Mostrar QR</span><span>→</span></a>
+          </div>
+
+          <div class="ph-card" style="background:var(--bg-2);border:1px solid var(--line)">
+            <div class="lbl">NUIT</div>
+            <div style="font-size:18px;font-weight:600;font-family:var(--f-mono);margin:6px 0 4px">401 236 789</div>
+            <div style="font-size:11px;color:var(--ink-3)">Activo · atribuído 22 Set 2018</div>
+          </div>
+
+          <div class="ph-tab-h">Certidões emitidas</div>
+          <div class="ph-list-item">
+            <div class="ic green">📄</div>
+            <div class="body"><div class="ti">Renovação do BI</div><div class="sb">Assinada 04 Abr · P-2026-0091-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinada</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic green">📄</div>
+            <div class="body"><div class="ti">Certidão de nascimento (filha)</div><div class="sb">Assinada 18 Mar · P-2026-0072-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinada</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic green">📄</div>
+            <div class="body"><div class="ti">Comprovativo de residência</div><div class="sb">Assinado 02 Fev · P-2026-0028-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinada</span>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <a><div class="ic"></div>Início</a>
+          <a class="active"><div class="ic"></div>Carteira</a>
+          <a><div class="ic"></div>Pedidos</a>
+          <a><div class="ic"></div>Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">3.1 · Carteira</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:38</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Carteira</span><b>Certidão</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-banner green"><b>✓ Assinado pelo Estado.</b> 04 Abr 2026 · 14:42 CAT · T. Macuácua, Conservador.</div>
+          <div class="ph-card">
+            <div class="lbl">Certidão de nascimento</div>
+            <div style="font-size:16px;font-weight:600;margin:6px 0 2px">Cuamba Naila Sumaila</div>
+            <div style="font-size:12px;color:var(--ink-3)">Filha de Felisberta S. Cuamba e Augusto P. Naila</div>
+            <hr style="border:0;border-top:1px solid var(--line-2);margin:10px 0">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+              <div><div style="color:var(--ink-3);font-size:10px;text-transform:uppercase;font-weight:600">Nascimento</div>14 Mar 2024 · Maxixe</div>
+              <div><div style="color:var(--ink-3);font-size:10px;text-transform:uppercase;font-weight:600">Sexo</div>F</div>
+              <div><div style="color:var(--ink-3);font-size:10px;text-transform:uppercase;font-weight:600">Processo</div><span class="mono">P-2026-0072-INH</span></div>
+              <div><div style="color:var(--ink-3);font-size:10px;text-transform:uppercase;font-weight:600">Posto</div>Inhambane Central</div>
+            </div>
+          </div>
+          <div class="ph-card" style="text-align:center">
+            <div class="qr" style="margin:6px auto 8px"></div>
+            <div style="font-size:11px;color:var(--ink-3)">Verificável em <span class="mono">ugd.gov.mz/v/0072-INH</span></div>
+          </div>
+          <button class="ph-btn">Partilhar PDF</button>
+          <button class="ph-btn sec">Imprimir no posto</button>
+        </div>
+      </div></div>
+      <span class="cap">3.2 · Certidão · detalhe</span>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Início</a><a class="btn secondary sm" href="#cena-4">Mostrar QR →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · QR FULLSCREEN =================== -->
+<section class="scene"><span id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F2 — QR de verificação</div>
+    <h2>BI digital · ecrã cheio</h2>
+    <p>QR rotativo de 60 s — previne replay por captura de ecrã. O verificador vê apenas: nome, BI, foto, validade, e tique verde de "verificado pelo Estado".</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen" style="background:#fff">
+        <div class="statusbar"><span>14:39</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar" style="background:var(--navy-900);color:#fff;border-color:var(--navy-800)"><span style="font-size:13px;color:#cdd6e3">← Voltar</span><b style="color:#fff">Mostrar BI</b><span style="width:30px"></span></div>
+        <div class="qr-fs">
+          <div style="display:flex;align-items:center;gap:10px;align-self:flex-start;width:100%">
+            <div class="bi-photo" style="width:56px;height:70px;font-size:20px">FC</div>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:600">Felisberta Sumaila Cuamba</div>
+              <div class="mono" style="font-size:12px;color:var(--ink-3)">110100099876 C</div>
+              <div style="font-size:11px;color:var(--ink-3);margin-top:2px">Válido até 04 Abr 2036</div>
+            </div>
+          </div>
+          <div class="qr-big"></div>
+          <div style="text-align:center">
+            <div style="display:inline-flex;align-items:center;gap:6px;background:var(--green-100);color:var(--green-700);padding:5px 10px;border-radius:2px;font-size:11px;font-weight:600;border:1px solid #BDDFCB"><span style="width:6px;height:6px;background:currentColor;border-radius:50%"></span>VERIFICADO PELO ESTADO</div>
+            <div style="font-size:11px;color:var(--ink-3);margin-top:8px">QR renova-se a cada 60 s · próxima rotação em 38 s</div>
+            <div class="mono" style="font-size:10px;color:var(--ink-3);margin-top:4px">ugd.gov.mz/v/n9c1-LkpW</div>
+          </div>
+        </div>
+      </div></div>
+      <span class="cap">4 · QR fullscreen</span>
+    </div>
+
+    <div class="phone-cap" style="align-self:center">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:39</span><span class="icons mono">5G</span></div>
+        <div class="ph-bar"><b>ugd.gov.mz/v</b></div>
+        <div class="ph-content">
+          <div class="ph-banner green"><b>✓ Documento verificado.</b> Carregado de servidor da UGD às 14:39:22.</div>
+          <div class="ph-card">
+            <div style="display:flex;gap:10px;align-items:center"><div class="bi-photo">FC</div><div><div style="font-size:14px;font-weight:600">Felisberta Sumaila Cuamba</div><div class="mono" style="font-size:11px">110100099876 C</div></div></div>
+            <hr style="border:0;border-top:1px solid var(--line-2);margin:10px 0">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px">
+              <div><span class="t-overline">Validade</span><br><b>04 Abr 2036</b></div>
+              <div><span class="t-overline">Naturalidade</span><br>Maxixe</div>
+              <div><span class="t-overline">Sexo</span><br>F</div>
+              <div><span class="t-overline">Verificado</span><br>14:39:22 CAT</div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--ink-3);margin:0;line-height:1.5">Este documento foi validado em tempo real pela Unidade de Governação Digital (UGD). Outros dados do cidadão não são partilhados nesta verificação.</p>
+        </div>
+      </div></div>
+      <span class="cap">4 · Verificador (vê isto)</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Carteira</a><a class="btn secondary sm" href="#cena-5">Requerimentos →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · REQUERIMENTOS =================== -->
+<section class="scene"><span id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · Requerimentos · lista</div>
+    <h2>Pedidos em curso e histórico</h2>
+    <p>Lista cronológica. Cada item leva ao detalhe (timeline · anexos · pagamento · documento final). Botão flutuante "Novo pedido".</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:40</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><b>Pedidos</b><span class="av sm">FC</span></div>
+        <div class="ph-content">
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span class="badge dark" style="font-size:11px;height:24px">Todos · 6</span>
+            <span class="badge" style="font-size:11px;height:24px">Em curso · 1</span>
+            <span class="badge" style="font-size:11px;height:24px">Concluídos · 5</span>
+          </div>
+
+          <div class="ph-tab-h">Em curso</div>
+          <div class="ph-list-item">
+            <div class="ic amber">⏱</div>
+            <div class="body"><div class="ti">Antecedentes criminais</div><div class="sb">Submetido 04 Abr · em análise · 1 dia</div></div>
+            <span class="badge blue" style="font-size:10px"><span class="dot"></span>Análise</span>
+          </div>
+
+          <div class="ph-tab-h">Concluídos</div>
+          <div class="ph-list-item" onclick="location.hash='#cena-8'">
+            <div class="ic green">✓</div>
+            <div class="body"><div class="ti">Renovação do BI</div><div class="sb">Assinado 04 Abr · P-2026-0091-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinado</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic green">✓</div>
+            <div class="body"><div class="ti">Certidão de nascimento (filha)</div><div class="sb">18 Mar · P-2026-0072-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinado</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic red">✕</div>
+            <div class="body"><div class="ti">Mudança de morada</div><div class="sb">Rejeitado 22 Fev · falta comprovativo</div></div>
+            <span class="badge red" style="font-size:10px"><span class="dot"></span>Rejeitado</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic green">✓</div>
+            <div class="body"><div class="ti">Comprovativo de residência</div><div class="sb">02 Fev · P-2026-0028-INH</div></div>
+            <span class="badge green" style="font-size:10px"><span class="dot"></span>Assinado</span>
+          </div>
+
+          <a href="#cena-6" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px;margin-top:8px">+ Novo pedido</a>
+        </div>
+        <div class="nav-bottom">
+          <a><div class="ic"></div>Início</a>
+          <a><div class="ic"></div>Carteira</a>
+          <a class="active"><div class="ic"></div>Pedidos</a>
+          <a><div class="ic"></div>Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">5 · Lista de pedidos</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:40</span><span class="icons mono">4G · 64%</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Pedidos</span><b>Detalhe</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div>
+            <div class="t-overline">Pedido</div>
+            <h3 style="margin:4px 0 2px;font-size:18px">Antecedentes criminais</h3>
+            <div class="mono" style="font-size:12px;color:var(--ink-3)">P-2026-0098-INH · submetido 04 Abr 14:38</div>
+            <div style="margin-top:8px"><span class="badge blue"><span class="dot"></span>Em análise · ~3 dias úteis</span></div>
+          </div>
+
+          <div class="ph-card">
+            <div class="lbl">Linha do tempo</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+              <div style="display:flex;gap:10px"><div style="width:8px;height:8px;background:var(--good-700);border-radius:50%;margin-top:5px;flex:0 0 auto"></div><div style="font-size:12px"><b>Pagamento confirmado</b><div class="t-meta">04 Abr 14:39 · M-Pesa MZN 150,00</div></div></div>
+              <div style="display:flex;gap:10px"><div style="width:8px;height:8px;background:var(--good-700);border-radius:50%;margin-top:5px;flex:0 0 auto"></div><div style="font-size:12px"><b>Submetido</b><div class="t-meta">04 Abr 14:38</div></div></div>
+              <div style="display:flex;gap:10px"><div style="width:8px;height:8px;background:var(--navy-700);border-radius:50%;margin-top:5px;flex:0 0 auto"></div><div style="font-size:12px"><b>Em análise no posto</b><div class="t-meta">Inhambane Central · em curso</div></div></div>
+              <div style="display:flex;gap:10px;opacity:.5"><div style="width:8px;height:8px;background:var(--ink-3);border-radius:50%;margin-top:5px;flex:0 0 auto"></div><div style="font-size:12px"><b>Assinatura do conservador</b><div class="t-meta">— pendente</div></div></div>
+              <div style="display:flex;gap:10px;opacity:.5"><div style="width:8px;height:8px;background:var(--ink-3);border-radius:50%;margin-top:5px;flex:0 0 auto"></div><div style="font-size:12px"><b>Certidão disponível</b><div class="t-meta">— pendente</div></div></div>
+            </div>
+          </div>
+
+          <button class="ph-btn sec">Anular pedido</button>
+        </div>
+      </div></div>
+      <span class="cap">5 · Detalhe (timeline)</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← QR</a><a class="btn secondary sm" href="#cena-6">Novo requerimento →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · NOVO REQUERIMENTO =================== -->
+<section class="scene"><span id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F3 — Novo requerimento (wizard)</div>
+    <h2>Submeter pedido sem ir ao balcão</h2>
+    <p>Mesmo esqueleto de 5 passos do conservador, traduzido para a voz do cidadão. Cada passo diz o resultado esperado e a alternativa offline.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:42</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Cancelar</span><b>Novo pedido</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-step-row"><span class="n on">1</span><span>Tipo</span><span class="ln"></span><span class="n">2</span><span>Dados</span><span class="ln"></span><span class="n">3</span><span>Anexos</span><span class="ln"></span><span class="n">4</span><span>Pgto</span><span class="ln"></span><span class="n">5</span><span>OK</span></div>
+          <p style="font-size:13px;color:var(--ink-2);margin:0">O que precisa de pedir?</p>
+          <div class="ph-card" style="border-color:var(--navy-700);box-shadow:inset 0 0 0 1px var(--navy-700);cursor:pointer">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:14px">Antecedentes criminais</b><span class="t-meta mono">MZN 150,00</span></div>
+            <p style="font-size:12px;color:var(--ink-3);margin:6px 0 0;line-height:1.5">Pronto em ~3 dias úteis. Sem anexos.</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:14px">Certidão de nascimento</b><span class="t-meta mono">MZN 100,00</span></div>
+            <p style="font-size:12px;color:var(--ink-3);margin:6px 0 0;line-height:1.5">Para si ou para um filho menor.</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:14px">Mudança de morada</b><span class="t-meta mono">MZN 80,00</span></div>
+            <p style="font-size:12px;color:var(--ink-3);margin:6px 0 0;line-height:1.5">Requer comprovativo de residência (≤ 90 dias).</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:14px">2.ª via do BI</b><span class="t-meta mono">MZN 200,00</span></div>
+            <p style="font-size:12px;color:var(--ink-3);margin:6px 0 0;line-height:1.5">Por perda ou dano. Levantamento no posto.</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:14px">Comprovativo de residência</b><span class="t-meta mono">MZN 50,00</span></div>
+            <p style="font-size:12px;color:var(--ink-3);margin:6px 0 0;line-height:1.5">Documento oficial para apresentar a terceiros.</p>
+          </div>
+          <a href="#cena-7" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px">Continuar</a>
+        </div>
+      </div></div>
+      <span class="cap">6.1 · Tipo</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:43</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Voltar</span><b>Confirmar dados</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-step-row"><span class="n dn">✓</span><span>Tipo</span><span class="ln"></span><span class="n on">2</span><span>Dados</span><span class="ln"></span><span class="n">3</span><span>Anexos</span><span class="ln"></span><span class="n">4</span><span>Pgto</span><span class="ln"></span><span class="n">5</span><span>OK</span></div>
+          <p style="font-size:13px;color:var(--ink-2);margin:0">Estes são os dados que o Estado tem de si. Confirme ou peça correcção.</p>
+          <div class="ph-card">
+            <div style="font-size:13px;font-weight:600">Felisberta Sumaila Cuamba</div>
+            <div class="mono" style="font-size:12px;color:var(--ink-3);margin-top:2px">110100099876 C</div>
+            <hr style="border:0;border-top:1px solid var(--line-2);margin:10px 0">
+            <div style="font-size:12px;display:flex;flex-direction:column;gap:6px">
+              <div><span class="t-overline">Naturalidade</span><br>Maxixe · Inhambane</div>
+              <div><span class="t-overline">Residência</span><br>Bairro Liberdade · Maxixe</div>
+              <div><span class="t-overline">Nascimento</span><br>12 Jul 1991</div>
+            </div>
+            <a href="#" style="font-size:12px;color:var(--navy-700);margin-top:8px;display:inline-block">Algo está errado? Peça correcção</a>
+          </div>
+          <div class="ph-banner blue" style="margin-top:4px"><b>O pedido será enviado para Inhambane Central</b> — o seu posto associado. Pronto em ~3 dias úteis.</div>
+          <a href="#cena-7" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px">Confirmar e continuar</a>
+        </div>
+      </div></div>
+      <span class="cap">6.2 · Confirmar dados</span>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Lista</a><a class="btn secondary sm" href="#cena-7">Pagamento →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · PAGAMENTO =================== -->
+<section class="scene"><span id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · Pagamento e submissão</div>
+    <h2>M-Pesa, eMola, ou pagar no balcão</h2>
+    <p>Sempre oferece a alternativa offline ("pagar no balcão"). Confirmação dispara push, SMS, e nova entrada na lista.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:44</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Voltar</span><b>Pagamento</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-step-row"><span class="n dn">✓</span><span>Tipo</span><span class="ln"></span><span class="n dn">✓</span><span>Dados</span><span class="ln"></span><span class="n dn">✓</span><span>Anx</span><span class="ln"></span><span class="n on">4</span><span>Pgto</span><span class="ln"></span><span class="n">5</span><span>OK</span></div>
+          <div class="ph-card">
+            <div class="pmt-row"><span>Antecedentes criminais</span><span class="mono">MZN 150,00</span></div>
+            <div class="pmt-row"><span>Taxa de processamento</span><span class="mono">MZN 0,00</span></div>
+            <div class="pmt-row"><span>Total</span><span class="mono">MZN 150,00</span></div>
+          </div>
+          <div class="ph-tab-h">Como quer pagar?</div>
+          <div class="ph-card" style="border-color:var(--navy-700);box-shadow:inset 0 0 0 1px var(--navy-700);cursor:pointer">
+            <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">M-Pesa</b><span style="font-size:11px;color:var(--good-700)">● Recomendado</span></div>
+            <p style="font-size:11px;color:var(--ink-3);margin:6px 0 0">Confirma com o seu PIN no telefone. Imediato.</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <b style="font-size:14px">eMola</b>
+            <p style="font-size:11px;color:var(--ink-3);margin:6px 0 0">USSD enviado. Confirma com o PIN eMola.</p>
+          </div>
+          <div class="ph-card" style="cursor:pointer">
+            <b style="font-size:14px">Pagar no balcão</b>
+            <p style="font-size:11px;color:var(--ink-3);margin:6px 0 0">Recebe uma referência; paga em qualquer posto BAÚ até 7 dias.</p>
+          </div>
+          <a href="#cena-8" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px">Pagar MZN 150,00 com M-Pesa</a>
+        </div>
+      </div></div>
+      <span class="cap">7.1 · Escolha de método</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:45</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><b>Pagamento</b><span style="width:30px"></span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:14px;background:#fff">
+          <div style="width:80px;height:80px;background:var(--green-100);color:var(--green-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px">✓</div>
+          <h2 style="font-size:20px;margin:0;text-align:center">Pagamento confirmado</h2>
+          <p style="font-size:13px;color:var(--ink-3);text-align:center;margin:0">Recebemos <b class="mono">MZN 150,00</b> via M-Pesa. O seu pedido foi submetido.</p>
+          <div class="ph-card" style="width:100%">
+            <div class="pmt-row"><span>Processo</span><span class="mono">P-2026-0098-INH</span></div>
+            <div class="pmt-row"><span>Posto</span><span>Inhambane Central</span></div>
+            <div class="pmt-row"><span>Pronto em</span><span>≈ 3 dias úteis</span></div>
+          </div>
+          <a href="#cena-5" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px;width:100%">Ver na lista</a>
+          <a href="#cena-2" style="font-size:12px;color:var(--navy-700)">Voltar ao início</a>
+        </div>
+      </div></div>
+      <span class="cap">7.2 · Confirmação</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Tipo</a><a class="btn secondary sm" href="#cena-8">Documento assinado →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · DOCUMENTO ASSINADO =================== -->
+<section class="scene"><span id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F5 — Recepção do documento assinado</div>
+    <h2>Notificação · cartão na Carteira · detalhe</h2>
+    <p>Após o conservador assinar (na superfície eBI), o cidadão recebe SMS, push, novo cartão na Carteira, e nova entrada em Pedidos com o badge "Assinado".</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen" style="background:#222">
+        <div class="statusbar" style="background:#222;color:#fff"><span>14:42</span><span class="icons mono" style="color:#fff">4G</span></div>
+        <div style="flex:1;padding:60px 16px 0;color:#fff;display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.06em;text-align:center">Agora</div>
+          <div style="background:rgba(255,255,255,.12);border-radius:14px;padding:14px;backdrop-filter:blur(10px)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div class="brand mark" style="width:18px;height:18px;background:#fff;display:inline-block;position:relative;border-radius:1px"></div><b style="font-size:12px">Governo Digital</b><span style="margin-left:auto;font-size:10px;color:#aaa">agora</span></div>
+            <b style="font-size:14px;display:block">Renovação do BI assinada ✓</b>
+            <p style="font-size:13px;color:#ddd;margin:4px 0 0;line-height:1.4">Tomás A. Macuácua assinou o seu BI às 14:42. Levante o cartão físico em Inhambane Central a partir de 11 Abr.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.08);border-radius:14px;padding:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><div style="width:18px;height:18px;background:#1B5E3F;border-radius:4px"></div><b style="font-size:12px">Saúde Moçambique</b><span style="margin-left:auto;font-size:10px;color:#aaa">há 2 h</span></div>
+            <span style="font-size:12px;color:#ccc">Lembrete: consulta de TB em 3 dias.</span>
+          </div>
+        </div>
+      </div></div>
+      <span class="cap">8.1 · Push notification</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:42</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Pedidos</span><b>Renovação do BI</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-banner green"><b>✓ Assinado pelo Estado.</b> 04 Abr 2026 · 14:42 CAT · Tomás A. Macuácua, Conservador.</div>
+
+          <div class="bi-card">
+            <div class="top"><span>NOVO BI · DIGITAL</span><span>VÁLIDO</span></div>
+            <div style="display:flex;gap:12px;align-items:center"><div class="bi-photo">FC</div><div style="flex:1"><div class="nm">Felisberta Sumaila Cuamba</div><div class="num">110100099876 C</div></div></div>
+            <div class="meta"><div>Validade<br><b>04 Abr 2036</b></div><div>Emissor<br><b>Inhambane</b></div></div>
+          </div>
+
+          <div class="ph-card">
+            <div class="lbl">Proveniência</div>
+            <div style="font-size:12px;display:flex;flex-direction:column;gap:6px;margin-top:8px">
+              <div><span class="t-overline">Processo</span><br><span class="mono">P-2026-0091-INH</span></div>
+              <div><span class="t-overline">Conservador</span><br>Tomás A. Macuácua</div>
+              <div><span class="t-overline">Posto</span><br>Inhambane Central · BAÚ</div>
+              <div><span class="t-overline">Tarifa paga</span><br><span class="mono">MZN 250,00 · M-Pesa</span></div>
+            </div>
+          </div>
+
+          <div class="ph-banner blue"><b>Cartão físico</b> pronto para levantamento a partir de 11 Abr 2026. Apresente este BI digital ao operador.</div>
+          <button class="ph-btn">Partilhar PDF</button>
+          <button class="ph-btn sec">Adicionar ao calendário · 11 Abr</button>
+        </div>
+      </div></div>
+      <span class="cap">8.2 · Detalhe</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Pagamento</a><a class="btn secondary sm" href="#cena-9">Acessos →</a></div></div>
+</section>
+
+<!-- =================== CENA 9 · ACESSOS =================== -->
+<section class="scene"><span id="cena-9"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 9 · F4 — Acessos aos meus dados</div>
+    <h2>Quem consultou os meus dados, quando, porquê</h2>
+    <p>Lista cronológica de cada leitura do registo do cidadão, em todas as superfícies. Mesma informação que o conservador vê na ficha.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:50</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><b>Acessos aos meus dados</b><span class="av sm">FC</span></div>
+        <div class="ph-content">
+          <p style="font-size:12px;color:var(--ink-3);margin:0;line-height:1.5">Estes são todos os funcionários e sistemas que consultaram o seu registo nos últimos 90 dias.</p>
+
+          <div class="ph-tab-h">Hoje</div>
+          <div class="ph-list-item" onclick="location.hash='#cena-10'">
+            <div class="ic">TM</div>
+            <div class="body"><div class="ti">T. Macuácua · Conservador</div><div class="sb">14:32 · Inhambane Central · consulta para renovação</div></div>
+            <span style="color:var(--ink-3)">›</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic">TM</div>
+            <div class="body"><div class="ti">T. Macuácua · Conservador</div><div class="sb">14:42 · Inhambane Central · assinatura BI</div></div>
+            <span style="color:var(--ink-3)">›</span>
+          </div>
+
+          <div class="ph-tab-h">Esta semana</div>
+          <div class="ph-list-item">
+            <div class="ic">UGD</div>
+            <div class="body"><div class="ti">UGD · Auditoria automática</div><div class="sb">03 Abr 09:14 · varredura mensal</div></div>
+            <span style="color:var(--ink-3)">›</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic green">SM</div>
+            <div class="body"><div class="ti">Saúde Moçambique · CS Maxixe</div><div class="sb">28 Mar · Dr. R. Nhamburo · consulta de identidade</div></div>
+            <span style="color:var(--ink-3)">›</span>
+          </div>
+
+          <div class="ph-tab-h">Mês anterior</div>
+          <div class="ph-list-item">
+            <div class="ic">FC</div>
+            <div class="body"><div class="ti">F. Chongo · Operador BAÚ</div><div class="sb">18 Mar · Inhambane · certidão da filha</div></div>
+            <span style="color:var(--ink-3)">›</span>
+          </div>
+          <div class="ph-list-item">
+            <div class="ic amber">?</div>
+            <div class="body"><div class="ti">Operador desconhecido · Beira</div><div class="sb">12 Mar · sem motivo registado</div></div>
+            <span class="badge amber" style="font-size:10px"><span class="dot"></span>Atenção</span>
+          </div>
+
+          <div class="ph-banner blue"><b>Esta lista é a mesma que o conservador vê na sua ficha.</b> Se vir um acesso que não esperava, pode reportar à UGD.</div>
+        </div>
+        <div class="nav-bottom">
+          <a><div class="ic"></div>Início</a>
+          <a><div class="ic"></div>Carteira</a>
+          <a><div class="ic"></div>Pedidos</a>
+          <a class="active"><div class="ic"></div>Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">9 · Lista de acessos</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:50</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Acessos</span><b>Detalhe</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div>
+            <div class="t-overline">Quem</div>
+            <div style="font-size:16px;font-weight:600;margin-top:2px">Tomás A. Macuácua</div>
+            <div style="font-size:12px;color:var(--ink-3)">Conservador · Inhambane Central · ID interno UGD-INH-014</div>
+          </div>
+
+          <div class="ph-card">
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+              <div><span class="t-overline">Quando</span><br>04 Abr 2026 · 14:32:18 CAT</div>
+              <div><span class="t-overline">Onde</span><br>BAÚ Inhambane Central · IP local</div>
+              <div><span class="t-overline">Acção</span><br>Consultou ficha completa</div>
+              <div><span class="t-overline">Razão registada</span><br>"Renovação de BI a pedido do cidadão"</div>
+              <div><span class="t-overline">Processo associado</span><br><span class="mono">P-2026-0091-INH</span></div>
+            </div>
+          </div>
+
+          <div class="ph-banner"><b>Reconhece este acesso?</b> Se foi consigo no balcão hoje, está tudo bem. Caso contrário, reporte à UGD.</div>
+          <button class="ph-btn sec">Sim, reconheço</button>
+          <button class="ph-btn" style="background:var(--red-700)">Reportar acesso suspeito</button>
+        </div>
+      </div></div>
+      <span class="cap">9 · Detalhe de acesso</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-8">← Documento</a><a class="btn secondary sm" href="#cena-10">Reportar acesso →</a></div></div>
+</section>
+
+<!-- =================== CENA 10 · REPORTAR =================== -->
+<section class="scene"><span id="cena-10"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 10 · Reportar acesso suspeito</div>
+    <h2>Cidadão sinaliza um acesso · UGD recebe</h2>
+    <p>Modal de confirmação. UGD acusa recepção. Auditoria abre investigação. O cidadão acompanha o estado.</p>
+  </div>
+  <div class="phones-row">
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:51</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><span style="font-size:13px;color:var(--ink-3)">← Voltar</span><b>Reportar acesso</b><span style="width:30px"></span></div>
+        <div class="ph-content">
+          <div class="ph-banner red"><b>Este formulário é confidencial.</b> Será tratado pela equipa de Auditoria da UGD. O operador <i>não</i> é informado de quem reportou.</div>
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-2)">O que o preocupa neste acesso?</label>
+            <select class="ph-input" style="margin-top:6px">
+              <option>Não estive no balcão neste dia</option>
+              <option>Estive no balcão mas para outro motivo</option>
+              <option>O motivo registado não corresponde</option>
+              <option>Suspeito de partilha indevida dos meus dados</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-2)">Descreva (opcional)</label>
+            <textarea class="ph-input" style="height:90px;padding:10px 12px;margin-top:6px;line-height:1.4" placeholder="O que aconteceu, do seu lado…"></textarea>
+          </div>
+          <div class="ph-card" style="background:var(--bg-2)">
+            <div class="lbl">Acesso reportado</div>
+            <div style="font-size:13px;margin-top:4px"><b>T. Macuácua</b> · 12 Mar 14:50 · Beira · sem motivo registado</div>
+          </div>
+          <button class="ph-btn">Submeter à UGD</button>
+          <p style="font-size:11px;color:var(--ink-3);text-align:center;margin:0">Receberá actualizações sobre o estado da investigação.</p>
+        </div>
+      </div></div>
+      <span class="cap">10.1 · Formulário</span>
+    </div>
+
+    <div class="phone-cap">
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:52</span><span class="icons mono">4G</span></div>
+        <div class="ph-bar"><b>Reporte enviado</b><span style="width:30px"></span></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:14px;background:#fff">
+          <div style="width:80px;height:80px;background:var(--navy-100);color:var(--navy-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px">📨</div>
+          <h2 style="font-size:20px;margin:0;text-align:center">Reporte recebido</h2>
+          <p style="font-size:13px;color:var(--ink-3);text-align:center;margin:0;line-height:1.5">A UGD vai investigar este acesso e contactá-la em até 5 dias úteis. Pode acompanhar o estado nesta App.</p>
+          <div class="ph-card" style="width:100%">
+            <div class="pmt-row"><span>Referência</span><span class="mono">R-2026-AUD-0034</span></div>
+            <div class="pmt-row"><span>Estado</span><span><span class="badge blue" style="font-size:10px"><span class="dot"></span>Em revisão UGD</span></span></div>
+            <div class="pmt-row"><span>Tempo previsto</span><span>5 dias úteis</span></div>
+          </div>
+          <a href="#cena-9" class="ph-btn" style="text-decoration:none;text-align:center;line-height:44px;width:100%">Voltar a Acessos</a>
+        </div>
+      </div></div>
+      <span class="cap">10.2 · Confirmação</span>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-9">← Acessos</a><a class="btn secondary sm" href="balcao.html">Ver superfície Balcão →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">App do Cidadão v0.3 · documento autoritativo: <a class="mono" href="DESIGN-cidadao.md">DESIGN-cidadao.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="balcao.html" class="btn secondary sm">Balcão →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

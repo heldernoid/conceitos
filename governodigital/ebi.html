@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>eBI · Identidade Civil — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .ebi-shell{display:flex;flex-direction:column;min-height:100vh}
+  .ebi-body{flex:1;padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:300px 1fr;gap:20px}
+  .threecol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+  .login-bg{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--bg)}
+  .login-left{background:var(--navy-900);color:#cfd8e6;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .login-left h1{font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:0;color:#fff;max-width:440px}
+  .login-left .meta{font-size:12px;color:#90a4c1}
+  .login-right{padding:48px;display:flex;align-items:center;justify-content:center}
+  .login-card{width:380px}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--navy-100);color:var(--navy-900);font-weight:600}
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+  .row-card{display:grid;grid-template-columns:32px 1.4fr 1.2fr 1fr 1fr 110px;gap:12px;padding:10px 12px;align-items:center;border-bottom:1px solid var(--line-2);font-size:13px;cursor:pointer}
+  .row-card:hover{background:var(--bg-2)}
+  .row-card.head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line);cursor:default}
+  .row-card.head:hover{background:var(--bg-2)}
+  .vlist{display:flex;flex-direction:column}
+  .vlist .item{padding:10px 12px;border-bottom:1px solid var(--line-2);cursor:pointer}
+  .vlist .item:hover{background:var(--bg-2)}
+  .vlist .item.sel{background:var(--navy-100)}
+  .pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;background:var(--bg-2);border:1px solid var(--line-2);border-radius:2px;font-size:11px;color:var(--ink-2)}
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .compare{padding:14px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff}
+  .compare.win{border-color:var(--navy-700);box-shadow:inset 0 0 0 1px var(--navy-700)}
+  .doc-block{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+</style>
+</head>
+<body>
+
+<!-- ===== Persistent govt strip + topbar ===== -->
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Unidade de Governação Digital — UGD</span><span class="sep">·</span>
+  <span>eBI · Identidade Civil v0.3</span>
+  <span style="margin-left:auto">DESIGN-ebi.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>eBI</span><small>Identidade Civil</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="ebi.html" class="active">eBI</a>
+    <a href="cidadao.html">App do Cidadão</a>
+    <a href="balcao.html">Balcão</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="auditoria.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online · 0 em fila</span>
+    <div class="idbadge"><span class="av sm">TM</span><div class="who"><b>Tomás Macuácua</b><span>Conservador · Inhambane Central</span></div></div>
+  </div>
+</header>
+
+<!-- ===== Scene navigation ===== -->
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Login</a>
+    <a href="#cena-2">2. Dashboard</a>
+    <a href="#cena-3">3. Pesquisa</a>
+    <a href="#cena-4">4. Ficha do cidadão</a>
+    <a href="#cena-5">5. Novo requerimento</a>
+    <a href="#cena-6">6. Pagamento</a>
+    <a href="#cena-7">7. Assinatura</a>
+    <a href="#cena-8">8. Emitido</a>
+    <a href="#cena-9">9. Fundir duplicados</a>
+    <a href="#cena-10">10. Offline</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · LOGIN =================== -->
+<section class="scene"><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Sign in</div>
+    <h2>Início de sessão · Conservatória de Inhambane</h2>
+    <p>Três passos: e-mail/password, OTP por SMS, selecção do posto. O OTP é obrigatório porque o operador toca em identidade civil.</p>
+  </div>
+  <div style="padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%">
+    <div class="login-bg" style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;min-height:560px">
+      <div class="login-left">
+        <div>
+          <div class="row" style="gap:10px;align-items:center"><span class="brand mark" style="width:28px;height:28px;background:#fff;display:inline-block;position:relative;border-radius:1px"></span><span style="color:#fff;font-weight:600">Governo Digital</span></div>
+          <h1 style="margin-top:48px">Identidade civil única, em qualquer ponto do país.</h1>
+          <p style="color:#cdd6e3;font-size:14px;line-height:1.55;margin-top:14px;max-width:420px">A eBI é a fonte única de verdade para a identidade do cidadão. Cada emissão, renovação e óbito fica registado de forma imediata e auditável.</p>
+        </div>
+        <div class="meta">v0.3 · Abril 2026 · Protótipo de demonstração — UGD</div>
+      </div>
+      <div class="login-right">
+        <div class="login-card">
+          <div class="t-overline">Passo 2 de 3</div>
+          <div class="t-h2" style="margin:8px 0 4px">Código por SMS</div>
+          <p class="t-meta">Enviámos um código de 6 dígitos para <span class="mono">+258 84 ••• ••67</span></p>
+          <div class="row" style="gap:6px;margin:18px 0 14px">
+            <input class="input mono lg" style="text-align:center;width:48px" value="4" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="9" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="1" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="3" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="0" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="" />
+          </div>
+          <a href="#cena-2" class="btn lg block">Continuar</a>
+          <div class="row spread" style="margin-top:14px"><span class="t-meta">Reenviar em 00:42</span><span class="t-meta">Suporte UGD: 1465</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Ramo divergente: posto bloqueado por 2FA falhada → contactar UGD</span><a class="btn secondary sm" href="#cena-2">Avançar para Dashboard →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · DASHBOARD =================== -->
+<section class="scene"><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Dashboard</div>
+    <h2>Painel de hoje</h2>
+    <p>Acima da dobra: fila de atendimento, requerimentos online a aprovar, alertas civis. Quatro KPIs incluindo estado de sincronização — nunca escondido no chrome.</p>
+  </div>
+  <div class="ebi-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Atendidos hoje</div><div class="num">23</div><div class="delta">+4 face a ontem</div></div>
+      <div class="kpi"><div class="lbl">Requerimentos online</div><div class="num">11</div><div class="delta">8 a aguardar revisão</div></div>
+      <div class="kpi"><div class="lbl">Suspeitas duplicado</div><div class="num" style="color:var(--amber-700)">2</div><div class="delta">A rever desde 02 Abr</div></div>
+      <div class="kpi"><div class="lbl">Sincronização</div><div class="num">0</div><div class="delta" style="color:var(--good-700)">Em fila · operacional</div></div>
+    </div>
+
+    <div class="threecol">
+      <div class="panel">
+        <div class="ph"><b>Atendimento de hoje · 04 Abr 2026</b><div class="row"><span class="seg"><button class="on">Todos</button><button>Por atender</button><button>Em curso</button></span><button class="btn sm">Novo cidadão</button></div></div>
+        <div>
+          <div class="row-card head"><div></div><div>Cidadão / BI</div><div>Tipo</div><div>Estado</div><div>Atribuído</div><div>Ticket</div></div>
+          <div class="row-card" onclick="location.hash='#cena-3'"><span class="av sm">FC</span><div><div><b>Felisberta Sumaila Cuamba</b></div><div class="t-meta mono">110100099876 C</div></div><div>Renovação BI</div><div><span class="badge blue"><span class="dot"></span>Em curso</span></div><div class="t-meta">T. Macuácua</div><div class="mono t-meta">A-014</div></div>
+          <div class="row-card"><span class="av sm green">JM</span><div><div><b>Joaquina Massingue</b></div><div class="t-meta mono">2ª via</div></div><div>2ª via BI</div><div><span class="badge amber"><span class="dot"></span>Aguarda pgto</span></div><div class="t-meta">F. Chongo</div><div class="mono t-meta">A-015</div></div>
+          <div class="row-card"><span class="av sm">SD</span><div><div><b>Sumaila Dauto</b></div><div class="t-meta mono">110100100712 A</div></div><div>Certidão nasc. (filho)</div><div><span class="badge"><span class="dot"></span>Por atender</span></div><div class="t-meta">—</div><div class="mono t-meta">A-016</div></div>
+          <div class="row-card"><span class="av sm amber">EM</span><div><div><b>Eulália Mussagy</b></div><div class="t-meta mono">110200044120 D</div></div><div>Mudança de nome (casamento)</div><div><span class="badge"><span class="dot"></span>Por atender</span></div><div class="t-meta">—</div><div class="mono t-meta">A-017</div></div>
+          <div class="row-card"><span class="av sm">CB</span><div><div><b>Carlos Bila</b></div><div class="t-meta mono">110100066301 B</div></div><div>Registo de óbito (cônjuge)</div><div><span class="badge red"><span class="dot"></span>Urgente</span></div><div class="t-meta">T. Macuácua</div><div class="mono t-meta">A-018</div></div>
+        </div>
+        <div class="ft" style="padding:10px 14px;border-top:1px solid var(--line-2);display:flex;justify-content:flex-end"><a href="#cena-3" class="btn ghost sm">Ver todos →</a></div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Requerimentos online a aprovar</b><span class="badge">11</span></div>
+          <div>
+            <div class="vlist">
+              <div class="item">
+                <div class="row spread"><b>Antecedentes criminais</b><span class="t-meta mono">P-2026-0091-INH</span></div>
+                <div class="t-meta" style="margin-top:2px">Felisberta S. Cuamba · submetido 12:14</div>
+                <div style="margin-top:6px"><span class="badge blue"><span class="dot"></span>Em análise</span></div>
+              </div>
+              <div class="item">
+                <div class="row spread"><b>Certidão de casamento</b><span class="t-meta mono">P-2026-0089-INH</span></div>
+                <div class="t-meta" style="margin-top:2px">Eulália Mussagy · submetido 11:48</div>
+                <div style="margin-top:6px"><span class="badge amber"><span class="dot"></span>Aguarda anexo</span></div>
+              </div>
+              <div class="item">
+                <div class="row spread"><b>Certidão de nascimento</b><span class="t-meta mono">P-2026-0084-INH</span></div>
+                <div class="t-meta" style="margin-top:2px">Sumaila Dauto · submetido 11:02</div>
+                <div style="margin-top:6px"><span class="badge blue"><span class="dot"></span>Em análise</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><b>Alertas civis</b></div>
+          <div class="pb col">
+            <div class="banner amber"><span class="ic"></span><div><b>Suspeita de duplicado.</b> 110100099876 C aparece também como 110100099877 C em Beira (12 Mar 2024). <a href="#cena-9">Comparar</a>.</div></div>
+            <div class="banner red"><span class="ic"></span><div><b>Óbito não registado.</b> Saúde Moçambique reportou um óbito a 03 Abr; certificado por chegar.</div></div>
+            <div class="banner blue"><span class="ic"></span><div><b>Sync mensal a UGD.</b> Próxima exportação consolidada: 30 Abr 2026.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Voltar a login</a><a class="btn secondary sm" href="#cena-3">Avançar para pesquisa →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · PESQUISA =================== -->
+<section class="scene"><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Identificação</div>
+    <h2>Pesquisar cidadão</h2>
+    <p>Quatro modos via segmentado: BI, NUIT, nome, processo. Câmara como atalho. Sem documento → criar novo registo. O sistema nunca bloqueia atendimento por falta de papel.</p>
+  </div>
+  <div class="ebi-body">
+    <div class="panel">
+      <div class="ph">
+        <div class="row" style="gap:10px;flex:1">
+          <span class="seg">
+            <button class="on">BI</button>
+            <button>NUIT</button>
+            <button>Nome</button>
+            <button>Processo</button>
+          </span>
+          <input class="input mono" placeholder="Procurar por número de BI" value="110100099876 C" style="max-width:320px" />
+          <button class="btn-icon btn secondary" title="Ler com câmara">📷</button>
+        </div>
+        <button class="btn">Pesquisar</button>
+      </div>
+      <div>
+        <div class="row-card head"><div></div><div>Cidadão</div><div>BI / NUIT</div><div>Província</div><div>Estado</div><div>Acção</div></div>
+        <div class="row-card sel" style="background:var(--navy-100)" onclick="location.hash='#cena-4'">
+          <span class="av sm">FC</span>
+          <div><b>Felisberta Sumaila Cuamba</b><div class="t-meta">Nascida 12 Jul 1991 · Inhambane</div></div>
+          <div class="mono t-meta">110100099876 C<br>NUIT 401 236 789</div>
+          <div>Inhambane · Maxixe</div>
+          <div><span class="badge amber"><span class="dot"></span>BI a renovar</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">FC</span>
+          <div><b>Felisberta Cuamba</b><div class="t-meta">Nascida 12 Jul 1991 · Beira</div></div>
+          <div class="mono t-meta">110100099877 C</div>
+          <div>Sofala · Beira</div>
+          <div><span class="badge red"><span class="dot"></span>Suspeita duplicado</span></div>
+          <div><a href="#cena-9" class="btn sm secondary">Comparar →</a></div>
+        </div>
+      </div>
+      <div class="ft" style="padding:14px;border-top:1px solid var(--line-2)">
+        <div class="row spread" style="width:100%">
+          <span class="t-meta">2 resultados · pesquisa nacional levou 480 ms</span>
+          <span class="t-meta">Não encontra o cidadão? <a href="#">Criar novo registo de nascimento</a> · <a href="#">Override de emergência</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Dashboard</a><a class="btn secondary sm" href="#cena-4">Abrir ficha →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · FICHA =================== -->
+<section class="scene"><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Ficha do cidadão</div>
+    <h2>Ficha · Felisberta Sumaila Cuamba</h2>
+    <p>Cinco abas: Visão geral, Histórico, Documentos, Família, Acessos. A aba Acessos espelha o que o cidadão vê na sua App — lembrete de que o operador é visível.</p>
+  </div>
+  <div class="ebi-body">
+    <div class="banner amber" style="margin-bottom:14px"><span class="ic"></span><div><b>Suspeita de duplicado.</b> Existe um registo similar em Beira (110100099877 C). <a href="#cena-9">Reveja antes de emitir um documento derivado.</a></div></div>
+
+    <div class="panel">
+      <div class="ph" style="padding:18px 20px">
+        <div class="row" style="gap:14px">
+          <span class="av lg">FC</span>
+          <div>
+            <div class="t-h2">Felisberta Sumaila Cuamba</div>
+            <div class="t-meta" style="margin-top:2px">Nascida 12 Jul 1991 · Maxixe, Inhambane · 34 anos · Sexo F</div>
+            <div class="row" style="margin-top:8px;gap:8px">
+              <span class="badge amber"><span class="dot"></span>BI a renovar (válido até 14 Jun 2026)</span>
+              <span class="badge"><span class="dot"></span>NUIT activo</span>
+              <span class="badge blue"><span class="dot"></span>Eleitora · Maxixe</span>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="gap:6px;align-items:flex-end">
+          <div class="row" style="gap:8px">
+            <button class="btn secondary sm">Imprimir histórico</button>
+            <a class="btn sm" href="#cena-5">Iniciar requerimento</a>
+          </div>
+          <span class="t-meta mono">Aberto às 14:32 · sessão 28 min</span>
+        </div>
+      </div>
+
+      <div style="padding:0 20px;border-bottom:1px solid var(--line-2)">
+        <div class="row" style="gap:0">
+          <div style="padding:10px 14px;border-bottom:2px solid var(--navy-700);color:var(--navy-900);font-weight:600;font-size:13px">Visão geral</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Histórico</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Documentos</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Família</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Acessos <span class="pill" style="margin-left:6px">12</span></div>
+        </div>
+      </div>
+
+      <div class="pb">
+        <div class="grid g-3">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Identificação</div>
+            <div class="card"><div class="bd">
+              <div class="kv" style="margin-bottom:10px"><span class="k">BI</span><span class="v mono">110100099876 C</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">NUIT</span><span class="v mono">401 236 789</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">Telefone</span><span class="v mono">+258 84 567 8967</span></div>
+              <div class="kv"><span class="k">E-mail</span><span class="v">f.cuamba@correio.mz</span></div>
+            </div></div>
+          </div>
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Naturalidade & residência</div>
+            <div class="card"><div class="bd">
+              <div class="kv" style="margin-bottom:10px"><span class="k">Naturalidade</span><span class="v">Maxixe · Inhambane</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">Residência actual</span><span class="v">Bairro Liberdade · Maxixe</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">Pai</span><span class="v">Sumaila Domingos Cuamba</span></div>
+              <div class="kv"><span class="k">Mãe</span><span class="v">Maria José Cuamba</span></div>
+            </div></div>
+          </div>
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Acessos recentes <span class="muted">· o cidadão vê no telemóvel</span></div>
+            <div class="card"><div class="pb" style="padding:10px 14px">
+              <div style="padding:8px 0;border-bottom:1px solid var(--line-2)"><b style="font-size:13px">T. Macuácua · Conservador</b><div class="t-meta">Hoje 14:32 · Inhambane · consulta</div></div>
+              <div style="padding:8px 0;border-bottom:1px solid var(--line-2)"><b style="font-size:13px">UGD Auditoria automática</b><div class="t-meta">03 Abr 09:14 · Maputo · varredura mensal</div></div>
+              <div style="padding:8px 0"><b style="font-size:13px">Saúde Moçambique · Centro Maxixe</b><div class="t-meta">28 Mar · consulta de identidade</div></div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="t-overline" style="margin:18px 0 8px">Eventos civis · resumo</div>
+        <table class="table">
+          <thead><tr><th>Data</th><th>Evento</th><th>Posto</th><th>Operador</th><th>Estado</th><th>Processo</th></tr></thead>
+          <tbody>
+            <tr><td>12 Jul 1991</td><td>Registo de nascimento</td><td>Conservatória de Maxixe</td><td>(papel)</td><td><span class="badge green"><span class="dot"></span>Migrado</span></td><td class="mono t-meta">M-1991-022</td></tr>
+            <tr><td>14 Jun 2009</td><td>1.ª emissão BI</td><td>Conservatória de Maxixe</td><td>A. Sitói</td><td><span class="badge green"><span class="dot"></span>Emitido</span></td><td class="mono t-meta">B-2009-0124</td></tr>
+            <tr><td>14 Jun 2016</td><td>Renovação BI</td><td>Conservatória de Maxixe</td><td>L. Maússe</td><td><span class="badge green"><span class="dot"></span>Emitido</span></td><td class="mono t-meta">B-2016-0341</td></tr>
+            <tr><td>22 Set 2018</td><td>Atribuição NUIT</td><td>SISTAFE Inhambane</td><td>(automático)</td><td><span class="badge green"><span class="dot"></span>Activo</span></td><td class="mono t-meta">N-2018-1180</td></tr>
+            <tr><td>14 Jun 2021</td><td>2.ª via BI (perda)</td><td>Conservatória de Maxixe</td><td>L. Maússe</td><td><span class="badge green"><span class="dot"></span>Emitido</span></td><td class="mono t-meta">B-2021-0501</td></tr>
+            <tr><td>(em curso)</td><td>Renovação BI</td><td>Inhambane Central</td><td>T. Macuácua</td><td><span class="badge blue"><span class="dot"></span>Em curso</span></td><td class="mono t-meta">P-2026-0091-INH</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Pesquisa</a><a class="btn secondary sm" href="#cena-5">Iniciar requerimento →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · WIZARD =================== -->
+<section class="scene"><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Wizard de requerimento</div>
+    <h2>Novo requerimento · Renovação de BI</h2>
+    <p>Cinco passos: tipo → identificação → anexos → pagamento → assinar. Cada passo guarda rascunho local; o wizard ramifica conforme o tipo escolhido.</p>
+  </div>
+  <div class="ebi-body">
+    <div class="panel">
+      <div class="ph"><div class="stepper">
+        <div class="step done"><span class="n">✓</span> Tipo</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Identificação</div><span class="ln"></span>
+        <div class="step active"><span class="n">3</span> Anexos</div><span class="ln"></span>
+        <div class="step"><span class="n">4</span> Pagamento</div><span class="ln"></span>
+        <div class="step"><span class="n">5</span> Assinar</div>
+      </div><span class="t-meta mono">P-2026-0091-INH · rascunho guardado 14:36</span></div>
+      <div class="pb">
+        <div class="twocol">
+          <div class="col">
+            <div class="t-overline">Cidadão</div>
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:10px"><span class="av">FC</span><div><b>Felisberta Sumaila Cuamba</b><div class="t-meta mono">110100099876 C</div></div></div>
+              <div class="hr"></div>
+              <div class="t-overline" style="margin-bottom:6px">Tipo</div>
+              <div class="t-body">Renovação de BI</div>
+              <div class="hr"></div>
+              <div class="t-overline" style="margin-bottom:6px">Posto de levantamento</div>
+              <div class="t-body">Inhambane Central</div>
+              <div class="hr"></div>
+              <div class="t-overline" style="margin-bottom:6px">Tarifa</div>
+              <div class="t-body mono">MZN 250,00</div>
+            </div></div>
+          </div>
+
+          <div class="col">
+            <div class="t-overline">Anexos exigidos</div>
+
+            <div class="card">
+              <div class="hd"><div><b>BI anterior</b><div class="t-meta">Obrigatório · digitalizado pelo operador</div></div><span class="badge green"><span class="dot"></span>Anexado</span></div>
+              <div class="bd"><div class="placeholder" style="height:120px">scan-bi-frente.jpg · 1,4 MB</div></div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><div><b>Foto biométrica</b><div class="t-meta">Obrigatório · captada no posto</div></div><span class="badge green"><span class="dot"></span>Capturada</span></div>
+              <div class="bd"><div class="placeholder" style="height:120px">foto-biometrica.jpg · 480 KB · iluminação OK</div></div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><div><b>Comprovativo de residência</b><div class="t-meta">Opcional · só se mudou desde a última emissão</div></div><span class="badge"><span class="dot"></span>Não anexado</span></div>
+              <div class="bd"><div class="row"><button class="btn secondary sm">📎 Anexar PDF</button><span class="t-meta">Recibo de água/luz dos últimos 90 dias</span></div></div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><div><b>Confirmação de dados</b><div class="t-meta">Verificar com o cidadão antes de prosseguir</div></div></div>
+              <div class="bd col">
+                <label class="row" style="gap:8px"><input type="checkbox" checked /> Nome completo confirmado</label>
+                <label class="row" style="gap:8px"><input type="checkbox" checked /> Naturalidade e filiação confirmadas</label>
+                <label class="row" style="gap:8px"><input type="checkbox" checked /> Residência actual confirmada</label>
+                <label class="row" style="gap:8px"><input type="checkbox" /> Cidadão informado de que o BI físico estará pronto em 7 dias úteis</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ft" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-top:1px solid var(--line-2)">
+        <button class="btn ghost">← Voltar a Identificação</button>
+        <div class="row"><span class="t-meta">2 anexos obrigatórios · 1 opcional</span><a href="#cena-6" class="btn">Prosseguir para pagamento →</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Ficha</a><a class="btn secondary sm" href="#cena-6">Pagamento →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · PAGAMENTO =================== -->
+<section class="scene"><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · Pagamento</div>
+    <h2>Pagamento · M-Pesa, eMola, ou caixa do posto</h2>
+    <p>Três rotas: M-Pesa (push para o telefone do cidadão), eMola, ou caixa interna do posto (recibo manual). A confirmação dispara automaticamente o passo seguinte.</p>
+  </div>
+  <div class="ebi-body">
+    <div class="panel">
+      <div class="ph"><div class="stepper">
+        <div class="step done"><span class="n">✓</span> Tipo</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Identificação</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Anexos</div><span class="ln"></span>
+        <div class="step active"><span class="n">4</span> Pagamento</div><span class="ln"></span>
+        <div class="step"><span class="n">5</span> Assinar</div>
+      </div><span class="t-meta mono">MZN 250,00</span></div>
+      <div class="pb">
+        <div class="grid g-3">
+          <div class="card" style="border-color:var(--navy-700);box-shadow:inset 0 0 0 1px var(--navy-700)">
+            <div class="bd">
+              <div class="t-overline">Recomendado</div>
+              <div class="t-h3" style="margin:6px 0 4px">M-Pesa</div>
+              <p class="t-meta">Push automático para o telefone do cidadão. Confirmação imediata.</p>
+              <div class="hr"></div>
+              <div class="kv" style="margin-bottom:8px"><span class="k">Telefone</span><span class="v mono">+258 84 567 8967</span></div>
+              <div class="kv" style="margin-bottom:8px"><span class="k">Referência</span><span class="v mono">UGD-EBI-091-INH</span></div>
+              <div class="kv"><span class="k">Valor</span><span class="v mono">MZN 250,00</span></div>
+              <button class="btn block" style="margin-top:14px">Enviar push M-Pesa</button>
+            </div>
+          </div>
+          <div class="card"><div class="bd">
+            <div class="t-overline">Alternativa móvel</div>
+            <div class="t-h3" style="margin:6px 0 4px">eMola</div>
+            <p class="t-meta">USSD enviado para o cidadão. Confirmação em ~30 s.</p>
+            <div class="hr"></div>
+            <div class="t-meta">Mesmas referências; o cidadão confirma com o seu PIN eMola.</div>
+            <button class="btn secondary block" style="margin-top:14px">Enviar USSD eMola</button>
+          </div></div>
+          <div class="card"><div class="bd">
+            <div class="t-overline">Presencial</div>
+            <div class="t-h3" style="margin:6px 0 4px">Caixa do posto</div>
+            <p class="t-meta">Pagamento em numerário. Recibo numerado é entregue ao cidadão.</p>
+            <div class="hr"></div>
+            <div class="kv"><span class="k">Operador caixa</span><span class="v">F. Chongo</span></div>
+            <button class="btn secondary block" style="margin-top:14px">Emitir recibo manual</button>
+          </div></div>
+        </div>
+
+        <div class="banner blue" style="margin-top:18px"><span class="ic"></span><div><b>Push M-Pesa enviado às 14:38.</b> A aguardar confirmação do cidadão (até 5 min). <a href="#cena-7">Simular confirmação</a>.</div></div>
+      </div>
+      <div class="ft" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-top:1px solid var(--line-2)">
+        <button class="btn ghost">← Voltar a Anexos</button>
+        <a href="#cena-7" class="btn">Confirmar pagamento e assinar →</a>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Anexos</a><a class="btn secondary sm" href="#cena-7">Assinatura →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · ASSINATURA =================== -->
+<section class="scene"><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · Confirmação de duas etapas</div>
+    <h2>Assinar e emitir</h2>
+    <p>Modal de confirmação com a *consequência* nomeada — "Emitir BI definitivo", não "Confirmar". Carimbo digital pelo conservador, com OTP secundário.</p>
+  </div>
+  <div class="ebi-body" style="position:relative;min-height:540px">
+    <div class="panel" style="opacity:.55;pointer-events:none">
+      <div class="ph"><div class="stepper">
+        <div class="step done"><span class="n">✓</span> Tipo</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Identificação</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Anexos</div><span class="ln"></span>
+        <div class="step done"><span class="n">✓</span> Pagamento</div><span class="ln"></span>
+        <div class="step active"><span class="n">5</span> Assinar</div>
+      </div></div>
+      <div class="pb">
+        <div class="t-meta">Resumo do requerimento, assinatura biométrica do conservador, carimbo digital UGD…</div>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:560px">
+        <div class="hd"><div><b>Emitir BI definitivo</b><div class="t-meta">Esta acção é irreversível.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner blue"><span class="ic"></span><div>Ao confirmar, o BI será emitido com o número <span class="mono">110100099876 C</span> (renovação), válido por 10 anos. O cidadão receberá um SMS imediato.</div></div>
+          <div class="kv"><span class="k">Cidadão</span><span class="v">Felisberta Sumaila Cuamba</span></div>
+          <div class="kv"><span class="k">Conservador assinante</span><span class="v">Tomás A. Macuácua · Inhambane Central</span></div>
+          <div class="kv"><span class="k">Tarifa paga</span><span class="v mono">MZN 250,00 · M-Pesa REF-091</span></div>
+          <div class="field">
+            <label>OTP do operador (SMS)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="3" />
+              <input class="input mono" style="text-align:center;width:42px" value="0" />
+              <input class="input mono" style="text-align:center;width:42px" value="2" />
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="1" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Enviado para o telefone do operador às 14:41.</span>
+          </div>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Confirmo que verifiquei a identidade do cidadão presencialmente.</label>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Cancelar</button>
+          <a href="#cena-8" class="btn success">Emitir BI definitivo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Pagamento</a><a class="btn secondary sm" href="#cena-8">Documento emitido →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · EMITIDO =================== -->
+<section class="scene"><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · Documento emitido</div>
+    <h2>Renovação do BI · emitida</h2>
+    <p>Rodapé de proveniência: número de processo, conservador, posto, timestamp, QR. Verde reservado para "assinado pelo Estado".</p>
+  </div>
+  <div class="ebi-body">
+    <div class="banner green" style="margin-bottom:14px"><span class="ic"></span><div><b>BI emitido com sucesso.</b> SMS enviado a <span class="mono">+258 84 567 8967</span>. O cidadão pode levantar o cartão físico no posto a partir de 11 Abr 2026.</div></div>
+
+    <div class="doc-block">
+      <div class="qr lg"></div>
+      <div>
+        <div class="row spread">
+          <div>
+            <div class="t-overline">Bilhete de Identidade · República de Moçambique</div>
+            <div class="t-h2" style="margin:6px 0 4px">Felisberta Sumaila Cuamba</div>
+            <div class="t-meta mono">110100099876 C</div>
+          </div>
+          <span class="badge green" style="height:28px;padding:0 12px"><span class="dot"></span>Assinado</span>
+        </div>
+        <div class="hr"></div>
+        <div class="grid g-3">
+          <div class="kv"><span class="k">Sexo</span><span class="v">F</span></div>
+          <div class="kv"><span class="k">Nascimento</span><span class="v">12 Jul 1991</span></div>
+          <div class="kv"><span class="k">Naturalidade</span><span class="v">Maxixe · Inhambane</span></div>
+          <div class="kv"><span class="k">Filiação · Pai</span><span class="v">Sumaila Domingos Cuamba</span></div>
+          <div class="kv"><span class="k">Filiação · Mãe</span><span class="v">Maria José Cuamba</span></div>
+          <div class="kv"><span class="k">Validade</span><span class="v mono">04 Abr 2036</span></div>
+        </div>
+        <div class="hr"></div>
+        <div class="grid g-3">
+          <div class="kv"><span class="k">Processo</span><span class="v mono">P-2026-0091-INH</span></div>
+          <div class="kv"><span class="k">Conservador</span><span class="v">Tomás A. Macuácua</span></div>
+          <div class="kv"><span class="k">Posto</span><span class="v">Inhambane Central · BAÚ</span></div>
+          <div class="kv"><span class="k">Emitido</span><span class="v mono">04 Abr 2026 · 14:42 CAT</span></div>
+          <div class="kv"><span class="k">Tarifa</span><span class="v mono">MZN 250,00 (M-Pesa)</span></div>
+          <div class="kv"><span class="k">Verificável em</span><span class="v">ugd.gov.mz/v/0091-INH</span></div>
+        </div>
+        <div class="hr"></div>
+        <div class="row">
+          <button class="btn">Imprimir comprovativo A4</button>
+          <button class="btn secondary">Reenviar SMS ao cidadão</button>
+          <button class="btn ghost">Ver na ficha</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Assinatura</a><a class="btn secondary sm" href="#cena-9">Cenário alternativo: fundir duplicados →</a></div></div>
+</section>
+
+<!-- =================== CENA 9 · FUNDIR =================== -->
+<section class="scene"><span class="anchor" id="cena-9"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 9 · F7 — Fundir registos duplicados</div>
+    <h2>Comparar e fundir</h2>
+    <p>Lado-a-lado, com o registo mais completo marcado como vencedor. Pontuação de correspondência e justificação obrigatória ≥ 80 caracteres.</p>
+  </div>
+  <div class="ebi-body">
+    <div class="banner red" style="margin-bottom:14px"><span class="ic"></span><div><b>Acção irreversível.</b> A fusão une histórico, NUIT, eventos civis e descendentes. O reverso requer suporte UGD e ordem do tribunal.</div></div>
+
+    <div class="panel">
+      <div class="ph"><b>Pontuação de correspondência</b><span class="badge green"><span class="dot"></span>87% · alta confiança</span></div>
+      <div class="pb">
+        <div class="compare-grid">
+          <div class="compare win">
+            <div class="row spread"><span class="t-overline">Vencedor · Inhambane</span><span class="badge dark">Mais completo</span></div>
+            <div class="t-h3" style="margin:8px 0 4px">Felisberta Sumaila Cuamba</div>
+            <div class="t-meta mono">110100099876 C · NUIT 401 236 789</div>
+            <div class="hr"></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Nascimento</span><span class="v">12 Jul 1991 · Maxixe</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Telefone</span><span class="v mono">+258 84 567 8967</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Pai · Mãe</span><span class="v">Sumaila D. Cuamba · Maria J. Cuamba</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Eventos civis</span><span class="v">5 (incl. NUIT, 2 BIs)</span></div>
+            <div class="kv"><span class="k">Descendentes</span><span class="v">2 (registo activo)</span></div>
+          </div>
+          <div class="compare">
+            <div class="row spread"><span class="t-overline">A absorver · Beira</span><span class="badge red"><span class="dot"></span>Será arquivado</span></div>
+            <div class="t-h3" style="margin:8px 0 4px">Felisberta Cuamba</div>
+            <div class="t-meta mono">110100099877 C · sem NUIT</div>
+            <div class="hr"></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Nascimento</span><span class="v">12 Jul 1991 · (sem distrito)</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Telefone</span><span class="v">(em branco)</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Pai · Mãe</span><span class="v">Sumaila Cuamba · (em branco)</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Eventos civis</span><span class="v">1 (1.ª emissão BI 2024)</span></div>
+            <div class="kv"><span class="k">Descendentes</span><span class="v">0</span></div>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="grid g-2">
+          <div class="field">
+            <label>Justificação · ≥ 80 caracteres</label>
+            <textarea class="textarea" style="min-height:100px">Cidadã apresentou-se hoje em Inhambane com BI 110100099876 C e confirmou que desconhecia o registo de Beira. O nome próprio e a data de nascimento coincidem; a filiação paterna confere; o registo de Beira tem dados parciais e parece resultar de duplicação durante a campanha de 2024. Verificada presencialmente.</textarea>
+            <span class="hint">320 / mínimo 80 caracteres</span>
+          </div>
+          <div class="col">
+            <div class="field">
+              <label>Operador testemunha (segundo conservador)</label>
+              <select class="select"><option>F. Chongo · Conservador adjunto</option><option>L. Maússe · Conservador (Maxixe)</option></select>
+            </div>
+            <div class="field">
+              <label>Tipo de fusão</label>
+              <select class="select"><option>Duplicado por erro de captura</option><option>Mesma pessoa, postos diferentes</option><option>Re-emissão sem informar o anterior</option></select>
+            </div>
+            <label class="row" style="gap:8px"><input type="checkbox" checked /> Confirmo identidade verificada presencialmente.</label>
+            <label class="row" style="gap:8px"><input type="checkbox" checked /> Compreendo que esta acção é irreversível.</label>
+          </div>
+        </div>
+      </div>
+      <div class="ft" style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-top:1px solid var(--line-2)">
+        <a href="#cena-4" class="btn ghost">← Cancelar</a>
+        <div class="row"><button class="btn secondary">Marcar para revisão por UGD</button><button class="btn danger">Fundir e arquivar 110100099877 C</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-8">← Documento emitido</a><a class="btn secondary sm" href="#cena-10">Estado offline →</a></div></div>
+</section>
+
+<!-- =================== CENA 10 · OFFLINE =================== -->
+<section class="scene"><span class="anchor" id="cena-10"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 10 · F9 — Estado offline</div>
+    <h2>Trabalhar offline · sincronização diferida</h2>
+    <p>Lista da fila de sincronização, dados disponíveis localmente e o que está bloqueado. Só rascunhos e provisórios são permitidos sem rede; emissões definitivas aguardam.</p>
+  </div>
+  <div class="ebi-body">
+    <header class="topbar" style="margin:0 0 16px;border-radius:var(--r-2)"><div class="brand"><span class="mark"></span><span class="stack"><span>eBI</span><small>Identidade Civil</small></span></div><div class="right"><span class="conn off"><span class="d"></span> Offline · 4 em fila</span></div></header>
+
+    <div class="threecol">
+      <div class="panel">
+        <div class="ph"><b>Fila de sincronização</b><span class="badge amber"><span class="dot"></span>4 itens</span></div>
+        <table class="table">
+          <thead><tr><th>Tipo</th><th>Cidadão</th><th>Detalhe</th><th>Hora</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>Anexo</td><td>F. Cuamba</td><td>Foto biométrica · 480 KB</td><td>14:40</td><td><span class="badge amber"><span class="dot"></span>A enviar</span></td></tr>
+            <tr><td>Rascunho</td><td>S. Dauto</td><td>Certidão de nascimento</td><td>13:11</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+            <tr><td>Atendimento</td><td>E. Mussagy</td><td>Mudança de nome · ticket A-017</td><td>12:02</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+            <tr><td>Pagamento</td><td>J. Massingue</td><td>2.ª via · MZN 200,00 · M-Pesa</td><td>11:54</td><td><span class="badge red"><span class="dot"></span>Erro · 3 tentativas</span></td></tr>
+          </tbody>
+        </table>
+        <div class="ft" style="padding:12px 14px;border-top:1px solid var(--line-2);justify-content:space-between"><span class="t-meta">Última sincronização: 11:48 (54 min)</span><button class="btn sm secondary">Tentar agora</button></div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Disponível offline</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:8px"><span class="badge green"><span class="dot"></span>OK</span><span>90 dias de cidadãos do posto</span></div>
+            <div class="row" style="gap:8px"><span class="badge green"><span class="dot"></span>OK</span><span>Catálogo de tipos de evento civil</span></div>
+            <div class="row" style="gap:8px"><span class="badge green"><span class="dot"></span>OK</span><span>Tabela de tarifas oficiais</span></div>
+            <div class="row" style="gap:8px"><span class="badge green"><span class="dot"></span>OK</span><span>Mapa de postos BAÚ (todos)</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><b>Bloqueado offline</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:8px"><span class="badge red"><span class="dot"></span>Não</span><span>Pesquisa nacional de BI</span></div>
+            <div class="row" style="gap:8px"><span class="badge red"><span class="dot"></span>Não</span><span>Cross-system Saúde Moçambique</span></div>
+            <div class="row" style="gap:8px"><span class="badge red"><span class="dot"></span>Não</span><span>Emissão definitiva (apenas provisórios)</span></div>
+            <div class="row" style="gap:8px"><span class="badge amber"><span class="dot"></span>Limitado</span><span>Verificação NUIT (cache 7 dias)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner blue" style="margin-top:16px"><span class="ic"></span><div><b>Pode emitir BIs provisórios.</b> Quando a rede regressar, todos os rascunhos da fila serão revalidados e os definitivos serão emitidos automaticamente. O cidadão receberá SMS quando isto acontecer.</div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-9">← Fundir duplicados</a><a class="btn secondary sm" href="cidadao.html">Ver superfície App do Cidadão →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">eBI v0.3 · documento autoritativo: <a class="mono" href="DESIGN-ebi.md">DESIGN-ebi.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema de design</a>
+      <a href="cidadao.html" class="btn secondary sm">App do Cidadão →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Balcão Digital — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:14px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:10px}
+  /* Tablet frame */
+  .tablet-wrap{padding:24px;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;justify-content:center}
+  .tablet{width:1024px;height:680px;background:#222;border-radius:18px;padding:14px;box-shadow:0 8px 32px rgba(0,0,0,.18);position:relative}
+  .tablet .screen{width:100%;height:100%;background:var(--bg);border-radius:8px;overflow:hidden;display:flex}
+  .tablet-rail{width:220px;background:var(--navy-900);color:#cdd6e3;display:flex;flex-direction:column;flex:0 0 auto}
+  .tablet-rail .br{padding:14px 14px;border-bottom:1px solid #1d3148}
+  .tablet-rail .br b{color:#fff;font-size:13px;display:block}
+  .tablet-rail .br small{font-size:10px;color:#90a4c1;text-transform:uppercase;letter-spacing:.06em}
+  .tablet-rail nav{padding:6px;flex:1}
+  .tablet-rail nav a{display:flex;align-items:center;gap:8px;padding:8px 10px;color:#cdd6e3;font-size:12px;border-radius:2px;text-decoration:none}
+  .tablet-rail nav a:hover{background:#172a44}
+  .tablet-rail nav a.active{background:var(--navy-600);color:#fff;font-weight:500}
+  .tablet-rail nav .group{font-size:9px;text-transform:uppercase;color:#8aa1bd;padding:12px 10px 4px;letter-spacing:.08em;font-weight:600}
+  .tablet-rail .ft{padding:12px 14px;border-top:1px solid #1d3148;font-size:10px;color:#8aa1bd}
+  .tablet-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+  .tablet-top{height:48px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px;justify-content:space-between;flex:0 0 auto}
+  .tablet-top h1{font-size:15px;font-weight:600;margin:0}
+  .tablet-body{flex:1;padding:14px 16px;overflow-y:auto;background:var(--bg)}
+  /* Misc */
+  .qrc{width:160px;height:160px;background:#fff;border:1px solid var(--line);background-image:linear-gradient(#000 0 0),linear-gradient(#000 0 0),linear-gradient(#000 0 0),linear-gradient(45deg,#000 25%,transparent 25%,transparent 75%,#000 75%),linear-gradient(45deg,#000 25%,transparent 25%,transparent 75%,#000 75%);background-repeat:no-repeat;background-position:10px 10px,10px 10px,10px 10px,0 0,5px 5px;background-size:36px 4px,4px 36px,36px 36px,10px 10px,10px 10px}
+  .ticket-row{display:grid;grid-template-columns:80px 1.4fr 1.6fr 1fr 1fr 100px;gap:10px;padding:9px 12px;align-items:center;font-size:12.5px;border-bottom:1px solid var(--line-2)}
+  .ticket-row.head{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .ticket-row.now{background:var(--navy-100)}
+  .denom{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+  .denom .d{padding:8px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;text-align:center}
+  .denom .d .v{font-family:var(--f-mono);font-size:13px;font-weight:600}
+  .denom .d input{width:100%;text-align:center;border:0;background:var(--bg-2);height:28px;border-radius:2px;font-family:var(--f-mono);font-size:13px;margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Unidade de Governação Digital — UGD</span><span class="sep">·</span>
+  <span>Balcão Digital · v0.3</span>
+  <span style="margin-left:auto">DESIGN-balcao.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Balcão Digital</span><small>BAÚ · postos avançados</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="ebi.html">eBI</a>
+    <a href="cidadao.html">App do Cidadão</a>
+    <a href="balcao.html" class="active">Balcão</a>
+    <a href="orcamento.html">Orçamento</a>
+    <a href="auditoria.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-balcao.md" class="btn secondary sm">DESIGN-balcao.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Painel da fila</a>
+    <a href="#cena-2">2. Chamar próximo</a>
+    <a href="#cena-3">3. QR do cidadão</a>
+    <a href="#cena-4">4. Atendimento</a>
+    <a href="#cena-5">5. Pagamento numerário</a>
+    <a href="#cena-6">6. Recibo</a>
+    <a href="#cena-7">7. Sem documento</a>
+    <a href="#cena-8">8. Fecho de dia</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · PAINEL DA FILA =================== -->
+<section class="scene"><span id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F2 — Painel da fila</div>
+    <h2>Vista de operação · BAÚ Inhambane Central, Balcão 2</h2>
+    <p>Tickets do dia, ordenados pela chamada. KPIs no rail. Operadores não fazem multitarefa — um painel, uma fila.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br">
+          <b>BAÚ Inhambane Central</b>
+          <small>Balcão 2 · F. Chongo</small>
+        </div>
+        <nav>
+          <div class="group">Operação</div>
+          <a class="active">▦ Painel da fila</a>
+          <a>▶ Chamar próximo</a>
+          <a>＋ Novo cidadão</a>
+          <a>⌕ Procurar processo</a>
+          <div class="group">Caixa</div>
+          <a>$ Pagamentos do dia</a>
+          <a>⊠ Fecho de dia</a>
+          <div class="group">Posto</div>
+          <a>⚙ Definições</a>
+          <a>↗ Sair</a>
+        </nav>
+        <div class="ft">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--good-700)"></span><span style="color:#fff">Sincronizado</span></div>
+          <div>Última sync 14:36 · v0.3</div>
+        </div>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top">
+          <h1>Painel da fila — 04 Abr 2026</h1>
+          <div class="row">
+            <span class="badge"><span class="dot"></span>14 por atender</span>
+            <span class="badge blue"><span class="dot"></span>1 em curso</span>
+            <span class="badge green"><span class="dot"></span>23 concluídos</span>
+            <span class="conn"><span class="d"></span> Online</span>
+          </div>
+        </div>
+        <div class="tablet-body">
+          <div class="grid g-4" style="margin-bottom:12px">
+            <div class="card"><div class="bd"><div class="t-overline">Tempo médio espera</div><div style="font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:2px">14 min</div></div></div>
+            <div class="card"><div class="bd"><div class="t-overline">Tempo médio atendim.</div><div style="font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:2px">9 min</div></div></div>
+            <div class="card"><div class="bd"><div class="t-overline">Numerário em caixa</div><div style="font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:2px;font-family:var(--f-mono)">MZN 6 250</div></div></div>
+            <div class="card"><div class="bd"><div class="t-overline">M-Pesa hoje</div><div style="font-size:22px;font-weight:600;letter-spacing:-.01em;margin-top:2px;font-family:var(--f-mono)">MZN 4 800</div></div></div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Tickets · 04 Abr 2026</b><span class="t-meta">Próximo a chamar: <b>A-016</b></span></div>
+            <div>
+              <div class="ticket-row head"><div>Ticket</div><div>Cidadão</div><div>Pedido</div><div>Espera</div><div>Estado</div><div>Acção</div></div>
+              <div class="ticket-row"><div class="mono"><b>A-014</b></div><div>Felisberta S. Cuamba</div><div>Renovação BI</div><div>—</div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Concluído</span></div><div></div></div>
+              <div class="ticket-row"><div class="mono"><b>A-015</b></div><div>Joaquina Massingue</div><div>2.ª via BI</div><div>—</div><div><span class="badge green" style="font-size:10px"><span class="dot"></span>Concluído</span></div><div></div></div>
+              <div class="ticket-row now"><div class="mono"><b>A-016</b></div><div>Sumaila Dauto</div><div>Certidão de nascimento (filho)</div><div>22 min</div><div><span class="badge blue" style="font-size:10px"><span class="dot"></span>A chamar</span></div><div><a href="#cena-2" class="btn sm">Chamar →</a></div></div>
+              <div class="ticket-row"><div class="mono"><b>A-017</b></div><div>Eulália Mussagy</div><div>Mudança de nome (casamento)</div><div>14 min</div><div><span class="badge"><span class="dot"></span>Em fila</span></div><div></div></div>
+              <div class="ticket-row"><div class="mono"><b>A-018</b></div><div>Carlos Bila</div><div>Registo de óbito (cônjuge)</div><div>10 min</div><div><span class="badge red" style="font-size:10px"><span class="dot"></span>Urgente</span></div><div></div></div>
+              <div class="ticket-row"><div class="mono"><b>A-019</b></div><div>(sem check-in)</div><div>—</div><div>5 min</div><div><span class="badge"><span class="dot"></span>Em fila</span></div><div></div></div>
+              <div class="ticket-row"><div class="mono"><b>A-020</b></div><div>(sem check-in)</div><div>—</div><div>2 min</div><div><span class="badge"><span class="dot"></span>Em fila</span></div><div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Lobby display espelha esta fila para os cidadãos verem.</span><a class="btn secondary sm" href="#cena-2">Chamar próximo →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · CHAMAR =================== -->
+<section class="scene"><span id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F3 — Chamar próximo</div>
+    <h2>Modal · ticket A-016</h2>
+    <p>Um botão. Marca o ticket "em curso", actualiza o ecrã do lobby, abre identificação.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav><a class="active">▦ Painel da fila</a><a>▶ Chamar próximo</a></nav>
+      </aside>
+      <div class="tablet-main" style="position:relative">
+        <div class="tablet-top"><h1>Painel da fila — 04 Abr 2026</h1></div>
+        <div class="tablet-body" style="opacity:.4;pointer-events:none">
+          <div class="card"><div class="hd"><b>Tickets</b></div><div style="height:200px"></div></div>
+        </div>
+        <div class="modal-back" style="position:absolute">
+          <div class="modal" style="width:560px">
+            <div class="hd"><b>Chamar A-016</b><span class="t-meta">Próximo na fila</span></div>
+            <div class="bd col">
+              <div style="text-align:center;padding:18px;background:var(--navy-100);border-radius:var(--r-2)">
+                <div class="mono" style="font-size:42px;font-weight:600;color:var(--navy-900);letter-spacing:.04em">A-016</div>
+                <div style="font-size:14px;font-weight:600;margin-top:4px">Sumaila Dauto</div>
+                <div class="t-meta">Certidão de nascimento · check-in via App às 13:55</div>
+              </div>
+              <div class="banner blue"><span class="ic"></span><div>Ao chamar, o ticket é marcado <b>em curso</b>, anunciado no lobby, e o cidadão tem 90 s para se apresentar.</div></div>
+            </div>
+            <div class="ft"><button class="btn ghost">Cancelar</button><a href="#cena-3" class="btn">Chamar A-016</a></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Painel</a><a class="btn secondary sm" href="#cena-3">Identificar →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · QR =================== -->
+<section class="scene"><span id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F4 — Identificar via QR</div>
+    <h2>Cidadão mostra o QR da App · operador valida</h2>
+    <p>Modo padrão para cidadãos com a App. QR rotativo validado em servidor — captura de ontem não funciona.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav>
+          <div class="group">Em curso</div>
+          <a class="active">A-016 · S. Dauto</a>
+          <div class="group">Operação</div>
+          <a>▦ Painel</a>
+          <a>＋ Novo cidadão</a>
+        </nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top"><h1>Identificar cidadão · ticket A-016</h1><span class="t-meta mono">14:48 · em curso há 14 s</span></div>
+        <div class="tablet-body">
+          <div class="grid g-2" style="grid-template-columns:1fr 1fr;align-items:start">
+            <div class="card">
+              <div class="hd"><b>Como vai identificar?</b></div>
+              <div class="bd col">
+                <button class="btn lg block" style="background:var(--navy-700)">📷 Ler QR da App do Cidadão</button>
+                <button class="btn lg block secondary">Introduzir BI manualmente</button>
+                <button class="btn lg block secondary">Pesquisar por nome / DOB / pais</button>
+                <hr class="hr">
+                <a href="#cena-7" class="btn ghost block">Cidadão sem documentos →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="hd"><b>A ler QR…</b><span class="badge blue"><span class="dot"></span>Câmara aberta</span></div>
+              <div class="bd col" style="align-items:center;padding:24px">
+                <div class="qrc" style="width:200px;height:200px"></div>
+                <p class="t-meta" style="text-align:center;margin:0">Peça ao cidadão para abrir a App do Cidadão e tocar em "Mostrar QR". Aproxime o QR da câmara.</p>
+                <a href="#cena-4" class="btn block">Detectar (simular)</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="banner blue" style="margin-top:14px"><span class="ic"></span><div><b>Privacidade.</b> A leitura do QR só revela: nome, BI, foto, validade. Nenhum outro dado é exposto até iniciar o atendimento e confirmar o motivo.</div></div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Chamar</a><a class="btn secondary sm" href="#cena-4">Atendimento →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · ATENDIMENTO =================== -->
+<section class="scene"><span id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F6 — Atendimento em curso</div>
+    <h2>Ficha (read-only) + wizard assistido</h2>
+    <p>Banner pinned com cidadão · BI · ticket · operador. Cada modal de confirmação nomeia explicitamente o cidadão, não "o cidadão".</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav>
+          <div class="group">Em curso · 14 min</div>
+          <a class="active">A-016 · S. Dauto</a>
+          <a style="color:#90a4c1;font-size:11px;padding-left:22px">Certidão de nascimento</a>
+        </nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top">
+          <div>
+            <h1>Sumaila Dauto · ticket A-016</h1>
+            <div class="t-meta mono">110100100712 A · operador F. Chongo · iniciado 14:48</div>
+          </div>
+          <div class="row"><div class="stepper" style="font-size:11px"><div class="step done"><span class="n">✓</span></div><span class="ln"></span><div class="step done"><span class="n">✓</span></div><span class="ln"></span><div class="step active"><span class="n">3</span></div><span class="ln"></span><div class="step"><span class="n">4</span></div><span class="ln"></span><div class="step"><span class="n">5</span></div></div></div>
+        </div>
+        <div class="tablet-body" style="display:grid;grid-template-columns:300px 1fr;gap:14px">
+          <!-- ficha cidadão -->
+          <div class="card">
+            <div class="hd" style="padding:10px 12px"><div class="row" style="gap:8px"><span class="av">SD</span><div><b style="font-size:13px">Sumaila Dauto</b><div class="t-meta">42 anos · Maxixe</div></div></div></div>
+            <div class="bd" style="padding:12px;font-size:12px;display:flex;flex-direction:column;gap:8px">
+              <div class="kv"><span class="k">BI</span><span class="v mono">110100100712 A</span></div>
+              <div class="kv"><span class="k">NUIT</span><span class="v mono">401 198 220</span></div>
+              <div class="kv"><span class="k">Telefone</span><span class="v mono">+258 84 422 1100</span></div>
+              <div class="kv"><span class="k">Residência</span><span class="v">Bairro 25 Junho · Maxixe</span></div>
+              <div class="kv"><span class="k">Pai · Mãe</span><span class="v">Dauto Manuel · Mariana A. Dauto</span></div>
+              <hr class="hr" style="margin:6px 0">
+              <div class="t-overline">Filhos registados · 1</div>
+              <div style="font-size:12px"><b>Naila Sumaila Dauto</b> · 14 Mar 2024<br><span class="t-meta">Certidão original em arquivo de Maxixe</span></div>
+            </div>
+          </div>
+          <!-- wizard -->
+          <div class="card">
+            <div class="hd"><b>Anexos · Certidão de nascimento da filha</b><span class="t-meta">P-2026-0096-INH (rascunho)</span></div>
+            <div class="bd col">
+              <div class="banner blue"><span class="ic"></span><div>O cidadão veio levantar a 2.ª via da certidão da filha, nascida 14 Mar 2024. Original em arquivo de Maxixe.</div></div>
+              <div class="card">
+                <div class="hd"><div><b>BI do progenitor</b><div class="t-meta">Confirmado por leitura do QR</div></div><span class="badge green" style="font-size:11px"><span class="dot"></span>Confirmado</span></div>
+              </div>
+              <div class="card">
+                <div class="hd"><div><b>Certidão original (referência)</b><div class="t-meta">Em arquivo de Maxixe · M-2024-0314</div></div><span class="badge green" style="font-size:11px"><span class="dot"></span>Localizada</span></div>
+              </div>
+              <div class="row" style="justify-content:space-between;margin-top:6px">
+                <button class="btn ghost">← Voltar a Identificação</button>
+                <a href="#cena-5" class="btn">Prosseguir para pagamento →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Identificar</a><a class="btn secondary sm" href="#cena-5">Pagamento numerário →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · PAGAMENTO NUMERÁRIO =================== -->
+<section class="scene"><span id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F7 — Pagamento em numerário</div>
+    <h2>Decomposição por denominação</h2>
+    <p>O sistema pergunta como o operador recebeu o dinheiro (que notas) — torna o fecho de caixa auditável.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav><div class="group">Em curso · 18 min</div><a class="active">A-016 · S. Dauto</a></nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top"><h1>Pagamento · MZN 100,00</h1><span class="t-meta">P-2026-0096-INH</span></div>
+        <div class="tablet-body" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="card">
+            <div class="hd"><b>Método</b></div>
+            <div class="bd col">
+              <label class="row" style="gap:10px;padding:10px;border:1px solid var(--line);border-radius:var(--r-2);cursor:pointer"><input type="radio" name="m" /><div><b>M-Pesa</b><div class="t-meta">Push para o telefone do cidadão</div></div></label>
+              <label class="row" style="gap:10px;padding:10px;border:1px solid var(--line);border-radius:var(--r-2);cursor:pointer"><input type="radio" name="m" /><div><b>eMola</b><div class="t-meta">USSD enviado</div></div></label>
+              <label class="row" style="gap:10px;padding:10px;border:1px solid var(--navy-700);border-radius:var(--r-2);background:var(--navy-50);cursor:pointer;box-shadow:inset 0 0 0 1px var(--navy-700)"><input type="radio" name="m" checked /><div><b>Numerário</b><div class="t-meta">Pago em notas no balcão · operador conta</div></div></label>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Decomposição</b><span class="t-meta mono">Total: MZN 100,00</span></div>
+            <div class="bd">
+              <div class="denom">
+                <div class="d"><div class="v">1000</div><input value="0" /></div>
+                <div class="d"><div class="v">500</div><input value="0" /></div>
+                <div class="d"><div class="v">200</div><input value="0" /></div>
+                <div class="d"><div class="v">100</div><input value="1" /></div>
+                <div class="d"><div class="v">50</div><input value="0" /></div>
+                <div class="d"><div class="v">20</div><input value="0" /></div>
+              </div>
+              <hr class="hr">
+              <div class="row spread"><span class="t-meta">Recebido</span><span class="mono" style="font-size:18px;font-weight:600">MZN 100,00</span></div>
+              <div class="row spread"><span class="t-meta">Devido</span><span class="mono">MZN 100,00</span></div>
+              <div class="row spread"><span class="t-meta">Troco</span><span class="mono">MZN 0,00</span></div>
+              <a href="#cena-6" class="btn block lg" style="margin-top:14px">Confirmar e emitir recibo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Atendimento</a><a class="btn secondary sm" href="#cena-6">Recibo →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · RECIBO =================== -->
+<section class="scene"><span id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F8 — Recibo & impressão</div>
+    <h2>Pré-visualização · imprimir ou enviar para o telefone do cidadão</h2>
+    <p>Cada recibo carrega: processo, cidadão, operador, posto, tarifa, método, data/hora e QR de verificação.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav><div class="group">Concluindo · 22 min</div><a class="active">A-016 · S. Dauto</a></nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top"><h1>Atendimento concluído</h1><span class="badge green"><span class="dot"></span>Assinado e pago</span></div>
+        <div class="tablet-body" style="display:grid;grid-template-columns:1fr 380px;gap:18px">
+          <!-- A4 preview -->
+          <div style="background:#fff;border:1px solid var(--line);padding:32px 36px;font-size:12px;line-height:1.5;border-radius:var(--r-2);min-height:480px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:14px">
+              <div>
+                <div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">República de Moçambique · UGD</div>
+                <div style="font-size:18px;font-weight:600;margin-top:4px">Recibo de Atendimento</div>
+                <div class="mono" style="font-size:11px;color:var(--ink-3)">P-2026-0096-INH</div>
+              </div>
+              <div class="qrc" style="width:90px;height:90px"></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Cidadão</div><b>Sumaila Dauto</b><div class="mono">110100100712 A</div></div>
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Pedido</div>Certidão de nascimento (filha)<div style="color:var(--ink-3)">Naila Sumaila Dauto · 14 Mar 2024</div></div>
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Posto · Operador</div>Inhambane Central · Balcão 2<div>F. Chongo</div></div>
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Data · Hora</div>04 Abr 2026 · 14:52 CAT</div>
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Tarifa</div><b class="mono">MZN 100,00</b></div>
+              <div><div style="font-size:9px;text-transform:uppercase;color:var(--ink-3);letter-spacing:.06em;font-weight:600">Método</div>Numerário · 1× MZN 100</div>
+            </div>
+            <hr class="hr" style="margin:18px 0">
+            <div style="font-size:11px;color:var(--ink-3);line-height:1.55">Este recibo é válido como prova de pagamento. A certidão será impressa no posto e disponibilizada digitalmente na App do Cidadão. Verificável em <span class="mono">ugd.gov.mz/v/0096-INH</span></div>
+          </div>
+          <!-- Actions -->
+          <div class="col">
+            <div class="card">
+              <div class="bd col">
+                <button class="btn lg block">🖨 Imprimir agora</button>
+                <button class="btn secondary block">📤 Enviar para telefone do cidadão</button>
+                <button class="btn secondary block">⤓ Gerar PDF</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="bd col">
+                <div class="t-overline">Avaliação do cidadão</div>
+                <p class="t-meta" style="margin:0">Mostre o ecrã do cidadão e peça para tocar:</p>
+                <div class="row" style="gap:6px">
+                  <button class="btn block secondary">😞 Mau</button>
+                  <button class="btn block secondary">😐 Médio</button>
+                  <button class="btn block secondary">😊 Bom</button>
+                </div>
+                <p class="t-meta" style="margin:0">Esta avaliação não fica associada ao operador na ficha do cidadão.</p>
+              </div>
+            </div>
+            <a href="#cena-1" class="btn lg block ghost">Concluir e voltar à fila</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Pagamento</a><a class="btn secondary sm" href="#cena-7">Cenário sem documento →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · SEM DOCUMENTO =================== -->
+<section class="scene"><span id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F5 / 5.1 — Cidadão sem documentos</div>
+    <h2>Empty state como rotina, não como erro</h2>
+    <p>O sistema nunca bloqueia atendimento por falta de papel. Há sempre uma rota: pesquisa por nome, override de emergência, ou novo registo.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav><div class="group">Em curso</div><a class="active">A-019 · sem check-in</a></nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top"><h1>Cidadão sem documentos · ticket A-019</h1></div>
+        <div class="tablet-body">
+          <div class="banner blue" style="margin-bottom:14px"><span class="ic"></span><div><b>Pode atender este cidadão.</b> Recolha os dados que conseguir; o sistema procura na base nacional. Se não encontrar, pode abrir um override de emergência ou criar um novo registo de nascimento.</div></div>
+
+          <div class="grid g-2">
+            <div class="card">
+              <div class="hd"><b>Pesquisa por nome / DOB</b></div>
+              <div class="bd col">
+                <div class="field"><label>Nome completo</label><input class="input lg" value="Maria Joana Mussiate" /></div>
+                <div class="grid g-2">
+                  <div class="field"><label>Data de nascimento</label><input class="input lg" value="22/03/1973" /></div>
+                  <div class="field"><label>Sexo</label><select class="select" style="height:44px"><option>F</option><option>M</option></select></div>
+                </div>
+                <div class="field"><label>Mãe (se conhecida)</label><input class="input lg" value="Joana Sitoe Mussiate" /></div>
+                <div class="field"><label>Província / distrito de nascimento</label><input class="input lg" value="Inhambane · Vilanculos" /></div>
+                <button class="btn lg block">Pesquisar na base nacional</button>
+                <div class="t-meta">A pesquisa demora ≈ 4 s. Verificámos 18,5 M registos.</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="hd"><b>Resultados · 1 correspondência possível</b></div>
+                <div class="bd col">
+                  <div class="card" style="border-color:var(--amber-500);background:#FFFBEF">
+                    <div class="bd">
+                      <div class="row spread"><b>Maria Joana Mussiate</b><span class="badge amber" style="font-size:11px"><span class="dot"></span>78% confiança</span></div>
+                      <div class="t-meta mono" style="margin:4px 0">110140033921 D · NUIT 401 088 109</div>
+                      <div class="t-meta">Vilanculos · 22 Mar 1973 · F · mãe: Joana Sitoe</div>
+                      <div class="row" style="margin-top:8px;gap:6px"><button class="btn sm">Atender como esta cidadã</button><button class="btn sm secondary">Não é</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd"><b>Não encontrou?</b></div>
+                <div class="bd col">
+                  <button class="btn lg block secondary">＋ Criar novo registo de nascimento</button>
+                  <button class="btn lg block secondary">⚠ Override de emergência</button>
+                  <p class="t-meta" style="margin:0">Override requer testemunha (líder comunitário) e justificação ≥ 80 caracteres. Registo provisório, válido 90 dias, revisto pela UGD.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Recibo</a><a class="btn secondary sm" href="#cena-8">Fecho de dia →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · FECHO =================== -->
+<section class="scene"><span id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F10 — Fecho de dia</div>
+    <h2>Conferência de caixa · aceita discrepância como registo, não como bloqueio</h2>
+    <p>Numerário esperado vs declarado. Se diferente, abre uma discrepância — auditada pelo conservador e pela UGD. O operador pode terminar o turno na mesma.</p>
+  </div>
+  <div class="tablet-wrap">
+    <div class="tablet"><div class="screen">
+      <aside class="tablet-rail">
+        <div class="br"><b>BAÚ Inhambane Central</b><small>Balcão 2 · F. Chongo</small></div>
+        <nav><div class="group">Caixa</div><a class="active">⊠ Fecho de dia</a></nav>
+      </aside>
+      <div class="tablet-main">
+        <div class="tablet-top"><h1>Fecho do dia · 04 Abr 2026 · 17:00</h1><span class="badge"><span class="dot"></span>24 atendimentos</span></div>
+        <div class="tablet-body" style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px">
+          <div class="card">
+            <div class="hd"><b>Resumo do dia</b></div>
+            <div class="bd col">
+              <table class="table">
+                <thead><tr><th>Método</th><th style="text-align:right">Esperado</th><th style="text-align:right">Declarado</th></tr></thead>
+                <tbody>
+                  <tr><td>M-Pesa</td><td style="text-align:right" class="mono">MZN 4 800,00</td><td style="text-align:right" class="mono">MZN 4 800,00</td></tr>
+                  <tr><td>eMola</td><td style="text-align:right" class="mono">MZN 1 200,00</td><td style="text-align:right" class="mono">MZN 1 200,00</td></tr>
+                  <tr><td>Numerário</td><td style="text-align:right" class="mono"><b>MZN 6 250,00</b></td><td style="text-align:right" class="mono"><b style="color:var(--amber-700)">MZN 6 200,00</b></td></tr>
+                  <tr style="background:var(--amber-100)"><td><b>Discrepância</b></td><td style="text-align:right">—</td><td style="text-align:right" class="mono"><b>−MZN 50,00</b></td></tr>
+                </tbody>
+              </table>
+              <div class="banner amber"><span class="ic"></span><div><b>Discrepância de MZN 50,00.</b> Será registada e revista pelo conservador. Não bloqueia o fim do turno.</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Numerário declarado · decomposição</b></div>
+            <div class="bd">
+              <div class="denom">
+                <div class="d"><div class="v">1000</div><input value="2" /></div>
+                <div class="d"><div class="v">500</div><input value="6" /></div>
+                <div class="d"><div class="v">200</div><input value="4" /></div>
+                <div class="d"><div class="v">100</div><input value="3" /></div>
+                <div class="d"><div class="v">50</div><input value="2" /></div>
+                <div class="d"><div class="v">20</div><input value="0" /></div>
+              </div>
+              <hr class="hr">
+              <div class="row spread"><span class="t-meta">Total contado</span><span class="mono" style="font-size:20px;font-weight:600">MZN 6 200,00</span></div>
+              <hr class="hr">
+              <div class="field"><label>Justificação da discrepância (≥ 60 chars)</label><textarea class="textarea" placeholder="Ex.: troco devolvido em excesso ao cidadão A-014, 2 notas de 50 confirmadas em vídeo de segurança." style="min-height:80px"></textarea></div>
+              <button class="btn lg block" style="margin-top:14px">Submeter fecho com discrepância</button>
+              <button class="btn ghost block" style="margin-top:6px">Recontar antes de submeter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Sem documento</a><a class="btn secondary sm" href="orcamento.html">Ver superfície Orçamento →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Balcão Digital v0.3 · documento autoritativo: <a class="mono" href="DESIGN-balcao.md">DESIGN-balcao.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="orcamento.html" class="btn secondary sm">Orçamento Aberto →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

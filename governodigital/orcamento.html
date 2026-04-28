@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Orçamento Aberto — Governo Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:14px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:10px}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .hero-fiscal{background:linear-gradient(180deg,#FBF5E5 0%,#FAFAF7 100%);border-bottom:1px solid var(--line);padding:48px 0}
+  .hero-fiscal h1{font-size:36px;font-weight:600;letter-spacing:-.015em;margin:8px 0 8px;max-width:760px;line-height:1.1}
+  .hero-fiscal .lead{font-size:16px;color:var(--ink-2);max-width:680px;line-height:1.55}
+  .big-num{display:flex;flex-direction:column;gap:6px}
+  .big-num .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .big-num .v{font-family:var(--f-mono);font-size:30px;font-weight:600;letter-spacing:-.01em;color:var(--ochre-700)}
+  .big-num .d{font-size:12px;color:var(--ink-3)}
+  .exec-row{display:grid;grid-template-columns:140px 1fr 100px 110px 80px;gap:14px;padding:12px 14px;align-items:center;border-bottom:1px solid var(--line-2);font-size:13px}
+  .exec-row.head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .exec-row .nm{font-weight:500}
+  .exec-row .vals{font-family:var(--f-mono);text-align:right}
+  .exec-row .pct{font-family:var(--f-mono);font-weight:600}
+  .contract-row{display:grid;grid-template-columns:170px 2fr 1.2fr 130px 90px 100px;gap:12px;padding:11px 14px;align-items:center;font-size:12.5px;border-bottom:1px solid var(--line-2)}
+  .contract-row.head{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .contract-row .vals{font-family:var(--f-mono);text-align:right}
+  .stat-tile{padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .stat-tile .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .stat-tile .v{font-family:var(--f-mono);font-size:22px;font-weight:600;margin-top:4px}
+  .stat-tile.ochre .v{color:var(--ochre-700)}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>Dados oficiais · MEF · SISTAFE · IGF</span><span class="sep">·</span>
+  <span>Orçamento Aberto · v0.3</span>
+  <span style="margin-left:auto">Última actualização: 03 Abr 2026 · 23:00 CAT</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Orçamento Aberto</span><small>Governo Digital · público</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="ebi.html">eBI</a>
+    <a href="cidadao.html">App do Cidadão</a>
+    <a href="balcao.html">Balcão</a>
+    <a href="orcamento.html" class="active">Orçamento</a>
+    <a href="auditoria.html">Auditoria</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-orcamento.md" class="btn secondary sm">DESIGN-orcamento.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Hero · totais</a>
+    <a href="#cena-2">2. Sectores</a>
+    <a href="#cena-3">3. Províncias</a>
+    <a href="#cena-4">4. Contratos públicos</a>
+    <a href="#cena-5">5. Detalhe do contrato</a>
+    <a href="#cena-6">6. Receitas · royalties</a>
+    <a href="#cena-7">7. Reportar irregularidade</a>
+    <a href="#cena-8">8. Dados abertos</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · HERO =================== -->
+<section class="scene"><span id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Visão geral</div>
+    <h2>Página inicial · totais do OE 2026</h2>
+    <p>Hero com números-cabeçalho: receita arrecadada vs orçamentada, despesa, défice, taxa de execução. Esta é a única superfície onde o ocre aparece como acento principal.</p>
+  </div>
+
+  <div class="hero-fiscal">
+    <div class="container">
+      <div class="t-overline">Orçamento do Estado 2026</div>
+      <h1>Como o Estado gasta o dinheiro dos moçambicanos.</h1>
+      <p class="lead">Receita, despesa, contratos públicos e execução por sector e província. Dados oficiais do SISTAFE, e-PA e MEF — actualizados diariamente. Tudo descarregável em CSV e JSON.</p>
+      <div class="grid g-4" style="margin-top:32px">
+        <div class="big-num">
+          <span class="lbl">Receita arrecadada</span>
+          <span class="v">MZN 543,2 mM</span>
+          <span class="d">de MZN 575,0 mM orçamentado · 94%</span>
+        </div>
+        <div class="big-num">
+          <span class="lbl">Despesa executada</span>
+          <span class="v">MZN 528,9 mM</span>
+          <span class="d">de MZN 590,0 mM orçamentado · 90%</span>
+        </div>
+        <div class="big-num">
+          <span class="lbl">Défice corrente</span>
+          <span class="v" style="color:var(--red-700)">−MZN 14,3 mM</span>
+          <span class="d">2,7% do PIB · dentro da meta</span>
+        </div>
+        <div class="big-num">
+          <span class="lbl">Contratos públicos > 5 M</span>
+          <span class="v" style="color:var(--navy-700)">1 248</span>
+          <span class="d">62 novos no último mês</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:32px;padding-bottom:8px">
+    <div class="grid g-4">
+      <div class="stat-tile ochre"><div class="lbl">Sectores no orçamento</div><div class="v">12</div></div>
+      <div class="stat-tile ochre"><div class="lbl">Províncias</div><div class="v">11</div></div>
+      <div class="stat-tile ochre"><div class="lbl">Sub-programas</div><div class="v">317</div></div>
+      <div class="stat-tile"><div class="lbl">Próxima actualização</div><div class="v" style="font-size:14px;font-weight:500;font-family:var(--f-sans);color:var(--ink-2)">Hoje · 23:00 CAT</div></div>
+    </div>
+    <div class="grid g-3" style="margin-top:16px">
+      <a class="card" href="#cena-2" style="text-decoration:none;color:inherit"><div class="bd"><div class="t-overline">→ Explorar</div><h3 class="t-h3" style="margin:6px 0 4px">Execução por sector</h3><p class="t-meta" style="margin:0">Saúde, Educação, Infraestruturas… veja o que está a ser executado.</p></div></a>
+      <a class="card" href="#cena-3" style="text-decoration:none;color:inherit"><div class="bd"><div class="t-overline">→ Explorar</div><h3 class="t-h3" style="margin:6px 0 4px">Execução por província</h3><p class="t-meta" style="margin:0">Niassa a Maputo Cidade — onde o orçamento chega e onde não chega.</p></div></a>
+      <a class="card" href="#cena-4" style="text-decoration:none;color:inherit"><div class="bd"><div class="t-overline">→ Explorar</div><h3 class="t-h3" style="margin:6px 0 4px">Contratos públicos</h3><p class="t-meta" style="margin:0">1 248 contratos acima de MZN 5 milhões. Pesquisáveis.</p></div></a>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Site público — sem login.</span><a class="btn secondary sm" href="#cena-2">Sectores →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · SECTORES =================== -->
+<section class="scene"><span id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Execução por sector</div>
+    <h2>12 sectores · barras de execução · alertas</h2>
+    <p>Sobre-execução em vermelho, sub-execução em amber, no caminho em ocre. O site não julga — mostra, e contextualiza.</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="card">
+      <div class="hd">
+        <b>Execução do OE 2026 por sector</b>
+        <div class="row">
+          <span class="seg" style="display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden">
+            <button style="height:30px;padding:0 12px;border:0;background:var(--navy-100);color:var(--navy-900);font-weight:600;font-size:12px;border-right:1px solid var(--line);font-family:inherit">Em curso</button>
+            <button style="height:30px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);font-size:12px;font-family:inherit">Histórico</button>
+          </span>
+          <button class="btn secondary sm">⤓ Descarregar CSV</button>
+        </div>
+      </div>
+      <div>
+        <div class="exec-row head"><div>Sector</div><div>Execução</div><div style="text-align:right">Executado</div><div style="text-align:right">Orçamento</div><div style="text-align:right">%</div></div>
+        <div class="exec-row"><div class="nm">Saúde</div><div><div class="bar ochre"><div class="fill" style="width:92%"></div></div></div><div class="vals">28,4 mM</div><div class="vals">30,9 mM</div><div class="pct" style="color:var(--good-700)">92%</div></div>
+        <div class="exec-row"><div class="nm">Educação</div><div><div class="bar ochre"><div class="fill" style="width:67%"></div></div></div><div class="vals">18,1 mM</div><div class="vals">27,0 mM</div><div class="pct" style="color:var(--ochre-700)">67%</div></div>
+        <div class="exec-row" style="background:#FCEFEC"><div class="nm" style="color:var(--red-700)"><b>Defesa</b></div><div><div class="bar red"><div class="fill" style="width:100%"></div></div></div><div class="vals">9,1 mM</div><div class="vals">8,7 mM</div><div class="pct" style="color:var(--red-700)">104%</div></div>
+        <div class="exec-row"><div class="nm">Obras Públicas</div><div><div class="bar ochre"><div class="fill" style="width:78%"></div></div></div><div class="vals">42,3 mM</div><div class="vals">54,2 mM</div><div class="pct">78%</div></div>
+        <div class="exec-row"><div class="nm">Agricultura</div><div><div class="bar ochre"><div class="fill" style="width:71%"></div></div></div><div class="vals">11,4 mM</div><div class="vals">16,1 mM</div><div class="pct">71%</div></div>
+        <div class="exec-row"><div class="nm">Energia</div><div><div class="bar ochre"><div class="fill" style="width:84%"></div></div></div><div class="vals">22,7 mM</div><div class="vals">27,0 mM</div><div class="pct" style="color:var(--good-700)">84%</div></div>
+        <div class="exec-row"><div class="nm">Recursos Minerais</div><div><div class="bar ochre"><div class="fill" style="width:88%"></div></div></div><div class="vals">7,2 mM</div><div class="vals">8,2 mM</div><div class="pct" style="color:var(--good-700)">88%</div></div>
+        <div class="exec-row"><div class="nm">Transportes</div><div><div class="bar ochre"><div class="fill" style="width:74%"></div></div></div><div class="vals">14,9 mM</div><div class="vals">20,1 mM</div><div class="pct">74%</div></div>
+        <div class="exec-row"><div class="nm">Justiça</div><div><div class="bar ochre"><div class="fill" style="width:81%"></div></div></div><div class="vals">5,4 mM</div><div class="vals">6,7 mM</div><div class="pct" style="color:var(--good-700)">81%</div></div>
+        <div class="exec-row"><div class="nm">Administração Estatal</div><div><div class="bar ochre"><div class="fill" style="width:69%"></div></div></div><div class="vals">9,8 mM</div><div class="vals">14,2 mM</div><div class="pct">69%</div></div>
+        <div class="exec-row" style="background:#FFFBEF"><div class="nm" style="color:var(--amber-700)"><b>Cultura</b></div><div><div class="bar amber"><div class="fill" style="width:38%"></div></div></div><div class="vals">0,4 mM</div><div class="vals">1,1 mM</div><div class="pct" style="color:var(--amber-700)">38%</div></div>
+        <div class="exec-row"><div class="nm">Dívida pública (juros)</div><div><div class="bar ochre"><div class="fill" style="width:100%"></div></div></div><div class="vals">82,4 mM</div><div class="vals">82,4 mM</div><div class="pct" style="color:var(--good-700)">100%</div></div>
+      </div>
+      <div class="ft" style="padding:12px 14px;border-top:1px solid var(--line-2);justify-content:space-between"><span class="t-meta">Dados do SISTAFE · actualizados 03 Abr 23:00</span><a href="#" class="t-meta">Como foi calculado isto?</a></div>
+    </div>
+
+    <div class="grid g-2" style="margin-top:14px">
+      <div class="banner red"><span class="ic"></span><div><b>Defesa em sobre-execução · 104%.</b> A sobre-execução pode resultar de: transferência orçamental aprovada, despesa imprevista, ou irregularidade. <a href="#">Ver despachos do MEF</a>.</div></div>
+      <div class="banner amber"><span class="ic"></span><div><b>Cultura em sub-execução · 38% com 3 meses para o fim do ano fiscal.</b> Restam MZN 0,7 mM por executar. <a href="#">Ver sub-programas pendentes</a>.</div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Hero</a><a class="btn secondary sm" href="#cena-3">Províncias →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · PROVÍNCIAS =================== -->
+<section class="scene"><span id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Execução por província</div>
+    <h2>Onde o orçamento chega · onde não chega</h2>
+    <p>11 províncias. Tabela em vez de mapa em v0.3 — descarrega melhor e lê em baixa largura de banda.</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="card">
+      <div class="hd"><b>Execução por província · OE 2026</b><div class="row"><button class="btn secondary sm">⤓ CSV</button><button class="btn secondary sm">⤓ JSON</button></div></div>
+      <div>
+        <div class="exec-row head"><div>Província</div><div>Execução</div><div style="text-align:right">Executado</div><div style="text-align:right">Orçamento</div><div style="text-align:right">Contratos</div></div>
+        <div class="exec-row"><div class="nm">Niassa</div><div><div class="bar ochre"><div class="fill" style="width:62%"></div></div></div><div class="vals">8,4 mM</div><div class="vals">13,5 mM</div><div class="pct">62</div></div>
+        <div class="exec-row" style="background:#FFFBEF"><div class="nm" style="color:var(--amber-700)"><b>Cabo Delgado</b></div><div><div class="bar amber"><div class="fill" style="width:54%"></div></div></div><div class="vals">11,9 mM</div><div class="vals">22,0 mM</div><div class="pct">94</div></div>
+        <div class="exec-row"><div class="nm">Nampula</div><div><div class="bar ochre"><div class="fill" style="width:81%"></div></div></div><div class="vals">28,7 mM</div><div class="vals">35,4 mM</div><div class="pct">189</div></div>
+        <div class="exec-row"><div class="nm">Tete</div><div><div class="bar ochre"><div class="fill" style="width:77%"></div></div></div><div class="vals">19,3 mM</div><div class="vals">25,1 mM</div><div class="pct">128</div></div>
+        <div class="exec-row"><div class="nm">Zambézia</div><div><div class="bar ochre"><div class="fill" style="width:73%"></div></div></div><div class="vals">22,1 mM</div><div class="vals">30,3 mM</div><div class="pct">147</div></div>
+        <div class="exec-row"><div class="nm">Manica</div><div><div class="bar ochre"><div class="fill" style="width:79%"></div></div></div><div class="vals">14,2 mM</div><div class="vals">18,0 mM</div><div class="pct">98</div></div>
+        <div class="exec-row"><div class="nm">Sofala</div><div><div class="bar ochre"><div class="fill" style="width:84%"></div></div></div><div class="vals">21,8 mM</div><div class="vals">26,0 mM</div><div class="pct" style="color:var(--good-700)">112</div></div>
+        <div class="exec-row" style="background:var(--navy-50)"><div class="nm"><b>Inhambane</b></div><div><div class="bar ochre"><div class="fill" style="width:80%"></div></div></div><div class="vals">12,1 mM</div><div class="vals">15,2 mM</div><div class="pct">76</div></div>
+        <div class="exec-row"><div class="nm">Gaza</div><div><div class="bar ochre"><div class="fill" style="width:82%"></div></div></div><div class="vals">10,6 mM</div><div class="vals">13,0 mM</div><div class="pct" style="color:var(--good-700)">71</div></div>
+        <div class="exec-row"><div class="nm">Maputo Província</div><div><div class="bar ochre"><div class="fill" style="width:91%"></div></div></div><div class="vals">17,4 mM</div><div class="vals">19,1 mM</div><div class="pct" style="color:var(--good-700)">142</div></div>
+        <div class="exec-row"><div class="nm">Maputo Cidade</div><div><div class="bar ochre"><div class="fill" style="width:96%"></div></div></div><div class="vals">38,2 mM</div><div class="vals">39,8 mM</div><div class="pct" style="color:var(--good-700)">186</div></div>
+      </div>
+    </div>
+
+    <div class="banner blue" style="margin-top:14px"><span class="ic"></span><div><b>Cabo Delgado em sub-execução (54%).</b> O contexto de segurança nas zonas afectadas explica parte do atraso. Veja os contratos pendentes da reconstrução em <a href="#">Cabo Delgado · 94 contratos</a>.</div></div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Sectores</a><a class="btn secondary sm" href="#cena-4">Contratos públicos →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · CONTRATOS =================== -->
+<section class="scene"><span id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Contratos públicos</div>
+    <h2>Ledger pesquisável · 1 248 contratos acima de MZN 5 milhões</h2>
+    <p>Filtros por sector, província, valor, ano, fornecedor, procedimento. Cada linha leva a uma página permanente.</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="card">
+      <div class="hd"><b>Contratos públicos · 2026</b><div class="row"><span class="t-meta">1 248 resultados</span><button class="btn secondary sm">⤓ CSV completo</button></div></div>
+      <div class="bd" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;background:var(--bg-2);border-bottom:1px solid var(--line)">
+        <select class="select"><option>Sector — todos</option><option>Saúde</option><option>Obras Públicas</option><option>Defesa</option></select>
+        <select class="select"><option>Província — todas</option><option>Niassa</option><option>Cabo Delgado</option></select>
+        <select class="select"><option>Ano — 2026</option><option>2025</option><option>2024</option></select>
+        <select class="select"><option>Procedimento — todos</option><option>Concurso público</option><option>Ajuste directo</option></select>
+        <select class="select"><option>Estado — todos</option><option>Activo</option><option>Concluído</option><option>Suspenso</option></select>
+        <input class="input" placeholder="Pesquisar fornecedor ou ID" />
+      </div>
+      <div>
+        <div class="contract-row head"><div>ID</div><div>Objecto · Sector</div><div>Fornecedor</div><div style="text-align:right">Valor</div><div>Procedim.</div><div>Estado</div></div>
+        <div class="contract-row" style="cursor:pointer" onclick="location.hash='#cena-5'">
+          <div class="mono">CT-2026-MOPHRH-0142</div>
+          <div><b>Reabilitação da estrada Lichinga-Cuamba (lote 3)</b><div class="t-meta">Obras Públicas · Niassa</div></div>
+          <div>Construções <b>Mota-Engil Moçambique</b><div class="t-meta mono">NUIT 400 318 220</div></div>
+          <div class="vals"><b>MZN 1 280 mM</b><div class="t-meta">+ 2 adendas</div></div>
+          <div><span class="badge"><span class="dot"></span>Concurso público</span></div>
+          <div><span class="badge blue"><span class="dot"></span>Activo</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer">
+          <div class="mono">CT-2026-MISAU-0089</div>
+          <div><b>Aquisição de medicamentos antiretrovirais</b><div class="t-meta">Saúde · Nacional</div></div>
+          <div><b>Centro de Medicamentos e Artigos Médicos (CMAM)</b><div class="t-meta">Entidade pública</div></div>
+          <div class="vals"><b>MZN 840 mM</b></div>
+          <div><span class="badge"><span class="dot"></span>Concurso limitado</span></div>
+          <div><span class="badge blue"><span class="dot"></span>Activo</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer">
+          <div class="mono">CT-2026-MITRESS-0034</div>
+          <div><b>Sistema de gestão de fluxos migratórios — fronteiras</b><div class="t-meta">Administração Estatal · Cabo Delgado</div></div>
+          <div><b>Indra Sistemas Portugal SA</b><div class="t-meta">Estrangeiro · NIPC PT 503 074 175</div></div>
+          <div class="vals"><b>MZN 412 mM</b></div>
+          <div><span class="badge amber"><span class="dot"></span>Ajuste directo</span></div>
+          <div><span class="badge amber"><span class="dot"></span>Em revisão IGF</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer">
+          <div class="mono">CT-2026-MEDH-0066</div>
+          <div><b>Construção de 14 escolas primárias</b><div class="t-meta">Educação · Zambézia</div></div>
+          <div><b>Construções Saraiva Lda</b><div class="t-meta mono">NUIT 400 778 902</div></div>
+          <div class="vals"><b>MZN 386 mM</b></div>
+          <div><span class="badge"><span class="dot"></span>Concurso público</span></div>
+          <div><span class="badge blue"><span class="dot"></span>Activo</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer">
+          <div class="mono">CT-2026-MIREME-0021</div>
+          <div><b>Linha de transmissão Tete-Maputo (lote 2)</b><div class="t-meta">Energia · Tete · Sofala · Inhambane</div></div>
+          <div><b>EDM · Electricidade de Moçambique</b><div class="t-meta">Entidade pública</div></div>
+          <div class="vals"><b>MZN 2 140 mM</b></div>
+          <div><span class="badge"><span class="dot"></span>Concurso público</span></div>
+          <div><span class="badge blue"><span class="dot"></span>Activo</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer;background:#FCEFEC">
+          <div class="mono">CT-2026-MDN-0012</div>
+          <div><b>Aquisição de equipamento — defesa</b><div class="t-meta">Defesa · classificado</div></div>
+          <div class="t-meta" style="font-style:italic">Ocultado por classificação · Lei 12/2017</div>
+          <div class="vals" style="color:var(--ink-3)">— ocultado —</div>
+          <div><span class="badge"><span class="dot"></span>—</span></div>
+          <div><span class="badge dark">Ocultado</span></div>
+        </div>
+        <div class="contract-row" style="cursor:pointer">
+          <div class="mono">CT-2025-INAS-0048</div>
+          <div><b>Programa de subsídio social directo</b><div class="t-meta">Acção Social · Nacional</div></div>
+          <div><b>INAS · Instituto Nacional de Acção Social</b><div class="t-meta">Entidade pública</div></div>
+          <div class="vals"><b>MZN 198 mM</b></div>
+          <div><span class="badge"><span class="dot"></span>Concurso público</span></div>
+          <div><span class="badge green"><span class="dot"></span>Concluído</span></div>
+        </div>
+      </div>
+      <div class="ft" style="padding:12px 14px;border-top:1px solid var(--line-2);justify-content:space-between"><span class="t-meta">Página 1 de 25 · 50 por página</span><div class="row"><button class="btn ghost sm" disabled>← Anterior</button><button class="btn secondary sm">Próxima →</button></div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Províncias</a><a class="btn secondary sm" href="#cena-5">Detalhe →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · DETALHE CONTRATO =================== -->
+<section class="scene"><span id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Detalhe do contrato</div>
+    <h2>CT-2026-MOPHRH-0142 · Estrada Lichinga–Cuamba (lote 3)</h2>
+    <p>Página permanente. URL estável e citável. Adendas, pagamentos e botão "Reportar irregularidade".</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px">
+      <div class="col">
+        <div class="card">
+          <div class="hd" style="padding:18px 20px">
+            <div>
+              <div class="t-overline">Contrato público</div>
+              <h3 style="font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em">Reabilitação da estrada Lichinga–Cuamba · Lote 3</h3>
+              <div class="t-meta mono">CT-2026-MOPHRH-0142</div>
+            </div>
+            <span class="badge blue" style="height:28px;padding:0 12px"><span class="dot"></span>Activo</span>
+          </div>
+          <div class="bd">
+            <div class="grid g-3">
+              <div class="kv"><span class="k">Sector</span><span class="v">Obras Públicas</span></div>
+              <div class="kv"><span class="k">Província</span><span class="v">Niassa · 142 km</span></div>
+              <div class="kv"><span class="k">Procedimento</span><span class="v">Concurso público intl.</span></div>
+              <div class="kv"><span class="k">Fornecedor</span><span class="v">Mota-Engil Moçambique, SA</span></div>
+              <div class="kv"><span class="k">NUIT</span><span class="v mono">400 318 220</span></div>
+              <div class="kv"><span class="k">Origem</span><span class="v">Filial nacional · matriz PT</span></div>
+            </div>
+            <hr class="hr">
+            <div class="grid g-3">
+              <div class="kv"><span class="k">Valor inicial</span><span class="v mono">MZN 1 100 mM</span></div>
+              <div class="kv"><span class="k">Adendas</span><span class="v mono">+MZN 180 mM (×2)</span></div>
+              <div class="kv"><span class="k">Valor total</span><span class="v mono" style="color:var(--ochre-700);font-weight:600">MZN 1 280 mM</span></div>
+              <div class="kv"><span class="k">Adjudicado</span><span class="v">14 Jan 2026</span></div>
+              <div class="kv"><span class="k">Início obra</span><span class="v">02 Fev 2026</span></div>
+              <div class="kv"><span class="k">Conclusão prevista</span><span class="v">15 Dez 2027</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Adendas · 2</b></div>
+          <table class="table">
+            <thead><tr><th>Data</th><th>Tipo</th><th>Justificação</th><th style="text-align:right">Valor</th></tr></thead>
+            <tbody>
+              <tr><td>22 Fev 2026</td><td>Aumento de quantidades</td><td>Reforço de drenagem após ciclone tropical Filipo</td><td style="text-align:right" class="mono">+MZN 120 mM</td></tr>
+              <tr><td>18 Mar 2026</td><td>Prazo</td><td>Extensão de 90 dias por interrupções de fornecimento de cimento</td><td style="text-align:right" class="mono">+MZN 60 mM</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Pagamentos efectuados · 4 de 12 marcos</b></div>
+          <table class="table">
+            <thead><tr><th>Data</th><th>Marco</th><th style="text-align:right">Valor</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>02 Fev 2026</td><td>Adiantamento contratual (10%)</td><td style="text-align:right" class="mono">MZN 110 mM</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+              <tr><td>28 Fev 2026</td><td>Marco 1 · mobilização e desmatação</td><td style="text-align:right" class="mono">MZN 80 mM</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+              <tr><td>22 Mar 2026</td><td>Marco 2 · 20% terraplenagem</td><td style="text-align:right" class="mono">MZN 220 mM</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago</span></td></tr>
+              <tr><td>31 Mar 2026</td><td>Marco 3 · drenagem inicial</td><td style="text-align:right" class="mono">MZN 130 mM</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>A processar</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Documentos</b></div>
+          <div class="bd col">
+            <div class="row" style="gap:10px"><span class="badge dark">PDF</span><a href="#">Caderno de encargos · 84 pp</a><span class="t-meta">2,4 MB</span></div>
+            <div class="row" style="gap:10px"><span class="badge dark">PDF</span><a href="#">Acta de adjudicação · 12 pp</a><span class="t-meta">340 KB</span></div>
+            <div class="row" style="gap:10px"><span class="badge dark">PDF</span><a href="#">Contrato assinado · 36 pp</a><span class="t-meta">1,1 MB</span></div>
+            <div class="row" style="gap:10px"><span class="badge dark">PDF</span><a href="#">Adenda 1 · justificação técnica</a><span class="t-meta">680 KB</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="hd"><b>Execução</b></div>
+          <div class="bd col">
+            <div>
+              <div class="row spread t-meta" style="margin-bottom:4px"><span>Pago</span><span class="mono">MZN 540 / 1 280 mM</span></div>
+              <div class="bar ochre"><div class="fill" style="width:42%"></div></div>
+            </div>
+            <div>
+              <div class="row spread t-meta" style="margin-bottom:4px"><span>Decurso temporal</span><span>2 / 22 meses</span></div>
+              <div class="bar"><div class="fill" style="width:9%"></div></div>
+            </div>
+            <p class="t-meta" style="margin:0;line-height:1.55">Marco financeiro à frente do calendário (42% pago vs 9% do prazo) — situação esperada para um contrato com adiantamento contratual de 10%.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Reportar</b></div>
+          <div class="bd col">
+            <p class="t-meta" style="margin:0">Suspeita irregularidade neste contrato? O reporte vai directamente para a IGF (Inspecção Geral das Finanças) — não para a UGD nem para o ministério.</p>
+            <a href="#cena-7" class="btn">⚠ Reportar irregularidade</a>
+            <a href="#" class="t-meta" style="text-align:center">Ler protocolo de denúncia (PDF)</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Partilhar</b></div>
+          <div class="bd col">
+            <input class="input mono" value="orcamento.gov.mz/c/CT-2026-MOPHRH-0142" />
+            <button class="btn secondary block">Copiar link permanente</button>
+            <button class="btn secondary block">⤓ Descarregar página (JSON)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Lista</a><a class="btn secondary sm" href="#cena-6">Receitas →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · RECEITAS =================== -->
+<section class="scene"><span id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F8 — Receitas e royalties</div>
+    <h2>Origem da receita · royalties de gás e carvão em destaque</h2>
+    <p>Royalties representam ≈ 24% da receita e têm alto interesse público — Cabo Delgado (gás) e Tete (carvão).</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="grid g-2">
+      <div class="card">
+        <div class="hd"><b>Receita por origem · OE 2026</b></div>
+        <div>
+          <div class="exec-row head" style="grid-template-columns:1fr 1fr 110px 80px"><div>Origem</div><div>Composição</div><div style="text-align:right">Valor</div><div style="text-align:right">%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>IRPS · pessoas singulares</div><div><div class="bar ochre"><div class="fill" style="width:62%"></div></div></div><div class="vals">MZN 96 mM</div><div class="pct">17,7%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>IRPC · empresas</div><div><div class="bar ochre"><div class="fill" style="width:48%"></div></div></div><div class="vals">MZN 75 mM</div><div class="pct">13,8%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>IVA</div><div><div class="bar ochre"><div class="fill" style="width:78%"></div></div></div><div class="vals">MZN 121 mM</div><div class="pct">22,3%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>ICE · consumos específicos</div><div><div class="bar ochre"><div class="fill" style="width:30%"></div></div></div><div class="vals">MZN 47 mM</div><div class="pct">8,7%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px;background:#FBF5E5"><div><b>Royalties · gás natural</b></div><div><div class="bar ochre"><div class="fill" style="width:64%"></div></div></div><div class="vals"><b>MZN 99 mM</b></div><div class="pct"><b>18,2%</b></div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px;background:#FBF5E5"><div><b>Royalties · carvão</b></div><div><div class="bar ochre"><div class="fill" style="width:20%"></div></div></div><div class="vals"><b>MZN 31 mM</b></div><div class="pct"><b>5,7%</b></div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>Outros impostos</div><div><div class="bar ochre"><div class="fill" style="width:18%"></div></div></div><div class="vals">MZN 28 mM</div><div class="pct">5,1%</div></div>
+          <div class="exec-row" style="grid-template-columns:1fr 1fr 110px 80px"><div>Doadores e créditos</div><div><div class="bar"><div class="fill" style="width:30%"></div></div></div><div class="vals">MZN 46 mM</div><div class="pct">8,5%</div></div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="hd"><b>Royalties · evolução 2020–2026</b></div>
+          <div class="bd">
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:140px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:32%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2020</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:38%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2021</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:54%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2022</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:71%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2023</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:82%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2024</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:90%;background:var(--ochre-500);border-radius:1px"></div><span class="t-meta">2025</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:24px;height:100%;background:var(--ochre-700);border-radius:1px"></div><span class="t-meta"><b>2026</b></span></div>
+            </div>
+            <hr class="hr">
+            <div class="t-meta">Total royalties 2026 (estimado): <b class="mono">MZN 130 mM</b> · 23,9% da receita.</div>
+            <div class="t-meta">Início da extracção em larga escala em Coral South (offshore) e expansão de Mozal e Vale Moçambique.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Repartição territorial das royalties</b></div>
+          <div class="bd col">
+            <div class="row spread"><span>Cabo Delgado · gás</span><span class="mono">MZN 99 mM</span></div>
+            <div class="bar ochre"><div class="fill" style="width:76%"></div></div>
+            <div class="row spread" style="margin-top:6px"><span>Tete · carvão</span><span class="mono">MZN 31 mM</span></div>
+            <div class="bar ochre"><div class="fill" style="width:24%"></div></div>
+            <p class="t-meta" style="margin:0">2,75% das royalties (MZN 3,6 mM) afectos por lei aos distritos produtores. Veja o <a href="#">repasse a Palma e Mocímboa da Praia</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Detalhe</a><a class="btn secondary sm" href="#cena-7">Reportar irregularidade →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · REPORTAR =================== -->
+<section class="scene"><span id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F6 — Reportar irregularidade</div>
+    <h2>Formulário público · entregue à IGF</h2>
+    <p>O reporte vai para a Inspecção Geral das Finanças — não para a UGD nem para o ministério contratante. Pode ser anónimo.</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="grid g-2">
+      <div class="card">
+        <div class="hd"><b>Reportar irregularidade</b><span class="badge"><span class="dot"></span>Confidencial</span></div>
+        <div class="bd col">
+          <div class="banner blue"><span class="ic"></span><div><b>Como funciona.</b> O reporte é encriptado e enviado à IGF. A UGD apenas opera o canal — não vê o conteúdo. A IGF responde por escrito em até 30 dias úteis.</div></div>
+
+          <div class="field"><label>Contrato em causa</label><input class="input mono" value="CT-2026-MOPHRH-0142" /></div>
+          <div class="field">
+            <label>Tipo de preocupação</label>
+            <select class="select">
+              <option>Suspeita de conflito de interesses</option>
+              <option>Adjudicação irregular</option>
+              <option>Sobrefacturação ou inflação de adendas</option>
+              <option>Obra parada / qualidade abaixo do contratado</option>
+              <option>Pagamentos sem evidência de execução</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Descrição (≥ 100 caracteres)</label>
+            <textarea class="textarea" placeholder="Descreva os factos que conhece. Não é obrigado a apresentar provas — a IGF investiga." style="min-height:140px"></textarea>
+            <span class="hint">A sua descrição é encriptada antes de ser enviada.</span>
+          </div>
+
+          <hr class="hr">
+          <div class="field">
+            <label>Identificação (opcional)</label>
+            <select class="select">
+              <option>Manter anónimo</option>
+              <option>Identificado · só IGF pode ver</option>
+              <option>Identificado · pode ser citado em processos</option>
+            </select>
+            <span class="hint">Reportes anónimos são investigados, mas a IGF não pode contactá-lo para clarificações.</span>
+          </div>
+          <div class="grid g-2">
+            <div class="field"><label>Nome (se identificar)</label><input class="input" placeholder="—" /></div>
+            <div class="field"><label>Contacto</label><input class="input" placeholder="email ou telefone" /></div>
+          </div>
+          <label class="row" style="gap:8px"><input type="checkbox" /> Compreendo que a denúncia maliciosa é punida pelo Código Penal.</label>
+          <button class="btn lg block">Submeter à IGF</button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="hd"><b>Lei aplicável</b></div>
+          <div class="bd col">
+            <div class="kv"><span class="k">Lei 16/2012</span><span class="v">Lei da Probidade Pública</span></div>
+            <div class="kv"><span class="k">Lei 14/2018</span><span class="v">Lei de Protecção do Denunciante</span></div>
+            <div class="kv"><span class="k">DR 5/2016</span><span class="v">Regulamento de Contratação Pública</span></div>
+            <a href="#" class="t-meta">Ver protocolo de denúncia (PDF)</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Acompanhar reportes anteriores</b></div>
+          <div class="bd col">
+            <p class="t-meta" style="margin:0">Se já submeteu um reporte, pode acompanhar com o número de referência (R-2026-IGF-XXXX) que recebeu por SMS.</p>
+            <input class="input mono" placeholder="R-2026-IGF-0000" />
+            <button class="btn secondary block">Consultar estado</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Estatística pública</b></div>
+          <div class="bd col">
+            <div class="row spread"><span>Reportes recebidos em 2026</span><b class="mono">412</b></div>
+            <div class="row spread"><span>Investigados pela IGF</span><b class="mono">317</b></div>
+            <div class="row spread"><span>Encaminhados ao Ministério Público</span><b class="mono">42</b></div>
+            <div class="row spread"><span>Tempo médio de resposta</span><b>22 dias</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Receitas</a><a class="btn secondary sm" href="#cena-8">Dados abertos →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · DADOS ABERTOS =================== -->
+<section class="scene"><span id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F7 — Dados abertos</div>
+    <h2>Datasets descarregáveis · CSV · JSON · API</h2>
+    <p>Tudo o que aparece no site é descarregável. Licença CC BY 4.0. Pipeline de dados num repositório público.</p>
+  </div>
+  <div class="container" style="padding-top:24px;padding-bottom:8px">
+    <div class="card">
+      <div class="hd"><b>Datasets · 23 disponíveis</b><span class="t-meta">Licença CC BY 4.0 · cite "Orçamento Aberto · UGD · 2026"</span></div>
+      <table class="table">
+        <thead><tr><th>Dataset</th><th>Cobertura</th><th>Última actualização</th><th>Tamanho</th><th style="text-align:right">Formatos</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Execução orçamental por sector</b><div class="t-meta">12 sectores · mensal</div></td>
+            <td>2018–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">2,1 MB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span> <span class="badge"><span class="dot"></span>API</span></td>
+          </tr>
+          <tr>
+            <td><b>Execução por província</b><div class="t-meta">11 províncias · mensal</div></td>
+            <td>2018–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">1,8 MB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span> <span class="badge"><span class="dot"></span>API</span></td>
+          </tr>
+          <tr>
+            <td><b>Contratos públicos > MZN 5 M</b><div class="t-meta">1 248 contratos · 2026</div></td>
+            <td>2014–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">42,6 MB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span> <span class="badge"><span class="dot"></span>API</span></td>
+          </tr>
+          <tr>
+            <td><b>Adendas a contratos públicos</b><div class="t-meta">3 891 adendas</div></td>
+            <td>2014–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">8,4 MB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span></td>
+          </tr>
+          <tr>
+            <td><b>Pagamentos a fornecedores</b><div class="t-meta">SISTAFE · pagamentos individuais</div></td>
+            <td>2020–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">112 MB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>API</span></td>
+          </tr>
+          <tr>
+            <td><b>Receita por origem</b><div class="t-meta">Impostos, royalties, doadores</div></td>
+            <td>2018–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">680 KB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span> <span class="badge"><span class="dot"></span>API</span></td>
+          </tr>
+          <tr>
+            <td><b>Royalties extractivas (gás · carvão)</b><div class="t-meta">Por concessão e província</div></td>
+            <td>2018–2026</td>
+            <td>03 Abr 2026</td>
+            <td class="mono">340 KB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span> <span class="badge"><span class="dot"></span>JSON</span></td>
+          </tr>
+          <tr>
+            <td><b>Reportes de irregularidade · agregado</b><div class="t-meta">Sem identificação · estatística</div></td>
+            <td>2024–2026</td>
+            <td>02 Abr 2026</td>
+            <td class="mono">120 KB</td>
+            <td style="text-align:right"><span class="badge"><span class="dot"></span>CSV</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g-3" style="margin-top:14px">
+      <div class="card"><div class="bd"><div class="t-overline">API pública</div><h3 class="t-h3" style="margin:6px 0 4px">api.orcamento.gov.mz/v1</h3><p class="t-meta" style="margin:0">REST · sem autenticação para endpoints públicos. Limite: 1000 req/h por IP.</p><a href="#" class="btn secondary sm" style="margin-top:10px">Ver documentação</a></div></div>
+      <div class="card"><div class="bd"><div class="t-overline">Pipeline de dados</div><h3 class="t-h3" style="margin:6px 0 4px">github.com/ugd-mz/orcamento-pipeline</h3><p class="t-meta" style="margin:0">Como os dados do SISTAFE chegam aqui. Errata, transformações, validações.</p><a href="#" class="btn secondary sm" style="margin-top:10px">Repositório</a></div></div>
+      <div class="card"><div class="bd"><div class="t-overline">Metodologia</div><h3 class="t-h3" style="margin:6px 0 4px">orcamento.gov.mz/metodologia</h3><p class="t-meta" style="margin:0">Versionada. Cada cálculo na página tem link para a sua secção.</p><a href="#" class="btn secondary sm" style="margin-top:10px">Ler · v0.3</a></div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Reportar</a><a class="btn secondary sm" href="auditoria.html">Ver superfície Auditoria →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1200px;margin:0 auto" class="row spread">
+    <div class="t-meta">Orçamento Aberto v0.3 · documento autoritativo: <a class="mono" href="DESIGN-orcamento.md">DESIGN-orcamento.md</a> · Licença dos dados: CC BY 4.0</div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="auditoria.html" class="btn secondary sm">Auditoria →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

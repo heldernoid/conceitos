@@ -16,7 +16,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | # | Projecto | Estado |
 |---|----------|--------|
 | 01 | [Saúde Digital](https://conceitos.org/saudedigital/) | Disponível |
-| 02 | Governo Digital | Em ideação |
+| 02 | [Governo Digital](https://conceitos.org/governodigital/) | Disponível |
 | 03 | Educação Digital | Em ideação |
 | 04 | Finanças Digitais | Em ideação |
 | 05 | Justiça Digital | Em ideação |
@@ -25,22 +25,36 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 
 Reimaginação da plataforma nacional de saúde com cinco superfícies interligadas: registo clínico electrónico (EMR), app do cidadão, farmácia comunitária, vigilância epidemiológica e auditoria clínica.
 
+### Governo Digital
+
+Reimaginação dos serviços de governação civil e transparência do Estado com cinco superfícies: bilhete de identidade electrónico (eBI), app do cidadão, balcão de atendimento digitalizado, orçamento aberto e auditoria pública.
+
 ## Estrutura
 
 ```
 conceitos/
-├── index.html          # Página de entrada e directório de projectos
-├── assets/             # Marca, SVGs partilhados
-└── saudedigital/       # Projecto 01 · Saúde Digital
+├── index.html           # Página de entrada e directório de projectos
+├── assets/              # Marca, SVGs partilhados
+├── saudedigital/        # Projecto 01 · Saúde Digital
+│   ├── index.html
+│   ├── emr.html
+│   ├── ehealth.html
+│   ├── pharmacy.html
+│   ├── audit.html
+│   ├── surveillance.html
+│   ├── design-system.html
+│   ├── shared/styles.css
+│   └── DESIGN-*.md
+└── governodigital/      # Projecto 02 · Governo Digital
     ├── index.html
-    ├── emr.html
-    ├── ehealth.html
-    ├── pharmacy.html
-    ├── audit.html
-    ├── surveillance.html
+    ├── ebi.html
+    ├── cidadao.html
+    ├── balcao.html
+    ├── orcamento.html
+    ├── auditoria.html
     ├── design-system.html
     ├── shared/styles.css
-    └── DESIGN-*.md     # Documentação de desenho por subsistema
+    └── DESIGN-*.md
 ```
 
 ## Tecnologia
