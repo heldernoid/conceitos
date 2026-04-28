@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Biblioteca Pública Nacional — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .bib-hero{background:var(--indigo-900);color:#fff;padding:64px 24px 56px}
+  .bib-hero .inner{max-width:1200px;margin:0 auto}
+  .bib-hero h1{font-size:38px;font-weight:600;margin:8px 0 12px;letter-spacing:-.015em;line-height:1.1;font-family:var(--f-serif);color:#fff}
+  .bib-hero p{color:#cdc8e2;font-size:16px;max-width:640px;line-height:1.55;margin:0}
+  .bib-hero .search{margin-top:28px;display:flex;gap:8px;max-width:680px}
+  .bib-hero .search input{height:52px;padding:0 16px;font-size:15px;border-radius:var(--r-2);border:1px solid #443a99;background:#fff;color:var(--ink);flex:1}
+  .bib-hero .search button{height:52px;padding:0 22px;background:var(--sepia-500);color:#fff;border:0;border-radius:var(--r-2);font-weight:600;cursor:pointer;font-family:inherit}
+  .bib-hero .search button:hover{background:var(--sepia-700)}
+  .bib-hero .stat-strip{display:flex;gap:36px;margin-top:36px;color:#cdc8e2;font-size:13px;flex-wrap:wrap}
+  .bib-hero .stat-strip b{color:#fff;font-size:18px;font-weight:600;font-family:var(--f-mono);display:block;margin-bottom:2px}
+
+  .section{max-width:1200px;margin:0 auto;padding:32px 24px}
+  .section h2{font-size:22px;font-weight:600;margin:0 0 14px;letter-spacing:-.005em;font-family:var(--f-serif)}
+  .colecs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .colec-card{background:var(--sepia-100);border:1px solid #DCC9A0;border-radius:var(--r-2);padding:20px;display:flex;flex-direction:column;gap:8px;color:inherit;text-decoration:none;min-height:180px;transition:border-color .15s}
+  .colec-card:hover{border-color:var(--sepia-700);text-decoration:none}
+  .colec-card .lbl{font-family:var(--f-mono);font-size:11px;color:var(--sepia-500);text-transform:uppercase;letter-spacing:.06em}
+  .colec-card h3{margin:4px 0 0;font-family:var(--f-serif);font-size:20px;font-weight:600;color:var(--sepia-700)}
+  .colec-card p{margin:0;font-size:13px;color:#4a3d22;line-height:1.5}
+  .colec-card .by{font-size:11px;color:var(--sepia-500);margin-top:auto;font-family:var(--f-mono);letter-spacing:.04em;text-transform:uppercase}
+
+  .filter-shell{display:grid;grid-template-columns:240px 1fr;gap:24px}
+  .filter{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:14px;height:fit-content}
+  .filter h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600}
+  .filter ul{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:6px}
+  .filter li{font-size:13px;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center}
+  .filter li label{cursor:pointer}
+  .filter .count{color:var(--ink-3);font-family:var(--f-mono);font-size:11px}
+
+  .book-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .book.lg{cursor:pointer;position:relative}
+  .book.lg .cov{padding:16px}
+  .book.lg .cov .ti{font-size:14px;font-family:var(--f-serif);font-weight:600;line-height:1.2}
+  .book .ribbon{position:absolute;top:0;right:0;background:var(--sepia-500);color:#fff;font-size:10px;font-weight:600;padding:3px 8px;text-transform:uppercase;letter-spacing:.05em;z-index:2}
+
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+
+  .scene-title{padding:24px 0 0;max-width:1200px;margin:0 auto;width:100%;padding-left:24px;padding-right:24px}
+  .scene-title .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .scene-title h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em;font-family:var(--f-serif)}
+  .scene-title p{margin:0;color:var(--ink-3);font-size:13px;max-width:720px;line-height:1.5}
+  .scene-end{padding:14px 24px 28px;max-width:1200px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);margin-top:18px}
+
+  /* Reader */
+  .reader{background:var(--sepia-100);border:1px solid #DCC9A0;border-radius:var(--r-2);max-width:1040px;margin:0 auto;display:grid;grid-template-columns:200px 1fr 220px;min-height:640px}
+  .reader .chapters{padding:24px 18px;border-right:1px solid #DCC9A0;font-size:12px}
+  .reader .chapters h5{margin:0 0 10px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--sepia-500);font-weight:600}
+  .reader .chapters ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
+  .reader .chapters a{color:var(--sepia-700);font-size:12.5px;text-decoration:none;display:block;padding:6px 8px;border-radius:2px}
+  .reader .chapters a.active{background:rgba(140,112,69,.18);color:#3a2f1c;font-weight:600}
+  .reader .chapters a:hover{background:rgba(140,112,69,.10);text-decoration:none}
+  .reader .page{padding:48px 56px;font-family:var(--f-serif);color:#4a3d22;font-size:17px;line-height:1.75}
+  .reader .page h3{font-family:var(--f-serif);text-align:center;margin:0 0 22px;color:var(--sepia-700);font-size:24px;letter-spacing:-.005em;font-weight:600}
+  .reader .page .chap{text-align:center;font-size:11px;color:var(--sepia-500);text-transform:uppercase;letter-spacing:.1em;margin:0 0 8px;font-family:var(--f-serif)}
+  .reader .page p{margin:0 0 14px}
+  .reader .controls{padding:24px 18px;border-left:1px solid #DCC9A0;font-size:12px}
+  .reader .controls h5{margin:0 0 10px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--sepia-500);font-weight:600}
+  .reader .controls .ctl{display:flex;gap:6px;margin-bottom:14px}
+  .reader .controls .ctl button{flex:1;height:32px;border:1px solid #DCC9A0;background:#fff;color:var(--sepia-700);border-radius:2px;font-family:inherit;cursor:pointer;font-weight:500}
+  .reader .controls .ctl button.on{background:var(--sepia-700);color:#fff;border-color:var(--sepia-700)}
+  .reader .controls hr{border:0;border-top:1px solid #DCC9A0;margin:14px 0}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · DED · Cooperação INDE · AEMO · Plural · Ndjira</span>
+  <span style="margin-left:auto">DESIGN-biblioteca.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Biblioteca Pública</span><small>Nacional · Educação Digital</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="sige.html">SIGE</a>
+    <a href="professor.html">Professor</a>
+    <a href="aluno.html">Aluno</a>
+    <a href="biblioteca.html" class="active">Biblioteca</a>
+    <a href="matriculas.html">Matrículas</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-biblioteca.md" class="btn secondary sm">DESIGN-biblioteca.md</a>
+    <a href="#" class="btn sm">Iniciar sessão</a>
+  </div>
+</header>
+
+<!-- =================== CENA 1 · HERO + COLECÇÕES =================== -->
+<section><span class="anchor" id="cena-1"></span>
+
+  <div class="bib-hero">
+    <div class="inner">
+      <div class="t-overline" style="color:#cdc8e2">Biblioteca Pública Nacional</div>
+      <h1>Todos os manuais. Todas as obras. Para todos.</h1>
+      <p>O acervo público e gratuito do MINEDH e dos seus parceiros editoriais. Manuais INDE, literatura moçambicana, recursos pedagógicos. Para alunos, professores e cidadãos.</p>
+      <div class="search">
+        <input placeholder='Pesquisar &quot;Niketche&quot;, &quot;Manual de Mat. 8.ª&quot;, autor:Mia Couto, ciclo:EP2…' value="" />
+        <button>Pesquisar</button>
+      </div>
+      <div class="stat-strip">
+        <div><b>4 218</b>obras no catálogo</div>
+        <div><b>312</b>manuais INDE oficiais</div>
+        <div><b>147</b>obras literárias</div>
+        <div><b>+1 870</b>recursos pedagógicos</div>
+        <div><b>11</b>línguas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 style="margin-bottom:18px">Colecções curadas</h2>
+    <div class="colecs">
+      <a href="#cena-2" class="colec-card">
+        <div class="lbl">312 manuais</div>
+        <h3>Manuais INDE 2026</h3>
+        <p>Todos os manuais oficiais para EP1, EP2, ESG e ESG2 · Português, Matemática, Ciências, História, Geografia, e mais. Versão 2026 actualizada.</p>
+        <div class="by">Curada pelo INDE</div>
+      </a>
+      <a href="#cena-2" class="colec-card">
+        <div class="lbl">147 obras</div>
+        <h3>Literatura Moçambicana</h3>
+        <p>Mia Couto, Paulina Chiziane, Lília Momplé, José Craveirinha, Noémia de Sousa, Ungulani Ba Ka Khosa, Hélder Faife. Romance, conto, poesia, ensaio.</p>
+        <div class="by">Curada pela AEMO · Plural · Ndjira</div>
+      </a>
+      <a href="#cena-2" class="colec-card">
+        <div class="lbl">186 recursos</div>
+        <h3>Recursos para Professores</h3>
+        <p>Planos de aula, fichas de exercícios, materiais didácticos partilhados por professores e aprovados pelo IFP.</p>
+        <div class="by">Curada pelo IFP · contribuições da rede</div>
+      </a>
+      <a href="#cena-2" class="colec-card" style="background:#F0EDF8;border-color:#C8C2DE">
+        <div class="lbl" style="color:#5b50aa">62 obras</div>
+        <h3 style="color:var(--indigo-700)">Para EP1 (1.ª–5.ª)</h3>
+        <p style="color:var(--ink-2)">Livros ilustrados, primeiros leitores, contos populares moçambicanos. Adaptados a leitura inicial.</p>
+        <div class="by" style="color:#5b50aa">Curada pela DED · 2026</div>
+      </a>
+      <a href="#cena-2" class="colec-card" style="background:#F0EDF8;border-color:#C8C2DE">
+        <div class="lbl" style="color:#5b50aa">38 obras</div>
+        <h3 style="color:var(--indigo-700)">Línguas Moçambicanas</h3>
+        <p style="color:var(--ink-2)">Obras e materiais didácticos em Macua, Changana, Sena, Lomwé, Ndau e outras línguas nacionais.</p>
+        <div class="by" style="color:#5b50aa">Curada pelo NELIMO · UEM</div>
+      </a>
+      <a href="#cena-2" class="colec-card" style="background:#F0EDF8;border-color:#C8C2DE">
+        <div class="lbl" style="color:#5b50aa">29 documentos</div>
+        <h3 style="color:var(--indigo-700)">Documentos cívicos</h3>
+        <p style="color:var(--ink-2)">Constituição da República, Lei do Sistema Nacional de Educação, Estatuto do Aluno, Regulamento Escolar.</p>
+        <div class="by" style="color:#5b50aa">Curada pelo MINEDH · Imprensa Nacional</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CENA 2 · CATÁLOGO =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="scene-title">
+    <div class="num">CENA 2 · F1 — Catálogo · Literatura Moçambicana</div>
+    <h2>Filtros · 147 obras · ordenadas por relevância editorial</h2>
+    <p>Filtros à esquerda, sem dropdowns escondidos. Capa de livro com paleta de disciplina ou sépia.</p>
+  </div>
+
+  <div class="section">
+    <div class="filter-shell">
+      <aside class="filter">
+        <h4>Tipo</h4>
+        <ul>
+          <li><label><input type="checkbox" /> Manual escolar</label> <span class="count">312</span></li>
+          <li><label><input type="checkbox" checked /> Literatura</label> <span class="count">147</span></li>
+          <li><label><input type="checkbox" /> Recurso pedagógico</label> <span class="count">186</span></li>
+          <li><label><input type="checkbox" /> Documento cívico</label> <span class="count">29</span></li>
+        </ul>
+
+        <h4>Autor</h4>
+        <ul>
+          <li><label><input type="checkbox" /> Mia Couto</label> <span class="count">22</span></li>
+          <li><label><input type="checkbox" /> Paulina Chiziane</label> <span class="count">11</span></li>
+          <li><label><input type="checkbox" /> Lília Momplé</label> <span class="count">7</span></li>
+          <li><label><input type="checkbox" /> José Craveirinha</label> <span class="count">9</span></li>
+          <li><label><input type="checkbox" /> Noémia de Sousa</label> <span class="count">5</span></li>
+          <li><label><input type="checkbox" /> Ungulani Ba Ka Khosa</label> <span class="count">8</span></li>
+          <li><label><input type="checkbox" /> Hélder Faife</label> <span class="count">4</span></li>
+        </ul>
+
+        <h4>Ciclo</h4>
+        <ul>
+          <li><label><input type="checkbox" /> EP1 · 1.ª–5.ª</label></li>
+          <li><label><input type="checkbox" /> EP2 · 6.ª–7.ª</label></li>
+          <li><label><input type="checkbox" /> ESG · 8.ª–10.ª</label></li>
+          <li><label><input type="checkbox" /> ESG2 · 11.ª–12.ª</label></li>
+          <li><label><input type="checkbox" /> Adultos / cidadãos</label></li>
+        </ul>
+
+        <h4>Língua</h4>
+        <ul>
+          <li><label><input type="checkbox" checked /> Português</label> <span class="count">4 062</span></li>
+          <li><label><input type="checkbox" /> Macua</label> <span class="count">14</span></li>
+          <li><label><input type="checkbox" /> Changana</label> <span class="count">11</span></li>
+          <li><label><input type="checkbox" /> Sena</label> <span class="count">8</span></li>
+        </ul>
+
+        <h4>Ano</h4>
+        <div class="row" style="gap:6px"><input class="input mono" style="width:60px;height:30px;font-size:12px" placeholder="1962" /><span class="t-meta">a</span><input class="input mono" style="width:60px;height:30px;font-size:12px" placeholder="2026" /></div>
+      </aside>
+
+      <main>
+        <div class="row spread" style="margin-bottom:18px">
+          <div>
+            <b style="font-size:15px">147 obras</b>
+            <span class="t-meta" style="margin-left:10px">Literatura Moçambicana · todos os autores</span>
+          </div>
+          <div class="row">
+            <span class="seg"><button class="on">Relevância</button><button>Ano · novo</button><button>Alfabético</button></span>
+            <button class="btn secondary sm">⤓ CSV catálogo</button>
+          </div>
+        </div>
+
+        <div class="book-grid">
+          <a class="book lg" href="#cena-3"><div class="cov port"><span class="ti">Niketche · Uma História de Poligamia</span></div><div class="meta"><b>Niketche</b><div class="au">Paulina Chiziane · 2002</div></div></a>
+          <a class="book lg"><div class="cov hist"><span class="ti">Vinte e Zinco</span></div><div class="meta"><b>Vinte e Zinco</b><div class="au">Mia Couto · 1999</div></div></a>
+          <a class="book lg"><span class="ribbon">Mais lido</span><div class="cov" style="background:linear-gradient(135deg,#5C4A2E 0%,#8C7045 100%)"><span class="ti">Terra Sonâmbula</span></div><div class="meta"><b>Terra Sonâmbula</b><div class="au">Mia Couto · 1992</div></div></a>
+          <a class="book lg"><div class="cov port"><span class="ti">O Alegre Canto da Perdiz</span></div><div class="meta"><b>Alegre Canto da Perdiz</b><div class="au">Paulina Chiziane · 2008</div></div></a>
+          <a class="book lg"><div class="cov hist"><span class="ti">Ualalapi</span></div><div class="meta"><b>Ualalapi</b><div class="au">Ba Ka Khosa · 1987</div></div></a>
+
+          <a class="book lg"><div class="cov port"><span class="ti">Neighbours · Lília Momplé</span></div><div class="meta"><b>Neighbours</b><div class="au">Lília Momplé · 1995</div></div></a>
+          <a class="book lg"><div class="cov" style="background:linear-gradient(135deg,#5C2D7A 0%,#7d4ba0 100%)"><span class="ti">Karingana ua Karingana</span></div><div class="meta"><b>Karingana</b><div class="au">J. Craveirinha · 1974</div></div></a>
+          <a class="book lg"><div class="cov" style="background:linear-gradient(135deg,#2E5C3A 0%,#4d8459 100%)"><span class="ti">Sangue Negro</span></div><div class="meta"><b>Sangue Negro</b><div class="au">N. de Sousa · 1988</div></div></a>
+          <a class="book lg"><div class="cov hist"><span class="ti">Os da Minha Rua</span></div><div class="meta"><b>Os da Minha Rua</b><div class="au">Mia Couto · 2007</div></div></a>
+          <a class="book lg"><div class="cov port"><span class="ti">Ninguém Matou Suhura</span></div><div class="meta"><b>Ninguém Matou Suhura</b><div class="au">Lília Momplé · 1988</div></div></a>
+
+          <a class="book lg"><div class="cov" style="background:linear-gradient(135deg,#1F4D7A 0%,#3d7ab8 100%)"><span class="ti">Voos do Falcão Sagrado</span></div><div class="meta"><b>Voos do Falcão Sagrado</b><div class="au">Hélder Faife · 2018</div></div></a>
+          <a class="book lg"><div class="cov hist"><span class="ti">A Confissão da Leoa</span></div><div class="meta"><b>A Confissão da Leoa</b><div class="au">Mia Couto · 2012</div></div></a>
+          <a class="book lg"><div class="cov port"><span class="ti">Balada de Amor ao Vento</span></div><div class="meta"><b>Balada de Amor ao Vento</b><div class="au">Paulina Chiziane · 1990</div></div></a>
+          <a class="book lg"><div class="cov" style="background:linear-gradient(135deg,#7A5018 0%,#a07332 100%)"><span class="ti">Choriro</span></div><div class="meta"><b>Choriro</b><div class="au">Ba Ka Khosa · 2009</div></div></a>
+          <a class="book lg"><div class="cov" style="background:linear-gradient(135deg,#5C2D7A 0%,#7d4ba0 100%)"><span class="ti">Cadernos de Memórias Coloniais</span></div><div class="meta"><b>Memórias Coloniais</b><div class="au">I. Figueiredo · 2009</div></div></a>
+        </div>
+
+        <div class="row spread" style="margin-top:24px;border-top:1px solid var(--line);padding-top:14px">
+          <span class="t-meta">15 de 147 obras · página 1 de 10</span>
+          <div class="row"><button class="btn ghost sm" disabled>← Anterior</button><button class="btn secondary sm">Próxima →</button></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Hero</a><a class="btn secondary sm" href="#cena-3">Detalhe do livro →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · DETALHE DO LIVRO =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="scene-title">
+    <div class="num">CENA 3 · F2 — Detalhe do livro</div>
+    <h2>Niketche · Paulina Chiziane · 2002 · Editora Caminho · cooperação Plural Editores</h2>
+    <p>Capa, autor, ano, sinopse, citação, metadata, botões de leitura/descarga. Restrição editorial sinalizada.</p>
+  </div>
+
+  <div class="section">
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:flex-start">
+      <div>
+        <div class="book" style="width:100%"><div class="cov port" style="padding:22px"><span class="ti" style="font-family:var(--f-serif);font-size:18px">Niketche · Uma História de Poligamia</span></div></div>
+
+        <div class="card" style="margin-top:14px"><div class="bd" style="padding:14px">
+          <div class="t-overline" style="margin-bottom:8px">Detalhes</div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">Editora</span><span class="v">Caminho · Plural Editores</span></div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">Ano</span><span class="v">2002 · 1.ª edição</span></div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">Páginas</span><span class="v">248</span></div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">Idioma</span><span class="v">Português</span></div>
+          <div class="kv" style="margin-bottom:8px"><span class="k">ISBN</span><span class="v mono">978-972-21-1454-2</span></div>
+          <div class="kv"><span class="k">Contribuição</span><span class="v">Plural Editores · AEMO</span></div>
+        </div></div>
+      </div>
+
+      <div>
+        <div class="t-overline">Romance · Literatura moçambicana</div>
+        <h2 style="font-family:var(--f-serif);font-size:36px;font-weight:600;letter-spacing:-.01em;margin:8px 0 4px;line-height:1.1">Niketche</h2>
+        <h3 class="serif" style="font-size:18px;font-weight:400;color:var(--ink-3);margin:0 0 14px">Uma História de Poligamia</h3>
+        <div class="row" style="gap:8px;margin-bottom:18px">
+          <span class="badge sepia"><span class="dot"></span>Literatura</span>
+          <span class="badge"><span class="dot"></span>Recomendado · 11.ª/12.ª</span>
+          <span class="badge"><span class="dot"></span>Romance</span>
+        </div>
+
+        <p style="font-family:var(--f-serif);font-size:18px;line-height:1.6;color:#3a3a3a;margin:0 0 18px;font-style:italic;border-left:3px solid var(--sepia-500);padding-left:16px">
+          "A poligamia é um vento do norte. Veio com os árabes que invadiram esta costa. As mulheres do sul não a conheciam — aprenderam-na com a guerra, quando os homens ficaram raros."
+        </p>
+
+        <p style="font-size:14px;line-height:1.65;color:var(--ink-2);max-width:620px;margin:0 0 22px">A Rami descobre que o marido tem outras mulheres. A descoberta torna-se viagem: pelas casas das outras, pelos códigos da poligamia bantu, pelo silêncio das mulheres. Paulina Chiziane escreve o primeiro grande romance moçambicano sobre poligamia — não para julgar, mas para entender.</p>
+
+        <div class="row" style="gap:10px;margin-bottom:18px">
+          <a href="#cena-4" class="btn lg">Ler online</a>
+          <button class="btn secondary lg">⤓ Descarregar PDF</button>
+          <button class="btn secondary lg">⤓ ePub</button>
+          <button class="btn ghost lg">+ Minha biblioteca</button>
+        </div>
+
+        <div class="banner sepia"><span class="ic"></span><div><b>Disponível para leitura online e descarga.</b> A obra está integrada na Biblioteca Pública por acordo com a Plural Editores e com a herdeira da autora.</div></div>
+
+        <hr class="hr">
+
+        <div class="t-overline" style="margin-bottom:8px">Outras obras de Paulina Chiziane</div>
+        <div class="row" style="gap:12px;flex-wrap:wrap">
+          <div class="book" style="width:100px"><div class="cov port"><span class="ti" style="font-size:11px">Balada de Amor ao Vento</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Balada de Amor</b><div class="au" style="font-size:10px">1990</div></div></div>
+          <div class="book" style="width:100px"><div class="cov port"><span class="ti" style="font-size:11px">O Alegre Canto da Perdiz</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Alegre Canto</b><div class="au" style="font-size:10px">2008</div></div></div>
+          <div class="book" style="width:100px"><div class="cov port"><span class="ti" style="font-size:11px">Ventos do Apocalipse</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Ventos</b><div class="au" style="font-size:10px">1995</div></div></div>
+          <div class="book" style="width:100px"><div class="cov port"><span class="ti" style="font-size:11px">As Andorinhas</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">As Andorinhas</b><div class="au" style="font-size:10px">2008</div></div></div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="t-overline" style="margin-bottom:8px">Como citar</div>
+        <p class="mono" style="font-size:12px;background:var(--bg-2);padding:10px 12px;border-radius:var(--r-2);border:1px solid var(--line);margin:0">CHIZIANE, Paulina. <i>Niketche: uma história de poligamia</i>. Maputo: Plural Editores, 2002. ISBN 978-972-21-1454-2.</p>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Catálogo</a><a class="btn secondary sm" href="#cena-4">Modo leitura →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · MODO LEITURA =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="scene-title">
+    <div class="num">CENA 4 · F3 — Modo leitura</div>
+    <h2>Sépia · Plex Serif · 17/1.75 · ajustável</h2>
+    <p>Fundo sépia, tipografia académica, controlos discretos. Sem rastreio de leitura. Sem partilha social. Apenas ler.</p>
+  </div>
+
+  <div class="section">
+    <div class="reader">
+      <aside class="chapters">
+        <h5>Niketche · capítulos</h5>
+        <ul>
+          <li><a class="active">1 · A Mulher do Norte</a></li>
+          <li><a>2 · O Conselho de Família</a></li>
+          <li><a>3 · A Outra</a></li>
+          <li><a>4 · Lobolo</a></li>
+          <li><a>5 · Cinco Mulheres</a></li>
+          <li><a>6 · Tete, sempre</a></li>
+          <li><a>7 · Niketche</a></li>
+          <li><a>8 · Volta a casa</a></li>
+        </ul>
+        <h5 style="margin-top:18px">Marcadores</h5>
+        <p class="t-meta serif" style="margin:0;font-size:11px;color:var(--sepia-500)">Sem marcadores · iniciar sessão para guardar.</p>
+      </aside>
+
+      <article class="page">
+        <p class="chap">Capítulo 1</p>
+        <h3>A Mulher do Norte</h3>
+
+        <p>Em Tete, a poeira amarela cobre tudo: as casas de chapa, os caminhos, as nuvens. A Rami senta-se à porta da cozinha. Espera o marido que não chega.</p>
+        <p>A noite cai depressa quando ele não está. As crianças dormem cedo. Ela acende a vela. Conta as moedas no canto do lenço, calcula o que falta para a semana, ri sozinha — porque chorar não muda nada.</p>
+        <p>O Tony tem outra mulher. Ela já desconfiou. Hoje sabe. A vizinha viu-os no mercado, ele a comprar pano para a outra. A vizinha contou. Não com maldade — com pena.</p>
+        <p>"Mana Rami, eu disse-te," falou a Maria. "Os homens daqui não são como os do sul. Aqui, um homem com dinheiro tem muitas casas. É costume."</p>
+        <p>"Costume," repete a Rami. A palavra dói porque tem razão. A poligamia é um vento do norte. Veio com os árabes que invadiram esta costa. As mulheres do sul não a conheciam — aprenderam-na com a guerra, quando os homens ficaram raros.</p>
+        <p>A Rami fecha os olhos. Pensa na sua mãe, lá longe, em Maputo. A mãe diria: "Volta para casa, filha." Mas voltar é admitir derrota, e a Rami não admite derrota. Não ainda.</p>
+
+        <p style="text-align:center;font-size:12px;color:var(--sepia-500);margin-top:32px;letter-spacing:.05em">— · —</p>
+
+        <p>Na manhã seguinte, a Rami foi ao mercado. Comprou o mesmo pano que a outra tinha comprado. Trouxe-o para casa. Estendeu-o na cama do quarto principal. Quando o Tony chegou, fingiu não ver a sua surpresa.</p>
+        <p>"Compraste pano," disse ele. "É bonito."</p>
+        <p>"É," respondeu ela. "Igual ao da outra."</p>
+      </article>
+
+      <aside class="controls">
+        <h5>Tipografia</h5>
+        <div class="ctl"><button>A−</button><button class="on">A</button><button>A+</button></div>
+
+        <h5>Tema</h5>
+        <div class="ctl"><button class="on">Sépia</button><button>Branco</button><button>Escuro</button></div>
+
+        <h5>Família</h5>
+        <div class="ctl"><button class="on">Serif</button><button>Sans</button></div>
+
+        <hr>
+
+        <h5>Progresso</h5>
+        <div class="bar sepia" style="margin-top:6px"><div class="fill" style="width:8%"></div></div>
+        <p class="t-meta" style="margin:6px 0 0;color:var(--sepia-500);font-size:11px">Página 1 de 248 · capítulo 1 de 24</p>
+
+        <hr>
+
+        <button class="btn secondary block" style="border-color:#DCC9A0;color:var(--sepia-700);background:#fff">Marcar página</button>
+        <button class="btn ghost block" style="color:var(--sepia-700);margin-top:6px">Adicionar nota</button>
+        <button class="btn ghost block" style="color:var(--sepia-700);margin-top:6px">⤓ Descarregar capítulo</button>
+
+        <hr>
+
+        <p class="t-meta" style="font-size:11px;color:var(--sepia-500)">Texto adaptado para protótipo. A obra integral está acessível na descarga PDF/ePub.</p>
+      </aside>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Detalhe</a><a class="btn secondary sm" href="#cena-5">Pesquisa →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · PESQUISA =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="scene-title">
+    <div class="num">CENA 5 · F5 — Pesquisa</div>
+    <h2>Operadores simples · sugestões enquanto se escreve</h2>
+    <p>Suporta <span class="mono">autor:</span>, <span class="mono">disciplina:</span>, <span class="mono">ciclo:</span>, <span class="mono">ano:</span>. Em &lt;200 ms para queries sobre o catálogo.</p>
+  </div>
+
+  <div class="section">
+    <div style="max-width:760px;margin:0 auto">
+      <div style="position:relative">
+        <div class="row" style="gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:6px">
+          <input class="input lg" style="border:0;flex:1" value="autor:Mia Couto ciclo:" />
+          <button class="btn lg">Pesquisar</button>
+        </div>
+        <div class="card" style="margin-top:6px;box-shadow:0 4px 12px rgba(0,0,0,.06);border-color:var(--line)">
+          <div style="padding:8px 12px;border-bottom:1px solid var(--line-2);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600">Sugestões para "ciclo:"</div>
+          <a href="#" style="display:flex;padding:10px 14px;gap:10px;align-items:center;color:inherit;border-bottom:1px solid var(--line-2)"><span class="badge"><span class="dot"></span>EP1</span><span style="font-size:13px">1.ª–5.ª classe</span><span class="t-meta" style="margin-left:auto">→ ciclo:EP1</span></a>
+          <a href="#" style="display:flex;padding:10px 14px;gap:10px;align-items:center;color:inherit;border-bottom:1px solid var(--line-2)"><span class="badge"><span class="dot"></span>EP2</span><span style="font-size:13px">6.ª–7.ª classe</span><span class="t-meta" style="margin-left:auto">→ ciclo:EP2</span></a>
+          <a href="#" style="display:flex;padding:10px 14px;gap:10px;align-items:center;color:inherit;border-bottom:1px solid var(--line-2);background:var(--indigo-50)"><span class="badge indigo"><span class="dot"></span>ESG</span><span style="font-size:13px"><b>8.ª–10.ª classe</b></span><span class="t-meta" style="margin-left:auto">→ ciclo:ESG</span></a>
+          <a href="#" style="display:flex;padding:10px 14px;gap:10px;align-items:center;color:inherit"><span class="badge"><span class="dot"></span>ESG2</span><span style="font-size:13px">11.ª–12.ª classe</span><span class="t-meta" style="margin-left:auto">→ ciclo:ESG2</span></a>
+        </div>
+      </div>
+
+      <hr class="hr">
+
+      <div class="t-overline">Atalhos populares</div>
+      <div class="row" style="gap:8px;margin-top:8px;flex-wrap:wrap">
+        <a href="#" class="badge" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>autor:Mia Couto</a>
+        <a href="#" class="badge" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>autor:Paulina Chiziane</a>
+        <a href="#" class="badge" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>disciplina:matemática ciclo:EP2</a>
+        <a href="#" class="badge" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>tipo:manual ano:2026</a>
+        <a href="#" class="badge sepia" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>colecção:literatura-moçambicana</a>
+        <a href="#" class="badge" style="height:30px;font-size:12px;padding:0 12px"><span class="dot"></span>língua:macua</a>
+      </div>
+
+      <hr class="hr">
+
+      <div class="banner indigo"><span class="ic"></span><div><b>Toda a pesquisa funciona offline</b> para os livros já descarregados — incluindo pesquisa <i>dentro</i> do livro.</div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Leitura</a><a class="btn secondary sm" href="#cena-6">Sobre · contribuir →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · SOBRE / CONTRIBUIR =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="scene-title">
+    <div class="num">CENA 6 · F6 + F7 — Sobre · linha editorial · contribuir · dados abertos</div>
+    <h2>Quem cura o quê · como contribuir · dados abertos para investigação</h2>
+    <p>Curadoria explícita, instituições nomeadas, processo de contribuição claro, catálogo descarregável.</p>
+  </div>
+
+  <div class="section">
+    <div class="grid g-2" style="gap:32px">
+      <div>
+        <h2 style="font-family:var(--f-serif);font-size:24px;margin:0 0 14px">Linha editorial</h2>
+        <p style="font-size:14px;line-height:1.65;color:var(--ink-2);margin:0 0 14px">A Biblioteca Pública Nacional é gerida pela <b>Direcção de Educação Digital (DED)</b> sob tutela do MINEDH. A curadoria é feita por instituições com mandato público, não por algoritmos de recomendação.</p>
+        <p style="font-size:14px;line-height:1.65;color:var(--ink-2);margin:0 0 14px">As decisões editoriais — quais obras incluir, em que colecções, com que descrição — seguem três princípios:</p>
+        <ol style="font-size:14px;line-height:1.7;color:var(--ink-2);padding-left:20px;margin:0">
+          <li><b>Acesso integral aos manuais oficiais.</b> Todos os manuais INDE de cada classe e disciplina, na versão mais recente.</li>
+          <li><b>Diversidade da literatura moçambicana.</b> Autores consagrados, autores contemporâneos, gerações pós-independência. Sem ranking de "mais lido".</li>
+          <li><b>Acolhimento das línguas nacionais.</b> Macua, Changana, Sena, Lomwé, Ndau, e outras — em parceria com NELIMO/UEM.</li>
+        </ol>
+
+        <hr class="hr">
+
+        <h2 style="font-family:var(--f-serif);font-size:24px;margin:0 0 14px">Instituições contribuintes</h2>
+        <div class="grid g-2" style="gap:10px">
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">INDE</b><p class="t-meta" style="margin:4px 0 0">Instituto Nacional de Desenvolvimento da Educação · 312 manuais oficiais.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">AEMO</b><p class="t-meta" style="margin:4px 0 0">Associação dos Escritores Moçambicanos · 84 obras literárias.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">Plural Editores</b><p class="t-meta" style="margin:4px 0 0">42 obras (Mia Couto, Paulina Chiziane, Lília Momplé, e outros).</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">Ndjira</b><p class="t-meta" style="margin:4px 0 0">21 obras de autores contemporâneos.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">Alcance Editores</b><p class="t-meta" style="margin:4px 0 0">14 obras infanto-juvenis e didácticas.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">NELIMO · UEM</b><p class="t-meta" style="margin:4px 0 0">Núcleo de Estudo das Línguas Moçambicanas · 38 obras em línguas nacionais.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">IFP</b><p class="t-meta" style="margin:4px 0 0">Instituto de Formação de Professores · 186 recursos pedagógicos.</p></div></div>
+          <div class="card"><div class="bd" style="padding:14px"><b style="font-size:13px">Imprensa Nacional</b><p class="t-meta" style="margin:4px 0 0">29 documentos cívicos e oficiais.</p></div></div>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-family:var(--f-serif);font-size:24px;margin:0 0 14px">Como contribuir</h2>
+
+        <div class="card" style="margin-bottom:14px"><div class="bd" style="padding:18px">
+          <div class="t-overline">Para professores</div>
+          <h4 style="margin:6px 0 6px;font-size:15px;font-weight:600">Submeter recurso pedagógico</h4>
+          <p style="font-size:13.5px;line-height:1.6;color:var(--ink-2);margin:0 0 12px">Plano de aula, ficha de exercícios, prova-tipo, apresentação. Revisão pelo IFP em 14 dias antes de publicação.</p>
+          <button class="btn secondary block">Iniciar submissão</button>
+          <p class="t-meta" style="margin-top:8px">Requer login com credenciais de professor (Caderno do Professor).</p>
+        </div></div>
+
+        <div class="card" style="margin-bottom:14px"><div class="bd" style="padding:18px">
+          <div class="t-overline">Para editoras e autores</div>
+          <h4 style="margin:6px 0 6px;font-size:15px;font-weight:600">Inclusão de obra no acervo</h4>
+          <p style="font-size:13.5px;line-height:1.6;color:var(--ink-2);margin:0 0 12px">Para incluir uma obra na Biblioteca Pública (com leitura online ou descarga), contactar a DED. Termos de uso negociados caso a caso.</p>
+          <button class="btn secondary block">Contactar a DED</button>
+          <p class="t-meta" style="margin-top:8px">biblioteca@educacao.gov.mz · +258 21 49 22 00</p>
+        </div></div>
+
+        <hr class="hr">
+
+        <h2 style="font-family:var(--f-serif);font-size:24px;margin:0 0 14px">Dados abertos</h2>
+        <p style="font-size:14px;line-height:1.65;color:var(--ink-2);margin:0 0 14px">O catálogo da Biblioteca Pública é dado público. Disponível em CSV, JSON, e via API read-only.</p>
+
+        <div class="card" style="margin-bottom:10px"><div class="bd" style="padding:14px"><div class="row spread"><div><b style="font-size:13px">Catálogo completo · CSV</b><div class="t-meta">4 218 obras · actualizado diariamente · 2,4 MB</div></div><button class="btn sm secondary">⤓ Descarregar</button></div></div></div>
+        <div class="card" style="margin-bottom:10px"><div class="bd" style="padding:14px"><div class="row spread"><div><b style="font-size:13px">API JSON · read-only</b><div class="t-meta mono">https://biblioteca.educacao.gov.mz/api/v1</div></div><button class="btn sm secondary">Documentação</button></div></div></div>
+        <div class="card"><div class="bd" style="padding:14px"><div class="row spread"><div><b style="font-size:13px">Estatísticas de uso · público</b><div class="t-meta">Anonimizado · sem rastreio individual · trimestral</div></div><button class="btn sm secondary">Ver</button></div></div></div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Pesquisa</a><a class="btn secondary sm" href="matriculas.html">Ver Portal de Matrículas →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1200px;margin:0 auto" class="row spread">
+    <div class="t-meta">Biblioteca Pública Nacional v0.3 · documento autoritativo: <a class="mono" href="DESIGN-biblioteca.md">DESIGN-biblioteca.md</a></div>
+    <div class="row">
+      <a href="aluno.html" class="btn ghost sm">← Aluno</a>
+      <a href="matriculas.html" class="btn secondary sm">Matrículas →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

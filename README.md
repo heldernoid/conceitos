@@ -17,7 +17,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 |---|----------|--------|
 | 01 | [Saúde Digital](https://conceitos.org/saudedigital/) | Disponível |
 | 02 | [Governo Digital](https://conceitos.org/governodigital/) | Disponível |
-| 03 | Educação Digital | Em ideação |
+| 03 | [Educação Digital](https://conceitos.org/educacaodigital/) | Disponível |
 | 04 | Finanças Digitais | Em ideação |
 | 05 | Justiça Digital | Em ideação |
 
@@ -29,13 +29,17 @@ Reimaginação da plataforma nacional de saúde com cinco superfícies interliga
 
 Reimaginação dos serviços de governação civil e transparência do Estado com cinco superfícies: bilhete de identidade electrónico (eBI), app do cidadão, balcão de atendimento digitalizado, orçamento aberto e auditoria pública.
 
+### Educação Digital
+
+Reimaginação da plataforma nacional de educação com cinco superfícies: gestão escolar integrada (SIGE), portal do professor, caderno electrónico do aluno, biblioteca pública nacional e portal de matrículas.
+
 ## Estrutura
 
 ```
 conceitos/
-├── index.html           # Página de entrada e directório de projectos
-├── assets/              # Marca, SVGs partilhados
-├── saudedigital/        # Projecto 01 · Saúde Digital
+├── index.html              # Página de entrada e directório de projectos
+├── assets/                 # Marca, SVGs partilhados
+├── saudedigital/           # Projecto 01 · Saúde Digital
 │   ├── index.html
 │   ├── emr.html
 │   ├── ehealth.html
@@ -45,13 +49,23 @@ conceitos/
 │   ├── design-system.html
 │   ├── shared/styles.css
 │   └── DESIGN-*.md
-└── governodigital/      # Projecto 02 · Governo Digital
+├── governodigital/         # Projecto 02 · Governo Digital
+│   ├── index.html
+│   ├── ebi.html
+│   ├── cidadao.html
+│   ├── balcao.html
+│   ├── orcamento.html
+│   ├── auditoria.html
+│   ├── design-system.html
+│   ├── shared/styles.css
+│   └── DESIGN-*.md
+└── educacaodigital/        # Projecto 03 · Educação Digital
     ├── index.html
-    ├── ebi.html
-    ├── cidadao.html
-    ├── balcao.html
-    ├── orcamento.html
-    ├── auditoria.html
+    ├── sige.html
+    ├── professor.html
+    ├── aluno.html
+    ├── biblioteca.html
+    ├── matriculas.html
     ├── design-system.html
     ├── shared/styles.css
     └── DESIGN-*.md

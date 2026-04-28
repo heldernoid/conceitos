@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Caderno do Professor — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .stage{padding:32px 0;background:var(--bg-2)}
+  .stageInner{max-width:1240px;margin:0 auto;padding:0 24px}
+  .tablet{width:1024px;height:680px;background:#0a0a0a;border-radius:24px;padding:14px;box-shadow:0 12px 40px rgba(0,0,0,.20);margin:0 auto;position:relative}
+  .tablet .screen{width:100%;height:100%;background:var(--bg);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .t-topbar{height:48px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 16px;gap:14px;flex:0 0 auto}
+  .t-topbar .turma-pill{display:inline-flex;align-items:center;gap:8px;padding:0 10px;height:30px;background:var(--indigo-100);color:var(--indigo-900);border-radius:2px;font-size:12px;font-weight:600}
+  .t-content{flex:1;overflow:hidden;display:flex;flex-direction:column;background:var(--bg)}
+  .t-bottomnav{height:60px;background:#fff;border-top:1px solid var(--line);display:flex;flex:0 0 auto}
+  .t-bottomnav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--ink-3);font-size:11px;font-weight:500;border-right:1px solid var(--line-2);padding-top:6px}
+  .t-bottomnav a:last-child{border-right:0}
+  .t-bottomnav a.active{color:var(--indigo-700)}
+  .t-bottomnav .ic{width:22px;height:22px;border:1.5px solid currentColor;border-radius:3px}
+  .t-bottomnav a.active .ic{background:var(--indigo-100);border-color:var(--indigo-700)}
+
+  .scene-title{padding:24px 0 0;max-width:1240px;margin:0 auto;width:100%;padding-left:24px;padding-right:24px}
+  .scene-title .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .scene-title h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .scene-title p{margin:0;color:var(--ink-3);font-size:13px;max-width:720px;line-height:1.5}
+
+  .pad{padding:14px 16px}
+  .hoje-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:14px;display:flex;gap:14px;align-items:center}
+  .hoje-card .left{display:flex;flex-direction:column;gap:2px;flex:1}
+  .hoje-card .left b{font-size:14px}
+  .hoje-card .right{display:flex;align-items:center;gap:10px}
+  .countdown{font-family:var(--f-mono);font-weight:600;font-size:18px;color:var(--indigo-700)}
+
+  .turma-row{display:grid;grid-template-columns:48px 1.3fr 1fr .8fr 130px;gap:10px;align-items:center;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .turma-row .left{display:flex;flex-direction:column;gap:1px}
+  .turma-row .left b{font-size:13px}
+
+  .chamada-row{display:grid;grid-template-columns:36px 1fr 240px;gap:12px;align-items:center;padding:8px 12px;background:#fff;border:1px solid var(--line-2);border-radius:var(--r-2);font-size:13px}
+  .chamada-row.falta{background:#FCEFEC;border-color:#E5B7AE}
+  .chamada-row.atraso{background:#FFFBEF;border-color:#E7D49C}
+  .seg.tab-seg{height:32px}
+  .seg.tab-seg button{height:32px;font-size:12px;padding:0 10px}
+
+  .scene-end{padding:14px 24px 28px;max-width:1240px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);margin-top:18px}
+
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · Direcção de Educação Digital — DED</span><span class="sep">·</span>
+  <span>Caderno do Professor v0.3</span>
+  <span style="margin-left:auto">DESIGN-professor.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Caderno do Professor</span><small>Tablet · Sala de aula</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="sige.html">SIGE</a>
+    <a href="professor.html" class="active">Professor</a>
+    <a href="aluno.html">Aluno</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="matriculas.html">Matrículas</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-professor.md" class="btn secondary sm">DESIGN-professor.md</a>
+  </div>
+</header>
+
+<!-- =================== CENA 1 · LOGIN =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="scene-title">
+    <div class="num">CENA 1 · F1 — Sign in & turno bind</div>
+    <h2>Início de sessão · Prof. Eulália Mussagy · turno manhã</h2>
+    <p>Bind ao turno é importante: muitos professores leccionam em duas escolas em turnos diferentes.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="index.html" class="brand"><span class="mark"></span><span style="font-weight:600;font-size:14px">Caderno do Professor</span></a>
+            <span style="margin-left:auto" class="conn off"><span class="d"></span> Início de sessão</span>
+          </div>
+          <div class="t-content" style="display:flex;flex-direction:row">
+            <div style="flex:1;background:var(--indigo-900);color:#cdc8e2;padding:42px;display:flex;flex-direction:column;justify-content:space-between">
+              <div>
+                <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9990bd">Educação Digital · v0.3</div>
+                <div style="font-size:30px;line-height:1.15;font-weight:600;letter-spacing:-.01em;color:#fff;margin-top:30px;max-width:340px">Tudo o que precisa antes de entrar em sala.</div>
+                <p style="color:#cdc8e2;font-size:13px;line-height:1.55;margin-top:14px;max-width:380px">Plano da aula, chamada, lançamento de notas, observações pedagógicas e comunicação com encarregados. Funciona offline.</p>
+              </div>
+              <div style="font-size:11px;color:#9990bd">Esc. Sec. da Polana · turno manhã · ano lectivo 2026</div>
+            </div>
+            <div style="flex:1;padding:42px;display:flex;align-items:center;justify-content:center">
+              <div style="width:340px">
+                <div class="t-overline">Passo 2 de 3</div>
+                <h3 class="t-h2" style="margin:6px 0 4px">Código por SMS</h3>
+                <p class="t-meta" style="margin:0">Para <span class="mono">+258 84 ••• ••18</span></p>
+                <div class="row" style="gap:6px;margin:18px 0">
+                  <input class="input mono lg" style="text-align:center;width:44px" value="3" />
+                  <input class="input mono lg" style="text-align:center;width:44px" value="8" />
+                  <input class="input mono lg" style="text-align:center;width:44px" value="5" />
+                  <input class="input mono lg" style="text-align:center;width:44px" value="1" />
+                  <input class="input mono lg" style="text-align:center;width:44px" value="0" />
+                  <input class="input mono lg" style="text-align:center;width:44px" value="" />
+                </div>
+                <a href="#cena-2" class="btn lg block">Continuar</a>
+                <div class="t-meta" style="margin-top:12px">Reenviar em 00:38</div>
+              </div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Multi-escola? Selecciona após OTP.</span><a class="btn secondary sm" href="#cena-2">Avançar para Hoje →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · HOJE =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="scene-title">
+    <div class="num">CENA 2 · F2 — Hoje</div>
+    <h2>Vista do dia · próxima aula em destaque</h2>
+    <p>Próxima aula com countdown. Cards de aulas anteriores mostram estado (chamada feita / pendente, nota lançada / por lançar).</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="index.html" class="brand"><span class="mark"></span><span style="font-weight:600;font-size:14px">Caderno do Professor</span></a>
+            <span class="turma-pill">Esc. Sec. da Polana · manhã</span>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online · sincronizado</span>
+            <div class="idbadge" style="border-left:1px solid var(--line);padding-left:14px"><span class="av sm">EM</span><div class="who"><b>Eulália Mussagy</b><span>Mat · 18 anos</span></div></div>
+          </div>
+          <div class="t-content scroll-y">
+            <div class="pad">
+              <div class="row spread" style="margin-bottom:14px">
+                <div>
+                  <div class="t-overline">Hoje</div>
+                  <h2 class="t-h2" style="margin-top:2px">Quarta-feira, 15 Abril 2026</h2>
+                </div>
+                <div class="row"><span class="badge"><span class="dot"></span>4 aulas hoje</span><span class="badge amber"><span class="dot"></span>2 pendências</span></div>
+              </div>
+
+              <div class="hoje-card" style="border-left:4px solid var(--subj-mat);margin-bottom:14px;background:linear-gradient(90deg,#1F4D7A08 0%,#fff 30%)">
+                <span class="subj mat" style="height:42px;padding:0 14px;font-size:14px">Matemática</span>
+                <div class="left">
+                  <b style="font-size:15px">8.ª A · 36 alunos · sala A-204</b>
+                  <span class="t-meta">Plano: <i>Equações do 1.º grau · prática orientada</i></span>
+                </div>
+                <div class="right">
+                  <div class="countdown">em 14 min</div>
+                  <a href="#cena-3" class="btn">Iniciar aula</a>
+                </div>
+              </div>
+
+              <div class="t-overline" style="margin-bottom:8px">Aulas de hoje</div>
+              <div class="col" style="gap:10px">
+                <div class="turma-row">
+                  <span class="subj mat" style="height:30px;padding:0 8px;font-size:11px">Mat</span>
+                  <div class="left"><b>8.ª A · 07:00–07:45</b><span class="t-meta">Próxima aula</span></div>
+                  <div><span class="badge"><span class="dot"></span>A iniciar</span></div>
+                  <div class="t-meta">36 alunos</div>
+                  <a href="#cena-3" class="btn sm secondary">Iniciar →</a>
+                </div>
+                <div class="turma-row">
+                  <span class="subj mat" style="height:30px;padding:0 8px;font-size:11px">Mat</span>
+                  <div class="left"><b>9.ª A · 08:40–09:25</b><span class="t-meta">Plano: Sistemas de equações</span></div>
+                  <div><span class="badge"><span class="dot"></span>Programada</span></div>
+                  <div class="t-meta">35 alunos</div>
+                  <a href="#cena-4" class="btn sm secondary">Plano</a>
+                </div>
+                <div class="turma-row">
+                  <span class="subj mat" style="height:30px;padding:0 8px;font-size:11px">Mat</span>
+                  <div class="left"><b>8.ª B · 09:50–10:35</b><span class="t-meta">Plano: Equações do 1.º grau</span></div>
+                  <div><span class="badge"><span class="dot"></span>Programada</span></div>
+                  <div class="t-meta">38 alunos</div>
+                  <a href="#cena-4" class="btn sm secondary">Plano</a>
+                </div>
+                <div class="turma-row">
+                  <span class="subj mat" style="height:30px;padding:0 8px;font-size:11px">Mat</span>
+                  <div class="left"><b>10.ª A · 10:40–11:25</b><span class="t-meta">Plano: Funções afins · revisão</span></div>
+                  <div><span class="badge"><span class="dot"></span>Programada</span></div>
+                  <div class="t-meta">32 alunos</div>
+                  <a href="#cena-4" class="btn sm secondary">Plano</a>
+                </div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Tarefas pendentes (de ontem)</div>
+              <div class="col" style="gap:8px">
+                <div class="banner amber" style="font-size:13px"><span class="ic"></span><div><b>Chamada de 9.ª A · 14 Abr</b> ainda não fechada. <a href="#">Fechar agora</a>.</div></div>
+                <div class="banner indigo" style="font-size:13px"><span class="ic"></span><div><b>3 notas de oralidade</b> da 8.ª A pendentes para a pauta do 1.º Trimestre. <a href="#cena-5">Lançar</a>.</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a class="active"><span class="ic"></span><span>Hoje</span></a>
+            <a><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Login</a><a class="btn secondary sm" href="#cena-3">Entrar na aula →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · CHAMADA =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="scene-title">
+    <div class="num">CENA 3 · F3 — Chamada</div>
+    <h2>Chamada · 8.ª A · Matemática · 07:00</h2>
+    <p>Default: todos presentes. Toggle por aluno. Mass actions disponíveis. Alvo: ≤60 segundos para 36 alunos.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-2" class="btn ghost sm">← Hoje</a>
+            <span class="subj mat" style="height:30px;padding:0 10px">Matemática</span>
+            <b style="font-size:14px">8.ª A · 07:00–07:45</b>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online</span>
+            <span class="badge"><span class="dot"></span>Chamada · 0 / 36</span>
+          </div>
+          <div class="t-content scroll-y">
+            <div class="pad">
+              <div class="row spread" style="margin-bottom:12px">
+                <div class="row" style="gap:10px">
+                  <button class="btn secondary sm">Marcar todos presentes</button>
+                  <button class="btn secondary sm">Reset</button>
+                </div>
+                <div class="row"><span class="badge green"><span class="dot"></span>32 presentes</span><span class="badge amber"><span class="dot"></span>2 atrasos</span><span class="badge red"><span class="dot"></span>2 faltas</span></div>
+              </div>
+
+              <div class="grid g-2" style="gap:8px">
+                <div class="chamada-row"><span class="av sm">NC</span><div><b>1. Naila S. Cuamba</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row falta"><span class="av sm amber">SD</span><div><b>2. Sumaila Dauto Jr.</b></div>
+                  <span class="seg tab-seg"><button>Presente</button><button>Atraso</button><button class="on">Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">EM</span><div><b>3. Eulália P. Massingue</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">CB</span><div><b>4. Carlos Bila Jr.</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row atraso"><span class="av sm amber">TM</span><div><b>5. Tomás Macuácua Jr.</b></div>
+                  <span class="seg tab-seg"><button>Presente</button><button class="on">Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">JM</span><div><b>6. Joaquina Manhiça</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">AN</span><div><b>7. Augusto Naila Jr.</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row falta"><span class="av sm amber">PC</span><div><b>8. Patrícia Cuamba</b></div>
+                  <span class="seg tab-seg"><button>Presente</button><button>Atraso</button><button class="on">Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">JC</span><div><b>9. José Cumbe</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">MS</span><div><b>10. Mariana Sitói</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row atraso"><span class="av sm amber">FM</span><div><b>11. Filipa Magaia</b></div>
+                  <span class="seg tab-seg"><button>Presente</button><button class="on">Atraso</button><button>Falta</button></span>
+                </div>
+                <div class="chamada-row"><span class="av sm">RC</span><div><b>12. Rui Cossa</b></div>
+                  <span class="seg tab-seg"><button class="on">Presente</button><button>Atraso</button><button>Falta</button></span>
+                </div>
+                <div style="grid-column:span 2;text-align:center;color:var(--ink-3);font-size:12px;padding:10px 0">12 de 36 alunos · arraste para ver mais</div>
+              </div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a class="active"><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="row spread" style="margin-top:14px;max-width:1024px;margin-left:auto;margin-right:auto">
+        <span class="t-meta">Chamada selada ao fim da aula. Edição posterior requer contra-assinatura do director.</span>
+        <a class="btn" href="#cena-4">Plano da aula →</a>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Plano da aula →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · PLANO DE AULA =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="scene-title">
+    <div class="num">CENA 4 · F4 — Plano de aula</div>
+    <h2>Equações do 1.º grau · prática orientada · 45 min</h2>
+    <p>Três blocos: objectivos · conteúdo · exercícios. Checkbox "dado / não dado" para responsabilidade.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-3" class="btn ghost sm">← Chamada</a>
+            <span class="subj mat" style="height:30px;padding:0 10px">Matemática</span>
+            <b style="font-size:14px">8.ª A · 07:00–07:45 · 32 presentes</b>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online</span>
+          </div>
+          <div class="t-content" style="display:flex;flex-direction:row">
+            <div style="flex:1;padding:18px;overflow-y:auto;border-right:1px solid var(--line)">
+              <div class="t-overline">Plano</div>
+              <h2 class="t-h2" style="margin-top:4px">Equações do 1.º grau · prática</h2>
+              <p class="t-meta" style="margin-top:2px">Adaptado do INDE 8.ª · M02-U03 · Eulália Mussagy · 14 Abr 2026</p>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Objectivos · 5 min</div>
+              <div class="col" style="gap:8px;font-size:13px">
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox" checked> Recordar resolução de equações simples (ax = b).</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox" checked> Aplicar princípio aditivo e princípio multiplicativo.</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> Resolver equações com parênteses e termos semelhantes.</label>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Conteúdo · 15 min</div>
+              <div class="col" style="gap:8px;font-size:13px">
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox" checked> Revisão: resolver 2x + 3 = 11 (quadro).</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox" checked> Demonstrar: 3(x − 2) = 9 (com parênteses).</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> Caso com termos semelhantes: 5x + 2 − x = 14.</label>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Exercícios · 20 min · trabalho individual</div>
+              <div class="col" style="gap:8px;font-size:13px">
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> Manual INDE 8.ª · página 47 · exercícios 1–8.</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> 4 alunos resolvem no quadro (Naila, Eulália P., Augusto, Joaquina).</label>
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> Apoio individual: Sumaila e Carlos (em risco).</label>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Síntese e TPC · 5 min</div>
+              <div class="col" style="gap:8px;font-size:13px">
+                <label class="row" style="gap:10px;cursor:pointer"><input type="checkbox"> TPC: manual pág. 48, exercícios 9–14. Prazo: próxima aula.</label>
+              </div>
+            </div>
+            <div style="width:340px;padding:18px;overflow-y:auto;background:var(--bg-2)">
+              <div class="t-overline">Recursos</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <a href="biblioteca.html" class="card" style="display:block;text-decoration:none;color:inherit"><div class="bd" style="padding:10px"><div class="row" style="gap:10px"><div class="book" style="width:36px"><div class="cov mat" style="aspect-ratio:2/3;padding:4px;font-size:8px">Mat 7.ª</div></div><div><b style="font-size:13px">Manual de Mat. · 8.ª</b><div class="t-meta">INDE 2024 · pág. 47</div></div></div></div></a>
+                <a href="biblioteca.html" class="card" style="display:block;text-decoration:none;color:inherit"><div class="bd" style="padding:10px"><div class="row" style="gap:10px"><div class="book" style="width:36px"><div class="cov mat" style="aspect-ratio:2/3;padding:4px;font-size:7px">Caderno</div></div><div><b style="font-size:13px">Caderno de exercícios</b><div class="t-meta">INDE · 24 problemas</div></div></div></div></a>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Atalhos</div>
+              <div class="col" style="gap:6px;margin-top:8px">
+                <button class="btn secondary block">+ Lançar nota individual</button>
+                <button class="btn secondary block">+ Observação pedagógica</button>
+                <button class="btn secondary block">+ Trabalho de casa</button>
+                <button class="btn ghost block">Mensagem ao encarregado</button>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Aula em curso</div>
+              <div class="bar" style="margin-top:8px"><div class="fill" style="width:30%;background:var(--subj-mat)"></div></div>
+              <div class="row spread" style="margin-top:6px"><span class="t-meta">14 min decorridos</span><span class="t-meta">31 min restantes</span></div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a class="active"><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Chamada</a><a class="btn secondary sm" href="#cena-5">Lançar nota →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · LANÇAR NOTA =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="scene-title">
+    <div class="num">CENA 5 · F5 — Lançar nota individual</div>
+    <h2>Naila S. Cuamba · oralidade · 16 valores</h2>
+    <p>Tap no aluno → tipo (oral · escrita · trabalho · prova) → 0–20 → comentário opcional → guardar. Fica como rascunho da pauta.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-4" class="btn ghost sm">← Plano</a>
+            <span class="subj mat" style="height:30px;padding:0 10px">Matemática</span>
+            <b style="font-size:14px">8.ª A · lançar nota</b>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online</span>
+          </div>
+          <div class="t-content" style="display:flex;flex-direction:row">
+            <div style="width:340px;padding:14px;border-right:1px solid var(--line);background:#fff;overflow-y:auto">
+              <div class="t-overline" style="margin-bottom:8px">Aluno</div>
+              <div class="col" style="gap:6px">
+                <div class="row sel" style="padding:10px;background:var(--indigo-100);border:1px solid var(--indigo-700);border-radius:2px;cursor:pointer"><span class="av sm">NC</span><div style="flex:1"><b style="font-size:13px">Naila S. Cuamba</b><div class="t-meta">N.º 1</div></div></div>
+                <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:2px;cursor:pointer"><span class="av sm amber">SD</span><div style="flex:1"><b style="font-size:13px">Sumaila Dauto Jr.</b><div class="t-meta">N.º 2 · falta</div></div></div>
+                <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:2px;cursor:pointer"><span class="av sm">EM</span><div style="flex:1"><b style="font-size:13px">Eulália P. Massingue</b><div class="t-meta">N.º 3</div></div></div>
+                <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:2px;cursor:pointer"><span class="av sm">CB</span><div style="flex:1"><b style="font-size:13px">Carlos Bila Jr.</b><div class="t-meta">N.º 4</div></div></div>
+                <div class="row" style="padding:10px;border:1px solid var(--line);border-radius:2px;cursor:pointer"><span class="av sm">TM</span><div style="flex:1"><b style="font-size:13px">Tomás Macuácua Jr.</b><div class="t-meta">N.º 5</div></div></div>
+              </div>
+            </div>
+            <div style="flex:1;padding:24px;overflow-y:auto">
+              <div class="row" style="gap:14px;align-items:center;margin-bottom:14px">
+                <span class="av lg">NC</span>
+                <div>
+                  <div class="t-h3">Naila Sumaila Cuamba</div>
+                  <div class="t-meta">8.ª A · n.º 1 · matrícula <span class="mono">A-2026-ESG-MAP-08412</span></div>
+                </div>
+              </div>
+
+              <div class="t-overline" style="margin-bottom:8px">Tipo de avaliação</div>
+              <div class="seg" style="margin-bottom:18px">
+                <button>Oral</button>
+                <button class="on">Oralidade contínua</button>
+                <button>Trabalho</button>
+                <button>Prova escrita</button>
+                <button>Prova de unidade</button>
+              </div>
+
+              <div class="grid g-2" style="gap:24px">
+                <div>
+                  <div class="t-overline" style="margin-bottom:8px">Nota · 0 a 20</div>
+                  <div class="row" style="gap:14px;align-items:center">
+                    <input class="input lg mono" style="font-size:32px;text-align:center;height:80px;width:120px;font-weight:600" value="16" />
+                    <div>
+                      <span class="grade lg pass">16</span>
+                      <div class="t-meta" style="margin-top:6px">Aprovada</div>
+                    </div>
+                  </div>
+                  <p class="t-meta" style="margin-top:10px">Pass: ≥10 · Limiar: 9–10 · Reprovado: <9</p>
+                </div>
+                <div>
+                  <div class="t-overline" style="margin-bottom:8px">Comentário (opcional)</div>
+                  <textarea class="textarea" style="min-height:120px" placeholder="Visível à aluna e à encarregada quando a pauta for validada.">Boa participação na resolução de 3(x-2)=9. Explicou ao colega. A oralidade está a melhorar.</textarea>
+                </div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:8px">Notas anteriores · Mat · 1.º Trimestre</div>
+              <div class="row" style="gap:8px;flex-wrap:wrap">
+                <span class="badge"><b>Av. contínua</b> · 14, 16, 17 · média <span class="mono">15,7</span></span>
+                <span class="badge"><b>Prova escrita</b> · 17 · 04 Mar</span>
+                <span class="badge"><b>Trabalho</b> · 18 · 12 Mar</span>
+              </div>
+
+              <div class="row spread" style="margin-top:24px">
+                <button class="btn ghost">Cancelar</button>
+                <div class="row"><button class="btn secondary">Guardar e próximo aluno</button><a href="#cena-6" class="btn">Guardar</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a class="active"><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Plano</a><a class="btn secondary sm" href="#cena-6">Observação pedagógica →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · OBSERVAÇÃO + MENSAGEM =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="scene-title">
+    <div class="num">CENA 6 · F6 + F7 — Observação pedagógica e mensagem ao encarregado</div>
+    <h2>Carlos Bila Jr. · padrão de comportamento · contacto à encarregada</h2>
+    <p>Observação descritiva (não juízo) · sensível-flag para director · template SMS via SIGE.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-5" class="btn ghost sm">← Notas</a>
+            <b style="font-size:14px">Observação · Carlos Bila Jr. · 8.ª A</b>
+            <span style="margin-left:auto" class="conn amber"><span class="d"></span> 1 em fila</span>
+          </div>
+          <div class="t-content" style="display:flex;flex-direction:row;overflow:hidden">
+            <div style="flex:1;padding:24px;overflow-y:auto">
+              <div class="row" style="gap:14px;margin-bottom:14px"><span class="av lg">CB</span><div><div class="t-h3">Carlos Bila Jr.</div><div class="t-meta">8.ª A · n.º 4 · matrícula <span class="mono">A-2026-ESG-MAP-08415</span></div></div></div>
+
+              <div class="t-overline" style="margin-bottom:8px">Observação pedagógica</div>
+              <p class="t-meta" style="margin:0 0 8px">Descreva comportamento e contexto, não juízo de carácter. Exemplos: "não trouxe o caderno hoje", "ajudou colegas durante o exercício".</p>
+              <textarea class="textarea" style="min-height:140px;font-size:14px">Hoje (15 Abr) Carlos não trouxe material e dispersou-se durante o exercício individual. Esta foi a 4.ª aula consecutiva sem caderno. No exercício oral, recusou participar quando convidado (3.ª vez no trimestre). Falei com ele no fim da aula — diz que perdeu o caderno e não tem para comprar outro. Vou contactar a encarregada de educação para entender contexto familiar.</textarea>
+
+              <div class="row" style="margin-top:14px;gap:14px">
+                <label class="row" style="gap:8px;font-size:13px"><input type="checkbox" checked> Visível ao encarregado quando a pauta for validada.</label>
+                <label class="row" style="gap:8px;font-size:13px"><input type="checkbox"> Sensível · partilhar apenas com o director.</label>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline" style="margin-bottom:6px">Histórico de observações · Carlos Bila Jr.</div>
+              <div class="col" style="gap:8px;font-size:13px">
+                <div class="card"><div class="bd" style="padding:10px"><div class="t-meta mono">02 Abr 2026 · Mat · E. Mussagy</div><div>Carlos não fez TPC pela 3.ª semana. Conversámos.</div></div></div>
+                <div class="card"><div class="bd" style="padding:10px"><div class="t-meta mono">22 Mar 2026 · Port · J. Sumaila</div><div>Recusou ler em voz alta. Sugeriu cansaço.</div></div></div>
+                <div class="card"><div class="bd" style="padding:10px"><div class="t-meta mono">10 Mar 2026 · Bio · T. Macuácua</div><div>Bom desempenho prático no laboratório.</div></div></div>
+              </div>
+            </div>
+
+            <div style="width:340px;padding:18px;background:var(--bg-2);border-left:1px solid var(--line);overflow-y:auto">
+              <div class="t-overline">Mensagem ao encarregado</div>
+              <p class="t-meta" style="margin:6px 0 0">Enviada via SIGE · SMS gateway · custo: 0 MZN.</p>
+
+              <div class="t-overline" style="margin-top:14px;margin-bottom:6px">Encarregada</div>
+              <div class="card" style="margin-bottom:14px"><div class="bd" style="padding:10px"><b style="font-size:13px">Joana Bila</b> (mãe)<div class="t-meta mono">+258 84 ••• ••91</div></div></div>
+
+              <div class="t-overline" style="margin-bottom:6px">Modelo</div>
+              <select class="select" style="margin-bottom:8px">
+                <option>Pedido de reunião · pedagógica</option>
+                <option>Ausência</option>
+                <option>Comportamento</option>
+                <option>Material em falta</option>
+                <option>Reconhecimento</option>
+              </select>
+
+              <div class="field">
+                <label>Mensagem (≤160 caracteres)</label>
+                <textarea class="textarea" style="min-height:120px;font-family:var(--f-mono);font-size:12px">Sra Bila: Prof Mussagy (Mat 8A). Carlos Jr precisa de reuniao breve. Material em falta repetido. Pode passar 4af 7h ou apos 11h? Esc Sec Polana</textarea>
+                <span class="hint">156 / 160 · sem caracteres especiais.</span>
+              </div>
+
+              <button class="btn block" style="margin-top:14px">Enviar via SIGE</button>
+              <button class="btn ghost block" style="margin-top:6px">Guardar rascunho</button>
+
+              <p class="t-meta" style="margin-top:12px">A mensagem fica registada na ficha do aluno e no histórico de comunicação da escola.</p>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a class="active"><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Notas</a><a class="btn secondary sm" href="#cena-7">Trabalho de casa →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · TPC =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="scene-title">
+    <div class="num">CENA 7 · F8 — Trabalho de casa</div>
+    <h2>Manual INDE pág. 48 · exercícios 9–14 · prazo 17 Abr</h2>
+    <p>Anexo (manual link, foto do quadro), prazo, distribuição. Vai para o Caderno do Aluno automaticamente.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-6" class="btn ghost sm">← Observação</a>
+            <span class="subj mat" style="height:30px;padding:0 10px">Matemática</span>
+            <b style="font-size:14px">8.ª A · novo trabalho de casa</b>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online</span>
+          </div>
+          <div class="t-content scroll-y">
+            <div class="pad" style="padding:24px;max-width:780px;margin:0 auto">
+
+              <div class="t-overline">Trabalho de casa</div>
+              <h2 class="t-h2" style="margin-top:4px">Equações do 1.º grau · prática</h2>
+
+              <hr class="hr">
+
+              <div class="field" style="margin-bottom:14px">
+                <label>Título</label>
+                <input class="input lg" value="Equações do 1.º grau · exercícios pág. 48" />
+              </div>
+
+              <div class="field" style="margin-bottom:14px">
+                <label>Instruções</label>
+                <textarea class="textarea" style="min-height:100px">Resolver os exercícios 9 a 14 da página 48 do manual INDE 8.ª. Mostrar todos os passos no caderno. Trazer na próxima aula (17 Abr).</textarea>
+              </div>
+
+              <div class="grid g-3" style="margin-bottom:14px">
+                <div class="field"><label>Prazo</label><input class="input" value="17 Abr 2026 · 07:00" /></div>
+                <div class="field"><label>Distribuição</label><select class="select"><option>Toda a turma · 8.ª A</option><option>Grupo personalizado</option></select></div>
+                <div class="field"><label>Notificação</label><select class="select"><option>Caderno do Aluno</option><option>Caderno + SMS encarregado</option></select></div>
+              </div>
+
+              <div class="t-overline" style="margin-bottom:8px">Anexos</div>
+              <div class="col" style="gap:8px;margin-bottom:14px">
+                <div class="card"><div class="bd" style="padding:10px"><div class="row spread"><div class="row" style="gap:10px"><div class="book" style="width:32px"><div class="cov mat" style="aspect-ratio:2/3;padding:4px;font-size:7px">Mat 8.ª</div></div><div><b style="font-size:13px">Manual de Mat. · 8.ª · INDE 2024</b><div class="t-meta">Páginas 47–48 · da Biblioteca</div></div></div><button class="btn ghost sm">Remover</button></div></div></div>
+                <button class="btn secondary block" style="border-style:dashed">+ Adicionar foto do quadro · PDF · link Biblioteca</button>
+              </div>
+
+              <hr class="hr">
+
+              <div class="banner indigo"><span class="ic"></span><div><b>Será visível a 36 alunos e a 36 encarregados</b> assim que publicar. As entregas chegam ao Caderno do Professor para correcção.</div></div>
+
+              <div class="row spread" style="margin-top:24px">
+                <button class="btn ghost">Guardar como rascunho</button>
+                <a href="#cena-8" class="btn">Publicar TPC</a>
+              </div>
+
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a class="active"><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Observação</a><a class="btn secondary sm" href="#cena-8">Compor pauta →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · COMPOR PAUTA =================== -->
+<section><span class="anchor" id="cena-8"></span>
+  <div class="scene-title">
+    <div class="num">CENA 8 · F9 — Compor pauta trimestral</div>
+    <h2>Mat · 8.ª A · 1.º Trimestre · 36 alunos · ponderação INDE 30/50/20</h2>
+    <p>Os rascunhos acumulados no trimestre são compostos numa pauta. Override permitido com justificação. Submeter envia ao SIGE.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="#cena-7" class="btn ghost sm">← TPC</a>
+            <span class="subj mat" style="height:30px;padding:0 10px">Matemática</span>
+            <b style="font-size:14px">Compor pauta · 8.ª A · 1.º Tri</b>
+            <span style="margin-left:auto" class="conn"><span class="d"></span> Online</span>
+            <span class="badge"><span class="dot"></span>Rascunho · 36/36 alunos</span>
+          </div>
+          <div class="t-content scroll-y">
+            <div class="pad">
+
+              <div class="banner indigo" style="margin-bottom:14px"><span class="ic"></span><div>Composição automática a partir de notas lançadas no trimestre. <b>Pode ajustar qualquer nota</b> (com justificação obrigatória). A pauta vai a validação do director ao submeter.</div></div>
+
+              <table class="table" style="font-size:12.5px">
+                <thead>
+                  <tr>
+                    <th style="width:40px">N.º</th>
+                    <th>Aluno</th>
+                    <th style="text-align:center">Av. contínua (30%)<br><small style="font-weight:400;color:var(--ink-3);text-transform:none">média de N notas</small></th>
+                    <th style="text-align:center">Prova escrita (50%)</th>
+                    <th style="text-align:center">Oralidade (20%)</th>
+                    <th style="text-align:center">Final calculada</th>
+                    <th style="text-align:center">Override</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="mono">01</td><td><b>Naila S. Cuamba</b></td><td style="text-align:center"><span class="grade sm pass">17</span><div class="t-meta">5 notas</div></td><td style="text-align:center"><span class="grade sm pass">17</span></td><td style="text-align:center"><span class="grade sm pass">16</span></td><td style="text-align:center"><span class="grade pass">17</span></td><td style="text-align:center"><span class="badge"><span class="dot"></span>Aceitar</span></td></tr>
+                  <tr><td class="mono">02</td><td><b>Sumaila Dauto Jr.</b></td><td style="text-align:center"><span class="grade sm borderline">10</span><div class="t-meta">3 notas</div></td><td style="text-align:center"><span class="grade sm fail">9</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade borderline">10</span></td><td style="text-align:center"><input class="input mono sm" style="width:50px;text-align:center" value="10" /></td></tr>
+                  <tr><td class="mono">03</td><td><b>Eulália P. Massingue</b></td><td style="text-align:center"><span class="grade sm pass">19</span><div class="t-meta">5 notas</div></td><td style="text-align:center"><span class="grade sm pass">19</span></td><td style="text-align:center"><span class="grade sm pass">18</span></td><td style="text-align:center"><span class="grade pass">19</span></td><td style="text-align:center"><span class="badge"><span class="dot"></span>Aceitar</span></td></tr>
+                  <tr><td class="mono">04</td><td><b>Carlos Bila Jr.</b></td><td style="text-align:center"><span class="grade sm fail">8</span><div class="t-meta">4 notas</div></td><td style="text-align:center"><span class="grade sm fail">7</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade fail">8</span></td><td style="text-align:center"><span class="badge red" style="font-size:10px"><span class="dot"></span>Reprovado</span></td></tr>
+                  <tr><td class="mono">05</td><td><b>Tomás Macuácua Jr.</b></td><td style="text-align:center"><span class="grade sm pass">13</span></td><td style="text-align:center"><span class="grade sm pass">13</span></td><td style="text-align:center"><span class="grade sm pass">12</span></td><td style="text-align:center"><span class="grade pass">13</span></td><td style="text-align:center"><span class="badge"><span class="dot"></span>Aceitar</span></td></tr>
+                  <tr><td class="mono">06</td><td><b>Joaquina Manhiça</b></td><td style="text-align:center"><span class="grade sm pass">15</span></td><td style="text-align:center"><span class="grade sm pass">15</span></td><td style="text-align:center"><span class="grade sm pass">14</span></td><td style="text-align:center"><span class="grade pass">15</span></td><td style="text-align:center"><span class="badge"><span class="dot"></span>Aceitar</span></td></tr>
+                  <tr><td class="mono">07</td><td><b>Augusto Naila Jr.</b></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade borderline">10</span></td><td style="text-align:center"><span class="badge amber" style="font-size:10px"><span class="dot"></span>Limiar</span></td></tr>
+                  <tr style="background:var(--bg-2)"><td colspan="2" style="font-style:italic;color:var(--ink-3)">7 de 36 · ver tabela completa</td><td colspan="5" style="text-align:right;color:var(--ink-3)">Média da turma: <b class="mono">12,4</b> · 26 aprovados · 6 limiares · 4 reprovados</td></tr>
+                </tbody>
+              </table>
+
+              <hr class="hr">
+
+              <div class="grid g-2">
+                <div>
+                  <div class="t-overline" style="margin-bottom:6px">Notas da professora · contexto para o director</div>
+                  <textarea class="textarea" style="min-height:100px;font-size:13px">Esta turma vinha com lacunas no conteúdo de fracções (5.ª–7.ª classe) que tive de recuperar em Fevereiro. Comparado com a turma do ano passado, o ritmo foi mais lento mas estabilizou. 4 alunos em risco: Sumaila, Carlos, Augusto e José Macuvele. Recomendo apoio extra-aula no 2.º trimestre.</textarea>
+                </div>
+                <div>
+                  <div class="t-overline" style="margin-bottom:6px">Validação automática</div>
+                  <div class="col" style="gap:6px;font-size:13px">
+                    <div class="row" style="gap:8px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>36/36 alunos com nota</span></div>
+                    <div class="row" style="gap:8px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Componentes obrigatórias preenchidas</span></div>
+                    <div class="row" style="gap:8px"><span class="badge amber" style="font-size:11px"><span class="dot"></span>Aviso</span><span>1 nota override (Sumaila Dauto Jr. · 9→10)</span></div>
+                    <div class="row" style="gap:8px"><span class="badge"><span class="dot"></span></span><span>Pauta vai a validação do director Carlos Bila</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row spread" style="margin-top:24px;border-top:1px solid var(--line);padding-top:16px">
+                <button class="btn ghost">Guardar como rascunho</button>
+                <a href="sige.html#cena-6" class="btn success">Submeter ao director · 36 alunos</a>
+              </div>
+
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a><span class="ic"></span><span>Hoje</span></a>
+            <a><span class="ic"></span><span>Aula</span></a>
+            <a class="active"><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← TPC</a><a class="btn secondary sm" href="#cena-9">Sem rede →</a></div></div>
+</section>
+
+<!-- =================== CENA 9 · OFFLINE =================== -->
+<section><span class="anchor" id="cena-9"></span>
+  <div class="scene-title">
+    <div class="num">CENA 9 · F10 — Sem rede</div>
+    <h2>Sala de aula sem ligação · tudo continua a funcionar</h2>
+    <p>Banner âmbar persistente. Contador de eventos em fila. Cross-system desactivado (sem eBI lookup, sem Saúde) — explicado.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="tablet">
+        <div class="screen">
+          <div class="t-topbar">
+            <a href="index.html" class="brand"><span class="mark"></span><span style="font-weight:600;font-size:14px">Caderno do Professor</span></a>
+            <span class="turma-pill">Esc. Sec. da Polana · manhã</span>
+            <span style="margin-left:auto" class="conn off"><span class="d"></span> Sem rede · 14 em fila</span>
+            <div class="idbadge" style="border-left:1px solid var(--line);padding-left:14px"><span class="av sm">EM</span><div class="who"><b>Eulália Mussagy</b><span>Mat · 18 anos</span></div></div>
+          </div>
+          <div class="t-content scroll-y">
+            <div class="pad">
+              <div class="banner amber" style="margin-bottom:14px"><span class="ic"></span><div><b>Sem rede.</b> Tudo o que fizer fica guardado e sincroniza assim que houver ligação. Cross-system (eBI, Saúde, Biblioteca) está temporariamente indisponível.</div></div>
+
+              <div class="row spread" style="margin-bottom:14px">
+                <div>
+                  <div class="t-overline">Hoje</div>
+                  <h2 class="t-h2" style="margin-top:2px">Quarta-feira, 15 Abril 2026</h2>
+                </div>
+                <div class="row"><span class="badge amber"><span class="dot"></span>14 eventos em fila</span></div>
+              </div>
+
+              <div class="card" style="margin-bottom:14px">
+                <div class="hd"><b>Em fila para sincronização</b><a href="#" class="t-meta">Ver detalhe</a></div>
+                <table class="table" style="font-size:12.5px">
+                  <tbody>
+                    <tr><td>1 chamada (8.ª A · 07:00)</td><td>32 / 36 marcações</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+                    <tr><td>5 notas (8.ª A · oralidade)</td><td>Naila, Eulália P., Joaquina, Augusto, Filipa</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+                    <tr><td>1 observação (Carlos Bila Jr.)</td><td>Material em falta</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+                    <tr><td>1 mensagem ao encarregado (Bila)</td><td>Pedido de reunião</td><td><span class="badge amber"><span class="dot"></span>Aguarda rede para envio SMS</span></td></tr>
+                    <tr><td>1 TPC publicada (8.ª A · Mat)</td><td>Pág. 48 ex. 9–14</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+                    <tr><td>1 plano de aula concluído (8.ª A · Mat)</td><td>Equações 1.º grau</td><td><span class="badge"><span class="dot"></span>Em fila</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Indisponíveis até voltar a rede</b></div>
+                <div class="bd col" style="gap:8px">
+                  <div class="row spread"><div><b style="font-size:13px">Lookup eBI</b><div class="t-meta">Adicionar aluno transferido sem registo na escola</div></div><span class="badge off"><span class="dot"></span>Offline</span></div>
+                  <div class="row spread"><div><b style="font-size:13px">Saúde escolar</b><div class="t-meta">Ver vacinação / casos crónicos</div></div><span class="badge off"><span class="dot"></span>Offline</span></div>
+                  <div class="row spread"><div><b style="font-size:13px">Biblioteca · descarregar novo manual</b><div class="t-meta">Manuais já descarregados continuam disponíveis</div></div><span class="badge off"><span class="dot"></span>Offline</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="t-bottomnav">
+            <a class="active"><span class="ic"></span><span>Hoje</span></a>
+            <a><span class="ic"></span><span>Aula</span></a>
+            <a><span class="ic"></span><span>Pautas</span></a>
+            <a><span class="ic"></span><span>Mais</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-8">← Compor pauta</a><a class="btn secondary sm" href="aluno.html">Ver superfície Caderno do Aluno →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1240px;margin:0 auto" class="row spread">
+    <div class="t-meta">Caderno do Professor v0.3 · documento autoritativo: <a class="mono" href="DESIGN-professor.md">DESIGN-professor.md</a></div>
+    <div class="row">
+      <a href="sige.html" class="btn ghost sm">← SIGE</a>
+      <a href="aluno.html" class="btn secondary sm">Caderno do Aluno →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

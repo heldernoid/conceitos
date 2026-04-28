@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Portal de Matrículas — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .mat-hero{background:var(--indigo-900);color:#fff;padding:64px 24px 56px}
+  .mat-hero .inner{max-width:1200px;margin:0 auto}
+  .mat-hero h1{font-size:38px;font-weight:600;margin:8px 0 12px;letter-spacing:-.015em;line-height:1.1;color:#fff;max-width:760px}
+  .mat-hero p{color:#cdc8e2;font-size:16px;max-width:660px;line-height:1.55;margin:0}
+  .mat-hero .cta{margin-top:24px;display:flex;gap:10px}
+  .mat-hero .cta .btn{height:48px;padding:0 22px;font-size:14px}
+  .mat-hero .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,.12)}
+  .mat-hero .stats .s{color:#cdc8e2;font-size:13px}
+  .mat-hero .stats .s b{color:#fff;font-size:24px;font-weight:600;font-family:var(--f-mono);display:block;margin-bottom:4px;letter-spacing:-.01em}
+
+  .section{max-width:1200px;margin:0 auto;padding:32px 24px}
+  .section h2{font-size:22px;font-weight:600;margin:0 0 14px;letter-spacing:-.005em}
+
+  .scene-title{padding:24px 0 0;max-width:1200px;margin:0 auto;width:100%;padding-left:24px;padding-right:24px}
+  .scene-title .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .scene-title h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .scene-title p{margin:0;color:var(--ink-3);font-size:13px;max-width:720px;line-height:1.5}
+  .scene-end{padding:14px 24px 28px;max-width:1200px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);margin-top:18px}
+
+  .school-shell{display:grid;grid-template-columns:240px 1fr;gap:24px}
+  .school-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:14px;display:grid;grid-template-columns:1fr 240px;gap:18px;cursor:pointer}
+  .school-card:hover{border-color:var(--indigo-700)}
+  .school-card .name{font-size:15px;font-weight:600}
+  .school-card .meta{color:var(--ink-3);font-size:12px;margin-top:2px}
+  .school-card .vagas{display:flex;flex-direction:column;gap:6px;font-size:11px}
+  .school-card .vagas .row{justify-content:space-between}
+  .school-card .vagas b{font-family:var(--f-mono)}
+
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+
+  .map{height:320px;background:linear-gradient(135deg,#E5E2F2 0%,#F2F0F8 100%);border:1px solid var(--line);border-radius:var(--r-2);position:relative;overflow:hidden}
+  .map .pin{position:absolute;width:24px;height:32px;display:flex;align-items:flex-start;justify-content:center}
+  .map .pin::before{content:"";width:18px;height:24px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--indigo-700);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+  .map .pin.hi::before{background:var(--sepia-500);transform:rotate(-45deg) scale(1.15)}
+  .map .lbl{position:absolute;background:#fff;padding:4px 8px;border-radius:2px;font-size:11px;font-weight:500;border:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.06);white-space:nowrap}
+
+  /* Wizard */
+  .wiz-shell{display:grid;grid-template-columns:240px 1fr;gap:24px}
+  .wiz-side{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:18px;height:fit-content}
+  .wiz-step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2);align-items:flex-start}
+  .wiz-step:last-child{border-bottom:0}
+  .wiz-step .n{width:24px;height:24px;border-radius:50%;background:var(--bg-2);color:var(--ink-3);display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:11px;font-weight:600;border:1px solid var(--line);flex:0 0 auto}
+  .wiz-step.done .n{background:var(--indigo-100);color:var(--indigo-700);border-color:var(--indigo-700)}
+  .wiz-step.active .n{background:var(--indigo-700);color:#fff;border-color:var(--indigo-700)}
+  .wiz-step .lb b{font-size:13px;display:block}
+  .wiz-step .lb small{font-size:11px;color:var(--ink-3)}
+  .wiz-step.active .lb b{color:var(--indigo-900)}
+
+  .pref-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:14px;display:flex;align-items:center;gap:14px}
+  .pref-card .pref-num{width:36px;height:36px;border-radius:50%;background:var(--indigo-700);color:#fff;font-family:var(--f-mono);font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;font-size:14px}
+
+  /* Algo explainer */
+  .algo-step{display:grid;grid-template-columns:60px 1fr 100px;gap:14px;padding:14px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;align-items:center;margin-bottom:8px}
+  .algo-step .pts{font-family:var(--f-mono);font-size:18px;font-weight:600;color:var(--indigo-700)}
+  .algo-step .lbl{font-weight:500;font-size:14px}
+  .algo-step .desc{color:var(--ink-3);font-size:12px;margin-top:2px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · DED · DPEDH provincial</span><span class="sep">·</span>
+  <span>Portal de Matrículas v0.3</span>
+  <span style="margin-left:auto">DESIGN-matriculas.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Portal de Matrículas</span><small>Campanha 2027</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="sige.html">SIGE</a>
+    <a href="professor.html">Professor</a>
+    <a href="aluno.html">Aluno</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="matriculas.html" class="active">Matrículas</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-matriculas.md" class="btn secondary sm">DESIGN-matriculas.md</a>
+    <a href="#cena-3" class="btn sm">Iniciar candidatura</a>
+  </div>
+</header>
+
+<!-- =================== CENA 1 · HERO =================== -->
+<section><span class="anchor" id="cena-1"></span>
+
+  <div class="mat-hero">
+    <div class="inner">
+      <div class="row" style="gap:10px;align-items:center;color:#cdc8e2"><span class="badge" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25);color:#fff"><span class="dot" style="background:var(--good-700)"></span>Campanha aberta</span><span style="font-size:12px">Encerra a 18 Out 2026 · faltam 14 dias</span></div>
+      <h1>Matricule o seu filho sem esperar à porta da escola.</h1>
+      <p>Campanha de matrícula 2027 para o EP1 (1.ª classe), transição EP1→EP2, EP2→ESG e ESG→ESG2. Autenticação com BI. Atribuição transparente. Resultado público a 25 Out.</p>
+      <div class="cta">
+        <a href="#cena-3" class="btn">Iniciar candidatura</a>
+        <a href="#cena-2" class="btn secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.35)">Procurar escola</a>
+        <a href="#cena-7" class="btn ghost" style="color:#cdc8e2">Como funciona o algoritmo</a>
+      </div>
+      <div class="stats">
+        <div class="s"><b>14 218</b>escolas no SNE</div>
+        <div class="s"><b>492 110</b>vagas disponíveis</div>
+        <div class="s"><b>318 042</b>candidaturas até hoje</div>
+        <div class="s"><b>72,6%</b>atribuídas em 1.ª preferência (campanha 2026)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="grid g-3">
+      <div class="card"><div class="bd" style="padding:18px">
+        <div class="t-overline">Passo 1</div>
+        <h3 style="margin:6px 0 6px;font-size:16px;font-weight:600">Procurar escolas</h3>
+        <p style="font-size:13px;line-height:1.55;color:var(--ink-2);margin:0">Filtre por distrito, classe e turno. Veja vagas, frequência e distância. Compare até 3.</p>
+      </div></div>
+      <div class="card"><div class="bd" style="padding:18px">
+        <div class="t-overline">Passo 2</div>
+        <h3 style="margin:6px 0 6px;font-size:16px;font-weight:600">Candidatar</h3>
+        <p style="font-size:13px;line-height:1.55;color:var(--ink-2);margin:0">5 passos: encarregado, aluno, escolas, necessidades especiais, confirmação. Cerca de 8 minutos.</p>
+      </div></div>
+      <div class="card"><div class="bd" style="padding:18px">
+        <div class="t-overline">Passo 3</div>
+        <h3 style="margin:6px 0 6px;font-size:16px;font-weight:600">Atribuição a 25 Out</h3>
+        <p style="font-size:13px;line-height:1.55;color:var(--ink-2);margin:0">Resultado público, com justificação algorítmica. 7 dias para confirmar. Recurso aberto se necessário.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="banner indigo"><span class="ic"></span><div><b>Já tem candidatura submetida?</b> <a href="#cena-6">Ver estado das minhas candidaturas →</a></div></div>
+  </div>
+</section>
+
+<!-- =================== CENA 2 · PROCURAR ESCOLA =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="scene-title">
+    <div class="num">CENA 2 · F2 — Procurar escola</div>
+    <h2>Mapa por distrito · lista por proximidade · vagas em tempo real do SIGE</h2>
+    <p>Filtros simples. Mapa com pins. Vagas lidas em directo do SIGE — não há promessas falsas.</p>
+  </div>
+
+  <div class="section">
+    <div class="row" style="gap:12px;margin-bottom:18px;flex-wrap:wrap">
+      <select class="select" style="flex:1;max-width:220px"><option>Cidade de Maputo · todos os distritos</option><option>KaMpfumu</option><option>KaMaxakeni</option><option>KaMavota</option><option>KaMubukwana</option></select>
+      <select class="select" style="flex:1;max-width:220px"><option>1.ª classe (entrada EP1)</option><option>6.ª classe (transição EP2)</option><option>8.ª classe (transição ESG)</option><option>11.ª classe (transição ESG2)</option></select>
+      <select class="select" style="flex:1;max-width:160px"><option>Todos os turnos</option><option>Manhã</option><option>Tarde</option><option>Noite</option></select>
+      <select class="select" style="flex:1;max-width:160px"><option>Pública e privada</option><option>Pública</option><option>Privada (registada SNE)</option><option>Comunitária</option></select>
+      <button class="btn">Procurar</button>
+    </div>
+
+    <div class="map" style="margin-bottom:18px">
+      <div class="pin" style="left:32%;top:34%"></div>
+      <div class="lbl" style="left:34%;top:30%">Esc. Sec. da Polana</div>
+
+      <div class="pin hi" style="left:46%;top:48%"></div>
+      <div class="lbl" style="left:48%;top:44%">Liceu Eduardo Mondlane</div>
+
+      <div class="pin" style="left:62%;top:42%"></div>
+      <div class="lbl" style="left:64%;top:38%">Esc. Sec. Josina Machel</div>
+
+      <div class="pin" style="left:74%;top:62%"></div>
+      <div class="lbl" style="left:76%;top:58%">Esc. Sec. Francisco Manyanga</div>
+
+      <div class="pin" style="left:24%;top:58%"></div>
+      <div class="lbl" style="left:26%;top:54%">Esc. Sec. da Malhangalene</div>
+
+      <div class="pin" style="left:40%;top:72%"></div>
+      <div class="lbl" style="left:42%;top:68%">Esc. Sec. Quisse Mavota</div>
+
+      <div style="position:absolute;top:14px;left:14px;background:#fff;padding:8px 10px;border:1px solid var(--line);border-radius:2px;font-size:11px;color:var(--ink-3)">Mapa esquemático · Cidade de Maputo · 6 escolas listadas</div>
+    </div>
+
+    <div class="col" style="gap:12px">
+
+      <div class="school-card" style="border-color:var(--indigo-700);background:var(--indigo-50)">
+        <div>
+          <div class="row" style="gap:10px;align-items:center;margin-bottom:6px"><span class="badge sepia"><span class="dot"></span>Recomendada</span><span class="badge"><span class="dot"></span>Pública</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Vagas disponíveis</span></div>
+          <div class="name">Liceu Eduardo Mondlane</div>
+          <div class="meta">Av. Eduardo Mondlane · KaMpfumu · turno manhã + tarde · ESG2</div>
+          <div class="meta" style="margin-top:6px">Frequência média 93,1% · 1 248 alunos · 86 professores · 1,4 km da residência</div>
+          <div class="row" style="gap:8px;margin-top:10px">
+            <a href="#cena-3" class="btn sm">Adicionar à candidatura</a>
+            <button class="btn ghost sm">Ver detalhe</button>
+          </div>
+        </div>
+        <div class="vagas">
+          <div class="t-overline" style="font-size:9px">Vagas por classe · 2027</div>
+          <div class="row spread"><span>1.ª classe</span><b>—</b></div>
+          <div class="bar"><div class="fill" style="width:0%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>11.ª classe</span><b>14 / 80</b></div>
+          <div class="bar amber"><div class="fill" style="width:18%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>12.ª classe</span><b>62 / 80</b></div>
+          <div class="bar"><div class="fill" style="width:78%"></div></div>
+        </div>
+      </div>
+
+      <div class="school-card">
+        <div>
+          <div class="row" style="gap:10px;align-items:center;margin-bottom:6px"><span class="badge"><span class="dot"></span>Pública</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Vagas disponíveis</span></div>
+          <div class="name">Escola Secundária da Polana</div>
+          <div class="meta">Av. Julius Nyerere · KaMpfumu · turno manhã · 8.ª–10.ª</div>
+          <div class="meta" style="margin-top:6px">Frequência média 92,4% · 1 248 alunos · 0,8 km da residência</div>
+          <div class="row" style="gap:8px;margin-top:10px">
+            <a href="#cena-3" class="btn sm secondary">Adicionar à candidatura</a>
+            <button class="btn ghost sm">Ver detalhe</button>
+          </div>
+        </div>
+        <div class="vagas">
+          <div class="t-overline" style="font-size:9px">Vagas por classe</div>
+          <div class="row spread"><span>8.ª classe</span><b>32 / 280</b></div>
+          <div class="bar amber"><div class="fill" style="width:11%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>9.ª classe</span><b>118 / 280</b></div>
+          <div class="bar"><div class="fill" style="width:42%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>10.ª classe</span><b>205 / 280</b></div>
+          <div class="bar"><div class="fill" style="width:73%"></div></div>
+        </div>
+      </div>
+
+      <div class="school-card">
+        <div>
+          <div class="row" style="gap:10px;align-items:center;margin-bottom:6px"><span class="badge"><span class="dot"></span>Pública</span><span class="badge red" style="font-size:10px"><span class="dot"></span>Sobrelotada</span></div>
+          <div class="name">Escola Secundária Josina Machel</div>
+          <div class="meta">Bairro Coop · KaMpfumu · 3 turnos · ESG + ESG2</div>
+          <div class="meta" style="margin-top:6px">Frequência média 91,2% · 2 410 alunos · 2,1 km</div>
+          <div class="row" style="gap:8px;margin-top:10px">
+            <button class="btn sm secondary" disabled>Sem vagas para 8.ª</button>
+            <button class="btn ghost sm">Ver detalhe</button>
+          </div>
+        </div>
+        <div class="vagas">
+          <div class="t-overline" style="font-size:9px">Vagas por classe</div>
+          <div class="row spread"><span>8.ª classe</span><b style="color:var(--red-700)">0 / 320</b></div>
+          <div class="bar red"><div class="fill" style="width:100%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>9.ª classe</span><b>4 / 320</b></div>
+          <div class="bar red"><div class="fill" style="width:99%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>10.ª classe</span><b>12 / 320</b></div>
+          <div class="bar red"><div class="fill" style="width:96%"></div></div>
+        </div>
+      </div>
+
+      <div class="school-card">
+        <div>
+          <div class="row" style="gap:10px;align-items:center;margin-bottom:6px"><span class="badge"><span class="dot"></span>Pública</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Vagas disponíveis</span></div>
+          <div class="name">Escola Secundária da Malhangalene</div>
+          <div class="meta">Av. Vladimir Lenine · KaMpfumu · turno tarde · ESG</div>
+          <div class="meta" style="margin-top:6px">Frequência média 88,9% · 980 alunos · 2,8 km</div>
+          <div class="row" style="gap:8px;margin-top:10px">
+            <a href="#cena-3" class="btn sm secondary">Adicionar à candidatura</a>
+            <button class="btn ghost sm">Ver detalhe</button>
+          </div>
+        </div>
+        <div class="vagas">
+          <div class="t-overline" style="font-size:9px">Vagas por classe</div>
+          <div class="row spread"><span>8.ª classe</span><b>148 / 240</b></div>
+          <div class="bar"><div class="fill" style="width:62%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>9.ª classe</span><b>92 / 240</b></div>
+          <div class="bar"><div class="fill" style="width:38%"></div></div>
+          <div class="row spread" style="margin-top:4px"><span>10.ª classe</span><b>40 / 240</b></div>
+          <div class="bar amber"><div class="fill" style="width:17%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Hero</a><a class="btn secondary sm" href="#cena-3">Iniciar candidatura →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · WIZARD PASSO 1+2 =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="scene-title">
+    <div class="num">CENA 3 · F4 — Wizard de candidatura · passos 1 e 2</div>
+    <h2>Encarregado (BI eBI · OTP) · aluno (cédula)</h2>
+    <p>Lookup eBI pré-preenche os dados. Encarregado confirma; aluno tem dados básicos do registo civil.</p>
+  </div>
+
+  <div class="section">
+    <div class="wiz-shell">
+      <aside class="wiz-side">
+        <div class="t-overline" style="margin-bottom:10px">Candidatura</div>
+        <div class="wiz-step done"><div class="n">1</div><div class="lb"><b>Encarregado</b><small>BI · OTP</small></div></div>
+        <div class="wiz-step active"><div class="n">2</div><div class="lb"><b>Aluno</b><small>Cédula · dados</small></div></div>
+        <div class="wiz-step"><div class="n">3</div><div class="lb"><b>Escolas</b><small>Até 3 preferências</small></div></div>
+        <div class="wiz-step"><div class="n">4</div><div class="lb"><b>Necessidades</b><small>Saúde, família, língua</small></div></div>
+        <div class="wiz-step"><div class="n">5</div><div class="lb"><b>Confirmação</b><small>Assinatura digital</small></div></div>
+
+        <hr class="hr">
+
+        <div class="t-overline">Encarregado</div>
+        <div style="margin-top:8px;font-size:13px"><b>Lúcia Cuamba</b><div class="t-meta mono">110100099877 D</div><div class="t-meta">+258 84 ••• ••42</div></div>
+
+        <hr class="hr">
+
+        <p class="t-meta">Tempo estimado · 6 min restantes</p>
+      </aside>
+
+      <main>
+        <div class="card">
+          <div class="hd"><b>Passo 2 · dados da aluna</b><span class="t-meta">Lidos do eBI · pode editar excepto BI</span></div>
+          <div class="bd col">
+            <div class="grid g-2" style="gap:14px">
+              <div class="field"><label>Cédula / BI da aluna</label><input class="input mono lg" value="110100099876 D" disabled /></div>
+              <div class="field"><label>Data de nascimento</label><input class="input mono" value="14 Mar 2012" disabled /></div>
+              <div class="field"><label>Nome completo</label><input class="input lg" value="Naila Sumaila Cuamba" /></div>
+              <div class="field"><label>Sexo</label><select class="select"><option>F</option><option>M</option></select></div>
+              <div class="field"><label>Naturalidade</label><input class="input" value="Maxixe · Inhambane" /></div>
+              <div class="field"><label>Nacionalidade</label><input class="input" value="Moçambicana" /></div>
+            </div>
+
+            <hr class="hr">
+
+            <div class="t-overline">Histórico escolar (lido do SIGE nacional)</div>
+            <div class="card" style="margin-top:8px"><div class="bd" style="padding:12px">
+              <p style="font-size:13px;margin:0;line-height:1.6"><b>Esc. Prim. Compl. de Maxixe</b> · 1.ª–5.ª classe (2018–2022) · transitou.<br>
+              <b>Esc. Sec. da Polana</b> · 6.ª–7.ª classe (2024–2025) · transitou. 8.ª em curso.</p>
+              <p class="t-meta" style="margin:8px 0 0">A candidatura é para a <b>9.ª classe (2027)</b>.</p>
+            </div></div>
+
+            <hr class="hr">
+
+            <div class="t-overline">Endereço da residência</div>
+            <div class="grid g-3" style="gap:14px;margin-top:8px">
+              <div class="field"><label>Província</label><input class="input" value="Cidade de Maputo" /></div>
+              <div class="field"><label>Distrito</label><select class="select"><option>KaMpfumu</option></select></div>
+              <div class="field"><label>Bairro</label><input class="input" value="Polana Cimento" /></div>
+            </div>
+            <div class="grid g-2" style="gap:14px;margin-top:14px">
+              <div class="field"><label>Endereço</label><input class="input" value="Rua de Argélia, 124" /></div>
+              <div class="field"><label>Ponto de referência (opcional)</label><input class="input" value="Junto à Embaixada da Suécia" /></div>
+            </div>
+            <p class="t-meta" style="margin-top:8px">O endereço é usado pelo algoritmo para calcular a distância às escolas. Não é partilhado com terceiros.</p>
+          </div>
+          <div class="ft">
+            <button class="btn ghost">Cancelar</button>
+            <div class="row"><button class="btn secondary">Guardar como rascunho</button><a href="#cena-4" class="btn">Continuar para escolha de escolas →</a></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Procurar</a><a class="btn secondary sm" href="#cena-4">Escolha de escolas →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · WIZARD PASSO 3 =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="scene-title">
+    <div class="num">CENA 4 · F4 — Wizard · passo 3 · escolha de escolas</div>
+    <h2>Até 3 escolas, ordenadas por preferência</h2>
+    <p>O algoritmo respeita a ordem. 1.ª preferência vale 3000 pts, 2.ª 2000, 3.ª 1000. Mostrar vagas, distância, frequência.</p>
+  </div>
+
+  <div class="section">
+    <div class="wiz-shell">
+      <aside class="wiz-side">
+        <div class="t-overline" style="margin-bottom:10px">Candidatura</div>
+        <div class="wiz-step done"><div class="n">1</div><div class="lb"><b>Encarregado</b><small>OK</small></div></div>
+        <div class="wiz-step done"><div class="n">2</div><div class="lb"><b>Aluno</b><small>OK</small></div></div>
+        <div class="wiz-step active"><div class="n">3</div><div class="lb"><b>Escolas</b><small>2 de 3</small></div></div>
+        <div class="wiz-step"><div class="n">4</div><div class="lb"><b>Necessidades</b><small></small></div></div>
+        <div class="wiz-step"><div class="n">5</div><div class="lb"><b>Confirmação</b><small></small></div></div>
+
+        <hr class="hr">
+
+        <div class="t-overline">Aluna</div>
+        <div style="margin-top:8px;font-size:13px"><b>Naila S. Cuamba</b><div class="t-meta">9.ª classe · 2027</div></div>
+
+        <hr class="hr">
+
+        <p class="t-meta">5 min restantes</p>
+      </aside>
+
+      <main>
+        <div class="banner indigo" style="margin-bottom:14px"><span class="ic"></span><div><b>Como funciona.</b> Pode escolher até 3 escolas. A ordem importa: o algoritmo tenta colocar primeiro na 1.ª preferência. Se não houver vagas, tenta a 2.ª, depois a 3.ª. <a href="#cena-7">Ver detalhe</a>.</div></div>
+
+        <div class="t-overline" style="margin-bottom:8px">As suas preferências</div>
+
+        <div class="col" style="gap:10px;margin-bottom:18px">
+          <div class="pref-card">
+            <div class="pref-num">1</div>
+            <div style="flex:1">
+              <b style="font-size:14px">Liceu Eduardo Mondlane</b>
+              <div class="t-meta">9.ª classe · turno manhã · 1,4 km · frequência 93,1%</div>
+              <div class="row" style="gap:8px;margin-top:6px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Vagas: 84 / 280</span><span class="badge"><span class="dot"></span>Pública</span></div>
+            </div>
+            <div class="row" style="gap:6px"><button class="btn ghost sm">↑</button><button class="btn ghost sm">↓</button><button class="btn ghost sm">×</button></div>
+          </div>
+
+          <div class="pref-card">
+            <div class="pref-num" style="background:var(--indigo-600)">2</div>
+            <div style="flex:1">
+              <b style="font-size:14px">Escola Secundária da Polana</b>
+              <div class="t-meta">9.ª classe · turno manhã · 0,8 km · frequência 92,4%</div>
+              <div class="row" style="gap:8px;margin-top:6px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Vagas: 118 / 280</span><span class="badge sepia" style="font-size:10px"><span class="dot"></span>Irmão matriculado · +500 pts</span></div>
+            </div>
+            <div class="row" style="gap:6px"><button class="btn ghost sm">↑</button><button class="btn ghost sm">↓</button><button class="btn ghost sm">×</button></div>
+          </div>
+
+          <div class="pref-card" style="border-style:dashed;background:var(--bg-2);justify-content:center">
+            <div class="pref-num" style="background:var(--bg-2);color:var(--ink-3);border:1px dashed var(--line)">3</div>
+            <div style="flex:1"><b style="color:var(--ink-3);font-size:13.5px">Adicionar 3.ª preferência (opcional)</b></div>
+            <button class="btn secondary sm">+ Procurar escola</button>
+          </div>
+        </div>
+
+        <hr class="hr">
+
+        <div class="t-overline" style="margin-bottom:8px">Pontuação estimada (com base nos dados actuais)</div>
+        <div class="card"><div class="bd">
+          <table class="table">
+            <thead><tr><th>Preferência</th><th>Escola</th><th style="text-align:right">Pts. preferência</th><th style="text-align:right">Pts. irmão</th><th style="text-align:right">Pts. distância</th><th style="text-align:right">Total est.</th></tr></thead>
+            <tbody>
+              <tr><td>1.ª</td><td>Liceu Eduardo Mondlane</td><td style="text-align:right">3 000</td><td style="text-align:right">0</td><td style="text-align:right">218</td><td style="text-align:right"><b class="mono">3 218</b></td></tr>
+              <tr><td>2.ª</td><td>Esc. Sec. da Polana</td><td style="text-align:right">2 000</td><td style="text-align:right">500</td><td style="text-align:right">258</td><td style="text-align:right"><b class="mono">2 758</b></td></tr>
+            </tbody>
+          </table>
+        </div></div>
+        <p class="t-meta" style="margin-top:8px">Pontuação final inclui factor aleatório (0–50) para desempate. <a href="#cena-7">Ver fórmula</a>.</p>
+
+        <div class="row spread" style="margin-top:24px">
+          <a href="#cena-3" class="btn ghost">← Voltar</a>
+          <a href="#cena-5" class="btn">Continuar →</a>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Aluno</a><a class="btn secondary sm" href="#cena-5">Confirmação →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · CONFIRMAÇÃO =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="scene-title">
+    <div class="num">CENA 5 · F4 — Wizard · passo 5 · confirmação</div>
+    <h2>Resumo · OTP do encarregado · submissão</h2>
+    <p>Dois passos: rever resumo, confirmar com OTP. Após submissão, processo P-2027-MAT-MAP-XXX e SMS de confirmação.</p>
+  </div>
+
+  <div class="section" style="position:relative;min-height:600px">
+    <div class="wiz-shell" style="opacity:.55;pointer-events:none">
+      <aside class="wiz-side"><div class="t-overline">Candidatura</div></aside>
+      <main><div class="card"><div class="bd">Resumo da candidatura…</div></div></main>
+    </div>
+
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:620px">
+        <div class="hd"><div><b>Confirmar candidatura · Naila S. Cuamba · 9.ª classe · 2027</b><div class="t-meta">Esta acção submete a candidatura à DPEDH Cidade de Maputo.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner indigo"><span class="ic"></span><div>Após submissão, a candidatura entra no algoritmo nacional. <b>Resultado a 25 Out 2026.</b> Pode acompanhar em "Minhas candidaturas" e receberá SMS.</div></div>
+
+          <div class="t-overline">Resumo</div>
+          <div class="card"><div class="bd">
+            <div class="kv" style="margin-bottom:8px"><span class="k">Aluna</span><span class="v">Naila Sumaila Cuamba · BI 110100099876 D</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Encarregada</span><span class="v">Lúcia Cuamba (mãe) · 110100099877 D</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Classe candidatada</span><span class="v">9.ª classe · ESG · ano lectivo 2027</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Preferências</span><span class="v">1.ª Liceu Eduardo Mondlane · 2.ª Esc. Sec. da Polana</span></div>
+            <div class="kv" style="margin-bottom:8px"><span class="k">Necessidades especiais</span><span class="v">Nenhuma declarada</span></div>
+            <div class="kv"><span class="k">Irmãos matriculados</span><span class="v">Sumaila Cuamba (12.ª) na Esc. Sec. da Polana</span></div>
+          </div></div>
+
+          <hr class="hr">
+
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Declaro que os dados são verdadeiros e autorizo a verificação cruzada com o eBI e o registo nacional.</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Aceito que a atribuição segue o algoritmo público da DED, sem possibilidade de favorecimento.</label>
+
+          <div class="field">
+            <label>OTP da encarregada (SMS para +258 84 ••• ••42)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="2" />
+              <input class="input mono" style="text-align:center;width:42px" value="7" />
+              <input class="input mono" style="text-align:center;width:42px" value="4" />
+              <input class="input mono" style="text-align:center;width:42px" value="3" />
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Reenviar em 00:48</span>
+          </div>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Voltar para revisão</button>
+          <a href="#cena-6" class="btn">Submeter candidatura · 9.ª classe · 2027</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Escolas</a><a class="btn secondary sm" href="#cena-6">Estado da candidatura →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · ATRIBUIÇÃO =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="scene-title">
+    <div class="num">CENA 6 · F5 — Atribuição transparente</div>
+    <h2>Resultado · Naila atribuída ao Liceu Eduardo Mondlane (1.ª preferência)</h2>
+    <p>Mostra a escola, a justificação algorítmica, a posição em cada lista, o prazo de confirmação.</p>
+  </div>
+
+  <div class="section">
+    <div class="banner green" style="margin-bottom:18px"><span class="ic"></span><div><b>Atribuição publicada · 25 Out 2026 · 09:00.</b> Naila Sumaila Cuamba foi colocada no <b>Liceu Eduardo Mondlane · 9.ª classe</b>. Tem até 1 Nov 2026 (7 dias) para confirmar a vaga.</div></div>
+
+    <div class="grid g-2" style="gap:24px">
+      <div class="card">
+        <div class="hd"><b>Atribuição</b><span class="badge sepia"><span class="dot"></span>1.ª preferência</span></div>
+        <div class="bd">
+          <div class="row" style="gap:14px;margin-bottom:14px"><span class="av lg">LM</span><div><div class="t-h3">Liceu Eduardo Mondlane</div><div class="t-meta">9.ª classe · turno manhã · sala B-104 · ano lectivo 2027</div></div></div>
+
+          <hr class="hr">
+
+          <div class="t-overline">Justificação</div>
+          <div class="col" style="gap:6px;margin-top:8px">
+            <div class="algo-step"><div class="pts">+3 000</div><div><div class="lbl">1.ª preferência da família</div><div class="desc">Maior peso no algoritmo.</div></div><div class="t-meta" style="text-align:right"><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div></div>
+            <div class="algo-step"><div class="pts">+218</div><div><div class="lbl">Distância à residência</div><div class="desc">1,4 km · 91 percentil de proximidade.</div></div><div class="t-meta" style="text-align:right"><span class="badge green" style="font-size:10px"><span class="dot"></span>OK</span></div></div>
+            <div class="algo-step"><div class="pts">+0</div><div><div class="lbl">Irmão matriculado</div><div class="desc">Sumaila Cuamba está na Esc. Sec. da Polana, não no Liceu.</div></div><div class="t-meta" style="text-align:right"><span class="badge"><span class="dot"></span>—</span></div></div>
+            <div class="algo-step"><div class="pts">+0</div><div><div class="lbl">Distrito de nascimento</div><div class="desc">Naila nasceu em Maxixe (Inhambane). Liceu fica em Maputo.</div></div><div class="t-meta" style="text-align:right"><span class="badge"><span class="dot"></span>—</span></div></div>
+            <div class="algo-step"><div class="pts">+22</div><div><div class="lbl">Factor aleatório (tie-breaker)</div><div class="desc">Distribuído uniforme [0..50].</div></div><div class="t-meta" style="text-align:right"><span class="badge"><span class="dot"></span>—</span></div></div>
+            <div class="algo-step" style="background:var(--indigo-50);border-color:var(--indigo-700)"><div class="pts" style="color:var(--indigo-700)">3 240</div><div><div class="lbl">Total · pontuação final</div><div class="desc">Posição: <b>14.ª</b> entre 312 candidatos para 84 vagas. Atribuição efectiva.</div></div><div class="t-meta" style="text-align:right"><span class="badge green" style="font-size:10px"><span class="dot"></span>Atribuída</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="hd"><b>Próximos passos</b></div>
+          <div class="bd col">
+            <div class="row" style="gap:12px;align-items:flex-start"><span class="av sm" style="background:var(--indigo-100);color:var(--indigo-700)">1</span><div style="flex:1"><b style="font-size:14px">Confirmar a aceitação</b><p class="t-meta" style="margin:4px 0 0">Até 1 Nov 2026. Sem confirmação, a vaga liberta-se para a lista de espera.</p><a class="btn sm" style="margin-top:8px">Confirmar com OTP</a></div></div>
+            <div class="row" style="gap:12px;align-items:flex-start;opacity:.5"><span class="av sm">2</span><div style="flex:1"><b style="font-size:14px">Onboarding na App do Aluno</b><p class="t-meta" style="margin:4px 0 0">Após confirmação · convite enviado por SMS.</p></div></div>
+            <div class="row" style="gap:12px;align-items:flex-start;opacity:.5"><span class="av sm">3</span><div style="flex:1"><b style="font-size:14px">Apresentação à escola</b><p class="t-meta" style="margin:4px 0 0">15 Jan 2027 · às 08:00 · Liceu Eduardo Mondlane · sala B-104.</p></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Não concorda com a atribuição?</b></div>
+          <div class="bd col">
+            <p class="t-body" style="margin:0">Se considera que houve erro nos dados ou na aplicação do algoritmo, pode submeter recurso à DPEDH Cidade de Maputo. O recurso é decidido em 10 dias úteis.</p>
+            <a class="btn secondary block">Submeter recurso</a>
+            <p class="t-meta" style="margin:0">O recurso suspende o prazo de confirmação até decisão.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Comparação · todas as candidaturas</b></div>
+          <div class="bd">
+            <table class="table">
+              <thead><tr><th>Pref.</th><th>Escola</th><th>Posição</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr style="background:var(--indigo-50)"><td>1.ª</td><td><b>Liceu Eduardo Mondlane</b></td><td>14.ª de 84</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Atribuída</span></td></tr>
+                <tr><td>2.ª</td><td>Esc. Sec. da Polana</td><td>—</td><td><span class="badge" style="font-size:10px"><span class="dot"></span>Não avaliada (atribuída na 1.ª)</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hr">
+
+    <div class="t-overline" style="margin-bottom:10px">Outras candidaturas no agregado familiar</div>
+    <div class="card">
+      <div class="bd">
+        <div class="row spread" style="padding:8px 0;border-bottom:1px solid var(--line-2)">
+          <div class="row" style="gap:10px"><span class="av sm">SC</span><div><b style="font-size:13px">Sumaila Cuamba</b><div class="t-meta">12.ª classe · 2027</div></div></div>
+          <div class="row" style="gap:10px"><span class="badge green" style="font-size:10px"><span class="dot"></span>Atribuída · Esc. Sec. da Polana</span><a href="#" class="btn sm secondary">Ver</a></div>
+        </div>
+        <div class="row spread" style="padding:8px 0">
+          <div class="row" style="gap:10px"><span class="av sm">PC</span><div><b style="font-size:13px">Patrícia Cuamba</b><div class="t-meta">1.ª classe · 2027 · entrada EP1</div></div></div>
+          <div class="row" style="gap:10px"><span class="badge amber" style="font-size:10px"><span class="dot"></span>Lista de espera · Esc. Prim. Compl. Polana</span><a href="#" class="btn sm secondary">Ver</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Confirmação</a><a class="btn secondary sm" href="#cena-7">Sobre o algoritmo →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · ALGORITMO =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="scene-title">
+    <div class="num">CENA 7 · F8 — Sobre o algoritmo</div>
+    <h2>Página pública · explicação simples primeiro · pseudo-código depois</h2>
+    <p>Cidadania transparente. Quem é maior de idade pode ler e auditar.</p>
+  </div>
+
+  <div class="section">
+    <div style="max-width:760px;margin:0 auto">
+      <h2 class="t-h2" style="margin-bottom:14px">Como atribuímos as vagas</h2>
+      <p style="font-size:15px;line-height:1.65;color:var(--ink-2);margin:0 0 18px">A atribuição não é por sorteio nem por ordem de chegada. É um <b>algoritmo de pontuação</b> que premeia (1) a sua preferência, (2) a coesão familiar (irmãos na mesma escola), e (3) a proximidade geográfica. Os critérios e os pesos são públicos.</p>
+
+      <hr class="hr">
+
+      <h3 class="t-h3" style="margin:0 0 12px">Os cinco critérios</h3>
+
+      <div class="col" style="gap:10px;margin-bottom:18px">
+        <div class="algo-step"><div class="pts">3 000</div><div><div class="lbl">1.ª preferência</div><div class="desc">A escola que escolheu como primeira opção.</div></div><div class="t-meta" style="text-align:right">2.ª: 2 000<br>3.ª: 1 000</div></div>
+        <div class="algo-step"><div class="pts">+500</div><div><div class="lbl">Irmão na escola</div><div class="desc">Se o aluno tem irmão já matriculado nessa escola.</div></div><div class="t-meta" style="text-align:right">por aluno</div></div>
+        <div class="algo-step"><div class="pts">+0..300</div><div><div class="lbl">Proximidade geográfica</div><div class="desc">Calculada do endereço da residência. Mais perto, mais pontos.</div></div><div class="t-meta" style="text-align:right">linear</div></div>
+        <div class="algo-step"><div class="pts">+100</div><div><div class="lbl">Distrito de nascimento</div><div class="desc">Se o aluno nasceu no distrito da escola.</div></div><div class="t-meta" style="text-align:right">binário</div></div>
+        <div class="algo-step"><div class="pts">+0..50</div><div><div class="lbl">Factor aleatório</div><div class="desc">Para desempate. Sorteado uma vez por candidatura.</div></div><div class="t-meta" style="text-align:right">uniforme</div></div>
+      </div>
+
+      <hr class="hr">
+
+      <h3 class="t-h3" style="margin:0 0 12px">Pseudo-código</h3>
+      <pre class="mono" style="background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-2);padding:18px;font-size:12px;line-height:1.6;overflow-x:auto;margin:0">para cada candidatura C:
+  para cada escola E em preferências de C (até 3):
+    se E tem vagas na classe pedida:
+      pontuação = 0
+      pontuação += 1000 × (4 − ordem_preferência)   # 1.ª = 3000
+      pontuação +=  500 se C tem irmão matriculado em E
+      pontuação +=  300 × (1 − distância_normalizada)
+      pontuação +=  100 se C nasceu no distrito da E
+      pontuação +=  ponto_aleatório [0..50]
+      ordenar candidatos por pontuação
+      atribuir as primeiras N vagas (N = vagas disponíveis)
+      restantes → lista de espera</pre>
+
+      <hr class="hr">
+
+      <h3 class="t-h3" style="margin:0 0 12px">Resultado público</h3>
+      <p style="font-size:14px;line-height:1.65;color:var(--ink-2);margin:0 0 14px">Após cada campanha, publicamos:</p>
+      <ul style="font-size:14px;line-height:1.7;color:var(--ink-2);padding-left:20px;margin:0">
+        <li>Distribuição final de pontuações por escola (anónima, agregada)</li>
+        <li>Número de candidatos vs vagas, por classe</li>
+        <li>Taxa de atribuição em 1.ª preferência (nacional, provincial e por escola)</li>
+        <li>Número de recursos submetidos e respectivas decisões</li>
+        <li>Código-fonte do algoritmo no GitLab público da DED</li>
+      </ul>
+
+      <hr class="hr">
+
+      <div class="banner indigo"><span class="ic"></span><div><b>Auditoria.</b> O algoritmo é auditável por instituições da sociedade civil — Centro de Integridade Pública (CIP), Liga dos Direitos Humanos (LDH), e investigadores universitários. Os dados não-pessoais estão em <a class="mono">https://dados.educacao.gov.mz/matriculas</a>.</div></div>
+
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Atribuição</a><a class="btn secondary sm" href="index.html">Voltar à visão geral →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1200px;margin:0 auto" class="row spread">
+    <div class="t-meta">Portal de Matrículas v0.3 · documento autoritativo: <a class="mono" href="DESIGN-matriculas.md">DESIGN-matriculas.md</a></div>
+    <div class="row">
+      <a href="biblioteca.html" class="btn ghost sm">← Biblioteca</a>
+      <a href="index.html" class="btn secondary sm">Visão geral →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

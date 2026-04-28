@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Caderno do Aluno — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .stage{padding:32px 0;background:var(--bg-2)}
+  .stageInner{max-width:1240px;margin:0 auto;padding:0 24px}
+  .phones{display:flex;gap:24px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+  .phones .phone{flex:0 0 auto}
+  .scene-title{padding:24px 0 0;max-width:1240px;margin:0 auto;width:100%;padding-left:24px;padding-right:24px}
+  .scene-title .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .scene-title h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .scene-title p{margin:0;color:var(--ink-3);font-size:13px;max-width:720px;line-height:1.5}
+  .scene-end{padding:14px 24px 28px;max-width:1240px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);margin-top:18px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+
+  .ph-content{flex:1;overflow-y:auto;padding:14px}
+  .top-min{height:48px;display:flex;align-items:center;padding:0 14px;background:#fff;border-bottom:1px solid var(--line);gap:10px;flex:0 0 auto}
+  .top-min .child-pill{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 10px 0 4px;background:var(--indigo-100);color:var(--indigo-900);border-radius:20px;font-size:12px;font-weight:600}
+  .top-min .child-pill .av{width:24px;height:24px;font-size:10px}
+  .lesson-card{background:linear-gradient(135deg,var(--indigo-700),var(--indigo-800));color:#fff;border-radius:var(--r-2);padding:16px}
+  .lesson-card .next{font-size:11px;color:#cdc8e2;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .lesson-card .ti{font-size:18px;font-weight:600;margin-top:6px}
+  .lesson-card .meta{font-size:12px;color:#cdc8e2;margin-top:4px}
+  .lesson-card .cd{font-family:var(--f-mono);font-size:24px;font-weight:600;margin-top:10px}
+  .item-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:12px}
+  .grade-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+  .grade-row:last-child{border-bottom:0}
+  .grade-row .info{flex:1}
+  .grade-row .info b{font-size:14px;display:block}
+  .grade-row .info small{font-size:11px;color:var(--ink-3)}
+  .pin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+  .pin-grid button{height:54px;border:1px solid var(--line);border-radius:var(--r-2);background:#fff;font-family:var(--f-mono);font-size:18px;font-weight:600;color:var(--ink);cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · Direcção de Educação Digital — DED</span><span class="sep">·</span>
+  <span>Caderno do Aluno v0.3</span>
+  <span style="margin-left:auto">DESIGN-aluno.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Caderno do Aluno</span><small>Mobile · PWA</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="sige.html">SIGE</a>
+    <a href="professor.html">Professor</a>
+    <a href="aluno.html" class="active">Aluno</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="matriculas.html">Matrículas</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-aluno.md" class="btn secondary sm">DESIGN-aluno.md</a>
+  </div>
+</header>
+
+<!-- =================== CENA 1 · ONBOARDING =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="scene-title">
+    <div class="num">CENA 1 · F1 — Onboarding com consentimento parental</div>
+    <h2>Naila (14) · BI · OTP do encarregado · consentimento</h2>
+    <p>Quatro passos: BI da aluna, telefone do encarregado, OTP, consentimento parental para &lt;18 com texto explícito.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>09:42</span><span class="icons">📶 4G · 78%</span></div>
+            <div class="ph-content" style="background:var(--indigo-900);color:#cdc8e2">
+              <div style="margin-top:32px">
+                <div class="brand mark" style="width:40px;height:40px;display:inline-block;background:#fff;position:relative;border-radius:2px"></div>
+                <h2 style="color:#fff;font-size:24px;font-weight:600;margin:24px 0 8px;line-height:1.2">Caderno do Aluno</h2>
+                <p style="color:#cdc8e2;font-size:14px;line-height:1.55">A tua escola, no telemóvel do teu encarregado.</p>
+              </div>
+              <div style="margin-top:24px">
+                <div class="t-overline" style="color:#9990bd">Passo 1 de 4</div>
+                <div style="font-size:18px;color:#fff;font-weight:600;margin-top:6px">BI ou cédula da aluna</div>
+              </div>
+              <div style="margin-top:18px;background:rgba(255,255,255,.08);padding:14px;border-radius:var(--r-2);border:1px solid rgba(255,255,255,.12)">
+                <input class="input mono lg" style="background:transparent;border-color:rgba(255,255,255,.25);color:#fff;font-size:18px" value="110100099876D" />
+                <div class="t-meta" style="color:#9990bd;margin-top:8px">Lemos do eBI (Governo Digital). Sem partilha entre sistemas para outros fins.</div>
+              </div>
+              <button class="btn lg block" style="margin-top:18px;background:#fff;color:var(--indigo-900)">Continuar</button>
+              <div style="margin-top:18px;color:#9990bd;font-size:12px;text-align:center">Já tens conta? <a style="color:#fff">Iniciar sessão</a></div>
+            </div>
+            <div class="nav-bottom" style="background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.08)">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>09:43</span><span class="icons">📶 4G · 78%</span></div>
+            <div class="ph-content">
+              <div class="t-overline">Passo 3 de 4</div>
+              <h3 class="t-h2" style="margin:6px 0 4px">Código por SMS</h3>
+              <p class="t-meta" style="margin:0">Para <b>Lúcia Cuamba</b> (mãe) · <span class="mono">+258 84 ••• ••42</span></p>
+              <div class="row" style="gap:6px;margin:18px 0">
+                <input class="input mono lg" style="text-align:center;width:42px" value="7" />
+                <input class="input mono lg" style="text-align:center;width:42px" value="3" />
+                <input class="input mono lg" style="text-align:center;width:42px" value="8" />
+                <input class="input mono lg" style="text-align:center;width:42px" value="2" />
+                <input class="input mono lg" style="text-align:center;width:42px" value="1" />
+                <input class="input mono lg" style="text-align:center;width:42px" value="" />
+              </div>
+              <a href="#cena-2" class="btn lg block">Verificar</a>
+              <div class="row spread" style="margin-top:14px"><span class="t-meta">Reenviar 00:31</span><span class="t-meta">DED 1466</span></div>
+
+              <hr class="hr">
+
+              <div class="banner indigo" style="font-size:12.5px;line-height:1.5"><span class="ic"></span><div><b>Porque pedimos OTP do encarregado?</b><br>A Naila tem menos de 18 anos. O consentimento parental é exigido por lei (Lei 22/2007, art. 28).</div></div>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>09:44</span><span class="icons">📶 4G · 77%</span></div>
+            <div class="ph-content">
+              <div class="t-overline">Passo 4 de 4</div>
+              <h3 class="t-h2" style="margin:6px 0 4px">Consentimento parental</h3>
+              <p class="t-meta">Lúcia Cuamba (mãe) · BI 110100099877 D</p>
+
+              <div class="card" style="margin-top:14px"><div class="bd" style="padding:14px">
+                <p style="font-size:13px;line-height:1.55;margin:0">Autorizo que <b>Naila Sumaila Cuamba</b> (n. 14 Mar 2012) receba pelo Caderno do Aluno:</p>
+                <ul style="font-size:13px;line-height:1.6;margin:10px 0 0;padding-left:18px">
+                  <li>A pauta trimestral validada</li>
+                  <li>Trabalhos de casa do professor</li>
+                  <li>Mensagens da direcção da escola</li>
+                  <li>Acesso à Biblioteca Pública Nacional</li>
+                </ul>
+                <p style="font-size:13px;line-height:1.55;margin-top:10px">Reservo-me o direito de:</p>
+                <ul style="font-size:13px;line-height:1.6;margin:6px 0 0;padding-left:18px">
+                  <li>Submeter recursos de nota em meu nome</li>
+                  <li>Justificar faltas em meu nome</li>
+                  <li>Revogar este consentimento a qualquer momento</li>
+                </ul>
+              </div></div>
+
+              <label class="row" style="gap:10px;margin-top:14px;font-size:13px"><input type="checkbox" checked /> Li e autorizo nos termos acima.</label>
+
+              <a href="#cena-2" class="btn lg block" style="margin-top:14px">Confirmar e continuar</a>
+              <button class="btn ghost block" style="margin-top:6px">Cancelar</button>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Modo do telemóvel é decidido depois (apenas aluno · partilhado · apenas encarregado).</span><a class="btn secondary sm" href="#cena-2">Hoje →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · HOJE =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="scene-title">
+    <div class="num">CENA 2 · F2 — Hoje</div>
+    <h2>Vista da Naila (modo aluna) · próxima aula · TPC pendente · mensagem nova</h2>
+    <p>Sem feed, sem badges, sem "5 dias seguidos!". Apenas o que acontece hoje.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>06:48</span><span class="icons">📶 4G · 81%</span></div>
+            <div class="top-min">
+              <div class="child-pill"><span class="av">NC</span><b>Naila</b></div>
+              <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">Quarta · 15 Abr</span>
+              <span class="conn" style="height:24px;font-size:11px;padding:0 8px"><span class="d"></span></span>
+            </div>
+            <div class="ph-content">
+              <div class="lesson-card">
+                <div class="next">Próxima aula · em 12 min</div>
+                <div class="ti">Matemática · 8.ª A</div>
+                <div class="meta">Prof. Eulália Mussagy · sala A-204</div>
+                <div class="cd">07:00–07:45</div>
+              </div>
+
+              <div class="t-overline" style="margin-top:18px">Trabalhos de casa</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <div class="item-card">
+                  <div class="row spread" style="align-items:flex-start"><div class="row" style="gap:10px;align-items:center"><span class="subj mat" style="height:24px;padding:0 8px;font-size:10px">Mat</span><div><b style="font-size:13px">Equações 1.º grau · pág. 48</b><div class="t-meta">Prazo: amanhã · 6.ª-feira</div></div></div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Por fazer</span></div>
+                </div>
+                <div class="item-card">
+                  <div class="row spread" style="align-items:flex-start"><div class="row" style="gap:10px;align-items:center"><span class="subj port" style="height:24px;padding:0 8px;font-size:10px">Port</span><div><b style="font-size:13px">Composição · "A minha aldeia"</b><div class="t-meta">Prazo: 18 Abr · 2.ª-feira</div></div></div><span class="badge" style="font-size:10px"><span class="dot"></span>Em curso</span></div>
+                </div>
+              </div>
+
+              <div class="t-overline" style="margin-top:18px">Mensagens da escola</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <div class="item-card" style="border-left:3px solid var(--indigo-700)">
+                  <div class="row spread"><b style="font-size:13px">Pauta do 1.º Trimestre</b><span class="t-meta">04 Abr</span></div>
+                  <p style="font-size:12.5px;color:var(--ink-2);margin:6px 0 0">A pauta de Matemática foi validada. Vê em Pauta · 1.º Trimestre.</p>
+                </div>
+                <div class="item-card">
+                  <div class="row spread"><b style="font-size:13px">Reunião de encarregados</b><span class="t-meta">02 Abr</span></div>
+                  <p style="font-size:12.5px;color:var(--ink-2);margin:6px 0 0">Sábado, 19 Abr · 09h · sala A-204. Apresentação do trimestre.</p>
+                </div>
+              </div>
+
+              <div style="height:14px"></div>
+            </div>
+            <div class="nav-bottom">
+              <a class="active"><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>06:48</span><span class="icons">📶 4G · 81%</span></div>
+            <div class="top-min">
+              <div class="child-pill"><span class="av">LC</span><b>Lúcia (mãe) · Naila</b></div>
+              <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">Modo encarregado</span>
+            </div>
+            <div class="ph-content">
+              <div class="banner indigo" style="font-size:12.5px"><span class="ic"></span><div><b>Modo encarregado activo.</b> Vê o mesmo que a Naila, e pode justificar faltas, submeter recurso e ver mensagens reservadas.</div></div>
+
+              <div class="t-overline" style="margin-top:14px">Acções pendentes (suas)</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <div class="item-card" style="border-left:3px solid var(--amber-500)">
+                  <div class="row spread"><b style="font-size:13px">Justificar falta · 14 Abr</b><span class="badge amber" style="font-size:10px"><span class="dot"></span>Pendente</span></div>
+                  <p style="font-size:12.5px;color:var(--ink-2);margin:6px 0 0">Português · 14 Abr · A escola pede justificação até 21 Abr.</p>
+                  <a href="#cena-9" class="btn sm" style="margin-top:8px">Justificar agora</a>
+                </div>
+                <div class="item-card">
+                  <div class="row spread"><b style="font-size:13px">Confirmar recepção da pauta</b><span class="badge" style="font-size:10px"><span class="dot"></span>1.º Trimestre</span></div>
+                  <p style="font-size:12.5px;color:var(--ink-2);margin:6px 0 0">Mat · 17 valores · validada por C. Bila a 04 Abr.</p>
+                  <button class="btn sm secondary" style="margin-top:8px">Confirmar</button>
+                </div>
+              </div>
+
+              <div class="t-overline" style="margin-top:18px">A Naila</div>
+              <div class="card" style="margin-top:8px"><div class="bd" style="padding:12px">
+                <div class="row" style="gap:10px"><span class="av">NC</span><div><b style="font-size:13px">Naila Sumaila Cuamba</b><div class="t-meta">8.ª A · Esc. Sec. da Polana · frequência 98%</div></div></div>
+                <hr class="hr">
+                <div class="row" style="gap:6px;flex-wrap:wrap"><span class="grade sm pass">17</span><span class="grade sm pass">15</span><span class="grade sm pass">14</span><span class="grade sm pass">17</span><span class="grade sm pass">16</span><span class="grade sm pass">13</span><span class="grade sm empty">—</span><span class="grade sm empty">—</span></div>
+                <p class="t-meta" style="margin-top:8px">1.º Trimestre · média provisória <b class="mono">14,7</b></p>
+              </div></div>
+            </div>
+            <div class="nav-bottom">
+              <a class="active"><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Pauta →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · PAUTA =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="scene-title">
+    <div class="num">CENA 3 · F3 — Pauta · 1.º Trimestre</div>
+    <h2>Vista calma · sem confetti · cores da paleta de disciplinas</h2>
+    <p>Cada disciplina tem a sua cor da paleta partilhada. Tap revela detalhe da nota com componentes e comentário.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>16:12</span><span class="icons">📶 4G · 65%</span></div>
+            <div class="top-min">
+              <div class="child-pill"><span class="av">NC</span><b>Naila</b></div>
+              <span style="margin-left:auto" class="badge"><span class="dot"></span>1.º Tri 2026</span>
+            </div>
+            <div class="ph-content">
+              <div class="banner indigo" style="font-size:12.5px;margin-bottom:14px"><span class="ic"></span><div><b>1.º Trimestre · em curso.</b> Notas finais publicadas após validação do director.</div></div>
+
+              <div class="card"><div class="bd" style="padding:0">
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">17</span><div class="info"><b>Matemática</b><small>Prof. Eulália Mussagy · validada 04 Abr</small></div><span class="badge green" style="font-size:10px"><span class="dot"></span>Validada</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">15</span><div class="info"><b>Português</b><small>Prof. Joaquim Sumaila · validada 04 Abr</small></div><span class="badge green" style="font-size:10px"><span class="dot"></span>Validada</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">14</span><div class="info"><b>Biologia</b><small>Prof. Tomás Macuácua · em validação</small></div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">13</span><div class="info"><b>História</b><small>Prof. Felisberta Cuamba · em validação</small></div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">16</span><div class="info"><b>Geografia</b><small>Prof. Felisberta Cuamba · em validação</small></div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade pass">12</span><div class="info"><b>Química</b><small>Prof. Augusto Naila · em validação</small></div><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+                <div class="grade-row" style="padding:12px 14px"><span class="grade empty">—</span><div class="info"><b>Educação Visual</b><small>Prof. Mariana Saide · não lançada</small></div><span class="badge" style="font-size:10px"><span class="dot"></span>—</span></div>
+                <div class="grade-row" style="padding:12px 14px;border-bottom:0"><span class="grade empty">—</span><div class="info"><b>Educação Física</b><small>Prof. M. Sitói · não lançada</small></div><span class="badge" style="font-size:10px"><span class="dot"></span>—</span></div>
+              </div></div>
+
+              <div class="row spread" style="margin-top:14px">
+                <div><div class="t-overline">Média provisória</div><div style="font-family:var(--f-mono);font-size:24px;font-weight:600;color:var(--indigo-700)">14,7</div></div>
+                <div style="text-align:right"><div class="t-overline">Posição</div><div style="font-size:14px"><b>8.ª</b> de 36</div></div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Trimestres anteriores</div>
+              <div class="col" style="gap:6px;margin-top:8px">
+                <div class="row spread" style="padding:10px 0;border-bottom:1px solid var(--line-2)"><div><b style="font-size:13px">3.º Tri 2025</b><div class="t-meta">7.ª classe · transitou</div></div><div class="row" style="gap:8px"><span class="grade sm pass">14</span><span class="t-meta">média</span></div></div>
+                <div class="row spread" style="padding:10px 0;border-bottom:1px solid var(--line-2)"><div><b style="font-size:13px">2.º Tri 2025</b></div><div class="row" style="gap:8px"><span class="grade sm pass">15</span></div></div>
+                <div class="row spread" style="padding:10px 0"><div><b style="font-size:13px">1.º Tri 2025</b></div><div class="row" style="gap:8px"><span class="grade sm pass">14</span></div></div>
+              </div>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a class="active"><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>16:13</span><span class="icons">📶 4G · 65%</span></div>
+            <div class="top-min">
+              <a class="btn ghost sm">←</a>
+              <span class="subj mat" style="height:28px;padding:0 10px;font-size:11px">Matemática</span>
+              <span style="margin-left:auto" class="t-meta">1.º Trimestre</span>
+            </div>
+            <div class="ph-content">
+              <div style="text-align:center;padding:14px 0 18px">
+                <span class="grade lg pass" style="width:64px;height:64px;font-size:24px">17</span>
+                <div style="font-size:18px;font-weight:600;margin-top:8px">Aprovada · Matemática</div>
+                <div class="t-meta">Validada por <b>C. Bila</b> · 04 Abr 2026 · 14:48</div>
+              </div>
+
+              <div class="t-overline" style="margin-top:0">Composição</div>
+              <div class="card" style="margin-top:8px"><div class="bd" style="padding:14px">
+                <div class="row spread" style="margin-bottom:10px"><div><b style="font-size:13px">Avaliação contínua</b><div class="t-meta">5 notas · ponderação 30%</div></div><span class="grade sm pass">17</span></div>
+                <div class="row spread" style="margin-bottom:10px"><div><b style="font-size:13px">Prova escrita</b><div class="t-meta">04 Mar · ponderação 50%</div></div><span class="grade sm pass">17</span></div>
+                <div class="row spread"><div><b style="font-size:13px">Oralidade</b><div class="t-meta">contínua · ponderação 20%</div></div><span class="grade sm pass">16</span></div>
+              </div></div>
+
+              <div class="t-overline" style="margin-top:14px">Comentário da professora</div>
+              <p style="font-size:13px;line-height:1.55;margin:8px 0 0;background:var(--bg-2);padding:12px;border-radius:var(--r-2);border-left:3px solid var(--subj-mat);font-style:italic;color:var(--ink-2)">"Boa participação na resolução de equações com parênteses. Explicou ao colega no exercício de 03 Abr. A oralidade está a melhorar — continua." — <b>E. Mussagy</b></p>
+
+              <hr class="hr">
+
+              <div class="banner indigo" style="font-size:12.5px"><span class="ic"></span><div><b>Modo encarregado.</b> Pode submeter recurso desta nota até 14 Abr (10 dias após validação).</div></div>
+              <a href="#cena-4" class="btn block" style="margin-top:10px">Submeter recurso</a>
+              <button class="btn ghost block" style="margin-top:6px">Imprimir / partilhar</button>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a class="active"><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Submeter recurso →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · RECURSO =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="scene-title">
+    <div class="num">CENA 4 · F7 — Submeter recurso de nota</div>
+    <h2>Lúcia Cuamba (modo encarregado) · 14 → 16 esperado</h2>
+    <p>Acção do encarregado. Justificação ≥80 chars, anexo opcional, OTP. Acompanha estado: recebido → análise → decisão.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>20:14</span><span class="icons">📶 3G · 52%</span></div>
+            <div class="top-min">
+              <a class="btn ghost sm">←</a>
+              <b style="font-size:14px">Submeter recurso</b>
+              <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">Modo encarregado</span>
+            </div>
+            <div class="ph-content">
+              <div class="banner indigo" style="font-size:12.5px;margin-bottom:14px"><span class="ic"></span><div>O recurso vai ao director. Resposta esperada em até 5 dias úteis.</div></div>
+
+              <div class="t-overline">Nota em recurso</div>
+              <div class="card" style="margin-top:8px"><div class="bd" style="padding:12px">
+                <div class="row" style="gap:10px;align-items:center"><span class="grade pass">14</span><div style="flex:1"><b style="font-size:14px">Português · 1.º Trimestre</b><div class="t-meta">Prof. Joaquim Sumaila · validada 04 Abr</div></div></div>
+              </div></div>
+
+              <div class="t-overline" style="margin-top:14px">Justificação · ≥80 caracteres</div>
+              <textarea class="textarea" style="min-height:120px;margin-top:6px;font-size:13px">A Naila apresentou-me o teste corrigido. Vejo erros de cotacao na pergunta 4 (deveria ter 2 valores em vez de 1) e na pergunta 7 (estava parcialmente certa, recebeu 0). Estimamos que a nota seria 16, nao 14. Pedimos revisao.</textarea>
+              <div class="t-meta" style="margin-top:4px">220 / 80 caracteres mínimos · OK</div>
+
+              <div class="t-overline" style="margin-top:14px">Anexo (opcional)</div>
+              <button class="btn secondary block" style="border-style:dashed;margin-top:6px">+ Foto do teste corrigido</button>
+
+              <hr class="hr">
+
+              <div class="t-overline">Confirmação</div>
+              <p class="t-meta" style="margin:6px 0 0">Vamos enviar SMS com OTP para o seu número (Lúcia Cuamba · +258 84 ••• ••42).</p>
+              <a href="#cena-5" class="btn block" style="margin-top:10px">Confirmar e enviar OTP</a>
+              <button class="btn ghost block" style="margin-top:6px">Cancelar</button>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a class="active"><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>20:16</span><span class="icons">📶 3G · 52%</span></div>
+            <div class="top-min">
+              <b style="font-size:14px">Recurso · acompanhar</b>
+              <span style="margin-left:auto" class="badge indigo" style="font-size:10px"><span class="dot"></span>R-2026-PED-0042</span>
+            </div>
+            <div class="ph-content">
+              <div class="card"><div class="bd" style="padding:14px">
+                <div class="row" style="gap:10px;align-items:center"><span class="grade pass">14</span><div><b style="font-size:14px">Português · 1.º Trimestre</b><div class="t-meta">Submetido a 04 Abr 09:18</div></div></div>
+              </div></div>
+
+              <div class="t-overline" style="margin-top:14px">Estado</div>
+              <div class="col" style="gap:0;margin-top:8px">
+                <div class="row" style="gap:14px;padding:10px 0;border-bottom:1px solid var(--line-2);align-items:flex-start">
+                  <div style="margin-top:2px"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--good-700)"></span></div>
+                  <div style="flex:1"><b style="font-size:13px">Recebido</b><div class="t-meta">04 Abr 09:18</div></div>
+                </div>
+                <div class="row" style="gap:14px;padding:10px 0;border-bottom:1px solid var(--line-2);align-items:flex-start">
+                  <div style="margin-top:2px"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--good-700)"></span></div>
+                  <div style="flex:1"><b style="font-size:13px">Atribuído ao director</b><div class="t-meta">04 Abr 10:02</div></div>
+                </div>
+                <div class="row" style="gap:14px;padding:10px 0;border-bottom:1px solid var(--line-2);align-items:flex-start">
+                  <div style="margin-top:2px"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--good-700)"></span></div>
+                  <div style="flex:1"><b style="font-size:13px">Resposta da professora recebida</b><div class="t-meta">04 Abr 14:18</div></div>
+                </div>
+                <div class="row" style="gap:14px;padding:10px 0;border-bottom:1px solid var(--line-2);align-items:flex-start">
+                  <div style="margin-top:2px"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--indigo-700)"></span></div>
+                  <div style="flex:1"><b style="font-size:13px">Em decisão pelo director</b><div class="t-meta">04 Abr 14:48 · estimativa 24h</div></div>
+                </div>
+                <div class="row" style="gap:14px;padding:10px 0;align-items:flex-start;opacity:.5">
+                  <div style="margin-top:2px"><span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--bg-2);border:1px solid var(--line)"></span></div>
+                  <div style="flex:1"><b style="font-size:13px">Decisão notificada</b><div class="t-meta">aguarda</div></div>
+                </div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Histórico de recursos</div>
+              <p class="t-meta" style="margin-top:6px">Este é o seu 1.º recurso este ano lectivo.</p>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a class="active"><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Pauta</a><a class="btn secondary sm" href="#cena-5">TPC →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · TPC =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="scene-title">
+    <div class="num">CENA 5 · F5 — Trabalhos de casa</div>
+    <h2>Lista por prazo · detalhe · submeter por foto</h2>
+    <p>Cada cartão tem chip de disciplina, prazo e estado. Detalhe abre instruções, anexo, e botão "Submeter".</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>17:30</span><span class="icons">📶 4G · 60%</span></div>
+            <div class="top-min">
+              <div class="child-pill"><span class="av">NC</span><b>Naila</b></div>
+              <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">Trabalhos de casa</span>
+            </div>
+            <div class="ph-content">
+              <div class="seg" style="margin-bottom:14px;width:100%"><button class="on" style="flex:1">Por fazer (3)</button><button style="flex:1">Submetidos (8)</button><button style="flex:1">Corrigidos (5)</button></div>
+
+              <div class="col" style="gap:10px">
+                <div class="item-card" style="border-left:3px solid var(--amber-500)">
+                  <div class="row spread" style="align-items:flex-start"><div class="row" style="gap:10px"><span class="subj mat" style="height:24px;padding:0 8px;font-size:10px">Mat</span><div><b style="font-size:13.5px">Equações 1.º grau · pág. 48</b><div class="t-meta">Prof. E. Mussagy · 8.ª A</div></div></div></div>
+                  <div class="row spread" style="margin-top:10px"><span class="badge amber" style="font-size:10px"><span class="dot"></span>Prazo amanhã 07:00</span><a href="#cena-6" class="btn sm secondary">Abrir →</a></div>
+                </div>
+                <div class="item-card">
+                  <div class="row spread" style="align-items:flex-start"><div class="row" style="gap:10px"><span class="subj port" style="height:24px;padding:0 8px;font-size:10px">Port</span><div><b style="font-size:13.5px">Composição · "A minha aldeia"</b><div class="t-meta">Prof. J. Sumaila · 1 página</div></div></div></div>
+                  <div class="row spread" style="margin-top:10px"><span class="badge" style="font-size:10px"><span class="dot"></span>Prazo 18 Abr</span><a class="btn sm secondary">Abrir →</a></div>
+                </div>
+                <div class="item-card">
+                  <div class="row spread" style="align-items:flex-start"><div class="row" style="gap:10px"><span class="subj cien" style="height:24px;padding:0 8px;font-size:10px">Bio</span><div><b style="font-size:13.5px">Ficha de leitura · célula vegetal</b><div class="t-meta">Prof. T. Macuácua · 2 páginas</div></div></div></div>
+                  <div class="row spread" style="margin-top:10px"><span class="badge" style="font-size:10px"><span class="dot"></span>Prazo 22 Abr</span><a class="btn sm secondary">Abrir →</a></div>
+                </div>
+              </div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Recentes corrigidos</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <div class="item-card">
+                  <div class="row spread"><div class="row" style="gap:10px"><span class="subj mat" style="height:22px;padding:0 8px;font-size:10px">Mat</span><b style="font-size:13px">Função afim · pág. 32</b></div><span class="grade sm pass">15</span></div>
+                  <div class="t-meta" style="margin-top:6px">Prof. E. Mussagy · 28 Mar</div>
+                </div>
+                <div class="item-card">
+                  <div class="row spread"><div class="row" style="gap:10px"><span class="subj port" style="height:22px;padding:0 8px;font-size:10px">Port</span><b style="font-size:13px">Texto narrativo · família</b></div><span class="grade sm pass">17</span></div>
+                  <div class="t-meta" style="margin-top:6px">Prof. J. Sumaila · 25 Mar</div>
+                </div>
+              </div>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a class="active"><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>17:32</span><span class="icons">📶 4G · 60%</span></div>
+            <div class="top-min">
+              <a class="btn ghost sm">←</a>
+              <span class="subj mat" style="height:26px;padding:0 10px;font-size:11px">Matemática</span>
+              <span style="margin-left:auto" class="badge amber" style="font-size:10px"><span class="dot"></span>Por fazer</span>
+            </div>
+            <div class="ph-content">
+              <div class="t-overline" id="cena-6">Trabalho de casa</div>
+              <h2 class="t-h2" style="margin:4px 0 6px;font-size:18px">Equações do 1.º grau · pág. 48</h2>
+              <div class="t-meta">Prof. Eulália Mussagy · 8.ª A · publicado 15 Abr 07:42</div>
+
+              <hr class="hr">
+
+              <div class="t-overline">Instruções</div>
+              <p style="font-size:13.5px;line-height:1.55;margin:6px 0 0">Resolver os exercícios 9 a 14 da página 48 do manual INDE 8.ª. Mostrar todos os passos no caderno. Trazer na próxima aula (16 Abr · 6.ª-feira).</p>
+
+              <div class="t-overline" style="margin-top:14px">Anexos</div>
+              <a href="biblioteca.html" class="card" style="display:block;text-decoration:none;color:inherit;margin-top:6px"><div class="bd" style="padding:10px"><div class="row" style="gap:10px"><div class="book" style="width:40px"><div class="cov mat" style="aspect-ratio:2/3;padding:4px;font-size:7px">Mat 8.ª</div></div><div style="flex:1"><b style="font-size:13px">Manual de Mat. · 8.ª · INDE 2024</b><div class="t-meta">Páginas 47–48 · descarregado</div></div><span class="badge sepia" style="font-size:10px"><span class="dot"></span>Bib.</span></div></div></a>
+
+              <hr class="hr">
+
+              <div class="t-overline">Submeter</div>
+              <div class="col" style="gap:8px;margin-top:8px">
+                <button class="btn block">📷 Tirar foto do caderno</button>
+                <button class="btn secondary block">Carregar foto da galeria</button>
+                <button class="btn ghost block">Submeter como texto</button>
+              </div>
+              <p class="t-meta" style="margin-top:10px">A professora recebe a entrega no Caderno do Professor.</p>
+
+              <hr class="hr">
+
+              <p class="t-meta">Prazo: <b>amanhã · 16 Abr · 07:00</b> · 13h restantes</p>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a class="active"><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Recurso</a><a class="btn secondary sm" href="#cena-7">Biblioteca →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · BIBLIOTECA OFFLINE =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="scene-title">
+    <div class="num">CENA 6 · F8 — Biblioteca offline</div>
+    <h2>Livros descarregados · capa de livro com cor de disciplina</h2>
+    <p>Manuais INDE atribuídos pelo professor + literatura escolhida pela aluna. Tap abre em modo leitura sepia.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>21:08</span><span class="icons">📶 3G · 41%</span></div>
+            <div class="top-min">
+              <div class="child-pill"><span class="av">NC</span><b>Naila</b></div>
+              <span style="margin-left:auto" class="conn off" style="height:24px;font-size:11px;padding:0 8px"><span class="d"></span></span>
+              <span class="t-meta" style="font-size:10px">Offline</span>
+            </div>
+            <div class="ph-content">
+              <div class="seg" style="margin-bottom:12px;width:100%"><button class="on" style="flex:1">Descarregados (8)</button><button style="flex:1">Catálogo</button></div>
+
+              <div class="t-overline">Atribuídos pelo professor</div>
+              <div class="grid g-3" style="gap:10px;margin-top:8px">
+                <div class="book" style="width:auto"><div class="cov mat"><span class="ti">Mat 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Mat 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+                <div class="book" style="width:auto"><div class="cov port"><span class="ti">Port 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Port 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+                <div class="book" style="width:auto"><div class="cov hist"><span class="ti">Hist 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Hist 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+                <div class="book" style="width:auto"><div class="cov cien"><span class="ti">Bio 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Bio 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+                <div class="book" style="width:auto"><div class="cov cien" style="background:linear-gradient(135deg,#1B5E3F 0%,#2e8c5d 100%)"><span class="ti">Quím 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Quím 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+                <div class="book" style="width:auto"><div class="cov hist" style="background:linear-gradient(135deg,#7A5018 0%,#a07332 100%)"><span class="ti">Geo 8.ª · INDE</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Geo 8.ª</b><div class="au" style="font-size:10px">INDE · 2024</div></div></div>
+              </div>
+
+              <div class="t-overline" style="margin-top:18px">Escolhidos por mim</div>
+              <div class="grid g-3" style="gap:10px;margin-top:8px">
+                <a href="#cena-8" class="book" style="width:auto;text-decoration:none;color:inherit"><div class="cov port"><span class="ti">Niketche · Paulina Chiziane</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Niketche</b><div class="au" style="font-size:10px">P. Chiziane · 2002</div></div></a>
+                <div class="book" style="width:auto"><div class="cov hist"><span class="ti">Vinte e Zinco · Mia Couto</span></div><div class="meta" style="padding:6px 8px"><b style="font-size:11px">Vinte e Zinco</b><div class="au" style="font-size:10px">M. Couto · 1999</div></div></div>
+              </div>
+
+              <hr class="hr">
+              <a href="biblioteca.html" class="btn secondary block">Explorar catálogo (online)</a>
+            </div>
+            <div class="nav-bottom">
+              <a><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a class="active"><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen" style="background:var(--sepia-100)">
+            <div class="statusbar" style="background:var(--sepia-100);color:var(--sepia-700)"><span>21:14</span><span class="icons" style="color:var(--sepia-700)">📶 3G</span></div>
+            <div class="top-min" id="cena-8" style="background:var(--sepia-100);border-bottom:1px solid #DCC9A0">
+              <a class="btn ghost sm" style="color:var(--sepia-700)">←</a>
+              <b class="serif" style="font-size:15px;color:var(--sepia-700)">Niketche</b>
+              <span style="margin-left:auto" class="row" style="gap:6px"><button class="btn ghost sm" style="color:var(--sepia-700);font-size:11px">Aa</button><button class="btn ghost sm" style="color:var(--sepia-700);font-size:11px">Mode</button></span>
+            </div>
+            <div class="ph-content" style="background:var(--sepia-100);padding:24px 22px">
+              <p class="serif" style="font-size:11px;text-align:center;color:var(--sepia-500);margin:0;letter-spacing:.1em;text-transform:uppercase">Capítulo 1 · A Mulher do Norte</p>
+              <h3 class="serif" style="text-align:center;margin:14px 0 18px;font-size:22px;color:var(--sepia-700);letter-spacing:-.005em">Niketche</h3>
+
+              <p class="serif" style="font-size:16px;line-height:1.75;color:#4a3d22;margin:0 0 12px">Em Tete, a poeira amarela cobre tudo: as casas de chapa, os caminhos, as nuvens. A Rami senta-se à porta da cozinha. Espera o marido que não chega.</p>
+              <p class="serif" style="font-size:16px;line-height:1.75;color:#4a3d22;margin:0 0 12px">A noite cai depressa quando ele não está. As crianças dormem cedo. Ela acende a vela. Conta as moedas no canto do lenço, calcula o que falta para a semana, ri sozinha — porque chorar não muda nada.</p>
+              <p class="serif" style="font-size:16px;line-height:1.75;color:#4a3d22;margin:0 0 12px">O Tony tem outra mulher. Ela já desconfiou. Hoje sabe. A vizinha viu-os no mercado, ele a comprar pano para a outra. A vizinha contou. Não com maldade — com pena.</p>
+              <p class="serif" style="font-size:16px;line-height:1.75;color:#4a3d22;margin:0 0 12px">"Mana Rami, eu disse-te," falou a Maria.</p>
+
+              <hr style="border:0;border-top:1px solid #DCC9A0;margin:18px 0">
+              <p class="t-meta" style="text-align:center;font-size:11px;color:var(--sepia-500)">Página 1 de 248 · trecho ilustrativo · texto adaptado para protótipo</p>
+            </div>
+            <div class="nav-bottom" style="background:var(--sepia-100);border-top:1px solid #DCC9A0">
+              <a><span class="ic" style="border-color:var(--sepia-700)"></span><span style="color:var(--sepia-700)">Página</span></a>
+              <a><span class="ic" style="border-color:var(--sepia-700)"></span><span style="color:var(--sepia-700)">Marcar</span></a>
+              <a><span class="ic" style="border-color:var(--sepia-700)"></span><span style="color:var(--sepia-700)">Notas</span></a>
+              <a><span class="ic" style="border-color:var(--sepia-700)"></span><span style="color:var(--sepia-700)">Capítulos</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← TPC</a><a class="btn secondary sm" href="#cena-9">Justificar falta →</a></div></div>
+</section>
+
+<!-- =================== CENA 9 · JUSTIFICAR FALTA =================== -->
+<section><span class="anchor" id="cena-9"></span>
+  <div class="scene-title">
+    <div class="num">CENA 7 · F6 — Justificar falta (encarregado)</div>
+    <h2>Falta a Português · 14 Abr · justificação por motivo médico</h2>
+    <p>Acção do encarregado. Motivo, texto, anexo opcional (atestado), envio ao SIGE.</p>
+  </div>
+  <div class="stage">
+    <div class="stageInner">
+      <div class="phones">
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>20:42</span><span class="icons">📶 3G · 48%</span></div>
+            <div class="top-min">
+              <a class="btn ghost sm">←</a>
+              <b style="font-size:14px">Justificar falta</b>
+              <span style="margin-left:auto;font-size:11px;color:var(--ink-3)">Modo encarregado</span>
+            </div>
+            <div class="ph-content">
+
+              <div class="banner amber" style="font-size:12.5px;margin-bottom:14px"><span class="ic"></span><div><b>Falta detectada · 14 Abr</b><br>Português · 8.ª A · 07:50–08:35 · Prof. J. Sumaila</div></div>
+
+              <div class="t-overline">Motivo</div>
+              <select class="select" style="margin-top:6px">
+                <option>Doença</option>
+                <option>Consulta médica</option>
+                <option>Luto familiar</option>
+                <option>Viagem (justificada)</option>
+                <option>Outro</option>
+              </select>
+
+              <div class="t-overline" style="margin-top:14px">Detalhes</div>
+              <textarea class="textarea" style="min-height:100px;margin-top:6px;font-size:13px">A Naila teve febre na noite de 13 para 14. Levei-a ao Centro de Saude da Polana de manha. Diagnostico: gripe. Voltou a escola a 15.</textarea>
+
+              <div class="t-overline" style="margin-top:14px">Anexo (opcional)</div>
+              <button class="btn secondary block" style="border-style:dashed;margin-top:6px">+ Foto do atestado médico</button>
+
+              <hr class="hr">
+
+              <div class="banner indigo" style="font-size:12.5px"><span class="ic"></span><div>Vai ao director da escola para aprovação. Resposta em até 48h. Sem atestado, pode ser pedida visita à direcção.</div></div>
+
+              <a class="btn block" style="margin-top:10px">Submeter justificação</a>
+              <button class="btn ghost block" style="margin-top:6px">Cancelar</button>
+            </div>
+            <div class="nav-bottom">
+              <a class="active"><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="screen">
+            <div class="statusbar"><span>20:43</span><span class="icons">📶 3G · 48%</span></div>
+            <div class="top-min">
+              <b style="font-size:14px">Frequência da Naila</b>
+              <span style="margin-left:auto" class="badge green" style="font-size:10px"><span class="dot"></span>98%</span>
+            </div>
+            <div class="ph-content">
+              <div class="grid g-3" style="gap:8px;margin-bottom:14px">
+                <div class="card"><div class="bd" style="padding:10px;text-align:center"><div class="t-overline" style="font-size:9px">Faltas just.</div><div style="font-size:18px;font-weight:600;margin-top:4px">2</div></div></div>
+                <div class="card"><div class="bd" style="padding:10px;text-align:center"><div class="t-overline" style="font-size:9px">Faltas n. just.</div><div style="font-size:18px;font-weight:600;color:var(--amber-700);margin-top:4px">1</div></div></div>
+                <div class="card"><div class="bd" style="padding:10px;text-align:center"><div class="t-overline" style="font-size:9px">Atrasos</div><div style="font-size:18px;font-weight:600;margin-top:4px">3</div></div></div>
+              </div>
+
+              <div class="t-overline">Última semana</div>
+              <table class="table" style="font-size:12px;margin-top:6px">
+                <thead><tr><th>Dia</th><th>Discip.</th><th>Estado</th></tr></thead>
+                <tbody>
+                  <tr><td>14 Abr</td><td>Português</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>Falta · justificar</span></td></tr>
+                  <tr><td>14 Abr</td><td>Mat</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Presente</span></td></tr>
+                  <tr><td>11 Abr</td><td>Geo</td><td><span class="badge" style="font-size:10px"><span class="dot"></span>Atraso · 5 min</span></td></tr>
+                  <tr><td>11 Abr</td><td>Bio</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Presente</span></td></tr>
+                  <tr><td>10 Abr</td><td>Hist</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Presente</span></td></tr>
+                  <tr><td>09 Abr</td><td>Quím</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Justificada · febre</span></td></tr>
+                </tbody>
+              </table>
+
+              <hr class="hr">
+
+              <div class="banner indigo" style="font-size:12.5px"><span class="ic"></span><div>A frequência ≥75% é exigida para transitar. A Naila está bem acima.</div></div>
+
+            </div>
+            <div class="nav-bottom">
+              <a class="active"><span class="ic"></span><span>Hoje</span></a>
+              <a><span class="ic"></span><span>Pauta</span></a>
+              <a><span class="ic"></span><span>TPC</span></a>
+              <a><span class="ic"></span><span>Bib.</span></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Biblioteca</a><a class="btn secondary sm" href="biblioteca.html">Ver Biblioteca pública →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1240px;margin:0 auto" class="row spread">
+    <div class="t-meta">Caderno do Aluno v0.3 · documento autoritativo: <a class="mono" href="DESIGN-aluno.md">DESIGN-aluno.md</a></div>
+    <div class="row">
+      <a href="professor.html" class="btn ghost sm">← Professor</a>
+      <a href="biblioteca.html" class="btn secondary sm">Biblioteca →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>SIGE · Gestão Escolar — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .sige-shell{display:flex;flex-direction:column;min-height:100vh}
+  .sige-body{flex:1;padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+
+  .login-bg{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--bg)}
+  .login-left{background:var(--indigo-900);color:#cdc8e2;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .login-left h1{font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:0;color:#fff;max-width:440px}
+  .login-left .meta{font-size:12px;color:#9990bd}
+  .login-right{padding:48px;display:flex;align-items:center;justify-content:center}
+  .login-card{width:380px}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--indigo-100);color:var(--indigo-900);font-weight:600}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+  .row-card{display:grid;grid-template-columns:32px 1.4fr 1.2fr 1fr 1fr 110px;gap:12px;padding:10px 12px;align-items:center;border-bottom:1px solid var(--line-2);font-size:13px;cursor:pointer}
+  .row-card:hover{background:var(--bg-2)}
+  .row-card.head{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:600;background:var(--bg-2);border-bottom:1px solid var(--line);cursor:default}
+  .row-card.head:hover{background:var(--bg-2)}
+
+  /* Horário grid */
+  .horario{display:grid;grid-template-columns:80px repeat(5,1fr);gap:0;font-size:12px;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;background:#fff}
+  .horario .h-cell{padding:10px 8px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);min-height:48px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+  .horario .h-cell:nth-child(6n){border-right:0}
+  .horario .h-head{background:var(--bg-2);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);text-align:center;padding:8px 4px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line);min-height:0}
+  .horario .h-time{background:var(--bg-2);font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-align:center;font-weight:500;border-right:1px solid var(--line);justify-content:center}
+  .horario .h-cell.subj{color:#fff;font-weight:500}
+  .horario .h-cell.subj b{font-size:13px;font-weight:600}
+  .horario .h-cell.subj small{font-size:10px;opacity:.85}
+  .horario .h-cell.empty{background:repeating-linear-gradient(135deg,var(--bg-2) 0 6px,#fff 6px 12px)}
+
+  .scene{padding-top:8px}
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · Direcção de Educação Digital — DED</span><span class="sep">·</span>
+  <span>SIGE · Gestão Escolar v0.3</span>
+  <span style="margin-left:auto">DESIGN-sige.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>SIGE</span><small>Gestão Escolar</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="sige.html" class="active">SIGE</a>
+    <a href="professor.html">Professor</a>
+    <a href="aluno.html">Aluno</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="matriculas.html">Matrículas</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online · 2 em fila</span>
+    <div class="idbadge"><span class="av sm">CB</span><div class="who"><b>Carlos Bila</b><span>Director · Esc. Sec. da Polana</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Login</a>
+    <a href="#cena-2">2. Painel</a>
+    <a href="#cena-3">3. Turmas</a>
+    <a href="#cena-4">4. Detalhe da turma</a>
+    <a href="#cena-5">5. Ficha do aluno</a>
+    <a href="#cena-6">6. Pauta lançada</a>
+    <a href="#cena-7">7. Validar pauta</a>
+    <a href="#cena-8">8. Frequência</a>
+    <a href="#cena-9">9. Recurso de nota</a>
+    <a href="#cena-10">10. Relatório DPEDH</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · LOGIN =================== -->
+<section class="scene"><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Sign in</div>
+    <h2>Início de sessão · Escola Secundária da Polana</h2>
+    <p>Três passos: e-mail/password, OTP por SMS, selecção da escola. OTP é obrigatório porque o director valida pautas e assina certificados.</p>
+  </div>
+  <div style="padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%">
+    <div class="login-bg" style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;min-height:560px">
+      <div class="login-left">
+        <div>
+          <div class="row" style="gap:10px;align-items:center"><span class="brand mark" style="width:28px;height:28px;background:#fff;display:inline-block;position:relative;border-radius:1px"></span><span style="color:#fff;font-weight:600">Educação Digital</span></div>
+          <h1 style="margin-top:48px">A escola digital, com a calma de uma sala de aula.</h1>
+          <p style="color:#cdc8e2;font-size:14px;line-height:1.55;margin-top:14px;max-width:420px">O SIGE reúne turmas, alunos, professores, pautas e frequência num só sistema — auditável, partilhado, e sincronizado com a DPEDH.</p>
+        </div>
+        <div class="meta">v0.3 · Abril 2026 · Protótipo de demonstração — DED</div>
+      </div>
+      <div class="login-right">
+        <div class="login-card">
+          <div class="t-overline">Passo 2 de 3</div>
+          <div class="t-h2" style="margin:8px 0 4px">Código por SMS</div>
+          <p class="t-meta">Enviámos um código de 6 dígitos para <span class="mono">+258 84 ••• ••22</span></p>
+          <div class="row" style="gap:6px;margin:18px 0 14px">
+            <input class="input mono lg" style="text-align:center;width:48px" value="2" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="0" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="2" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="6" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="0" />
+            <input class="input mono lg" style="text-align:center;width:48px" value="" />
+          </div>
+          <a href="#cena-2" class="btn lg block">Continuar</a>
+          <div class="row spread" style="margin-top:14px"><span class="t-meta">Reenviar em 00:42</span><span class="t-meta">Suporte DED: 1466</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Director multi-escola? Selecciona após OTP.</span><a class="btn secondary sm" href="#cena-2">Avançar para Painel →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · PAINEL =================== -->
+<section class="scene"><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Painel</div>
+    <h2>Vista de operação · Escola Secundária da Polana</h2>
+    <p>KPIs do dia, pautas a validar, faltas anómalas, avisos da DPEDH. Sync nunca escondido.</p>
+  </div>
+  <div class="sige-body">
+
+    <div class="grid g-4" style="margin-bottom:20px">
+      <div class="kpi"><div class="lbl">Alunos matriculados</div><div class="num">1 248</div><div class="delta">38 turmas · 6 turnos</div></div>
+      <div class="kpi"><div class="lbl">Professores ao serviço</div><div class="num">86</div><div class="delta">3 em substituição</div></div>
+      <div class="kpi"><div class="lbl">Frequência média (semana)</div><div class="num" style="color:var(--good-700)">92,4%</div><div class="delta">+0,8 face à semana 13</div></div>
+      <div class="kpi"><div class="lbl">Pautas a validar</div><div class="num" style="color:var(--amber-700)">14</div><div class="delta">Prazo: 18 Abr 2026</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Pautas lançadas · 1.º Trimestre 2026</b><div class="row"><span class="seg"><button class="on">A validar</button><button>Validadas</button><button>Recursos</button></span><button class="btn sm secondary">⤓ CSV</button></div></div>
+        <div>
+          <div class="row-card head"><div></div><div>Disciplina · Turma</div><div>Professor</div><div>Lançada</div><div>Estado</div><div>Acção</div></div>
+          <div class="row-card" onclick="location.hash='#cena-6'">
+            <span class="subj mat" style="height:24px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;width:24px">M</span>
+            <div><b>Matemática · 8.ª A</b><div class="t-meta">36 alunos · ESG</div></div>
+            <div>Eulália Mussagy</div>
+            <div class="t-meta">04 Abr · 14:32</div>
+            <div><span class="badge indigo"><span class="dot"></span>Lançada</span></div>
+            <div><a href="#cena-6" class="btn sm secondary">Rever →</a></div>
+          </div>
+          <div class="row-card">
+            <span class="subj port" style="height:24px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;width:24px">P</span>
+            <div><b>Português · 8.ª A</b><div class="t-meta">36 alunos · ESG</div></div>
+            <div>Joaquim Sumaila</div>
+            <div class="t-meta">04 Abr · 13:18</div>
+            <div><span class="badge indigo"><span class="dot"></span>Lançada</span></div>
+            <div><a href="#cena-6" class="btn sm secondary">Rever →</a></div>
+          </div>
+          <div class="row-card">
+            <span class="subj cien" style="height:24px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;width:24px">C</span>
+            <div><b>Biologia · 9.ª B</b><div class="t-meta">34 alunos · ESG</div></div>
+            <div>Tomás Macuácua</div>
+            <div class="t-meta">03 Abr · 16:40</div>
+            <div><span class="badge amber"><span class="dot"></span>Padrão suspeito</span></div>
+            <div><a href="#cena-6" class="btn sm secondary">Rever →</a></div>
+          </div>
+          <div class="row-card">
+            <span class="subj hist" style="height:24px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;width:24px">H</span>
+            <div><b>História · 10.ª A</b><div class="t-meta">32 alunos · ESG</div></div>
+            <div>Felisberta Cuamba</div>
+            <div class="t-meta">03 Abr · 11:08</div>
+            <div><span class="badge indigo"><span class="dot"></span>Lançada</span></div>
+            <div><a href="#cena-6" class="btn sm secondary">Rever →</a></div>
+          </div>
+          <div class="row-card">
+            <span class="subj mat" style="height:24px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;border-radius:2px;font-size:10px;width:24px">M</span>
+            <div><b>Matemática · 9.ª A</b><div class="t-meta">35 alunos · ESG</div></div>
+            <div>Eulália Mussagy</div>
+            <div class="t-meta">02 Abr · 17:22</div>
+            <div><span class="badge green"><span class="dot"></span>Validada</span></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="ft" style="padding:10px 14px;border-top:1px solid var(--line-2);justify-content:flex-end"><a href="#" class="btn ghost sm">Ver todas as 14 →</a></div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Faltas anómalas</b><span class="badge amber">5</span></div>
+          <div class="pb col">
+            <div class="banner amber"><span class="ic"></span><div><b>Sumaila Dauto Jr. · 8.ª A</b> · 5 faltas seguidas (15–19 Mar). Encarregado não atende telefone. <a href="#cena-5">Acompanhar</a>.</div></div>
+            <div class="banner amber"><span class="ic"></span><div><b>Naila Manhiça · 9.ª B</b> · padrão de faltas semanal (todas as 6.ª-feiras). <a href="#">Ver detalhe</a>.</div></div>
+            <div class="banner red"><span class="ic"></span><div><b>Patrícia Cuamba · 7.ª C</b> · 12 faltas no trimestre. Risco de retenção. <a href="#">Iniciar processo de acompanhamento</a>.</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><b>Avisos da DPEDH</b></div>
+          <div class="pb col">
+            <div class="banner indigo"><span class="ic"></span><div><b>Exames provinciais 9.ª classe.</b> Calendarização: 12–16 Mai 2026. Confirmar inscrição até 25 Abr.</div></div>
+            <div class="banner indigo"><span class="ic"></span><div><b>Distribuição de manuais INDE 2026.</b> Chegada prevista a 15 Abr · receber e registar em <a href="#">Infraestrutura → Manuais</a>.</div></div>
+            <div class="banner indigo"><span class="ic"></span><div><b>Feriado nacional · Dia da Mulher Moçambicana.</b> 07 Abr 2026 · escola encerrada.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Login</a><a class="btn secondary sm" href="#cena-3">Avançar para Turmas →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · TURMAS =================== -->
+<section class="scene"><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Turmas</div>
+    <h2>Lista nacional de turmas · 38 turmas, 6 turnos</h2>
+    <p>Filtros por classe e turno. Detalhe abre alunos, professores, horário (com cores das disciplinas) e pautas.</p>
+  </div>
+  <div class="sige-body">
+    <div class="panel">
+      <div class="ph">
+        <div class="row" style="gap:10px;flex:1">
+          <span class="seg">
+            <button class="on">Todos</button>
+            <button>EP1 (1.ª–5.ª)</button>
+            <button>EP2 (6.ª–7.ª)</button>
+            <button>ESG (8.ª–10.ª)</button>
+            <button>ESG2 (11.ª–12.ª)</button>
+          </span>
+          <span class="seg">
+            <button class="on">Todos turnos</button>
+            <button>Manhã</button>
+            <button>Tarde</button>
+            <button>Noite</button>
+          </span>
+        </div>
+        <button class="btn">+ Nova turma</button>
+      </div>
+      <div>
+        <div class="row-card head"><div></div><div>Turma</div><div>Director de turma</div><div>Alunos</div><div>Frequência</div><div>Acção</div></div>
+        <div class="row-card sel" style="background:var(--indigo-100)" onclick="location.hash='#cena-4'">
+          <span class="av sm">8A</span>
+          <div><b>8.ª A · ESG</b><div class="t-meta">Turno manhã · sala A-204</div></div>
+          <div>Eulália Mussagy</div>
+          <div>36 / 40 capacidade</div>
+          <div><span class="badge green"><span class="dot"></span>94,1%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">8B</span>
+          <div><b>8.ª B · ESG</b><div class="t-meta">Turno manhã · sala A-205</div></div>
+          <div>Joaquim Sumaila</div>
+          <div>38 / 40</div>
+          <div><span class="badge green"><span class="dot"></span>91,8%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">9A</span>
+          <div><b>9.ª A · ESG</b><div class="t-meta">Turno manhã · sala A-301</div></div>
+          <div>Tomás Macuácua</div>
+          <div>35 / 40</div>
+          <div><span class="badge green"><span class="dot"></span>93,2%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">9B</span>
+          <div><b>9.ª B · ESG</b><div class="t-meta">Turno manhã · sala A-302</div></div>
+          <div>Felisberta Cuamba</div>
+          <div>34 / 40</div>
+          <div><span class="badge amber"><span class="dot"></span>87,4%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">10A</span>
+          <div><b>10.ª A · ESG</b><div class="t-meta">Turno tarde · sala B-101</div></div>
+          <div>Augusto Naila</div>
+          <div>32 / 40</div>
+          <div><span class="badge green"><span class="dot"></span>90,8%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+        <div class="row-card">
+          <span class="av sm">10B</span>
+          <div><b>10.ª B · ESG</b><div class="t-meta">Turno tarde · sala B-102</div></div>
+          <div>Mariana Saide</div>
+          <div>31 / 40</div>
+          <div><span class="badge green"><span class="dot"></span>92,1%</span></div>
+          <div><a href="#cena-4" class="btn sm secondary">Abrir →</a></div>
+        </div>
+      </div>
+      <div class="ft" style="padding:14px;border-top:1px solid var(--line-2);justify-content:space-between"><span class="t-meta">6 de 38 turmas · página 1 de 7</span><div class="row"><button class="btn ghost sm" disabled>← Anterior</button><button class="btn secondary sm">Próxima →</button></div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Painel</a><a class="btn secondary sm" href="#cena-4">Detalhe da turma →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · DETALHE TURMA =================== -->
+<section class="scene"><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · Detalhe da turma · 8.ª A</div>
+    <h2>Horário com cores das disciplinas · alunos · pautas do trimestre</h2>
+    <p>Horário renderizado com a paleta de disciplinas. As mesmas seis cores aparecem na pauta, no Caderno do Aluno, na Biblioteca.</p>
+  </div>
+  <div class="sige-body">
+    <div class="panel" style="margin-bottom:20px">
+      <div class="ph" style="padding:18px 20px">
+        <div>
+          <div class="t-overline">Turma</div>
+          <div class="t-h2" style="margin-top:4px">8.ª A · Ensino Secundário Geral</div>
+          <div class="t-meta" style="margin-top:2px">Turno manhã · sala A-204 · ano lectivo 2026</div>
+        </div>
+        <div class="row">
+          <button class="btn secondary">Imprimir lista</button>
+          <a class="btn" href="#cena-6">Ver pautas</a>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="grid g-4">
+          <div class="kpi"><div class="lbl">Alunos</div><div class="num">36</div><div class="delta">4 vagas</div></div>
+          <div class="kpi"><div class="lbl">Frequência (semana)</div><div class="num" style="color:var(--good-700)">94,1%</div></div>
+          <div class="kpi"><div class="lbl">Disciplinas</div><div class="num">11</div><div class="delta">9 obrigatórias · 2 opcionais</div></div>
+          <div class="kpi"><div class="lbl">Director de turma</div><div class="num" style="font-size:18px;font-weight:600;font-family:var(--f-sans)">Eulália Mussagy</div><div class="delta">Mat · 18 anos serviço</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Horário semanal</b><span class="t-meta">Cores reflectem a disciplina · paleta partilhada com Aluno e Biblioteca</span></div>
+        <div class="bd" style="padding:14px">
+          <div class="horario">
+            <div class="h-cell h-head">Hora</div>
+            <div class="h-cell h-head">Segunda</div>
+            <div class="h-cell h-head">Terça</div>
+            <div class="h-cell h-head">Quarta</div>
+            <div class="h-cell h-head">Quinta</div>
+            <div class="h-cell h-head">Sexta</div>
+
+            <div class="h-cell h-time">07:00<br>07:45</div>
+            <div class="h-cell subj" style="background:var(--subj-mat)"><b>Mat</b><small>E. Mussagy</small></div>
+            <div class="h-cell subj" style="background:var(--subj-port)"><b>Port</b><small>J. Sumaila</small></div>
+            <div class="h-cell subj" style="background:var(--subj-mat)"><b>Mat</b><small>E. Mussagy</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Bio</b><small>T. Macuácua</small></div>
+            <div class="h-cell subj" style="background:var(--subj-port)"><b>Port</b><small>J. Sumaila</small></div>
+
+            <div class="h-cell h-time">07:50<br>08:35</div>
+            <div class="h-cell subj" style="background:var(--subj-port)"><b>Port</b><small>J. Sumaila</small></div>
+            <div class="h-cell subj" style="background:var(--subj-mat)"><b>Mat</b><small>E. Mussagy</small></div>
+            <div class="h-cell subj" style="background:var(--subj-hist)"><b>Hist</b><small>F. Cuamba</small></div>
+            <div class="h-cell subj" style="background:var(--subj-mat)"><b>Mat</b><small>E. Mussagy</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Bio</b><small>T. Macuácua</small></div>
+
+            <div class="h-cell h-time">08:40<br>09:25</div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Bio</b><small>T. Macuácua</small></div>
+            <div class="h-cell subj" style="background:var(--subj-hist)"><b>Geo</b><small>F. Cuamba</small></div>
+            <div class="h-cell subj" style="background:var(--subj-port)"><b>Port</b><small>J. Sumaila</small></div>
+            <div class="h-cell subj" style="background:var(--subj-arte)"><b>EVT</b><small>M. Saide</small></div>
+            <div class="h-cell subj" style="background:var(--subj-mat)"><b>Mat</b><small>E. Mussagy</small></div>
+
+            <div class="h-cell h-time">09:30<br>09:50</div>
+            <div class="h-cell" style="grid-column:span 5;background:var(--bg-2);justify-content:center;text-align:center;color:var(--ink-3);font-style:italic">Intervalo · 20 min</div>
+
+            <div class="h-cell h-time">09:50<br>10:35</div>
+            <div class="h-cell subj" style="background:var(--subj-hist)"><b>Hist</b><small>F. Cuamba</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Quím</b><small>A. Naila</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ed-fis)"><b>EF</b><small>M. Sitói</small></div>
+            <div class="h-cell subj" style="background:var(--subj-port)"><b>Port</b><small>J. Sumaila</small></div>
+            <div class="h-cell empty"></div>
+
+            <div class="h-cell h-time">10:40<br>11:25</div>
+            <div class="h-cell subj" style="background:var(--subj-ed-fis)"><b>EF</b><small>M. Sitói</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Quím</b><small>A. Naila</small></div>
+            <div class="h-cell subj" style="background:var(--subj-ed-fis)"><b>EF</b><small>M. Sitói</small></div>
+            <div class="h-cell subj" style="background:var(--subj-arte)"><b>EVT</b><small>M. Saide</small></div>
+            <div class="h-cell empty"></div>
+
+            <div class="h-cell h-time">11:30<br>12:15</div>
+            <div class="h-cell empty"></div>
+            <div class="h-cell subj" style="background:var(--subj-hist)"><b>Hist</b><small>F. Cuamba</small></div>
+            <div class="h-cell empty"></div>
+            <div class="h-cell subj" style="background:var(--subj-ciencias)"><b>Bio</b><small>T. Macuácua</small></div>
+            <div class="h-cell empty"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Alunos · 36</b><a href="#" class="t-meta">Ver todos →</a></div>
+        <div>
+          <div class="row-card head" style="grid-template-columns:32px 1.4fr 1fr 100px"><div></div><div>Aluno</div><div>Frequência</div><div></div></div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px" onclick="location.hash='#cena-5'">
+            <span class="av sm">NC</span>
+            <div><b>Naila S. Cuamba</b><div class="t-meta mono">A-2026-ESG-MAP-08412</div></div>
+            <div><span class="badge green"><span class="dot"></span>98%</span></div>
+            <div><a href="#cena-5" class="btn sm secondary">Ficha →</a></div>
+          </div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px">
+            <span class="av sm amber">SD</span>
+            <div><b>Sumaila Dauto Jr.</b><div class="t-meta mono">A-2026-ESG-MAP-08413</div></div>
+            <div><span class="badge red"><span class="dot"></span>72%</span></div>
+            <div><a href="#" class="btn sm secondary">Ficha →</a></div>
+          </div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px">
+            <span class="av sm">EM</span>
+            <div><b>Eulália P. Massingue</b><div class="t-meta mono">A-2026-ESG-MAP-08414</div></div>
+            <div><span class="badge green"><span class="dot"></span>100%</span></div>
+            <div><a href="#" class="btn sm secondary">Ficha →</a></div>
+          </div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px">
+            <span class="av sm">CB</span>
+            <div><b>Carlos Bila Jr.</b><div class="t-meta mono">A-2026-ESG-MAP-08415</div></div>
+            <div><span class="badge amber"><span class="dot"></span>84%</span></div>
+            <div><a href="#" class="btn sm secondary">Ficha →</a></div>
+          </div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px">
+            <span class="av sm">TM</span>
+            <div><b>Tomás Macuácua Jr.</b><div class="t-meta mono">A-2026-ESG-MAP-08416</div></div>
+            <div><span class="badge green"><span class="dot"></span>96%</span></div>
+            <div><a href="#" class="btn sm secondary">Ficha →</a></div>
+          </div>
+          <div class="row-card" style="grid-template-columns:32px 1.4fr 1fr 100px">
+            <span class="av sm">JM</span>
+            <div><b>Joaquina Manhiça</b><div class="t-meta mono">A-2026-ESG-MAP-08417</div></div>
+            <div><span class="badge green"><span class="dot"></span>92%</span></div>
+            <div><a href="#" class="btn sm secondary">Ficha →</a></div>
+          </div>
+        </div>
+        <div class="ft" style="padding:10px 14px;border-top:1px solid var(--line-2);justify-content:flex-end"><a href="#" class="btn ghost sm">Ver todos os 36 →</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Turmas</a><a class="btn secondary sm" href="#cena-5">Ficha do aluno →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · FICHA DO ALUNO =================== -->
+<section class="scene"><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F4 — Ficha do aluno</div>
+    <h2>Naila Sumaila Cuamba · 5 abas: Visão geral · Pautas · Frequência · Família · Saúde</h2>
+    <p>BI lido do eBI (Governo Digital). Aba Saúde é cross-system para Saúde Moçambique, com consentimento da família visível.</p>
+  </div>
+  <div class="sige-body">
+    <div class="panel">
+      <div class="ph" style="padding:18px 20px">
+        <div class="row" style="gap:14px">
+          <span class="av lg">NC</span>
+          <div>
+            <div class="t-h2">Naila Sumaila Cuamba</div>
+            <div class="t-meta" style="margin-top:2px">14 anos · 8.ª A · ano lectivo 2026 · matriculada desde 2018 (1.ª classe)</div>
+            <div class="row" style="margin-top:8px;gap:8px">
+              <span class="badge"><span class="dot"></span>Matriculada</span>
+              <span class="badge green"><span class="dot"></span>Frequência 98%</span>
+              <span class="badge indigo"><span class="dot"></span>BI eBI · 110100099876 D</span>
+            </div>
+          </div>
+        </div>
+        <div class="col" style="gap:6px;align-items:flex-end">
+          <div class="row" style="gap:8px">
+            <button class="btn secondary sm">Imprimir cartão</button>
+            <button class="btn secondary sm">Transferir</button>
+            <button class="btn sm">Mensagem ao encarregado</button>
+          </div>
+          <span class="t-meta mono">Ficha aberta às 14:32 por C. Bila</span>
+        </div>
+      </div>
+
+      <div style="padding:0 20px;border-bottom:1px solid var(--line-2)">
+        <div class="row" style="gap:0">
+          <div style="padding:10px 14px;border-bottom:2px solid var(--indigo-700);color:var(--indigo-900);font-weight:600;font-size:13px">Visão geral</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Pautas</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Frequência</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Família</div>
+          <div style="padding:10px 14px;color:var(--ink-3);font-size:13px;cursor:pointer">Saúde escolar <span class="badge green" style="margin-left:6px;font-size:10px"><span class="dot"></span>Consentimento OK</span></div>
+        </div>
+      </div>
+
+      <div class="pb">
+        <div class="grid g-3">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Identificação</div>
+            <div class="card"><div class="bd">
+              <div class="kv" style="margin-bottom:10px"><span class="k">BI / Cédula</span><span class="v mono">110100099876 D</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">N.º processo</span><span class="v mono">A-2026-ESG-MAP-08412</span></div>
+              <div class="kv" style="margin-bottom:10px"><span class="k">Nascimento</span><span class="v">14 Mar 2012 · Maxixe</span></div>
+              <div class="kv"><span class="k">Sexo</span><span class="v">F</span></div>
+            </div></div>
+          </div>
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Resumo académico · 1.º Tri</div>
+            <div class="card"><div class="bd">
+              <div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:10px">
+                <span class="grade sm pass">15</span><span class="grade sm pass">17</span><span class="grade sm pass">14</span><span class="grade sm pass">13</span><span class="grade sm pass">16</span><span class="grade sm pass">12</span>
+                <span class="grade sm empty">—</span><span class="grade sm empty">—</span>
+              </div>
+              <div class="kv" style="margin-bottom:6px"><span class="k">Média provisória</span><span class="v mono">14,7</span></div>
+              <div class="kv"><span class="k">Posição na turma</span><span class="v">8.ª de 36</span></div>
+              <a href="#cena-6" class="t-meta" style="margin-top:8px;display:inline-block">Ver pauta completa →</a>
+            </div></div>
+          </div>
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Saúde escolar <span class="muted">· cross-system Saúde Moçambique</span></div>
+            <div class="card"><div class="pb" style="padding:14px">
+              <div class="row spread" style="margin-bottom:8px"><span class="t-body">Vacinação</span><span class="badge green" style="font-size:11px"><span class="dot"></span>Em dia</span></div>
+              <div class="row spread" style="margin-bottom:8px"><span class="t-body">Vista (rotina anual)</span><span class="badge"><span class="dot"></span>Não realizada</span></div>
+              <div class="row spread" style="margin-bottom:8px"><span class="t-body">Dentição</span><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span></div>
+              <div class="row spread"><span class="t-body">Crónicos</span><span class="badge"><span class="dot"></span>Nenhum</span></div>
+              <hr class="hr">
+              <div class="t-meta">Última actualização: 28 Mar 2026 · CS Polana</div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="t-overline" style="margin:18px 0 8px">Histórico escolar · 8 anos</div>
+        <table class="table">
+          <thead><tr><th>Ano</th><th>Classe</th><th>Escola</th><th>Director de turma</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>2026</td><td>8.ª · ESG</td><td>Esc. Sec. da Polana</td><td>Eulália Mussagy</td><td><span class="badge"><span class="dot"></span>Em curso</span></td></tr>
+            <tr><td>2025</td><td>7.ª · EP2</td><td>Esc. Sec. da Polana</td><td>Joaquim Sumaila</td><td><span class="badge green"><span class="dot"></span>Aprovada · 14,2</span></td></tr>
+            <tr><td>2024</td><td>6.ª · EP2</td><td>Esc. Sec. da Polana</td><td>Mariana Saide</td><td><span class="badge green"><span class="dot"></span>Aprovada · 13,8</span></td></tr>
+            <tr><td>2023</td><td>5.ª · EP1</td><td>Esc. Prim. Compl. de Maxixe</td><td>(papel)</td><td><span class="badge green"><span class="dot"></span>Aprovada · 14,5</span></td></tr>
+            <tr><td>2022</td><td>4.ª · EP1</td><td>Esc. Prim. Compl. de Maxixe</td><td>(papel)</td><td><span class="badge green"><span class="dot"></span>Aprovada</span></td></tr>
+            <tr><td>2018–2021</td><td>1.ª–3.ª · EP1</td><td>Esc. Prim. Compl. de Maxixe</td><td>(papel)</td><td><span class="badge green"><span class="dot"></span>4 aprovações</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Turma</a><a class="btn secondary sm" href="#cena-6">Pauta lançada →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · PAUTA LANÇADA =================== -->
+<section class="scene"><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F5 — Pauta lançada · revisão</div>
+    <h2>Matemática · 8.ª A · 1.º Trimestre · lançada por Prof. Mussagy</h2>
+    <p>Tabela de notas · padrões a verificar · histórico do professor · botão de validação. Padrão suspeito (queda de média) é sinalizado.</p>
+  </div>
+  <div class="sige-body">
+
+    <div class="banner amber" style="margin-bottom:14px"><span class="ic"></span><div><b>Verifique antes de validar.</b> A média desta turma a Matemática desceu 2,3 valores face ao 3.º trimestre de 2025 (Prof. anterior: A. Naila). 4 alunos passaram a "limiar" (9–10).</div></div>
+
+    <div class="panel">
+      <div class="ph" style="padding:14px 20px">
+        <div class="row" style="gap:12px">
+          <span class="subj mat" style="height:32px;padding:0 12px;font-size:13px">Matemática</span>
+          <div>
+            <b style="font-size:15px">8.ª A · 1.º Trimestre 2026</b>
+            <div class="t-meta">Lançada por Eulália Mussagy · 04 Abr 14:32 · 36 alunos</div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn secondary">Pedir esclarecimentos ao professor</button>
+          <a href="#cena-7" class="btn success">Validar pauta</a>
+        </div>
+      </div>
+
+      <div class="bd" style="padding:0">
+        <table class="table" style="font-size:12.5px">
+          <thead>
+            <tr>
+              <th style="width:50px">N.º</th>
+              <th>Aluno</th>
+              <th style="text-align:center">Avaliação contínua (30%)</th>
+              <th style="text-align:center">Prova escrita (50%)</th>
+              <th style="text-align:center">Oralidade (20%)</th>
+              <th style="text-align:center">Final</th>
+              <th style="text-align:center">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">01</td><td><b>Naila S. Cuamba</b></td><td style="text-align:center"><span class="grade sm pass">17</span></td><td style="text-align:center"><span class="grade sm pass">17</span></td><td style="text-align:center"><span class="grade sm pass">16</span></td><td style="text-align:center"><span class="grade pass">17</span></td><td style="text-align:center"><span class="badge green" style="font-size:10px">Aprovada</span></td></tr>
+            <tr><td class="mono">02</td><td><b>Sumaila Dauto Jr.</b></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade sm fail">9</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade borderline">10</span></td><td style="text-align:center"><span class="badge amber" style="font-size:10px">Limiar</span></td></tr>
+            <tr><td class="mono">03</td><td><b>Eulália P. Massingue</b></td><td style="text-align:center"><span class="grade sm pass">19</span></td><td style="text-align:center"><span class="grade sm pass">19</span></td><td style="text-align:center"><span class="grade sm pass">18</span></td><td style="text-align:center"><span class="grade pass">19</span></td><td style="text-align:center"><span class="badge green" style="font-size:10px">Aprovada</span></td></tr>
+            <tr><td class="mono">04</td><td><b>Carlos Bila Jr.</b></td><td style="text-align:center"><span class="grade sm fail">8</span></td><td style="text-align:center"><span class="grade sm fail">7</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade fail">8</span></td><td style="text-align:center"><span class="badge red" style="font-size:10px">Reprovado</span></td></tr>
+            <tr><td class="mono">05</td><td><b>Tomás Macuácua Jr.</b></td><td style="text-align:center"><span class="grade sm pass">13</span></td><td style="text-align:center"><span class="grade sm pass">13</span></td><td style="text-align:center"><span class="grade sm pass">12</span></td><td style="text-align:center"><span class="grade pass">13</span></td><td style="text-align:center"><span class="badge green" style="font-size:10px">Aprovado</span></td></tr>
+            <tr><td class="mono">06</td><td><b>Joaquina Manhiça</b></td><td style="text-align:center"><span class="grade sm pass">15</span></td><td style="text-align:center"><span class="grade sm pass">15</span></td><td style="text-align:center"><span class="grade sm pass">14</span></td><td style="text-align:center"><span class="grade pass">15</span></td><td style="text-align:center"><span class="badge green" style="font-size:10px">Aprovada</span></td></tr>
+            <tr><td class="mono">07</td><td><b>Augusto Naila Jr.</b></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade sm borderline">10</span></td><td style="text-align:center"><span class="grade borderline">10</span></td><td style="text-align:center"><span class="badge amber" style="font-size:10px">Limiar</span></td></tr>
+            <tr><td class="mono">08</td><td><b>Patrícia Cuamba</b></td><td style="text-align:center"><span class="grade sm pass">12</span></td><td style="text-align:center"><span class="grade sm pass">11</span></td><td style="text-align:center"><span class="grade sm pass">13</span></td><td style="text-align:center"><span class="grade pass">12</span></td><td style="text-align:center"><span class="badge green" style="font-size:10px">Aprovada</span></td></tr>
+            <tr style="background:var(--bg-2)"><td colspan="2" style="font-style:italic;color:var(--ink-3)">8 de 36 alunos · ver tabela completa</td><td colspan="5" style="text-align:right;color:var(--ink-3)">Média da turma: <b class="mono">12,4</b> · 4 reprovados · 6 limiares · 26 aprovados</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ft" style="padding:14px 20px;border-top:1px solid var(--line-2);justify-content:space-between;background:var(--bg-2)">
+        <div class="t-meta">Composição: avaliação contínua 30% · prova escrita 50% · oralidade 20%. Critério MINEDH 2024.</div>
+        <div class="row"><button class="btn ghost">Devolver à professora</button><a href="#cena-7" class="btn success">Validar e assinar →</a></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <div class="ph"><b>Notas da professora · contexto</b></div>
+      <div class="bd">
+        <p style="font-size:13px;line-height:1.55;margin:0;background:var(--bg-2);padding:14px;border-radius:var(--r-2);border-left:3px solid var(--indigo-700)">
+          "Esta turma vinha com lacunas no conteúdo de fracções (5.ª–7.ª classe) que tive de recuperar em Fevereiro. Comparado com a turma do ano passado, o ritmo foi mais lento mas estabilizou. 4 alunos em risco: Sumaila Dauto Jr., Carlos Bila Jr., Augusto Naila Jr. e José Macuvele. Recomendo apoio extra-aula no 2.º trimestre. Falo com os encarregados na próxima reunião." — <b>Eulália Mussagy</b>, 04 Abr 2026
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Ficha</a><a class="btn secondary sm" href="#cena-7">Validar →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · VALIDAR =================== -->
+<section class="scene"><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · Confirmação de duas etapas</div>
+    <h2>Validar pauta · Matemática · 8.ª A · 1.º Trimestre</h2>
+    <p>Modal com a consequência nomeada. Verificações explícitas. OTP do director. Após validação, alunos e encarregados vêem.</p>
+  </div>
+  <div class="sige-body" style="position:relative;min-height:540px">
+    <div class="panel" style="opacity:.55;pointer-events:none">
+      <div class="ph"><b>Pauta · Matemática · 8.ª A</b></div>
+      <div class="pb"><div class="t-meta">Tabela de notas e contexto…</div></div>
+    </div>
+
+    <div class="modal-back" style="position:absolute">
+      <div class="modal" style="width:580px">
+        <div class="hd"><div><b>Validar pauta de Matemática · 8.ª A · 1.º Trimestre</b><div class="t-meta">Esta acção publica a pauta para alunos e encarregados.</div></div><button class="btn ghost btn-icon">×</button></div>
+        <div class="bd col">
+          <div class="banner indigo"><span class="ic"></span><div>Ao validar, a pauta é assinada digitalmente, fica visível na App do Aluno e do Encarregado, e é enviada à DED para o registo nacional. Recursos de nota podem ser submetidos durante 10 dias.</div></div>
+          <div class="kv"><span class="k">Disciplina · Turma</span><span class="v">Matemática · 8.ª A · 1.º Trimestre 2026</span></div>
+          <div class="kv"><span class="k">Professora</span><span class="v">Eulália Mussagy</span></div>
+          <div class="kv"><span class="k">Director assinante</span><span class="v">Carlos Bila · Esc. Sec. da Polana</span></div>
+          <div class="kv"><span class="k">Resumo</span><span class="v">36 alunos · 26 aprovados · 6 limiares · 4 reprovados · média 12,4</span></div>
+          <hr class="hr">
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Verifiquei a coerência das notas (avaliação contínua + escrita + oralidade).</label>
+          <label class="row" style="gap:8px"><input type="checkbox" checked /> Tomei nota de que 4 alunos estão em risco e o caso será discutido na próxima reunião.</label>
+          <div class="field">
+            <label>OTP do director (SMS)</label>
+            <div class="row" style="gap:6px">
+              <input class="input mono" style="text-align:center;width:42px" value="4" />
+              <input class="input mono" style="text-align:center;width:42px" value="9" />
+              <input class="input mono" style="text-align:center;width:42px" value="1" />
+              <input class="input mono" style="text-align:center;width:42px" value="3" />
+              <input class="input mono" style="text-align:center;width:42px" value="0" />
+              <input class="input mono" style="text-align:center;width:42px" value="" />
+            </div>
+            <span class="hint">Enviado para +258 84 ••• ••22 às 14:42.</span>
+          </div>
+        </div>
+        <div class="ft">
+          <button class="btn ghost">Cancelar</button>
+          <a href="#cena-8" class="btn success">Validar pauta · publicar a 36 alunos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Pauta</a><a class="btn secondary sm" href="#cena-8">Frequência →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · FREQUÊNCIA =================== -->
+<section class="scene"><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F8 — Frequência e faltas anómalas</div>
+    <h2>Mapa semanal · faltas auto-detectadas · acção pelo director</h2>
+    <p>≥3 faltas seguidas, padrão semanal, ≥10 faltas no trimestre são sinalizados. O director contacta encarregado com SMS sugerido.</p>
+  </div>
+  <div class="sige-body">
+
+    <div class="grid g-4" style="margin-bottom:16px">
+      <div class="kpi"><div class="lbl">Frequência média semana</div><div class="num" style="color:var(--good-700)">92,4%</div><div class="delta">+0,8 face à semana 13</div></div>
+      <div class="kpi"><div class="lbl">Faltas justificadas (sem)</div><div class="num">218</div><div class="delta">88% das faltas</div></div>
+      <div class="kpi"><div class="lbl">Faltas não justificadas</div><div class="num" style="color:var(--amber-700)">29</div><div class="delta">12% · seguir-se ao encarregado</div></div>
+      <div class="kpi"><div class="lbl">Casos a acompanhar</div><div class="num" style="color:var(--red-700)">5</div><div class="delta">≥3 faltas seguidas ou padrão</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Casos a acompanhar</b><span class="t-meta">Ordenado por urgência</span></div>
+        <table class="table">
+          <thead><tr><th>Aluno</th><th>Turma</th><th>Padrão</th><th>Última falta</th><th>Contacto</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background:#FCEFEC">
+              <td><b>Patrícia Cuamba</b><div class="t-meta mono">A-2026-EP2-MAP-07221</div></td>
+              <td>7.ª C</td>
+              <td><span class="badge red" style="font-size:10px"><span class="dot"></span>12 faltas no trimestre</span></td>
+              <td>03 Abr</td>
+              <td>Encarregado: <b>L. Cuamba</b> · 84•••••42</td>
+              <td><button class="btn sm">Iniciar processo</button></td>
+            </tr>
+            <tr style="background:#FFFBEF">
+              <td><b>Sumaila Dauto Jr.</b><div class="t-meta mono">A-2026-ESG-MAP-08413</div></td>
+              <td>8.ª A</td>
+              <td><span class="badge amber" style="font-size:10px"><span class="dot"></span>5 faltas seguidas</span></td>
+              <td>19 Mar</td>
+              <td>Encarregado: <b>S. Dauto</b> · não atende</td>
+              <td><button class="btn sm">Visitar em casa</button></td>
+            </tr>
+            <tr>
+              <td><b>Naila Manhiça</b><div class="t-meta mono">A-2026-ESG-MAP-09105</div></td>
+              <td>9.ª B</td>
+              <td><span class="badge amber" style="font-size:10px"><span class="dot"></span>Padrão semanal · 6.ª-feira</span></td>
+              <td>02 Abr</td>
+              <td>Encarregado: <b>F. Manhiça</b> · 84•••••18</td>
+              <td><button class="btn sm secondary">Enviar SMS</button></td>
+            </tr>
+            <tr>
+              <td><b>José Cumbe</b><div class="t-meta mono">A-2026-EP2-MAP-06812</div></td>
+              <td>6.ª A</td>
+              <td><span class="badge"><span class="dot"></span>3 faltas seguidas</span></td>
+              <td>21 Mar</td>
+              <td>Encarregado: <b>M. Cumbe</b></td>
+              <td><button class="btn sm secondary">Enviar SMS</button></td>
+            </tr>
+            <tr>
+              <td><b>Mariana Sitói</b><div class="t-meta mono">A-2026-EP1-MAP-04108</div></td>
+              <td>4.ª B</td>
+              <td><span class="badge"><span class="dot"></span>4 faltas no mês</span></td>
+              <td>28 Mar</td>
+              <td>Encarregado: <b>A. Sitói</b></td>
+              <td><button class="btn sm secondary">Reunião</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>SMS sugerido · Sumaila Dauto Jr.</b></div>
+        <div class="bd col">
+          <div class="kv"><span class="k">Para</span><span class="v"><b>S. Dauto</b> (encarregado) · <span class="mono">+258 84 ••• ••12</span></span></div>
+          <div class="field">
+            <label>Mensagem (≤160 caracteres)</label>
+            <textarea class="textarea" style="min-height:120px;font-family:var(--f-mono);font-size:13px">Esc Sec Polana: Sumaila Jr (8A) tem 5 faltas seguidas (15-19 Mar). Pedimos contacto urgente. Carlos Bila, Director · 21 49 22 22</textarea>
+            <span class="hint">142 / 160 · em PT-MZ, sem caracteres especiais para garantir SMS único.</span>
+          </div>
+          <hr class="hr">
+          <div class="t-overline" style="margin-bottom:6px">Histórico de tentativas de contacto</div>
+          <table class="table" style="font-size:12px">
+            <tbody>
+              <tr><td>22 Mar 14:00</td><td>Telefone</td><td><span class="badge red" style="font-size:10px"><span class="dot"></span>Não atendeu</span></td></tr>
+              <tr><td>23 Mar 09:30</td><td>Telefone</td><td><span class="badge red" style="font-size:10px"><span class="dot"></span>Caixa de voz</span></td></tr>
+              <tr><td>25 Mar 11:00</td><td>SMS</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>Sem resposta</span></td></tr>
+            </tbody>
+          </table>
+          <button class="btn block">Enviar SMS agora</button>
+          <button class="btn secondary block">Marcar para visita domiciliária</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Validar</a><a class="btn secondary sm" href="#cena-9">Recurso de nota →</a></div></div>
+</section>
+
+<!-- =================== CENA 9 · RECURSO =================== -->
+<section class="scene"><span class="anchor" id="cena-9"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 9 · F6 — Recurso de nota</div>
+    <h2>Encarregado submeteu recurso · revisão pelo director</h2>
+    <p>Encarregado submete na App do Aluno · chega aqui · director contacta professor · decide deferido / indeferido · cidadã recebe decisão.</p>
+  </div>
+  <div class="sige-body">
+
+    <div class="banner indigo" style="margin-bottom:14px"><span class="ic"></span><div><b>Recurso R-2026-PED-0042 recebido a 04 Abr 09:18.</b> Submetido por L. Cuamba (encarregado) sobre a nota de Português · 8.ª A · 1.º Trimestre da aluna Naila S. Cuamba.</div></div>
+
+    <div class="panel">
+      <div class="ph"><b>Detalhe do recurso</b><span class="badge indigo"><span class="dot"></span>Em análise</span></div>
+      <div class="bd">
+        <div class="grid g-2">
+          <div>
+            <div class="t-overline">Aluna</div>
+            <div style="font-size:15px;font-weight:600;margin-top:4px">Naila Sumaila Cuamba</div>
+            <div class="t-meta mono">A-2026-ESG-MAP-08412 · 8.ª A</div>
+            <hr class="hr">
+            <div class="t-overline">Disciplina · Trimestre</div>
+            <div style="font-size:14px;margin-top:4px">Português · 1.º Trimestre 2026</div>
+            <div class="t-meta">Professor: Joaquim Sumaila</div>
+            <hr class="hr">
+            <div class="t-overline">Nota actual</div>
+            <div style="margin-top:6px"><span class="grade pass">14</span></div>
+            <div class="t-meta" style="margin-top:4px">Avaliação contínua 13 · prova escrita 14 · oralidade 16</div>
+          </div>
+          <div>
+            <div class="t-overline">Submetido por</div>
+            <div style="font-size:14px;font-weight:600;margin-top:4px">Lúcia Cuamba (mãe)</div>
+            <div class="t-meta">Encarregada de educação · BI 110100099877 D</div>
+            <hr class="hr">
+            <div class="t-overline">Justificação do recurso</div>
+            <p style="font-size:13px;line-height:1.55;margin:6px 0 0;background:var(--bg-2);padding:12px;border-radius:var(--r-2);border-left:3px solid var(--indigo-700)">
+              "A Naila apresentou-me o teste corrigido. Vejo erros de cotação na pergunta 4 (deveria ter 2 valores em vez de 1) e na pergunta 7 (estava parcialmente certa, recebeu 0). Estimamos que a nota seria 16, não 14. Pedimos revisão. Junto fotografia do teste."
+            </p>
+            <div class="t-meta" style="margin-top:6px">Anexo: <a href="#">teste-naila-port-1tri.jpg</a> · 1,2 MB</div>
+          </div>
+        </div>
+
+        <hr class="hr">
+        <div class="t-overline" style="margin-bottom:8px">Acção do director</div>
+        <div class="grid g-2">
+          <div>
+            <div class="field">
+              <label>Resposta do professor (Joaquim Sumaila)</label>
+              <textarea class="textarea" style="min-height:100px">Concordo parcialmente: a pergunta 4 efectivamente tinha 2 valores e a aluna recebeu 1 — erro de cotação meu. A pergunta 7 manteve-se a 0 porque a parte certa não justificava pontuação parcial conforme critério INDE. Recomendo: alterar nota da prova escrita de 14 para 15. Nota final passa de 14 para 14,3 (arredondamento: 14).</textarea>
+            </div>
+            <div class="field" style="margin-top:10px">
+              <label>Decisão fundamentada</label>
+              <textarea class="textarea" style="min-height:80px">Após análise da prova e da resposta da professora Mussagy, deferido parcialmente. A nota da prova escrita corrige-se de 14 para 15 (erro de cotação na P4). Nota final mantém-se 14 por arredondamento. A encarregada será notificada.</textarea>
+            </div>
+          </div>
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Histórico do recurso</div>
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>04 Abr 09:18</td><td>Recebido pelo SIGE</td></tr>
+                <tr><td>04 Abr 10:02</td><td>Atribuído ao director</td></tr>
+                <tr><td>04 Abr 10:40</td><td>Enviada questão à professora</td></tr>
+                <tr><td>04 Abr 14:18</td><td>Resposta da professora recebida</td></tr>
+                <tr><td>04 Abr 14:48</td><td><b>Em decisão</b></td></tr>
+              </tbody>
+            </table>
+            <hr class="hr">
+            <div class="row" style="gap:8px;flex-wrap:wrap">
+              <button class="btn">Deferir parcialmente · 14→14</button>
+              <button class="btn secondary">Deferir totalmente · subir a 16</button>
+              <button class="btn secondary" style="border-color:var(--red-500);color:var(--red-700)">Indeferir · manter 14</button>
+            </div>
+            <p class="t-meta" style="margin:10px 0 0">A decisão dispara: notificação à encarregada na App, ajuste no registo nacional (DED), arquivo no histórico do aluno.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-8">← Frequência</a><a class="btn secondary sm" href="#cena-10">Relatório DPEDH →</a></div></div>
+</section>
+
+<!-- =================== CENA 10 · RELATÓRIO DPEDH =================== -->
+<section class="scene"><span class="anchor" id="cena-10"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 10 · F10 — Relatório mensal para DPEDH</div>
+    <h2>Auto-gerado · revisto pelo director · submetido</h2>
+    <p>Sem dupla introdução de dados. O director adiciona contexto, valida e submete. A DPEDH provincial vê no painel deles.</p>
+  </div>
+  <div class="sige-body">
+    <div class="panel">
+      <div class="ph" style="padding:16px 20px">
+        <div>
+          <div class="t-overline">Relatório mensal</div>
+          <div class="t-h2" style="margin-top:4px">Março 2026 · Esc. Sec. da Polana</div>
+          <div class="t-meta">Para: DPEDH Cidade de Maputo · Prazo: 10 Abr 2026</div>
+        </div>
+        <div class="row">
+          <button class="btn secondary">⤓ PDF</button>
+          <button class="btn">Submeter à DPEDH</button>
+        </div>
+      </div>
+      <div class="bd">
+        <div class="grid g-4" style="margin-bottom:18px">
+          <div class="kpi"><div class="lbl">Matrículas activas</div><div class="num">1 248</div><div class="delta">+12 face a Fev</div></div>
+          <div class="kpi"><div class="lbl">Transferências</div><div class="num">8</div><div class="delta">5 entrada · 3 saída</div></div>
+          <div class="kpi"><div class="lbl">Faltas não justificadas</div><div class="num">142</div><div class="delta">11,4% das faltas totais</div></div>
+          <div class="kpi"><div class="lbl">Faltas disciplinares graves</div><div class="num">2</div><div class="delta">2 suspensões de 3 dias</div></div>
+        </div>
+
+        <div class="twocol">
+          <div class="card">
+            <div class="hd"><b>Indicadores académicos · Março</b></div>
+            <table class="table">
+              <thead><tr><th>Indicador</th><th>Valor</th><th>Vs Fev</th></tr></thead>
+              <tbody>
+                <tr><td>Pautas trimestrais lançadas</td><td>14 / 22 disciplinas-turma</td><td><span class="badge"><span class="dot"></span>—</span></td></tr>
+                <tr><td>Pautas validadas</td><td>9 / 14</td><td><span class="badge"><span class="dot"></span>—</span></td></tr>
+                <tr><td>Recursos pendentes</td><td>3</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>+2</span></td></tr>
+                <tr><td>Frequência média</td><td>92,4%</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>+0,8</span></td></tr>
+                <tr><td>Aulas dadas / planeadas</td><td>96,2%</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>+1,2</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Infraestrutura · Março</b></div>
+            <table class="table">
+              <thead><tr><th>Item</th><th>Disponível</th><th>Necessário</th></tr></thead>
+              <tbody>
+                <tr><td>Carteiras</td><td class="mono">624</td><td class="mono">700 (recomendado)</td></tr>
+                <tr><td>Manuais Português 8.ª</td><td class="mono">28</td><td class="mono">36</td></tr>
+                <tr><td>Manuais Matemática 8.ª</td><td class="mono">14</td><td class="mono">36</td></tr>
+                <tr><td>Casas de banho funcionais</td><td class="mono">6 / 8</td><td class="mono">8</td></tr>
+                <tr><td>Tablets DED no SIGE</td><td class="mono">12</td><td class="mono">86 (1 por professor)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr class="hr">
+        <div class="t-overline" style="margin-bottom:8px">Comentário do director</div>
+        <div class="field">
+          <textarea class="textarea" style="min-height:120px">Mês marcado pela campanha de matrícula tardia (12 alunos novos transferidos do interior) e pelo arranque do 1.º trimestre. Notas: (1) carga horária de Matemática a 8.ª A foi parcialmente assumida pela Prof. Mussagy após cessação contratual da Prof. Naila; recomendamos contratação efectiva. (2) Manuais de Matemática 8.ª insuficientes — 22 alunos sem manual. Pedido formal já submetido à DPEDH. (3) Casas de banho do bloco B em obras desde 18 Mar; previsão de conclusão 12 Abr. Sem incidentes disciplinares de gravidade reportável.</textarea>
+        </div>
+
+        <hr class="hr">
+        <div class="t-overline" style="margin-bottom:8px">Anexos</div>
+        <div class="row" style="gap:10px;flex-wrap:wrap">
+          <span class="badge dark">PDF</span><a href="#">Pautas validadas (Março)</a>
+          <span class="badge dark">CSV</span><a href="#">Mapa de frequência</a>
+          <span class="badge dark">PDF</span><a href="#">Acta da reunião pedagógica de 28 Mar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-9">← Recurso</a><a class="btn secondary sm" href="professor.html">Ver superfície Caderno do Professor →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">SIGE v0.3 · documento autoritativo: <a class="mono" href="DESIGN-sige.md">DESIGN-sige.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema de design</a>
+      <a href="professor.html" class="btn secondary sm">Caderno do Professor →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

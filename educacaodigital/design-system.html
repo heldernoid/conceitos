@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema de Design — Educação Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .ds-hero{padding:36px 24px 12px;max-width:1200px;margin:0 auto}
+  .ds-hero h1{font-size:36px;font-weight:600;letter-spacing:-.015em;margin:6px 0 10px}
+  .ds-hero p{color:var(--ink-2);font-size:16px;max-width:720px;line-height:1.55;margin:0}
+  .section{max-width:1200px;margin:0 auto;padding:24px}
+  .section h2{font-size:22px;font-weight:600;margin:0 0 14px;letter-spacing:-.005em}
+  .swatch-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .sw{border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;background:#fff}
+  .sw .chip{height:64px}
+  .sw .meta{padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+  .sw .nm{font-size:12px;font-weight:600}
+  .sw .hex{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .typo-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line-2)}
+  .typo-row .lbl{font-family:var(--f-mono);font-size:11px;color:var(--ink-3)}
+  .comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .demo{background:#fff;border:1px solid var(--line);border-radius:var(--r-2);padding:18px}
+  .demo h3{margin:0 0 10px;font-size:14px;font-weight:600}
+  .demo .stack{display:flex;flex-direction:column;gap:10px}
+  .demo .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pill-list{display:flex;flex-wrap:wrap;gap:8px}
+  .principle{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .principle .n{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .principle h4{margin:6px 0 4px;font-size:14px;font-weight:600}
+  .principle p{margin:0;font-size:13px;color:var(--ink-3);line-height:1.5}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-72px;padding-top:72px}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MINEDH · Direcção de Educação Digital — DED</span><span class="sep">·</span>
+  <span>Sistema de Design v0.3</span>
+  <span style="margin-left:auto">DESIGN-system.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Educação Digital</span><small>Plataforma Escolar Nacional</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema de design</a>
+    <a href="sige.html">SIGE</a>
+    <a href="professor.html">Professor</a>
+    <a href="aluno.html">Aluno</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="matriculas.html">Matrículas</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-system.md" class="btn secondary sm">DESIGN-system.md</a>
+  </div>
+</header>
+
+<section class="ds-hero">
+  <div class="t-overline">Fundamentos · v0.3 · Abril 2026</div>
+  <h1>Sistema de Design</h1>
+  <p>Tokens, tipografia, paleta de disciplinas, componentes e padrões de estado partilhados pelas cinco superfícies da Educação Digital. Define o que é permitido e o que é interdito.</p>
+</section>
+
+<section class="section">
+  <span class="anchor" id="principios"></span>
+  <h2>Princípios</h2>
+  <div class="grid g-3">
+    <div class="principle"><div class="n">01</div><h4>Calmo, não engaja</h4><p>Sem streaks, sem pontos, sem confetti. Aprender não é um jogo de pontuação. Sem mascotes animados.</p></div>
+    <div class="principle"><div class="n">02</div><h4>Previsível antes de elegante</h4><p>Pautas parecem pautas. Horários parecem horários. Mesmos componentes em todas as superfícies.</p></div>
+    <div class="principle"><div class="n">03</div><h4>Tablets baratos e telefones 2G</h4><p>Contraste AA+, alvos ≥44 px, corpo ≥16 px no telemóvel, ≥14 px no desktop. Tablet 7″ em landscape suportado.</p></div>
+    <div class="principle"><div class="n">04</div><h4>Português moçambicano</h4><p>Toda a copy em PT-MZ. MINEDH e DPEDH reais; DED identificada como fictícia.</p></div>
+    <div class="principle"><div class="n">05</div><h4>Proveniência sempre visível</h4><p>Notas mostram o professor que lançou. Pautas mostram o director que validou. Livros mostram a instituição contribuinte.</p></div>
+    <div class="principle"><div class="n">06</div><h4>Confirmação para acções académicas</h4><p>Lançar pauta final, anular matrícula, transferir aluno requerem dois toques e justificação estruturada.</p></div>
+    <div class="principle"><div class="n">07</div><h4>Crianças importam, mas não optimizamos para elas</h4><p>Crianças lêem o que professores e pais introduzem. A interface é calma e informativa, não tenta encantar.</p></div>
+    <div class="principle"><div class="n">08</div><h4>Disciplinas têm cor</h4><p>Seis disciplinas, seis cores. Português é vermelho-vinho em todas as superfícies. Consistência é a regra.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="cor"></span>
+  <h2>Paleta</h2>
+
+  <div class="t-overline" style="margin:14px 0 8px">Marca · Indigo</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--indigo-900)"></div><div class="meta"><span class="nm">indigo-900</span><span class="hex">#1A1740</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--indigo-800)"></div><div class="meta"><span class="nm">indigo-800</span><span class="hex">#241F58</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--indigo-700)"></div><div class="meta"><span class="nm">indigo-700</span><span class="hex">#322B7A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--indigo-600)"></div><div class="meta"><span class="nm">indigo-600</span><span class="hex">#443A99</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--indigo-100)"></div><div class="meta"><span class="nm">indigo-100</span><span class="hex">#E5E2F2</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--indigo-50)"></div><div class="meta"><span class="nm">indigo-50</span><span class="hex">#F2F0F8</span></div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Disciplinas · paleta fechada</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--subj-port)"></div><div class="meta"><span class="nm">Português</span><span class="hex">#7A2E3D</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--subj-mat)"></div><div class="meta"><span class="nm">Matemática</span><span class="hex">#1F4D7A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--subj-ciencias)"></div><div class="meta"><span class="nm">Ciências</span><span class="hex">#1B5E3F</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--subj-hist)"></div><div class="meta"><span class="nm">História · Geografia</span><span class="hex">#7A5018</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--subj-arte)"></div><div class="meta"><span class="nm">Arte</span><span class="hex">#5C2D7A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--subj-ed-fis)"></div><div class="meta"><span class="nm">Ed. Física</span><span class="hex">#2E5C3A</span></div></div>
+  </div>
+  <p class="t-meta" style="margin:8px 0 0">Estas seis cores são <em>as</em> cores das disciplinas. Não podem ser usadas como paleta decorativa em mais nenhum lado. Português é sempre <span class="mono">#7A2E3D</span> — desde a pauta do SIGE à capa de livro na Biblioteca.</p>
+
+  <div class="t-overline" style="margin:18px 0 8px">Verificação · Verde (uso restrito)</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--green-700)"></div><div class="meta"><span class="nm">green-700</span><span class="hex">#1B5E3F</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--green-100)"></div><div class="meta"><span class="nm">green-100</span><span class="hex">#E4EFE9</span></div></div>
+  </div>
+  <p class="t-meta" style="margin:8px 0 0">Verde é a marca do Saúde Moçambique. Aqui aparece <em>apenas</em> em "assinado / carimbado / verificado pelo Estado".</p>
+
+  <div class="t-overline" style="margin:18px 0 8px">Estado académico</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--good-700)"></div><div class="meta"><span class="nm">good-700</span><span class="hex">#1B6B3A</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--amber-500)"></div><div class="meta"><span class="nm">amber-500</span><span class="hex">#C8911E</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--red-500)"></div><div class="meta"><span class="nm">red-500</span><span class="hex">#C2392A</span></div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Biblioteca · Sepia (apenas Biblioteca Pública)</div>
+  <div class="swatch-grid">
+    <div class="sw"><div class="chip" style="background:var(--sepia-700)"></div><div class="meta"><span class="nm">sepia-700</span><span class="hex">#5C4A2E</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sepia-500)"></div><div class="meta"><span class="nm">sepia-500</span><span class="hex">#8C7045</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sepia-100)"></div><div class="meta"><span class="nm">sepia-100</span><span class="hex">#F2EAD6</span></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="tipografia"></span>
+  <h2>Tipografia</h2>
+  <div class="card"><div class="bd">
+    <div class="typo-row"><div class="lbl">t-display</div><div style="font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.1">Cinco superfícies, uma escola.</div></div>
+    <div class="typo-row"><div class="lbl">t-h1 32/600</div><div class="t-h1">Sistema de Design</div></div>
+    <div class="typo-row"><div class="lbl">t-h2 24/600</div><div class="t-h2">Pauta do 1.º Trimestre</div></div>
+    <div class="typo-row"><div class="lbl">t-h3 18/600</div><div class="t-h3">Plano de aula · Matemática</div></div>
+    <div class="typo-row"><div class="lbl">t-h4 15/600</div><div class="t-h4">Trabalhos de casa</div></div>
+    <div class="typo-row"><div class="lbl">t-lead 16/1.5</div><div class="t-lead">A pauta do 1.º trimestre será publicada a 15 de Abril.</div></div>
+    <div class="typo-row"><div class="lbl">t-body 14/1.45</div><div class="t-body">A nota final é composta por avaliação contínua (30%), provas escritas (50%) e oralidade (20%).</div></div>
+    <div class="typo-row"><div class="lbl">t-meta 12</div><div class="t-meta">Lançada por Prof. Eulália Mussagy · 04 Abr 2026 · Escola Sec. da Polana</div></div>
+    <div class="typo-row"><div class="lbl">t-overline</div><div class="t-overline">Identificação académica</div></div>
+    <div class="typo-row"><div class="lbl">mono</div><div class="mono" style="font-size:14px">A-2026-EP2-INH-04412 · ESC-INH-0124 · P-INH-2018-0042</div></div>
+    <div class="typo-row"><div class="lbl">serif h2</div><div class="serif" style="font-size:24px;font-weight:600">Niketche · Uma História de Poligamia</div></div>
+    <div class="typo-row"><div class="lbl">serif body</div><div class="serif" style="font-size:16px;line-height:1.7">Em Tete, a poeira amarela cobre tudo: as casas de chapa, os caminhos, as nuvens. A Rami senta-se à porta. Espera.</div></div>
+  </div></div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="componentes"></span>
+  <h2>Componentes</h2>
+  <div class="comp-grid">
+
+    <div class="demo">
+      <h3>Botões</h3>
+      <div class="stack">
+        <div class="row">
+          <button class="btn">Lançar pauta</button>
+          <button class="btn secondary">Cancelar</button>
+          <button class="btn ghost">Voltar</button>
+        </div>
+        <div class="row">
+          <button class="btn success">Validar e assinar</button>
+          <button class="btn danger">Anular matrícula</button>
+          <button class="btn amber">Aguardar director</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Distintivos · Estado académico</h3>
+      <div class="pill-list">
+        <span class="badge">Rascunho</span>
+        <span class="badge indigo"><span class="dot"></span>Lançada</span>
+        <span class="badge amber"><span class="dot"></span>Aguarda director</span>
+        <span class="badge green"><span class="dot"></span>Validada</span>
+        <span class="badge red"><span class="dot"></span>Reprovado</span>
+        <span class="badge sepia"><span class="dot"></span>Biblioteca</span>
+      </div>
+      <div class="pill-list" style="margin-top:14px">
+        <span class="conn"><span class="d"></span>Online · sincronizado</span>
+        <span class="conn amber"><span class="d"></span>3 em fila</span>
+        <span class="conn off"><span class="d"></span>Offline</span>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Disciplinas · paleta fechada</h3>
+      <div class="pill-list">
+        <span class="subj port">Português</span>
+        <span class="subj mat">Matemática</span>
+        <span class="subj cien">Ciências Naturais</span>
+        <span class="subj hist">História</span>
+        <span class="subj arte">Educação Artística</span>
+        <span class="subj ef">Educação Física</span>
+      </div>
+      <p class="t-meta" style="margin:12px 0 0">Mesmo chip, mesma cor, em todas as superfícies — desde a pauta no SIGE até à capa de livro na Biblioteca.</p>
+    </div>
+
+    <div class="demo">
+      <h3>Notas · círculos</h3>
+      <div class="row" style="gap:14px">
+        <div style="text-align:center"><span class="grade pass">17</span><div class="t-meta">Aprovado</div></div>
+        <div style="text-align:center"><span class="grade pass">14</span><div class="t-meta">Aprovado</div></div>
+        <div style="text-align:center"><span class="grade borderline">10</span><div class="t-meta">Limiar</div></div>
+        <div style="text-align:center"><span class="grade fail">7</span><div class="t-meta">Reprovado</div></div>
+        <div style="text-align:center"><span class="grade empty">—</span><div class="t-meta">Por lançar</div></div>
+      </div>
+      <p class="t-meta" style="margin:12px 0 0">A nota é um carimbo, não uma pílula UI. Verde é "aprovado", âmbar é "limiar 9–10", vermelho é "reprovado".</p>
+    </div>
+
+    <div class="demo">
+      <h3>Inputs</h3>
+      <div class="stack">
+        <div class="field"><label>Nome do aluno</label><input class="input" value="Naila Sumaila Cuamba" /></div>
+        <div class="field"><label>Disciplina</label><select class="select"><option>Matemática</option><option>Português</option></select></div>
+        <div class="field"><label>Justificação · ≥80 caracteres</label><textarea class="textarea" placeholder="Para acções irreversíveis." style="min-height:80px"></textarea></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Pauta · 5 alunos</h3>
+      <table class="table">
+        <thead><tr><th>Aluno</th><th>Port</th><th>Mat</th><th>Ciên</th><th>Hist</th></tr></thead>
+        <tbody>
+          <tr><td><b>Naila S. Cuamba</b></td><td><span class="grade sm pass">15</span></td><td><span class="grade sm pass">17</span></td><td><span class="grade sm pass">14</span></td><td><span class="grade sm pass">13</span></td></tr>
+          <tr><td><b>Sumaila Dauto Jr.</b></td><td><span class="grade sm pass">12</span></td><td><span class="grade sm borderline">10</span></td><td><span class="grade sm pass">14</span></td><td><span class="grade sm pass">11</span></td></tr>
+          <tr><td><b>Eulália P. Massingue</b></td><td><span class="grade sm pass">17</span></td><td><span class="grade sm pass">19</span></td><td><span class="grade sm pass">18</span></td><td><span class="grade sm pass">16</span></td></tr>
+          <tr><td><b>Carlos Bila</b></td><td><span class="grade sm fail">8</span></td><td><span class="grade sm fail">7</span></td><td><span class="grade sm borderline">10</span></td><td><span class="grade sm pass">11</span></td></tr>
+          <tr><td><b>Tomás Macuácua</b></td><td><span class="grade sm pass">14</span></td><td><span class="grade sm pass">13</span></td><td><span class="grade sm empty">—</span></td><td><span class="grade sm pass">12</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="demo">
+      <h3>Capa de livro · Biblioteca</h3>
+      <div class="row" style="gap:12px">
+        <div class="book" style="width:120px"><div class="cov port"><span class="ti">Niketche</span></div><div class="meta"><b>Niketche</b><div class="au">Paulina Chiziane · 2002</div></div></div>
+        <div class="book" style="width:120px"><div class="cov hist"><span class="ti">Mia Couto · Vinte e Zinco</span></div><div class="meta"><b>Vinte e Zinco</b><div class="au">Mia Couto · 1999</div></div></div>
+        <div class="book" style="width:120px"><div class="cov mat"><span class="ti">Manual de Matemática · 7.ª classe</span></div><div class="meta"><b>Mat 7.ª · INDE</b><div class="au">2023 · oficial</div></div></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>Banners</h3>
+      <div class="stack">
+        <div class="banner indigo"><span class="ic"></span><div><b>Pauta lançada.</b> O director receberá para validação até 18 Abr.</div></div>
+        <div class="banner amber"><span class="ic"></span><div><b>3 faltas seguidas.</b> A escola vai contactar o encarregado de educação.</div></div>
+        <div class="banner red"><span class="ic"></span><div><b>Matrícula recusada.</b> Veja a justificação e considere recurso.</div></div>
+        <div class="banner green"><span class="ic"></span><div><b>Pauta validada e assinada.</b> Disponível ao aluno e ao encarregado.</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <span class="anchor" id="proibido"></span>
+  <h2>Proibições</h2>
+  <div class="grid g-3">
+    <div class="card"><div class="bd"><div class="t-overline">Engajamento</div><p class="t-body" style="margin:6px 0 0">Sem streaks, sem pontos, sem badges-troféu, sem confetti, sem rankings públicos. Aprender não é um jogo de pontuação.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Tipografia</div><p class="t-body" style="margin:6px 0 0">Sem peso 700. Plex Serif só em títulos de livros e modo leitura. Mono só para identificadores.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Cor</div><p class="t-body" style="margin:6px 0 0">Disciplinas têm cor fixa. Cor de disciplina nunca é cor decorativa. Sepia só na Biblioteca.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Imagem</div><p class="t-body" style="margin:6px 0 0">Sem ilustrações em estados vazios. Sem mascotes. Sem stock photography de "happy students".</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Identidade</div><p class="t-body" style="margin:6px 0 0">Sem login social. Sem perfis públicos de aluno. Iniciais como avatar; foto só em cartão oficial.</p></div></div>
+    <div class="card"><div class="bd"><div class="t-overline">Comunicação</div><p class="t-body" style="margin:6px 0 0">Sem mensagens privadas entre alunos. Toda a comunicação é mediada pela escola.</p></div></div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:32px">
+  <div style="max-width:1200px;margin:0 auto" class="row spread">
+    <div class="t-meta">Sistema de Design v0.3 · documento autoritativo: <a class="mono" href="DESIGN-system.md">DESIGN-system.md</a></div>
+    <div class="row">
+      <a href="index.html" class="btn ghost sm">Visão geral</a>
+      <a href="sige.html" class="btn secondary sm">Ver superfície SIGE →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
