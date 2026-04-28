@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Portal Comercial · Empresas & Contabilistas — Finanças Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .panel .ph{padding:12px 16px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .panel .pb{padding:16px}
+  .twocol{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+  .threeone{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden}
+  .seg button{height:32px;padding:0 12px;border:0;background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;font-family:inherit;border-right:1px solid var(--line)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--burg-100);color:var(--burg-900);font-weight:600}
+
+  .kpi{padding:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-2)}
+  .kpi .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .kpi .num{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-top:4px;font-family:var(--f-mono)}
+  .kpi .delta{font-size:11px;color:var(--ink-3);margin-top:4px}
+
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .at-body{padding:20px 24px;max-width:1440px;margin:0 auto;width:100%}
+
+  .empswitch{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--burg-50);border:1px solid var(--burg-100);border-radius:4px;cursor:pointer}
+  .empswitch:hover{background:var(--burg-100)}
+  .empswitch .av{background:var(--burg-700);color:#fff}
+
+  .login-bg{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:var(--bg)}
+  .login-left{background:var(--burg-900);color:#e8c5c8;padding:48px;display:flex;flex-direction:column;justify-content:space-between}
+  .login-left h1{font-size:36px;line-height:1.1;letter-spacing:-.01em;margin:0;color:#fff;max-width:440px}
+  .login-right{padding:48px;display:flex;align-items:center;justify-content:center}
+
+  /* Cert seal · gold */
+  .cert{background:#fff;border:1px solid var(--gold-500);border-radius:6px;padding:32px;position:relative;background-image:radial-gradient(circle at 50% 0%,var(--gold-100) 0%,#fff 60%)}
+  .cert::before,.cert::after{content:"";position:absolute;width:120px;height:120px;border:2px solid var(--gold-500);border-radius:50%;opacity:.15}
+  .cert::before{top:-60px;left:-60px}
+  .cert::after{bottom:-60px;right:-60px}
+  .cert h3{font-family:var(--f-serif);font-size:24px;font-weight:600;margin:0;color:var(--gold-700);text-align:center}
+  .cert .crest{width:48px;height:48px;background:var(--gold-500);margin:0 auto 14px;position:relative;border-radius:1px}
+  .cert .crest::before{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(135deg,transparent 0 41%,#fff 41% 50%,transparent 50% 100%);opacity:.85}
+  .cert .crest::after{content:"";position:absolute;right:6px;top:6px;width:8px;height:8px;background:var(--burg-900);border-radius:50%}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MEF · Autoridade Tributária · DFD</span><span class="sep">·</span>
+  <span>Portal Comercial v0.3</span>
+  <span style="margin-left:auto">DESIGN-comercial.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Portal Comercial</span><small>Empresas & Contabilistas</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-at.html">Portal AT</a>
+    <a href="efactura.html">e-Factura</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="comercial.html" class="active">Comercial</a>
+    <a href="sistafe.html">SISTAFE</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online</span>
+    <div class="idbadge"><span class="av sm">EM</span><div class="who"><b>Eulália Macuácua</b><span>Contabilista (TOC) · 14 empresas</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Login + carteira</a>
+    <a href="#cena-2">2. Painel empresa</a>
+    <a href="#cena-3">3. IVA mensal</a>
+    <a href="#cena-4">4. Folha salários</a>
+    <a href="#cena-5">5. Importar facturas</a>
+    <a href="#cena-6">6. IRPC trimestral</a>
+    <a href="#cena-7">7. Procuração</a>
+    <a href="#cena-8">8. Certificado fiscal</a>
+  </div>
+</nav>
+
+<!-- =================== CENA 1 · LOGIN + CARTEIRA =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Login multi-empresa</div>
+    <h2>Eulália Macuácua · contabilista · 14 empresas em carteira</h2>
+    <p>Após OTP, contabilista vê switcher com a sua carteira. Selecciona empresa para entrar no painel.</p>
+  </div>
+  <div style="padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%">
+    <div class="login-bg" style="border:1px solid var(--line);border-radius:var(--r-2);overflow:hidden;min-height:600px;grid-template-columns:1fr 1.4fr">
+      <div class="login-left">
+        <div>
+          <div class="row" style="gap:10px;align-items:center"><span style="width:28px;height:28px;background:#fff;display:inline-block;position:relative;border-radius:1px"><span style="position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(135deg,transparent 0 41%,var(--burg-900) 41% 50%,transparent 50%)"></span></span><span style="color:#fff;font-weight:600">Portal Comercial</span></div>
+          <h1 style="margin-top:48px">Para a empresa cumprir. Para o contabilista trabalhar bem.</h1>
+          <p style="color:#e8c5c8;font-size:14px;line-height:1.55;margin-top:14px;max-width:380px">IVA mensal, IRPC trimestral, folhas de salário com retenções, importação batch de facturas. Multi-empresa para contabilistas TOC.</p>
+        </div>
+        <div style="font-size:12px;color:#bd9094">v0.3 · Abril 2026 · Protótipo</div>
+      </div>
+      <div style="padding:36px 48px;background:#fff">
+        <div class="row spread" style="margin-bottom:24px"><div><div class="t-overline">Bem-vinda</div><h3 class="t-h2" style="margin:6px 0 4px">Eulália Macuácua</h3><div class="t-meta">Contabilista (TOC) · cédula 4218 · OCAM</div></div><span class="badge green"><span class="dot"></span>OTP confirmado</span></div>
+
+        <div class="t-overline" style="margin-bottom:10px">A sua carteira · 14 empresas</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-height:400px;overflow-y:auto">
+          <a href="#cena-2" style="background:var(--burg-50);border:2px solid var(--burg-700);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="badge burg" style="font-size:10px">Última usada</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>IVA Mar</span></div>
+            <div style="font-weight:600;margin-top:8px">Lojinha do João, Lda</div>
+            <div class="t-meta mono">NUIT 400 871 432</div>
+            <div class="t-meta" style="margin-top:6px">8 trabalhadores · IVA mensal · IRPC normal</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Em dia</span></div>
+            <div style="font-weight:600;margin-top:8px">Construtores União, Lda</div>
+            <div class="t-meta mono">NUIT 400 992 145</div>
+            <div class="t-meta" style="margin-top:6px">42 trabalhadores · construção</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Em dia</span></div>
+            <div style="font-weight:600;margin-top:8px">Padaria Maputo, Lda</div>
+            <div class="t-meta mono">NUIT 400 184 622</div>
+            <div class="t-meta" style="margin-top:6px">12 trabalhadores · alimentação</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>IRPC Q1</span></div>
+            <div style="font-weight:600;margin-top:8px">Hotelaria Polana, SA</div>
+            <div class="t-meta mono">NUIT 400 304 188</div>
+            <div class="t-meta" style="margin-top:6px">86 trabalhadores · hotelaria</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Em dia</span></div>
+            <div style="font-weight:600;margin-top:8px">Cervejas de Mz · filial Maputo</div>
+            <div class="t-meta mono">NUIT 400 088 244</div>
+            <div class="t-meta" style="margin-top:6px">28 trabalhadores · bebidas</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge red" style="font-size:10px"><span class="dot"></span>Mora</span></div>
+            <div style="font-weight:600;margin-top:8px">Distribuidora Limpopo, Lda</div>
+            <div class="t-meta mono">NUIT 400 218 442</div>
+            <div class="t-meta" style="margin-top:6px">14 trabalhadores · distribuição</div>
+          </a>
+          <a href="#cena-2" style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px;text-decoration:none;color:inherit;opacity:.55">
+            <div class="row spread"><span class="t-meta mono">14 empresa</span><span class="badge"><span class="dot"></span>+8</span></div>
+            <div style="font-weight:600;margin-top:8px">+ 8 outras empresas</div>
+            <div class="t-meta">Pesquisar carteira →</div>
+          </a>
+        </div>
+
+        <hr class="hr">
+        <div class="row" style="gap:8px"><input class="input" placeholder="Pesquisar por NUIT ou nome..." /><button class="btn secondary">+ Adicionar empresa via procuração</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Sócios-gerentes (sem TOC) entram directamente na sua única empresa.</span><a class="btn secondary sm" href="#cena-2">Painel da empresa →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · PAINEL EMPRESA =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Painel da empresa · Lojinha do João, Lda</div>
+    <h2>Obrigações pendentes · KPIs do mês · avisos da AT</h2>
+  </div>
+  <div class="at-body">
+
+    <div class="row spread" style="margin-bottom:18px;align-items:flex-end">
+      <div>
+        <div class="row" style="gap:10px"><div class="empswitch"><span class="av sm">LJ</span><div><div style="font-weight:600;font-size:13px">Lojinha do João, Lda</div><div class="t-meta mono" style="font-size:10px">NUIT 400 871 432 · IVA mensal · IRPC normal</div></div><span class="t-meta" style="margin-left:6px">▾</span></div><span class="badge"><span class="dot"></span>Eulália Macuácua · contabilista</span></div>
+      </div>
+      <div class="row"><button class="btn secondary sm">⤓ Exportar SISTAFE</button><a href="#cena-8" class="btn gold sm">Pedir certificado fiscal</a></div>
+    </div>
+
+    <div class="grid g-4" style="margin-bottom:18px">
+      <div class="kpi"><div class="lbl">Volume facturação · Abril</div><div class="num" style="color:var(--good-700);font-size:24px">1 248 000</div><div class="delta">MZN · 38 facturas emitidas</div></div>
+      <div class="kpi"><div class="lbl">IVA a entregar · Mar</div><div class="num" style="color:var(--burg-700);font-size:24px">142 880</div><div class="delta">MZN · prazo 20 Abr (em 4 dias)</div></div>
+      <div class="kpi"><div class="lbl">IRPC pago · YTD 2026</div><div class="num" style="font-size:24px">82 400</div><div class="delta">MZN · 1.ª prestação Q1</div></div>
+      <div class="kpi"><div class="lbl">Salários · Mar</div><div class="num" style="font-size:24px">486 200</div><div class="delta">MZN · 8 trabalhadores</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Obrigações pendentes</b><div class="row"><span class="seg"><button class="on">Próximas 30 dias</button><button>Histórico</button></span></div></div>
+        <table class="table">
+          <thead><tr><th>Obrigação</th><th>Período</th><th>Valor estimado</th><th>Vence</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background:#FCEFEC;cursor:pointer" onclick="location.hash='#cena-3'"><td><span class="tax iva" style="font-size:10px">IVA</span> Declaração mensal</td><td>Março 2026</td><td class="num">142 880,00</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>4 dias</span></td><td><a href="#cena-3" class="btn sm">Apurar IVA →</a></td></tr>
+            <tr style="cursor:pointer" onclick="location.hash='#cena-4'"><td><span class="tax irps" style="font-size:10px">IRPS retenção</span> Folha de salários</td><td>Abril 2026</td><td class="num">62 480,00</td><td>20 Mai · 22 dias</td><td><a href="#cena-4" class="btn sm secondary">Folha →</a></td></tr>
+            <tr><td><span class="badge"><span class="dot"></span>INSS</span> Mapa de remunerações</td><td>Abril 2026</td><td class="num">34 240,00</td><td>10 Mai · 12 dias</td><td><a href="#cena-4" class="btn sm secondary">Mapa →</a></td></tr>
+            <tr style="cursor:pointer" onclick="location.hash='#cena-6'"><td><span class="tax irpc" style="font-size:10px">IRPC</span> Pagamento por conta · 2.ª prestação</td><td>2.º Tri 2026</td><td class="num">82 400,00</td><td>31 Jul · 94 dias</td><td><a href="#cena-6" class="btn sm secondary">IRPC →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Avisos da AT</b></div>
+          <div class="pb col">
+            <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Anomalia · IVA Fev 2026.</b> AT pediu esclarecimentos sobre subdeclaração de 128 350 MZN. Prazo: 15 dias. <a href="#">Responder →</a></div></div>
+            <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>Visita programada.</b> Inspector C. Bila · 18 Abr · 10:00 · sede.</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Equipa fiscal</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:10px"><span class="av">EM</span><div style="flex:1;font-size:13px"><b>Eulália Macuácua</b><div class="t-meta">Contabilista TOC · acesso total · desde 2018</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></div>
+            <div class="row" style="gap:10px"><span class="av sm" style="background:var(--good-100);color:var(--good-700)">JC</span><div style="flex:1;font-size:13px"><b>João Cuamba</b><div class="t-meta">Sócio-gerente · acesso total</div></div><span class="badge green" style="font-size:10px"><span class="dot"></span>Activo</span></div>
+            <div class="row" style="gap:10px"><span class="av sm">RH</span><div style="flex:1;font-size:13px"><b>Rui Halare</b><div class="t-meta">RH · só folha de salários</div></div><span class="badge"><span class="dot"></span>Limitado</span></div>
+            <a href="#cena-7" class="btn ghost sm" style="padding:0;margin-top:6px">Gerir procurações →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Carteira</a><a class="btn secondary sm" href="#cena-3">IVA mensal →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · IVA MENSAL =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — IVA mensal · apuramento e submissão</div>
+    <h2>IVA cobrado − IVA dedutível = a entregar</h2>
+    <p>Sistema agrega facturas emitidas (cobrado) e recebidas (dedutível) automaticamente. Apuramento revisto por contabilista e submetido com OTP.</p>
+  </div>
+  <div class="at-body">
+    <div class="panel">
+      <div class="ph" style="padding:16px 20px">
+        <div><div class="t-overline">Declaração IVA</div><div class="t-h2" style="margin-top:4px">Março 2026 · Lojinha do João, Lda</div><div class="t-meta">Vence 20 Abr 2026 · em 4 dias</div></div>
+        <div class="row"><button class="btn secondary">⤓ Pré-visualizar PDF</button><button class="btn">Submeter à AT</button></div>
+      </div>
+
+      <div class="bd">
+        <div class="grid g-2" style="gap:18px">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">IVA cobrado · facturas emitidas em Mar</div>
+            <div class="card"><div class="bd">
+              <table class="table" style="font-size:13px">
+                <tbody>
+                  <tr><td>Facturas a NUITs colectivos (B2B)</td><td class="num">1 040 000,00</td></tr>
+                  <tr><td>IVA cobrado 16% · B2B</td><td class="num" style="color:var(--burg-700)">166 400,00</td></tr>
+                  <tr><td>Facturas a particulares (B2C)</td><td class="num">82 000,00</td></tr>
+                  <tr><td>IVA cobrado 16% · B2C</td><td class="num" style="color:var(--burg-700)">13 120,00</td></tr>
+                  <tr style="border-top:1px solid var(--line)"><td><b>Total IVA cobrado</b></td><td class="num"><b>179 520,00</b></td></tr>
+                </tbody>
+              </table>
+              <hr class="hr">
+              <a href="#" class="t-meta">38 facturas · ver detalhe →</a>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">IVA dedutível · facturas recebidas em Mar</div>
+            <div class="card"><div class="bd">
+              <table class="table" style="font-size:13px">
+                <tbody>
+                  <tr><td>Compras a fornecedores</td><td class="num">192 000,00</td></tr>
+                  <tr><td>IVA dedutível 16%</td><td class="num" style="color:var(--good-700)">- 30 720,00</td></tr>
+                  <tr><td>Serviços (electricidade, água)</td><td class="num">35 000,00</td></tr>
+                  <tr><td>IVA dedutível serviços</td><td class="num" style="color:var(--good-700)">- 5 600,00</td></tr>
+                  <tr><td>Combustível</td><td class="num">2 000,00</td></tr>
+                  <tr><td>IVA dedutível (50%)</td><td class="num" style="color:var(--good-700)">- 320,00</td></tr>
+                  <tr style="border-top:1px solid var(--line)"><td><b>Total IVA dedutível</b></td><td class="num"><b>- 36 640,00</b></td></tr>
+                </tbody>
+              </table>
+              <hr class="hr">
+              <a href="#cena-5" class="t-meta">14 facturas recebidas · cruzar com fornecedores →</a>
+            </div></div>
+          </div>
+        </div>
+
+        <hr class="hr">
+
+        <div style="background:linear-gradient(135deg,var(--burg-900) 0%,var(--burg-700) 100%);color:#fff;padding:24px;border-radius:6px;margin-bottom:14px">
+          <div style="font-size:11px;color:#e8c5c8;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Apuramento · IVA a entregar à AT</div>
+          <div class="row" style="gap:16px;align-items:baseline;margin-top:10px">
+            <div><div style="font-size:11px;color:#e8c5c8">Cobrado</div><div class="mzn lg" style="color:#fff">179 520,00</div></div>
+            <div style="color:#e8c5c8;font-size:24px">−</div>
+            <div><div style="font-size:11px;color:#e8c5c8">Dedutível</div><div class="mzn lg" style="color:#fff">36 640,00</div></div>
+            <div style="color:#e8c5c8;font-size:24px">=</div>
+            <div><div style="font-size:11px;color:#fff">A entregar</div><div class="mzn xl" style="color:#fff">142 880,00 <small style="color:#e8c5c8">MZN</small></div></div>
+          </div>
+        </div>
+
+        <div class="grid g-3">
+          <div class="card"><div class="bd">
+            <div class="t-overline" style="font-size:10px">Comparação · Fev 2026</div>
+            <div class="mzn lg" style="margin-top:4px;color:var(--ink-3)">12 450,00</div>
+            <div class="t-meta"><span class="badge red" style="font-size:10px"><span class="dot"></span>Subdeclarado</span> em fiscalização AT</div>
+          </div></div>
+          <div class="card"><div class="bd">
+            <div class="t-overline" style="font-size:10px">Média 6 meses</div>
+            <div class="mzn lg" style="margin-top:4px">128 400,00</div>
+            <div class="t-meta">Mar 2026 está +11% acima da média.</div>
+          </div></div>
+          <div class="card"><div class="bd">
+            <div class="t-overline" style="font-size:10px">Pagar via</div>
+            <div style="margin-top:4px;display:flex;flex-direction:column;gap:6px;font-size:13px">
+              <label class="row" style="gap:6px"><input type="radio" name="pay" checked /> M-Pesa Empresarial</label>
+              <label class="row" style="gap:6px"><input type="radio" name="pay" /> BCI · transferência</label>
+              <label class="row" style="gap:6px"><input type="radio" name="pay" /> Standard Bank</label>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="ft" style="padding:14px 20px;display:flex;justify-content:space-between;border-top:1px solid var(--line-2)">
+        <button class="btn ghost">Gravar como rascunho</button>
+        <div class="row"><button class="btn secondary">Pré-visualizar declaração</button><button class="btn">Submeter e pagar 142 880 MZN</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Painel</a><a class="btn secondary sm" href="#cena-4">Folha de salários →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · FOLHA SALÁRIOS =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F5 — Folha de salários Abril · 8 trabalhadores</div>
+    <h2>Salário bruto · IRPS retido · INSS · INSS empresa · líquido</h2>
+    <p>Mapa mensal. Retenções automáticas pelas escalões IRPS 2026. INSS 3% trabalhador + 4% empresa.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom:18px">
+      <div class="kpi"><div class="lbl">Salários brutos</div><div class="num" style="font-size:22px">486 200</div><div class="delta">MZN · 8 trabalhadores</div></div>
+      <div class="kpi"><div class="lbl">IRPS retido</div><div class="num" style="color:var(--burg-700);font-size:22px">62 480</div><div class="delta">MZN · entregar até 20 Mai</div></div>
+      <div class="kpi"><div class="lbl">INSS · 3% trab.</div><div class="num" style="font-size:22px">14 586</div><div class="delta">MZN · trabalhador</div></div>
+      <div class="kpi"><div class="lbl">INSS · 4% empresa</div><div class="num" style="font-size:22px">19 448</div><div class="delta">MZN · entrega 10 Mai</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="ph"><b>Mapa de remunerações · Abril 2026</b><div class="row"><span class="seg"><button class="on">Mês</button><button>Trimestre</button><button>YTD</button></span><button class="btn sm secondary">⤓ CSV</button><button class="btn sm secondary">⤓ Mapa INSS</button></div></div>
+      <table class="table">
+        <thead><tr><th>Trabalhador</th><th>NUIT</th><th>Função</th><th class="num">Bruto</th><th class="num">IRPS</th><th class="num">INSS 3%</th><th class="num">Líquido</th></tr></thead>
+        <tbody>
+          <tr><td><b>João Cuamba</b><div class="t-meta">BI 110100099876</div></td><td class="mono">100 088 421</td><td>Sócio-gerente</td><td class="num">120 000</td><td class="num">22 100</td><td class="num">3 600</td><td class="num">94 300</td></tr>
+          <tr><td><b>Olga Manjate</b><div class="t-meta">BI 110100221487</div></td><td class="mono">100 184 922</td><td>Caixeira</td><td class="num">42 000</td><td class="num">3 320</td><td class="num">1 260</td><td class="num">37 420</td></tr>
+          <tr><td><b>Salomão Tembe</b><div class="t-meta">BI 110100884271</div></td><td class="mono">100 218 091</td><td>Armazém</td><td class="num">38 000</td><td class="num">2 720</td><td class="num">1 140</td><td class="num">34 140</td></tr>
+          <tr><td><b>Antónia Cossa</b><div class="t-meta">BI 110100992014</div></td><td class="mono">100 218 880</td><td>Caixeira</td><td class="num">42 000</td><td class="num">3 320</td><td class="num">1 260</td><td class="num">37 420</td></tr>
+          <tr><td><b>Felipe Macia</b><div class="t-meta">BI 110100114782</div></td><td class="mono">100 304 218</td><td>Motorista</td><td class="num">52 000</td><td class="num">4 820</td><td class="num">1 560</td><td class="num">45 620</td></tr>
+          <tr><td><b>Rui Halare</b><div class="t-meta">BI 110100487112</div></td><td class="mono">100 412 875</td><td>RH</td><td class="num">62 000</td><td class="num">6 880</td><td class="num">1 860</td><td class="num">53 260</td></tr>
+          <tr><td><b>Ana Sambo</b><div class="t-meta">BI 110100442918</div></td><td class="mono">100 218 102</td><td>Caixeira</td><td class="num">42 000</td><td class="num">3 320</td><td class="num">1 260</td><td class="num">37 420</td></tr>
+          <tr><td><b>Carlos Macuene</b><div class="t-meta">BI 110100339102</div></td><td class="mono">100 488 219</td><td>Manutenção</td><td class="num">38 000</td><td class="num">2 720</td><td class="num">1 140</td><td class="num">34 140</td></tr>
+          <tr style="background:var(--bg-2);font-weight:600"><td colspan="3">Total · 8 trabalhadores</td><td class="num">436 000</td><td class="num">49 200</td><td class="num">13 080</td><td class="num">373 720</td></tr>
+        </tbody>
+      </table>
+      <div class="ft" style="padding:12px 16px;display:flex;justify-content:space-between;border-top:1px solid var(--line-2)">
+        <span class="t-meta">Subsídio refeição (50 200 MZN total) e horas extra (13 280) acrescentam ao bruto. <a href="#">Ver detalhe →</a></span>
+        <div class="row"><button class="btn secondary">+ Adicionar trabalhador</button><button class="btn">Submeter mapa à AT + INSS</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← IVA</a><a class="btn secondary sm" href="#cena-5">Importar facturas →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · IMPORTAR FACTURAS =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Importar facturas batch · CSV / XML</div>
+    <h2>Facturas recebidas de fornecedores · cruzamento automático</h2>
+    <p>Para empresas que recebem 50+ facturas por mês de fornecedores. Sistema valida cada NUIT no Portal AT, cruza IVA dedutível.</p>
+  </div>
+  <div class="at-body">
+    <div class="panel">
+      <div class="ph"><b>Importar facturas recebidas</b><span class="t-meta">3 ficheiros · 47 facturas processadas</span></div>
+      <div class="bd">
+        <div class="grid g-2" style="gap:18px">
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Carregar ficheiro</div>
+            <div class="placeholder" style="height:160px;flex-direction:column;gap:8px">
+              <div style="font-size:13px;color:var(--ink)">Arrastar CSV ou XML aqui</div>
+              <button class="btn secondary sm">Escolher ficheiro</button>
+              <div class="t-meta" style="font-size:10px">SAFT-MZ · CSV · XML · até 5 MB</div>
+            </div>
+            <hr class="hr">
+            <div class="t-overline" style="font-size:10px;margin-bottom:8px">Ficheiros recentes</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="row spread" style="font-size:13px;padding:8px 10px;background:var(--bg-2);border-radius:4px"><span class="row" style="gap:8px"><span class="badge dark" style="font-size:9px">CSV</span>fornecedores-mar-2026.csv</span><span class="t-meta">28 facturas · 14 Abr</span></div>
+              <div class="row spread" style="font-size:13px;padding:8px 10px;background:var(--bg-2);border-radius:4px"><span class="row" style="gap:8px"><span class="badge dark" style="font-size:9px">XML</span>cervejas-saft.xml</span><span class="t-meta">12 facturas · 12 Abr</span></div>
+              <div class="row spread" style="font-size:13px;padding:8px 10px;background:var(--bg-2);border-radius:4px"><span class="row" style="gap:8px"><span class="badge dark" style="font-size:9px">CSV</span>vodacom-mar.csv</span><span class="t-meta">7 facturas · 10 Abr</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom:8px">Resultados · cruzamento</div>
+            <div class="card"><div class="bd">
+              <div class="row spread" style="font-size:13px"><span><span class="badge green" style="font-size:10px"><span class="dot"></span>Válidas</span> NUIT confirmado · IVA bate</span><span><b>42</b></span></div>
+              <div class="row spread" style="font-size:13px;margin-top:8px"><span><span class="badge amber" style="font-size:10px"><span class="dot"></span>A confirmar</span> Hash AT pendente</span><span><b>3</b></span></div>
+              <div class="row spread" style="font-size:13px;margin-top:8px"><span><span class="badge red" style="font-size:10px"><span class="dot"></span>Inválidas</span> NUIT não existe ou suspenso</span><span><b>2</b></span></div>
+              <hr class="hr">
+              <div class="row spread"><b>IVA dedutível total</b><span class="mono" style="font-weight:600">36 640,00</span></div>
+            </div></div>
+            <hr class="hr">
+            <div class="t-overline" style="font-size:10px;margin-bottom:8px">Inválidas · acção necessária</div>
+            <div style="background:#fff;border:1px solid var(--red-100);border-radius:4px;padding:10px;font-size:12px;margin-bottom:6px">
+              <div class="row spread"><span class="mono">FT 2026/00481</span><span class="badge red" style="font-size:10px"><span class="dot"></span>NUIT suspenso</span></div>
+              <div style="margin-top:4px">Fornecedor: NUIT 100 991 822 · 18 200 MZN</div>
+              <div class="t-meta" style="margin-top:2px">Não é dedutível · contactar fornecedor</div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--red-100);border-radius:4px;padding:10px;font-size:12px">
+              <div class="row spread"><span class="mono">FT 2026/00501</span><span class="badge red" style="font-size:10px"><span class="dot"></span>NUIT inexistente</span></div>
+              <div style="margin-top:4px">Fornecedor: NUIT 400 999 999 · 4 800 MZN</div>
+              <div class="t-meta" style="margin-top:2px">Verificar se NUIT está correcto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ft" style="padding:12px 16px;display:flex;justify-content:space-between"><span class="t-meta">42 válidas serão integradas no apuramento IVA Mar.</span><div class="row"><button class="btn ghost">Cancelar</button><button class="btn">Confirmar e integrar 42 facturas</button></div></div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Folha</a><a class="btn secondary sm" href="#cena-6">IRPC →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · IRPC =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F4 — IRPC · pagamentos por conta + anual</div>
+    <h2>3 prestações por ano fiscal · sistema sugere com base em 2025</h2>
+  </div>
+  <div class="at-body">
+    <div class="threeone">
+      <div class="panel">
+        <div class="ph"><b>IRPC 2026 · Lojinha do João, Lda</b><span class="badge"><span class="dot"></span>Regime normal · 32%</span></div>
+        <div class="bd">
+          <div class="grid g-3" style="gap:14px;margin-bottom:18px">
+            <div class="card"><div class="bd"><div class="t-overline" style="font-size:10px">IRPC 2025 declarado</div><div class="mzn lg" style="margin-top:4px">247 200,00 <small>MZN</small></div><div class="t-meta">base lucro 772 500</div></div></div>
+            <div class="card"><div class="bd"><div class="t-overline" style="font-size:10px">YTD 2026 estimado</div><div class="mzn lg" style="margin-top:4px;color:var(--burg-700)">82 400,00 <small>MZN</small></div><div class="t-meta">3 prestações de 82 400</div></div></div>
+            <div class="card"><div class="bd"><div class="t-overline" style="font-size:10px">Próxima prestação</div><div style="font-size:14px;font-weight:600;margin-top:4px">2.ª · vence 31 Jul</div><div class="t-meta">94 dias · 82 400 MZN</div></div></div>
+          </div>
+
+          <table class="table">
+            <thead><tr><th>Prestação</th><th>Vencimento</th><th class="num">Valor</th><th>Estado</th><th>Acção</th></tr></thead>
+            <tbody>
+              <tr><td>1.ª · pagamento por conta</td><td>31 Mar 2026</td><td class="num">82 400,00</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Pago via BCI · 28 Mar</span></td><td><a class="t-meta" href="#">Recibo</a></td></tr>
+              <tr><td>2.ª · pagamento por conta</td><td>31 Jul 2026</td><td class="num">82 400,00</td><td><span class="badge"><span class="dot"></span>Aguarda</span></td><td><button class="btn sm">Pagar →</button></td></tr>
+              <tr><td>3.ª · pagamento por conta</td><td>30 Nov 2026</td><td class="num">82 400,00</td><td><span class="badge"><span class="dot"></span>Aguarda</span></td><td><button class="btn sm secondary">Pagar →</button></td></tr>
+              <tr style="background:var(--bg-2)"><td>Declaração final · M22</td><td>31 Mai 2027</td><td class="num">a apurar</td><td><span class="badge"><span class="dot"></span>Pendente</span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Histórico IRPC</b></div>
+          <div class="pb">
+            <div class="row spread" style="font-size:13px;margin-bottom:10px"><b>2025</b><span class="mono">247 200</span></div>
+            <div class="bar" style="margin-bottom:10px"><div class="fill" style="width:76%;background:var(--tax-irpc)"></div></div>
+            <div class="row spread" style="font-size:13px;margin-bottom:10px"><b>2024</b><span class="mono">218 400</span></div>
+            <div class="bar" style="margin-bottom:10px"><div class="fill" style="width:67%;background:var(--tax-irpc)"></div></div>
+            <div class="row spread" style="font-size:13px;margin-bottom:10px"><b>2023</b><span class="mono">192 800</span></div>
+            <div class="bar" style="margin-bottom:10px"><div class="fill" style="width:59%;background:var(--tax-irpc)"></div></div>
+            <div class="row spread" style="font-size:13px;margin-bottom:10px"><b>2022</b><span class="mono">182 400</span></div>
+            <div class="bar"><div class="fill" style="width:56%;background:var(--tax-irpc)"></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><b>Atalhos</b></div>
+          <div class="pb col">
+            <button class="btn secondary block">⤓ Declaração 2025 · M22 PDF</button>
+            <button class="btn secondary block">Ver lucro tributável apurado</button>
+            <a href="sistafe.html" class="btn ghost block">Exportar para SISTAFE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Importar</a><a class="btn secondary sm" href="#cena-7">Procurações →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · PROCURAÇÃO =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F7 — Gestão de procurações · contabilista ↔ empresa</div>
+    <h2>Aceitar carteira · auditoria de acessos · revogar</h2>
+    <p>Eulália gere 14 empresas. Cada uma autorizou-a por procuração digital. Sócio-gerente vê tudo o que ela fez.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Procurações activas · Eulália Macuácua</b><button class="btn secondary sm">+ Aceitar nova procuração</button></div>
+        <table class="table">
+          <thead><tr><th>Empresa</th><th>NUIT</th><th>Âmbito</th><th>Início</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><b>Lojinha do João, Lda</b></td><td class="mono">400 871 432</td><td>Total fiscal</td><td>14 Mar 2018</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></td></tr>
+            <tr><td><b>Construtores União, Lda</b></td><td class="mono">400 992 145</td><td>Total fiscal</td><td>22 Jul 2019</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></td></tr>
+            <tr><td><b>Padaria Maputo, Lda</b></td><td class="mono">400 184 622</td><td>Total fiscal</td><td>10 Jan 2021</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></td></tr>
+            <tr><td><b>Hotelaria Polana, SA</b></td><td class="mono">400 304 188</td><td>Só IVA + IRPC</td><td>04 Set 2020</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></td></tr>
+            <tr><td><b>Cervejas de Mz · filial</b></td><td class="mono">400 088 244</td><td>Total fiscal</td><td>18 Mai 2022</td><td><span class="badge green" style="font-size:10px"><span class="dot"></span>Activa</span></td></tr>
+            <tr><td><b>Distribuidora Limpopo, Lda</b></td><td class="mono">400 218 442</td><td>Total fiscal</td><td>02 Out 2023</td><td><span class="badge amber" style="font-size:10px"><span class="dot"></span>Em revisão</span></td></tr>
+            <tr style="background:var(--bg-2)"><td colspan="5" class="t-meta" style="text-align:center">+ 8 outras empresas (mostrar →)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Auditoria · Lojinha do João · últimas acções</b></div>
+        <div class="bd">
+          <div class="col" style="gap:10px;font-size:13px">
+            <div class="row" style="gap:10px;align-items:flex-start"><span class="av sm">EM</span><div style="flex:1"><b>Eulália Macuácua</b> validou apuramento IVA Mar<div class="t-meta mono" style="font-size:10px">28 Abr 2026 · 14:42</div></div></div>
+            <div class="row" style="gap:10px;align-items:flex-start"><span class="av sm">EM</span><div style="flex:1"><b>Eulália Macuácua</b> importou 28 facturas de fornecedores<div class="t-meta mono" style="font-size:10px">14 Abr 2026 · 11:18</div></div></div>
+            <div class="row" style="gap:10px;align-items:flex-start"><span class="av sm" style="background:var(--good-100);color:var(--good-700)">JC</span><div style="flex:1"><b>João Cuamba</b> (sócio-gerente) aprovou folha de salários Mar<div class="t-meta mono" style="font-size:10px">02 Abr 2026 · 16:22</div></div></div>
+            <div class="row" style="gap:10px;align-items:flex-start"><span class="av sm">EM</span><div style="flex:1"><b>Eulália Macuácua</b> respondeu a pedido de esclarecimento da AT<div class="t-meta mono" style="font-size:10px">31 Mar 2026 · 09:12</div></div></div>
+            <div class="row" style="gap:10px;align-items:flex-start"><span class="av sm">EM</span><div style="flex:1"><b>Eulália Macuácua</b> submeteu IRPC 2025 · M22<div class="t-meta mono" style="font-size:10px">28 Mai 2025 · 17:48</div></div></div>
+          </div>
+          <hr class="hr">
+          <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:11px">O sócio-gerente vê tudo o que a contabilista faz. Acessos auditáveis pelo TA (Tribunal Administrativo).</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← IRPC</a><a class="btn secondary sm" href="#cena-8">Certificado fiscal →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · CERTIFICADO FISCAL =================== -->
+<section><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F · Certificado fiscal · Empresa Regularizada</div>
+    <h2>Selo de ouro · vale para concursos públicos até Abr 2027</h2>
+    <p>Auto-emitido se a empresa não tem dívidas vencidas. Verificável via QR público.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="cert">
+        <div style="text-align:center;font-size:11px;color:var(--gold-700);text-transform:uppercase;letter-spacing:.1em;font-weight:600">República de Moçambique</div>
+        <div style="text-align:center;font-size:10px;color:var(--ink-3);margin-top:2px">Ministério da Economia e Finanças · Autoridade Tributária</div>
+        <hr class="hr" style="margin:18px 0">
+        <div class="crest"></div>
+        <h3>Certidão de Regularização Fiscal</h3>
+        <p style="font-family:var(--f-serif);font-size:14px;text-align:center;color:var(--ink-2);line-height:1.6;margin:18px 0">Certifica-se que a empresa</p>
+        <div style="text-align:center"><div style="font-family:var(--f-serif);font-size:22px;font-weight:600">Lojinha do João, Lda</div><div class="mono t-meta" style="margin-top:4px">NUIT 400 871 432</div></div>
+        <p style="font-family:var(--f-serif);font-size:14px;text-align:center;color:var(--ink-2);line-height:1.7;margin:18px 0;padding:0 14px">tem a sua situação fiscal <b>regularizada</b>, não constando dívidas vencidas em IVA, IRPC, retenções IRPS, ou outras obrigações fiscais à data de emissão. Esta certidão é válida para participação em concursos públicos, pedidos de crédito bancário, e demais actos legais que dela dependam.</p>
+        <div class="row spread" style="margin-top:24px;align-items:flex-end">
+          <div>
+            <div class="t-meta" style="font-size:10px">Emitida</div>
+            <div class="mono" style="font-size:13px;font-weight:600">28 Abr 2026 · 16:14</div>
+            <div class="t-meta" style="font-size:10px;margin-top:6px">Válida até</div>
+            <div class="mono" style="font-size:13px;font-weight:600">28 Abr 2027</div>
+          </div>
+          <div style="text-align:center">
+            <div class="qr-square" style="width:88px;height:88px"><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+            <div class="mono" style="font-size:10px;margin-top:6px">cert-2026-04-7821</div>
+          </div>
+        </div>
+        <hr class="hr" style="margin:18px 0">
+        <div style="text-align:center"><span class="badge gold"><span class="dot"></span>Carimbada AT · DAF Maputo Sede · A. Macuácua</span></div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Acções</b></div>
+          <div class="pb col">
+            <button class="btn gold lg">⤓ Certidão PDF · selada digitalmente</button>
+            <button class="btn secondary block">Partilhar (e-mail · WhatsApp)</button>
+            <a href="sistafe.html" class="btn ghost block">Validação pública (QR)</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Histórico de certidões</b></div>
+          <div class="pb col">
+            <div class="row spread" style="font-size:12px"><span><b>cert-2026-04-7821</b> · hoje</span><span class="badge gold" style="font-size:10px"><span class="dot"></span>Activa</span></div>
+            <div class="row spread" style="font-size:12px"><span>cert-2025-08-4920 · 14 Ago 2025</span><span class="badge"><span class="dot"></span>Caducou</span></div>
+            <div class="row spread" style="font-size:12px"><span>cert-2024-11-2218 · 02 Nov 2024</span><span class="badge"><span class="dot"></span>Caducou</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Requisitos · todos cumpridos</b></div>
+          <div class="pb col">
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Sem dívidas IVA</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Sem dívidas IRPC</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Retenções IRPS entregues</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Mapas INSS em dia</span></div>
+            <div class="row" style="gap:8px;font-size:13px"><span class="badge green" style="font-size:11px"><span class="dot"></span>OK</span><span>Declarações submetidas no prazo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Procurações</a><a class="btn secondary sm" href="sistafe.html">SISTAFE Interop →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Portal Comercial v0.3 · documento autoritativo: <a class="mono" href="DESIGN-comercial.md">DESIGN-comercial.md</a></div>
+    <div class="row">
+      <a href="cidadao.html" class="btn ghost sm">← Cidadão</a>
+      <a href="sistafe.html" class="btn secondary sm">SISTAFE Interop →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

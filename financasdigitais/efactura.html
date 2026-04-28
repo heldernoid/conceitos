@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>e-Factura · Trabalhador Independente — Finanças Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .phones{display:flex;gap:32px;flex-wrap:wrap;padding:24px;max-width:1440px;margin:0 auto;width:100%;align-items:flex-start}
+  .phone-wrap{display:flex;flex-direction:column;gap:10px;align-items:center;flex:0 0 auto}
+  .phone-wrap .cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;text-align:center}
+  .phone-wrap .desc{font-size:12px;color:var(--ink-3);text-align:center;max-width:340px;line-height:1.5}
+  .pscreen{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1;overflow:hidden}
+  .ptopbar{display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+  .ptopbar .greeting{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .ptopbar .name{font-size:15px;font-weight:600}
+  .pchip{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:2px;font-size:10px;background:var(--burg-100);color:var(--burg-700);font-weight:600;letter-spacing:.02em}
+  .ptab{height:38px;padding:0 12px;border-radius:2px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2);font-weight:500}
+  .ptab.on{background:var(--burg-100);border-color:var(--burg-700);color:var(--burg-900)}
+  .pbtn{height:48px;width:100%;background:var(--burg-700);color:#fff;border:0;border-radius:4px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+  .pbtn.lg{height:56px;font-size:15px}
+  .pbtn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pbtn.success{background:var(--good-700)}
+  .pbtn.gold{background:var(--gold-500);color:#3a2a08}
+  .pbar{display:flex;height:60px;background:#fff;border-top:1px solid var(--line)}
+  .pbar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;color:var(--ink-3);text-decoration:none}
+  .pbar a.on{color:var(--burg-700);font-weight:600}
+  .pbar .ic{width:22px;height:22px;border:1.5px solid currentColor;border-radius:3px}
+  .pbar .ic.fab{background:var(--burg-700);border-color:var(--burg-700);color:#fff;width:48px;height:48px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:300;margin-top:-12px;box-shadow:0 4px 12px rgba(122,31,38,.4)}
+  .ussd-screen{background:#0a1f0a;color:#7af07a;font-family:var(--f-mono);padding:18px;border-radius:8px;font-size:12px;line-height:1.6;letter-spacing:.02em;border:1px solid #1f3a1f;height:380px;display:flex;flex-direction:column}
+  .ussd-screen b{color:#fff;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MEF · Autoridade Tributária · DFD</span><span class="sep">·</span>
+  <span>e-Factura v0.3</span>
+  <span style="margin-left:auto">DESIGN-efactura.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>e-Factura</span><small>Trabalhador Independente</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-at.html">Portal AT</a>
+    <a href="efactura.html" class="active">e-Factura</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="comercial.html">Comercial</a>
+    <a href="sistafe.html">SISTAFE</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-efactura.md" class="btn secondary sm">DESIGN-efactura.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Hoje</a>
+    <a href="#cena-3">3. Emitir factura</a>
+    <a href="#cena-4">4. Confirmação</a>
+    <a href="#cena-5">5. Lista facturas</a>
+    <a href="#cena-6">6. ISPC 1-toque</a>
+    <a href="#cena-7">7. Offline</a>
+    <a href="#cena-8">8. USSD *146#</a>
+  </div>
+</nav>
+
+<section style="padding:32px 24px 0;max-width:1440px;margin:0 auto">
+  <div class="t-overline">e-Factura · Surface 2</div>
+  <h1 class="t-h1" style="margin:6px 0 8px">Maria João Cuamba · costureira · regime ISPC</h1>
+  <p class="t-meta" style="max-width:760px">NUIT 100 540 218 · Salão Bela · Mercado Janet, Maputo · 8 meses no sistema. Telefone Android entry-level, frequentemente em 2G. O fluxo verde-portuguesa em PT-MZ — emitir factura em &lt; 30 segundos, IRPS retido visível, ISPC trimestral em 1 toque.</p>
+</section>
+
+<!-- =================== CENA 1 · ONBOARDING =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding com BI/NUIT</div>
+    <h2>Primeira vez · BI lido do eBI · NUIT auto-gerado</h2>
+    <p>Insere BI, sistema confirma identidade via Governo Digital eBI, gera NUIT singular, OTP, regime escolhido.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">1.1 · Boas-vindas</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><span class="icons">2G · 38%</span></div>
+        <div class="pscreen" style="background:linear-gradient(180deg,var(--burg-900) 0%,var(--burg-800) 100%);padding:24px 18px;color:#fff">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="width:32px;height:32px;background:#fff;display:inline-block;border-radius:1px;position:relative"><span style="position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(135deg,transparent 0 41%,var(--burg-900) 41% 50%,transparent 50%)"></span></span><div><div style="font-weight:600">e-Factura</div><div style="font-size:10px;color:#e8c5c8;text-transform:uppercase;letter-spacing:.08em">Autoridade Tributária</div></div></div>
+          <div style="margin:auto 0">
+            <h2 style="font-size:24px;font-weight:600;line-height:1.2;margin:0 0 12px">Emite facturas. Paga impostos. Cumpre a lei.</h2>
+            <p style="color:#e8c5c8;font-size:13px;line-height:1.5;margin:0">Para trabalhadores independentes e pequenos comerciantes. ISPC ou regime normal — o sistema decide consigo.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="pbtn" style="background:#fff;color:var(--burg-900)">Começar com o meu BI</button>
+            <button class="pbtn sec" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.3)">Já tenho conta</button>
+            <div style="text-align:center;font-size:11px;color:#bd9094;margin-top:8px">USSD <span class="mono">*146#</span> · sem internet</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">1.2 · Inserir BI</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:19</span><span class="icons">2G · 38%</span></div>
+        <div class="pscreen">
+          <div class="row"><span class="t-meta">← Voltar</span></div>
+          <div class="stepper" style="margin:8px 0"><div class="step active"><span class="n">1</span>BI</div><div class="ln"></div><div class="step"><span class="n">2</span>NUIT</div><div class="ln"></div><div class="step"><span class="n">3</span>Regime</div></div>
+          <h3 class="t-h3" style="margin-top:10px">Insira o seu BI</h3>
+          <p class="t-meta" style="margin:0">Vamos confirmar a sua identidade no eBI (Governo Digital).</p>
+          <div class="field" style="margin-top:14px">
+            <label>Número de BI</label>
+            <input class="input lg mono" value="110293847" />
+            <span class="hint">9 dígitos · sem espaços</span>
+          </div>
+          <div class="field">
+            <label>Telefone para SMS</label>
+            <input class="input lg mono" value="+258 84 392 1147" />
+          </div>
+          <button class="pbtn" style="margin-top:auto">Validar com eBI →</button>
+          <span class="t-meta" style="text-align:center">Sem dados são guardados antes da confirmação.</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">1.3 · NUIT atribuído</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:21</span><span class="icons">2G · 37%</span></div>
+        <div class="pscreen">
+          <div class="stepper" style="margin:0"><div class="step done"><span class="n">✓</span>BI</div><div class="ln"></div><div class="step active"><span class="n">2</span>NUIT</div><div class="ln"></div><div class="step"><span class="n">3</span>Regime</div></div>
+          <div class="banner green" style="margin-top:8px"><span class="ic"></span><div style="font-size:12px"><b>Identidade confirmada via eBI.</b><br/>Maria João Cuamba · DAF Maputo Sede</div></div>
+          <h3 class="t-h3" style="margin-top:8px">O seu NUIT</h3>
+          <p class="t-meta" style="margin:0">Atribuído automaticamente. É seu para sempre.</p>
+          <div class="nuit-card" style="padding:18px;margin-top:8px">
+            <div class="lbl">NUIT · Pessoa singular</div>
+            <div class="num" style="font-size:22px">100 540 218</div>
+            <div class="name">Maria João Cuamba</div>
+            <div class="meta">Activo · DAF Maputo Sede · 28 Abr 2026</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+          <button class="pbtn" style="margin-top:auto">Continuar →</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">1.4 · Escolher regime</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:22</span><span class="icons">2G · 37%</span></div>
+        <div class="pscreen">
+          <div class="stepper" style="margin:0"><div class="step done"><span class="n">✓</span>BI</div><div class="ln"></div><div class="step done"><span class="n">✓</span>NUIT</div><div class="ln"></div><div class="step active"><span class="n">3</span>Regime</div></div>
+          <h3 class="t-h3" style="margin-top:10px">Que regime fiscal?</h3>
+          <p class="t-meta" style="margin:0">Pode mudar 1 vez por ano. Recomendamos ISPC para si.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+            <div style="border:2px solid var(--burg-700);background:var(--burg-50);border-radius:6px;padding:14px">
+              <div class="row spread"><span class="tax ispc" style="font-size:11px">ISPC · Recomendado</span><span class="badge gold" style="font-size:10px"><span class="dot"></span>Para si</span></div>
+              <div style="font-weight:600;margin-top:6px">Imposto Simplificado · 3%</div>
+              <p style="margin:6px 0 0;font-size:12px;color:var(--ink-2);line-height:1.5">3% sobre vendas brutas trimestrais. Sem IVA, sem IRPS, sem complicação. Para volume &lt; 2,5M MZN/ano.</p>
+            </div>
+            <div style="border:1px solid var(--line);background:#fff;border-radius:6px;padding:14px">
+              <div class="row spread"><span class="tax irps" style="font-size:11px">Regime normal</span><span class="badge"><span class="dot"></span>Volume alto</span></div>
+              <div style="font-weight:600;margin-top:6px">IRPS profissional + IVA 16%</div>
+              <p style="margin:6px 0 0;font-size:12px;color:var(--ink-2);line-height:1.5">Mais complexo. Cobra IVA aos clientes. Retém IRPS na fonte. Para volume &gt; 2,5M MZN/ano.</p>
+            </div>
+          </div>
+          <button class="pbtn" style="margin-top:auto">Escolher ISPC e continuar</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#">↑ Topo</a><a class="btn secondary sm" href="#cena-2">Hoje · home →</a></div></div>
+</section>
+
+<!-- =================== CENA 2 · HOJE =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F6 — Hoje · home</div>
+    <h2>Maria abre a app. Tudo em foco: receita, ISPC do trimestre, atalho de emissão.</h2>
+    <p>Sem confetti. Sem gamificação. Os números importantes em mono. Banner amber se ISPC vence em &lt;7 dias.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">2.1 · Hoje · receita do mês</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:42</span><span class="icons">3G · 64%</span></div>
+        <div class="pscreen scroll-y" style="padding:14px">
+          <div class="ptopbar">
+            <div><div class="greeting">28 Abr · Terça</div><div class="name">Maria</div></div>
+            <span class="pchip"><span style="width:6px;height:6px;border-radius:50%;background:var(--good-700)"></span> Online</span>
+          </div>
+
+          <div style="background:linear-gradient(135deg,var(--burg-900) 0%,var(--burg-700) 100%);color:#fff;padding:16px;border-radius:6px;margin-top:4px">
+            <div style="font-size:10px;color:#e8c5c8;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Receita · Abril 2026</div>
+            <div class="mzn" style="font-size:30px;color:#fff;margin-top:6px">84 250,00 <small style="color:#e8c5c8">MZN</small></div>
+            <div style="font-size:11px;color:#e8c5c8;margin-top:8px">12 facturas emitidas · +18% vs Março</div>
+          </div>
+
+          <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:12px"><b>ISPC 1.º Tri 2026 vence em 2 dias.</b><br/>Estimado: <b class="mono">7 200 MZN</b> (3% × 240 000 vendas Q1). <a href="#cena-6">Pagar agora →</a></div></div>
+
+          <a href="#cena-3" class="pbtn lg" style="margin-top:4px">+ Emitir factura</a>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px;margin-top:4px">
+            <div class="t-overline" style="font-size:10px">Últimas facturas</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div class="row spread" style="font-size:12px"><span><b>FT 2026/00284</b> · Construtora MZ</span><span class="mono">12 800,00</span></div>
+              <div class="row spread" style="font-size:12px"><span><b>FT 2026/00283</b> · particular</span><span class="mono">3 500,00</span></div>
+              <div class="row spread" style="font-size:12px"><span><b>FT 2026/00282</b> · Hotelaria Polana</span><span class="mono">8 400,00</span></div>
+            </div>
+            <a href="#cena-5" class="t-meta" style="display:block;margin-top:10px;text-align:center">Ver todas →</a>
+          </div>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">2.2 · Hoje · trimestre completo</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:43</span><span class="icons">3G · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">1.º Trimestre 2026</div><span class="pchip">Jan · Fev · Mar</span></div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="t-overline" style="font-size:10px">Volume de vendas</div>
+            <div class="mzn lg" style="margin-top:6px">240 000,00 <small>MZN</small></div>
+            <hr class="hr">
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span>Janeiro</span><span class="mono">68 200,00</span></div>
+            <div class="bar" style="margin-bottom:8px"><div class="fill" style="width:68%;background:var(--tax-ispc)"></div></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span>Fevereiro</span><span class="mono">82 500,00</span></div>
+            <div class="bar" style="margin-bottom:8px"><div class="fill" style="width:82%;background:var(--tax-ispc)"></div></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span>Março</span><span class="mono">89 300,00</span></div>
+            <div class="bar"><div class="fill" style="width:89%;background:var(--tax-ispc)"></div></div>
+          </div>
+
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="row spread"><span class="tax ispc" style="font-size:10px">ISPC</span><span class="t-meta">3% sobre vendas</span></div>
+            <div style="margin-top:10px;display:flex;align-items:baseline;gap:6px">
+              <div class="mzn lg" style="color:var(--burg-700)">7 200,00</div>
+              <span class="t-meta">MZN · a pagar</span>
+            </div>
+            <div class="row" style="gap:6px;margin-top:6px;font-size:11px;color:var(--ink-3)"><span>240 000 × 3%</span><span>·</span><span>Vence 30 Abr</span></div>
+            <a href="#cena-6" class="pbtn" style="margin-top:12px">Pagar 1-toque →</a>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px">
+            <div class="t-overline" style="font-size:10px">Limite anual ISPC</div>
+            <div class="row spread" style="margin-top:6px"><span class="mono" style="font-size:13px">240 000 / 2 500 000</span><span class="badge green" style="font-size:10px"><span class="dot"></span>9,6%</span></div>
+            <div class="bar" style="margin-top:8px"><div class="fill" style="width:9.6%;background:var(--tax-ispc)"></div></div>
+            <p class="t-meta" style="margin:8px 0 0">Se ultrapassar 2,5M MZN/ano deve passar para regime normal.</p>
+          </div>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">2.3 · Eu · perfil</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:44</span><span class="icons">3G · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="nuit-card">
+            <div class="lbl">NUIT · Pessoa singular</div>
+            <div class="num">100 540 218</div>
+            <div class="name">Maria João Cuamba</div>
+            <div class="meta">Activo · ISPC · DAF Maputo Sede</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Regime fiscal</span><span class="tax ispc" style="font-size:10px">ISPC</span></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Negócio</span><span style="color:var(--ink-3)">Salão Bela</span></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Local</span><span style="color:var(--ink-3)">Mercado Janet, Maputo</span></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Telefone</span><span class="mono" style="color:var(--ink-3)">84 392 1147</span></div>
+            <div style="padding:12px 14px;font-size:13px;display:flex;justify-content:space-between"><span>Início de actividade</span><span style="color:var(--ink-3)">12 Ago 2025</span></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Mudar regime fiscal</span><span class="t-meta">→</span></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;justify-content:space-between"><span>Aderir ao INSS voluntário</span><span class="t-meta">→</span></div>
+            <div style="padding:12px 14px;font-size:13px;display:flex;justify-content:space-between"><span>USSD <span class="mono">*146#</span> · sem internet</span><span class="t-meta">→</span></div>
+          </div>
+          <button class="pbtn sec">Sair</button>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a class="on"><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Emitir factura →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · EMITIR FACTURA =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Emitir factura · hot path &lt; 30s</div>
+    <h2>Cliente · Item · Valor · Confirmar</h2>
+    <p>3 passos. Stepper visível. Cliente recente em 1 tap. ISPC: sem IVA. Tempo alvo total: &lt; 30 segundos.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">3.1 · Quem é o cliente?</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:46</span><span class="icons">3G · 64%</span></div>
+        <div class="pscreen">
+          <div class="row spread"><span class="t-meta">← Cancelar</span><div class="stepper" style="font-size:10px"><div class="step active"><span class="n">1</span></div><div class="ln"></div><div class="step"><span class="n">2</span></div><div class="ln"></div><div class="step"><span class="n">3</span></div></div></div>
+          <h3 class="t-h3" style="margin-top:8px">Quem é o cliente?</h3>
+          <input class="input lg" placeholder="NUIT, nome ou número de telefone" />
+          <div class="t-overline" style="font-size:10px;margin-top:6px">Recentes</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm">CM</span><div style="flex:1"><div style="font-size:13px;font-weight:600">Construtora MZ, Lda</div><div class="t-meta mono">NUIT 400 992 145</div></div><span class="t-meta">→</span></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm">HP</span><div style="flex:1"><div style="font-size:13px;font-weight:600">Hotelaria Polana</div><div class="t-meta mono">NUIT 400 304 188</div></div><span class="t-meta">→</span></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm">VM</span><div style="flex:1"><div style="font-size:13px;font-weight:600">Vodacom Mz</div><div class="t-meta mono">NUIT 400 102 880</div></div><span class="t-meta">→</span></div>
+          </div>
+          <hr class="hr">
+          <button class="pbtn sec" style="margin-top:0;font-size:13px">+ Particular (sem NUIT)</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">3.2 · Item e valor</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:46</span><span class="icons">3G · 63%</span></div>
+        <div class="pscreen">
+          <div class="row spread"><span class="t-meta">← Voltar</span><div class="stepper" style="font-size:10px"><div class="step done"><span class="n">✓</span></div><div class="ln"></div><div class="step active"><span class="n">2</span></div><div class="ln"></div><div class="step"><span class="n">3</span></div></div></div>
+          <div class="row" style="gap:8px;align-items:center;margin-top:8px;padding:8px 10px;background:var(--burg-50);border:1px solid var(--burg-100);border-radius:4px">
+            <span class="av sm">CM</span><div style="flex:1;font-size:12px"><b>Construtora MZ, Lda</b><div class="t-meta mono">NUIT 400 992 145</div></div><span class="t-meta">Mudar</span>
+          </div>
+
+          <div class="field" style="margin-top:12px">
+            <label>Descrição</label>
+            <input class="input lg" value="Confecção uniformes · 8 conjuntos" />
+          </div>
+          <div class="field">
+            <label>Valor (MZN)</label>
+            <input class="input lg mono" value="12 800" style="font-size:22px;font-weight:600" />
+            <span class="hint">ISPC · sem IVA · sem retenção IRPS</span>
+          </div>
+
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:12px;margin-top:12px">
+            <div class="t-overline" style="font-size:10px">Pré-visualização</div>
+            <div class="row spread" style="margin-top:6px;font-size:13px"><span>Cliente paga</span><span class="mono" style="font-weight:600">12 800,00</span></div>
+            <div class="row spread" style="margin-top:4px;font-size:13px"><span>ISPC trimestral (3% × 12 800)</span><span class="mono" style="color:var(--ink-3)">+ 384,00</span></div>
+          </div>
+
+          <button class="pbtn" style="margin-top:auto">Continuar →</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">3.3 · Variante regime normal · IRPS retido visível</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:18</span><span class="icons">4G · 78%</span></div>
+        <div class="pscreen">
+          <div class="row spread"><span class="t-meta">← Voltar</span><div class="stepper" style="font-size:10px"><div class="step done"><span class="n">✓</span></div><div class="ln"></div><div class="step active"><span class="n">2</span></div><div class="ln"></div><div class="step"><span class="n">3</span></div></div></div>
+          <div class="row" style="gap:8px;align-items:center;margin-top:8px;padding:8px 10px;background:var(--burg-50);border:1px solid var(--burg-100);border-radius:4px"><span class="av sm">VM</span><div style="flex:1;font-size:12px"><b>Vodacom Mz</b><div class="t-meta mono">NUIT 400 102 880</div></div><span class="t-meta">Mudar</span></div>
+
+          <div class="field" style="margin-top:12px"><label>Descrição</label><input class="input lg" value="Consultoria TI · Abril" /></div>
+          <div class="field"><label>Valor base (MZN)</label><input class="input lg mono" value="40 000" style="font-size:22px;font-weight:600" /></div>
+
+          <div style="background:var(--bg-2);border:1px solid var(--line);border-radius:4px;padding:12px;margin-top:8px">
+            <div class="t-overline" style="font-size:10px;margin-bottom:8px">Decomposição · regime normal</div>
+            <div class="row spread" style="font-size:12.5px;margin-bottom:4px"><span>Valor base</span><span class="mono">40 000,00</span></div>
+            <div class="row spread" style="font-size:12.5px;margin-bottom:4px"><span>IVA 16%</span><span class="mono">+ 6 400,00</span></div>
+            <div class="row spread" style="font-size:13px;font-weight:600;margin-bottom:4px;padding-top:4px;border-top:1px dashed var(--line)"><span>Cliente paga</span><span class="mono">46 400,00</span></div>
+            <div class="row spread" style="font-size:12.5px;margin-top:6px;color:var(--red-700)"><span>IRPS retido (20%)</span><span class="mono">− 8 000,00</span></div>
+            <div class="row spread" style="font-size:14px;font-weight:600;margin-top:4px;padding-top:4px;border-top:1px solid var(--line);color:var(--good-700)"><span>Recebes</span><span class="mono">38 400,00</span></div>
+          </div>
+          <p class="t-meta" style="margin:0;font-size:11px;line-height:1.4">A AT fica com 8 000 MZN. Vê este valor abatido na sua declaração anual de IRPS.</p>
+
+          <button class="pbtn" style="margin-top:auto">Continuar →</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Confirmação →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · CONFIRMAÇÃO =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F3 — Factura emitida · QR + SMS</div>
+    <h2>Carimbada AT em &lt;3 segundos. Cliente recebe SMS automático com link de validação.</h2>
+    <p>Selo dourado. Hash AT. QR para verificação pública sem login. Tempo total desde "Emitir": ~22 segundos.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">4.1 · Confirmação</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:47</span><span class="icons">3G · 63%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="banner green" style="padding:12px"><span class="ic"></span><div style="font-size:12px"><b>Factura emitida e Carimbada AT.</b><br/>SMS enviado a Construtora MZ.</div></div>
+
+          <div class="factura">
+            <div class="hd">
+              <div class="row spread"><div class="ti">Factura · FT 2026/00284</div><span class="seal">Carimbada AT</span></div>
+              <div class="t-meta mono" style="margin-top:4px">28 Abr 2026 · 14:47:18</div>
+            </div>
+            <div class="bd">
+              <div style="font-size:11px;color:var(--ink-3);margin-bottom:8px">EMISSORA</div>
+              <div style="font-size:12px;font-weight:500">Maria João Cuamba</div>
+              <div class="t-meta mono">NUIT 100 540 218 · ISPC</div>
+              <hr class="hr" style="margin:10px 0">
+              <div style="font-size:11px;color:var(--ink-3);margin-bottom:8px">CLIENTE</div>
+              <div style="font-size:12px;font-weight:500">Construtora MZ, Lda</div>
+              <div class="t-meta mono">NUIT 400 992 145</div>
+              <hr class="hr" style="margin:10px 0">
+              <table>
+                <tr><td>Confecção uniformes · 8 conjuntos</td><td style="text-align:right">12 800,00</td></tr>
+                <tr style="border-top:1px dashed var(--line)"><td><b>Total</b></td><td style="text-align:right;font-weight:600">12 800,00 MZN</td></tr>
+              </table>
+            </div>
+            <div class="ft" style="display:flex;gap:12px;align-items:center">
+              <div class="qr-square" style="width:64px;height:64px;flex:0 0 auto;padding:3px"><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+              <div style="font-size:10px;line-height:1.4"><div>Hash AT</div><div class="mono" style="font-weight:600">f8a3d7c2-9d18</div><div style="margin-top:4px">financas.gov.mz<br/>/v/f8a3d7c2</div></div>
+            </div>
+          </div>
+
+          <button class="pbtn">Partilhar factura (SMS · WhatsApp · Imprimir)</button>
+          <button class="pbtn sec">+ Emitir nova factura</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">4.2 · SMS recebido pelo cliente</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:47</span><span class="icons">4G · 88%</span></div>
+        <div class="pscreen" style="background:#f5f5f7">
+          <div style="padding:8px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px"><span style="color:var(--burg-700);font-size:14px">←</span><div><div style="font-size:12px;font-weight:600">AT-Mz</div><div class="t-meta">+258 1466</div></div></div>
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px">
+            <div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 4px;font-size:12px;line-height:1.5;max-width:88%;align-self:flex-start;border:1px solid var(--line-2)">
+              Recebeu uma <b>factura</b> de Maria João Cuamba (NUIT 100 540 218):<br/><br/>
+              <b>FT 2026/00284</b><br/>Confeccao uniformes · 8 conjuntos<br/><b class="mono">12 800,00 MZN</b><br/><br/>
+              Validar: financas.gov.mz/v/f8a3d7c2<br/>Hash AT: f8a3d7c2<br/><br/>
+              <span style="color:var(--ink-3);font-size:11px">Autoridade Tributaria de Mocambique. Para reclamar: *146*9#</span>
+            </div>
+            <span class="t-meta" style="align-self:flex-start;font-size:10px">14:47</span>
+          </div>
+          <div style="padding:8px;border-top:1px solid var(--line);background:#fff;display:flex;gap:8px;align-items:center"><div style="flex:1;height:32px;background:#f0f0f0;border-radius:16px;padding:0 12px;display:flex;align-items:center;font-size:12px;color:var(--ink-3)">Mensagem...</div></div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">4.3 · Validação pública (qualquer um pode abrir)</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:48</span><span class="icons">4G · 88%</span></div>
+        <div class="pscreen scroll-y">
+          <div style="background:var(--burg-900);color:#fff;padding:14px 16px;margin:-14px -14px 0;font-size:11px;display:flex;align-items:center;gap:8px"><span style="font-weight:600;letter-spacing:.05em">FINANÇAS.GOV.MZ/V/F8A3D7C2</span></div>
+
+          <div style="text-align:center;padding:24px 0 12px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--green-100);color:var(--good-700);font-size:28px;margin-bottom:8px">✓</div>
+            <h3 class="t-h3" style="margin:0">Factura válida</h3>
+            <p class="t-meta" style="margin:4px 0 0">Carimbada pela AT a 28 Abr 2026 às 14:47</p>
+          </div>
+
+          <div class="factura">
+            <div class="hd">
+              <div class="row spread"><div class="ti" style="font-size:13px">FT 2026/00284</div><span class="seal" style="font-size:9px">Verificada</span></div>
+            </div>
+            <div class="bd">
+              <div class="row spread" style="margin-bottom:6px;font-size:11px"><span style="color:var(--ink-3)">Emissora</span><span style="font-weight:500">Maria João Cuamba</span></div>
+              <div class="row spread" style="margin-bottom:6px;font-size:11px"><span style="color:var(--ink-3)">NUIT</span><span class="mono">100 540 218</span></div>
+              <div class="row spread" style="margin-bottom:6px;font-size:11px"><span style="color:var(--ink-3)">Regime</span><span><span class="tax ispc" style="font-size:9px">ISPC</span></span></div>
+              <hr class="hr" style="margin:8px 0">
+              <div class="row spread" style="margin-bottom:6px;font-size:11px"><span style="color:var(--ink-3)">Cliente</span><span style="font-weight:500">Construtora MZ</span></div>
+              <div class="row spread" style="margin-bottom:6px;font-size:11px"><span style="color:var(--ink-3)">Total</span><span class="mono" style="font-weight:600">12 800,00 MZN</span></div>
+            </div>
+            <div class="ft" style="font-size:10px"><div>Hash: <b class="mono">f8a3d7c2-9d18-4fe2</b><br/>Carimbada: 28 Abr 2026 · 14:47:18</div></div>
+          </div>
+
+          <p class="t-meta" style="text-align:center;font-size:10px">Esta página é pública. Qualquer pessoa pode validar uma factura sem login.</p>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Emitir</a><a class="btn secondary sm" href="#cena-5">Lista de facturas →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · LISTA FACTURAS =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F6 — Histórico de facturas</div>
+    <h2>Pesquisa, filtros, anular factura (two-step)</h2>
+    <p>Lista mensal. Filtros por estado · cliente · valor. Anular requer justificação + OTP.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">5.1 · Lista de facturas Abril</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:50</span><span class="icons">3G · 63%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">Facturas</div><span class="t-meta">Abril 2026</span></div>
+          <div style="display:flex;gap:6px;overflow-x:auto"><div class="ptab on">Todas · 12</div><div class="ptab">Liquidadas · 8</div><div class="ptab">Pendentes · 4</div><div class="ptab">Anuladas · 0</div></div>
+
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00284</span><span class="badge gold" style="font-size:10px"><span class="dot"></span>Carimbada</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">Construtora MZ</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">28 Abr · 14:47</span><span class="mono" style="font-weight:600">12 800,00</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00283</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Liquidada</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">particular · 84•••147</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">26 Abr · 09:12</span><span class="mono" style="font-weight:600">3 500,00</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00282</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Liquidada</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">Hotelaria Polana</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">24 Abr · 16:38</span><span class="mono" style="font-weight:600">8 400,00</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00281</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Liquidada</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">Vodacom Mz</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">22 Abr · 11:04</span><span class="mono" style="font-weight:600">15 200,00</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00280</span><span class="badge"><span class="dot"></span>Pendente</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">Construtora MZ</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">20 Abr · 10:18</span><span class="mono" style="font-weight:600">9 800,00</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--ink-3)">FT 2026/00279</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Liquidada</span></div>
+              <div style="font-size:13px;font-weight:600;margin-top:4px">particular · 87•••629</div>
+              <div class="row spread" style="margin-top:4px"><span class="t-meta">18 Abr · 14:32</span><span class="mono" style="font-weight:600">2 200,00</span></div>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-2);border-radius:4px;padding:12px;margin-top:6px;text-align:center">
+            <div class="t-overline" style="font-size:10px">Total Abril</div>
+            <div class="mzn lg" style="margin-top:4px">84 250,00 <small>MZN</small></div>
+          </div>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">5.2 · Detalhe e anular</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:51</span><span class="icons">3G · 62%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="row spread"><span class="t-meta">← Voltar</span><span class="t-meta">⤓ PDF</span></div>
+          <div class="factura">
+            <div class="hd">
+              <div class="row spread"><div class="ti">Factura · FT 2026/00284</div><span class="seal">Carimbada AT</span></div>
+              <div class="t-meta mono" style="margin-top:4px">28 Abr 2026 · 14:47:18</div>
+            </div>
+            <div class="bd">
+              <div class="t-overline" style="font-size:9px;margin-bottom:4px">EMISSORA</div>
+              <div style="font-size:12px;font-weight:500">Maria João Cuamba · ISPC</div>
+              <div class="t-meta mono">NUIT 100 540 218</div>
+              <hr class="hr" style="margin:10px 0">
+              <div class="t-overline" style="font-size:9px;margin-bottom:4px">CLIENTE</div>
+              <div style="font-size:12px;font-weight:500">Construtora MZ, Lda</div>
+              <div class="t-meta mono">NUIT 400 992 145</div>
+              <hr class="hr" style="margin:10px 0">
+              <table>
+                <tr><td>Confecção uniformes · 8 conj.</td><td style="text-align:right">12 800,00</td></tr>
+                <tr style="border-top:1px dashed var(--line);font-weight:600"><td>Total</td><td style="text-align:right">12 800,00 MZN</td></tr>
+              </table>
+            </div>
+            <div class="ft" style="font-size:10px">Hash: <b class="mono">f8a3d7c2-9d18</b></div>
+          </div>
+
+          <button class="pbtn sec">Partilhar (SMS · WhatsApp)</button>
+          <button class="pbtn" style="background:var(--red-700)">Anular factura</button>
+          <p class="t-meta" style="text-align:center;font-size:10px">Anular factura é uma acção fiscal séria. Requer justificação e código SMS.</p>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">5.3 · Anular · two-step</span>
+      <div class="phone"><div class="screen" style="position:relative">
+        <div class="statusbar"><span>14:52</span><span class="icons">3G · 62%</span></div>
+        <div class="pscreen" style="opacity:.4;pointer-events:none"><div class="t-meta">…</div></div>
+        <div class="modal-back" style="position:absolute;background:rgba(40,15,18,.65)">
+          <div class="modal" style="width:96%;max-width:340px">
+            <div class="hd"><b style="font-size:13px">Anular FT 2026/00284</b></div>
+            <div class="bd">
+              <div class="banner red" style="padding:10px;margin-bottom:10px"><span class="ic"></span><div style="font-size:11px"><b>Anular não apaga.</b> Cliente é notificado. Permanece em registo da AT.</div></div>
+              <div class="field"><label style="font-size:11px">Justificação · ≥40 chars</label><textarea class="textarea" style="font-size:12px;min-height:60px">Cliente cancelou a encomenda apos a emissao. Confeccao nao foi entregue.</textarea></div>
+              <div class="field" style="margin-top:8px"><label style="font-size:11px">OTP · SMS para 84 392 1147</label><div class="row" style="gap:4px"><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="2" /><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="0" /><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="2" /><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="6" /><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="" /><input class="input mono" style="text-align:center;width:32px;height:32px;font-size:13px" value="" /></div></div>
+            </div>
+            <div class="ft" style="display:flex;gap:6px;padding:8px"><button class="btn ghost sm" style="flex:1">Cancelar</button><button class="btn danger sm" style="flex:1">Anular</button></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Confirmação</a><a class="btn secondary sm" href="#cena-6">ISPC 1-toque →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · ISPC 1-TOQUE =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F7 — ISPC trimestral em 1 toque</div>
+    <h2>3% × volume Q1 = 7 200 MZN. Pagar via M-Pesa em &lt;4 segundos.</h2>
+    <p>O sistema agrega facturas, calcula, mostra opções de pagamento, processa via SISTAFE-bancos.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">6.1 · Pagar imposto · sumário</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>16:14</span><span class="icons">3G · 58%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">Pagar imposto</div><span class="pchip">1 vencido</span></div>
+
+          <div style="background:#fff;border:1.5px solid var(--amber-500);border-radius:6px;padding:14px">
+            <div class="row spread"><span class="tax ispc" style="font-size:10px">ISPC</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Vence em 2 dias</span></div>
+            <div style="font-size:13px;font-weight:600;margin-top:8px">1.º Trimestre 2026</div>
+            <div class="t-meta" style="margin-top:2px">Janeiro · Fevereiro · Março</div>
+            <hr class="hr" style="margin:10px 0">
+            <div class="row spread" style="font-size:12px"><span>Volume vendas</span><span class="mono">240 000,00</span></div>
+            <div class="row spread" style="font-size:12px;margin-top:4px"><span>ISPC (3%)</span><span class="mono" style="font-weight:600;font-size:14px;color:var(--burg-700)">7 200,00 MZN</span></div>
+            <a href="#cena-6" class="pbtn" style="margin-top:12px">Pagar agora</a>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="row spread"><span class="badge"><span class="dot"></span>Voluntário</span><span class="t-meta">INSS</span></div>
+            <div style="font-size:13px;font-weight:600;margin-top:8px">Segurança Social · Abril</div>
+            <p class="t-meta" style="margin:4px 0 8px;font-size:11px">Contribuir voluntariamente para INSS dá-lhe direito a pensão e baixa.</p>
+            <button class="pbtn sec" style="font-size:12px;height:40px">Aderir ao INSS voluntário</button>
+          </div>
+
+          <div class="t-overline" style="font-size:10px">Histórico</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><div><b>4.º Tri 2025</b><div class="t-meta mono" style="font-size:10px">Pago via M-Pesa</div></div><span class="mono">5 880,00</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><div><b>3.º Tri 2025</b><div class="t-meta mono" style="font-size:10px">Pago via M-Pesa</div></div><span class="mono">4 920,00</span></div>
+            <div style="padding:10px 12px;display:flex;justify-content:space-between;font-size:12px"><div><b>2.º Tri 2025</b><div class="t-meta mono" style="font-size:10px">Pago via BIM</div></div><span class="mono">3 750,00</span></div>
+          </div>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a class="on"><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">6.2 · Escolher meio de pagamento</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>16:14</span><span class="icons">3G · 58%</span></div>
+        <div class="pscreen">
+          <div class="row spread"><span class="t-meta">← Voltar</span><span class="t-meta">Cancelar</span></div>
+          <h3 class="t-h3" style="margin-top:8px">ISPC · 1.º Tri 2026</h3>
+
+          <div style="background:linear-gradient(135deg,var(--burg-900),var(--burg-700));color:#fff;padding:18px;border-radius:6px;text-align:center">
+            <div style="font-size:11px;color:#e8c5c8;text-transform:uppercase;letter-spacing:.08em">A pagar</div>
+            <div class="mzn xl" style="color:#fff;margin-top:6px">7 200,00<small style="color:#e8c5c8">MZN</small></div>
+            <div style="font-size:10px;color:#e8c5c8;margin-top:6px">240 000 × 3% · referência ISPC-2026Q1-100540218</div>
+          </div>
+
+          <div class="t-overline" style="font-size:10px;margin-top:8px">Como quer pagar?</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:#fff;border:2px solid var(--burg-700);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm" style="background:#E30613;color:#fff">M</span><div style="flex:1"><div style="font-size:13px;font-weight:600">M-Pesa</div><div class="t-meta">84 392 1147 · saldo 18 240 MZN</div></div><span style="color:var(--burg-700);font-size:18px">●</span></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm" style="background:#FF8800;color:#fff">e</span><div style="flex:1"><div style="font-size:13px;font-weight:600">eMola</div><div class="t-meta">86 281 0042</div></div><span style="color:var(--ink-3);font-size:18px">○</span></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm" style="background:#003D7C;color:#fff">B</span><div style="flex:1"><div style="font-size:13px;font-weight:600">BCI · transferência</div><div class="t-meta">Conta •••4218</div></div><span style="color:var(--ink-3);font-size:18px">○</span></div>
+            <div style="background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;align-items:center;gap:10px"><span class="av sm" style="background:#13294B;color:#fff">B</span><div style="flex:1"><div style="font-size:13px;font-weight:600">BIM · transferência</div><div class="t-meta">Conta •••8821</div></div><span style="color:var(--ink-3);font-size:18px">○</span></div>
+          </div>
+
+          <button class="pbtn lg" style="margin-top:auto">Pagar 7 200 MZN via M-Pesa</button>
+          <span class="t-meta" style="text-align:center;font-size:10px">Sem comissão. Liquidado directamente na SISTAFE.</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">6.3 · Pago em 4 segundos</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>16:14</span><span class="icons">3G · 58%</span></div>
+        <div class="pscreen">
+          <div style="text-align:center;padding:30px 0 20px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:var(--green-100);color:var(--good-700);font-size:36px;margin-bottom:14px">✓</div>
+            <h2 class="t-h2" style="margin:0">ISPC liquidado</h2>
+            <p class="t-meta" style="margin:6px 0 0">Recebido pela SISTAFE em 3,8 segundos</p>
+          </div>
+
+          <div style="background:var(--bg-2);border-radius:6px;padding:14px">
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Imposto</span><span><span class="tax ispc" style="font-size:10px">ISPC · 1.º Tri 2026</span></span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Valor</span><span class="mono" style="font-weight:600">7 200,00 MZN</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Meio</span><span>M-Pesa</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Ref. M-Pesa</span><span class="mono">MP280416XJ72</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Ref. SISTAFE</span><span class="mono">RC-2026-04-7821</span></div>
+            <div class="row spread" style="font-size:12px"><span style="color:var(--ink-3)">Hora</span><span class="mono">28 Abr · 16:14:42</span></div>
+          </div>
+
+          <div class="banner gold" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Próximo pagamento.</b> ISPC 2.º Tri (Abr-Jun) vence 31 Jul 2026.</div></div>
+
+          <button class="pbtn sec">⤓ Recibo PDF</button>
+          <a href="#cena-2" class="pbtn">Voltar à home</a>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Lista</a><a class="btn secondary sm" href="#cena-7">Offline →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · OFFLINE =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F10 — Offline com sync queue</div>
+    <h2>Sem rede no mercado · 3 facturas em fila · sincroniza quando a rede volta</h2>
+    <p>Hash temporário gerado localmente. Cliente recebe SMS quando sync acontece.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">7.1 · Sem rede · banner persistente</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>11:42</span><span class="icons">⚠ Sem rede · 22%</span></div>
+        <div class="pscreen scroll-y" style="background:var(--bg)">
+          <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Sem rede.</b> Pode emitir facturas — vão para a fila e sincronizam quando voltar.</div></div>
+
+          <div class="ptopbar" style="margin-top:6px"><div><div class="greeting">Hoje · 28 Abr</div><div class="name">Maria</div></div><span class="pchip" style="background:var(--amber-100);color:var(--amber-700)"><span style="width:6px;height:6px;border-radius:50%;background:var(--amber-500)"></span>3 em fila</span></div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px">
+            <div class="t-overline" style="font-size:10px">Receita Abril (offline)</div>
+            <div class="mzn lg" style="margin-top:4px">87 750,00 <small>MZN</small></div>
+            <p class="t-meta" style="margin:6px 0 0;font-size:10px">Inclui 3 facturas em fila não sincronizadas.</p>
+          </div>
+
+          <a href="#cena-3" class="pbtn lg">+ Emitir factura · funciona offline</a>
+
+          <div class="t-overline" style="font-size:10px">Em fila local</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2)">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--amber-700)">FT 2026/Q-001</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+              <div style="font-size:12px;font-weight:600;margin-top:2px">particular · 84•••552</div>
+              <div class="row spread" style="font-size:11px"><span class="t-meta">11:18</span><span class="mono">2 800,00</span></div>
+            </div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2)">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--amber-700)">FT 2026/Q-002</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+              <div style="font-size:12px;font-weight:600;margin-top:2px">particular · 87•••904</div>
+              <div class="row spread" style="font-size:11px"><span class="t-meta">11:24</span><span class="mono">450,00</span></div>
+            </div>
+            <div style="padding:10px 12px">
+              <div class="row spread"><span class="mono" style="font-size:11px;color:var(--amber-700)">FT 2026/Q-003</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Aguarda</span></div>
+              <div style="font-size:12px;font-weight:600;margin-top:2px">Hotelaria Polana</div>
+              <div class="row spread" style="font-size:11px"><span class="t-meta">11:38</span><span class="mono">250,00</span></div>
+            </div>
+          </div>
+
+          <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Bateria fraca?</b> Use USSD <span class="mono">*146#</span> que poupa energia.</div></div>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">7.2 · Sync · rede voltou</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>13:18</span><span class="icons">3G · 28%</span></div>
+        <div class="pscreen scroll-y" style="background:var(--bg)">
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Rede de volta.</b> A sincronizar 3 facturas... <span class="mono">2/3</span></div></div>
+
+          <div class="t-overline" style="font-size:10px;margin-top:6px">A sincronizar</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:8px"><span style="color:var(--good-700);font-size:14px">✓</span><div style="flex:1"><div style="font-size:12px;font-weight:600">FT 2026/Q-001 → FT 2026/00285</div><div class="t-meta" style="font-size:10px">Carimbada AT · SMS enviado</div></div></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:8px"><span style="color:var(--good-700);font-size:14px">✓</span><div style="flex:1"><div style="font-size:12px;font-weight:600">FT 2026/Q-002 → FT 2026/00286</div><div class="t-meta" style="font-size:10px">Carimbada AT · SMS enviado</div></div></div>
+            <div style="padding:10px 12px;display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border:2px solid var(--burg-700);border-top-color:transparent;border-radius:50%"></div><div style="flex:1"><div style="font-size:12px;font-weight:600">FT 2026/Q-003</div><div class="t-meta" style="font-size:10px">A enviar à AT...</div></div></div>
+          </div>
+
+          <p class="t-meta" style="font-size:10px;text-align:center">Os clientes recebem SMS de confirmação no momento da sincronização (2 horas depois).</p>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic fab">+</span></a><a><span class="ic"></span>Pagar</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← ISPC</a><a class="btn secondary sm" href="#cena-8">USSD →</a></div></div>
+</section>
+
+<!-- =================== CENA 8 · USSD =================== -->
+<section><span class="anchor" id="cena-8"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 8 · F8 — USSD *146# · sem smartphone, sem internet</div>
+    <h2>Para o vendedor de mercado com Nokia. Funciona em qualquer telefone.</h2>
+    <p>Texto puro. Menus numéricos. Pagar ISPC, ver receita, anular factura, validar uma factura recebida.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">8.1 · USSD · menu inicial</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:42</span><span class="icons">2G · 88%</span></div>
+        <div class="pscreen" style="background:#000;color:#fff;padding:0;font-family:var(--f-mono)">
+          <div style="background:#1a1a1a;padding:14px 16px;border-bottom:1px solid #333;text-align:center;font-size:11px;letter-spacing:.05em">
+            <div style="color:#888">Marcação</div>
+            <div style="color:#fff;font-size:18px;margin-top:4px;letter-spacing:.1em">*146#</div>
+          </div>
+          <div class="ussd-screen" style="margin:14px;flex:1">
+            <div><b>AT MOÇAMBIQUE</b></div>
+            <div style="margin-top:6px">NUIT: 100 540 218<br/>M. CUAMBA · ISPC</div>
+            <div style="border-top:1px solid #1f3a1f;margin:10px 0;padding-top:10px">
+              1. Emitir factura<br/>
+              2. Receita do mês<br/>
+              3. Pagar ISPC<br/>
+              4. Última factura<br/>
+              5. Validar QR recebido<br/>
+              6. Mudar idioma<br/>
+              0. Sair
+            </div>
+            <div style="margin-top:auto;border-top:1px solid #1f3a1f;padding-top:10px;color:#7af07a">
+              &gt; Resposta: <span style="background:#7af07a;color:#000;padding:0 4px">_</span>
+            </div>
+          </div>
+          <div style="background:#1a1a1a;padding:10px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:11px;color:#888;border-top:1px solid #333">
+            <div style="text-align:center;padding:6px">1</div><div style="text-align:center;padding:6px">2</div><div style="text-align:center;padding:6px">3</div>
+            <div style="text-align:center;padding:6px">4</div><div style="text-align:center;padding:6px">5</div><div style="text-align:center;padding:6px">6</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">8.2 · USSD · pagar ISPC</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:43</span><span class="icons">2G · 88%</span></div>
+        <div class="pscreen" style="background:#000;padding:0">
+          <div style="background:#1a1a1a;padding:14px 16px;border-bottom:1px solid #333;text-align:center;font-size:11px;font-family:var(--f-mono)">
+            <div style="color:#888">USSD activo</div>
+            <div style="color:#fff;font-size:14px;margin-top:4px">*146# → 3</div>
+          </div>
+          <div class="ussd-screen" style="margin:14px;flex:1">
+            <div><b>PAGAR ISPC</b></div>
+            <div style="margin-top:8px">1.o Tri 2026<br/>(Jan-Mar)</div>
+            <div style="margin-top:8px">Vendas: 240 000<br/>ISPC 3%: <b>7 200,00 MZN</b></div>
+            <div style="border-top:1px solid #1f3a1f;margin:10px 0;padding-top:10px">
+              Pagar com:<br/>
+              1. M-Pesa (84•••147)<br/>
+              2. eMola<br/>
+              3. BCI<br/>
+              0. Cancelar
+            </div>
+            <div style="margin-top:auto;border-top:1px solid #1f3a1f;padding-top:10px;color:#7af07a">
+              &gt; <span style="background:#7af07a;color:#000;padding:0 4px">1</span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">8.3 · USSD · confirmação</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:43</span><span class="icons">2G · 87%</span></div>
+        <div class="pscreen" style="background:#000;padding:0">
+          <div style="background:#1a1a1a;padding:14px 16px;border-bottom:1px solid #333;text-align:center;font-size:11px;font-family:var(--f-mono)">
+            <div style="color:#888">USSD activo</div>
+            <div style="color:#fff;font-size:14px;margin-top:4px">*146# → 3 → 1</div>
+          </div>
+          <div class="ussd-screen" style="margin:14px;flex:1">
+            <div><b>CONFIRMAR M-PESA</b></div>
+            <div style="margin-top:8px">7 200,00 MZN<br/>Para: AT-SISTAFE<br/>Ref: ISPC-2026Q1</div>
+            <div style="margin-top:8px;color:#bd9094">PIN M-Pesa:<br/><span style="background:#7af07a;color:#000;padding:0 4px">****</span></div>
+            <div style="border-top:1px solid #1f3a1f;margin:10px 0;padding-top:10px">
+              1. Confirmar<br/>
+              0. Cancelar
+            </div>
+            <div style="margin-top:auto;border-top:1px solid #1f3a1f;padding-top:10px">
+              <span style="color:#7af07a">&gt; <span style="background:#7af07a;color:#000;padding:0 4px">1</span></span>
+              <div style="margin-top:8px;color:#fff">[A processar...]</div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">8.4 · SMS confirmação</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:44</span><span class="icons">2G · 87%</span></div>
+        <div class="pscreen" style="background:#f5f5f7">
+          <div style="padding:8px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px"><span style="color:var(--burg-700);font-size:14px">←</span><div><div style="font-size:12px;font-weight:600">AT-Mz</div><div class="t-meta">+258 1466</div></div></div>
+          <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px">
+            <div style="background:#fff;padding:10px 12px;border-radius:14px 14px 14px 4px;font-size:12px;line-height:1.6;max-width:88%;align-self:flex-start;border:1px solid var(--line-2)">
+              <b>ISPC liquidado.</b><br/><br/>
+              NUIT 100 540 218<br/>1.o Tri 2026<br/><b class="mono">7 200,00 MZN</b><br/><br/>
+              Ref M-Pesa: MP280443KX<br/>Ref SISTAFE: RC-2026-04-7821<br/><br/>
+              Recibo: financas.gov.mz<br/>/r/RC78217<br/><br/>
+              <span style="color:var(--ink-3);font-size:10px">Proximo pagamento ISPC: 31 Jul 2026 (2.o Tri Abr-Jun)</span>
+            </div>
+            <span class="t-meta" style="align-self:flex-start;font-size:10px">09:44</span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-7">← Offline</a><a class="btn secondary sm" href="cidadao.html">Cidadão Contribuinte →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">e-Factura v0.3 · documento autoritativo: <a class="mono" href="DESIGN-efactura.md">DESIGN-efactura.md</a></div>
+    <div class="row">
+      <a href="portal-at.html" class="btn ghost sm">← Portal AT</a>
+      <a href="cidadao.html" class="btn secondary sm">Cidadão Contribuinte →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

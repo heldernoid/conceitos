@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Cidadão Contribuinte — Finanças Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .sceneNav{position:sticky;top:56px;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .sceneNav .inner{max-width:1440px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .sceneNav a{padding:6px 10px;border-radius:2px;color:var(--ink-2);font-size:12px;font-weight:500;border:1px solid var(--line);background:#fff}
+  .sceneNav a:hover{background:var(--bg-2);text-decoration:none}
+  .sceneNav .lbl{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:8px}
+  .sceneTitle{padding:24px 24px 0;max-width:1440px;margin:0 auto;width:100%}
+  .sceneTitle .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+  .sceneTitle h2{font-size:22px;font-weight:600;margin:6px 0 4px;letter-spacing:-.005em}
+  .sceneTitle p{margin:0;color:var(--ink-3);font-size:13px;max-width:760px;line-height:1.5}
+  .scene-end{padding:24px 24px 12px;max-width:1440px;margin:0 auto;width:100%}
+  .scene-end .nx{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--line);margin-top:24px}
+  .anchor{display:block;height:0;visibility:hidden;margin-top:-130px;padding-top:130px}
+  .phones{display:flex;gap:32px;flex-wrap:wrap;padding:24px;max-width:1440px;margin:0 auto;width:100%;align-items:flex-start}
+  .phone-wrap{display:flex;flex-direction:column;gap:10px;align-items:center;flex:0 0 auto}
+  .phone-wrap .cap{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;text-align:center}
+  .pscreen{padding:14px;display:flex;flex-direction:column;gap:12px;flex:1;overflow:hidden}
+  .ptopbar{display:flex;align-items:center;justify-content:space-between;padding:0 4px}
+  .ptopbar .greeting{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .ptopbar .name{font-size:15px;font-weight:600}
+  .pchip{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:2px;font-size:10px;background:var(--green-100);color:var(--good-700);font-weight:600;letter-spacing:.02em}
+  .ptab{height:38px;padding:0 12px;border-radius:2px;border:1px solid var(--line);background:#fff;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2);font-weight:500}
+  .ptab.on{background:var(--burg-100);border-color:var(--burg-700);color:var(--burg-900)}
+  .pbtn{height:48px;width:100%;background:var(--burg-700);color:#fff;border:0;border-radius:4px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+  .pbtn.lg{height:56px;font-size:15px}
+  .pbtn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pbtn.success{background:var(--good-700)}
+  .pbar{display:flex;height:60px;background:#fff;border-top:1px solid var(--line)}
+  .pbar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;color:var(--ink-3);text-decoration:none}
+  .pbar a.on{color:var(--burg-700);font-weight:600}
+  .pbar .ic{width:22px;height:22px;border:1.5px solid currentColor;border-radius:3px}
+
+  .donut{position:relative;width:200px;height:200px;margin:0 auto}
+  .donut svg{transform:rotate(-90deg)}
+  .donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MEF · Autoridade Tributária · DFD</span><span class="sep">·</span>
+  <span>Cidadão Contribuinte v0.3</span>
+  <span style="margin-left:auto">DESIGN-cidadao.md</span>
+</div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Cidadão Contribuinte</span><small>O seu NUIT, sempre consigo</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="portal-at.html">Portal AT</a>
+    <a href="efactura.html">e-Factura</a>
+    <a href="cidadao.html" class="active">Cidadão</a>
+    <a href="comercial.html">Comercial</a>
+    <a href="sistafe.html">SISTAFE</a>
+  </nav>
+  <div class="right">
+    <a href="DESIGN-cidadao.md" class="btn secondary sm">DESIGN-cidadao.md</a>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Hoje</a>
+    <a href="#cena-3">3. IRPS retido</a>
+    <a href="#cena-4">4. Onde vai o imposto</a>
+    <a href="#cena-5">5. Declaração anual</a>
+    <a href="#cena-6">6. Reembolso</a>
+    <a href="#cena-7">7. Patrão em falta</a>
+  </div>
+</nav>
+
+<section style="padding:32px 24px 0;max-width:1440px;margin:0 auto">
+  <div class="t-overline">Cidadão Contribuinte · Surface 3</div>
+  <h1 class="t-h1" style="margin:6px 0 8px">Helder Sumaila Monteiro · assalariado · NUIT 100 281 749</h1>
+  <p class="t-meta" style="max-width:760px">Engenheiro de redes na Vodacom Mz · salário base 240 000 MZN/mês · IRPS retido na fonte. Os 4,8 milhões de NUITs em Moçambique são pessoas como o Helder. Esta superfície existe para que cada um veja quanto paga e para onde vai.</p>
+</section>
+
+<!-- =================== CENA 1 · ONBOARDING =================== -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding com BI</div>
+    <h2>Recupera NUIT existente · cruza com eBI · sem fricção</h2>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">1.1 · Welcome</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:42</span><span class="icons">4G · 78%</span></div>
+        <div class="pscreen" style="background:linear-gradient(180deg,var(--burg-900) 0%,var(--burg-700) 100%);padding:24px 18px;color:#fff">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="width:32px;height:32px;background:#fff;display:inline-block;border-radius:1px;position:relative"><span style="position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(135deg,transparent 0 41%,var(--burg-900) 41% 50%,transparent 50%)"></span></span><div><div style="font-weight:600">Cidadão Contribuinte</div><div style="font-size:10px;color:#e8c5c8;text-transform:uppercase;letter-spacing:.08em">Autoridade Tributária</div></div></div>
+          <div style="margin:auto 0">
+            <h2 style="font-size:24px;font-weight:600;line-height:1.2;margin:0 0 12px">O seu NUIT, sempre consigo. E saiba para onde vai o seu imposto.</h2>
+            <p style="color:#e8c5c8;font-size:13px;line-height:1.5;margin:0">Para trabalhadores assalariados em Moçambique. Veja em tempo real o IRPS que paga, declare uma vez por ano, e perceba para onde vai cada metical.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <button class="pbtn" style="background:#fff;color:var(--burg-900)">Começar com o meu BI</button>
+            <button class="pbtn sec" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.3)">Já tenho conta</button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">1.2 · BI lookup</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:43</span><span class="icons">4G · 77%</span></div>
+        <div class="pscreen">
+          <div class="row spread"><span class="t-meta">← Voltar</span><div class="stepper" style="font-size:10px"><div class="step active"><span class="n">1</span></div><div class="ln"></div><div class="step"><span class="n">2</span></div></div></div>
+          <h3 class="t-h3" style="margin-top:8px">Insira o seu BI</h3>
+          <p class="t-meta" style="margin:0">Vamos ver se já tem um NUIT atribuído.</p>
+          <div class="field" style="margin-top:14px">
+            <label>BI</label>
+            <input class="input lg mono" value="110100442918" />
+          </div>
+          <div class="field">
+            <label>Telemóvel</label>
+            <input class="input lg mono" value="+258 84 217 8821" />
+          </div>
+          <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Já existe um NUIT associado a este BI.</b><br/>Vamos só confirmar com SMS.</div></div>
+          <button class="pbtn" style="margin-top:auto">Receber SMS</button>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">1.3 · Pronto</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:45</span><span class="icons">4G · 77%</span></div>
+        <div class="pscreen">
+          <div style="text-align:center;padding:24px 0 12px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--green-100);color:var(--good-700);font-size:28px;margin-bottom:14px">✓</div>
+            <h2 class="t-h2" style="margin:0">Bem-vindo, Helder</h2>
+          </div>
+          <div class="nuit-card">
+            <div class="lbl">NUIT · Pessoa singular</div>
+            <div class="num">100 281 749</div>
+            <div class="name">Helder Sumaila Monteiro</div>
+            <div class="meta">Activo · DAF Maputo Sede · desde 12 Mar 2014</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:11px">Cruzámos com a Vodacom Mz · você está registado como trabalhador desde Jan 2018.</div></div>
+          <button class="pbtn" style="margin-top:auto">Ver a minha situação fiscal →</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== CENA 2 · HOJE =================== -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2/F3/F6 — Hoje · home</div>
+    <h2>NUIT card hero · IRPS retido em tempo real · situação fiscal regular</h2>
+    <p>Os números que importam: salário declarado este mês, IRPS retido, situação. Cross-link para "Onde vai".</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">2.1 · Hoje</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:18</span><span class="icons">4G · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div><div class="greeting">Boa tarde</div><div class="name">Helder</div></div><span class="pchip"><span style="width:6px;height:6px;border-radius:50%;background:var(--good-700)"></span> Regular</span></div>
+
+          <div class="nuit-card">
+            <div class="lbl">NUIT</div>
+            <div class="num">100 281 749</div>
+            <div class="name">Helder Sumaila Monteiro</div>
+            <div class="meta">Activo · DAF Maputo Sede</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="row spread"><span class="tax irps" style="font-size:10px">IRPS · Abril 2026</span><span class="badge green" style="font-size:10px"><span class="dot"></span>Vodacom entregou</span></div>
+            <div style="margin-top:10px;display:flex;align-items:baseline;gap:6px"><div class="mzn lg" style="color:var(--burg-700)">12 870,00</div><span class="t-meta">MZN retidos</span></div>
+            <div class="row" style="gap:14px;margin-top:10px;font-size:11px">
+              <div><span class="t-meta">Salário bruto</span><div class="mono" style="font-weight:500">240 000,00</div></div>
+              <div><span class="t-meta">IRPS</span><div class="mono" style="font-weight:500;color:var(--red-700)">- 60 000,00</div></div>
+              <div><span class="t-meta">INSS</span><div class="mono" style="font-weight:500;color:var(--red-700)">- 7 200,00</div></div>
+              <div><span class="t-meta">Líquido</span><div class="mono" style="font-weight:500;color:var(--good-700)">172 800,00</div></div>
+            </div>
+            <hr class="hr">
+            <a href="#cena-3" class="t-meta" style="display:flex;justify-content:space-between;align-items:center;color:var(--burg-700);font-weight:500">Ver últimos 12 meses <span>→</span></a>
+          </div>
+
+          <div onclick="location.hash='#cena-4'" style="background:linear-gradient(135deg,#1B5E3F 0%,#2E5C3A 100%);color:#fff;border-radius:6px;padding:14px;cursor:pointer">
+            <div class="row spread"><span style="font-size:10px;color:#bdd7c1;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Onde vai o meu imposto</span><span style="color:#bdd7c1;font-size:18px">→</span></div>
+            <div style="margin-top:10px;font-size:14px">Dos seus <b class="mono">12 870 MZN</b> retidos este mês:</div>
+            <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;font-size:12px">
+              <div class="row spread"><span>Educação · 23%</span><span class="mono">2 960</span></div>
+              <div class="row spread"><span>Saúde · 18%</span><span class="mono">2 317</span></div>
+              <div class="row spread"><span>Infra-estrutura · 14%</span><span class="mono">1 802</span></div>
+              <div class="row spread"><span>Outros · 45%</span><span class="mono">5 791</span></div>
+            </div>
+          </div>
+
+          <div class="banner amber" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Declaração IRPS 2025 disponível.</b><br/>Pré-preenchida. <a href="#cena-5">Confirmar em 5 minutos →</a></div></div>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic"></span>Imposto</a><a><span class="ic"></span>Onde vai</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">2.2 · NUIT QR full screen</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:19</span><span class="icons">4G · 64%</span></div>
+        <div class="pscreen" style="padding:0;background:#fff">
+          <div style="padding:14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line)"><span class="t-meta">← Voltar</span></div>
+          <div style="padding:24px 18px;display:flex;flex-direction:column;align-items:center;text-align:center">
+            <span class="badge green"><span class="dot"></span>NUIT activo · Regular</span>
+            <h3 class="t-h2" style="margin:14px 0 4px">Helder Sumaila Monteiro</h3>
+            <div class="t-meta">DAF Maputo Sede · 12 Mar 2014</div>
+
+            <div class="qr-square" style="width:240px;height:240px;margin:24px 0 14px">
+              <span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span>
+              <span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span>
+              <span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span>
+              <span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span>
+              <span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span>
+              <span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span>
+              <span></span><span></span><span class="b"></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span>
+              <span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span>
+            </div>
+            <div class="mono" style="font-size:24px;font-weight:600;letter-spacing:.05em">100 281 749</div>
+            <p class="t-meta" style="margin:14px 0 0;font-size:11px">O seu patrão (ou novo patrão) pode escanear este QR para registá-lo automaticamente no sistema de retenções AT. Substitui a fotocópia do BI/NUIT.</p>
+            <button class="pbtn" style="margin-top:18px">Partilhar (WhatsApp · SMS)</button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">IRPS retido →</a></div></div>
+</section>
+
+<!-- =================== CENA 3 · IRPS RETIDO =================== -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — IRPS retido · 12 meses</div>
+    <h2>Cada mês: salário, retenção, entrega à AT confirmada</h2>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">3.1 · IRPS · 12 meses</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:21</span><span class="icons">4G · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">IRPS retido</div><span class="t-meta">Maio 2025 — Abril 2026</span></div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="t-overline" style="font-size:10px">Total retido · 12 meses</div>
+            <div class="mzn lg" style="margin-top:4px;color:var(--burg-700)">154 440,00 <small>MZN</small></div>
+            <p class="t-meta" style="margin:6px 0 0;font-size:11px">Em 2025 (ano fiscal completo): 720 000 MZN.</p>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px">
+            <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;align-items:flex-end;height:120px;margin-bottom:8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">M</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">J</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">J</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">A</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">S</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">O</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">N</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:95%"></div><span class="t-meta" style="font-size:9px">D</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">J</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">F</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--tax-irps);height:62%"></div><span class="t-meta" style="font-size:9px">M</span></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><div style="width:100%;background:var(--burg-700);height:65%"></div><span class="t-meta" style="font-size:9px;font-weight:600;color:var(--burg-700)">A</span></div>
+            </div>
+            <p class="t-meta" style="margin:0;font-size:10px;text-align:center">Pico em Dez (subsídio de Natal)</p>
+          </div>
+
+          <div class="t-overline" style="font-size:10px">Mês a mês · entregas à AT</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Abril 2026</div><div class="t-meta" style="font-size:10px">Vodacom Mz · entregue 28 Abr</div></div><div style="text-align:right"><div class="mono" style="font-weight:600">12 870,00</div><span class="badge green" style="font-size:9px"><span class="dot"></span>OK</span></div></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Março 2026</div><div class="t-meta" style="font-size:10px">Vodacom Mz · entregue 28 Mar</div></div><div style="text-align:right"><div class="mono" style="font-weight:600">12 870,00</div><span class="badge green" style="font-size:9px"><span class="dot"></span>OK</span></div></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Fevereiro 2026</div><div class="t-meta" style="font-size:10px">Vodacom Mz · entregue 28 Fev</div></div><div style="text-align:right"><div class="mono" style="font-weight:600">12 870,00</div><span class="badge green" style="font-size:9px"><span class="dot"></span>OK</span></div></div>
+            <div style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Dezembro 2025</div><div class="t-meta" style="font-size:10px">Vodacom Mz · 13.º mês</div></div><div style="text-align:right"><div class="mono" style="font-weight:600">19 305,00</div><span class="badge green" style="font-size:9px"><span class="dot"></span>OK</span></div></div>
+          </div>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a class="on"><span class="ic"></span>Imposto</a><a><span class="ic"></span>Onde vai</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Onde vai →</a></div></div>
+</section>
+
+<!-- =================== CENA 4 · ONDE VAI O IMPOSTO =================== -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F7 — Onde vai o meu imposto</div>
+    <h2>12 870 MZN deste mês decompostos por sector · cross-links a govdigital, saude, educacao</h2>
+    <p>Decomposição segundo o Orçamento do Estado 2026. Cada categoria liga ao sistema relevante.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">4.1 · Donut decomposição</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:24</span><span class="icons">4G · 63%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">Onde vai o imposto</div><span class="t-meta">Abril 2026</span></div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:18px;text-align:center">
+            <div class="donut">
+              <svg width="200" height="200" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--burg-700)" stroke-width="32" stroke-dasharray="104,452" stroke-dashoffset="0" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--tax-iva)" stroke-width="32" stroke-dasharray="81,452" stroke-dashoffset="-104" />
+                <circle cx="100" cy="100" r="32" fill="none" stroke="var(--tax-irpc)" stroke-width="32" stroke-dasharray="63,452" stroke-dashoffset="-185" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--tax-aduan)" stroke-width="32" stroke-dasharray="54,452" stroke-dashoffset="-248" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#7A5018" stroke-width="32" stroke-dasharray="40,452" stroke-dashoffset="-302" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#a04148" stroke-width="32" stroke-dasharray="32,452" stroke-dashoffset="-342" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--ink-3)" stroke-width="32" stroke-dasharray="22,452" stroke-dashoffset="-374" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#5C2D7A" stroke-width="32" stroke-dasharray="36,452" stroke-dashoffset="-396" />
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--gold-500)" stroke-width="32" stroke-dasharray="18,452" stroke-dashoffset="-432" />
+              </svg>
+              <div class="center"><div class="t-overline" style="font-size:9px">12 870 MZN</div><div style="font-size:11px;font-weight:600;margin-top:2px">decompostos</div></div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden">
+            <div onclick="window.open('#','_blank')" style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;cursor:pointer">
+              <span style="width:14px;height:14px;background:var(--burg-700);border-radius:2px;flex:0 0 auto"></span>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600">Educação</div><div class="t-meta" style="font-size:10px">23% · escolas, universidades, INDE</div></div>
+              <div style="text-align:right"><div class="mono" style="font-size:13px;font-weight:600">2 960</div><div class="t-meta" style="font-size:10px">→ Educa Digital</div></div>
+            </div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px;cursor:pointer">
+              <span style="width:14px;height:14px;background:var(--tax-iva);border-radius:2px;flex:0 0 auto"></span>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600">Saúde</div><div class="t-meta" style="font-size:10px">18% · MISAU, hospitais, medicamentos</div></div>
+              <div style="text-align:right"><div class="mono" style="font-size:13px;font-weight:600">2 317</div><div class="t-meta" style="font-size:10px">→ Saúde Digital</div></div>
+            </div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:var(--tax-irpc);border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Infra-estrutura</div><div class="t-meta" style="font-size:10px">14% · estradas, energia, água</div></div><div class="mono" style="font-size:13px;font-weight:600">1 802</div></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:var(--tax-aduan);border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Defesa</div><div class="t-meta" style="font-size:10px">12% · FADM, segurança</div></div><div class="mono" style="font-size:13px;font-weight:600">1 544</div></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:#7A5018;border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Pensões</div><div class="t-meta" style="font-size:10px">9% · INSS, reformados</div></div><div class="mono" style="font-size:13px;font-weight:600">1 158</div></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:#a04148;border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Administração</div><div class="t-meta" style="font-size:10px">8% · MAEFP, autarquias</div></div><div class="mono" style="font-size:13px;font-weight:600">1 030</div></div>
+            <div style="padding:12px 14px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:#5C2D7A;border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Justiça</div><div class="t-meta" style="font-size:10px">7% · tribunais, MJ</div></div><div class="mono" style="font-size:13px;font-weight:600">901</div></div>
+            <div style="padding:12px 14px;display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;background:var(--gold-500);border-radius:2px;flex:0 0 auto"></span><div style="flex:1"><div style="font-size:13px;font-weight:600">Outros</div><div class="t-meta" style="font-size:10px">9% · cultura, ambiente, etc</div></div><div class="mono" style="font-size:13px;font-weight:600">1 158</div></div>
+          </div>
+
+          <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:11px">Decomposição segundo o <a href="sistafe.html">Orçamento do Estado 2026</a> aprovado pela AR. Pode variar de mês para mês conforme execução real.</div></div>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Imposto</a><a class="on"><span class="ic"></span>Onde vai</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">4.2 · Detalhe Educação · cross-link</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:25</span><span class="icons">4G · 63%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="row spread"><span class="t-meta">← Voltar</span><span class="badge"><span class="dot"></span>Educação</span></div>
+
+          <div style="background:linear-gradient(135deg,#3F3D8C 0%,#5856A8 100%);color:#fff;padding:18px;border-radius:6px">
+            <div style="font-size:11px;color:#bfbef0;text-transform:uppercase;letter-spacing:.08em;font-weight:600">Os seus 2 960 MZN para Educação</div>
+            <div class="mzn xl" style="color:#fff;margin-top:6px">2 960,00<small style="color:#bfbef0">MZN · Abril</small></div>
+            <p style="font-size:12px;color:#bfbef0;margin:8px 0 0;line-height:1.5">23% do seu IRPS deste mês foi para o sistema educativo nacional.</p>
+          </div>
+
+          <div class="t-overline" style="font-size:10px">Decomposição</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><span>Salários professores</span><span class="mono">1 720</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><span>Manuais e materiais</span><span class="mono">385</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><span>Construção e manutenção</span><span class="mono">444</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;font-size:12px"><span>Bolsas universitárias</span><span class="mono">237</span></div>
+            <div style="padding:10px 12px;display:flex;justify-content:space-between;font-size:12px"><span>Programas pedagógicos</span><span class="mono">174</span></div>
+          </div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div class="t-overline" style="font-size:10px">Indicadores · 2025</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+              <div class="row spread" style="font-size:12px"><span>Alunos no sistema</span><span class="mono" style="font-weight:600">7 248 421</span></div>
+              <div class="row spread" style="font-size:12px"><span>Professores</span><span class="mono" style="font-weight:600">142 880</span></div>
+              <div class="row spread" style="font-size:12px"><span>Taxa conclusão 7.ª classe</span><span class="mono" style="font-weight:600">68,4%</span></div>
+              <div class="row spread" style="font-size:12px"><span>Escolas com Educa Digital</span><span class="mono" style="font-weight:600">2 184</span></div>
+            </div>
+          </div>
+
+          <button class="pbtn sec">Ver dashboard Educa Digital →</button>
+          <p class="t-meta" style="text-align:center;font-size:10px">Os números do Ministério da Educação · publicados em <span class="mono">dados.educacao.gov.mz</span></p>
+        </div>
+        <div class="pbar"><a><span class="ic"></span>Hoje</a><a><span class="ic"></span>Imposto</a><a class="on"><span class="ic"></span>Onde vai</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← IRPS</a><a class="btn secondary sm" href="#cena-5">Declaração anual →</a></div></div>
+</section>
+
+<!-- =================== CENA 5 · DECLARAÇÃO ANUAL =================== -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F5 — Declaração anual IRPS · pré-preenchida</div>
+    <h2>5 minutos. Salário e retenções já lá. Acrescenta o que falta.</h2>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">5.1 · Resumo pré-preenchido</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>20:14</span><span class="icons">WiFi · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="row spread"><span class="t-meta">← Voltar</span><span class="badge burg" style="font-size:10px">IRPS · 2025</span></div>
+          <h3 class="t-h3" style="margin-top:6px">Declaração 2025</h3>
+          <p class="t-meta" style="margin:0">Rendimentos do ano fiscal · vence 30 Abr 2026</p>
+
+          <div class="banner green" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>Pré-preenchemos com dados confirmados.</b><br/>Vodacom Mz · INSS · MISAU · SIGE</div></div>
+
+          <div class="t-overline" style="font-size:10px">Rendimentos</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12.5px;font-weight:500">Salário Vodacom Mz · 12m + 13.º</div><span class="badge green" style="font-size:9px"><span class="dot"></span>Confirmado</span></div><span class="mono" style="font-weight:600">2 880 000</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12.5px;font-weight:500">Outros · serviços (e-Factura)</div><span class="badge green" style="font-size:9px"><span class="dot"></span>Confirmado</span></div><span class="mono" style="font-weight:600">240 000</span></div>
+            <div style="padding:10px 12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12.5px;font-weight:500">Rendas (categoria F)</div><span class="badge amber" style="font-size:9px"><span class="dot"></span>A confirmar</span></div><span class="mono" style="font-weight:600">120 000</span></div>
+          </div>
+
+          <div class="t-overline" style="font-size:10px">Deduções</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px">
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between"><span style="font-size:12.5px">INSS contribuição</span><span class="mono">- 86 400</span></div>
+            <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);display:flex;justify-content:space-between"><span style="font-size:12.5px">Saúde (MISAU + privado)</span><span class="mono">- 14 200</span></div>
+            <div style="padding:10px 12px;display:flex;justify-content:space-between"><span style="font-size:12.5px">Educação dependente (SIGE)</span><span class="mono">- 18 000</span></div>
+          </div>
+
+          <div style="background:var(--bg-2);border-radius:6px;padding:14px">
+            <div class="row spread" style="font-size:12px"><span>Base tributável</span><span class="mono" style="font-weight:600">3 121 400</span></div>
+            <div class="row spread" style="font-size:12px;margin-top:4px"><span>IRPS calculado</span><span class="mono" style="font-weight:600">863 308</span></div>
+            <div class="row spread" style="font-size:12px;margin-top:4px"><span>Retenções 2025</span><span class="mono" style="font-weight:600;color:var(--good-700)">- 780 000</span></div>
+            <hr class="hr" style="margin:8px 0">
+            <div class="row spread"><span style="font-size:13px;font-weight:600">Saldo</span><span class="mono" style="font-size:18px;font-weight:600;color:var(--burg-700)">a pagar 83 308</span></div>
+          </div>
+
+          <button class="pbtn">Submeter declaração</button>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Onde vai</a><a class="btn secondary sm" href="#cena-6">Reembolso →</a></div></div>
+</section>
+
+<!-- =================== CENA 6 · REEMBOLSO =================== -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F8 — Reembolso pedido</div>
+    <h2>Caso oposto · retenções &gt; IRPS devido · AT devolve</h2>
+    <p>Variante: trabalhador X em outro contexto, retenções superaram. Pede reembolso · IBAN · prazo 60 dias.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">6.1 · Tem direito a reembolso</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>20:18</span><span class="icons">WiFi · 64%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="ptopbar"><div class="name">IRPS 2025</div><span class="pchip">Reembolso</span></div>
+
+          <div class="banner green" style="padding:12px"><span class="ic"></span><div style="font-size:12px"><b>Tem direito a reembolso.</b><br/>As retenções superaram o IRPS devido.</div></div>
+
+          <div style="background:linear-gradient(135deg,var(--good-700) 0%,#1B6B3A 100%);color:#fff;padding:18px;border-radius:6px;text-align:center">
+            <div style="font-size:11px;color:#bdd7c1;text-transform:uppercase;letter-spacing:.08em;font-weight:600">A receber</div>
+            <div class="mzn xl" style="color:#fff;margin-top:6px">42 580,00<small style="color:#bdd7c1">MZN</small></div>
+            <div style="font-size:11px;color:#bdd7c1;margin-top:6px">Prazo legal: 60 dias após submissão</div>
+          </div>
+
+          <div style="background:var(--bg-2);border-radius:6px;padding:14px">
+            <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>Retenções totais 2025</span><span class="mono">760 000</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>IRPS devido (calculado)</span><span class="mono">- 717 420</span></div>
+            <hr class="hr" style="margin:8px 0">
+            <div class="row spread" style="font-size:13px;font-weight:600;color:var(--good-700)"><span>Reembolso</span><span class="mono">42 580</span></div>
+          </div>
+
+          <div class="t-overline" style="font-size:10px">IBAN para depósito</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:6px;padding:14px">
+            <div style="font-size:13px;font-weight:600">BCI · conta principal</div>
+            <div class="mono t-meta" style="margin-top:4px">PT50 0008 0000 4218 9920 1124 7</div>
+            <hr class="hr">
+            <button class="btn ghost sm">Mudar IBAN</button>
+          </div>
+
+          <button class="pbtn success">Submeter pedido de reembolso</button>
+          <p class="t-meta" style="font-size:10px;text-align:center">A AT confirma a recepção em até 5 dias úteis. Pagamento via SISTAFE em 60 dias máximo.</p>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Declaração</a><a class="btn secondary sm" href="#cena-7">Patrão em falta →</a></div></div>
+</section>
+
+<!-- =================== CENA 7 · PATRÃO EM FALTA =================== -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F4 — Empregador reteve mas não entregou à AT</div>
+    <h2>Banner red · denúncia anónima possível</h2>
+    <p>Cenário: o patrão retém o IRPS no recibo de salário mas não entrega à AT. O trabalhador vê em tempo real e pode reportar.</p>
+  </div>
+  <div class="phones">
+
+    <div class="phone-wrap">
+      <span class="cap">7.1 · Alerta crítico</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>11:42</span><span class="icons">4G · 38%</span></div>
+        <div class="pscreen scroll-y">
+          <div class="banner red" style="padding:12px"><span class="ic"></span><div style="font-size:12px"><b>Patrão em incumprimento.</b><br/>Reteve mas não entregou à AT (prazo: dia 20).</div></div>
+
+          <div style="background:#fff;border:1.5px solid var(--red-500);border-radius:6px;padding:14px">
+            <div class="row spread"><span class="tax irps" style="font-size:10px">IRPS · Março 2026</span><span class="badge red" style="font-size:10px"><span class="dot"></span>Não entregue</span></div>
+            <div style="margin-top:10px"><div class="t-meta" style="font-size:10px">Empregador</div><div style="font-size:13px;font-weight:600">Distribuidora Limpopo, Lda</div><div class="t-meta mono">NUIT 400 218 442</div></div>
+            <hr class="hr">
+            <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>Salário declarado</span><span class="mono">125 000</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:4px"><span>IRPS retido (no seu recibo)</span><span class="mono">8 200</span></div>
+            <div class="row spread" style="font-size:12px"><span>Entregue à AT</span><span class="mono" style="color:var(--red-700)">0,00</span></div>
+            <hr class="hr">
+            <p class="t-meta" style="margin:0;font-size:11px;line-height:1.5">A AT já sabe (o sistema cruza automaticamente). Mas a sua denúncia ajuda a abrir investigação mais rápida.</p>
+          </div>
+
+          <button class="pbtn" style="background:var(--red-700)">Reportar à AT (anónimo)</button>
+          <p class="t-meta" style="font-size:10px;text-align:center;line-height:1.5">A sua identidade não é revelada ao empregador. A AT abre processo de fiscalização ao NUIT 400 218 442.</p>
+
+          <div class="banner burg" style="padding:10px"><span class="ic"></span><div style="font-size:11px"><b>O seu direito está protegido.</b><br/>Mesmo que o patrão não entregue, a sua retenção continua válida para a sua declaração anual. Quem perde é o Estado, não você.</div></div>
+        </div>
+        <div class="pbar"><a class="on"><span class="ic"></span>Hoje</a><a><span class="ic"></span>Imposto</a><a><span class="ic"></span>Onde vai</a><a><span class="ic"></span>Eu</a></div>
+      </div></div>
+    </div>
+
+    <div class="phone-wrap">
+      <span class="cap">7.2 · Confirmação denúncia</span>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>11:43</span><span class="icons">4G · 38%</span></div>
+        <div class="pscreen">
+          <div style="text-align:center;padding:30px 0 20px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--green-100);color:var(--good-700);font-size:28px;margin-bottom:14px">✓</div>
+            <h2 class="t-h2" style="margin:0">Denúncia recebida</h2>
+            <p class="t-meta" style="margin:6px 0 0">Processo aberto pela DAF Maputo Sede</p>
+          </div>
+
+          <div style="background:var(--bg-2);border-radius:6px;padding:14px">
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Processo</span><span class="mono">D-2026-IRPS-MAP-1842</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Sujeito</span><span style="font-weight:500">Distribuidora Limpopo, Lda</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">NUIT</span><span class="mono">400 218 442</span></div>
+            <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Inspector</span><span>C. Bila</span></div>
+            <div class="row spread" style="font-size:12px"><span style="color:var(--ink-3)">Estado</span><span class="badge amber" style="font-size:10px"><span class="dot"></span>Em fiscalização</span></div>
+          </div>
+
+          <p class="t-meta" style="font-size:11px;line-height:1.5">A AT vai contactar o empregador. O seu nome <b>não</b> é mencionado. Será notificado quando o processo encerrar.</p>
+
+          <a href="#cena-2" class="pbtn">Voltar à home</a>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Reembolso</a><a class="btn secondary sm" href="comercial.html">Portal Comercial →</a></div></div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:32px 24px;margin-top:24px">
+  <div style="max-width:1440px;margin:0 auto" class="row spread">
+    <div class="t-meta">Cidadão Contribuinte v0.3 · documento autoritativo: <a class="mono" href="DESIGN-cidadao.md">DESIGN-cidadao.md</a></div>
+    <div class="row">
+      <a href="efactura.html" class="btn ghost sm">← e-Factura</a>
+      <a href="comercial.html" class="btn secondary sm">Portal Comercial →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

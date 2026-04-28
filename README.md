@@ -18,7 +18,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 01 | [Saúde Digital](https://conceitos.org/saudedigital/) | Disponível |
 | 02 | [Governo Digital](https://conceitos.org/governodigital/) | Disponível |
 | 03 | [Educação Digital](https://conceitos.org/educacaodigital/) | Disponível |
-| 04 | Finanças Digitais | Em ideação |
+| 04 | [Finanças Digitais](https://conceitos.org/financasdigitais/) | Disponível |
 | 05 | Justiça Digital | Em ideação |
 
 ### Saúde Digital
@@ -32,6 +32,10 @@ Reimaginação dos serviços de governação civil e transparência do Estado co
 ### Educação Digital
 
 Reimaginação da plataforma nacional de educação com cinco superfícies: gestão escolar integrada (SIGE), portal do professor, caderno electrónico do aluno, biblioteca pública nacional e portal de matrículas.
+
+### Finanças Digitais
+
+Reimaginação do sistema fiscal e orçamental com cinco superfícies: portal do cidadão (NUIT e IRS pessoal), declaração comercial (IRPC), eFactura para independentes e comerciantes, portal da Autoridade Tributária e interoperabilidade com a SISTAFE.
 
 ## Estrutura
 
@@ -59,13 +63,23 @@ conceitos/
 │   ├── design-system.html
 │   ├── shared/styles.css
 │   └── DESIGN-*.md
-└── educacaodigital/        # Projecto 03 · Educação Digital
+├── educacaodigital/        # Projecto 03 · Educação Digital
     ├── index.html
     ├── sige.html
     ├── professor.html
     ├── aluno.html
     ├── biblioteca.html
     ├── matriculas.html
+    ├── design-system.html
+    ├── shared/styles.css
+    └── DESIGN-*.md
+└── financasdigitais/       # Projecto 04 · Finanças Digitais
+    ├── index.html
+    ├── cidadao.html
+    ├── comercial.html
+    ├── efactura.html
+    ├── portal-at.html
+    ├── sistafe.html
     ├── design-system.html
     ├── shared/styles.css
     └── DESIGN-*.md
