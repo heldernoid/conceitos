@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Terras Digitais Moçambique — Mocks Interativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:var(--bg)}
+  .hero{padding:48px 24px 24px}
+  .hero .container{max-width:1200px;margin:0 auto}
+  .hero .eyebrow{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .hero .eyebrow .sep{color:var(--ink-4)}
+  .hero h1{margin:14px 0 12px;font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.05;max-width:880px}
+  .hero p{color:var(--ink-2);font-size:17px;max-width:760px;line-height:1.55}
+  .hero .meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+  .hero .meta .kv .k{font-size:10px}
+  .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:24px}
+  .tile{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px;text-decoration:none;color:var(--ink);display:block;transition:border-color .15s, transform .15s}
+  .tile:hover{border-color:var(--terra-700);text-decoration:none;transform:translateY(-1px)}
+  .tile .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .tile .swatch{width:100%;height:48px;border-radius:3px;margin:12px 0;background:var(--terra-100)}
+  .tile.b .swatch{background:var(--terra-300)}
+  .tile.c .swatch{background:var(--savanna-100)}
+  .tile.d .swatch{background:repeating-linear-gradient(90deg,var(--line-ink) 0 14px,var(--terra-600) 14px 18px,var(--line-ink) 18px 32px,var(--cream-paper) 32px 36px)}
+  .tile.e .swatch{background:linear-gradient(90deg,var(--terra-700) 0%,var(--savanna-600) 100%)}
+  .tile h3{margin:6px 0 6px;font-size:18px;font-weight:600;color:var(--ink)}
+  .tile p{font-size:13px;color:var(--ink-3);margin:0;line-height:1.5}
+  .tile .users{margin-top:12px;font-size:11px;color:var(--terra-700);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .tile.featured{grid-column:span 2;background:var(--terra-900);color:#fff;border-color:var(--terra-900)}
+  .tile.featured h3{color:#fff}
+  .tile.featured p{color:var(--terra-200)}
+  .tile.featured .num,.tile.featured .users{color:var(--terra-300)}
+  .tile.featured .swatch{background:#fff;height:6px;width:80px;margin:18px 0}
+  .section-h{max-width:1200px;margin:0 auto;padding:0 24px 12px}
+  footer{padding:40px 24px;border-top:1px solid var(--line);margin-top:48px}
+  footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+  footer h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  footer .ack{font-size:12px;color:var(--ink-3);max-width:380px;line-height:1.6}
+  footer .muted{color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTA · DINAGECA · SPGC · CFJP · ANAC · ATM · DTD</span><span class="sep">·</span>
+  <span>Protótipo de demonstração</span>
+  <span style="margin-left:auto">Versão 0.3 · Abril 2026</span>
+</div>
+<div class="cadastro-stripe"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>Plataforma Nacional de Cadastro e DUAT</small></span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="empresa.html">Empresa</a>
+    <a href="spgc.html">SPGC</a>
+    <a href="fiscal.html">Fiscal</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span>Pacote de protótipos clicáveis</span><span class="sep">·</span><span>Para revisão por MTA, DINAGECA, SPGC, CFJP, ANAC, ATM e parceiros</span></div>
+    <h1>Cinco superfícies. Pessoas, comunidades e empresas com direito sobre a terra de Moçambique.</h1>
+    <p>Terras Digitais Moçambique unifica o pedido, a demarcação, o registo, a gestão e a fiscalização do DUAT (Direito de Uso e Aproveitamento da Terra). Liga cidadão, investidor, SPGC provincial, fiscal de campo e DINAGECA nacional num só sistema cadastral, com mediação comunitária obrigatória, detecção automática de sobreposições, e cross-eBI, cross-Justiça, cross-Finanças, cross-Trabalho.</p>
+    <div class="meta">
+      <div class="kv"><span class="k">Idioma</span><span class="v">PT-MZ + Macua, Changana, Sena, Nyungwe</span></div>
+      <div class="kv"><span class="k">DUATs vigentes</span><span class="v">≈487 218</span></div>
+      <div class="kv"><span class="k">Hectares cadastrados</span><span class="v">≈38,4 M · 52% território</span></div>
+      <div class="kv"><span class="k">SPGC provinciais</span><span class="v">11 · uma por província</span></div>
+      <div class="kv"><span class="k">Conflitos em mediação</span><span class="v">14 218 activos</span></div>
+      <div class="kv"><span class="k">Documentos</span><span class="v">DESIGN-*.md por superfície</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-tiles">
+  <a class="tile featured" href="design-system.html">
+    <div class="row spread">
+      <div class="num">00 · Fundamentos</div>
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)">Comece aqui</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Sistema de Design</h3>
+    <p>Tipografia, paleta terra ochre + savanna green + paper cream, cadastro-stripe para autos, componentes signature (DUAT-card serifado, polígono GPS com vértices, hectare meter, conflito card, comunidade card com régulo, 8 categorias de uso da terra). Reutilizado por todas as superfícies.</p>
+    <div class="users">Equipa de produto · Engenharia · MTA · DTD</div>
+  </a>
+
+  <a class="tile" href="cidadao.html">
+    <div class="num">01 · Mobile (PWA · cidadão titular)</div>
+    <div class="swatch"></div>
+    <h3>Cidadão / App</h3>
+    <p>O meu DUAT digital, mapa GPS do meu terreno, taxa anual via M-Pesa, transmissão por sucessão, denúncia de ocupação ilegal. Reconhecimento de boa fé histórica (Lei 19/97). 5 línguas locais. USSD *146# fallback.</p>
+    <div class="users">Cidadãos · 487 k titulares</div>
+  </a>
+
+  <a class="tile b" href="empresa.html">
+    <div class="num">02 · Web desktop (investidor · empresa)</div>
+    <div class="swatch"></div>
+    <h3>Empresa / Investidor</h3>
+    <p>Pedido novo de DUAT (agrícola, industrial, turismo), consulta comunitária obrigatória com acta autenticada por régulo, polígono GPS pré-validado contra cadastro nacional, detecção automática de sobreposição, cross-CPI para investimento estrangeiro &gt; 1 000 ha.</p>
+    <div class="users">≈3 240 empresas · cooperativas</div>
+  </a>
+
+  <a class="tile c" href="spgc.html">
+    <div class="num">03 · Web admin (SPGC provincial)</div>
+    <div class="swatch"></div>
+    <h3>SPGC / Província</h3>
+    <p>Gestão cadastral provincial: pedidos pendentes, conflitos, sobreposições, auditoria de demarcações. Integra dados de fiscais de campo. Emissão de pareceres técnicos. 11 SPGC sob coordenação DINAGECA nacional.</p>
+    <div class="users">11 SPGC · ≈420 funcionários</div>
+  </a>
+
+  <a class="tile d" href="fiscal.html">
+    <div class="num">04 · Tablet rugged (campo · demarcação)</div>
+    <div class="swatch"></div>
+    <h3>Fiscal / Campo</h3>
+    <p>Tablet rugged com GPS RTK ±2 cm, mapa offline da província, demarcação por polígono in-situ, captura de fotos com EXIF georreferenciado, autos de demarcação serifados assinados no terreno, denúncia de ocupação ilegal, mediação comunitária facilitada com régulo.</p>
+    <div class="users">≈840 fiscais · 11 províncias</div>
+  </a>
+
+  <a class="tile e" href="dashboard.html">
+    <div class="num">05 · Web cross-stakeholder (DINAGECA nacional)</div>
+    <div class="swatch"></div>
+    <h3>Dashboard nacional</h3>
+    <p>Mapa MZ por categoria de uso, indicadores ODS-1 (terra para todos), monitoria de prazo legal de 18 meses por pedido, ranking provincial de eficiência cadastral, escalada de conflitos para Tribunal Comunitário e Tribunal Administrativo, partilha cross-Finanças da taxa anual.</p>
+    <div class="users">DINAGECA · MTA · Conselho de Ministros</div>
+  </a>
+</section>
+
+<section class="section-h"><h3 class="t-h3">Como navegar este pacote</h3></section>
+<section style="max-width:1200px;margin:0 auto;padding:0 24px 24px">
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">1. Sistema de Design</div>
+      <p class="t-body" style="margin:8px 0 0">Comece pelo <a href="design-system.html">Sistema de Design</a> — define paleta terra ochre + savanna, cadastro-stripe para autos cadastrais, componentes signature únicos (polígono GPS com vértices numerados, hectare meter, conflito sobreposição, comunidade card com régulo) que todas as superfícies reutilizam.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">2. Superfícies clicáveis</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície abre num documento próprio com cenas numeradas (1 a 7). Cross-system aparece em badges visíveis: <span class="mono">cross-eBI</span>, <span class="mono">cross-AT</span>, <span class="mono">cross-TJ</span>, <span class="mono">cross-NUSS</span>, <span class="mono">cross-ANAC</span>.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">3. Documentos DESIGN-*.md</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície tem um documento autoritativo (ex.: <span class="mono">DESIGN-fiscal.md</span>) com princípios, fluxos, componentes, estados. Para handoff a engenharia.</p>
+    </div></div>
+  </div>
+</section>
+
+<section class="section-h"><h3 class="t-h3">Princípio organizador · 4 vias paralelas</h3></section>
+<section style="max-width:1200px;margin:0 auto;padding:0 24px 24px">
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">Via comum · cidadão</div>
+      <h4 class="t-h4" style="margin:6px 0">Boa fé · sucessão · habitação</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Reconhecimento de DUAT por ocupação de boa fé há mais de 10 anos (Lei 19/97 art. 12). Transmissão por sucessão com cross-eBI. Taxa anual baixa para uso residencial. Quando há disputa, mediação no Tribunal Comunitário antes de qualquer escalada para Tribunal Administrativo.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Via empresarial · investidor</div>
+      <h4 class="t-h4" style="margin:6px 0">Consulta comunitária obrigatória</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Sem acta de consulta comunitária autenticada por régulo, não há pedido válido. A app força o upload da acta. Investimento estrangeiro &gt; 1 000 ha dispara cross-CPI automaticamente. Detecção de sobreposição em tempo real impede emissão sobre DUAT alheio.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Via cadastral · SPGC + Fiscal</div>
+      <h4 class="t-h4" style="margin:6px 0">Demarcação física com GPS RTK</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Cada DUAT tem polígono georreferenciado WGS-84 com vértices a ±2 cm. Demarcação por fiscal no terreno, autos serifados assinados in-situ. SPGC provincial valida tecnicamente; DINAGECA emite o título. Auditoria contínua por amostragem aleatória.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>Plataforma Nacional de Cadastro e DUAT</small></span></a>
+      <p class="ack" style="margin-top:14px">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a> para imaginar um sistema end-to-end de cadastro fundiário e DUAT para Moçambique. O Ministério da Terra e Ambiente (MTA), a DINAGECA, os SPGC provinciais, a CFJP (Comissão de Formação Jurídica e Paralegal), a ANAC (Administração Nacional das Áreas de Conservação) e a Autoridade Tributária (ATM) são entidades reais; a "Direcção de Terras Digitais" (DTD) é uma camada operativa fictícia neste exercício, coexistindo com a DINAGECA real. Este protótipo não usa dados reais — nomes, BIs, NUITs, DUATs, polígonos, coordenadas GPS e factos são ilustrativos.</p>
+    </div>
+    <div>
+      <h5>Superfícies</h5>
+      <ul>
+        <li><a href="cidadao.html">Cidadão</a></li>
+        <li><a href="empresa.html">Empresa</a></li>
+        <li><a href="spgc.html">SPGC</a></li>
+        <li><a href="fiscal.html">Fiscal</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Documentos</h5>
+      <ul>
+        <li><a href="DESIGN-system.md">DESIGN-system.md</a></li>
+        <li><a href="DESIGN-cidadao.md">DESIGN-cidadao.md</a></li>
+        <li><a href="DESIGN-empresa.md">DESIGN-empresa.md</a></li>
+        <li><a href="DESIGN-spgc.md">DESIGN-spgc.md</a></li>
+        <li><a href="DESIGN-fiscal.md">DESIGN-fiscal.md</a></li>
+        <li><a href="DESIGN-dashboard.md">DESIGN-dashboard.md</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li class="muted">Av. Acordos de Lusaka 2115</li>
+        <li class="muted">Maputo, Moçambique</li>
+        <li class="muted">+258 21 466 102 (DINAGECA)</li>
+        <li class="muted">USSD *146# · Terras</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -22,6 +22,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 05 | [Justiça Digital](https://conceitos.org/projectos/justicadigital/) | Disponível |
 | 06 | [Trabalho Digital](https://conceitos.org/projectos/trabalhodigital/) | Disponível |
 | 07 | [Transportes Digitais](https://conceitos.org/projectos/transportesdigitais/) | Disponível |
+| 08 | [Terras Digitais](https://conceitos.org/projectos/terrasdigitais/) | Disponível |
 
 ### Saúde Digital
 
@@ -51,84 +52,28 @@ Reimaginação do sistema de trabalho e protecção social com cinco superfície
 
 Reimaginação do sistema nacional de transportes com cinco superfícies: portal do condutor, portal do operador, INATTER (inspecção e licenciamento), transporte multimodal e PRM (passagem de fronteira).
 
+### Terras Digitais
+
+Reimaginação do sistema de gestão fundiária com cinco superfícies: portal do cidadão, portal da empresa, SPGC (cadastro e gestão), fiscalização e dashboard nacional.
+
 ## Estrutura
 
 ```
 conceitos/
-├── index.html               # Página de entrada e directório de projectos
-├── assets/                  # Marca, SVGs partilhados
+├── index.html        # Página de entrada e directório de projectos
+├── assets/           # Marca e SVGs partilhados
 └── projectos/
-    ├── saudedigital/        # Projecto 01 · Saúde Digital
-    │   ├── index.html
-    │   ├── emr.html
-    │   ├── ehealth.html
-    │   ├── pharmacy.html
-    │   ├── audit.html
-    │   ├── surveillance.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    ├── governodigital/      # Projecto 02 · Governo Digital
-    │   ├── index.html
-    │   ├── ebi.html
-    │   ├── cidadao.html
-    │   ├── balcao.html
-    │   ├── orcamento.html
-    │   ├── auditoria.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    ├── educacaodigital/     # Projecto 03 · Educação Digital
-    │   ├── index.html
-    │   ├── sige.html
-    │   ├── professor.html
-    │   ├── aluno.html
-    │   ├── biblioteca.html
-    │   ├── matriculas.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    ├── financasdigitais/    # Projecto 04 · Finanças Digitais
-    │   ├── index.html
-    │   ├── cidadao.html
-    │   ├── comercial.html
-    │   ├── efactura.html
-    │   ├── portal-at.html
-    │   ├── sistafe.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    ├── justicadigital/      # Projecto 05 · Justiça Digital
-    │   ├── index.html
-    │   ├── cidadao.html
-    │   ├── comunitario.html
-    │   ├── cadastro.html
-    │   ├── portal-mjcr.html
-    │   ├── registos.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    ├── trabalhodigital/     # Projecto 06 · Trabalho Digital
-    │   ├── index.html
-    │   ├── trabalhador.html
-    │   ├── empregador.html
-    │   ├── inss.html
-    │   ├── igt.html
-    │   ├── inefp.html
-    │   ├── design-system.html
-    │   ├── shared/styles.css
-    │   └── DESIGN-*.md
-    └── transportesdigitais/ # Projecto 07 · Transportes Digitais
-        ├── index.html
-        ├── condutor.html
-        ├── operador.html
-        ├── inatter.html
-        ├── multimodal.html
-        ├── prm.html
-        ├── design-system.html
-        ├── shared/styles.css
-        └── DESIGN-*.md
+    ├── saudedigital/        # 01 · Saúde Digital
+    ├── governodigital/      # 02 · Governo Digital
+    ├── educacaodigital/     # 03 · Educação Digital
+    ├── financasdigitais/    # 04 · Finanças Digitais
+    ├── justicadigital/      # 05 · Justiça Digital
+    ├── trabalhodigital/     # 06 · Trabalho Digital
+    ├── transportesdigitais/ # 07 · Transportes Digitais
+    └── terrasdigitais/      # 08 · Terras Digitais
 ```
+
+Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.
 
 ## Tecnologia
 

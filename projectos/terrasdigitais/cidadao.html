@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Cidadão · Terras Digitais — Mobile PWA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .twocol { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: flex-start; }
+  .notes { font-size: 13px; line-height: 1.6; color: var(--ink-2); }
+  .notes h4 { margin: 18px 0 6px; font-size: 14px; font-weight: 600; }
+  .notes ul { margin: 0; padding-left: 18px; }
+  .notes li { margin-bottom: 4px; }
+  .notes code { font-family: var(--f-mono); font-size: 12px; background: var(--cream-3); padding: 1px 4px; border-radius: 2px; }
+  .ph-screen { background: var(--paper); display: flex; flex-direction: column; height: 100%; }
+  .ph-h { padding: 12px 16px; background: var(--terra-700); color: #fff; }
+  .ph-h .t { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .ph-h .s { font-size: 10px; color: var(--terra-100); margin-top: 2px; }
+  .ph-body { flex: 1; overflow-y: auto; padding: 14px; }
+  .ph-body.np { padding: 0; }
+  .row-card { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); }
+  .row-card + .row-card { margin-top: 8px; }
+  .row-card .ic { width: 36px; height: 36px; background: var(--terra-100); color: var(--terra-700); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: var(--f-serif); font-weight: 600; font-size: 16px; flex: 0 0 auto; }
+  .row-card .body { flex: 1; min-width: 0; }
+  .row-card .body b { font-size: 13px; display: block; }
+  .row-card .body span { font-size: 11px; color: var(--ink-3); display: block; margin-top: 2px; }
+  .row-card .arr { color: var(--ink-4); font-size: 16px; }
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTA · DINAGECA · DTD</span><span class="sep">·</span>
+  <span>Cidadão · App móvel</span>
+  <span style="margin-left:auto">terrasdigitais.gov.mz · v0.3</span>
+</div>
+<div class="cadastro-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>Cidadão · titular DUAT</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html" class="active">Cidadão</a>
+    <a href="empresa.html">Empresa</a>
+    <a href="spgc.html">SPGC</a>
+    <a href="fiscal.html">Fiscal</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> demo</span>
+  </div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Login eBI</a>
+  <a href="#cena2">Cena 2 · O meu DUAT</a>
+  <a href="#cena3">Cena 3 · Detalhe + polígono</a>
+  <a href="#cena4">Cena 4 · Pagar taxa M-Pesa</a>
+  <a href="#cena5">Cena 5 · Transmissão sucessão</a>
+  <a href="#cena6">Cena 6 · Denúncia ocupação</a>
+  <a href="#cena7">Cena 7 · Boa fé histórica</a>
+</nav>
+
+<!-- ─────────────────────── CENA 1 ─────────────────────── -->
+<section class="scene" id="cena1">
+  <div class="scene-h">
+    <div class="sn">Cena 01</div>
+    <div class="lab"><b>Entrar com eBI · 5 línguas + USSD</b><span>Felisberto Manjate · BI 110100442918 · Inhambane</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:42</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="background:linear-gradient(135deg,var(--terra-900),var(--terra-700));text-align:center;padding:32px 16px">
+            <div style="width:48px;height:48px;background:#fff;border-radius:6px;margin:0 auto 12px;position:relative">
+              <div style="position:absolute;left:50%;top:9px;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:14px solid var(--terra-700);transform:translateX(-50%)"></div>
+              <div style="position:absolute;left:50%;top:25px;width:18px;height:3px;background:var(--terra-700);transform:translateX(-50%);box-shadow:0 6px 0 var(--terra-700)"></div>
+            </div>
+            <div class="t" style="justify-content:center;font-size:18px;font-family:var(--f-serif)">Terras Digitais</div>
+            <div class="s">A minha terra · o meu DUAT</div>
+          </div>
+          <div class="ph-body">
+            <div class="t-overline" style="margin-bottom:8px">Idioma</div>
+            <div class="langtoggle" style="width:100%;display:flex">
+              <a class="active" style="flex:1;text-align:center">PT</a>
+              <a style="flex:1;text-align:center">Macua</a>
+              <a style="flex:1;text-align:center">Changana</a>
+              <a style="flex:1;text-align:center">Sena</a>
+              <a style="flex:1;text-align:center">Nyungwe</a>
+            </div>
+
+            <div style="margin-top:18px">
+              <div class="t-overline" style="margin-bottom:8px">Entrar</div>
+              <div class="field"><label>BI ou NUIT</label><input class="input mono" value="110100442918"/></div>
+              <div class="field" style="margin-top:8px"><label>Código eBI (SMS)</label><input class="input mono" value="● ● ● ● ● ●" placeholder="6 dígitos"/></div>
+              <button class="btn block" style="margin-top:12px">Entrar com eBI</button>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+                <span class="cross">cross-eBI</span>
+                <span class="ussd-fallback">*146*1#</span>
+              </div>
+            </div>
+
+            <div class="banner terra" style="margin-top:18px;font-size:12px">
+              <span class="ic"></span>
+              <div>O eBI confirma a sua identidade junto da Direcção de Identificação Civil. Não partilha senha.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>Princípio</h4>
+      <p>Login não usa palavra-passe — usa o eBI (Identidade Digital Nacional) com OTP por SMS. O cidadão não cria credenciais novas; reusa a sua identidade do Governo Digital.</p>
+      <h4>Fluxo</h4>
+      <ul>
+        <li>Introduz BI · sistema valida formato 12 dígitos</li>
+        <li><code>cross-eBI</code> dispara · DIC envia SMS para o nº registado no BI</li>
+        <li>OTP 6 dígitos válido por 5 minutos</li>
+        <li>Sessão dura 30 dias em dispositivo confiado</li>
+      </ul>
+      <h4>Acessibilidade</h4>
+      <ul>
+        <li>5 línguas locais comutáveis no topo · texto e voz</li>
+        <li>USSD <code>*146*1#</code> para feature phone (sem dados)</li>
+        <li>Toda a UI suporta leitor de ecrã</li>
+      </ul>
+      <h4>Cross-system</h4>
+      <p>Se o BI estiver caducado, sistema bloqueia e oferece atalho directo para a app Governo Digital — não há registo paralelo de identidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 2 ─────────────────────── -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h">
+    <div class="sn">Cena 02</div>
+    <div class="lab"><b>O meu DUAT · home</b><span>Carteira de DUATs · acções pendentes · taxa anual a vencer</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:43</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="display:flex;align-items:center;gap:10px">
+            <div class="av sm" style="background:var(--terra-200);color:var(--terra-900)">FM</div>
+            <div style="flex:1">
+              <div class="t" style="font-size:13px">Olá, Felisberto</div>
+              <div class="s">Inhambane · Maxixe</div>
+            </div>
+            <div style="font-size:14px">⚙</div>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="t-overline" style="margin-bottom:8px">O meu DUAT principal</div>
+            <div class="duat-card">
+              <span class="seal" style="top:10px;right:10px">vigente</span>
+              <div class="lbl">DUAT residencial</div>
+              <div class="num" style="font-size:13px">DUAT-2018-IN-014218</div>
+              <div class="ti" style="font-family:var(--f-serif);font-size:13px">Felisberto Manjate</div>
+              <div class="meta">Maxixe · Bairro 25 de Junho</div>
+              <div class="ha"><span class="v" style="font-size:24px">2,4</span><span class="u">ha</span></div>
+              <div class="mini-map" style="width:62px;height:62px;right:10px;bottom:10px">
+                <svg viewBox="0 0 60 60">
+                  <rect x="0" y="0" width="60" height="60" fill="#FBF0DD"/>
+                  <path d="M 8 12 L 48 8 L 52 38 L 44 52 L 12 50 Z" fill="rgba(140,90,31,.18)" stroke="#8C5A1F" stroke-width="1.6"/>
+                  <circle cx="8" cy="12" r="2" fill="#8C5A1F"/><circle cx="48" cy="8" r="2" fill="#8C5A1F"/>
+                  <circle cx="52" cy="38" r="2" fill="#8C5A1F"/><circle cx="44" cy="52" r="2" fill="#8C5A1F"/>
+                  <circle cx="12" cy="50" r="2" fill="#8C5A1F"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="banner amber" style="margin-top:14px;font-size:12px">
+              <span class="ic"></span>
+              <div><b>Taxa anual vence em 14 dias</b><br>1 240 MT · pagar via M-Pesa <span class="cross warn" style="font-size:9px">cross-AT</span></div>
+            </div>
+
+            <div class="t-overline" style="margin-top:18px;margin-bottom:8px">Acções rápidas</div>
+            <div class="row-card">
+              <div class="ic">$</div>
+              <div class="body"><b>Pagar taxa anual 2026</b><span>1 240 MT · vence 12.05.2026</span></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--savanna-100);color:var(--savanna-800)">⌂</div>
+              <div class="body"><b>Ver polígono no mapa</b><span>5 vértices · GPS WGS-84</span></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--cream-3);color:var(--ink-2)">⇆</div>
+              <div class="body"><b>Transmissão por sucessão</b><span>Iniciar processo · cross-eBI</span></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--red-100);color:var(--red-700)">!</div>
+              <div class="body"><b>Denunciar ocupação</b><span>Alguém invadiu o meu terreno</span></div>
+              <span class="arr">›</span>
+            </div>
+
+            <div class="t-overline" style="margin-top:18px;margin-bottom:8px">Outros DUATs (1)</div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--savanna-100);color:var(--savanna-800)">M</div>
+              <div class="body"><b>Machamba familiar · 1,8 ha</b><span>DUAT-2014-IN-008412 · Vilankulo</span></div>
+              <span class="duat-status vigente" style="font-size:9px;padding:2px 6px">vigente</span>
+            </div>
+          </div>
+          <div class="nav-bottom">
+            <a class="active"><span class="ic"></span>Início</a>
+            <a><span class="ic"></span>Mapa</a>
+            <a><span class="ic"></span>Pagar</a>
+            <a><span class="ic"></span>Mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>Hierarquia visual</h4>
+      <p>O DUAT principal é o card hero. O secundário (machamba) aparece reduzido. O cidadão pode ter até 4 DUATs por categoria — habitação urbana, machamba familiar, herança não-registada, ocupação de boa fé reconhecida.</p>
+      <h4>Banner amber</h4>
+      <p>Aparece a 30 dias do vencimento da taxa anual. A 7 dias passa a vermelho. Pagamento atrasado &gt; 90 dias dispara processo de caducidade no SPGC <code>cross-SPGC</code>.</p>
+      <h4>Acções rápidas</h4>
+      <ul>
+        <li><b>Pagar</b> · M-Pesa nativo · 1,8% taxa <code>cross-AT</code></li>
+        <li><b>Ver polígono</b> · navega para Cena 3</li>
+        <li><b>Transmissão</b> · única forma de "ceder DUAT" — sucessão · navega para Cena 5</li>
+        <li><b>Denunciar</b> · alguém invadiu · navega para Cena 6</li>
+      </ul>
+      <h4>Linguagem</h4>
+      <p>Nunca "vender". Nunca "minha propriedade". Sempre "DUAT", "transmitir por sucessão", "ceder direitos de uso". Constituição é clara: terra é do Estado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 3 ─────────────────────── -->
+<section class="scene" id="cena3">
+  <div class="scene-h">
+    <div class="sn">Cena 03</div>
+    <div class="lab"><b>Detalhe do DUAT · polígono GPS</b><span>Mapa com vértices · documento serifado · histórico</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:44</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">‹</span>
+            <div style="flex:1">
+              <div class="t" style="font-size:13px">DUAT-2018-IN-014218</div>
+              <div class="s mono" style="font-size:10px">2,4 ha · residencial</div>
+            </div>
+            <span style="font-size:14px">⋯</span>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="poly-frame">
+              <div class="pf-hd"><b>Polígono cadastral</b><span class="meta">5 vértices</span></div>
+              <div class="pf-canvas" style="padding:8px">
+                <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+                  <defs><pattern id="h-c3" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#8C5A1F" stroke-width="0.6" opacity=".25"/></pattern></defs>
+                  <polygon points="42,30 268,22 290,118 232,176 56,168" fill="url(#h-c3)" stroke="#8C5A1F" stroke-width="2"/>
+                  <g font-family="IBM Plex Mono" font-size="9" fill="#4A2E0E" font-weight="600">
+                    <circle cx="42" cy="30" r="3" fill="#8C5A1F"/><text x="48" y="28">V1</text>
+                    <circle cx="268" cy="22" r="3" fill="#8C5A1F"/><text x="248" y="20">V2</text>
+                    <circle cx="290" cy="118" r="3" fill="#8C5A1F"/><text x="296" y="120">V3</text>
+                    <circle cx="232" cy="176" r="3" fill="#8C5A1F"/><text x="222" y="190">V4</text>
+                    <circle cx="56" cy="168" r="3" fill="#8C5A1F"/><text x="38" y="182">V5</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="pf-ft" style="font-size:10px">
+                <span>2,4 ha · 642 m</span>
+                <span>WGS-84 · ±2 cm</span>
+              </div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Coordenadas (5)</div>
+            <div class="card">
+              <table class="table" style="font-size:11px">
+                <tbody>
+                  <tr><td class="mono">V1</td><td class="mono">-23.8624° · 35.3812°</td></tr>
+                  <tr><td class="mono">V2</td><td class="mono">-23.8624° · 35.3848°</td></tr>
+                  <tr><td class="mono">V3</td><td class="mono">-23.8643° · 35.3852°</td></tr>
+                  <tr><td class="mono">V4</td><td class="mono">-23.8649° · 35.3839°</td></tr>
+                  <tr><td class="mono">V5</td><td class="mono">-23.8645° · 35.3814°</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Documento oficial</div>
+            <div class="duat-doc" style="font-size:11px">
+              <div class="hd" style="padding:10px 14px">
+                <div class="ti" style="font-size:12px">DUAT · Lei 19/97</div>
+                <div class="sub" style="font-size:10px">DUAT-2018-IN-014218</div>
+              </div>
+              <div class="bd" style="padding:12px 14px;font-size:11px;line-height:1.7">
+                Titular: <b>Felisberto Manjate</b> · BI 110100442918<br>
+                Local: Maxixe · Inhambane · Bº 25 de Junho<br>
+                Área: 2,4 ha · uso residencial<br>
+                Vigência: 12.06.2018 · 50 anos
+              </div>
+              <div class="ft" style="padding:8px 14px;font-size:10px">
+                <span class="mono">12.06.2018</span>
+                <span class="seal brass" style="font-size:9px;padding:3px 8px">DINAGECA</span>
+              </div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Histórico</div>
+            <div class="timeline">
+              <div class="ev done"><span class="dot"></span><div class="body" style="font-size:11px"><b>12.06.2018</b> · DUAT emitido</div></div>
+              <div class="ev done"><span class="dot"></span><div class="body" style="font-size:11px"><b>12.05.2024</b> · Taxa paga · M-Pesa</div></div>
+              <div class="ev done"><span class="dot"></span><div class="body" style="font-size:11px"><b>12.05.2025</b> · Taxa paga · M-Pesa</div></div>
+              <div class="ev now"><span class="dot"></span><div class="body" style="font-size:11px"><b>2026</b> · Taxa anual 1 240 MT</div></div>
+            </div>
+
+            <button class="btn block secondary" style="margin-top:14px">Partilhar QR · validar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>O polígono é o DUAT</h4>
+      <p>Não é só um campo. É o registo legal vinculado às coordenadas WGS-84 com precisão ±2 cm (GPS RTK). Quando há disputa de fronteira, é este polígono que conta.</p>
+      <h4>Documento serifado</h4>
+      <p>O <code>.duat-doc</code> é a representação visual do título legal. Plex Serif. Validável por QR — qualquer pessoa, mesmo sem app, pode confirmar autenticidade lendo com câmara.</p>
+      <h4>Histórico</h4>
+      <p>Timeline mostra emissão + cada pagamento de taxa anual. Pagamento &gt; 12 meses em atraso aparece <span class="badge red">vermelho</span> com escalada para SPGC.</p>
+      <h4>Partilhar QR</h4>
+      <p>Caso de uso: cidadão precisa de provar a um banco (para crédito habitação) ou a uma operadora telecom (instalação fibra) que é titular. Banco lê QR, valida, sem precisar do PDF.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 4 ─────────────────────── -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h">
+    <div class="sn">Cena 04</div>
+    <div class="lab"><b>Pagar taxa anual via M-Pesa</b><span>1 240 MT · cross-AT confirma · recibo emitido</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:46</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">‹</span>
+            <div style="flex:1"><div class="t" style="font-size:13px">Pagar taxa anual</div><div class="s">2026 · DUAT-2018-IN-014218</div></div>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="card" style="padding:14px;background:var(--terra-50);border-color:var(--terra-200)">
+              <div class="t-overline">Valor a pagar</div>
+              <div style="font-size:32px;font-weight:600;font-family:var(--f-mono);color:var(--terra-900);margin-top:4px">1 240 <small style="font-size:14px">MT</small></div>
+              <div style="font-size:11px;color:var(--ink-3);margin-top:4px">Taxa anual DUAT 2026 · 2,4 ha residencial</div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Detalhes</div>
+            <div class="card">
+              <div class="bd">
+                <div class="row spread" style="font-size:12px"><span style="color:var(--ink-3)">Taxa base (2,4 ha × 500 MT)</span><span class="mono">1 200,00</span></div>
+                <hr class="hr">
+                <div class="row spread" style="font-size:12px"><span style="color:var(--ink-3)">M-Pesa fee 1,8%</span><span class="mono">21,60</span></div>
+                <hr class="hr">
+                <div class="row spread" style="font-size:12px"><span style="color:var(--ink-3)">Selo DINAGECA</span><span class="mono">18,40</span></div>
+                <hr class="hr">
+                <div class="row spread" style="font-size:13px;font-weight:600"><span>Total</span><span class="mono">1 240,00 MT</span></div>
+              </div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Forma de pagamento</div>
+            <div class="row-card" style="border-color:var(--terra-700);background:var(--terra-50)">
+              <div class="ic" style="background:var(--red-700);color:#fff">M</div>
+              <div class="body"><b>M-Pesa</b><span>+258 84 1 442 918</span></div>
+              <span class="badge green" style="font-size:10px">activo</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--cobalt-100);color:var(--cobalt-800)">e</div>
+              <div class="body"><b>e-Mola</b><span>+258 86 ● ● ● ● ● ● ●</span></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--good-100);color:var(--good-700)">B</div>
+              <div class="body"><b>Banco · BIM, Standard, Absa</b><span>Referência multibanco</span></div>
+              <span class="arr">›</span>
+            </div>
+
+            <button class="btn block lg" style="margin-top:18px">Pagar 1 240 MT com M-Pesa</button>
+            <div class="row" style="justify-content:space-between;margin-top:10px;font-size:10px">
+              <span class="cross">cross-AT confirmará</span>
+              <span class="cross">cross-DINAGECA recibo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>Composição da taxa</h4>
+      <p>Taxa anual = área × tarifa por uso. Residencial 500 MT/ha. Agrícola 200 MT/ha. Industrial 5 000 MT/ha. Turismo 8 000 MT/ha. (Tarifas reais podem variar por província conforme INATTER local.)</p>
+      <h4>Pagamento</h4>
+      <ul>
+        <li><b>M-Pesa</b> · default · taxa Vodacom 1,8%</li>
+        <li><b>e-Mola</b> · Movitel · 2,1%</li>
+        <li><b>Banco</b> · referência multibanco BIM/Standard/Absa · taxa fixa 50 MT</li>
+      </ul>
+      <h4>Cross-AT</h4>
+      <p>Pagamento confirma-se em &lt; 30 segundos. <code>cross-AT</code> regista entrada na Autoridade Tributária. Recibo electrónico emitido por DINAGECA. Aparece na Cena 2 com badge "vigente · pago 2026".</p>
+      <h4>Atrasos</h4>
+      <p>30+ dias: SMS de aviso. 60 dias: multa 5%. 90 dias: SPGC abre processo de caducidade. 365 dias: DUAT extinto, terra volta ao Estado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 5 ─────────────────────── -->
+<section class="scene" id="cena5">
+  <div class="scene-h">
+    <div class="sn">Cena 05</div>
+    <div class="lab"><b>Transmissão por sucessão</b><span>Único modo de transferir DUAT · cross-eBI valida herdeiros</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:48</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">‹</span>
+            <div style="flex:1"><div class="t" style="font-size:13px">Transmissão por sucessão</div><div class="s">DUAT-2014-IN-008412 · machamba</div></div>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="banner terra" style="font-size:12px;margin-bottom:14px">
+              <span class="ic"></span>
+              <div>O DUAT pode ser transmitido por sucessão (Lei 19/97 art. 16). <b>Não pode ser vendido.</b></div>
+            </div>
+
+            <div class="stepper" style="overflow-x:auto;padding-bottom:8px">
+              <div class="step done"><span class="n">1</span>Falecimento</div><span class="ln"></span>
+              <div class="step done"><span class="n">2</span>Herdeiros</div><span class="ln"></span>
+              <div class="step active"><span class="n">3</span>Acta</div><span class="ln"></span>
+              <div class="step"><span class="n">4</span>SPGC</div><span class="ln"></span>
+              <div class="step"><span class="n">5</span>Novo DUAT</div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">De cuius</div>
+            <div class="row-card">
+              <div class="ic">JM</div>
+              <div class="body"><b>João Mahique Tembe</b><span>BI 110100382412 · óbito 14.02.2026 · Maxixe</span></div>
+              <span class="cross ok" style="font-size:9px">cross-eBI</span>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Herdeiros declarados</div>
+            <div class="row-card">
+              <div class="ic">FM</div>
+              <div class="body"><b>Felisberto Manjate</b><span>filho · BI 110100442918 · 50%</span></div>
+              <span class="cross ok" style="font-size:9px">cross-eBI ✓</span>
+            </div>
+            <div class="row-card">
+              <div class="ic">JT</div>
+              <div class="body"><b>Júlia Sumane Tembe</b><span>filha · BI 110100442919 · 50%</span></div>
+              <span class="cross ok" style="font-size:9px">cross-eBI ✓</span>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Acta de partilha</div>
+            <div class="card">
+              <div class="bd">
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Cartório / notário</span><span>2.º Cartório Maxixe</span></div>
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Data da acta</span><span class="mono">28.03.2026</span></div>
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Anexo PDF</span><span style="color:var(--terra-700);font-weight:600">acta-partilha.pdf · 2,1 MB</span></div>
+              </div>
+            </div>
+
+            <div class="banner amber" style="font-size:12px;margin-top:14px">
+              <span class="ic"></span>
+              <div><b>Decisão da partilha</b><br>Optar por DUAT em condomínio (50/50) ou subdivisão em dois polígonos · escolha não reversível.</div>
+            </div>
+
+            <div class="row" style="gap:8px;margin-top:14px">
+              <button class="btn block secondary">Condomínio</button>
+              <button class="btn block">Subdivisão</button>
+            </div>
+
+            <div class="banner terra" style="font-size:11px;margin-top:14px">
+              <span class="ic"></span>
+              <div>Subdivisão exige nova demarcação por fiscal · prazo legal 90 dias <span class="cross" style="font-size:9px">cross-fiscal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>Princípio constitucional</h4>
+      <p>DUAT não se vende. A única transmissão lícita é por <b>sucessão</b> (morte do titular) ou <b>cessão a entidade afim</b> (ex.: pai cede a filho em vida com mesmo uso). Tudo o resto é nulo.</p>
+      <h4>Cross-eBI obrigatório</h4>
+      <p>Cada herdeiro tem que validar com o seu eBI. Sem confirmação biométrica do herdeiro, não há transmissão. Evita usurpação de herança por terceiros.</p>
+      <h4>Acta notarial</h4>
+      <p>Documento oficial do cartório · PDF anexado · cartório verifica óbito junto do Conservatória. Se herdeiros &gt; 1, pode escolher condomínio (DUAT partilhado) ou subdivisão (dois DUATs novos).</p>
+      <h4>Subdivisão</h4>
+      <p>Dispara processo no SPGC · novo polígono GPS por fiscal de campo · cada herdeiro recebe DUAT-novo distinto. 90 dias prazo legal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 6 ─────────────────────── -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h">
+    <div class="sn">Cena 06</div>
+    <div class="lab"><b>Denunciar ocupação ilegal</b><span>Foto + GPS + descrição · fiscal valida em 14 dias</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:51</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="background:var(--red-700);display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">‹</span>
+            <div style="flex:1"><div class="t" style="font-size:13px">Denunciar ocupação</div><div class="s" style="color:#FCE5E0">DUAT-2014-IN-008412 · machamba</div></div>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="banner red" style="font-size:12px">
+              <span class="ic"></span>
+              <div><b>Pode denunciar com anonimato</b><br>O denunciado não saberá quem o reportou. Fiscal verifica no terreno em 14 dias.</div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Tipo</div>
+            <div class="row" style="gap:6px;flex-wrap:wrap">
+              <span class="badge" style="background:var(--red-100);color:var(--red-700);border-color:#E5B7AE">● Construção sem DUAT</span>
+              <span class="badge">○ Cultivo sem permissão</span>
+              <span class="badge">○ Cerca movida</span>
+              <span class="badge">○ Outro</span>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Localização da ocupação</div>
+            <div class="poly-frame">
+              <div class="pf-canvas" style="padding:6px">
+                <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+                  <defs><pattern id="h-c6" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#C73E2E" stroke-width="0.6" opacity=".5"/></pattern></defs>
+                  <polygon points="22,30 280,22 290,128 32,138" fill="rgba(140,90,31,.12)" stroke="#8C5A1F" stroke-width="2"/>
+                  <polygon points="148,40 240,38 245,118 152,124" fill="url(#h-c6)" stroke="#C73E2E" stroke-width="1.5" stroke-dasharray="4 3"/>
+                  <g font-family="IBM Plex Sans" font-size="9" fill="#9A2A1F" font-weight="700">
+                    <text x="200" y="80" text-anchor="middle">OCUPAÇÃO</text>
+                    <text x="200" y="92" text-anchor="middle">~ 0,4 ha</text>
+                  </g>
+                  <g font-family="IBM Plex Sans" font-size="9" fill="#5C4F40">
+                    <text x="80" y="80" text-anchor="middle">DUAT meu</text>
+                    <text x="80" y="92" text-anchor="middle">1,8 ha</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="pf-ft" style="font-size:10px"><span>GPS automático ●</span><span>-22.0541° · 35.3122°</span></div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Fotografias (2/4)</div>
+            <div class="grid g-3" style="gap:6px">
+              <div style="aspect-ratio:1;background:linear-gradient(135deg,#8B7B5C,#5C4F40);border-radius:4px;position:relative">
+                <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:1px 4px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF ●</div>
+              </div>
+              <div style="aspect-ratio:1;background:linear-gradient(135deg,#A6691F,#6B4416);border-radius:4px;position:relative">
+                <div style="position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;padding:1px 4px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF ●</div>
+              </div>
+              <div style="aspect-ratio:1;background:var(--bg-2);border:1.5px dashed var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:18px">+</div>
+            </div>
+
+            <div class="field" style="margin-top:14px"><label>Descrição</label><textarea class="textarea" style="min-height:60px">Foram colocadas estacas e arame farpado dentro do meu DUAT, perto do limite norte. Comecei a ver gente nova a cultivar mandioca há ~3 semanas.</textarea></div>
+
+            <div class="row" style="gap:6px;margin-top:14px;font-size:11px">
+              <input type="checkbox" checked id="anon"/>
+              <label for="anon">Manter denúncia <b>anónima</b> · não comunicar a minha identidade ao denunciado</label>
+            </div>
+
+            <button class="btn block danger" style="margin-top:14px">Submeter denúncia</button>
+            <div class="row" style="justify-content:space-between;margin-top:8px;font-size:10px">
+              <span class="cross">cross-fiscal · 14 dias</span>
+              <span class="cross warn">cross-TJ se conflito</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>Anonimato é a regra</h4>
+      <p>Ocupações ilegais frequentemente envolvem actores com poder local (família estendida, autoridades de baixo escalão). O sistema permite denúncia anónima por design — caso contrário muitos cidadãos não denunciariam.</p>
+      <h4>Foto + GPS + EXIF</h4>
+      <p>Câmara da app força foto com geolocalização EXIF. Não permite upload de foto da galeria — tem que ser tirada in-situ. Garante que a denúncia é real, não fabricada.</p>
+      <h4>Sobreposição visual</h4>
+      <p>O cidadão desenha (ou app sugere automaticamente) onde está a ocupação dentro do seu polígono. Hatching vermelho destaca a área invadida. Fiscal vê isto antes de ir ao terreno.</p>
+      <h4>Fluxo seguinte</h4>
+      <p>Fiscal recebe a denúncia · verifica em 14 dias · se confirma, abre conflito CONF-NN <code>cross-TJ</code> · tribunal comunitário convocado primeiro · só escala para Tribunal Administrativo se mediação falha em 90 dias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 7 ─────────────────────── -->
+<section class="scene" id="cena7">
+  <div class="scene-h">
+    <div class="sn">Cena 07</div>
+    <div class="lab"><b>Boa fé histórica · Lei 19/97 art. 12</b><span>Reconhecimento de DUAT por ocupação &gt; 10 anos</span></div>
+  </div>
+  <div class="scene-c twocol">
+    <div class="phone">
+      <div class="screen">
+        <div class="statusbar"><span>09:55</span><span class="icons">📶 4G ●</span></div>
+        <div class="ph-screen">
+          <div class="ph-h" style="background:linear-gradient(135deg,var(--savanna-700),var(--terra-700));display:flex;align-items:center;gap:10px">
+            <span style="font-size:18px">‹</span>
+            <div style="flex:1"><div class="t" style="font-size:13px">Reconhecimento por boa fé</div><div class="s">Lei 19/97 · artigo 12</div></div>
+          </div>
+          <div class="ph-body" style="background:var(--bg)">
+            <div class="banner savanna" style="font-size:12px">
+              <span class="ic"></span>
+              <div>Se ocupa terra <b>há mais de 10 anos</b>, tem direito a DUAT mesmo sem registo formal. Esta declaração inicia o processo.</div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Critérios obrigatórios</div>
+            <div class="card">
+              <div class="bd">
+                <div class="row" style="gap:8px;margin-bottom:8px"><span style="color:var(--good-700);font-weight:700">✓</span><div style="flex:1;font-size:12px"><b>Cidadão moçambicano</b><br><span style="color:var(--ink-3)">cross-eBI confirma · OK</span></div></div>
+                <div class="row" style="gap:8px;margin-bottom:8px"><span style="color:var(--good-700);font-weight:700">✓</span><div style="flex:1;font-size:12px"><b>Ocupação contínua &gt; 10 anos</b><br><span style="color:var(--ink-3)">desde 2009 · 17 anos</span></div></div>
+                <div class="row" style="gap:8px;margin-bottom:8px"><span style="color:var(--good-700);font-weight:700">✓</span><div style="flex:1;font-size:12px"><b>Boa fé · sem disputa registada</b><br><span style="color:var(--ink-3)">cross-cadastro · sem sobreposição</span></div></div>
+                <div class="row" style="gap:8px"><span style="color:var(--good-700);font-weight:700">✓</span><div style="flex:1;font-size:12px"><b>Uso produtivo demonstrável</b><br><span style="color:var(--ink-3)">cultivo · habitação · pasto</span></div></div>
+              </div>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Provas a anexar</div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--savanna-100);color:var(--savanna-800)">📄</div>
+              <div class="body"><b>2 testemunhos vizinhos</b><span>com BI · vizinhos há &gt; 10 anos</span></div>
+              <span class="badge green" style="font-size:9px">2/2 ✓</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--savanna-100);color:var(--savanna-800)">🏛</div>
+              <div class="body"><b>Confirmação do régulo / chefe localidade</b><span>autoridade tradicional</span></div>
+              <span class="badge green" style="font-size:9px">SMS ✓</span>
+            </div>
+            <div class="row-card">
+              <div class="ic" style="background:var(--savanna-100);color:var(--savanna-800)">📷</div>
+              <div class="body"><b>Fotos / construções existentes</b><span>casa, machamba, currais</span></div>
+              <span class="badge amber" style="font-size:9px">1/3 ⏵</span>
+            </div>
+
+            <div class="t-overline" style="margin-top:14px;margin-bottom:8px">Demarcação proposta</div>
+            <div class="ha-meter">
+              <div class="label">A reconhecer</div>
+              <div class="grid8">
+                <span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span>
+                <span class="fa"></span><span class="fa"></span><span class="fa"></span><span class="fa"></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="v">12<span class="u"> ha</span></div>
+            </div>
+
+            <div class="banner terra" style="font-size:11px;margin-top:14px">
+              <span class="ic"></span>
+              <div><b>Próximo passo</b> · Fiscal vai ao terreno em 30 dias para confirmar limites e ouvir os 2 testemunhos in-situ. <code class="mono" style="font-size:10px">cross-fiscal</code></div>
+            </div>
+
+            <button class="btn block lg" style="margin-top:14px;background:var(--savanna-700)">Submeter declaração</button>
+            <div class="t-meta" style="margin-top:8px;font-size:10px;text-align:center">Sem custo · processo gratuito por lei</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="notes">
+      <h4>O artigo mais importante da Lei 19/97</h4>
+      <p>O <b>artigo 12</b> reconhece direito de uso a quem ocupou terra de boa fé há &gt; 10 anos. É o que protege milhões de famílias rurais que herdaram terra dos pais sem nunca terem ido a um SPGC. Sem isto, o sistema seria injusto.</p>
+      <h4>Critérios automatizáveis</h4>
+      <ul>
+        <li><b>Cidadão MZ</b> · <code>cross-eBI</code> instantâneo</li>
+        <li><b>Sem disputa</b> · cross-cadastro confirma que ninguém tem DUAT no polígono</li>
+        <li><b>Uso produtivo</b> · fotos + visita de fiscal</li>
+        <li><b>Tempo</b> · 2 testemunhos vizinhos sob declaração de honra + régulo</li>
+      </ul>
+      <h4>Régulo é peça-chave</h4>
+      <p>Régulo / chefe de localidade confirma por SMS via app dedicada (<code>cross-CFJP</code>). É a camada de confiança comunitária que valida o que o cadastro estatal não pode saber.</p>
+      <h4>Sem custo</h4>
+      <p>Processo gratuito por lei. Não há taxa de submissão. Taxa anual normal aplica-se só após DUAT emitido.</p>
+      <h4>Resultado</h4>
+      <p>Se fiscal confirma + testemunhos + régulo + sem sobreposição → DUAT emitido em 90 dias. Caso contrário, processo escala para SPGC com possibilidade de tribunal comunitário se houver contestação.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;border-top:1px solid var(--line);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Cidadão · App</span><small>Terras Digitais · v0.3</small></span></a>
+      <p class="t-meta" style="max-width:680px;margin-top:10px">Superfície 1 de 5 · DESIGN-cidadao.md · cross-eBI · cross-AT · cross-CFJP · cross-fiscal · cross-TJ. Personagens fictícias: Felisberto Manjate (titular), João Mahique Tembe (de cuius), Júlia Sumane Tembe (herdeira). DUATs ilustrativos.</p>
+    </div>
+    <div class="row" style="gap:16px">
+      <a href="empresa.html" class="btn ghost sm">Próxima · Empresa ›</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

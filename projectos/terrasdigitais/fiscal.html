@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Fiscal · Terras Digitais — Tablet rugged campo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .twocol-fis { display: grid; grid-template-columns: 980px 1fr; gap: 28px; align-items: flex-start; }
+  .notes { font-size: 13px; line-height: 1.6; color: var(--ink-2); padding-top: 14px; }
+  .notes h4 { margin: 18px 0 6px; font-size: 14px; font-weight: 600; }
+  .notes ul { margin: 0; padding-left: 18px; }
+  .notes li { margin-bottom: 4px; }
+  .notes code { font-family: var(--f-mono); font-size: 12px; background: var(--cream-3); padding: 1px 4px; border-radius: 2px; }
+  .field-app { display: flex; flex-direction: column; height: 100%; background: var(--bg); }
+  .field-h { background: var(--terra-900); color: #fff; padding: 10px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 2px solid var(--terra-700); }
+  .field-h .ti { flex: 1; font-weight: 600; font-size: 14px; }
+  .field-h .meta { font-size: 11px; color: var(--terra-200); font-family: var(--f-mono); }
+  .field-h .gps { background: var(--good-700); color: #fff; padding: 4px 10px; border-radius: 2px; font-size: 11px; font-family: var(--f-mono); display: flex; align-items: center; gap: 6px; }
+  .field-h .gps .d { width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+  .field-body { flex: 1; padding: 18px; overflow-y: auto; }
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTA · DINAGECA · SPGC · DTD</span><span class="sep">·</span>
+  <span>Fiscal · Tablet rugged campo</span>
+  <span style="margin-left:auto">Versão offline · sincroniza ao reconectar</span>
+</div>
+<div class="cadastro-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>Fiscal · campo · tablet rugged</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="empresa.html">Empresa</a>
+    <a href="spgc.html">SPGC</a>
+    <a href="fiscal.html" class="active">Fiscal</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="right">
+    <div class="idbadge"><div class="av sm">JS</div><div class="who"><b>J. Sumane Tembe</b><span>cédula 2418 · SPGC Sofala</span></div></div>
+  </div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Tarefas do dia</a>
+  <a href="#cena2">Cena 2 · Demarcação GPS in-situ</a>
+  <a href="#cena3">Cena 3 · Detecção sobreposição</a>
+  <a href="#cena4">Cena 4 · Fotos georref. EXIF</a>
+  <a href="#cena5">Cena 5 · Auto serifado · assinatura</a>
+  <a href="#cena6">Cena 6 · Verificar denúncia</a>
+  <a href="#cena7">Cena 7 · Sincronização offline</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h">
+    <div class="sn">Cena 01</div>
+    <div class="lab"><b>Tarefas do dia · Júlia Sumane no campo</b><span>14.04.2026 · Cheringoma · Sofala · 4 demarcações + 1 verificação denúncia</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h">
+              <div class="ti">Tarefas · 14.04.2026</div>
+              <div class="meta">5 acções · 4G fraco</div>
+              <div class="gps"><span class="d"></span>GPS RTK · ±1,8 cm</div>
+            </div>
+            <div class="field-body">
+              <div class="row spread" style="margin-bottom:14px">
+                <div>
+                  <div class="t-overline">Hoje · Cheringoma</div>
+                  <h2 class="t-h2" style="margin:4px 0">5 tarefas atribuídas</h2>
+                  <div class="t-meta">Bom dia, Júlia. Cheringoma 09:42 · 28°C · GPS estável.</div>
+                </div>
+                <div class="row" style="gap:6px"><button class="btn ghost sm">Mapa offline</button><button class="btn sm">Iniciar 1ª</button></div>
+              </div>
+
+              <div class="grid g-3" style="gap:12px;margin-bottom:14px">
+                <div class="kpi"><div class="lbl">Demarcações</div><div class="num">4</div><div class="delta">3 240 + 218 + 12 + 0,8 ha</div></div>
+                <div class="kpi"><div class="lbl">Denúncias verificar</div><div class="num">1</div><div class="delta down">prioridade alta</div></div>
+                <div class="kpi"><div class="lbl">Combustível restante</div><div class="num">68%</div><div class="delta">≈140 km autonomia</div></div>
+              </div>
+
+              <div class="card" style="margin-bottom:14px">
+                <div class="hd"><b>Roteiro do dia (auto-optimizado)</b></div>
+                <div class="bd" style="padding:0">
+                  <table class="table" style="font-size:12px">
+                    <thead><tr><th>#</th><th>Tarefa</th><th>Local</th><th>Tipo</th><th>Hora prev.</th><th>Estado</th></tr></thead>
+                    <tbody>
+                      <tr><td class="mono">1</td><td>PED-2026-MN-04218 · Greenfield</td><td>Mussassa N</td><td><span class="badge terra" style="font-size:9px">demarcação 3 240 ha</span></td><td class="mono">09:30 → 14:00</td><td><span class="badge amber" style="font-size:9px">em curso</span></td></tr>
+                      <tr><td class="mono">2</td><td>DEN-2026-SO-00821 · ocupação ilegal</td><td>Mussassa S</td><td><span class="badge red" style="font-size:9px">verificar denúncia</span></td><td class="mono">14:30 → 15:30</td><td><span class="badge ink" style="font-size:9px">marcada</span></td></tr>
+                      <tr><td class="mono">3</td><td>PED-2026-SO-00482 · cooperativa</td><td>Cheringoma vila</td><td><span class="badge savanna" style="font-size:9px">demarcação 218 ha</span></td><td class="mono">16:00 → 17:30</td><td><span class="badge ink" style="font-size:9px">marcada</span></td></tr>
+                      <tr><td class="mono">4</td><td>PED-2026-SO-00471 · boa fé</td><td>Mãe-Eua</td><td><span class="badge green" style="font-size:9px">demarcação 12 ha</span></td><td class="mono">amanhã 08:00</td><td><span class="badge ink" style="font-size:9px">amanhã</span></td></tr>
+                      <tr><td class="mono">5</td><td>PED-2026-SO-00468 · residencial</td><td>Cheringoma vila</td><td><span class="badge terra" style="font-size:9px">demarcação 0,8 ha</span></td><td class="mono">amanhã 11:00</td><td><span class="badge ink" style="font-size:9px">amanhã</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="banner amber" style="font-size:12px"><span class="ic"></span><div><b>Demarcação 1 em curso</b> · 3 vértices capturados de 8 estimados · próximo V4 a ~840 m N. Régulo Mahique e representante Greenfield aguardam.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Tablet rugged</h4>
+        <p>Bezel terra-900 reforçado, IP67 (água/poeira), 8 horas autonomia, GPS RTK integrado, 4G + Lora fallback. Sugere Panasonic Toughbook FZ-A3 ou similar.</p>
+        <h4>Roteiro auto-optimizado</h4>
+        <p>App agrupa tarefas por proximidade geográfica e janela GPS RTK estável (manhã melhor que tarde, em zona de cobertura ionosférica desfavorável). Reduz combustível e tempo morto.</p>
+        <h4>Modo offline first</h4>
+        <p>Tablet sincroniza com SPGC ao início do dia. Se não houver rede no campo (comum em Tambara, Mussassa Norte), continua a operar e faz upload em batch ao regressar.</p>
+        <h4>5 tarefas / dia em média</h4>
+        <p>Realista para o terreno moçambicano. Áreas grandes (3 240 ha) podem exigir 2-3 dias contínuos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h">
+    <div class="sn">Cena 02</div>
+    <div class="lab"><b>Demarcação GPS in-situ · 3 240 ha Greenfield</b><span>Vértice a vértice · GPS RTK ±2 cm · 8 vértices estimados</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h">
+              <div class="ti">PED-2026-MN-04218 · vértice V4 de 8</div>
+              <div class="meta">Mussassa Norte</div>
+              <div class="gps"><span class="d"></span>RTK fix · ±1,9 cm · 14 sat.</div>
+            </div>
+            <div class="field-body" style="padding:14px">
+              <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:14px">
+                <div class="card" style="height:fit-content">
+                  <div class="hd"><b>Polígono em demarcação · 4/8 vértices</b><span class="t-meta">2,4 km perímetro até agora</span></div>
+                  <div class="pf-canvas" style="padding:14px;height:380px">
+                    <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                      <defs><pattern id="hf" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#3F6B33" stroke-width="0.6" opacity=".25"/></pattern></defs>
+                      <!-- Linhas tracejadas mostram polígono estimado -->
+                      <polygon points="48,40 540,32 562,180 528,360 48,376 24,200" fill="none" stroke="#5C4F40" stroke-width="1" stroke-dasharray="4 4" opacity=".5"/>
+                      <!-- Polígono real até agora (V1-V4) -->
+                      <polyline points="48,40 540,32 562,180 528,360" fill="none" stroke="#3F6B33" stroke-width="3"/>
+                      <!-- Vértices capturados -->
+                      <g font-family="IBM Plex Mono" font-size="11" fill="#1F3A1A" font-weight="700">
+                        <circle cx="48" cy="40" r="5" fill="#3F6B33" stroke="#fff" stroke-width="2"/><text x="56" y="42">V1 ✓</text>
+                        <circle cx="540" cy="32" r="5" fill="#3F6B33" stroke="#fff" stroke-width="2"/><text x="514" y="28">V2 ✓</text>
+                        <circle cx="562" cy="180" r="5" fill="#3F6B33" stroke="#fff" stroke-width="2"/><text x="568" y="184">V3 ✓</text>
+                        <circle cx="528" cy="360" r="5" fill="#3F6B33" stroke="#fff" stroke-width="2"/><text x="498" y="380">V4 ✓ agora</text>
+                      </g>
+                      <!-- Vértice próximo (estimado) -->
+                      <circle cx="48" cy="376" r="6" fill="none" stroke="#A6691F" stroke-width="2.5" stroke-dasharray="3 2"/>
+                      <text x="38" y="394" font-family="IBM Plex Mono" font-size="10" fill="#A6691F" font-weight="600">V5 · ≈840 m S</text>
+                      <!-- Mata sagrada -->
+                      <polygon points="380,200 460,194 472,256 384,266" fill="rgba(31,107,69,.15)" stroke="#1F6B45" stroke-width="2" stroke-dasharray="6 3"/>
+                      <text x="425" y="232" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#1F6B45" font-weight="700">MATA SAGRADA</text>
+                      <text x="425" y="246" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#1F6B45">12 ha · ANAC · evitar</text>
+                      <!-- Posição actual fiscal -->
+                      <circle cx="528" cy="360" r="14" fill="rgba(207,150,80,.5)" stroke="#A6691F" stroke-width="2"/>
+                      <circle cx="528" cy="360" r="4" fill="#A6691F"/>
+                    </svg>
+                  </div>
+                  <div class="pf-ft" style="font-size:11px"><span>4 vértices capturados</span><span>Próximo: V5 · azimute 198° · 840m</span></div>
+                </div>
+
+                <div class="col" style="gap:14px">
+                  <div class="card">
+                    <div class="hd"><b>V4 capturado agora</b></div>
+                    <div class="bd">
+                      <div class="kv" style="margin-bottom:8px"><div class="k">Latitude</div><div class="v mono">-19.4218°</div></div>
+                      <div class="kv" style="margin-bottom:8px"><div class="k">Longitude</div><div class="v mono">35.0421°</div></div>
+                      <div class="kv" style="margin-bottom:8px"><div class="k">Precisão</div><div class="v mono" style="color:var(--good-700)">±1,9 cm (RTK)</div></div>
+                      <div class="kv" style="margin-bottom:8px"><div class="k">Satélites</div><div class="v mono">14 GPS + 11 GLONASS</div></div>
+                      <div class="kv"><div class="k">Hora</div><div class="v mono">14.04.2026 · 11:48:42 UTC+2</div></div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="hd"><b>Coordenadas (V1-V4)</b></div>
+                    <div class="bd" style="padding:8px 12px">
+                      <table class="table" style="font-size:11px">
+                        <tbody>
+                          <tr><td class="mono">V1</td><td class="mono">-19.4042° · 35.0182°</td></tr>
+                          <tr><td class="mono">V2</td><td class="mono">-19.4039° · 35.0512°</td></tr>
+                          <tr><td class="mono">V3</td><td class="mono">-19.4128° · 35.0531°</td></tr>
+                          <tr><td class="mono" style="color:var(--terra-700);font-weight:700">V4</td><td class="mono" style="color:var(--terra-700);font-weight:700">-19.4218° · 35.0421°</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <button class="btn block lg">✓ Confirmar V4 · seguir</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>RTK ±2 cm é o standard</h4>
+        <p>GPS RTK (Real-Time Kinematic) com base estação correctora · precisão centímetro. Sem RTK, GPS comum dá ±3-5 m, insuficiente para cadastro legal.</p>
+        <h4>Vértice a vértice</h4>
+        <p>Fiscal anda fisicamente até cada vértice, fixa com bandeira/estaca, captura 3 leituras (10 segundos cada), app calcula média e desvio padrão. Se desvio &gt; 3 cm, repete.</p>
+        <h4>Polígono pré-traçado</h4>
+        <p>Linha tracejada mostra perímetro estimado a partir do GPX submetido pela empresa. Fiscal valida ou ajusta in-situ. Diferenças &gt; 5% disparam revisão.</p>
+        <h4>Mata sagrada visível</h4>
+        <p>App mostra zonas de conservação ANAC, autoridades tradicionais, infraestruturas. Fiscal não pode aceitar polígono que avance sobre mata sagrada.</p>
+        <h4>Régulo presencial</h4>
+        <p>Para demarcações empresariais, régulo deve estar fisicamente presente · sua assinatura no auto serifado é obrigatória.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h">
+    <div class="sn">Cena 03</div>
+    <div class="lab"><b>Detecção de sobreposição em tempo real</b><span>App alerta antes de gravar V5 · DUAT-1992-MN-002184 detectado a 220 m</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h" style="background:var(--red-900);border-bottom-color:var(--red-700)">
+              <div class="ti">⚠ Sobreposição detectada · V5</div>
+              <div class="meta" style="color:#FCE5E0">DUAT-1992-MN-002184 a 220m</div>
+              <div class="gps" style="background:var(--red-700)"><span class="d"></span>fix RTK</div>
+            </div>
+            <div class="field-body">
+              <div class="banner red" style="margin-bottom:14px;font-size:13px">
+                <span class="ic"></span>
+                <div><b>Polígono planeado intersecta DUAT existente.</b> Reg. Manjate Cossa · ocupação boa fé desde 1992 · 2,4 ha. Sobreposição estimada: <b>0,82 ha</b>. Não posso gravar V5 sem resolução.</div>
+              </div>
+
+              <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:14px">
+                <div class="card">
+                  <div class="hd"><b>Sobreposição visualizada</b></div>
+                  <div class="pf-canvas" style="padding:14px;height:300px">
+                    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                      <defs>
+                        <pattern id="hG" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#3F6B33" stroke-width="0.7" opacity=".3"/></pattern>
+                        <pattern id="hM" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#8C5A1F" stroke-width="0.6" opacity=".3"/></pattern>
+                        <pattern id="hZ" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#C73E2E" stroke-width="0.9" opacity=".55"/></pattern>
+                      </defs>
+                      <!-- Greenfield -->
+                      <polygon points="48,30 540,28 558,140 540,260 48,262" fill="url(#hG)" stroke="#3F6B33" stroke-width="2.5" stroke-dasharray="4 3"/>
+                      <text x="350" y="140" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#1F3A1A" font-weight="600">Greenfield · 3 240 ha</text>
+                      <!-- Manjate -->
+                      <polygon points="40,180 220,176 234,260 50,266" fill="url(#hM)" stroke="#8C5A1F" stroke-width="2.5"/>
+                      <text x="135" y="222" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#4A2E0E" font-weight="600">DUAT-1992-MN-002184</text>
+                      <text x="135" y="238" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#5C4F40">R. Manjate · 2,4 ha · BF</text>
+                      <!-- Sobreposição -->
+                      <polygon points="48,180 220,176 222,262 48,262" fill="url(#hZ)" stroke="#C73E2E" stroke-width="2"/>
+                      <text x="135" y="210" text-anchor="middle" font-family="IBM Plex Sans" font-size="13" fill="#9A2A1F" font-weight="700">0,82 ha em conflito</text>
+                      <!-- V5 estimado -->
+                      <circle cx="48" cy="262" r="8" fill="none" stroke="#A6691F" stroke-width="2.5" stroke-dasharray="3 2"/>
+                      <text x="62" y="274" font-family="IBM Plex Mono" font-size="10" fill="#A6691F" font-weight="600">V5</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="col" style="gap:14px">
+                  <div class="card">
+                    <div class="hd"><b>Acções no terreno</b></div>
+                    <div class="bd">
+                      <button class="btn block secondary" style="margin-bottom:8px">Convidar R. Manjate (SMS)</button>
+                      <button class="btn block secondary" style="margin-bottom:8px">Negociar V5 alternativo</button>
+                      <button class="btn block warn" style="margin-bottom:8px">Suspender · escalar SPGC</button>
+                      <button class="btn block ghost">Notificar Régulo Mahique</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="hd"><b>R. Manjate Cossa</b></div>
+                    <div class="bd">
+                      <div class="kv" style="margin-bottom:6px"><div class="k">BI</div><div class="v mono">110100382184</div></div>
+                      <div class="kv" style="margin-bottom:6px"><div class="k">Telemóvel</div><div class="v mono">+258 84 ● ● ● ● ● ● ●</div></div>
+                      <div class="kv" style="margin-bottom:6px"><div class="k">Reside</div><div class="v">Mussassa Norte</div></div>
+                      <div class="kv"><div class="k">DUAT desde</div><div class="v">1992 · ocupação BF Lei 19/97</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Detecção em tempo real</h4>
+        <p>Tablet sincronizou no início do dia o cadastro local. Sempre que fiscal capta vértice, app verifica intersecção contra polígonos vizinhos. Alerta antes de gravar.</p>
+        <h4>Não força resolução in-situ</h4>
+        <p>Fiscal não tem autoridade para resolver conflito. Pode <b>convidar a parte</b> para discussão imediata, <b>sugerir vértice alternativo</b> que evita conflito, ou <b>escalar para SPGC</b> e Tribunal Comunitário.</p>
+        <h4>Régulo é facilitador</h4>
+        <p>Em zonas rurais, régulo conhece a história da terra. Notificá-lo trá-lo ao local em horas. Frequentemente resolve disputas antes de qualquer escalada formal.</p>
+        <h4>Boa fé é peso pesado</h4>
+        <p>Reg. Manjate tem ocupação reconhecida desde 1992. Greenfield tem que negociar — não pode forçar. SPGC dará razão ao titular de boa fé na maioria dos casos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h">
+    <div class="sn">Cena 04</div>
+    <div class="lab"><b>Captura de fotos com EXIF georreferenciado</b><span>4 fotos por demarcação · timestamp + GPS imutável · prova legal</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h">
+              <div class="ti">Fotos da demarcação · PED-2026-MN-04218</div>
+              <div class="meta">3/4 capturadas · auto-EXIF</div>
+              <div class="gps"><span class="d"></span>RTK · ±1,9 cm</div>
+            </div>
+            <div class="field-body">
+              <div class="grid g-3" style="gap:14px">
+                <!-- Foto V1 -->
+                <div class="card">
+                  <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#A6691F 0%,#5C4F40 50%,#3F6B33 100%);border-radius:4px 4px 0 0;position:relative">
+                    <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">V1 marco fronteira</div>
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF -19.4042°·35.0182°</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <div class="row spread" style="font-size:11px"><b>14.04 · 09:42</b><span class="cross ok" style="font-size:9px">EXIF ✓</span></div>
+                    <div class="t-meta" style="font-size:10px;margin-top:2px">Marco existente · pintado vermelho</div>
+                  </div>
+                </div>
+                <!-- Foto V2 -->
+                <div class="card">
+                  <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#3F6B33 0%,#527F44 50%,#8FB47C 100%);border-radius:4px 4px 0 0;position:relative">
+                    <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">V2 árvore-marco</div>
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF -19.4039°·35.0512°</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <div class="row spread" style="font-size:11px"><b>14.04 · 10:24</b><span class="cross ok" style="font-size:9px">EXIF ✓</span></div>
+                    <div class="t-meta" style="font-size:10px;margin-top:2px">Embondeiro centenário</div>
+                  </div>
+                </div>
+                <!-- Foto V3 -->
+                <div class="card">
+                  <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#6B4416 0%,#A6691F 50%,#DFB17C 100%);border-radius:4px 4px 0 0;position:relative">
+                    <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">V3 estaca cravada</div>
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF -19.4128°·35.0531°</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <div class="row spread" style="font-size:11px"><b>14.04 · 11:08</b><span class="cross ok" style="font-size:9px">EXIF ✓</span></div>
+                    <div class="t-meta" style="font-size:10px;margin-top:2px">Estaca metálica nova</div>
+                  </div>
+                </div>
+                <!-- Slot vazio V4 -->
+                <div class="card" style="border-style:dashed">
+                  <div style="aspect-ratio:4/3;background:var(--bg-2);border-radius:4px 4px 0 0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--ink-3)">
+                    <div style="font-size:32px">📷</div>
+                    <div style="font-size:11px;margin-top:6px">V4 · próxima foto</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <button class="btn block sm">Tirar foto</button>
+                  </div>
+                </div>
+                <!-- Foto comunidade -->
+                <div class="card">
+                  <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#5C4F40 0%,#8B7B5C 50%,#DFB17C 100%);border-radius:4px 4px 0 0;position:relative">
+                    <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">Régulo + reps</div>
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF · grupo Mussassa</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <div class="row spread" style="font-size:11px"><b>14.04 · 09:38</b><span class="cross ok" style="font-size:9px">EXIF ✓</span></div>
+                    <div class="t-meta" style="font-size:10px;margin-top:2px">Régulo + 3 chefes família + Greenfield</div>
+                  </div>
+                </div>
+                <!-- Foto mata -->
+                <div class="card">
+                  <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#1F3A1A 0%,#2E5226 50%,#527F44 100%);border-radius:4px 4px 0 0;position:relative">
+                    <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">Mata sagrada</div>
+                    <div style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.65);color:#fff;padding:3px 8px;border-radius:2px;font-size:9px;font-family:var(--f-mono)">EXIF · 12 ha conservação</div>
+                  </div>
+                  <div class="bd" style="padding:10px 12px">
+                    <div class="row spread" style="font-size:11px"><b>14.04 · 11:52</b><span class="cross ok" style="font-size:9px">EXIF ✓</span></div>
+                    <div class="t-meta" style="font-size:10px;margin-top:2px">Mussassa · árvores sagradas marcadas</div>
+                  </div>
+                </div>
+              </div>
+              <div class="banner terra" style="margin-top:14px;font-size:12px"><span class="ic"></span><div><b>EXIF auto-imutável</b> · cada foto tem GPS, timestamp e hash criptográfico embutidos. Não é possível alterar sem invalidar.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Cada foto tem peso legal</h4>
+        <p>EXIF inclui: lat/long GPS RTK, timestamp UTC sincronizado, ID do tablet, ID do fiscal, hash SHA256 da imagem. Em tribunal, prova-se que a foto foi tirada por aquele fiscal naquele momento naquela localização exacta.</p>
+        <h4>4 vértices + 2 contextuais</h4>
+        <p>Standard: 1 foto por vértice + 1 da comunidade reunida + 1 de elementos contextuais (mata, infraestrutura, edifícios). 6 fotos típicas para uma demarcação grande.</p>
+        <h4>Sem upload da galeria</h4>
+        <p>Câmara da app é única forma de adicionar fotos. Não é possível anexar foto da galeria. Garante autenticidade.</p>
+        <h4>Sincronização robusta</h4>
+        <p>Fotos comprimidas para 800 KB cada (HEIC), upload em 4G ou via SPGC ao regressar. Cache local até confirmar sync.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h">
+    <div class="sn">Cena 05</div>
+    <div class="lab"><b>Auto de Demarcação serifado · assinatura no terreno</b><span>Fiscal + Régulo + Empresa assinam in-situ · selo cadastral</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h">
+              <div class="ti">AUTO-2026-SO-04218 · finalizar</div>
+              <div class="meta">3 assinaturas presenciais</div>
+              <div class="gps"><span class="d"></span>RTK ±1,9 cm</div>
+            </div>
+            <div class="field-body" style="background:var(--cream-2);padding:14px">
+              <div class="auto" style="max-width:none">
+                <div class="cadastro-stripe"></div>
+                <div class="hd"><div class="ti">Auto de Demarcação · AUTO-2026-SO-04218</div><div class="t-meta">Cheringoma · Sofala · 14.04.2026 14:08</div></div>
+                <div class="bd" style="font-size:13px;line-height:1.75">
+                  <p style="margin:0 0 12px">Aos catorze dias de Abril de dois mil e vinte e seis, na localidade de Mussassa, posto administrativo de Cheringoma, distrito de Cheringoma, província de Sofala, eu, <b>Júlia Sumane Tembe</b>, fiscal cedulada pelo Director da SPGC Sofala sob o nº 2418, dirigi-me ao local indicado no pedido <b>PED-2026-MN-04218</b> da empresa Greenfield Forestry SA (NUEL E-2021-MAP-008214).</p>
+                  <p style="margin:0 0 12px">Procedi à demarcação dos vértices V1 a V8 com GPS RTK calibrado, na presença do <b>Régulo Mahique de Cheringoma</b> (cédula CFJP-SO-1042), do representante legal da empresa <b>Eng. António Greenfield</b>, e de três chefes de família vizinhos. A área medida é de <b>3 240 hectares</b>.</p>
+                  <p style="margin:0;color:var(--ink-3);font-size:12px">Foi detectada sobreposição de 0,82 ha com DUAT-1992-MN-002184 (Reg. Manjate Cossa, ocupação de boa fé desde 1992). Acto suspenso e processo de conflito CONF-2026-MN-00184 aberto. Resolução por cessão acordada em 18.04.2026: empresa cede 1,5 ha em zona melhor irrigada ao Reg. Manjate em troca dos 0,82 ha.</p>
+                </div>
+                <div class="ft" style="background:var(--paper);padding:14px 16px">
+                  <div class="row" style="gap:24px;flex:1">
+                    <div style="text-align:center;flex:1">
+                      <div style="border-bottom:1px solid var(--ink-3);min-height:32px;font-family:cursive;font-size:13px;padding-bottom:2px">J. Sumane Tembe</div>
+                      <div class="t-meta" style="font-size:10px;margin-top:4px">Fiscal · cédula 2418</div>
+                    </div>
+                    <div style="text-align:center;flex:1">
+                      <div style="border-bottom:1px solid var(--ink-3);min-height:32px;font-family:cursive;font-size:13px;padding-bottom:2px">Régulo Mahique</div>
+                      <div class="t-meta" style="font-size:10px;margin-top:4px">Autoridade tradicional</div>
+                    </div>
+                    <div style="text-align:center;flex:1">
+                      <div style="border-bottom:1px solid var(--ink-3);min-height:32px;color:var(--ink-3);font-style:italic;font-size:11px;padding-bottom:2px">aguarda assinatura</div>
+                      <div class="t-meta" style="font-size:10px;margin-top:4px">Greenfield Forestry · rep. legal</div>
+                    </div>
+                  </div>
+                  <div style="margin-left:14px"><div class="seal">DINAGECA</div></div>
+                </div>
+              </div>
+
+              <div class="grid g-3" style="margin-top:14px;gap:10px">
+                <div class="card" style="padding:12px">
+                  <div class="row" style="gap:8px"><div class="av sm">JS</div><div><b style="font-size:12px">Júlia Sumane</b><div class="t-meta" style="font-size:10px">assinou 14:08 · biométrica</div></div></div>
+                </div>
+                <div class="card" style="padding:12px">
+                  <div class="row" style="gap:8px"><div class="av sm" style="background:var(--savanna-100);color:var(--savanna-800)">RM</div><div><b style="font-size:12px">Régulo Mahique</b><div class="t-meta" style="font-size:10px">assinou 14:09 · digital</div></div></div>
+                </div>
+                <div class="card" style="padding:12px;border-style:dashed">
+                  <div class="row" style="gap:8px"><div class="av sm" style="background:var(--cream-3);color:var(--ink-3)">AG</div><div><b style="font-size:12px">Eng. Greenfield</b><div class="t-meta" style="font-size:10px;color:var(--warn-700)">a chegar · 14:30</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Auto serifado · documento legal</h4>
+        <p>O auto é gerado pela app no terreno em Plex Serif (a tipografia legal padrão), inclui cadastro-stripe no topo, e tem 3 espaços de assinatura. Selo DINAGECA digital aplicado automaticamente.</p>
+        <h4>Assinatura in-situ é não-negociável</h4>
+        <p>Régulo e representante da empresa assinam fisicamente no tablet (canvas digital) ou via biométrica. Sem 3 assinaturas, auto não é válido.</p>
+        <h4>Régulo digital ou em papel</h4>
+        <p>Régulos com cédula CFJP têm acesso a app própria + tablet emprestado. Régulos sem cédula digital assinam em papel · fiscal fotografa e anexa.</p>
+        <h4>Sobreposição registada honestamente</h4>
+        <p>Auto inclui o conflito detectado e a resolução. Não é "limpo após o facto" — fica como histórico. Transparência protege todas as partes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h">
+    <div class="sn">Cena 06</div>
+    <div class="lab"><b>Verificar denúncia de ocupação ilegal · DEN-2026-SO-00821</b><span>Cidadão Felisberto Manjate · machamba · Mussassa Sul</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h" style="background:var(--red-900);border-bottom-color:var(--red-700)">
+              <div class="ti">DEN-2026-SO-00821 · verificação</div>
+              <div class="meta" style="color:#FCE5E0">Anónima · Felisberto Manjate</div>
+              <div class="gps"><span class="d"></span>RTK fix</div>
+            </div>
+            <div class="field-body">
+              <div class="banner red" style="margin-bottom:14px;font-size:12px"><span class="ic"></span><div><b>Denúncia anónima</b> · denunciante NÃO deve ser identificado durante visita. Conversar com vizinhos sem revelar quem reportou.</div></div>
+
+              <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:14px">
+                <div class="card">
+                  <div class="hd"><b>DUAT-2014-IN-008412 · machamba</b></div>
+                  <div class="bd">
+                    <div class="kv" style="margin-bottom:6px"><div class="k">Titular</div><div class="v">Felisberto Manjate · BI 110100442918</div></div>
+                    <div class="kv" style="margin-bottom:6px"><div class="k">Local</div><div class="v">Mussassa Sul · 1,8 ha · uso agrícola</div></div>
+                    <div class="kv"><div class="k">DUAT desde</div><div class="v mono">2014 · taxa 2026 paga</div></div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="hd"><b>O que diz a denúncia</b></div>
+                  <div class="bd">
+                    <p style="font-size:12px;font-family:var(--f-serif);font-style:italic;color:var(--ink-2);margin:0 0 8px">"Foram colocadas estacas e arame farpado dentro do meu DUAT, perto do limite norte. Comecei a ver gente nova a cultivar mandioca há ~3 semanas."</p>
+                    <div class="t-meta" style="font-size:11px">Submetida 22.03.2026 · 4 fotos com EXIF · ocupação estimada 0,4 ha</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="margin-top:14px">
+                <div class="hd"><b>Comparação visual · fotos antes / agora</b></div>
+                <div class="bd" style="padding:14px">
+                  <div class="grid g-2" style="gap:14px">
+                    <div>
+                      <div class="t-overline" style="margin-bottom:6px">Foto denúncia · 22.03.2026</div>
+                      <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#5C4F40 0%,#8B7B5C 50%,#A6691F 100%);border-radius:4px;position:relative">
+                        <div style="position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.65);color:#fff;padding:2px 6px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">EXIF · F. Manjate</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="t-overline" style="margin-bottom:6px">Foto fiscal hoje · 14.04.2026 15:12</div>
+                      <div style="aspect-ratio:4/3;background:linear-gradient(135deg,#3F6B33 0%,#527F44 50%,#A6691F 100%);border-radius:4px;position:relative">
+                        <div style="position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.65);color:#fff;padding:2px 6px;border-radius:2px;font-size:10px;font-family:var(--f-mono)">EXIF · J. Sumane</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid g-3" style="margin-top:14px;gap:14px">
+                <div class="card">
+                  <div class="hd"><b>Sou no terreno</b></div>
+                  <div class="bd">
+                    <p style="font-size:12px;margin:0 0 8px">Confirmo: arame farpado e plantação recente de mandioca em ~0,38 ha do DUAT do Sr. Manjate.</p>
+                    <span class="badge red">ocupação confirmada</span>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="hd"><b>Quem está a ocupar</b></div>
+                  <div class="bd">
+                    <p style="font-size:12px;margin:0 0 6px"><b>António Tembe</b> · BI ✗ não verificado</p>
+                    <p class="t-meta" style="font-size:11px;margin:0">Diz ser primo distante do titular · sem documento que comprove parentesco · alega "permissão familiar verbal"</p>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="hd"><b>Próximo passo</b></div>
+                  <div class="bd">
+                    <button class="btn block sm" style="margin-bottom:6px">Abrir conflito CONF-NN</button>
+                    <button class="btn block secondary sm">Convocar tribunal comunitário</button>
+                    <span class="cross warn" style="font-size:9px;display:inline-block;margin-top:6px">cross-CFJP · cross-TJ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Anonimato é sagrado</h4>
+        <p>Fiscal nunca menciona o nome do denunciante. Se o ocupante perguntar "quem disse?", resposta padrão é "verificação de rotina cadastral".</p>
+        <h4>Comparar fotos antes/agora</h4>
+        <p>App lado-a-lado: foto da denúncia (3 semanas atrás) vs foto do fiscal hoje. Hash criptográfico de ambas confirma autenticidade. Mata foi cortada · estacas novas visíveis.</p>
+        <h4>Conflito familiar é frequente</h4>
+        <p>"Permissão verbal de família" é desculpa comum. Tribunal comunitário é o único fórum legítimo para validar — fiscal não decide.</p>
+        <h4>Ocupações &gt; 0,5 ha</h4>
+        <p>Acima deste limiar, escalada automática para tribunal comunitário com Régulo Mahique. Ocupações &lt; 0,5 ha podem ser resolvidas por mediação directa entre partes (com supervisão fiscal).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h">
+    <div class="sn">Cena 07</div>
+    <div class="lab"><b>Sincronização ao regressar à base</b><span>14 acções offline · upload em batch para SPGC Sofala</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="twocol-fis">
+      <div class="tablet rugged">
+        <div class="screen">
+          <div class="field-app">
+            <div class="field-h">
+              <div class="ti">Sincronização · 18:42</div>
+              <div class="meta">SPGC Sofala · 4G estável</div>
+              <div class="gps" style="background:var(--cobalt-700)"><span class="d"></span>WiFi · base</div>
+            </div>
+            <div class="field-body">
+              <div class="banner green" style="margin-bottom:18px"><span class="ic"></span><div><b>Reconectada à rede SPGC</b> · 14 itens em queue offline · upload a iniciar.</div></div>
+
+              <div class="grid g-3" style="gap:14px;margin-bottom:18px">
+                <div class="kpi"><div class="lbl">Itens em queue</div><div class="num">14</div><div class="delta">3 demarcações + 1 denúncia</div></div>
+                <div class="kpi"><div class="lbl">Tamanho</div><div class="num">42 MB</div><div class="delta">38 fotos + 4 polígonos</div></div>
+                <div class="kpi"><div class="lbl">ETA upload</div><div class="num">3 min</div><div class="delta">4G · 22 Mbps</div></div>
+              </div>
+
+              <div class="card">
+                <div class="hd"><b>Itens a sincronizar</b></div>
+                <div class="bd" style="padding:0">
+                  <table class="table" style="font-size:12px">
+                    <thead><tr><th>Tipo</th><th>Referência</th><th>Capturado</th><th>Tamanho</th><th>Estado</th></tr></thead>
+                    <tbody>
+                      <tr><td>Polígono GPS</td><td class="mono">PED-2026-MN-04218 V1-V8</td><td class="mono">14.04 · 09:42</td><td class="mono">14 KB</td><td><span class="badge green">enviado ✓</span></td></tr>
+                      <tr><td>Foto demarcação</td><td class="mono">V1 · marco fronteira</td><td class="mono">14.04 · 09:42</td><td class="mono">812 KB</td><td><span class="badge green">enviado ✓</span></td></tr>
+                      <tr><td>Foto demarcação</td><td class="mono">V2 · embondeiro</td><td class="mono">14.04 · 10:24</td><td class="mono">784 KB</td><td><span class="badge green">enviado ✓</span></td></tr>
+                      <tr><td>Foto demarcação</td><td class="mono">V3 · estaca cravada</td><td class="mono">14.04 · 11:08</td><td class="mono">802 KB</td><td><span class="badge green">enviado ✓</span></td></tr>
+                      <tr><td>Foto demarcação</td><td class="mono">V4 · agora</td><td class="mono">14.04 · 11:48</td><td class="mono">798 KB</td><td><span class="badge amber">a enviar 84%</span></td></tr>
+                      <tr><td>Auto serifado</td><td class="mono">AUTO-2026-SO-04218</td><td class="mono">14.04 · 14:08</td><td class="mono">142 KB</td><td><span class="badge ink">queue</span></td></tr>
+                      <tr><td>Assinatura digital</td><td class="mono">Régulo Mahique</td><td class="mono">14.04 · 14:09</td><td class="mono">22 KB</td><td><span class="badge ink">queue</span></td></tr>
+                      <tr><td>Verificação denúncia</td><td class="mono">DEN-2026-SO-00821</td><td class="mono">14.04 · 15:12</td><td class="mono">3,2 MB</td><td><span class="badge ink">queue</span></td></tr>
+                      <tr><td>Demarcação coop.</td><td class="mono">PED-2026-SO-00482 V1-V6</td><td class="mono">14.04 · 16:24</td><td class="mono">11 KB</td><td><span class="badge ink">queue</span></td></tr>
+                      <tr><td>Conflito aberto</td><td class="mono">CONF-2026-SO-00184</td><td class="mono">14.04 · 11:50</td><td class="mono">8 KB</td><td><span class="badge ink">queue</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="grid g-2" style="margin-top:18px;gap:14px">
+                <div class="card">
+                  <div class="hd"><b>Validação automática SPGC</b></div>
+                  <div class="bd">
+                    <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                      <li>Hash SHA256 de cada foto re-verificado</li>
+                      <li>Coordenadas RTK validadas contra base estação</li>
+                      <li>Cadastro provincial actualizado em tempo real</li>
+                      <li>Notificações enviadas a stakeholders <code>cross-empresa</code></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="hd"><b>Bateria · combustível · próximo dia</b></div>
+                  <div class="bd">
+                    <div class="row spread" style="margin-bottom:6px"><span class="t-meta">Bateria tablet</span><span class="mono" style="color:var(--good-700)">42% · carregando</span></div>
+                    <div class="row spread" style="margin-bottom:6px"><span class="t-meta">Combustível viatura</span><span class="mono" style="color:var(--warn-700)">14% · abastecer</span></div>
+                    <div class="row spread"><span class="t-meta">Tarefas amanhã</span><span class="mono">2 demarcações · Mãe-Eua</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <h4>Offline-first é não-negociável</h4>
+        <p>Tambara, Mussassa Norte, Macossa, parte de Manica · sem cobertura 4G. App tem que funcionar 100% offline. Sync apenas quando há rede.</p>
+        <h4>Validação no servidor</h4>
+        <p>SPGC re-verifica hash de cada foto, valida coordenadas RTK contra base estação, e cruza com cadastro central. Se algum item falha validação, fiscal é notificado e tem 48h para corrigir.</p>
+        <h4>Notificações cross-stakeholder</h4>
+        <p>Após sync, app notifica automaticamente: empresa (DUAT em fase de demarcação concluída), titulares afectados (conflito 0,82 ha), Régulo (registo da sua presença), SPGC Sofala (queue de pareceres a aprovar).</p>
+        <h4>Diário de bordo</h4>
+        <p>Cada dia gera um relatório PDF com mapa do trajecto, KMs percorridos, combustível usado, fotos chave. Para reembolso de despesas e auditoria interna SPGC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;border-top:1px solid var(--line);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Fiscal · campo</span><small>Terras Digitais · v0.3</small></span></a>
+      <p class="t-meta" style="max-width:680px;margin-top:10px">Superfície 4 de 5 · DESIGN-fiscal.md · cross-CFJP · cross-TJ · cross-empresa · cross-cidadão · cross-SPGC. Fiscal Júlia Sumane Tembe (cédula 2418) é persona fictícia consistente com Surface Cidadão e SPGC.</p>
+    </div>
+    <div class="row" style="gap:16px">
+      <a href="spgc.html" class="btn ghost sm">‹ SPGC</a>
+      <a href="dashboard.html" class="btn ghost sm">Próxima · Dashboard ›</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

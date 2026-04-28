@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>SPGC · Terras Digitais — Admin provincial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .desktop-frame { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: var(--sh-2); }
+  .dt-toolbar { background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 14px; display: flex; align-items: center; gap: 10px; font-size: 12px; }
+  .dt-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .dt-toolbar .dot.r { background: #E55B4F; } .dt-toolbar .dot.y { background: #E5C24F; } .dt-toolbar .dot.g { background: #5BC267; }
+  .dt-toolbar .url { background: var(--bg-2); border-radius: 4px; padding: 4px 12px; font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); flex: 1; }
+  .dt-body { padding: 22px; }
+  .twocol-spgc { display: grid; grid-template-columns: 260px 1fr; gap: 18px; }
+  .sidebar { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 16px; }
+  .sidebar h4 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
+  .sidebar .nav-side { display: flex; flex-direction: column; gap: 2px; margin: 12px 0; }
+  .sidebar .nav-side a { padding: 7px 10px; font-size: 12px; color: var(--ink-2); border-radius: 2px; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+  .sidebar .nav-side a:hover { background: var(--bg-2); text-decoration: none; }
+  .sidebar .nav-side a.active { background: var(--terra-100); color: var(--terra-800); font-weight: 600; }
+  .sidebar .nav-side .ct { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTA · DINAGECA · SPGC Manica · DTD</span><span class="sep">·</span>
+  <span>SPGC · Admin provincial</span>
+  <span style="margin-left:auto">spgc.terrasdigitais.gov.mz · v0.3</span>
+</div>
+<div class="cadastro-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>SPGC Manica · gestão cadastral</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="empresa.html">Empresa</a>
+    <a href="spgc.html" class="active">SPGC</a>
+    <a href="fiscal.html">Fiscal</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="right">
+    <div class="idbadge"><div class="av sm">FM</div><div class="who"><b>Eng. F. Macuácua</b><span>Chefe SPGC Manica</span></div></div>
+  </div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Dashboard SPGC</a>
+  <a href="#cena2">Cena 2 · Fila de pedidos</a>
+  <a href="#cena3">Cena 3 · Conflito · resolução</a>
+  <a href="#cena4">Cena 4 · Auditoria fiscais</a>
+  <a href="#cena5">Cena 5 · Mapa cadastral</a>
+  <a href="#cena6">Cena 6 · Tribunal comunitário</a>
+  <a href="#cena7">Cena 7 · Caducidade</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h">
+    <div class="sn">Cena 01</div>
+    <div class="lab"><b>Dashboard SPGC Manica</b><span>Eng. F. Macuácua · 14 219 DUATs sob gestão · 14 acções pendem hoje</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/dashboard</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="twocol-spgc">
+          <aside class="sidebar">
+            <h4>SPGC Manica</h4>
+            <div class="t-meta" style="font-size:11px">Chimoio · 28 funcionários</div>
+            <hr class="hr">
+            <div class="nav-side">
+              <a class="active">Dashboard <span class="ct">●</span></a>
+              <a>Pedidos <span class="ct">214</span></a>
+              <a>Conflitos <span class="ct">38</span></a>
+              <a>Fiscais <span class="ct">42</span></a>
+              <a>Mapa cadastral</a>
+              <a>Tribunal comunitário <span class="ct">14</span></a>
+              <a>Caducidades <span class="ct">8</span></a>
+              <a>Auditoria · log</a>
+              <a>Relatórios DINAGECA</a>
+            </div>
+            <hr class="hr">
+            <div class="t-overline" style="margin-bottom:8px">Equipa</div>
+            <div class="row" style="gap:6px;flex-wrap:wrap">
+              <div class="av sm">FM</div>
+              <div class="av sm" style="background:var(--savanna-100);color:var(--savanna-800)">JS</div>
+              <div class="av sm" style="background:var(--cream-3);color:var(--ink-2)">PC</div>
+              <div class="av sm">+25</div>
+            </div>
+          </aside>
+          <div>
+            <div class="row spread" style="margin-bottom:18px">
+              <div>
+                <div class="t-overline">SPGC Manica</div>
+                <h2 class="t-h2" style="margin:4px 0">Dashboard · 28.04.2026</h2>
+                <div class="t-meta">Boa tarde, Eng. Macuácua. 14 acções pedem atenção.</div>
+              </div>
+            </div>
+            <div class="grid g-4" style="gap:14px;margin-bottom:18px">
+              <div class="kpi"><div class="lbl">DUATs vigentes</div><div class="num">14 219</div><div class="delta up">+184 mês</div></div>
+              <div class="kpi"><div class="lbl">Pedidos pendentes</div><div class="num">214</div><div class="delta">82% no prazo</div></div>
+              <div class="kpi"><div class="lbl">Conflitos activos</div><div class="num" style="color:var(--red-700)">38</div><div class="delta down">−3 vs sem.</div></div>
+              <div class="kpi"><div class="lbl">Hectares geridos</div><div class="num">1,84M</div><div class="delta">42% província</div></div>
+            </div>
+            <div class="grid g-2" style="gap:14px">
+              <div class="card">
+                <div class="hd"><b>Prioridades de hoje · 14 acções</b></div>
+                <div class="bd" style="padding:0">
+                  <table class="table" style="font-size:12px">
+                    <tbody>
+                      <tr><td><span class="duat-status conflito" style="font-size:9px;padding:2px 6px">Conflito</span></td><td>PED-2026-MN-04218 · Greenfield · audiência 22.04</td><td><span class="cross warn" style="font-size:9px">cross-TJ</span></td></tr>
+                      <tr><td><span class="duat-status pedido" style="font-size:9px;padding:2px 6px">Parecer</span></td><td>Greenfield · parecer técnico até 28.04</td><td><span class="cross" style="font-size:9px">cross-CPI</span></td></tr>
+                      <tr><td><span class="duat-status caducado" style="font-size:9px;padding:2px 6px">Caducidade</span></td><td>DUAT-2014-MN-001824 · 14 meses sem taxa</td><td><span class="cross" style="font-size:9px">cross-AT</span></td></tr>
+                      <tr><td><span class="badge amber" style="font-size:9px">Audit</span></td><td>Demarcação fiscal J. Macuácua · 4 polígonos rever</td><td><span class="cross" style="font-size:9px">interno</span></td></tr>
+                      <tr><td><span class="badge red" style="font-size:9px">Denúncia</span></td><td>Ocupação ilegal · Báruè Sul · prioridade alta</td><td><span class="cross" style="font-size:9px">cross-fiscal</span></td></tr>
+                      <tr><td><span class="badge green" style="font-size:9px">Acordo</span></td><td>Manjate Cossa · cessão 0,82 ha · validar</td><td><span class="cross" style="font-size:9px">cross-TJ</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card">
+                <div class="hd"><b>Categoria de uso · stock</b></div>
+                <div class="bd">
+                  <div class="col" style="gap:10px">
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use residencial">Residencial</span><span class="mono">3 842</span></div><div class="bar"><div class="fill" style="width:54%"></div></div></div>
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use agricola">Agrícola</span><span class="mono">5 218</span></div><div class="bar savanna"><div class="fill" style="width:74%"></div></div></div>
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use industrial">Industrial</span><span class="mono">218</span></div><div class="bar"><div class="fill" style="width:18%;background:#5A4F40"></div></div></div>
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use turismo">Turismo</span><span class="mono">142</span></div><div class="bar"><div class="fill" style="width:14%;background:var(--use-turismo)"></div></div></div>
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use conservacao">Conservação</span><span class="mono">38 · 480k ha</span></div><div class="bar"><div class="fill" style="width:42%;background:var(--good-700)"></div></div></div>
+                    <div><div class="row spread" style="font-size:11px;margin-bottom:4px"><span class="use comunitario">Comunitário</span><span class="mono">4 218</span></div><div class="bar warn"><div class="fill" style="width:62%"></div></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h">
+    <div class="sn">Cena 02</div>
+    <div class="lab"><b>Fila de pedidos pendentes · 214</b><span>Filtragem por estado, prazo, distrito</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/pedidos</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:14px">
+          <div><h2 class="t-h2" style="margin:0">Pedidos pendentes · 214</h2><div class="t-meta">Manica · ordenado por prazo</div></div>
+          <div class="row" style="gap:6px"><button class="btn ghost sm">Exportar XLS</button><button class="btn sm">Atribuir 14 ao staff</button></div>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="bd" style="padding:12px 14px">
+            <div class="row" style="gap:8px;flex-wrap:wrap">
+              <span class="badge terra">Todos · 214</span>
+              <span class="badge amber">No prazo · 176</span>
+              <span class="badge red">Atrasados · 38</span>
+              <span class="badge green">Recém submetidos · 28</span>
+              <span class="badge ink">Aguardam consulta · 42</span>
+              <span class="badge ink">CPI pendente · 12</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Pedido</th><th>Titular</th><th>Distrito</th><th>Categoria</th><th>Hectares</th><th>Prazo</th><th>Estado</th><th>Cross</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">PED-2026-MN-04218</td><td>Greenfield Forestry SA</td><td>Báruè</td><td><span class="use agricola">Agrícola</span></td><td class="num">3 240</td><td class="mono" style="color:var(--warn-700)">28.04.2026</td><td><span class="duat-status conflito">conflito 0,82</span></td><td><span class="cross warn" style="font-size:9px">cross-TJ</span></td></tr>
+                <tr><td class="mono">PED-2026-MN-04201</td><td>Cooperativa Agrária Báruè</td><td>Báruè</td><td><span class="use agricola">Agrícola</span></td><td class="num">218</td><td class="mono">14.05.2026</td><td><span class="duat-status pedido">pedido</span></td><td><span class="cross" style="font-size:9px">cross-NUSS</span></td></tr>
+                <tr><td class="mono">PED-2026-MN-04188</td><td>António Cossa Sitole</td><td>Manica</td><td><span class="use residencial">Residencial</span></td><td class="num">0,4</td><td class="mono">22.05.2026</td><td><span class="badge amber">consulta com.</span></td><td><span class="cross" style="font-size:9px">cross-CFJP</span></td></tr>
+                <tr><td class="mono">PED-2026-MN-04172</td><td>Hotel Casa Msika Lda</td><td>Manica</td><td><span class="use turismo">Turismo</span></td><td class="num">42</td><td class="mono">04.06.2026</td><td><span class="badge ink">CPI pendente</span></td><td><span class="cross" style="font-size:9px">cross-CPI</span></td></tr>
+                <tr><td class="mono">PED-2026-MN-04158</td><td>Felisberto Manjate</td><td>Sussundenga</td><td><span class="use agricola">Agrícola</span></td><td class="num">12</td><td class="mono" style="color:var(--good-700)">14.07.2026</td><td><span class="badge green">boa fé · Lei 19/97</span></td><td><span class="cross" style="font-size:9px">cross-CFJP</span></td></tr>
+                <tr><td class="mono">PED-2026-MN-04142</td><td>Sussundenga Mining Lda</td><td>Sussundenga</td><td><span class="use industrial">Industrial</span></td><td class="num">184</td><td class="mono" style="color:var(--red-700)">10.04.2026 ⚠</td><td><span class="duat-status conflito">conflito ANAC</span></td><td><span class="cross savanna" style="font-size:9px">cross-ANAC</span></td></tr>
+                <tr><td class="mono">PED-2025-MN-04102</td><td>Eng. P. Cossa</td><td>Báruè</td><td><span class="use residencial">Residencial</span></td><td class="num">0,8</td><td class="mono" style="color:var(--red-700)">02.04.2026 ⚠</td><td><span class="badge red">parecer atrasado 26d</span></td><td><span class="cross" style="font-size:9px">interno</span></td></tr>
+                <tr><td class="mono">PED-2025-MN-04088</td><td>Maputo Logística Lda</td><td>Manica</td><td><span class="use infraest">Infraest.</span></td><td class="num">38</td><td class="mono">28.05.2026</td><td><span class="badge amber">demarcação</span></td><td><span class="cross" style="font-size:9px">cross-fiscal</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h">
+    <div class="sn">Cena 03</div>
+    <div class="lab"><b>Conflito CONF-2026-MN-00184 · resolução por cessão</b><span>Greenfield vs Reg. Manjate · 0,82 ha · acordo 18.04.2026</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/conflitos/CONF-2026-MN-00184</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px">
+          <div>
+            <div class="t-overline">CONF-2026-MN-00184</div>
+            <h2 class="t-h2" style="margin:4px 0">Greenfield Forestry vs Reg. Manjate Cossa</h2>
+            <div class="t-meta">Báruè · sobreposição 0,82 ha · 0,025% pedido / 18% parcela reg.</div>
+          </div>
+          <div class="row" style="gap:6px"><span class="duat-status conflito">conflito activo</span><button class="btn sm">Resolver por cessão ✓</button></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:18px">
+          <div class="card">
+            <div class="hd"><b>Sobreposição visual</b></div>
+            <div class="pf-canvas" style="padding:18px;height:380px">
+              <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <defs>
+                  <pattern id="hA" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#8C5A1F" stroke-width="0.6" opacity=".25"/></pattern>
+                  <pattern id="hB" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#3F6B33" stroke-width="0.7" opacity=".3"/></pattern>
+                  <pattern id="hX" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#C73E2E" stroke-width="0.9" opacity=".55"/></pattern>
+                </defs>
+                <polygon points="40,250 200,240 220,340 50,348" fill="url(#hA)" stroke="#8C5A1F" stroke-width="2.5"/>
+                <text x="125" y="298" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#4A2E0E" font-weight="600">DUAT-1992-MN-002184</text>
+                <text x="125" y="314" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#5C4F40">Reg. Manjate Cossa · 2,4 ha</text>
+                <text x="125" y="328" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#5C4F40" font-style="italic">ocupação boa fé · 1992</text>
+                <polygon points="180,40 540,50 558,200 540,330 180,332" fill="url(#hB)" stroke="#3F6B33" stroke-width="2.5" stroke-dasharray="6 3"/>
+                <text x="380" y="180" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#1F3A1A" font-weight="600">PED-2026-MN-04218</text>
+                <text x="380" y="196" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#1F3A1A">Greenfield · 3 240 ha</text>
+                <polygon points="180,250 200,240 220,340 180,332" fill="url(#hX)" stroke="#C73E2E" stroke-width="2"/>
+                <text x="190" y="290" text-anchor="middle" font-family="IBM Plex Sans" font-size="12" fill="#9A2A1F" font-weight="700">CONFLITO</text>
+                <text x="190" y="306" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#9A2A1F" font-weight="600">0,82 ha</text>
+              </svg>
+            </div>
+          </div>
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Caminhos de resolução</b></div>
+              <div class="bd">
+                <div class="row-card" style="margin-bottom:8px;border-color:var(--good-500);background:var(--good-100)">
+                  <div class="ic" style="background:var(--good-700);color:#fff">A</div>
+                  <div class="body"><b>Cessão negociada · ✓ aceite</b><span>Reg. Manjate aceita troca por 1,5 ha melhor irrigada · acordo 18.04.2026</span></div>
+                </div>
+                <div class="row-card" style="margin-bottom:8px;opacity:.6"><div class="ic">B</div><div class="body"><b>Empresa renuncia 0,82 ha</b><span>Mais simples · reduz área plantável</span></div></div>
+                <div class="row-card" style="opacity:.4"><div class="ic" style="background:var(--red-100);color:var(--red-700)">C</div><div class="body"><b>Tribunal Administrativo</b><span>Última instância · só se A e B falham</span></div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="hd"><b>Tribunal Comunitário Báruè</b></div>
+              <div class="bd">
+                <div class="comm-card" style="border:0;padding:0">
+                  <div class="hd" style="padding-bottom:10px"><div class="ic">JC</div><div class="ti"><b>Juiz comunitário João Cossa</b><span>Tribunal Báruè · cédula CFJP-MN-014</span></div></div>
+                  <div class="body" style="padding-top:10px;font-size:12px">
+                    <p style="margin:0 0 6px">Audiência 22.04.2026 · suspensa por acordo de cessão das partes em 18.04.2026.</p>
+                    <span class="cross savanna">cross-CFJP</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="banner green" style="font-size:12px"><span class="ic"></span><div><b>Acordo registado</b> · validado por SPGC · aguarda emissão dos dois DUATs revisados.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h">
+    <div class="sn">Cena 04</div>
+    <div class="lab"><b>Auditoria de fiscais · Q1 2026</b><span>42 fiscais · 1 482 demarcações · amostragem 8% (118 polígonos re-medidos)</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/auditoria/fiscais</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="grid g-3" style="gap:14px;margin-bottom:18px">
+          <div class="kpi"><div class="lbl">Demarcações Q1</div><div class="num">1 482</div><div class="delta up">+18% YoY</div></div>
+          <div class="kpi"><div class="lbl">Erro médio (cm)</div><div class="num">3,2</div><div class="delta">limite RTK 2 cm</div></div>
+          <div class="kpi"><div class="lbl">Demarcações flagged</div><div class="num" style="color:var(--red-700)">14</div><div class="delta down">erro &gt; 8 cm · re-medir</div></div>
+        </div>
+        <div class="card">
+          <div class="hd"><b>Fiscais · qualidade</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Fiscal</th><th>Cédula</th><th>Distrito</th><th>Demarcações</th><th>Erro médio</th><th>Flagged</th><th>Audit %</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td>J. Sumane Tembe</td><td class="mono">2418</td><td>Sofala (cross-prov)</td><td class="num">142</td><td class="mono">2,1 cm</td><td class="num" style="color:var(--good-700)">0</td><td class="mono">8%</td><td><span class="badge green">excelente</span></td></tr>
+                <tr><td>P. Sumbane Cossa</td><td class="mono">3812</td><td>Báruè</td><td class="num">128</td><td class="mono">2,8 cm</td><td class="num">1</td><td class="mono">9%</td><td><span class="badge green">bom</span></td></tr>
+                <tr><td>M. Sitole</td><td class="mono">4218</td><td>Manica</td><td class="num">118</td><td class="mono">3,4 cm</td><td class="num">2</td><td class="mono">12%</td><td><span class="badge green">bom</span></td></tr>
+                <tr><td>A. Tembe</td><td class="mono">2841</td><td>Sussundenga</td><td class="num">102</td><td class="mono">3,1 cm</td><td class="num">1</td><td class="mono">10%</td><td><span class="badge green">bom</span></td></tr>
+                <tr><td>F. Cossa</td><td class="mono">5181</td><td>Manica</td><td class="num">98</td><td class="mono" style="color:var(--warn-700)">5,2 cm</td><td class="num" style="color:var(--warn-700)">3</td><td class="mono">14%</td><td><span class="badge amber">monitorar</span></td></tr>
+                <tr><td>E. Tembe</td><td class="mono">8412</td><td>Báruè</td><td class="num">89</td><td class="mono">3,8 cm</td><td class="num">2</td><td class="mono">11%</td><td><span class="badge green">bom</span></td></tr>
+                <tr><td>J. Macuácua</td><td class="mono">9421</td><td>Tambara</td><td class="num">76</td><td class="mono" style="color:var(--red-700)">8,4 cm</td><td class="num" style="color:var(--red-700)">4</td><td class="mono">22%</td><td><span class="badge red">re-formar</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="grid g-2" style="margin-top:14px;gap:14px">
+          <div class="card">
+            <div class="hd"><b style="color:var(--red-700)">Caso flag · J. Macuácua</b></div>
+            <div class="bd">
+              <p style="font-size:13px;margin:0 0 10px">4 polígonos com erro &gt; 8 cm em zona montanhosa de Tambara. Re-medição por J. Sumane revelou desvios sistemáticos.</p>
+              <ul style="font-size:12px;margin:0;padding-left:18px;line-height:1.6">
+                <li>Calibração GPS RTK · suspeita</li>
+                <li>Possível uso fora de janela RTK estável</li>
+                <li>Acção: re-formação 5 dias + re-medir 76 polígonos</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Distribuição geográfica</b></div>
+            <div class="bd">
+              <p class="t-meta" style="font-size:12px">Tambara concentra 64% dos casos flagged. Razão provável: terreno acidentado + cobertura RTK marginal.</p>
+              <div style="margin-top:10px"><div class="row spread" style="font-size:11px;margin-bottom:4px"><span>Tambara</span><span class="mono">9</span></div><div class="bar red"><div class="fill" style="width:64%"></div></div></div>
+              <div style="margin-top:8px"><div class="row spread" style="font-size:11px;margin-bottom:4px"><span>Báruè</span><span class="mono">3</span></div><div class="bar warn"><div class="fill" style="width:21%"></div></div></div>
+              <div style="margin-top:8px"><div class="row spread" style="font-size:11px;margin-bottom:4px"><span>Manica</span><span class="mono">2</span></div><div class="bar"><div class="fill" style="width:14%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h">
+    <div class="sn">Cena 05</div>
+    <div class="lab"><b>Mapa cadastral provincial · Manica</b><span>Choropleth por densidade · 12 distritos</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/mapa-cadastral</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="grid" style="grid-template-columns:1fr 320px;gap:18px;align-items:start">
+          <div class="card" style="padding:18px">
+            <div class="row spread" style="margin-bottom:14px">
+              <h3 class="t-h3" style="margin:0">Província de Manica · 12 distritos</h3>
+              <div class="row" style="gap:6px;flex-wrap:wrap">
+                <span class="badge terra" style="background:var(--terra-700);color:#fff">Q4</span>
+                <span class="badge terra" style="background:var(--terra-500);color:#fff">Q3</span>
+                <span class="badge terra" style="background:var(--terra-300)">Q2</span>
+                <span class="badge terra" style="background:var(--terra-100)">Q1</span>
+              </div>
+            </div>
+            <div style="background:var(--cream-paper);border:1px solid var(--line);border-radius:4px;padding:18px">
+              <svg viewBox="0 0 540 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+                <g stroke="#fff" stroke-width="1.8" font-family="IBM Plex Sans" font-size="10" fill="#1A1410">
+                  <polygon points="120,28 230,18 280,82 240,138 142,128 100,80" fill="#DFB17C"/>
+                  <text x="190" y="80" text-anchor="middle" font-weight="600">Macossa</text>
+                  <text x="190" y="92" text-anchor="middle" font-size="9" fill="#5C4F40">418</text>
+                  <polygon points="240,138 280,82 380,82 410,140 350,200 250,190" fill="#A6691F" stroke="#fff"/>
+                  <text x="320" y="138" text-anchor="middle" font-weight="600" fill="#fff">Tambara</text>
+                  <text x="320" y="150" text-anchor="middle" font-size="9" fill="#FBF0DD">218</text>
+                  <polygon points="380,82 460,72 510,168 410,140" fill="#DFB17C"/>
+                  <text x="445" y="120" text-anchor="middle" font-weight="600">Guro</text>
+                  <polygon points="100,80 142,128 110,210 50,180 60,110" fill="#ECCBA4"/>
+                  <text x="90" y="160" text-anchor="middle" font-weight="600">Báruè</text>
+                  <text x="90" y="172" text-anchor="middle" font-size="9" fill="#5C4F40">3 412</text>
+                  <polygon points="142,128 240,138 250,190 200,242 110,210" fill="#A6691F" stroke="#fff"/>
+                  <text x="190" y="190" text-anchor="middle" font-weight="600" fill="#fff">Manica</text>
+                  <text x="190" y="202" text-anchor="middle" font-size="9" fill="#FBF0DD">5 218</text>
+                  <polygon points="350,200 410,140 510,168 480,260 400,272" fill="#ECCBA4"/>
+                  <text x="430" y="220" text-anchor="middle" font-weight="600">Mossurize</text>
+                  <polygon points="50,180 110,210 90,290 28,272" fill="#FBF0DD"/>
+                  <text x="65" y="240" text-anchor="middle" font-weight="600">Vanduzi</text>
+                  <polygon points="200,242 250,190 350,200 400,272 320,322 220,310" fill="#8C5A1F" stroke="#fff"/>
+                  <text x="290" y="270" text-anchor="middle" font-weight="600" fill="#fff">Chimoio</text>
+                  <text x="290" y="282" text-anchor="middle" font-size="9" fill="#FBF0DD">2 184</text>
+                  <polygon points="90,290 110,210 200,242 220,310 130,358" fill="#DFB17C"/>
+                  <text x="155" y="290" text-anchor="middle" font-weight="600">Gondola</text>
+                  <polygon points="320,322 400,272 480,260 460,360 360,380" fill="#ECCBA4"/>
+                  <text x="400" y="318" text-anchor="middle" font-weight="600">Sussundenga</text>
+                  <polygon points="130,358 220,310 320,322 280,400 160,398" fill="#A6691F" stroke="#fff"/>
+                  <text x="220" y="364" text-anchor="middle" font-weight="600" fill="#fff">Mussorize</text>
+                  <polygon points="280,400 360,380 380,408 290,418" fill="#FBF0DD"/>
+                  <text x="320" y="402" text-anchor="middle" font-weight="600" font-size="9">Machaze</text>
+                </g>
+              </svg>
+            </div>
+            <div class="row" style="gap:8px;margin-top:14px;flex-wrap:wrap">
+              <span class="use residencial">Residencial</span>
+              <span class="use agricola" style="border-width:2px">Agrícola ✓</span>
+              <span class="use industrial">Industrial</span>
+              <span class="use turismo">Turismo</span>
+              <span class="use conservacao">Conservação</span>
+              <span class="use comunitario">Comunitário</span>
+              <span class="use infraest">Infraest.</span>
+              <span class="use misto">Misto</span>
+            </div>
+          </div>
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Top distritos · agrícola</b></div>
+              <div class="bd">
+                <table class="table" style="font-size:12px">
+                  <tbody>
+                    <tr><td>Manica</td><td class="num">5 218</td></tr>
+                    <tr><td>Báruè</td><td class="num">3 412</td></tr>
+                    <tr><td>Chimoio</td><td class="num">2 184</td></tr>
+                    <tr><td>Sussundenga</td><td class="num">1 842</td></tr>
+                    <tr><td>Macossa</td><td class="num">418</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card">
+              <div class="hd"><b>Sobreposições (38)</b></div>
+              <div class="bd" style="font-size:12px">
+                <p style="margin:0 0 8px">Concentradas em Báruè (12) e Manica (8) · zonas de fronteira Zimbabwe + migração interna pós-conflito.</p>
+                <div class="row spread" style="margin-bottom:4px"><span>Báruè</span><span class="mono">12</span></div>
+                <div class="bar red"><div class="fill" style="width:60%"></div></div>
+                <div class="row spread" style="margin-top:6px;margin-bottom:4px"><span>Manica</span><span class="mono">8</span></div>
+                <div class="bar warn"><div class="fill" style="width:42%"></div></div>
+                <div class="row spread" style="margin-top:6px;margin-bottom:4px"><span>Sussundenga</span><span class="mono">6</span></div>
+                <div class="bar warn"><div class="fill" style="width:32%"></div></div>
+              </div>
+            </div>
+            <div class="banner terra" style="font-size:12px"><span class="ic"></span><div><b>Báruè · prioridade Q2 2026</b> · campanha de regularização boa fé + re-demarcação massiva.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h">
+    <div class="sn">Cena 06</div>
+    <div class="lab"><b>Tribunal Comunitário · 14 processos em mediação</b><span>cross-CFJP autenticação · escalada para Tribunal Adm. se mediação falha em 90 dias</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/tribunal-comunitario</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="banner savanna" style="margin-bottom:18px"><span class="ic"></span><div><b>Princípio constitucional</b> · todo o conflito de DUAT passa primeiro pelo Tribunal Comunitário (CFJP) antes de poder escalar para Tribunal Administrativo. <code class="mono" style="font-size:11px">cross-TJ</code></div></div>
+        <div class="grid g-3" style="gap:14px;margin-bottom:18px">
+          <div class="kpi"><div class="lbl">Em mediação</div><div class="num">14</div><div class="delta">prazo médio 38 dias</div></div>
+          <div class="kpi"><div class="lbl">Resolvidos por acordo · 2026</div><div class="num">42</div><div class="delta up">62% via cessão</div></div>
+          <div class="kpi"><div class="lbl">Escalados a TJ Adm.</div><div class="num">8</div><div class="delta down">38% taxa de escalada</div></div>
+        </div>
+        <div class="card">
+          <div class="hd"><b>Processos em mediação</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Processo</th><th>Partes</th><th>Tribunal</th><th>Régulo / Juiz</th><th>Audiência</th><th>Estado</th><th>Cross</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">CONF-2026-MN-00184</td><td>Greenfield vs R. Manjate</td><td>Báruè · CFJP</td><td>Juiz J. Cossa</td><td class="mono">22.04 · suspensa</td><td><span class="badge green">acordo cessão</span></td><td><span class="cross savanna" style="font-size:9px">cross-CFJP</span></td></tr>
+                <tr><td class="mono">CONF-2026-MN-00182</td><td>Cossa Sitole vs Tembe</td><td>Manica · CFJP</td><td>Régulo Mahique</td><td class="mono">14.05.2026</td><td><span class="badge amber">audiência marcada</span></td><td><span class="cross savanna" style="font-size:9px">cross-CFJP</span></td></tr>
+                <tr><td class="mono">CONF-2026-MN-00178</td><td>Macuácua vs Família Sitole</td><td>Sussundenga</td><td>Juiz P. Cossa</td><td class="mono">14.04.2026 ✓</td><td><span class="badge green">resolvido sucessão</span></td><td><span class="cross ok" style="font-size:9px">cross-CFJP</span></td></tr>
+                <tr><td class="mono">CONF-2026-MN-00171</td><td>Hotel Casa Msika vs comunidade</td><td>Manica · CFJP</td><td>Régulo Manica</td><td class="mono">28.05.2026</td><td><span class="badge red">comunidade rejeita</span></td><td><span class="cross warn" style="font-size:9px">cross-TJ Adm</span></td></tr>
+                <tr><td class="mono">CONF-2025-MN-00164</td><td>2 famílias · sucessão disputada</td><td>Báruè · CFJP</td><td>Juiz J. Cossa</td><td class="mono">2 audiências</td><td><span class="badge red">90d · escalar TJ</span></td><td><span class="cross warn" style="font-size:9px">cross-TJ Adm</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="grid g-2" style="margin-top:14px;gap:14px">
+          <div class="card">
+            <div class="hd"><b>Acordo via cessão · 62% dos casos</b></div>
+            <div class="bd">
+              <p style="font-size:13px;margin:0 0 10px">A cessão é o acordo mais comum: parte ganha terra noutra zona equivalente; parte renuncia à área conflitante mediante compensação financeira ou troca.</p>
+              <p style="font-size:12px;color:var(--ink-3);margin:0">SPGC supervisiona para garantir que cessão não é coerciva — todos os acordos &gt; 0,5 ha exigem assinatura presencial perante régulo.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Limites do Tribunal Comunitário</b></div>
+            <div class="bd">
+              <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                <li>90 dias máximo · escalada automática TJ Adm depois</li>
+                <li>Não pode decidir contra DUAT formalmente emitido pela DINAGECA</li>
+                <li>Comunidade pode bloquear projecto · empresa só recurso é TJ Adm</li>
+                <li>Sentença + acta · valor probatório em TJ Adm</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h">
+    <div class="sn">Cena 07</div>
+    <div class="lab"><b>Caducidade · taxa em atraso &gt; 365 dias</b><span>8 DUATs · processo de extinção · terra volta ao Estado</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">spgc.terrasdigitais.gov.mz/manica/caducidades</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="banner red" style="margin-bottom:18px"><span class="ic"></span><div><b>8 DUATs em processo de caducidade</b> · todos com taxa em atraso &gt; 365 dias. SPGC notifica titular 3 vezes; após silêncio, terra volta ao Estado.</div></div>
+        <div class="card">
+          <div class="hd"><b>DUATs em caducidade</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>DUAT</th><th>Titular</th><th>Hectares</th><th>Taxa em atraso</th><th>Notificações</th><th>Acção</th><th>Cross</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">DUAT-2014-MN-001824</td><td>Empresa fantasma Lda</td><td class="num">218</td><td class="mono" style="color:var(--red-700)">14m · 92 400 MT</td><td>3/3 ✗ silêncio</td><td><span class="duat-status caducado">extinguir</span></td><td><span class="cross" style="font-size:9px">cross-AT</span></td></tr>
+                <tr><td class="mono">DUAT-2008-MN-000412</td><td>António Sumane (falec.)</td><td class="num">2,4</td><td class="mono">18m · 2 240 MT</td><td>2/3 · família localizada</td><td><span class="badge amber">sucessão pendente</span></td><td><span class="cross warn" style="font-size:9px">cross-eBI</span></td></tr>
+                <tr><td class="mono">DUAT-2011-MN-001284</td><td>Hotel falido Lda (insolv.)</td><td class="num">38</td><td class="mono">22m · 38 400 MT</td><td>3/3 ✗ administrador</td><td><span class="duat-status caducado">extinguir</span></td><td><span class="cross" style="font-size:9px">cross-AT</span></td></tr>
+                <tr><td class="mono">DUAT-2009-MN-000821</td><td>Cooperativa abandonada</td><td class="num">142</td><td class="mono">26m · 14 200 MT</td><td>3/3 ✗ silêncio</td><td><span class="duat-status caducado">extinguir</span></td><td><span class="cross" style="font-size:9px">cross-AT</span></td></tr>
+                <tr><td class="mono">DUAT-2015-MN-002184</td><td>Maria Cossa Sitole</td><td class="num">1,8</td><td class="mono">14m · 1 680 MT</td><td>2/3 · plano pagamento</td><td><span class="badge green">recuperável</span></td><td><span class="cross ok" style="font-size:9px">cross-AT</span></td></tr>
+                <tr><td class="mono">DUAT-2010-MN-000942</td><td>Imobiliária X (sem actividade)</td><td class="num">82</td><td class="mono">19m · 82 000 MT</td><td>3/3 ✗ silêncio</td><td><span class="duat-status caducado">extinguir</span></td><td><span class="cross" style="font-size:9px">cross-AT</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="grid g-2" style="margin-top:14px;gap:14px">
+          <div class="card">
+            <div class="hd"><b>Processo de caducidade</b></div>
+            <div class="bd">
+              <div class="stepper" style="flex-direction:column;align-items:flex-start;gap:6px">
+                <div class="step done"><span class="n">1</span>30 dias atraso · SMS aviso</div>
+                <div class="step done"><span class="n">2</span>60 dias · multa 5%</div>
+                <div class="step done"><span class="n">3</span>90 dias · SPGC abre processo</div>
+                <div class="step done"><span class="n">4</span>180d · 1ª notificação postal</div>
+                <div class="step done"><span class="n">5</span>270d · 2ª notificação · BR</div>
+                <div class="step active"><span class="n">6</span>365d · 3ª · audição final</div>
+                <div class="step"><span class="n">7</span>Extinção · terra ao Estado</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Após extinção · disponibilidade</b></div>
+            <div class="bd">
+              <p style="font-size:13px;margin:0 0 10px">Terra extinta volta ao banco de terras do Estado. SPGC pode redistribuir:</p>
+              <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                <li><b>Boa fé histórica</b> · cidadão que ocupa há &gt; 10 anos · prioridade</li>
+                <li><b>Cooperativas locais</b> · agrícolas, comunitárias</li>
+                <li><b>Concursos públicos</b> · agro-industrial, turismo</li>
+                <li><b>Conservação</b> · ANAC se zona ecológica relevante</li>
+              </ul>
+              <p style="font-size:12px;color:var(--ink-3);margin:10px 0 0">Em 2025: 142 ha extintos em Manica · 89 ha redistribuídos a 32 famílias por boa fé.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;border-top:1px solid var(--line);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>SPGC · Manica</span><small>Terras Digitais · v0.3</small></span></a>
+      <p class="t-meta" style="max-width:680px;margin-top:10px">Superfície 3 de 5 · DESIGN-spgc.md · cross-AT · cross-eBI · cross-CFJP · cross-TJ · cross-CPI · cross-ANAC · cross-fiscal. Eng. F. Macuácua e Eng. P. Cossa são personas fictícias.</p>
+    </div>
+    <div class="row" style="gap:16px">
+      <a href="empresa.html" class="btn ghost sm">‹ Empresa</a>
+      <a href="fiscal.html" class="btn ghost sm">Próxima · Fiscal ›</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

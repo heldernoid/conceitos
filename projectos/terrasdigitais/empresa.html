@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Empresa · Terras Digitais — Web desktop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .desktop-frame { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: var(--sh-2); }
+  .dt-toolbar { background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 14px; display: flex; align-items: center; gap: 10px; font-size: 12px; }
+  .dt-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .dt-toolbar .dot.r { background: #E55B4F; }
+  .dt-toolbar .dot.y { background: #E5C24F; }
+  .dt-toolbar .dot.g { background: #5BC267; }
+  .dt-toolbar .url { background: var(--bg-2); border-radius: 4px; padding: 4px 12px; font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); flex: 1; }
+  .dt-body { padding: 24px; }
+  .twocol-empresa { display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+  .sidebar { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 18px; }
+  .sidebar h4 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
+  .sidebar .nav-side { display: flex; flex-direction: column; gap: 2px; margin: 12px 0; }
+  .sidebar .nav-side a { padding: 8px 10px; font-size: 12px; color: var(--ink-2); border-radius: 2px; display: flex; gap: 8px; align-items: center; }
+  .sidebar .nav-side a:hover { background: var(--bg-2); text-decoration: none; }
+  .sidebar .nav-side a.active { background: var(--terra-100); color: var(--terra-800); font-weight: 600; }
+  .main-pane { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 24px; }
+  .breadcrumb { font-size: 11px; color: var(--ink-3); display: flex; gap: 6px; margin-bottom: 8px; font-family: var(--f-mono); }
+  .breadcrumb .sep { color: var(--ink-4); }
+  .pgh { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 20px; }
+  .pgh h2 { margin: 0 0 4px; font-size: 22px; font-weight: 600; letter-spacing: -.005em; }
+  .pgh .meta { font-size: 12px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTA · DINAGECA · DTD · CPI</span><span class="sep">·</span>
+  <span>Empresa · Portal Investidor</span>
+  <span style="margin-left:auto">empresa.terrasdigitais.gov.mz · v0.3</span>
+</div>
+<div class="cadastro-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Terras Digitais</span><small>Empresa · Portal do Investidor</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="empresa.html" class="active">Empresa</a>
+    <a href="spgc.html">SPGC</a>
+    <a href="fiscal.html">Fiscal</a>
+    <a href="dashboard.html">Dashboard</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> demo</span>
+  </div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Login NUEL</a>
+  <a href="#cena2">Cena 2 · Pedido novo</a>
+  <a href="#cena3">Cena 3 · Polígono + sobreposição</a>
+  <a href="#cena4">Cena 4 · Consulta comunitária</a>
+  <a href="#cena5">Cena 5 · CPI investimento estrangeiro</a>
+  <a href="#cena6">Cena 6 · Acompanhamento</a>
+  <a href="#cena7">Cena 7 · DUAT emitido</a>
+</nav>
+
+<!-- ─────────────────────── CENA 1 ─────────────────────── -->
+<section class="scene" id="cena1">
+  <div class="scene-h">
+    <div class="sn">Cena 01</div>
+    <div class="lab"><b>Entrar como representante de empresa</b><span>Greenfield Forestry SA · NUEL E-2021-MAP-008214 · NUIT 400 218 421</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/login</div>
+        <span class="conn"><span class="d"></span> sincronizado</span>
+      </div>
+      <div class="dt-body" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;min-height:420px;background:linear-gradient(135deg,var(--cream-paper) 0%,var(--terra-50) 100%)">
+        <div>
+          <div class="t-overline">Portal do Investidor</div>
+          <h1 class="t-h1" style="margin:8px 0 16px;max-width:480px">Pedir DUAT empresarial em Moçambique.</h1>
+          <p style="font-size:14px;color:var(--ink-2);max-width:480px;line-height:1.6">Para empresas registadas no Balcão de Atendimento Único (BAU) ou cooperativas com NUEL. Permite pedir novo DUAT (agrícola, industrial, turismo, conservação), gerir consulta comunitária, anexar acta autenticada por régulo, acompanhar pareceres SPGC.</p>
+          <div class="row" style="gap:8px;margin-top:18px;flex-wrap:wrap">
+            <span class="cross">cross-NUEL</span>
+            <span class="cross">cross-NUIT</span>
+            <span class="cross">cross-CPI</span>
+            <span class="cross">cross-CFJP</span>
+            <span class="cross savanna">cross-ANAC</span>
+          </div>
+        </div>
+        <div class="card" style="padding:24px">
+          <h3 class="t-h3" style="margin:0 0 14px">Entrar</h3>
+          <div class="field"><label>NUEL da empresa</label><input class="input mono lg" value="E-2021-MAP-008214"/></div>
+          <div class="field" style="margin-top:10px"><label>BI do representante legal</label><input class="input mono lg" value="110100442918"/></div>
+          <div class="field" style="margin-top:10px"><label>Código eBI (SMS)</label><input class="input mono lg" placeholder="6 dígitos"/></div>
+          <button class="btn lg block" style="margin-top:14px">Entrar com eBI</button>
+          <div class="row spread" style="margin-top:14px;font-size:11px">
+            <span class="cross ok">cross-NUEL · BAU</span>
+            <span class="cross">cross-eBI · DIC</span>
+          </div>
+          <hr class="hr">
+          <div class="t-meta" style="font-size:11px">Empresa não registada? <a href="#">Abrir empresa no BAU</a> primeiro.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 2 ─────────────────────── -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h">
+    <div class="sn">Cena 02</div>
+    <div class="lab"><b>Pedido novo de DUAT · 3 240 ha florestal Manica</b><span>Greenfield Forestry SA · plantação eucalipto carbono crédito</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/pedido/novo</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="twocol-empresa">
+          <aside class="sidebar">
+            <h4>Greenfield Forestry SA</h4>
+            <div class="t-meta" style="font-size:11px">NUEL E-2021-MAP-008214</div>
+            <div class="t-meta mono" style="font-size:11px">NUIT 400 218 421</div>
+            <hr class="hr">
+            <div class="nav-side">
+              <a class="active">▸ Novo pedido</a>
+              <a>Pedidos em curso (2)</a>
+              <a>DUATs vigentes (1)</a>
+              <a>Consultas comunitárias</a>
+              <a>Taxas anuais</a>
+              <a>Documentos</a>
+            </div>
+            <hr class="hr">
+            <div class="t-overline" style="margin-bottom:8px">Stepper</div>
+            <div class="stepper" style="flex-direction:column;align-items:flex-start;gap:6px">
+              <div class="step active"><span class="n">1</span>Identificação · uso</div>
+              <div class="step"><span class="n">2</span>Polígono GPS</div>
+              <div class="step"><span class="n">3</span>Consulta comunitária</div>
+              <div class="step"><span class="n">4</span>CPI · ambiental</div>
+              <div class="step"><span class="n">5</span>SPGC parecer</div>
+              <div class="step"><span class="n">6</span>DINAGECA emite</div>
+            </div>
+          </aside>
+
+          <div class="main-pane">
+            <div class="breadcrumb">
+              <span>Pedidos</span><span class="sep">›</span>
+              <span>Novo</span><span class="sep">›</span>
+              <span style="color:var(--terra-700)">Identificação · uso</span>
+            </div>
+            <div class="pgh">
+              <div>
+                <h2>Pedido de DUAT · novo</h2>
+                <div class="meta">Passo 1 de 6 · identificação do projecto e categoria de uso</div>
+              </div>
+              <div class="row" style="gap:6px"><button class="btn ghost sm">Guardar</button><button class="btn sm">Continuar</button></div>
+            </div>
+
+            <div class="grid g-2">
+              <div class="field"><label>Designação do projecto</label><input class="input lg" value="Plantação Eucalipto · Báruè Norte"/></div>
+              <div class="field"><label>Tipo legal</label><select class="select"><option>Industrial · agro-florestal</option></select></div>
+              <div class="field"><label>Província</label><select class="select"><option>Manica</option></select></div>
+              <div class="field"><label>Distrito</label><select class="select"><option>Báruè</option></select></div>
+              <div class="field"><label>Posto administrativo</label><select class="select"><option>Cheringoma · localidade Mussassa</option></select></div>
+              <div class="field"><label>Área pretendida</label><input class="input mono" value="3 240 ha"/></div>
+              <div class="field"><label>Vigência pretendida</label><select class="select"><option>50 anos · renovável</option></select></div>
+              <div class="field"><label>Investimento total estimado</label><input class="input mono" value="USD 18 400 000"/></div>
+            </div>
+
+            <div class="t-overline" style="margin-top:24px;margin-bottom:10px">Categoria de uso · 8 chips</div>
+            <div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:14px">
+              <span class="use residencial" style="opacity:.4">Residencial</span>
+              <span class="use agricola" style="border-width:2px;font-weight:700">Agrícola ✓</span>
+              <span class="use industrial" style="opacity:.4">Industrial</span>
+              <span class="use turismo" style="opacity:.4">Turismo</span>
+              <span class="use conservacao" style="border-width:2px">Conservação ✓ (subuso)</span>
+              <span class="use comunitario" style="opacity:.4">Comunitário</span>
+              <span class="use infraest" style="opacity:.4">Infraestrutura</span>
+              <span class="use misto" style="opacity:.4">Misto</span>
+            </div>
+
+            <div class="banner savanna" style="margin-top:8px">
+              <span class="ic"></span>
+              <div><b>Subuso conservação detectado</b> · 12 ha de mata nativa de Mussassa estão dentro do polígono. <code class="mono" style="font-size:11px">cross-ANAC</code> consulta obrigatória sobre área a preservar.</div>
+            </div>
+
+            <div class="banner amber" style="margin-top:10px">
+              <span class="ic"></span>
+              <div><b>Investimento &gt; USD 500 k</b> · pedido será também enviado ao Centro de Promoção de Investimentos (CPI) para parecer · <code class="mono" style="font-size:11px">cross-CPI</code></div>
+            </div>
+
+            <div class="t-overline" style="margin-top:24px;margin-bottom:10px">Plano de uso (resumido)</div>
+            <div class="field"><label>Descrição da actividade · Plex Sans, max 1500 char</label>
+              <textarea class="textarea" style="min-height:90px">Plantação de Eucalyptus grandis para fibra industrial e crédito de carbono. 3 010 ha plantáveis (220 ha estradas internas, 12 ha mata nativa preservada). Ciclo 7 anos. Primeira corte 2033. Geração de 84 postos directos permanentes + 240 sazonais. Mercado primário: Indonésia (papel) e ETS europeu (carbono).</textarea>
+            </div>
+
+            <div class="row spread" style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line)">
+              <button class="btn ghost">‹ Cancelar pedido</button>
+              <button class="btn lg">Continuar para polígono ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 3 ─────────────────────── -->
+<section class="scene" id="cena3">
+  <div class="scene-h">
+    <div class="sn">Cena 03</div>
+    <div class="lab"><b>Polígono GPS · sobreposição detectada</b><span>3 240 ha desenhados · 0,82 ha conflitam com DUAT-1992-MN-002184 (boa fé)</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/pedido/PED-2026-MN-04218/poligono</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="grid" style="grid-template-columns:2fr 1fr;gap:18px">
+          <div class="card">
+            <div class="hd">
+              <b>Polígono cadastral · Báruè Norte</b>
+              <div class="row" style="gap:6px">
+                <button class="btn ghost sm">Importar GPX</button>
+                <button class="btn ghost sm">Desenhar manual</button>
+              </div>
+            </div>
+            <div class="pf-canvas" style="padding:14px;height:480px;display:flex;align-items:center;justify-content:center;position:relative">
+              <svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <defs>
+                  <pattern id="h-savana" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#3F6B33" stroke-width="0.6" opacity=".25"/></pattern>
+                  <pattern id="h-confl" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#C73E2E" stroke-width="0.9" opacity=".55"/></pattern>
+                  <pattern id="h-conserv" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(135)"><line x1="0" y1="0" x2="0" y2="6" stroke="#1F6B45" stroke-width="0.7" opacity=".5"/></pattern>
+                </defs>
+                <!-- Polígono Greenfield -->
+                <polygon points="48,40 540,32 562,180 528,360 48,376 24,200" fill="url(#h-savana)" stroke="#3F6B33" stroke-width="2.5"/>
+                <!-- Vértices -->
+                <g font-family="IBM Plex Mono" font-size="11" fill="#1F3A1A" font-weight="600">
+                  <circle cx="48" cy="40" r="4" fill="#3F6B33"/><text x="56" y="42">V1</text>
+                  <circle cx="540" cy="32" r="4" fill="#3F6B33"/><text x="514" y="28">V2</text>
+                  <circle cx="562" cy="180" r="4" fill="#3F6B33"/><text x="568" y="184">V3</text>
+                  <circle cx="528" cy="360" r="4" fill="#3F6B33"/><text x="498" y="378">V4</text>
+                  <circle cx="48" cy="376" r="4" fill="#3F6B33"/><text x="36" y="394">V5</text>
+                  <circle cx="24" cy="200" r="4" fill="#3F6B33"/><text x="2" y="204">V6</text>
+                </g>
+                <!-- Mata sagrada conservação -->
+                <polygon points="380,200 460,194 472,256 384,266" fill="url(#h-conserv)" stroke="#1F6B45" stroke-width="2" stroke-dasharray="6 3"/>
+                <text x="425" y="232" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#1F6B45" font-weight="700">MATA SAGRADA</text>
+                <text x="425" y="246" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#1F6B45">12 ha · ANAC</text>
+                <!-- DUAT 1992 conflito -->
+                <polygon points="60,300 162,294 168,376 64,378" fill="rgba(140,90,31,.18)" stroke="#8C5A1F" stroke-width="2"/>
+                <text x="114" y="338" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#4A2E0E">DUAT-1992-MN-002184</text>
+                <text x="114" y="352" text-anchor="middle" font-family="IBM Plex Sans" font-size="9" fill="#5C4F40">Reg. Manjate Cossa · 2,4 ha</text>
+                <!-- Sobreposição -->
+                <polygon points="64,300 162,294 162,376 64,376" fill="url(#h-confl)" stroke="#C73E2E" stroke-width="1.5"/>
+                <text x="113" y="324" text-anchor="middle" font-family="IBM Plex Sans" font-size="11" fill="#9A2A1F" font-weight="700">SOBREPOSIÇÃO</text>
+                <text x="113" y="338" text-anchor="middle" font-family="IBM Plex Sans" font-size="10" fill="#9A2A1F" font-weight="600">0,82 ha</text>
+              </svg>
+            </div>
+            <div class="pf-ft" style="padding:10px 14px">
+              <span><b>3 240 ha</b> desenhados · perímetro 28,4 km</span>
+              <span>WGS-84 · GPX importado · validado</span>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b style="color:var(--red-700)">⚠ Sobreposição detectada</b></div>
+              <div class="bd">
+                <div class="conflict-card" style="margin:0;padding:12px">
+                  <div class="hd">
+                    <div>
+                      <b style="font-size:12px">DUAT-1992-MN-002184</b>
+                      <div class="meta">Reg. Manjate Cossa · ocupação boa fé · 1992</div>
+                    </div>
+                  </div>
+                  <div class="body" style="font-size:12px;margin-top:6px">Sobreposição de <b>0,82 ha</b> (0,025% do pedido). O sistema impede emissão sobre DUAT alheio sem resolução.</div>
+                </div>
+                <div class="row" style="gap:6px;margin-top:10px;flex-wrap:wrap">
+                  <button class="btn sm">Renunciar 0,82 ha</button>
+                  <button class="btn sm secondary">Negociar com R. Manjate</button>
+                </div>
+                <div class="t-meta" style="margin-top:8px;font-size:11px">Negociação envolve oferta financeira ou troca de terra · supervisionada por SPGC e Tribunal Comunitário · não pode ser coerciva.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b style="color:var(--savanna-800)">Mata sagrada Mussassa</b></div>
+              <div class="bd">
+                <p style="font-size:12px;margin:0 0 8px">12 ha de mata nativa identificados pelo ANAC. Buffer de conservação obrigatório.</p>
+                <span class="cross savanna">cross-ANAC parecer técnico</span>
+                <div class="t-meta" style="margin-top:8px;font-size:11px">Mata fica fora da área plantável mas dentro do DUAT — empresa fica responsável pela protecção e fiscalização durante os 50 anos.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>KPIs do polígono</b></div>
+              <div class="bd">
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Total</span><span class="mono" style="font-weight:600">3 240 ha</span></div>
+                <hr class="hr">
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Plantável</span><span class="mono">3 010 ha</span></div>
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--ink-3)">Estradas</span><span class="mono">220 ha</span></div>
+                <div class="row spread" style="font-size:12px;margin-bottom:6px"><span style="color:var(--savanna-800)">Conservação</span><span class="mono">12 ha</span></div>
+                <hr class="hr">
+                <div class="row spread" style="font-size:12px;color:var(--red-700)"><span>Em conflito</span><span class="mono">0,82 ha</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 4 ─────────────────────── -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h">
+    <div class="sn">Cena 04</div>
+    <div class="lab"><b>Consulta comunitária obrigatória · acta autenticada por régulo</b><span>Sem acta, sem DUAT · Lei 19/97 art. 13 + 17</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/pedido/PED-2026-MN-04218/consulta</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="banner terra" style="margin-bottom:18px">
+          <span class="ic"></span>
+          <div><b>Consulta comunitária é obrigatória.</b> A app não permite avançar sem acta autenticada e validação SMS pelo régulo. <code class="mono" style="font-size:11px">cross-CFJP</code></div>
+        </div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div>
+            <div class="card">
+              <div class="hd"><b>Comunidade afectada · Mussassa</b><span class="badge savanna">consulta agendada</span></div>
+              <div class="bd">
+                <div class="comm-card" style="border:0;padding:0">
+                  <div class="hd" style="padding-bottom:10px">
+                    <div class="ic">RC</div>
+                    <div class="ti"><b>Régulo Mahique de Cheringoma</b><span>Sofala · Cheringoma · cédula CFJP-SO-1042</span></div>
+                  </div>
+                  <div class="body" style="padding-top:10px">
+                    <p style="margin:0 0 6px;font-size:12px">Acta a realizar em 14.03.2026 · 142 chefes de família esperados · 3 dias.</p>
+                    <div class="quote" style="font-size:12px;font-family:var(--f-serif)">"Aceitamos o projecto sob condição de manter os 12 ha de mata sagrada e empregar prioritariamente os jovens da localidade."</div>
+                    <div class="row" style="gap:6px;margin-top:8px;flex-wrap:wrap">
+                      <span class="cross savanna">cross-CFJP autenticação</span>
+                      <span class="cross">cross-NUSS · postos comunitários</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:14px">
+              <div class="hd"><b>Documentos a anexar</b></div>
+              <div class="bd">
+                <table class="table" style="font-size:12px">
+                  <tbody>
+                    <tr><td>Convocatória da consulta</td><td><span class="badge green">anexa ✓</span></td></tr>
+                    <tr><td>Lista de presenças (142)</td><td><span class="badge green">anexa ✓</span></td></tr>
+                    <tr><td>Acta autenticada · PDF</td><td><span class="badge amber">a anexar</span></td></tr>
+                    <tr><td>Validação SMS do régulo</td><td><span class="badge amber">aguarda 14/03</span></td></tr>
+                    <tr><td>Plano de empregabilidade</td><td><span class="badge green">anexo ✓</span></td></tr>
+                    <tr><td>Compromisso conservação mata</td><td><span class="badge green">anexo ✓</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <div class="hd"><b>Compromissos da empresa</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.7">
+                  <li><b>84 postos directos</b> · 60% jovens locais &lt; 35 anos · cross-NUSS</li>
+                  <li><b>240 postos sazonais</b> · prioridade absoluta a residentes da localidade</li>
+                  <li><b>12 ha mata sagrada Mussassa</b> · zero corte · cerca + sinalização</li>
+                  <li><b>2,4% royalty produção</b> · transferida directamente à comunidade · M-Pesa</li>
+                  <li><b>Posto sanitário</b> · construir e equipar · cross-NUS</li>
+                  <li><b>Furos de água · 4 unidades</b> · cross-Águas (futuro pacote)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top:14px">
+              <div class="hd"><b>Stakeholders comunitários</b></div>
+              <div class="bd">
+                <div class="row-card" style="margin-bottom:6px">
+                  <div class="av sm">RC</div>
+                  <div class="body"><b>Régulo Cheringoma</b><span>autoridade tradicional · cédula CFJP-SO-1042</span></div>
+                </div>
+                <div class="row-card" style="margin-bottom:6px">
+                  <div class="av sm">CL</div>
+                  <div class="body"><b>Chefe da Localidade Mussassa</b><span>autoridade administrativa</span></div>
+                </div>
+                <div class="row-card" style="margin-bottom:6px">
+                  <div class="av sm">CC</div>
+                  <div class="body"><b>Comissão de fiscalização comunitária</b><span>5 chefes de família eleitos</span></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn lg block" style="margin-top:14px;background:var(--savanna-700)">Submeter consulta para validação régulo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 5 ─────────────────────── -->
+<section class="scene" id="cena5">
+  <div class="scene-h">
+    <div class="sn">Cena 05</div>
+    <div class="lab"><b>Investimento estrangeiro · CPI parecer obrigatório</b><span>USD 18,4 M · &gt; USD 500 k dispara avaliação CPI · prazo 60 dias</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/pedido/PED-2026-MN-04218/cpi</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:18px">
+          <div class="card">
+            <div class="hd"><b>Centro de Promoção de Investimentos (CPI)</b><span class="badge amber">parecer em curso</span></div>
+            <div class="bd">
+              <div class="row spread" style="margin-bottom:14px">
+                <div>
+                  <div class="t-overline">Investimento total</div>
+                  <div style="font-size:32px;font-weight:600;font-family:var(--f-mono);color:var(--terra-900)">USD 18 400 000</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="t-overline">Conversão MT</div>
+                  <div style="font-size:18px;font-weight:600;font-family:var(--f-mono)">≈ 1,18 mil M MZN</div>
+                </div>
+              </div>
+
+              <div class="t-overline" style="margin-bottom:8px">Composição (CPI auto-detecta)</div>
+              <table class="table" style="font-size:12px">
+                <thead><tr><th>Componente</th><th>USD</th><th>%</th></tr></thead>
+                <tbody>
+                  <tr><td>Plantação inicial · sementes + plantação</td><td class="mono">5 200 000</td><td class="mono">28%</td></tr>
+                  <tr><td>Maquinaria florestal (importada)</td><td class="mono">4 800 000</td><td class="mono">26%</td></tr>
+                  <tr><td>Estradas internas + infraestrutura</td><td class="mono">3 200 000</td><td class="mono">17%</td></tr>
+                  <tr><td>RH · 7 anos primeiros</td><td class="mono">3 800 000</td><td class="mono">21%</td></tr>
+                  <tr><td>Compromissos comunitários</td><td class="mono">820 000</td><td class="mono">4%</td></tr>
+                  <tr><td>Imprevistos / capital de giro</td><td class="mono">580 000</td><td class="mono">3%</td></tr>
+                </tbody>
+              </table>
+
+              <div class="t-overline" style="margin-top:18px;margin-bottom:8px">Origem do capital</div>
+              <div class="row" style="gap:8px;flex-wrap:wrap">
+                <span class="badge cobalt">Países Baixos · 62%</span>
+                <span class="badge cobalt">África do Sul · 28%</span>
+                <span class="badge terra">Moçambique · 10%</span>
+              </div>
+
+              <div class="banner amber" style="margin-top:14px;font-size:12px">
+                <span class="ic"></span>
+                <div>Capital estrangeiro &gt; 50% dispara também <code class="mono" style="font-size:11px">cross-Bo Moçambique</code> (regulação cambial) e regime de transferência de lucros 7 anos protegido.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Parecer CPI</b></div>
+              <div class="bd">
+                <div class="timeline">
+                  <div class="ev done"><span class="dot"></span><div class="body"><b style="font-size:12px">12.03.2026</b><div class="t-meta" style="font-size:11px">Pedido recebido pelo CPI</div></div></div>
+                  <div class="ev done"><span class="dot"></span><div class="body"><b style="font-size:12px">15.03.2026</b><div class="t-meta" style="font-size:11px">Análise sectorial · agro-florestal</div></div></div>
+                  <div class="ev now"><span class="dot"></span><div class="body"><b style="font-size:12px">22.03.2026</b><div class="t-meta" style="font-size:11px">Reunião técnica MEF + MTA + CPI</div></div></div>
+                  <div class="ev"><span class="dot"></span><div class="body"><b style="font-size:12px">prevista 14.04</b><div class="t-meta" style="font-size:11px">Decisão final · 60 dias</div></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Critérios de aprovação CPI</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li>Geração postos &gt; 50 directos · ✓ (84)</li>
+                  <li>Componente local ≥ 30% · ⚠ (10%)</li>
+                  <li>Conteúdo nacional · subcontratação local · ✓</li>
+                  <li>Transferência de tecnologia · ✓ (formação 7 anos)</li>
+                  <li>Compromisso comunitário ≥ 1% · ✓ (4,5%)</li>
+                  <li>Plano ambiental aprovado · em curso</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="banner red" style="font-size:12px">
+              <span class="ic"></span>
+              <div><b>Componente local 10% &lt; mínimo 30%</b> · CPI provavelmente exigirá plano de aumento para 30% até ao ano 5.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 6 ─────────────────────── -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h">
+    <div class="sn">Cena 06</div>
+    <div class="lab"><b>Acompanhamento · pareceres em paralelo</b><span>SPGC Manica + ANAC + CPI + CFJP · estado consolidado</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/pedido/PED-2026-MN-04218</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px">
+          <div>
+            <div class="t-overline">Pedido</div>
+            <h2 class="t-h2" style="margin:4px 0">PED-2026-MN-04218 · Báruè Norte</h2>
+            <div class="t-meta">Submetido 12.03.2026 · 18 meses prazo legal · 32% completo</div>
+          </div>
+          <div class="row" style="gap:6px"><span class="duat-status pedido">Em curso</span></div>
+        </div>
+
+        <div class="grid g-3" style="gap:14px">
+          <div class="kpi"><div class="lbl">Dias decorridos</div><div class="num">14</div><div class="delta">de 540 (18 meses)</div></div>
+          <div class="kpi"><div class="lbl">Pareceres recebidos</div><div class="num">2 / 5</div><div class="delta">SPGC + ANAC</div></div>
+          <div class="kpi"><div class="lbl">Pendências bloqueadoras</div><div class="num" style="color:var(--red-700)">2</div><div class="delta down">conflito 0,82 ha · CPI 10% local</div></div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="hd"><b>Pareceres em paralelo</b><span class="t-meta">Atualizado há 22 minutos</span></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Entidade</th><th>Tipo</th><th>Estado</th><th>Prazo</th><th>Cross</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><b>SPGC Manica</b></td>
+                  <td>Parecer técnico cadastral</td>
+                  <td><span class="badge amber">em revisão</span></td>
+                  <td class="mono">28.04.2026</td>
+                  <td><span class="cross">cross-SPGC</span></td>
+                </tr>
+                <tr>
+                  <td><b>ANAC</b></td>
+                  <td>Parecer ambiental · mata Mussassa</td>
+                  <td><span class="badge green">favorável condicionado</span></td>
+                  <td class="mono">14.03.2026</td>
+                  <td><span class="cross savanna">cross-ANAC</span></td>
+                </tr>
+                <tr>
+                  <td><b>CPI</b></td>
+                  <td>Parecer investimento estrangeiro</td>
+                  <td><span class="badge amber">em curso</span></td>
+                  <td class="mono">14.04.2026</td>
+                  <td><span class="cross">cross-CPI</span></td>
+                </tr>
+                <tr>
+                  <td><b>CFJP · Régulo Mahique</b></td>
+                  <td>Validação acta comunitária</td>
+                  <td><span class="badge amber">aguarda 14.03</span></td>
+                  <td class="mono">14.03.2026</td>
+                  <td><span class="cross savanna">cross-CFJP</span></td>
+                </tr>
+                <tr>
+                  <td><b>Tribunal Comunitário Báruè</b></td>
+                  <td>Conflito 0,82 ha vs Reg. Manjate</td>
+                  <td><span class="badge red">audiência marcada</span></td>
+                  <td class="mono">22.04.2026</td>
+                  <td><span class="cross warn">cross-TJ</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid g-2" style="margin-top:18px;gap:14px">
+          <div class="card">
+            <div class="hd"><b>Histórico do pedido</b></div>
+            <div class="bd">
+              <div class="timeline">
+                <div class="ev done"><span class="dot"></span><div class="body"><b>12.03.2026</b> · Pedido submetido · GreenfieldForestry</div></div>
+                <div class="ev done"><span class="dot"></span><div class="body"><b>13.03.2026</b> · Conflito 0,82 ha detectado automaticamente</div></div>
+                <div class="ev done"><span class="dot"></span><div class="body"><b>15.03.2026</b> · ANAC parecer técnico recebido</div></div>
+                <div class="ev now"><span class="dot"></span><div class="body"><b>22.03.2026</b> · Reunião CPI marcada</div></div>
+                <div class="ev amber"><span class="dot"></span><div class="body"><b>14.04.2026</b> · Decisão CPI · prazo</div></div>
+                <div class="ev"><span class="dot"></span><div class="body"><b>22.04.2026</b> · Tribunal comunitário · conflito Manjate</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="hd"><b>Acções pendentes</b></div>
+            <div class="bd">
+              <div class="banner red" style="font-size:12px;margin-bottom:10px"><span class="ic"></span><div><b>Conflito 0,82 ha</b> · proposta de troca a oferecer ao Reg. Manjate antes de tribunal</div></div>
+              <div class="banner amber" style="font-size:12px;margin-bottom:10px"><span class="ic"></span><div><b>CPI · componente local</b> · revisar plano para 30% até ano 5</div></div>
+              <div class="banner terra" style="font-size:12px"><span class="ic"></span><div><b>Acta comunitária</b> · upload aguarda validação SMS régulo (14.03)</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CENA 7 ─────────────────────── -->
+<section class="scene" id="cena7">
+  <div class="scene-h">
+    <div class="sn">Cena 07</div>
+    <div class="lab"><b>DUAT empresarial emitido · documento serifado</b><span>DUAT-2026-MN-007421 · 3 240 ha · vigente até 2076</span></div>
+  </div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <div class="url">empresa.terrasdigitais.gov.mz/duat/DUAT-2026-MN-007421</div>
+      </div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="banner green" style="margin-bottom:18px">
+          <span class="ic"></span>
+          <div><b>DUAT emitido em 14.05.2026</b> · 64 dias após submissão · todos os pareceres favoráveis · conflito 0,82 ha resolvido por cessão (Reg. Manjate aceitou troca de 1,5 ha em zona melhor irrigada).</div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:18px">
+          <div class="duat-card" style="height:fit-content">
+            <span class="seal" style="top:14px;right:14px">DINAGECA</span>
+            <div class="lbl">DUAT empresarial · agro-florestal</div>
+            <div class="num">DUAT-2026-MN-007421</div>
+            <div class="ti">Greenfield Forestry SA</div>
+            <div class="meta">Manica · Báruè · NUEL E-2021-MAP-008214</div>
+            <div class="ha"><span class="v">3 240</span><span class="u">ha · agrícola+conservação</span></div>
+            <div class="mini-map">
+              <svg viewBox="0 0 60 60">
+                <rect x="0" y="0" width="60" height="60" fill="#FBF0DD"/>
+                <path d="M 6 8 L 54 6 L 56 28 L 50 54 L 8 52 L 4 28 Z" fill="rgba(82,127,68,.22)" stroke="#3F6B33" stroke-width="1.6"/>
+                <circle cx="6" cy="8" r="2" fill="#3F6B33"/><circle cx="54" cy="6" r="2" fill="#3F6B33"/>
+                <circle cx="56" cy="28" r="2" fill="#3F6B33"/><circle cx="50" cy="54" r="2" fill="#3F6B33"/>
+                <circle cx="8" cy="52" r="2" fill="#3F6B33"/><circle cx="4" cy="28" r="2" fill="#3F6B33"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="duat-doc">
+            <div class="hd">
+              <div class="ti">Direito de Uso e Aproveitamento da Terra</div>
+              <div class="sub">DUAT-2026-MN-007421 · Lei n.º 19/97</div>
+            </div>
+            <div class="bd">
+              <p style="margin:0 0 12px"><b>O Director Geral da DINAGECA</b>, em nome do Estado moçambicano, atribui à empresa abaixo identificada o Direito de Uso e Aproveitamento da Terra:</p>
+              <p style="margin:0 0 12px"><b>Titular:</b> Greenfield Forestry SA · NUEL E-2021-MAP-008214 · cross-NUEL ✓<br>
+              <b>Local:</b> Manica · Báruè · Cheringoma · Mussassa<br>
+              <b>Área:</b> 3 240 hectares · uso agrícola (3 010 ha) + conservação (12 ha)<br>
+              <b>Vigência:</b> 50 anos · 14.05.2026 a 14.05.2076 · renovável</p>
+              <p style="margin:0 0 12px;font-size:12px;color:var(--ink-3)">Sujeito aos compromissos comunitários da acta de Mussassa de 14.03.2026, ao plano ambiental ANAC, e ao plano de componente local CPI 30% até 2031. Mata sagrada de Mussassa (12 ha) protegida por cláusula adicional.</p>
+            </div>
+            <div class="ft">
+              <span class="mono">Maputo · 14.05.2026</span>
+              <span class="seal brass">DINAGECA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid g-3" style="gap:14px;margin-top:18px">
+          <div class="kpi"><div class="lbl">Taxa anual estimada</div><div class="num">658 200 <span style="font-size:14px">MT</span></div><div class="delta">3 010 ha × 220 MT/ha</div></div>
+          <div class="kpi"><div class="lbl">Postos comprometidos</div><div class="num">324</div><div class="delta up">84 directos + 240 sazonais</div></div>
+          <div class="kpi"><div class="lbl">Royalty comunitário</div><div class="num">4,5%</div><div class="delta">M-Pesa directo · cross-NUSS</div></div>
+        </div>
+
+        <div class="row" style="gap:8px;margin-top:18px;flex-wrap:wrap">
+          <span class="cross ok">cross-NUEL ✓</span>
+          <span class="cross ok">cross-CPI parecer favorável</span>
+          <span class="cross savanna">cross-ANAC condicionado</span>
+          <span class="cross ok">cross-CFJP acta autenticada</span>
+          <span class="cross ok">cross-TJ conflito resolvido por cessão</span>
+          <span class="cross">cross-AT taxa anual</span>
+          <span class="cross">cross-NUSS postos comunitários</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;border-top:1px solid var(--line);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Empresa · Portal</span><small>Terras Digitais · v0.3</small></span></a>
+      <p class="t-meta" style="max-width:680px;margin-top:10px">Superfície 2 de 5 · DESIGN-empresa.md · cross-NUEL · cross-NUIT · cross-CPI · cross-ANAC · cross-CFJP · cross-TJ · cross-AT · cross-NUSS. Empresa fictícia "Greenfield Forestry SA" e Régulo Mahique de Cheringoma são ilustrativos.</p>
+    </div>
+    <div class="row" style="gap:16px">
+      <a href="cidadao.html" class="btn ghost sm">‹ Cidadão</a>
+      <a href="spgc.html" class="btn ghost sm">Próxima · SPGC ›</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
