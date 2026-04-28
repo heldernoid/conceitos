@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Operador / Portal — Transportes Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .panel { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-2); }
+  .panel .ph { padding: 12px 16px; border-bottom: 1px solid var(--line-2); display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+  .panel .pb { padding: 16px; }
+  .twocol { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+
+  .sceneNav { position: sticky; top: 64px; z-index: 10; background: rgba(244, 246, 249, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); padding: 10px 24px; }
+  .sceneNav .inner { max-width: 1440px; margin: 0 auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .sceneNav a { padding: 6px 10px; border-radius: 2px; color: var(--ink-2); font-size: 12px; font-weight: 500; border: 1px solid var(--line); background: var(--paper); }
+  .sceneNav a:hover { background: var(--bg-2); text-decoration: none; }
+  .sceneNav .lbl { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-right: 8px; }
+  .sceneTitle { padding: 24px 24px 0; max-width: 1440px; margin: 0 auto; width: 100%; }
+  .sceneTitle .num { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; }
+  .sceneTitle h2 { font-size: 22px; font-weight: 600; margin: 6px 0 4px; letter-spacing: -.005em; }
+  .sceneTitle p { margin: 0; color: var(--ink-3); font-size: 13px; max-width: 760px; line-height: 1.5; }
+  .scene-end { padding: 24px 24px 12px; max-width: 1440px; margin: 0 auto; width: 100%; }
+  .scene-end .nx { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); margin-top: 24px; }
+  .anchor { display: block; height: 0; visibility: hidden; margin-top: -130px; padding-top: 130px; }
+  .at-body { padding: 20px 24px; max-width: 1440px; margin: 0 auto; width: 100%; }
+
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--r-2); overflow: hidden; }
+  .seg button { height: 32px; padding: 0 12px; border: 0; background: var(--paper); color: var(--ink-2); cursor: pointer; font-size: 12px; font-family: inherit; border-right: 1px solid var(--line); }
+  .seg button:last-child { border-right: 0; }
+  .seg button.on { background: var(--cobalt-100); color: var(--cobalt-800); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTC · INATTER · DTrD</span><span class="sep">·</span>
+  <span>Operador / Portal v0.3</span>
+  <span style="margin-left:auto">DESIGN-operador.md</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Operador / Portal</span><small>Frota Sumbane Lda · NUEL E-2018-MAP-014218</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="condutor.html">Condutor</a>
+    <a href="operador.html" class="active">Operador</a>
+    <a href="inatter.html">INATTER</a>
+    <a href="prm.html">PRM-Trânsito</a>
+    <a href="multimodal.html">Multimodal</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Online · 28 viaturas</span>
+    <div class="idbadge"><span class="av sm">PS</span><div class="who"><b>Pedro Sumbane</b><span>Gerente · Frota Sumbane Lda</span></div></div>
+  </div>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Painel</a>
+    <a href="#cena-2">2. Frota · 28 viaturas</a>
+    <a href="#cena-3">3. Onboarding motorista</a>
+    <a href="#cena-4">4. Alvará · renovação</a>
+    <a href="#cena-5">5. Sinistro em curso</a>
+    <a href="#cena-6">6. Multas · atribuição</a>
+  </div>
+</nav>
+
+<!-- CENA 1 -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Painel · Frota Sumbane Lda · 28 viaturas · 8 motoristas</div>
+    <h2>Alvará a vencer em 30 dias · 2 multas pendentes · 1 sinistro em curso · risco médio</h2>
+    <p>Visão directorial. KPIs por status · próximos prazos · risco da empresa.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="grid g-4" style="margin-bottom: 20px">
+      <div class="kpi"><div class="lbl">Frota activa</div><div class="num">28</div><div class="delta">22 chapas · 4 machibombos · 2 táxis</div></div>
+      <div class="kpi"><div class="lbl">Motoristas</div><div class="num">8</div><div class="delta">+2 em onboarding</div></div>
+      <div class="kpi"><div class="lbl">Alvarás</div><div class="num" style="color: var(--amber-c-700)">28</div><div class="delta">1 vence em 30 dias</div></div>
+      <div class="kpi"><div class="lbl">Multas pendentes</div><div class="num" style="color: var(--red-700)">2</div><div class="delta">total 14 200 MZN</div></div>
+    </div>
+
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Próximos prazos · 90 dias</b><span class="seg"><button class="on">Próximos</button><button>Histórico</button></span></div>
+        <table class="table">
+          <thead><tr><th>Data</th><th>Acção</th><th>Detalhe</th><th>Acção</th></tr></thead>
+          <tbody>
+            <tr style="background: var(--amber-50); cursor: pointer" onclick="location.hash='#cena-4'"><td class="mono">28 Mai</td><td><b>Alvará TP a vencer</b><div class="t-meta">AT-2024-CHAPA-04218 · MQR 482 MP</div></td><td><span class="badge amber" style="font-size: 10px"><span class="dot"></span>30 dias</span></td><td><a href="#cena-4" class="btn sm">Renovar →</a></td></tr>
+            <tr><td class="mono">12 Mai</td><td>IPO · 4 viaturas</td><td><div class="row" style="gap: 4px"><span class="plate sm"><span class="country">MZ</span><span class="num">AAB 184 MP</span></span><span class="t-meta">+3</span></div></td><td><a href="#" class="btn sm secondary">Marcar</a></td></tr>
+            <tr style="background: var(--red-50); cursor: pointer" onclick="location.hash='#cena-5'"><td class="mono">14 Abr</td><td><b>Sinistro em curso</b><div class="t-meta">INC-2026-MAP-04218 · MQR 482 MP</div></td><td><span class="badge red" style="font-size: 10px"><span class="dot"></span>Em curso 14 dias</span></td><td><a href="#cena-5" class="btn sm">Acompanhar →</a></td></tr>
+            <tr><td class="mono">31 Jul</td><td>IUC 2026 · todas</td><td>Total estimado <b class="mono">182 400 MZN</b></td><td><a href="#" class="btn sm secondary">Pré-calcular</a></td></tr>
+            <tr><td class="mono">14 Ago</td><td>Carta · J. Mahique</td><td>Renovação obrigatória</td><td><a href="#" class="btn sm secondary">Notificar</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Risk meter da empresa</b></div>
+          <div class="pb col">
+            <div class="risk med"><div class="level"><span></span><span></span><span></span></div><div><b>Risco médio</b><div class="t-meta">Chapa-100 · 1 sinistro Q1 · 2 multas pendentes</div></div></div>
+            <hr class="hr">
+            <div class="t-overline">Factores</div>
+            <div class="col" style="gap: 6px; font-size: 12.5px; margin-top: 6px">
+              <div class="row spread"><span>IUC em mora</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></div>
+              <div class="row spread"><span>IPO da frota</span><span class="badge amber" style="font-size: 10px"><span class="dot"></span>4 a vencer</span></div>
+              <div class="row spread"><span>Sinistros 12 meses</span><span class="badge amber" style="font-size: 10px"><span class="dot"></span>2 (1 grave)</span></div>
+              <div class="row spread"><span>Cartas dos motoristas</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>8/8 válidas</span></div>
+              <div class="row spread"><span>Denúncias anónimas</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>0</span></div>
+              <div class="row spread"><span>INSS dos motoristas</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia · cross-Trabalho</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Distribuição da frota</b></div>
+          <div class="pb col" style="gap: 8px; font-size: 12.5px">
+            <div class="row spread"><span class="mode chapa">Chapa-100 · 22</span><span class="mono">79%</span></div>
+            <div class="bar"><div class="fill" style="width: 79%; background: var(--mode-chapa)"></div></div>
+            <div class="row spread"><span class="mode passageiro">Machibombo · 4</span><span class="mono">14%</span></div>
+            <div class="bar"><div class="fill" style="width: 14%; background: var(--mode-passageiro)"></div></div>
+            <div class="row spread"><span class="mode taxi">Táxi · 2</span><span class="mono">7%</span></div>
+            <div class="bar"><div class="fill" style="width: 7%; background: var(--mode-taxi)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">RBAC · vista de gerente. RH vê só motoristas. Financeiro vê multas/IUC.</span><a class="btn secondary sm" href="#cena-2">Frota →</a></div></div>
+</section>
+
+<!-- CENA 2 -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F · Frota · 28 viaturas com matrícula MZ</div>
+    <h2>Lista filtrável · IPO/IUC/seguro/alvará por viatura · drilldown completo</h2>
+    <p>Cada linha mostra matrícula MZ, modo, motorista habitual, prazos. Clicar abre detalhe completo.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel">
+      <div class="ph">
+        <b>Frota · 28 viaturas activas</b>
+        <div class="row">
+          <span class="seg"><button class="on">Todas (28)</button><button>Chapas (22)</button><button>Machibombos (4)</button><button>Táxis (2)</button></span>
+          <button class="btn sm secondary">⤓ CSV</button>
+          <button class="btn sm">+ Nova viatura</button>
+        </div>
+      </div>
+      <table class="table">
+        <thead><tr><th>Matrícula</th><th>Modo</th><th>Modelo</th><th>Motorista</th><th>IPO</th><th>IUC</th><th>Alvará</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr style="background: var(--amber-50); cursor: pointer">
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">MQR 482 MP</span></span></td>
+            <td><span class="mode chapa">Chapa</span></td>
+            <td>Toyota Hiace · 2018</td>
+            <td>Carlos Mahique</td>
+            <td><span class="t-meta" style="color: var(--amber-c-700)"><b>14 dias</b></span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge amber" style="font-size: 10px"><span class="dot"></span>30 dias</span></td>
+            <td><span class="badge"><span class="dot"></span>Activa</span></td>
+          </tr>
+          <tr>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">AAB 184 MP</span></span></td>
+            <td><span class="mode chapa">Chapa</span></td>
+            <td>Toyota Hiace · 2019</td>
+            <td>António Tembe</td>
+            <td><span class="t-meta">12 Out</span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></td>
+            <td><span class="badge"><span class="dot"></span>Activa</span></td>
+          </tr>
+          <tr style="background: var(--red-50); cursor: pointer" onclick="location.hash='#cena-5'">
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">QPL 218 MP</span></span></td>
+            <td><span class="mode chapa">Chapa</span></td>
+            <td>Toyota Hiace · 2020</td>
+            <td>Júlia Sumane</td>
+            <td><span class="t-meta">22 Jun</span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></td>
+            <td><span class="badge red" style="font-size: 10px"><span class="dot"></span>Sinistro</span></td>
+          </tr>
+          <tr>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">MAC 942 MP</span></span></td>
+            <td><span class="mode passageiro">Machib.</span></td>
+            <td>Hyundai County · 2017</td>
+            <td>José Macuácua</td>
+            <td><span class="t-meta">14 Set</span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></td>
+            <td><span class="badge"><span class="dot"></span>Activa</span></td>
+          </tr>
+          <tr>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">TAX 184 MP</span></span></td>
+            <td><span class="mode taxi">Táxi</span></td>
+            <td>Toyota Corolla · 2021</td>
+            <td>Felisberto Tembe</td>
+            <td><span class="t-meta">8 Jul</span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></td>
+            <td><span class="badge"><span class="dot"></span>Activa</span></td>
+          </tr>
+          <tr>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">MAT 421 MP</span></span></td>
+            <td><span class="mode chapa">Chapa</span></td>
+            <td>Toyota Hiace · 2017</td>
+            <td>—</td>
+            <td><span class="t-meta">8 Mai</span></td>
+            <td><span class="t-meta">31 Jul</span></td>
+            <td><span class="badge green" style="font-size: 10px"><span class="dot"></span>Em dia</span></td>
+            <td><span class="badge amber" style="font-size: 10px"><span class="dot"></span>Reparação</span></td>
+          </tr>
+          <tr>
+            <td colspan="7" class="t-meta" style="text-align: center"><i>… 22 outras viaturas</i></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Painel</a><a class="btn secondary sm" href="#cena-3">Onboarding →</a></div></div>
+</section>
+
+<!-- CENA 3 -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F2 — Onboarding novo motorista · cross-INATTER · cross-Trabalho</div>
+    <h2>Manuel Cossa · carta categoria D1 ✓ · contracto profissional · NUSS atribuído</h2>
+    <p>Cross-eBI valida BI · cross-INATTER valida carta · cross-Trabalho lavra contracto + INSS.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel">
+      <div class="ph">
+        <b>Onboarding · novo motorista</b>
+        <div class="stepper">
+          <div class="step done"><div class="n">1</div>Identidade</div><div class="ln"></div>
+          <div class="step done"><div class="n">2</div>Carta válida</div><div class="ln"></div>
+          <div class="step active"><div class="n">3</div>Contracto · viatura</div><div class="ln"></div>
+          <div class="step"><div class="n">4</div>Submeter</div>
+        </div>
+      </div>
+      <div class="pb">
+        <div class="grid g-2" style="gap: 24px">
+
+          <div>
+            <div class="t-overline" style="margin-bottom: 8px">Identidade · cross-eBI</div>
+            <div class="card"><div class="bd">
+              <div class="row" style="gap: 14px">
+                <span class="av lg">MC</span>
+                <div>
+                  <div style="font-size: 16px; font-weight: 600">Manuel Cossa Sitole</div>
+                  <div class="t-meta">BI 110100884291 · 38 anos · Bairro Inhagoia, Maputo</div>
+                </div>
+              </div>
+              <hr class="hr">
+              <div class="banner green" style="padding: 10px; font-size: 12.5px"><span class="ic"></span><div><b>Identidade verificada via eBI.</b></div></div>
+            </div></div>
+
+            <div class="card" style="margin-top: 14px"><div class="bd">
+              <div class="t-overline">Carta de condução · cross-INATTER</div>
+              <hr class="hr">
+              <div class="row" style="gap: 14px; align-items: flex-start">
+                <div class="driver-card" style="flex: 1; padding: 14px">
+                  <div class="lbl">Carta vigente</div>
+                  <div class="num" style="font-size: 13px">CD-2024-NPL-018421</div>
+                  <div class="ti" style="font-size: 13px">Manuel Cossa Sitole</div>
+                  <div class="meta">Cat. B · C · D1 · 2034</div>
+                </div>
+              </div>
+              <hr class="hr">
+              <div class="banner green" style="padding: 10px; font-size: 12.5px"><span class="ic"></span><div><b>Categoria D1 confirmada · pode conduzir chapa-100.</b><br/>Sem multas pendentes · sem suspensões.</div></div>
+            </div></div>
+
+            <div class="card" style="margin-top: 14px"><div class="bd">
+              <div class="t-overline">Antecedentes laborais · cross-Trabalho NUSS</div>
+              <div class="col" style="gap: 6px; margin-top: 8px; font-size: 12.5px">
+                <div class="row spread"><span>Sumbane Transportes Lda · 2019-2024</span><span class="badge green" style="font-size: 10px">5 anos</span></div>
+                <div class="row spread"><span>Limitada · Pequenos Transportes</span><span class="badge" style="font-size: 10px">2017-2019</span></div>
+                <div class="row spread" style="color: var(--good-700)"><span><b>Sem incidentes graves</b></span><span></span></div>
+              </div>
+            </div></div>
+          </div>
+
+          <div>
+            <div class="t-overline" style="margin-bottom: 8px">Contracto profissional · cross-Trabalho</div>
+            <div class="auto">
+              <div class="hd">
+                <div class="ti" style="font-family: var(--f-serif); font-size: 14px">Contracto Profissional · Motorista</div>
+                <div class="t-meta" style="margin-top: 4px">CT-2026-MAP-018421</div>
+              </div>
+              <div class="bd" style="font-family: var(--f-serif); font-size: 13px; line-height: 1.7; padding: 18px 22px">
+                <p style="margin: 0 0 12px"><b>Entre:</b> <b>Frota Sumbane, Lda</b> (NUEL E-2018-MAP-014218) e <b>Manuel Cossa Sitole</b> (BI 110100884291).</p>
+                <p style="margin: 0 0 12px"><b>1.</b> Admitido como <b>Motorista de Chapa-100</b>, categoria profissional especial (Lei 23/2007 + Lei 19/2007).</p>
+                <p style="margin: 0 0 12px"><b>2.</b> Salário base: <b>16 800 MZN/mês</b> + comissão de receita acima de 84 000 MZN/mês (10%).</p>
+                <p style="margin: 0 0 12px"><b>3.</b> Horário: máximo <b>9 horas/dia</b> e 48 horas/semana (Lei 19/2007 art. 47 — limite condução profissional).</p>
+                <p style="margin: 0 0 12px"><b>4.</b> Viatura atribuída: <b style="font-family: var(--f-mono)">MAT 421 MP</b> (Toyota Hiace 2017).</p>
+                <p style="margin: 0">Sem termo · início 2 Mai 2026 · período experimental 90 dias.</p>
+              </div>
+              <div class="ft">
+                <span style="font-size: 11px"><b>Empregador:</b> P. Sumbane<br/><b>Trabalhador:</b> Manuel Cossa<br/><span class="t-meta">Aguarda assinatura</span></span>
+                <span class="seal">DTrD-MTC</span>
+              </div>
+            </div>
+
+            <div class="card" style="margin-top: 14px"><div class="bd">
+              <div class="t-overline">Após assinatura · automatico</div>
+              <div class="col" style="gap: 6px; margin-top: 8px; font-size: 12.5px">
+                <div class="row spread"><span>1. Contracto selado · cross-Trabalho</span><span class="t-meta">Auto</span></div>
+                <div class="row spread"><span>2. NUSS atribuído · cross-INSS</span><span class="t-meta">24h</span></div>
+                <div class="row spread"><span>3. Manuel notificado · Trabalhador app</span><span class="t-meta">Imediato</span></div>
+                <div class="row spread"><span>4. Viatura MAT 421 MP atribuída</span><span class="t-meta">Imediato</span></div>
+                <div class="row spread"><span>5. Adicionado à folha de Maio</span><span class="t-meta">Auto</span></div>
+                <div class="row spread"><span>6. INATTER actualiza registo profissional</span><span class="t-meta">48h</span></div>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ft" style="padding: 12px 16px; border-top: 1px solid var(--line-2); display: flex; justify-content: space-between">
+        <button class="btn ghost">Gravar rascunho</button>
+        <div class="row"><button class="btn secondary">Pré-visualizar</button><button class="btn">Enviar para assinatura</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Frota</a><a class="btn secondary sm" href="#cena-4">Alvará →</a></div></div>
+</section>
+
+<!-- CENA 4 -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F3 — Renovar alvará TP · MQR 482 MP · 30 dias</div>
+    <h2>Alvará AT-2024-CHAPA-04218 · cross-INATTER valida pré-requisitos · 24h online</h2>
+    <p>Antes da renovação online, sistema verifica IPO, IUC, seguro e ausência de multas em mora.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Renovar alvará · MQR 482 MP</b><span class="badge amber"><span class="dot"></span>Pré-preenchido</span></div>
+        <div class="pb">
+          <div class="banner amber" style="margin-bottom: 14px"><span class="ic"></span><div><b>Alvará AT-2024-CHAPA-04218 termina em 30 dias.</b> Renovação online disponível se todos os pré-requisitos estiverem em ordem.</div></div>
+
+          <div class="grid g-2" style="gap: 14px">
+            <div class="kv"><span class="k">Empresa</span><span class="v">Frota Sumbane, Lda</span></div>
+            <div class="kv"><span class="k">NUIT</span><span class="v mono">400 218 421</span></div>
+            <div class="kv"><span class="k">Viatura</span><span class="v"><span class="plate sm"><span class="country">MZ</span><span class="num">MQR 482 MP</span></span></span></div>
+            <div class="kv"><span class="k">Modo</span><span class="v"><span class="mode chapa">Chapa-100</span></span></div>
+            <div class="kv"><span class="k">Rota</span><span class="v">Maputo (Praça 25 Junho) — Matola (T3)</span></div>
+            <div class="kv"><span class="k">Tarifa autorizada</span><span class="v mzn">14 MZN/passageiro</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom: 10px">Pré-requisitos · cross-INATTER · cross-Finanças</div>
+          <div class="col" style="gap: 8px; font-size: 13px">
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>IPO válida</b> · vigente até 22 Jun 2026</span><span class="t-meta">cross-INATTER</span></div>
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>IUC pago</b> · 2026 · 8 200 MZN</span><span class="t-meta">cross-Finanças</span></div>
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>Seguro válido</b> · Hollard MZ · Out 2026</span><span class="t-meta">cross-seguradora</span></div>
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>Sem multas em mora</b></span><span class="t-meta">cross-INATTER</span></div>
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>Motorista habitual com carta D1 válida</b> · Carlos Mahique</span><span class="t-meta">cross-INATTER</span></div>
+            <div class="row" style="gap: 10px; padding: 8px 12px; background: var(--good-100); border: 1px solid #BDDFCB; border-radius: 4px"><span style="color: var(--good-700)">✓</span><span style="flex: 1"><b>Empresa em dia INSS</b></span><span class="t-meta">cross-Trabalho</span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom: 8px">Taxa</div>
+          <div style="background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 14px; font-family: var(--f-mono); font-size: 13px">
+            <div class="row spread"><span>Renovação alvará TP · 12 meses</span><span>2 800,00</span></div>
+            <div class="row spread"><span>Selo INATTER</span><span>180,00</span></div>
+            <hr class="hr">
+            <div class="row spread" style="font-weight: 600"><span>Total</span><span style="color: var(--good-700)">2 980,00 MZN</span></div>
+          </div>
+        </div>
+        <div class="ft" style="padding: 12px 16px; border-top: 1px solid var(--line-2); display: flex; justify-content: space-between">
+          <button class="btn ghost">Cancelar</button>
+          <button class="btn">Renovar · pagar via SISTAFE</button>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Histórico do alvará</b></div>
+          <div class="pb">
+            <div class="timeline">
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b>2018 · Emissão original</b>
+                <div class="t-meta">AT-2018-CHAPA-04218</div>
+              </div></div>
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b>2020 · Renovação</b>
+                <div class="t-meta">Sem incidentes</div>
+              </div></div>
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b>2022 · Renovação</b>
+                <div class="t-meta">Sem incidentes</div>
+              </div></div>
+              <div class="ev done amber"><div class="dot"></div><div class="body">
+                <b>2024 · Renovação</b>
+                <div class="t-meta">1 multa pendente regularizada</div>
+              </div></div>
+              <div class="ev now"><div class="dot"></div><div class="body">
+                <b>2026 · Em renovação</b>
+                <div class="t-meta">Vigente até 28 Mai · pré-requisitos ✓</div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Cross-system</b></div>
+          <div class="pb col" style="font-size: 12.5px">
+            <div class="row spread"><span>INATTER · valida e emite</span><span class="badge cobalt" style="font-size: 10px"><span class="dot"></span>Auto</span></div>
+            <div class="row spread"><span>Finanças · SISTAFE · taxa</span><span class="badge cobalt" style="font-size: 10px"><span class="dot"></span>2 980 MZN</span></div>
+            <div class="row spread"><span>Condutor app · notifica motorista</span><span class="badge" style="font-size: 10px"><span class="dot"></span>Após emissão</span></div>
+            <div class="row spread"><span>PRM-Trânsito · alvará vigente</span><span class="badge" style="font-size: 10px"><span class="dot"></span>Visível em fiscalização</span></div>
+          </div>
+        </div>
+
+        <div class="banner cobalt"><span class="ic"></span><div><b>24 horas para emitir.</b> Receberás o alvará digital quando estiver pronto. Original em PDF + cópia na app.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Onboarding</a><a class="btn secondary sm" href="#cena-5">Sinistro →</a></div></div>
+</section>
+
+<!-- CENA 5 -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F4 — Sinistro em curso · INC-2026-MAP-04218 · cross-PRM · cross-Saúde</div>
+    <h2>14 Abr · QPL 218 MP · responsabilidade outra viatura · seguradora processa</h2>
+    <p>Operador acompanha cronologia em tempo real. Auto PRM lavrado. Hollard MZ avalia danos.</p>
+  </div>
+  <div class="at-body">
+    <div class="twocol">
+      <div class="panel">
+        <div class="ph"><b>Sinistro INC-2026-MAP-04218</b><span class="badge red"><span class="dot"></span>Em curso · 14 dias</span></div>
+        <div class="pb">
+          <div class="grid g-2" style="gap: 14px">
+            <div class="kv"><span class="k">Data · hora</span><span class="v">14 Abril 2026 · 17:42</span></div>
+            <div class="kv"><span class="k">Local</span><span class="v">Av. Marginal · km 8,4 · Maputo</span></div>
+            <div class="kv"><span class="k">Viatura da frota</span><span class="v"><span class="plate sm"><span class="country">MZ</span><span class="num">QPL 218 MP</span></span></span></div>
+            <div class="kv"><span class="k">Motorista</span><span class="v">Júlia Sumane (no turno)</span></div>
+            <div class="kv"><span class="k">Outra viatura</span><span class="v"><span class="plate sm"><span class="country">MZ</span><span class="num">XYZ 482 GA</span></span></span></div>
+            <div class="kv"><span class="k">Feridos</span><span class="v" style="color: var(--red-700)"><b>3 · todos transportados ao Hospital Central</b></span></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-overline" style="margin-bottom: 10px">Cronologia</div>
+          <div class="timeline">
+            <div class="ev done"><div class="dot"></div><div class="body">
+              <b>14 Abr 17:42 · Sinistro</b>
+              <div class="t-meta">SOS reportado por J. Sumane via app</div>
+            </div></div>
+            <div class="ev done"><div class="dot"></div><div class="body">
+              <b>14 Abr 17:48 · Ambulância no local</b>
+              <div class="t-meta">Cross-Saúde · 3 feridos transportados</div>
+            </div></div>
+            <div class="ev done"><div class="dot"></div><div class="body">
+              <b>14 Abr 17:54 · PRM no local</b>
+              <div class="t-meta">Cross-PRM · auto AT-2026-MAP-04219 lavrado</div>
+            </div></div>
+            <div class="ev done"><div class="dot"></div><div class="body">
+              <b>14 Abr 19:18 · Reboque</b>
+              <div class="t-meta">QPL 218 MP para oficina aprovada</div>
+            </div></div>
+            <div class="ev done"><div class="dot"></div><div class="body">
+              <b>15 Abr · Hollard MZ contacta</b>
+              <div class="t-meta">Avaliação inicial · responsabilidade outra viatura confirmada</div>
+            </div></div>
+            <div class="ev now"><div class="dot"></div><div class="body">
+              <b>21 Abr · Avaliação técnica</b>
+              <div class="t-meta">Estimativa danos: 142 800 MZN · perda total possível</div>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b>Decisão da seguradora</b>
+              <div class="t-meta">Reparação OU pagamento valor venal</div>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b>Encerrar sinistro</b>
+              <div class="t-meta">Após reparação OU pagamento</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="panel">
+          <div class="ph"><b>Auto PRM · AT-2026-MAP-04219</b></div>
+          <div class="pb">
+            <div class="auto">
+              <div class="hd" style="position: relative; padding-top: 24px">
+                <div class="hivis" style="position: absolute; top: 0; left: 0; right: 0; height: 8px"></div>
+                <div class="ti" style="font-family: var(--f-serif); font-size: 14px">Auto de Sinistro</div>
+                <div class="t-meta" style="margin-top: 4px">AT-2026-MAP-04219 · 14 Abr 17:54</div>
+              </div>
+              <div class="bd" style="font-family: var(--f-serif); font-size: 12px; line-height: 1.65; padding: 14px">
+                <p style="margin: 0 0 10px">Aos catorze dias do mês de Abril de dois mil e vinte e seis, na Av. Marginal ao km 8,4, foi registado sinistro entre as viaturas QPL 218 MP (Frota Sumbane Lda) e XYZ 482 GA.</p>
+                <p style="margin: 0 0 10px"><b>Responsabilidade:</b> XYZ 482 GA · ultrapassagem em zona proibida + excesso velocidade.</p>
+                <p style="margin: 0">3 ocupantes da QPL 218 MP transportados ao Hospital Central · cross-Saúde NUS-2418421-2 · 8-1842918-3 · 8-3092184-1.</p>
+              </div>
+              <div class="ft" style="display: flex; justify-content: space-between; font-size: 11px">
+                <span>Agente · J. Sumbane · cédula 8412</span>
+                <span class="seal hivis">PRM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><b>Próximos passos</b></div>
+          <div class="pb col" style="font-size: 12.5px">
+            <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">1.</span><span><b>Aguardar avaliação</b> · 21 Abr · Hollard MZ</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">2.</span><span><b>Decidir reparação vs venda</b> · com base no valor venal</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">3.</span><span><b>Acompanhar feridos</b> · cross-Saúde · 1 ainda internado</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">4.</span><span><b>Substituir viatura</b> · MAT 421 MP entrou em serviço (era reserva)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Alvará</a><a class="btn secondary sm" href="#cena-6">Multas →</a></div></div>
+</section>
+
+<!-- CENA 6 -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F5 — Multas · atribuição a motorista vs empresa</div>
+    <h2>2 multas pendentes · sistema cruza com escala · operador decide quem paga</h2>
+    <p>Multa lavrada em viatura da frota. Cross-escala identifica motorista. Operador decide: empresa paga ou desconta.</p>
+  </div>
+  <div class="at-body">
+
+    <div class="panel">
+      <div class="ph">
+        <b>Multas · 2 pendentes · 14 200 MZN</b>
+        <div class="row">
+          <span class="seg"><button class="on">Pendentes (2)</button><button>Pagas (18)</button><button>Contestadas (1)</button></span>
+        </div>
+      </div>
+      <table class="table">
+        <thead><tr><th>Auto</th><th>Viatura</th><th>Motorista no turno</th><th>Infracção</th><th>Valor</th><th>Prazo</th><th>Quem paga</th><th>Acção</th></tr></thead>
+        <tbody>
+          <tr style="background: var(--amber-50)">
+            <td class="mono">AT-2026-MAP-08412</td>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">AAB 184 MP</span></span></td>
+            <td>António Tembe<br/><span class="t-meta">Confirmado · escala</span></td>
+            <td>Excesso lotação · 22/15</td>
+            <td class="mono">8 200</td>
+            <td><span class="badge amber" style="font-size: 10px">22 dias</span></td>
+            <td>
+              <select class="input" style="height: 28px; font-size: 11px"><option>Descontar (CT permite)</option><option>Empresa paga</option></select>
+            </td>
+            <td><button class="btn sm">Resolver</button></td>
+          </tr>
+          <tr style="background: var(--red-50)">
+            <td class="mono">AT-2026-MAP-09142</td>
+            <td><span class="plate sm"><span class="country">MZ</span><span class="num">MQR 482 MP</span></span></td>
+            <td><span style="color: var(--amber-c-700)">Ambíguo</span><br/><span class="t-meta">2 motoristas no turno</span></td>
+            <td>Velocidade · +18 km/h</td>
+            <td class="mono">6 000</td>
+            <td><span class="badge amber" style="font-size: 10px">14 dias</span></td>
+            <td><span class="t-meta">Atribuir manual</span></td>
+            <td><button class="btn sm secondary">Investigar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g-3" style="gap: 18px; margin-top: 18px">
+      <div class="panel">
+        <div class="ph"><b>Política da empresa</b></div>
+        <div class="pb col" style="font-size: 12.5px">
+          <p>Lei 19/2007 art. 58 — multa do auto recai sobre <b>condutor identificado</b>. Empresa pode pagar e descontar (com aviso prévio).</p>
+          <hr class="hr">
+          <div class="t-overline">Política da Frota Sumbane</div>
+          <div class="col" style="gap: 6px; margin-top: 6px">
+            <div class="row" style="gap: 8px"><span style="color: var(--good-700)">•</span><span><b>Velocidade · álcool</b> — desconto 100% ao motorista</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--good-700)">•</span><span><b>Excesso lotação</b> — desconto 50% (responsabilidade partilhada)</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--good-700)">•</span><span><b>Documentação · IPO · IUC</b> — empresa paga 100%</span></div>
+            <div class="row" style="gap: 8px"><span style="color: var(--good-700)">•</span><span><b>EPI · sinaléctica viatura</b> — empresa paga 100%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Cronologia · 12 meses</b></div>
+        <div class="pb col" style="font-size: 12.5px">
+          <div class="row spread"><span>Total multas 2025-26</span><span class="mono"><b>21</b></span></div>
+          <div class="row spread"><span>Pagas pela empresa</span><span class="mono">8 (38%)</span></div>
+          <div class="row spread"><span>Descontadas a motoristas</span><span class="mono">11 (52%)</span></div>
+          <div class="row spread"><span>Contestadas com sucesso</span><span class="mono">2 (10%)</span></div>
+          <hr class="hr">
+          <div class="row spread"><b>Total pago</b><span class="mzn" style="font-size: 13px">142 800</span></div>
+          <div class="row spread"><span>Empresa</span><span class="mono">62 400 MZN</span></div>
+          <div class="row spread"><span>Motoristas</span><span class="mono">80 400 MZN</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><b>Top motoristas · multas</b></div>
+        <div class="pb col" style="font-size: 12.5px">
+          <div class="row spread"><span>António Tembe</span><span class="mono">5 (24 200)</span></div>
+          <div class="bar"><div class="fill" style="width: 60%; background: var(--red-500)"></div></div>
+          <div class="row spread"><span>Carlos Mahique</span><span class="mono">3 (12 800)</span></div>
+          <div class="bar"><div class="fill" style="width: 35%; background: var(--amber-500)"></div></div>
+          <div class="row spread"><span>Júlia Sumane</span><span class="mono">2 (8 400)</span></div>
+          <div class="bar"><div class="fill" style="width: 22%"></div></div>
+          <div class="row spread"><span>José Macuácua</span><span class="mono">1 (6 200)</span></div>
+          <div class="bar"><div class="fill" style="width: 15%"></div></div>
+          <hr class="hr">
+          <p class="t-meta" style="font-size: 11px">A. Tembe · sugerir formação INEFP de condução defensiva.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Sinistro</a><a class="btn secondary sm" href="inatter.html">INATTER →</a></div></div>
+</section>
+
+<footer style="border-top: 1px solid var(--line); padding: 32px 24px; margin-top: 24px">
+  <div style="max-width: 1440px; margin: 0 auto" class="row spread">
+    <div class="t-meta">Operador / Portal v0.3 · documento autoritativo: <a class="mono" href="DESIGN-operador.md">DESIGN-operador.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="inatter.html" class="btn secondary sm">INATTER →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

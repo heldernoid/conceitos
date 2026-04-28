@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Condutor / App — Transportes Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .phone-grid { display: grid; grid-template-columns: repeat(2, 360px); gap: 32px; justify-content: center; padding: 24px 0; }
+  .phone-grid.three { grid-template-columns: repeat(3, 360px); }
+  .phone-cap { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); text-align: center; margin-top: 10px; text-transform: uppercase; letter-spacing: .06em; }
+  .sceneNav { position: sticky; top: 64px; z-index: 10; background: rgba(244, 246, 249, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); padding: 10px 24px; }
+  .sceneNav .inner { max-width: 1440px; margin: 0 auto; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .sceneNav a { padding: 6px 10px; border-radius: 2px; color: var(--ink-2); font-size: 12px; font-weight: 500; border: 1px solid var(--line); background: var(--paper); }
+  .sceneNav a:hover { background: var(--bg-2); text-decoration: none; }
+  .sceneNav .lbl { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; margin-right: 8px; }
+  .sceneTitle { padding: 24px 24px 0; max-width: 1280px; margin: 0 auto; width: 100%; }
+  .sceneTitle .num { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; }
+  .sceneTitle h2 { font-size: 22px; font-weight: 600; margin: 6px 0 4px; letter-spacing: -.005em; }
+  .sceneTitle p { margin: 0; color: var(--ink-3); font-size: 13px; max-width: 760px; line-height: 1.5; }
+  .scene-end { padding: 24px 24px 12px; max-width: 1280px; margin: 0 auto; width: 100%; }
+  .scene-end .nx { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); margin-top: 8px; }
+  .anchor { display: block; height: 0; visibility: hidden; margin-top: -130px; padding-top: 130px; }
+
+  .ph-head { padding: 14px 16px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .ph-head .br { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; }
+  .ph-head .br .mk { width: 18px; height: 18px; background: var(--cobalt-700); border-radius: 1px; position: relative; overflow: hidden; }
+  .ph-head .br .mk::before { content: ""; position: absolute; inset: 3px; border: 1.5px solid #fff; transform: rotate(45deg); }
+  .ph-head .br .mk::after { content: ""; position: absolute; left: 50%; top: 50%; width: 5px; height: 1.5px; background: #fff; transform: translate(-50%, -50%); }
+
+  .ph-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; background: var(--bg); }
+  .ph-body .sect-h { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); font-weight: 600; margin: 6px 0 -4px; }
+
+  .mc { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
+  .mc h4 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .mc p { font-size: 12.5px; color: var(--ink-3); margin: 0; line-height: 1.45; }
+
+  .quick { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .quick a { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); text-decoration: none; font-size: 11.5px; font-weight: 500; text-align: center; line-height: 1.3; }
+  .quick a .ic { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+
+  .toggle-l { display: inline-flex; background: var(--bg-2); border: 1px solid var(--line); border-radius: 4px; padding: 2px; font-size: 10px; }
+  .toggle-l span { padding: 3px 6px; border-radius: 2px; font-weight: 500; }
+  .toggle-l span.on { background: var(--paper); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTC · INATTER · DTrD</span><span class="sep">·</span>
+  <span>Condutor / App v0.3</span>
+  <span style="margin-left:auto">DESIGN-condutor.md</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Condutor / App</span><small>PWA · 5 línguas</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="condutor.html" class="active">Condutor</a>
+    <a href="operador.html">Operador</a>
+    <a href="inatter.html">INATTER</a>
+    <a href="prm.html">PRM-Trânsito</a>
+    <a href="multimodal.html">Multimodal</a>
+  </nav>
+</header>
+
+<nav class="sceneNav">
+  <div class="inner">
+    <span class="lbl">Cenas</span>
+    <a href="#cena-1">1. Onboarding</a>
+    <a href="#cena-2">2. Hoje</a>
+    <a href="#cena-3">3. Carta digital</a>
+    <a href="#cena-4">4. Viaturas · IPO</a>
+    <a href="#cena-5">5. Multa · pagar</a>
+    <a href="#cena-6">6. Sinistro · cross-Saúde</a>
+    <a href="#cena-7">7. Denunciar chapa</a>
+  </div>
+</nav>
+
+<!-- CENA 1 · ONBOARDING -->
+<section><span class="anchor" id="cena-1"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 1 · F1 — Onboarding · 1.ª vez · cross-eBI · cross-INATTER</div>
+    <h2>João Mahique · BI verificado · carta CD-2026-MAP-018421 · 2 viaturas importadas</h2>
+    <p>Cross-eBI valida identidade. Sistema importa carta + viaturas em nome do utilizador. 5 línguas no início.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>08:14</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div style="background: linear-gradient(180deg, var(--cobalt-900) 0%, var(--cobalt-700) 100%); color: #fff; padding: 32px 22px; flex: 1; display: flex; flex-direction: column; justify-content: space-between">
+          <div class="brand" style="color: #fff"><span class="mark" style="background: #fff"></span><span class="stack"><span style="color: #fff">Transportes Digitais</span><small style="color: var(--cobalt-200)">Condutor · Cidadão</small></span></div>
+          <div>
+            <div style="font-size: 28px; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; margin-bottom: 14px">A tua carta,<br/>na tua mão.</div>
+            <p style="font-size: 13px; color: var(--cobalt-200); line-height: 1.55; margin: 0 0 24px">Carta digital · viaturas · multas · IPO · sinistros. Tudo num só lugar.</p>
+            <div class="row" style="gap: 8px; margin-bottom: 14px">
+              <button class="btn lg" style="flex: 1; background: #fff; color: var(--cobalt-900)">Tenho BI</button>
+              <button class="btn secondary lg" style="flex: 1; background: transparent; color: #fff; border-color: rgba(255,255,255,.3)">Sem BI ainda</button>
+            </div>
+            <div class="row spread">
+              <span style="font-size: 11px; color: var(--cobalt-200)">Sem internet? <b class="mono">*146#</b></span>
+              <span class="toggle-l" style="background: rgba(255,255,255,.1); border: 0">
+                <span class="on" style="color: #fff; background: rgba(255,255,255,.18)">PT</span>
+                <span style="color: var(--cobalt-200)">Macua</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">1A · Splash</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>08:15</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Verificar identidade</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 1 de 3</div>
+          <div class="t-h2" style="margin: 4px 0">Identifica-te com o BI</div>
+          <p class="t-meta">Cruzamos com o eBI do Governo Digital.</p>
+          <div class="field"><label>BI · 12 dígitos</label><input class="input lg mono" value="110100442918" /></div>
+          <div class="field"><label>Nome (verificado)</label><input class="input lg" value="João Mahique Tembe" disabled style="background: var(--bg-2); color: var(--ink)" /></div>
+
+          <div class="banner green" style="padding: 10px"><span class="ic"></span><div style="font-size: 12px"><b>Identidade verificada via eBI.</b><br/>João Mahique Tembe · 38 anos · Bairro Sommerschield, Maputo.</div></div>
+
+          <hr class="hr">
+
+          <div class="banner cobalt" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>Carta encontrada.</b><br/>CD-2026-MAP-018421 · categorias B · C · D1 · válida até 2034.</div></div>
+
+          <div class="banner cobalt" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>2 viaturas em teu nome.</b><br/>AAB 184 MP (Toyota Corolla) · MQR 482 MP (Hilux 4×4).</div></div>
+
+          <button class="btn lg block" style="margin-top: 8px">Continuar · importar tudo</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">1B · Cross-eBI</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>08:16</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Preferências</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Passo 3 de 3</div>
+          <div class="t-h3" style="margin: 4px 0 14px">2 escolhas rápidas</div>
+
+          <div class="mc">
+            <h4>Língua preferida</h4>
+            <div class="row" style="gap: 6px; flex-wrap: wrap; margin-top: 8px">
+              <span class="badge cobalt"><span class="dot"></span>PT-MZ</span>
+              <span class="badge"><span class="dot"></span>Macua</span>
+              <span class="badge"><span class="dot"></span>Changana</span>
+              <span class="badge"><span class="dot"></span>Sena</span>
+              <span class="badge"><span class="dot"></span>Nyungwe</span>
+            </div>
+            <p class="t-meta" style="margin-top: 8px; font-size: 11px">Podes mudar a qualquer momento no perfil.</p>
+          </div>
+
+          <div class="mc">
+            <h4>Notificações</h4>
+            <div class="col" style="gap: 6px; margin-top: 6px; font-size: 12.5px">
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> IPO · 30 dias antes</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> IUC · 30 dias antes</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> Multas · imediato</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> Carta a vencer · 6 meses antes</label>
+            </div>
+          </div>
+
+          <div class="mc" style="background: var(--cobalt-50); border-color: var(--cobalt-700)">
+            <h4 style="color: var(--cobalt-800)">Pagamentos via M-Pesa</h4>
+            <p style="font-size: 12px; margin-top: 4px"><b class="mono">+258 84 ••• ••18</b> · cross-Finanças confirma.</p>
+            <p class="t-meta" style="font-size: 11px; margin-top: 6px">Multas · IUC · IPO · taxas. Sem precisar ir ao balcão.</p>
+          </div>
+
+          <button class="btn lg block">Concluir · ir para Hoje</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">1C · Preferências</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><span class="t-meta">Tudo importado em 12 segundos.</span><a class="btn secondary sm" href="#cena-2">Hoje →</a></div></div>
+</section>
+
+<!-- CENA 2 · HOJE -->
+<section><span class="anchor" id="cena-2"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 2 · F2 — Hoje · home view · driver card hero</div>
+    <h2>Carta digital · 2 viaturas · IPO em 14 dias · 1 multa pendente</h2>
+    <p>Tudo numa olhada. Driver card no topo. KPIs e atalhos por baixo.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head">
+          <div class="row spread">
+            <div class="br"><span class="mk"></span><span>Hoje</span></div>
+            <div class="row" style="gap: 6px"><span class="badge"><span class="dot"></span>2</span><span class="av sm">JM</span></div>
+          </div>
+        </div>
+        <div class="ph-body">
+          <div><div style="font-size: 13px; color: var(--ink-3)">Bom dia,</div><div style="font-size: 22px; font-weight: 600">João.</div></div>
+
+          <div class="driver-card">
+            <div class="lbl">Carta · vigente</div>
+            <div class="num">CD-2026-MAP-018421</div>
+            <div class="ti" style="font-size: 13px">João Mahique Tembe</div>
+            <div class="meta">Cat. B · C · D1 · válida 2034</div>
+            <div class="qr"><div class="qr-square" style="width:48px;height:48px;padding:3px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div></div>
+          </div>
+
+          <div class="row spread" style="background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 12px">
+            <div>
+              <div class="t-overline">Próximo prazo</div>
+              <div style="font-size: 14px; font-weight: 600; margin-top: 2px">IPO · AAB 184 MP</div>
+              <div class="t-meta" style="font-size: 11px">Termina em 14 dias · 12 Mai 2026</div>
+            </div>
+            <span class="badge amber"><span class="dot"></span>14 dias</span>
+          </div>
+
+          <div class="row spread" style="background: var(--red-50); border: 1px solid #E5B7AE; border-radius: 6px; padding: 12px">
+            <div>
+              <div class="t-overline" style="color: var(--red-700)">Multa pendente</div>
+              <div style="font-size: 14px; font-weight: 600; margin-top: 2px">8 200 MZN · 30 dias</div>
+              <div class="t-meta" style="font-size: 11px">Excesso velocidade · 28 Abr</div>
+            </div>
+            <a href="#cena-5" class="btn warn sm">Pagar →</a>
+          </div>
+
+          <div class="sect-h">Atalhos</div>
+          <div class="quick">
+            <a href="#cena-3"><div class="ic" style="background: var(--cobalt-100); color: var(--cobalt-800)">🪪</div>Carta digital</a>
+            <a href="#cena-4"><div class="ic" style="background: var(--asphalt-100); color: var(--asphalt-700)">🚗</div>Viaturas · IPO</a>
+            <a href="#cena-6"><div class="ic" style="background: var(--red-100); color: var(--red-700)">🚨</div>Sinistro · SOS</a>
+            <a href="#cena-7"><div class="ic" style="background: var(--amber-100); color: var(--amber-c-700)">⚠</div>Denunciar</a>
+          </div>
+
+          <div class="sect-h">Notificações · 2 não lidas</div>
+          <div class="mc"><div class="row spread"><h4 style="font-size: 13px">IPO · AAB 184 MP em 14 dias</h4><span class="t-meta" style="font-size: 10px">há 1 dia</span></div><p style="font-size: 12px">8 centros IPO próximos · marcar.</p></div>
+          <div class="mc"><div class="row spread"><h4 style="font-size: 13px">Multa AT-2026-MAP-04218</h4><span class="t-meta" style="font-size: 10px">há 2 dias</span></div><p style="font-size: 12px">Excesso velocidade · 8 200 MZN · 30 dias.</p></div>
+        </div>
+        <div class="nav-bottom">
+          <a class="active"><span class="ic"></span>Hoje</a>
+          <a><span class="ic"></span>Carta</a>
+          <a><span class="ic"></span>Viaturas</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">2A · Hoje</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:14</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Próximos prazos</span></div></div>
+        <div class="ph-body">
+          <div class="t-overline">Cronologia · 12 meses</div>
+
+          <div class="timeline" style="margin-top: 6px">
+            <div class="ev now amber"><div class="dot"></div><div class="body">
+              <b style="font-size: 13px">IPO · AAB 184 MP</b>
+              <div class="t-meta" style="font-size: 11px">12 Mai 2026 · em 14 dias</div>
+              <button class="btn sm" style="margin-top: 6px">Marcar →</button>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b style="font-size: 13px">IUC 2026 · ambas viaturas</b>
+              <div class="t-meta" style="font-size: 11px">31 Jul 2026 · em 3 meses</div>
+              <p class="t-meta" style="font-size: 11px; margin-top: 4px">Total estimado <b class="mono">14 200 MZN</b> · cross-Finanças</p>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b style="font-size: 13px">IPO · MQR 482 MP</b>
+              <div class="t-meta" style="font-size: 11px">8 Out 2026 · em 5 meses</div>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b style="font-size: 13px">Seguro · AAB 184 MP</b>
+              <div class="t-meta" style="font-size: 11px">14 Nov 2026 · em 6 meses</div>
+              <p class="t-meta" style="font-size: 11px; margin-top: 4px">Hollard MZ · responsabilidade civil</p>
+            </div></div>
+            <div class="ev"><div class="dot"></div><div class="body">
+              <b style="font-size: 13px">Carta · renovação</b>
+              <div class="t-meta" style="font-size: 11px">28 Abr 2034 · em 8 anos</div>
+            </div></div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="mc" style="background: var(--cobalt-50); border-color: var(--cobalt-700)">
+            <h4 style="color: var(--cobalt-800); font-size: 13px">Avisos automáticos</h4>
+            <p style="font-size: 11.5px; margin-top: 4px">A app vai-te avisar 30 e 14 dias antes de cada prazo. Configura no perfil quais queres receber.</p>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <a class="active"><span class="ic"></span>Hoje</a>
+          <a><span class="ic"></span>Carta</a>
+          <a><span class="ic"></span>Viaturas</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">2B · Cronologia</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-1">← Onboarding</a><a class="btn secondary sm" href="#cena-3">Carta digital →</a></div></div>
+</section>
+
+<!-- CENA 3 · CARTA DIGITAL -->
+<section><span class="anchor" id="cena-3"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 3 · F3 — Carta digital · expansão · validação pública</div>
+    <h2>Documento serifado · QR validável · cross-eBI · cross-Saúde</h2>
+    <p>Quando a PRM ou outro condutor quer ver a carta · QR scaneia para validar contra o INATTER em tempo real.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>A minha carta</span></div></div></div>
+        <div class="ph-body">
+          <div class="licence" style="font-size: 11px">
+            <div class="hd" style="padding: 12px">
+              <div class="ti" style="font-size: 12px">Carta de Condução · República de Moçambique</div>
+              <div class="sub" style="font-size: 10px">CD-2026-MAP-018421</div>
+            </div>
+            <div class="bd" style="padding: 14px; font-family: var(--f-serif); font-size: 11.5px; line-height: 1.65">
+              <p style="margin: 0 0 6px"><b>João Mahique Tembe</b><br/>BI 110100442918 · NUIT 400 184 218</p>
+              <p style="margin: 0 0 6px">Nascido 14 Mar 1988, Maputo. Habilitado nas categorias <b>B · C · D1</b>.</p>
+              <p style="margin: 0 0 6px"><b>B</b> ligeiros até 9 lugares. <b>C</b> pesados de mercadorias. <b>D1</b> passageiros até 16 lugares.</p>
+              <p style="margin: 0">Emitida 28 Abr 2024 · INATTER Maputo. Vigente até 28 Abr 2034.</p>
+            </div>
+            <div class="ft" style="display: flex; justify-content: space-between; font-size: 10px">
+              <span>Director · Eng. P. Cossa<br/>INATTER · MTC</span>
+              <span class="seal">DTrD-MTC</span>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="mc">
+            <div class="t-overline">Tipo sanguíneo · cross-Saúde</div>
+            <div style="font-size: 16px; font-weight: 600; font-family: var(--f-mono); margin-top: 6px; color: var(--red-700)">O+ · Rh positivo</div>
+            <p class="t-meta" style="font-size: 11px; margin-top: 4px">Importado do NUS para emergências em sinistro.</p>
+          </div>
+
+          <button class="btn block secondary">📷 Scanear QR de outro condutor</button>
+        </div>
+        <div class="nav-bottom">
+          <a><span class="ic"></span>Hoje</a>
+          <a class="active"><span class="ic"></span>Carta</a>
+          <a><span class="ic"></span>Viaturas</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">3A · Carta serifada</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>09:18</span><div class="icons"><span>📶</span><span>📡</span><span>78%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>QR · validação pública</span></div></div>
+        <div class="ph-body">
+          <div style="display: flex; justify-content: center; padding: 14px 0">
+            <div class="qr-square" style="width: 220px; height: 220px"><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span></span><span></span><span></span><span class="b"></span><span></span><span class="b"></span><span></span><span></span><span class="b"></span><span class="b"></span><span></span><span></span><span class="b"></span><span></span><span></span><span></span><span class="b"></span></div>
+          </div>
+          <p class="t-meta" style="font-size: 11px; text-align: center; margin: 0">QR para PRM ou outro condutor scanear · valida contra INATTER em tempo real.</p>
+          <p class="mono" style="font-size: 11px; text-align: center; margin: 4px 0 0">transportes.gov.mz/v/8c9d</p>
+
+          <hr class="hr">
+
+          <div class="mc">
+            <div class="t-overline">Cross-system</div>
+            <div class="col" style="gap: 6px; margin-top: 8px; font-size: 12px">
+              <div class="row spread"><span>BI eBI · Governo Digital</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>✓</span></div>
+              <div class="row spread"><span>NUS · Saúde Digital</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>✓ Tipo sanguíneo</span></div>
+              <div class="row spread"><span>NUIT · Finanças</span><span class="badge green" style="font-size: 10px"><span class="dot"></span>✓</span></div>
+              <div class="row spread"><span>Multas · INATTER</span><span class="badge amber" style="font-size: 10px"><span class="dot"></span>1 pendente</span></div>
+            </div>
+          </div>
+
+          <div class="mc" style="background: var(--cobalt-50); border-color: var(--cobalt-700)">
+            <h4 style="color: var(--cobalt-800); font-size: 13px">Renovação</h4>
+            <p style="font-size: 11.5px; margin-top: 4px">Tens 8 anos antes da carta vencer. Avisamos 6 meses antes.</p>
+          </div>
+        </div>
+        <div class="nav-bottom">
+          <a><span class="ic"></span>Hoje</a>
+          <a class="active"><span class="ic"></span>Carta</a>
+          <a><span class="ic"></span>Viaturas</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">3B · QR público</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-2">← Hoje</a><a class="btn secondary sm" href="#cena-4">Viaturas →</a></div></div>
+</section>
+
+<!-- CENA 4 · VIATURAS · IPO -->
+<section><span class="anchor" id="cena-4"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 4 · F4 — Viaturas · IPO em 14 dias · marcar inspecção</div>
+    <h2>2 viaturas · matrículas MZ · IPO/IUC/seguro · marcação cross-INATTER</h2>
+    <p>Lista de viaturas e drilldown numa delas. 8 centros IPO próximos com disponibilidade real.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:42</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>As minhas viaturas · 2</span></div></div></div>
+        <div class="ph-body">
+
+          <div class="mc" style="border: 1px solid var(--amber-500); background: var(--amber-50)">
+            <div class="row spread"><div class="row" style="gap: 10px"><span class="plate sm"><span class="country">MZ</span><span class="num">AAB 184 MP</span></span><span class="mode ligeiro">Ligeiro</span></div><span class="badge amber"><span class="dot"></span>IPO 14 dias</span></div>
+            <h4 style="margin-top: 8px">Toyota Corolla 2018 · azul</h4>
+            <p style="font-size: 12px">Sed. · 1 600 cc · 5 lugares · gasolina</p>
+            <hr class="hr">
+            <div class="col" style="gap: 4px; font-size: 11.5px">
+              <div class="row spread"><span>IPO</span><span class="mono" style="color: var(--amber-c-700)"><b>12 Mai · 14 dias</b></span></div>
+              <div class="row spread"><span>IUC 2026</span><span class="mono">31 Jul · 8 800 MZN</span></div>
+              <div class="row spread"><span>Seguro</span><span class="mono">Hollard · 14 Nov</span></div>
+            </div>
+            <button class="btn block sm" style="margin-top: 8px">Marcar IPO →</button>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><div class="row" style="gap: 10px"><span class="plate sm"><span class="country">MZ</span><span class="num">MQR 482 MP</span></span><span class="mode pesado">SUV/4×4</span></div><span class="badge green"><span class="dot"></span>Em dia</span></div>
+            <h4 style="margin-top: 8px">Toyota Hilux 4×4 · 2022 · cinza</h4>
+            <p style="font-size: 12px">Pickup · 2 800 cc · 5 lugares · diesel</p>
+            <hr class="hr">
+            <div class="col" style="gap: 4px; font-size: 11.5px">
+              <div class="row spread"><span>IPO</span><span class="mono">8 Out · 5 meses</span></div>
+              <div class="row spread"><span>IUC 2026</span><span class="mono">31 Jul · 5 400 MZN</span></div>
+              <div class="row spread"><span>Seguro</span><span class="mono">Sanlam · 22 Set</span></div>
+            </div>
+          </div>
+
+          <button class="btn secondary block">+ Registar nova viatura</button>
+          <button class="btn ghost block">📦 Importar do estrangeiro · cross-Aduanas</button>
+        </div>
+        <div class="nav-bottom">
+          <a><span class="ic"></span>Hoje</a>
+          <a><span class="ic"></span>Carta</a>
+          <a class="active"><span class="ic"></span>Viaturas</a>
+          <a><span class="ic"></span>Eu</a>
+        </div>
+      </div></div>
+      <div class="phone-cap">4A · Lista de viaturas</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>10:43</span><div class="icons"><span>📶</span><span>📡</span><span>72%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#cena-4" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Marcar IPO · AAB 184 MP</span></div></div></div>
+        <div class="ph-body">
+          <div class="banner amber" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>IPO da Toyota Corolla AAB 184 MP termina em 14 dias.</b> Sem IPO válida · viatura não pode circular.</div></div>
+
+          <div class="t-overline">8 centros IPO próximos</div>
+
+          <div class="mc" style="border: 1px solid var(--cobalt-700)">
+            <div class="row spread"><h4 style="font-size: 13px; color: var(--cobalt-800)">INATTER Maputo · Sede</h4><span class="badge cobalt" style="font-size: 10px">3,2 km</span></div>
+            <p style="font-size: 11.5px">Av. Acordos de Lusaka 1248 · Maputo</p>
+            <hr class="hr">
+            <div style="font-size: 12px">
+              <div class="row spread"><span>Próxima vaga</span><span class="mono"><b>2 Mai · 09:00</b></span></div>
+              <div class="row spread"><span>Custo</span><span class="mono">1 200 MZN</span></div>
+              <div class="row spread"><span>Tempo médio</span><span class="mono">35 min</span></div>
+            </div>
+            <button class="btn block sm" style="margin-top: 8px">Reservar 2 Mai 09:00 →</button>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size: 13px">Centro IPO Matola · Belavista</h4><span class="badge" style="font-size: 10px">8,4 km</span></div>
+            <p style="font-size: 11.5px">EN1 · Matola</p>
+            <div class="row spread" style="font-size: 12px; margin-top: 4px"><span>Próxima vaga</span><span class="mono">3 Mai · 14:30</span></div>
+            <div class="row spread" style="font-size: 12px"><span>Custo · 1 100 MZN</span><span></span></div>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4 style="font-size: 13px">CIPO · Costa do Sol</h4><span class="badge" style="font-size: 10px">5,8 km</span></div>
+            <p style="font-size: 11.5px">Av. Marginal · Costa do Sol</p>
+            <div class="row spread" style="font-size: 12px; margin-top: 4px"><span>Próxima vaga</span><span class="mono">5 Mai · 10:00</span></div>
+            <div class="row spread" style="font-size: 12px"><span>Custo · 1 400 MZN</span><span></span></div>
+          </div>
+
+          <div style="text-align: center; padding: 6px 0; color: var(--ink-3); font-size: 12px"><i>+ 5 outros centros</i></div>
+
+          <div class="banner cobalt" style="padding: 10px; font-size: 12px"><span class="ic"></span><div><b>Pagamento na hora.</b> M-Pesa · cartão · ou no balcão.</div></div>
+        </div>
+      </div></div>
+      <div class="phone-cap">4B · Marcar IPO</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-3">← Carta</a><a class="btn secondary sm" href="#cena-5">Multa · pagar →</a></div></div>
+</section>
+
+<!-- CENA 5 · MULTA -->
+<section><span class="anchor" id="cena-5"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 5 · F3 — Multa · 30 dias · pagar OU contestar OU desconto 25%</div>
+    <h2>AT-2026-MAP-04218 · 8 200 MZN · velocidade · 14 dias para desconto</h2>
+    <p>Pagamento via M-Pesa · cross-SISTAFE · contestação cross-Justiça em 60 dias.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:22</span><div class="icons"><span>📶</span><span>📡</span><span>52%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Multa AT-2026-MAP-04218</span></div></div></div>
+        <div class="ph-body">
+
+          <div class="banner red" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>30 dias para responder.</b> Após esse prazo · execução fiscal cross-Justiça (multa + 25% acréscimo).</div></div>
+
+          <div class="auto" style="font-size: 11px">
+            <div class="hd" style="position: relative; padding-top: 24px">
+              <div class="hivis" style="position: absolute; top: 0; left: 0; right: 0; height: 8px"></div>
+              <div class="ti" style="font-size: 12px">Auto de Notícia · PRM-Trânsito</div>
+              <div class="t-meta" style="margin-top: 2px; font-size: 10px">AT-2026-MAP-04218 · 28 Abr 2026 · 14:42</div>
+            </div>
+            <div class="bd" style="padding: 12px; font-family: var(--f-serif); font-size: 11.5px; line-height: 1.6">
+              <p style="margin: 0 0 8px">Aos vinte e oito dias do mês de Abril de dois mil e vinte e seis, na <b>Av. Marginal, ao km 4,2 (Maputo)</b>, foi fiscalizada a viatura matrícula <b style="font-family: var(--f-mono)">AAB 184 MP</b>, conduzida por <b>João Mahique Tembe</b> (CD-2026-MAP-018421).</p>
+              <p style="margin: 0 0 8px">Foi constatada infracção: <b>excesso de velocidade · 92 km/h em zona limitada a 60 km/h</b> (+32 km/h · grave).</p>
+              <p style="margin: 0">Lei 19/2007 art. 38 § 2 · multa de 5 000 a 12 000 MZN. Aplicada coima de 8 200 MZN.</p>
+            </div>
+            <div class="ft" style="display: flex; justify-content: space-between; font-size: 10px">
+              <span>Agente · J. Sumbane<br/>cédula 8412 · 14:42</span>
+              <span class="seal hivis">PRM</span>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="mc" style="background: var(--good-100); border-color: var(--good-500)">
+            <h4 style="color: var(--good-700); font-size: 13px">💰 Desconto 25% se pagar em 14 dias</h4>
+            <div style="font-size: 14px; font-weight: 600; font-family: var(--f-mono); margin-top: 4px">8 200 → <span style="color: var(--good-700)">6 150 MZN</span></div>
+            <p class="t-meta" style="font-size: 11px; margin-top: 4px">Poupas <b class="mono">2 050 MZN</b> · 13 dias restantes.</p>
+          </div>
+
+        </div>
+      </div></div>
+      <div class="phone-cap">5A · Auto recebido</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:23</span><div class="icons"><span>📶</span><span>📡</span><span>52%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>3 caminhos possíveis</span></div></div>
+        <div class="ph-body">
+
+          <div class="mc" style="border: 1px solid var(--good-500); background: var(--good-100)">
+            <div class="row spread"><h4 style="color: var(--good-700)">1. Pagar agora</h4><span class="badge green" style="font-size: 10px">14 dias · 25% off</span></div>
+            <p style="font-size: 12px; margin: 6px 0 0">M-Pesa · cartão · cross-SISTAFE. Resolve hoje. <b>6 150 MZN</b>.</p>
+            <button class="btn success block sm" style="margin-top: 10px">Pagar via M-Pesa</button>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>2. Pagar dentro do prazo</h4><span class="badge" style="font-size: 10px">15-30 dias · valor cheio</span></div>
+            <p style="font-size: 12px; margin: 6px 0 0">Sem desconto · sem agravamento. <b>8 200 MZN</b> qualquer altura nos 30 dias.</p>
+            <button class="btn secondary block sm" style="margin-top: 10px">Marcar para depois</button>
+          </div>
+
+          <div class="mc">
+            <div class="row spread"><h4>3. Contestar</h4><span class="badge" style="font-size: 10px">60 dias · TJ Adm.</span></div>
+            <p style="font-size: 12px; margin: 6px 0 0">Recurso ao Tribunal Administrativo · cross-Justiça Digital. Suspende prazo até decisão.</p>
+            <button class="btn ghost block sm" style="margin-top: 10px">Contestar →</button>
+          </div>
+
+          <hr class="hr">
+
+          <div class="banner amber" style="padding: 10px; font-size: 12px"><span class="ic"></span><div><b>Após 30 dias sem resposta:</b> execução fiscal automática · multa + 25% acréscimo · pode bloquear venda da viatura. Cross-Justiça · cross-Finanças.</div></div>
+
+        </div>
+      </div></div>
+      <div class="phone-cap">5B · 3 caminhos</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>14:25</span><div class="icons"><span>📶</span><span>📡</span><span>52%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Pagamento confirmado</span></div></div></div>
+        <div class="ph-body" style="padding: 24px 16px; align-items: center; justify-content: center; flex: 1; display: flex">
+          <div style="text-align: center; max-width: 300px">
+            <div style="width: 72px; height: 72px; background: var(--good-100); color: var(--good-700); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 18px">✓</div>
+            <div class="t-h2" style="margin-bottom: 8px">Multa paga</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: var(--ink-2)">6 150 MZN · M-Pesa · multa AT-2026-MAP-04218 encerrada.</p>
+
+            <div class="mc" style="margin-top: 18px; text-align: left">
+              <div class="t-overline">Pagamento</div>
+              <div class="row spread" style="margin-top: 6px; font-size: 13px"><span>+258 84 ••• ••18</span><span class="mono" style="color: var(--good-700)">−6 150,00</span></div>
+              <div class="t-meta" style="font-size: 11px; margin-top: 4px">Confirmação SIS-2026-04218</div>
+            </div>
+
+            <div class="mc" style="margin-top: 8px; text-align: left">
+              <div class="t-overline">Cronologia</div>
+              <div class="col" style="gap: 6px; margin-top: 8px; font-size: 12.5px">
+                <div class="row" style="gap: 8px"><span class="badge green" style="font-size: 10px"><span class="dot"></span></span><span><b>28 Abr 14:42</b> · auto recebido</span></div>
+                <div class="row" style="gap: 8px"><span class="badge green" style="font-size: 10px"><span class="dot"></span></span><span><b>28 Abr 14:25</b> · pago via M-Pesa</span></div>
+                <div class="row" style="gap: 8px"><span class="badge green" style="font-size: 10px"><span class="dot"></span></span><span><b>28 Abr 14:25</b> · cross-SISTAFE confirma</span></div>
+                <div class="row" style="gap: 8px"><span class="badge green" style="font-size: 10px"><span class="dot"></span></span><span><b>28 Abr 14:25</b> · multa encerrada</span></div>
+              </div>
+            </div>
+
+            <button class="btn block" style="margin-top: 18px">Voltar à Hoje</button>
+          </div>
+        </div>
+      </div></div>
+      <div class="phone-cap">5C · Pago · cross-SISTAFE</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-4">← Viaturas</a><a class="btn secondary sm" href="#cena-6">Sinistro →</a></div></div>
+</section>
+
+<!-- CENA 6 · SINISTRO -->
+<section><span class="anchor" id="cena-6"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 6 · F5 — Sinistro · SOS · cross-Saúde · cross-PRM · cross-seguradora</div>
+    <h2>3 feridos detectados · ambulância via NUS · PRM a caminho · seguradora notificada</h2>
+    <p>Botão SOS na home. GPS automático. Foto do local. Cross-Saúde despacha ambulância. Cross-PRM lavra auto.</p>
+  </div>
+  <div class="phone-grid three">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>17:42</span><div class="icons"><span>📶</span><span>📡</span><span>38%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Reportar sinistro</span></div></div></div>
+        <div class="ph-body">
+
+          <div class="banner red" style="padding: 12px"><span class="ic"></span><div style="font-size: 13px"><b>Mantém-te no local.</b> Não movas as viaturas. PRM e ambulância a caminho.</div></div>
+
+          <div class="mc">
+            <div class="t-overline">Localização · GPS</div>
+            <div style="font-size: 14px; font-weight: 600; margin-top: 4px">Av. Marginal · ao km 8,4 · Maputo</div>
+            <p class="t-meta" style="font-size: 11px; margin-top: 2px; font-family: var(--f-mono)">−25.9620, 32.6184 · GPS ✓</p>
+            <hr class="hr">
+            <div class="t-overline">Hora</div>
+            <div style="font-size: 14px; font-weight: 600; margin-top: 4px; font-family: var(--f-mono)">17:42 · 28 Abr 2026</div>
+          </div>
+
+          <div class="mc">
+            <h4>Há feridos?</h4>
+            <div class="col" style="gap: 6px; margin-top: 6px; font-size: 12.5px">
+              <label class="row" style="gap: 8px"><input type="radio" name="f" checked /> Sim · 3 pessoas · um inconsciente</label>
+              <label class="row" style="gap: 8px"><input type="radio" name="f" /> Sim · ferimentos ligeiros</label>
+              <label class="row" style="gap: 8px"><input type="radio" name="f" /> Não · só danos materiais</label>
+            </div>
+          </div>
+
+          <div class="mc">
+            <h4>Outras viaturas envolvidas</h4>
+            <div class="row" style="gap: 6px; margin-top: 6px">
+              <span class="plate sm"><span class="country">MZ</span><span class="num">AAB 184 MP</span></span>
+              <span style="font-size: 12px; color: var(--ink-3)">+</span>
+              <span class="plate sm"><span class="country">MZ</span><span class="num">QPL 218 GA</span></span>
+            </div>
+            <button class="btn ghost block sm" style="margin-top: 8px">+ Adicionar mais viaturas</button>
+          </div>
+
+          <div class="mc">
+            <h4>Fotografias</h4>
+            <p class="t-meta" style="font-size: 11px">Captura sem mover as viaturas. GPS e timestamp anexados.</p>
+            <div class="row" style="gap: 6px; margin-top: 8px">
+              <button class="btn secondary sm" style="flex: 1">📷 Local</button>
+              <button class="btn secondary sm" style="flex: 1">📷 Danos</button>
+            </div>
+          </div>
+
+          <button class="btn lg block danger">🚨 Submeter SOS · agora</button>
+
+        </div>
+      </div></div>
+      <div class="phone-cap">6A · Reportar</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>17:43</span><div class="icons"><span>📶</span><span>📡</span><span>38%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Em curso · INC-2026-MAP-04218</span></div></div>
+        <div class="ph-body">
+
+          <div class="banner cobalt" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>Resposta despachada.</b> Cross-Saúde · cross-PRM · cross-seguradora notificadas.</div></div>
+
+          <div class="mc">
+            <div class="t-overline">Tempo real</div>
+            <div class="timeline" style="margin-top: 8px">
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">17:42 · SOS submetido</b>
+                <div class="t-meta" style="font-size: 11px">GPS confirmado · 3 feridos</div>
+              </div></div>
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">17:42 · Cross-Saúde · ambulância</b>
+                <div class="t-meta" style="font-size: 11px">Hospital Central · ETA 8 min</div>
+              </div></div>
+              <div class="ev done"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">17:42 · Cross-PRM · auto</b>
+                <div class="t-meta" style="font-size: 11px">PRM-Trânsito Maputo · ETA 12 min</div>
+              </div></div>
+              <div class="ev now"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">17:43 · Cross-seguradora</b>
+                <div class="t-meta" style="font-size: 11px">Hollard MZ · participação registada</div>
+              </div></div>
+              <div class="ev"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">PRM lavra auto · in loco</b>
+                <div class="t-meta" style="font-size: 11px">Aguarda chegada</div>
+              </div></div>
+              <div class="ev"><div class="dot"></div><div class="body">
+                <b style="font-size: 13px">Reboque · se necessário</b>
+                <div class="t-meta" style="font-size: 11px">Solicitar após auto PRM</div>
+              </div></div>
+            </div>
+          </div>
+
+          <div class="mc" style="background: var(--red-50); border-color: var(--red-500)">
+            <h4 style="color: var(--red-700)">Cross-Saúde · NUS dos feridos</h4>
+            <div class="col" style="gap: 4px; margin-top: 6px; font-size: 12px">
+              <div class="row spread"><span><b>NUS 8-2418421-2</b> · O+</span><span class="badge red" style="font-size: 10px">Inconsciente</span></div>
+              <div class="row spread"><span><b>NUS 8-1842918-3</b> · A+</span><span class="badge amber" style="font-size: 10px">Consciente</span></div>
+              <div class="row spread"><span><b>NUS 8-3092184-1</b> · O−</span><span class="badge amber" style="font-size: 10px">Ligeiro</span></div>
+            </div>
+          </div>
+
+          <button class="btn warn block">📞 Ligar para 119 (PRM-Trânsito)</button>
+
+        </div>
+      </div></div>
+      <div class="phone-cap">6B · Em curso</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>18:42</span><div class="icons"><span>📶</span><span>📡</span><span>34%</span></div></div>
+        <div class="ph-head"><div class="br"><span class="mk"></span><span>Sinistro encerrado</span></div></div>
+        <div class="ph-body">
+
+          <div class="banner green" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>Auto da PRM lavrado.</b> AT-2026-MAP-04219 · responsabilidade da viatura QPL 218 GA.</div></div>
+
+          <div class="mc">
+            <div class="t-overline">Resumo</div>
+            <div class="col" style="gap: 8px; margin-top: 8px; font-size: 12.5px">
+              <div class="row spread"><span>Feridos transportados</span><span class="mono">3 · Hospital Central</span></div>
+              <div class="row spread"><span>Auto PRM</span><span class="mono">AT-2026-MAP-04219</span></div>
+              <div class="row spread"><span>Responsável</span><span>QPL 218 GA · não AAB 184 MP</span></div>
+              <div class="row spread"><span>Reboque</span><span class="mono">Despachado · ETA 30 min</span></div>
+            </div>
+          </div>
+
+          <div class="mc">
+            <div class="t-overline">Próximos passos</div>
+            <div class="col" style="gap: 6px; margin-top: 8px; font-size: 12px">
+              <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">1.</span><span><b>Hollard MZ</b> · contacto em 24h para avaliação dos danos.</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">2.</span><span><b>Reparação</b> · oficina aprovada (lista cross-seguradora).</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">3.</span><span><b>Saúde</b> · acompanhamento dos feridos no Hospital Central.</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--cobalt-700)">4.</span><span><b>Sem multa para ti</b> · responsabilidade da outra viatura.</span></div>
+            </div>
+          </div>
+
+          <button class="btn block">Ver participação · PDF</button>
+
+        </div>
+      </div></div>
+      <div class="phone-cap">6C · Encerrado</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-5">← Multa</a><a class="btn secondary sm" href="#cena-7">Denunciar →</a></div></div>
+</section>
+
+<!-- CENA 7 · DENÚNCIA -->
+<section><span class="anchor" id="cena-7"></span>
+  <div class="sceneTitle">
+    <div class="num">CENA 7 · F6 — Denunciar chapa perigoso · anónima · cross-INATTER</div>
+    <h2>Chapa MQR 482 GA · excesso de lotação + condutor embriagado · denúncia anónima</h2>
+    <p>Sem retaliação possível. INATTER investiga. Operador da chapa pode perder alvará.</p>
+  </div>
+  <div class="phone-grid">
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:12</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Denunciar · 1 de 2</span></div></div></div>
+        <div class="ph-body">
+
+          <div class="banner cobalt" style="padding: 10px"><span class="ic"></span><div style="font-size: 12.5px"><b>Sem retaliação possível.</b> Denúncias anónimas não revelam quem és. INATTER investiga e pode revogar alvará.</div></div>
+
+          <div class="mc">
+            <h4>Que tipo de viatura?</h4>
+            <div class="row" style="gap: 6px; flex-wrap: wrap; margin-top: 8px">
+              <span class="mode chapa" style="opacity: 1; outline: 2px solid var(--red-700); outline-offset: 1px">Chapa-100</span>
+              <span class="mode passageiro">Machibombo</span>
+              <span class="mode taxi">Táxi</span>
+              <span class="mode pesado">Pesado</span>
+              <span class="mode ligeiro">Ligeiro</span>
+              <span class="mode moto">Motociclo</span>
+            </div>
+          </div>
+
+          <div class="field"><label>Matrícula (digitar ou scanear)</label>
+            <div class="row" style="gap: 6px">
+              <input class="input lg mono" value="MQR 482 GA" style="flex: 1" />
+              <button class="btn secondary lg" style="width: 44px; padding: 0">📷</button>
+            </div>
+            <span class="hint">Cross-INATTER vai resolver para o operador.</span>
+          </div>
+
+          <div class="mc">
+            <h4>Tipo de infracção</h4>
+            <div class="col" style="gap: 6px; margin-top: 6px; font-size: 12.5px">
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> Excesso de lotação · 22 pessoas em 15 lugares</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" checked /> Condutor aparenta estar embriagado</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" /> Viatura em mau estado mecânico</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" /> Pagamento abusivo · cobrança acima da tarifa</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" /> Condução perigosa · velocidade ou ultrapassagens</label>
+              <label class="row" style="gap: 8px"><input type="checkbox" /> Recusa transportar passageiros</label>
+            </div>
+          </div>
+
+          <div class="field"><label>Local · onde aconteceu</label><input class="input lg" value="Av. Acordos de Lusaka · paragem central · Maputo" /></div>
+
+          <button class="btn lg block">Próximo · escolher anonimato</button>
+        </div>
+      </div></div>
+      <div class="phone-cap">7A · Detalhe da denúncia</div>
+    </div>
+
+    <div>
+      <div class="phone"><div class="screen">
+        <div class="statusbar"><span>07:13</span><div class="icons"><span>📶</span><span>📡</span><span>62%</span></div></div>
+        <div class="ph-head"><div class="row" style="gap: 8px"><a href="#cena-7" style="color: var(--cobalt-700)">←</a><div class="br" style="font-size: 13px"><span class="mk"></span><span>Denunciar · 2 de 2</span></div></div></div>
+        <div class="ph-body">
+          <div class="t-h3" style="margin: 0">Como queres denunciar?</div>
+
+          <div class="mc" style="border: 1px solid var(--cobalt-700); background: var(--cobalt-50)">
+            <div class="row" style="gap: 10px"><div style="width: 32px; height: 32px; background: var(--cobalt-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cobalt-800); font-size: 18px; font-weight: 600">A</div><div><h4 style="font-size: 14px; color: var(--cobalt-800)">Anónima</h4><p style="font-size: 12px">INATTER não sabe quem és</p></div></div>
+            <hr class="hr">
+            <div class="col" style="gap: 6px; font-size: 12px">
+              <div class="row" style="gap: 8px"><span style="color: var(--good-700)">✓</span><span>INATTER investiga e pode revogar alvará</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--good-700)">✓</span><span>Sem retaliação possível</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--amber-c-700)">!</span><span>Sem follow-up directo contigo</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--amber-c-700)">!</span><span>Sem indemnização</span></div>
+            </div>
+            <button class="btn block" style="margin-top: 10px">Submeter anonimamente</button>
+          </div>
+
+          <div class="mc">
+            <div class="row" style="gap: 10px"><div style="width: 32px; height: 32px; background: var(--good-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--good-700); font-size: 18px; font-weight: 600">I</div><div><h4 style="font-size: 14px">Identificada</h4><p style="font-size: 12px">INATTER pode contactar-te</p></div></div>
+            <hr class="hr">
+            <div class="col" style="gap: 6px; font-size: 12px">
+              <div class="row" style="gap: 8px"><span style="color: var(--good-700)">✓</span><span>Direito a depoimento</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--good-700)">✓</span><span>Direito a indemnização (se feridos)</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--good-700)">✓</span><span>Acompanhamento na app</span></div>
+              <div class="row" style="gap: 8px"><span style="color: var(--amber-c-700)">!</span><span>Operador pode saber (proibido retaliar)</span></div>
+            </div>
+            <button class="btn secondary block" style="margin-top: 10px">Submeter com identificação</button>
+          </div>
+
+          <div class="banner amber" style="padding: 10px; font-size: 12px"><span class="ic"></span><div><b>Retaliação é crime.</b> Despedir ou ameaçar quem denuncia é crime · Lei 19/2007 art. 92.</div></div>
+        </div>
+      </div></div>
+      <div class="phone-cap">7B · Anónima vs identificada</div>
+    </div>
+
+  </div>
+  <div class="scene-end"><div class="nx"><a class="btn ghost sm" href="#cena-6">← Sinistro</a><a class="btn secondary sm" href="operador.html">Operador →</a></div></div>
+</section>
+
+<footer style="border-top: 1px solid var(--line); padding: 32px 24px; margin-top: 24px">
+  <div style="max-width: 1280px; margin: 0 auto" class="row spread">
+    <div class="t-meta">Condutor / App v0.3 · documento autoritativo: <a class="mono" href="DESIGN-condutor.md">DESIGN-condutor.md</a></div>
+    <div class="row">
+      <a href="design-system.html" class="btn ghost sm">Sistema</a>
+      <a href="operador.html" class="btn secondary sm">Operador →</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

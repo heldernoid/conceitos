@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Transportes Digitais Moçambique — Mocks Interativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  body{background:var(--bg)}
+  .hero{padding:48px 24px 24px}
+  .hero .container{max-width:1200px;margin:0 auto}
+  .hero .eyebrow{display:flex;align-items:center;gap:10px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .hero .eyebrow .sep{color:var(--ink-4)}
+  .hero h1{margin:14px 0 12px;font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.05;max-width:880px}
+  .hero p{color:var(--ink-2);font-size:17px;max-width:760px;line-height:1.55}
+  .hero .meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+  .hero .meta .kv .k{font-size:10px}
+  .grid-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:24px}
+  .tile{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px;text-decoration:none;color:var(--ink);display:block;transition:border-color .15s, transform .15s}
+  .tile:hover{border-color:var(--cobalt-700);text-decoration:none;transform:translateY(-1px)}
+  .tile .num{font-family:var(--f-mono);font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+  .tile .swatch{width:100%;height:48px;border-radius:3px;margin:12px 0;background:var(--cobalt-100)}
+  .tile.b .swatch{background:var(--cobalt-200)}
+  .tile.c .swatch{background:#DCEDDF}
+  .tile.d .swatch{background:repeating-linear-gradient(-45deg,var(--hivis-yellow) 0 12px,var(--hivis-black) 12px 24px)}
+  .tile.e .swatch{background:#D2E5E8}
+  .tile h3{margin:6px 0 6px;font-size:18px;font-weight:600;color:var(--ink)}
+  .tile p{font-size:13px;color:var(--ink-3);margin:0;line-height:1.5}
+  .tile .users{margin-top:12px;font-size:11px;color:var(--cobalt-700);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .tile.featured{grid-column:span 2;background:var(--cobalt-900);color:#fff;border-color:var(--cobalt-900)}
+  .tile.featured h3{color:#fff}
+  .tile.featured p{color:var(--cobalt-200)}
+  .tile.featured .num,.tile.featured .users{color:#93B2DA}
+  .tile.featured .swatch{background:#fff;height:6px;width:80px;margin:18px 0}
+  .section-h{max-width:1200px;margin:0 auto;padding:0 24px 12px}
+  footer{padding:40px 24px;border-top:1px solid var(--line);margin-top:48px}
+  footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+  footer h5{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3)}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  footer .ack{font-size:12px;color:var(--ink-3);max-width:380px;line-height:1.6}
+  footer .muted{color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>MTC · INATTER · ANE · CFM · PRM-Trânsito · ATM · DTrD</span><span class="sep">·</span>
+  <span>Protótipo de demonstração</span>
+  <span style="margin-left:auto">Versão 0.3 · Abril 2026</span>
+</div>
+<div class="hivis"></div>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Transportes Digitais</span><small>Plataforma Nacional dos Transportes</small></span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="condutor.html">Condutor</a>
+    <a href="operador.html">Operador</a>
+    <a href="inatter.html">INATTER</a>
+    <a href="prm.html">PRM-Trânsito</a>
+    <a href="multimodal.html">Multimodal</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow"><span>Pacote de protótipos clicáveis</span><span class="sep">·</span><span>Para revisão por MTC, INATTER, ANE, CFM, PRM-Trânsito, ATM e parceiros</span></div>
+    <h1>Cinco superfícies. Pessoas, viaturas e cargas a moverem-se em Moçambique.</h1>
+    <p>Transportes Digitais Moçambique unifica a carta de condução, o registo automóvel, as multas de trânsito, a fiscalização rodoviária e o multimodal portos-CFM-fronteiras. Liga rodoviário, transporte público (chapas, machibombos, táxis) e multimodal (Porto Maputo, Beira, Nacala, CFM e 6 fronteiras-chave) num só sistema, com cross-Justiça, cross-Finanças, cross-Saúde, cross-Trabalho e cross-Aduanas.</p>
+    <div class="meta">
+      <div class="kv"><span class="k">Idioma</span><span class="v">PT-MZ + Macua, Changana, Sena, Nyungwe</span></div>
+      <div class="kv"><span class="k">Cartas activas</span><span class="v">≈1,22 M</span></div>
+      <div class="kv"><span class="k">Viaturas registadas</span><span class="v">≈482 k · 8 modos</span></div>
+      <div class="kv"><span class="k">Alvarás TP</span><span class="v">28 412 · chapas, machibombos, táxis</span></div>
+      <div class="kv"><span class="k">Agentes PRM-Trânsito</span><span class="v">≈3 800 · 11 províncias</span></div>
+      <div class="kv"><span class="k">Documentos</span><span class="v">DESIGN-*.md por superfície</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid-tiles">
+  <a class="tile featured" href="design-system.html">
+    <div class="row spread">
+      <div class="num">00 · Fundamentos</div>
+      <span class="badge" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.25)">Comece aqui</span>
+    </div>
+    <div class="swatch"></div>
+    <h3>Sistema de Design</h3>
+    <p>Tipografia, paleta cobalt road-sign, asphalt e amber, hi-vis para PRM, 8 chips de modo de transporte, componentes (matrícula MZ, carta serifada, auto da PRM, speedometer, risk meter). Reutilizado por todas as superfícies.</p>
+    <div class="users">Equipa de produto · Engenharia · MTC · DTrD</div>
+  </a>
+
+  <a class="tile" href="condutor.html">
+    <div class="num">01 · Mobile (PWA · condutor e cidadão)</div>
+    <div class="swatch"></div>
+    <h3>Condutor / App</h3>
+    <p>Carta digital, viaturas, multas com pagamento M-Pesa, IPO/IUC/seguro, sinistro SOS cross-Saúde, denúncia chapa perigoso. 5 línguas locais. USSD *146# fallback.</p>
+    <div class="users">Cidadãos · 1,22 M condutores</div>
+  </a>
+
+  <a class="tile b" href="operador.html">
+    <div class="num">02 · Web desktop (frota · RH · financeiro)</div>
+    <div class="swatch"></div>
+    <h3>Operador / Portal</h3>
+    <p>Frotas mistas (chapas, machibombos, táxis, camiões), motoristas profissionais cross-NUSS, alvarás TP, sinistros cross-seguradora, multas com atribuição motorista vs empresa.</p>
+    <div class="users">≈1 482 operadores · 28 412 viaturas TP</div>
+  </a>
+
+  <a class="tile c" href="inatter.html">
+    <div class="num">03 · Web admin (gestão nacional)</div>
+    <div class="swatch"></div>
+    <h3>INATTER / Gestão</h3>
+    <p>Mapa nacional cartas e viaturas, emissão e renovação de cartas, fiscalização de escolas de condução, suspensão por mora, importação cross-Aduanas, 38 centros IPO.</p>
+    <div class="users">1,22 M cartas · 482 k viaturas · 184 escolas</div>
+  </a>
+
+  <a class="tile d" href="prm.html">
+    <div class="num">04 · Tablet (campo · hi-vis)</div>
+    <div class="swatch"></div>
+    <h3>PRM-Trânsito / Campo</h3>
+    <p>Inspectores em campo, OCR de matrículas, radar Bluetooth de velocidade, bafômetro, autos de notícia serifados com hi-vis, escalada cross-Justiça para Tribunal Administrativo.</p>
+    <div class="users">3 800 agentes · 11 províncias</div>
+  </a>
+
+  <a class="tile e" href="multimodal.html">
+    <div class="num">05 · Web cross-stakeholder (portos · CFM · fronteiras)</div>
+    <div class="swatch"></div>
+    <h3>Multimodal · Portos · CFM</h3>
+    <p>Porto Maputo, Beira, Nacala. CFM em 4 linhas (Sul, Centro, Sena, Norte). 6 fronteiras-chave com pré-clearance cross-Aduanas. Manifesto multimodal único, end-to-end.</p>
+    <div class="users">3 portos · 4 linhas CFM · 6 fronteiras</div>
+  </a>
+</section>
+
+<section class="section-h"><h3 class="t-h3">Como navegar este pacote</h3></section>
+<section style="max-width:1200px;margin:0 auto;padding:0 24px 24px">
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">1. Sistema de Design</div>
+      <p class="t-body" style="margin:8px 0 0">Comece pelo <a href="design-system.html">Sistema de Design</a> — define paleta cobalt road-sign, hi-vis para PRM, 8 chips de modo de transporte, componentes signature (matrícula MZ, carta serifada, auto da PRM com hi-vis stripe, speedometer) que todas as superfícies reutilizam.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">2. Superfícies clicáveis</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície abre num documento próprio com cenas numeradas (1 a 7). Cross-system aparece em badges visíveis: <span class="mono">cross-eBI</span>, <span class="mono">cross-NUS</span>, <span class="mono">cross-Aduanas</span>, <span class="mono">cross-Justiça</span>.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">3. Documentos DESIGN-*.md</div>
+      <p class="t-body" style="margin:8px 0 0">Cada superfície tem um documento autoritativo (ex.: <span class="mono">DESIGN-prm.md</span>) com princípios, fluxos, componentes, estados. Para handoff a engenharia.</p>
+    </div></div>
+  </div>
+</section>
+
+<section class="section-h"><h3 class="t-h3">Princípio organizador · 3 modos cosidos</h3></section>
+<section style="max-width:1200px;margin:0 auto;padding:0 24px 24px">
+  <div class="grid g-3">
+    <div class="card"><div class="bd">
+      <div class="t-overline">Rodoviário</div>
+      <h4 class="t-h4" style="margin:6px 0">Carta + viatura + multa</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Carta digital permanente com QR validável. Registo automóvel cross-NUIT. Multas com 30 dias para pagar via M-Pesa, 14 dias para 25% desconto, 60 dias para contestar no Tribunal Administrativo.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Transporte Público</div>
+      <h4 class="t-h4" style="margin:6px 0">Chapas, machibombos, táxis</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Alvarás TP com renovação online em 24h se IPO+IUC+seguro+motorista válidos. Motoristas profissionais cross-Trabalho-NUSS. Denúncia anónima de chapa perigoso, sem retaliação possível.</p>
+    </div></div>
+    <div class="card"><div class="bd">
+      <div class="t-overline">Multimodal</div>
+      <h4 class="t-h4" style="margin:6px 0">Marítimo + ferroviário + fronteiras</h4>
+      <p class="t-body" style="margin:0;color:var(--ink-3)">Manifesto digital único cobre toda a viagem. Pré-clearance cross-Aduanas reduz fronteira de 2,8h para 8 minutos. Visibilidade fim-a-fim para o transitário e cliente final.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Transportes Digitais</span><small>Plataforma Nacional dos Transportes</small></span></a>
+      <p class="ack" style="margin-top:14px">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a> para imaginar um sistema end-to-end de transportes digitais para Moçambique. O Ministério dos Transportes e Comunicações (MTC), o INATTER, a ANE, o CFM, a PRM-Trânsito, a Autoridade Tributária (ATM · ramo Aduanas) e os Portos de Moçambique são entidades reais; a "Direcção de Transportes Digitais" (DTrD) é uma unidade operativa fictícia neste exercício. Este protótipo não usa dados reais — nomes, BIs, NUITs, matrículas e factos são ilustrativos.</p>
+    </div>
+    <div>
+      <h5>Superfícies</h5>
+      <ul>
+        <li><a href="condutor.html">Condutor</a></li>
+        <li><a href="operador.html">Operador</a></li>
+        <li><a href="inatter.html">INATTER</a></li>
+        <li><a href="prm.html">PRM-Trânsito</a></li>
+        <li><a href="multimodal.html">Multimodal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Documentos</h5>
+      <ul>
+        <li><a href="DESIGN-system.md">DESIGN-system.md</a></li>
+        <li><a href="DESIGN-condutor.md">DESIGN-condutor.md</a></li>
+        <li><a href="DESIGN-operador.md">DESIGN-operador.md</a></li>
+        <li><a href="DESIGN-inatter.md">DESIGN-inatter.md</a></li>
+        <li><a href="DESIGN-prm.md">DESIGN-prm.md</a></li>
+        <li><a href="DESIGN-multimodal.md">DESIGN-multimodal.md</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contacto</h5>
+      <ul>
+        <li class="muted">Av. Mártires da Machava 1124</li>
+        <li class="muted">Maputo, Moçambique</li>
+        <li class="muted">+258 21 426 071 (MTC)</li>
+        <li class="muted">USSD *146# · Transportes</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
