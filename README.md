@@ -23,6 +23,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 06 | [Trabalho Digital](https://conceitos.org/projectos/trabalhodigital/) | Disponível |
 | 07 | [Transportes Digitais](https://conceitos.org/projectos/transportesdigitais/) | Disponível |
 | 08 | [Terras Digitais](https://conceitos.org/projectos/terrasdigitais/) | Disponível |
+| 09 | [Sociedade Aberta](https://conceitos.org/projectos/sociedadeaberta/) | Disponível |
 
 ### Saúde Digital
 
@@ -56,6 +57,10 @@ Reimaginação do sistema nacional de transportes com cinco superfícies: portal
 
 Reimaginação do sistema de gestão fundiária com cinco superfícies: portal do cidadão, portal da empresa, SPGC (cadastro e gestão), fiscalização e dashboard nacional.
 
+### Sociedade Aberta
+
+Reimaginação do acesso à informação pública com cinco superfícies: portal do cidadão, portal da empresa, ferramentas para jornalistas, plataforma pública de dados abertos e portal do titular de dados.
+
 ## Estrutura
 
 ```
@@ -70,7 +75,8 @@ conceitos/
     ├── justicadigital/      # 05 · Justiça Digital
     ├── trabalhodigital/     # 06 · Trabalho Digital
     ├── transportesdigitais/ # 07 · Transportes Digitais
-    └── terrasdigitais/      # 08 · Terras Digitais
+    ├── terrasdigitais/      # 08 · Terras Digitais
+    └── sociedadeaberta/     # 09 · Sociedade Aberta
 ```
 
 Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.
