@@ -24,6 +24,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 07 | [Transportes Digitais](https://conceitos.org/projectos/transportesdigitais/) | Disponível |
 | 08 | [Terras Digitais](https://conceitos.org/projectos/terrasdigitais/) | Disponível |
 | 09 | [Sociedade Aberta](https://conceitos.org/projectos/sociedadeaberta/) | Disponível |
+| 10 | [Vida Civil](https://conceitos.org/projectos/vidacivil/) | Disponível |
 
 ### Saúde Digital
 
@@ -61,6 +62,10 @@ Reimaginação do sistema de gestão fundiária com cinco superfícies: portal d
 
 Reimaginação do acesso à informação pública com cinco superfícies: portal do cidadão, portal da empresa, ferramentas para jornalistas, plataforma pública de dados abertos e portal do titular de dados.
 
+### Vida Civil
+
+Reimaginação do registo civil com seis superfícies: portal do cidadão, conservatória, família, hospital, sucessão e gestão de dados sensíveis.
+
 ## Estrutura
 
 ```
@@ -76,7 +81,8 @@ conceitos/
     ├── trabalhodigital/     # 06 · Trabalho Digital
     ├── transportesdigitais/ # 07 · Transportes Digitais
     ├── terrasdigitais/      # 08 · Terras Digitais
-    └── sociedadeaberta/     # 09 · Sociedade Aberta
+    ├── sociedadeaberta/     # 09 · Sociedade Aberta
+    └── vidacivil/           # 10 · Vida Civil
 ```
 
 Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.

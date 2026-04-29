@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Hospital · Vida Civil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>Saúde · DNRN · DIC</span><span class="sep">·</span><span>Hospital · profissional registar</span><span style="margin-left:auto">hospital.vidacivil.gov.mz · v0.3</span></div>
+<div class="book-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Vida Civil</span><small>Hospital · profissional registar</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="hospital.html" class="active">Hospital</a>
+    <a href="conservatoria.html">Conservatória</a>
+    <a href="familia.html">Família</a>
+    <a href="sucessao.html">Sucessão</a>
+    <a href="sensivel.html">Acto sensível</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm" style="background:var(--good-700)">MM</div><div class="who"><b>Enf.ª Marta Macuácua</b><span>Maternidade · Hosp. Inhambane</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Painel</a>
+  <a href="#cena2">Cena 2 · Identificar mãe</a>
+  <a href="#cena3">Cena 3 · Registar bebé</a>
+  <a href="#cena4">Cena 4 · Provisório + SMS</a>
+  <a href="#cena5">Cena 5 · Parto domiciliar</a>
+  <a href="#cena6">Cena 6 · Médico regista óbito</a>
+  <a href="#cena7">Cena 7 · Cross-system</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Painel da maternidade · Enf.ª Marta · turno 14:00-22:00</b><span>4 nascimentos hoje · 1 emergência · tablet rugged 12" IP67</span></div></div>
+  <div class="scene-c" style="display:flex;justify-content:center">
+    <div class="tablet">
+      <div class="screen" style="background:var(--cartolina);height:560px">
+        <div style="background:var(--ink-marinho);color:var(--cartolina);padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-family:var(--f-mono);font-size:10px;color:var(--cartolina-3)">MATERNIDADE · HOSPITAL PROVINCIAL INHAMBANE</div>
+            <div style="font-family:var(--f-serif);font-size:16px;margin-top:2px">Enf.ª Marta Macuácua · turno 14:00-22:00</div>
+          </div>
+          <span class="cross ok" style="background:rgba(90,124,66,.2);color:var(--good-100);border-color:transparent">cross-eBI ✓</span>
+        </div>
+        <div style="padding:18px 24px;flex:1;overflow-y:auto">
+          <div class="row spread" style="margin-bottom:14px"><h2 class="t-h2" style="margin:0;font-size:20px">Nascimentos hoje · 4</h2><button class="btn brass">+ Novo</button></div>
+
+          <div class="card" style="margin-bottom:8px"><div style="padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center"><div class="av" style="background:var(--livro-700)">!</div><div><div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--ink-marinho)">Joana Sumane · sala 04 · cesariana</div><div class="t-meta" style="font-size:11px">34a · 39 sem · em curso · BI 110100482184</div></div><span class="badge livro">URGENTE</span></div></div>
+
+          <div class="card" style="margin-bottom:8px"><div style="padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center"><div class="av" style="background:var(--good-700)">✓</div><div><div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--ink-marinho)">Maria Sitole · sala 02</div><div class="t-meta" style="font-size:11px">28a · 11:42 · F · 2,8kg · PROV-2026-IH-04418</div></div><span class="badge green">CONCLUÍDO</span></div></div>
+
+          <div class="card" style="margin-bottom:8px"><div style="padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center"><div class="av" style="background:var(--good-700)">✓</div><div><div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--ink-marinho)">Helena Cossa · sala 01</div><div class="t-meta" style="font-size:11px">22a · 09:18 · M · 3,4kg · PROV-2026-IH-04417</div></div><span class="badge green">CONCLUÍDO</span></div></div>
+
+          <div class="card"><div style="padding:12px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center"><div class="av" style="background:var(--warn-500)">⏳</div><div><div style="font-family:var(--f-serif);font-size:14px;font-weight:600;color:var(--ink-marinho)">Cristina Mahique · sala 03</div><div class="t-meta" style="font-size:11px">26a · 6cm dilatação · monitorização normal</div></div><span class="badge amber">EM CURSO</span></div></div>
+
+          <div class="banner ink" style="margin-top:14px;font-size:12px"><span class="ic"></span><div><b>Princípio.</b> Cada nascimento na maternidade é registado pelo profissional no momento. Não depende de pais comparecerem à conservatória depois — em zonas rurais, isso podia demorar anos.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Identificar a mãe · Joana Sumane via eBI</b><span>Passo 1 de 4 · scan BI · cross-eBI confirma identidade em 2 segundos</span></div></div>
+  <div class="scene-c" style="display:flex;justify-content:center">
+    <div class="tablet">
+      <div class="screen" style="background:var(--cartolina);height:560px">
+        <div style="background:var(--ink-marinho);color:var(--cartolina);padding:10px 18px;display:flex;justify-content:space-between;align-items:center">
+          <div class="row" style="gap:10px;align-items:center"><span style="font-size:18px">‹</span><div><div style="font-family:var(--f-mono);font-size:10px;color:var(--cartolina-3)">PASSO 1 DE 4 · IDENTIFICAR MÃE</div><div style="font-family:var(--f-serif);font-size:14px">Sala 04 · Joana Sumane</div></div></div>
+        </div>
+        <div style="padding:24px;flex:1;overflow-y:auto">
+          <div class="banner brass" style="margin-bottom:18px;font-size:13px"><span class="ic"></span><div><b>Identificar a mãe primeiro.</b> Confirma identidade via BI · liga automaticamente o bebé à linhagem materna por eBI.</div></div>
+
+          <h3 class="t-h3" style="margin:0 0 14px">Como identificar?</h3>
+          <div class="grid g-3" style="gap:12px;margin-bottom:18px">
+            <button class="btn block secondary" style="padding:18px;flex-direction:column;gap:6px;font-size:12px"><span style="font-size:22px">📷</span>Ler BI</button>
+            <button class="btn block" style="padding:18px;flex-direction:column;gap:6px;font-size:12px"><span style="font-size:22px">⌨</span>Digitar BI ✓</button>
+            <button class="btn block secondary" style="padding:18px;flex-direction:column;gap:6px;font-size:12px"><span style="font-size:22px">👆</span>Biometria</button>
+          </div>
+
+          <div class="card" style="background:var(--good-50);border-color:var(--good-100)">
+            <div class="bd">
+              <div class="row spread" style="margin-bottom:6px"><b style="font-family:var(--f-serif);font-size:14px;color:var(--good-900)">✓ Identidade confirmada via eBI</b><span class="cross ok" style="font-size:9px">há 2 seg</span></div>
+              <div class="row" style="gap:14px;align-items:flex-start;margin-top:12px"><div class="av lg">JS</div><div style="flex:1;font-family:var(--f-serif);font-size:13px;line-height:1.7"><b style="font-size:18px;color:var(--ink-marinho)">Joana Sumane</b><br><span style="color:var(--ink-2)">34 anos · BI 110100482184<br>Casada com Felisberto Manjate (BI 110100442918)<br>Profissão: enfermeira</span></div></div>
+              <hr class="hr">
+              <div class="row" style="gap:6px;flex-wrap:wrap;font-size:11px">
+                <span class="cross ok">cross-eBI ✓</span>
+                <span class="cross ok">cross-DIC BI vigente</span>
+                <span class="cross ok">cross-Sociedade Aberta · casamento</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn block lg" style="margin-top:18px">Continuar para registo do bebé →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Registar bebé · sexo, hora, peso, APGAR</b><span>Passo 2 de 4 · feminino · 14:42 · 3,2 kg · 49 cm · APGAR 8/9 · sem complicações</span></div></div>
+  <div class="scene-c" style="display:flex;justify-content:center">
+    <div class="tablet">
+      <div class="screen" style="background:var(--cartolina);height:560px">
+        <div style="background:var(--ink-marinho);color:var(--cartolina);padding:10px 18px;display:flex;justify-content:space-between;align-items:center">
+          <div class="row" style="gap:10px;align-items:center"><span style="font-size:18px">‹</span><div><div style="font-family:var(--f-mono);font-size:10px;color:var(--cartolina-3)">PASSO 2 DE 4 · DADOS DO BEBÉ</div><div style="font-family:var(--f-serif);font-size:14px">Mãe: Joana Sumane</div></div></div>
+        </div>
+        <div style="padding:18px 24px;flex:1;overflow-y:auto">
+          <h3 class="t-h3" style="margin:0 0 14px">Dados do recém-nascido</h3>
+
+          <div class="grid g-2" style="gap:14px;margin-bottom:14px">
+            <div class="field"><label>Sexo</label>
+              <div class="row" style="gap:6px;margin-top:4px"><button class="btn secondary sm" style="flex:1;padding:12px">♂ Masculino</button><button class="btn sm" style="flex:1;padding:12px">♀ Feminino ✓</button></div>
+            </div>
+            <div class="field"><label>Data e hora</label><input class="input mono sm" value="04.05.2026 · 14:42 UTC+2" readonly style="background:var(--cartolina-2)"/></div>
+            <div class="field"><label>Peso (g)</label><input class="input mono sm" value="3 200"/></div>
+            <div class="field"><label>Comprimento (cm)</label><input class="input mono sm" value="49"/></div>
+            <div class="field"><label>Perímetro cefálico</label><input class="input mono sm" value="34 cm"/></div>
+            <div class="field"><label>APGAR 1' / 5'</label><input class="input mono sm" value="8 / 9"/></div>
+          </div>
+
+          <div class="field" style="margin-bottom:14px"><label>Tipo de parto</label>
+            <div class="row" style="gap:6px;margin-top:4px;flex-wrap:wrap"><button class="btn ghost sm">Vaginal eutócico</button><button class="btn ghost sm">Vaginal instrumentado</button><button class="btn sm" style="background:var(--brass-700);border-color:var(--brass-700)">Cesariana ✓</button></div>
+          </div>
+
+          <div class="field" style="margin-bottom:14px"><label>Estado · vivo / natimorto</label>
+            <div class="row" style="gap:8px;margin-top:4px"><button class="btn sm" style="flex:1;padding:10px">✓ Vivo · saudável</button><button class="btn ghost sm" style="flex:1;padding:10px;color:var(--livro-700)">Natimorto</button></div>
+          </div>
+
+          <div class="field" style="margin-bottom:14px"><label>Pai declarado (opcional)</label>
+            <input class="input mono sm" value="Felisberto Manjate · BI 110100442918"/>
+            <p class="t-meta" style="font-size:11px;margin:4px 0 0">Pai notificado por SMS · pode confirmar paternidade na app.</p>
+          </div>
+
+          <div class="field" style="margin-bottom:14px"><label>Médico responsável</label>
+            <input class="input sm" value="Dra. Cristina Tembe · CRM-MZ-2018-0142"/>
+          </div>
+
+          <button class="btn block lg" style="margin-top:6px">Confirmar e gerar provisório →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Provisório PROV-2026-IH-04421 emitido</b><span>Número gerado em 0,8 segundos · SMS aos pais · cartão impresso · cross-system propaga</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;align-items:flex-start;max-width:1080px;margin:0 auto">
+      <div style="display:flex;justify-content:center">
+        <div class="tablet">
+          <div class="screen" style="background:var(--cartolina);height:560px">
+            <div style="background:var(--good-700);color:var(--cartolina);padding:14px 18px"><div style="font-family:var(--f-serif);font-size:18px">✓ Nascimento registado</div></div>
+            <div style="padding:24px;flex:1;text-align:center">
+              <div style="font-family:var(--f-serif);font-size:24px;color:var(--good-700);margin-bottom:18px">Bem-vinda!</div>
+
+              <div class="assento-prov" style="text-align:left;margin-bottom:18px">
+                <div class="t-overline" style="font-size:9px">REGISTO HOSPITALAR · MATERNIDADE</div>
+                <div class="num-prov">PROV-2026-IH-04421</div>
+                <div class="info" style="font-size:13px">
+                  <p style="margin:0 0 4px"><b>Bebé do sexo feminino</b> · 3,2 kg · 49 cm</p>
+                  <p style="margin:0 0 4px">04.05.2026 · 14:42 UTC+2 · APGAR 8/9</p>
+                  <p style="margin:0;font-size:11px;color:var(--ink-3)">Mãe: Joana Sumane · BI 110100482184<br>Pai (declarado): Felisberto Manjate · cross-eBI a confirmar</p>
+                </div>
+              </div>
+
+              <button class="btn block" style="margin-bottom:8px">📱 Enviar SMS aos pais</button>
+              <button class="btn block secondary" style="margin-bottom:8px">🖨 Imprimir cartão provisório</button>
+              <button class="btn block ghost" style="font-size:12px">Próximo nascimento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>SMS enviado aos pais</b><span class="t-meta">há 4 seg</span></div>
+          <div class="bd">
+            <div class="phone" style="width:280px;margin:0 auto;padding:8px;border-radius:24px">
+              <div class="screen" style="background:var(--paper);border-radius:18px;padding:14px;height:auto">
+                <div class="statusbar" style="font-size:10px;padding:6px 10px"><span>14:42</span><span>📶 4G</span></div>
+                <div style="padding:10px 12px;border-bottom:1px solid var(--line-2);font-size:11px;font-family:var(--f-mono);color:var(--ink-3)">VidaCivil · Hospital Inhambane</div>
+                <div style="background:var(--cartolina-2);padding:12px;border-radius:14px 14px 14px 4px;margin:14px 0;font-size:13px;font-family:var(--f-serif)">
+                  Parabéns Joana e Felisberto! 👶<br>
+                  A vossa bebé nasceu em 04.05.2026 · 14:42 · saudável.<br><br>
+                  Número provisório:<br>
+                  <b style="font-family:var(--f-mono);color:var(--brass-700)">PROV-2026-IH-04421</b><br><br>
+                  Comparecer na Conservatória de Maxixe até 03.06.2026 para escolher nome e oficializar.<br><br>
+                  Felisberto, confirmar paternidade?<br>
+                  <a href="#" style="color:var(--ink-marinho);text-decoration:underline">vidacivil.gov.mz/c/4421</a>
+                </div>
+                <div style="padding:8px 0;font-size:10px;color:var(--ink-3);text-align:center">via DNRN · cross-eBI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner green"><span class="ic"></span><div><b>Cross-system propagado em 0,8 seg.</b> DNRN, DIC, Saúde, Estatística (INE) e cartão de saúde infantil já sabem que Lara existe legalmente, mesmo sem nome ainda. Esta é a inovação central do pacote.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Cross-system instantâneo</b></div>
+          <div class="bd" style="padding:0;font-size:12px">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><b>cross-DNRN</b><span class="badge green" style="font-size:9px">arquivo</span></div>
+            <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><b>cross-DIC</b><span class="badge green" style="font-size:9px">cédula 5y</span></div>
+            <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><b>cross-Saúde</b><span class="badge green" style="font-size:9px">cartão SIS-MA</span></div>
+            <div style="padding:8px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><b>cross-INE</b><span class="badge green" style="font-size:9px">estatística</span></div>
+            <div style="padding:8px 14px" class="row spread"><b>cross-eBI · pai</b><span class="badge amber" style="font-size:9px">SMS confirma</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Parto domiciliar · parteira tradicional credenciada</b><span>App simples no telemóvel · Maria Macuácua · Mussassa · cross-CFJP régulo confirma</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>16:18</span><span>📶 2G</span></div>
+          <div style="background:var(--ink-marinho);color:var(--cartolina);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:10px;color:var(--cartolina-3)">PARTEIRA CREDENCIADA · LEI 12/2004</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Maria Macuácua · Mussassa</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--cartolina)">
+            <div class="banner brass" style="font-size:11px;margin-bottom:14px;padding:8px 10px"><span class="ic"></span><div><b>Modo offline.</b> Sem 4G · dados ficam guardados localmente e sincronizam ao reconectar.</div></div>
+
+            <h3 style="margin:0 0 12px;font-family:var(--f-serif);color:var(--ink-marinho);font-size:15px">Novo nascimento</h3>
+
+            <div class="field" style="margin-bottom:10px"><label>Mãe (BI ou nome)</label><input class="input sm" value="Cristina Sitole · 110100382184"/></div>
+            <div class="field" style="margin-bottom:10px"><label>Sexo do bebé</label><div class="row" style="gap:6px"><button class="btn ghost sm" style="flex:1">♂ M</button><button class="btn sm" style="flex:1">♀ F ✓</button></div></div>
+            <div class="field" style="margin-bottom:10px"><label>Data / hora</label><input class="input sm mono" value="14.04.2026 · 06:42"/></div>
+            <div class="field" style="margin-bottom:10px"><label>Peso (estimativa)</label><input class="input sm mono" value="3,1 kg (estimado)"/></div>
+            <div class="field" style="margin-bottom:14px"><label>Estado</label><div class="row" style="gap:6px"><button class="btn sm" style="flex:1">Vivo ✓</button><button class="btn ghost sm" style="flex:1;color:var(--livro-700)">Natimorto</button></div></div>
+
+            <div class="card" style="margin-bottom:14px;padding:10px;background:var(--brass-50);border-color:var(--brass-100)">
+              <div class="t-overline" style="font-size:9px;margin-bottom:6px">VALIDAÇÃO COMUNITÁRIA</div>
+              <div class="row" style="gap:8px;align-items:center"><div class="av sm" style="background:var(--brass-700)">RM</div><div style="flex:1;font-size:11px"><b>Régulo Mahique de Cheringoma</b><br><span style="color:var(--ink-3)">Confirma identidade da mãe</span></div><span class="badge green" style="font-size:9px">SMS ✓</span></div>
+              <span class="cross brass" style="margin-top:8px;font-size:9px">cross-CFJP</span>
+            </div>
+
+            <button class="btn block">Submeter (envia ao reconectar)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;align-self:flex-start;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Parteiras tradicionais credenciadas</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 12px">Em zonas rurais sem maternidade, parteiras tradicionais credenciadas pela Direcção Provincial de Saúde podem registar nascimentos via app simples no telemóvel.</p>
+            <p style="font-size:13px;line-height:1.6;margin:0 0 12px">Validação requer:</p>
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li>Cédula da parteira (CRM-PT-XX)</li>
+              <li>Régulo confirma identidade da mãe (cross-CFJP)</li>
+              <li>App regista GPS do parto</li>
+              <li>Hospital de referência valida em 30 dias</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner ink"><span class="ic"></span><div><b>14% de sub-registo nacional</b> · concentrado nas províncias do Norte. Em Cabo Delgado, 28% das crianças não têm assento até aos 5 anos. Esta cena resolve esse gap.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Sub-registo · 2025</b></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Cabo Delgado</td><td class="num" style="color:var(--livro-700)">28%</td></tr>
+                <tr><td>Niassa</td><td class="num">22%</td></tr>
+                <tr><td>Zambézia</td><td class="num">18%</td></tr>
+                <tr><td>Maputo Cidade</td><td class="num" style="color:var(--good-700)">2%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Médico regista óbito · Dr. Pedro Cossa</b><span>Hospital Inhambane · 14.02.2026 04:18 · João Mahique Tembe · 68 anos · I50.9</span></div></div>
+  <div class="scene-c" style="display:flex;justify-content:center">
+    <div class="tablet">
+      <div class="screen" style="background:var(--cartolina);height:560px">
+        <div style="background:var(--ink-marinho);color:var(--cartolina);padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-family:var(--f-mono);font-size:10px;color:var(--cartolina-3)">DR. PEDRO COSSA · MÉDICO · CRM-MZ-2018-0418</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Cardiologia · Hospital Provincial Inhambane</div>
+          </div>
+          <span class="cross" style="background:rgba(168,126,63,.25);color:var(--brass-100);border-color:transparent">comunicar óbito</span>
+        </div>
+        <div style="padding:24px;flex:1;overflow-y:auto">
+          <div class="banner livro" style="margin-bottom:18px;font-size:13px"><span class="ic"></span><div><b>Comunicar falecimento.</b> Tom sóbrio · linguagem cuidadosa. Cada óbito é um momento de luto familiar · a app respeita.</div></div>
+
+          <h3 class="t-h3" style="margin:0 0 14px">Identificação do falecido</h3>
+
+          <div class="card" style="background:var(--cartolina);margin-bottom:14px">
+            <div class="bd">
+              <div class="row" style="gap:14px;align-items:flex-start">
+                <div class="av lg falec">JM</div>
+                <div style="flex:1">
+                  <div style="font-family:var(--f-serif);font-size:18px;color:var(--ink-marinho);font-weight:600">João Mahique Tembe</div>
+                  <p style="font-family:var(--f-serif);font-size:13px;color:var(--ink-2);margin:4px 0 8px">68 anos · BI 110100382412 · Maxixe · Inhambane · estado civil casado</p>
+                  <div class="row" style="gap:6px;flex-wrap:wrap;font-size:10px">
+                    <span class="cross ok">cross-eBI ✓</span>
+                    <span class="cross ok">cross-Saúde processo SIS-2024-MN-04218</span>
+                    <span class="cross">internado desde 12.02 · cardiologia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="t-h3" style="margin:14px 0 10px">Detalhes do falecimento</h3>
+          <div class="grid g-2" style="gap:12px;margin-bottom:14px">
+            <div class="field"><label>Data e hora</label><input class="input mono sm" value="14.02.2026 · 04:18"/></div>
+            <div class="field"><label>Local</label><input class="input sm" value="Enfermaria Cardiologia · Sala 14"/></div>
+          </div>
+
+          <div class="field" style="margin-bottom:14px">
+            <label>Causa básica do óbito (CID-10)</label>
+            <input class="input sm" value="I50.9 · insuficiência cardíaca congestiva descompensada"/>
+            <p class="t-meta" style="font-size:11px;margin:4px 0 0">A causa só será visível ao titular do interesse legítimo (cônjuge sobrevivo, herdeiros directos, INSS, autoridades médicas).</p>
+          </div>
+
+          <div class="field" style="margin-bottom:14px">
+            <label>Causas associadas</label>
+            <input class="input sm" value="I25.9 doença isquémica crónica · E11 diabetes tipo 2"/>
+          </div>
+
+          <div class="field" style="margin-bottom:14px">
+            <label>Médico declarante</label>
+            <input class="input sm" value="Dr. Pedro Cossa · CRM-MZ-2018-0418" readonly style="background:var(--cartolina-2)"/>
+          </div>
+
+          <div class="banner ink" style="font-size:12px;margin-bottom:18px"><span class="ic"></span><div><b>Antes de submeter:</b> a comunicação dispara automaticamente cross-AT (NUIT cessa), cross-INSS (pensão sobrevivência abre), cross-Terras (DUATs em sucessão), cross-Eleições (eleitor riscado), cross-Bo Moçambique (contas em sucessão). Família é notificada com tempo para reagir.</div></div>
+
+          <div class="row" style="gap:8px"><button class="btn ghost" style="flex:1">Guardar rascunho</button><button class="btn lg" style="flex:1;background:var(--livro-700);border-color:var(--livro-700)">Comunicar falecimento</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Cross-system propaga em 0,8 segundos</b><span>O que acontece quando a Enf.ª submete · ou o Dr. Cossa comunica óbito</span></div></div>
+  <div class="scene-c">
+    <div class="row spread" style="margin-bottom:24px;max-width:1080px;margin:0 auto 24px">
+      <div><div class="t-overline" style="margin-bottom:6px">A INOVAÇÃO CENTRAL DO PACOTE</div><h2 class="t-h2" style="margin:0">Os actos vitais propagam-se · em segundos</h2><p class="deck" style="margin:6px 0 0;max-width:680px">Um nascimento ou óbito não é apenas um registo · é um sinal que muda relações em todos os outros pacotes do ecossistema.</p></div>
+    </div>
+
+    <div class="grid g-2" style="gap:24px;max-width:1080px;margin:0 auto">
+
+      <div class="card">
+        <div class="hd" style="background:var(--good-50);border-bottom-color:var(--good-100)"><b style="color:var(--good-900)">Quando nasce a Lara · 14:42:01.0</b></div>
+        <div class="bd" style="padding:0">
+          <div class="ledger-table" style="font-size:12px">
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,1 seg</span><span><b>cross-DNRN</b> · arquivo provisório</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,2 seg</span><span><b>cross-DIC</b> · cédula 5y reservada</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,3 seg</span><span><b>cross-Saúde</b> · cartão SIS-MA · vacinas</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,4 seg</span><span><b>cross-INE</b> · estatística vital</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,5 seg</span><span><b>cross-eBI · mãe</b> · ficha actualizada</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,6 seg</span><span><b>cross-Família</b> · árvore genealógica</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,7 seg</span><span><b>cross-eBI · pai</b> · SMS para confirmar paternidade</span></div>
+            <div style="padding:10px 14px" class="row spread"><span class="mono" style="color:var(--good-700);font-size:11px">+0,8 seg</span><span><b>SMS aos pais</b> · provisório enviado</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd" style="background:var(--livro-50);border-bottom-color:var(--livro-100)"><b style="color:var(--livro-900)">Quando falece João Mahique · 04:18:01.0</b></div>
+        <div class="bd" style="padding:0">
+          <div style="font-size:12px">
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,1 seg</span><span><b>cross-DNRN</b> · óbito arquivado</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,2 seg</span><span><b>cross-AT</b> · NUIT cessado</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,3 seg</span><span><b>cross-INSS</b> · pensão sobrevivência aberta para Filomena</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,4 seg</span><span><b>cross-Terras</b> · 3 DUATs em sucessão</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,5 seg</span><span><b>cross-NUEL</b> · participações em empresas (se houver)</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,6 seg</span><span><b>cross-Eleições</b> · eleitor riscado</span></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2)" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,7 seg</span><span><b>cross-Bo Moçambique</b> · contas em sucessão</span></div>
+            <div style="padding:10px 14px" class="row spread"><span class="mono" style="color:var(--livro-700);font-size:11px">+0,8 seg</span><span><b>SMS herdeiros</b> · sucessão guiada</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner ink" style="margin-top:24px;max-width:1080px;margin-left:auto;margin-right:auto"><span class="ic"></span><div><b>Sem este pacote</b>, todas estas propagações eram manuais e demoravam meses. Reformados continuavam a "receber" pensão por meses depois da morte. Bebés ficavam sem registo até a família ter meios de ir à conservatória. <b>Vida Civil resolve isto colocando o registo onde o acto já é testemunhado por profissional credenciado.</b></div></div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--ink-marinho);color:var(--cartolina-3);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--cartolina);border-radius:2px;display:flex;align-items:center;justify-content:center"><div style="width:22px;height:18px;background:var(--ink-marinho);border-radius:1px;position:relative"><div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--cartolina);transform:translateX(-50%)"></div></div></div>
+        <div>
+          <div style="font-family:var(--f-serif);font-size:15px;color:var(--cartolina);font-weight:600">Hospital · profissional registar</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 2 de 6 · DESIGN-hospital.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--ink-4)">cross-eBI · cross-DIC · cross-DNRN · cross-Saúde · cross-CFJP · cross-AT · cross-INSS · cross-INE · cross-Eleições · cross-Bo Moçambique · cross-Terras · cross-NUEL. Enf.ª Marta Macuácua, Dr. Pedro Cossa, Régulo Mahique de Cheringoma, Dra. Cristina Tembe, Maria Macuácua (parteira) são personas fictícias.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="cidadao.html" class="btn ghost sm" style="color:var(--cartolina-3)">‹ Cidadão</a><a href="conservatoria.html" class="btn ghost sm" style="color:var(--cartolina-3)">Próxima · Conservatória ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1048 @@
+/* =========================================================
+   Vida Civil · Conservatória Digital de Moçambique
+   v0.3 · Abril 2026 · paleta papel-cartório
+   ─────────────────────────────────────────────────────────
+   Paleta: cartolina cream + tinta azul-marinho + selo brass
+   Tipografia: IBM Plex Serif (dominante) + Plex Sans + Mono
+   ========================================================= */
+
+:root {
+  /* ── Tinta · texto, cabeçalhos ── */
+  --ink-marinho: #1E3A5F;   /* azul-marinho · cor de caneta cartorial */
+  --ink-noir:    #1A1F2E;   /* preto-tinta · headlines */
+  --ink-1:       #28324A;   /* corpo principal */
+  --ink-2:       #4F5872;   /* corpo secundário */
+  --ink-3:       #828AA0;   /* meta, labels */
+  --ink-4:       #B6BCC9;   /* hairlines */
+
+  /* ── Papel cartolina · cream profundo ── */
+  --cartolina:   #F4ECDA;   /* fundo principal · papel envelhecido */
+  --cartolina-2: #ECE2C9;   /* hover, alt-row */
+  --cartolina-3: #DBCDA6;   /* divisores, blockquote */
+  --paper:       #F8F2E2;   /* mais claro · cards */
+  --bg:          #F0E8D4;   /* canvas */
+  --bg-2:        #E0D5B6;   /* card alt */
+
+  /* ── Vermelho-livro-de-registo · margens dos livros antigos ── */
+  --livro-50:    #F5E0DC;
+  --livro-100:   #E8C0B6;
+  --livro-300:   #C68877;
+  --livro-500:   #9E4F3F;
+  --livro-700:   #7A2820;
+  --livro-900:   #4A140F;
+
+  /* ── Brass · selos oficiais ── */
+  --brass-50:    #F0E5C8;
+  --brass-100:   #E0CC97;
+  --brass-300:   #C9A867;
+  --brass-500:   #A87E3F;
+  --brass-700:   #7E5C2A;
+  --brass-900:   #4A361A;
+
+  /* ── Verde-cunho · confirmações, vivos ── */
+  --good-50:     #DDE6D2;
+  --good-100:    #B5C7A1;
+  --good-500:    #5A7C42;
+  --good-700:    #3F6B33;
+  --good-900:    #1F3A1A;
+
+  /* ── Amber · pendente, em curso ── */
+  --warn-50:     #F4E2B5;
+  --warn-100:    #E5C672;
+  --warn-500:    #B8902E;
+  --warn-700:    #7E631F;
+
+  /* ── Linhas e divisores ── */
+  --line:        #C9BC97;
+  --line-2:      #DBCDA6;
+  --line-3:      #E8DCB8;
+
+  /* ── Sombras ── */
+  --sh-1: 0 1px 2px rgba(30,58,95,.06), 0 1px 3px rgba(30,58,95,.04);
+  --sh-2: 0 2px 6px rgba(30,58,95,.08), 0 4px 12px rgba(30,58,95,.05);
+  --sh-3: 0 6px 18px rgba(30,58,95,.10), 0 12px 32px rgba(30,58,95,.08);
+
+  /* ── Tipografia · serif dominante neste pacote ── */
+  --f-sans:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-mono:  'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+  --f-serif: 'IBM Plex Serif', 'Georgia', serif;
+
+  /* ── Radii · em geral baixos · documentos não têm border-radius alto ── */
+  --r-1: 2px;
+  --r-2: 3px;
+  --r-3: 4px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cartolina);
+  color: var(--ink-1);
+  font-family: var(--f-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern", "liga", "ss02";
+}
+
+a { color: var(--ink-marinho); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+img, svg { display: block; max-width: 100%; }
+
+hr { border: 0; border-top: 1px solid var(--line-2); margin: 14px 0; }
+hr.hr { margin: 12px 0; }
+hr.hr.dotted { border-top-style: dotted; }
+hr.hr.thick { border-top-width: 2px; border-top-color: var(--ink-marinho); }
+hr.hr.book { border-top: 0; height: 4px; background: linear-gradient(90deg, transparent 0%, var(--livro-700) 18%, var(--livro-700) 82%, transparent 100%); margin: 24px 0; }
+
+::selection { background: var(--brass-100); color: var(--ink-marinho); }
+
+/* =========================================================
+   GOVSTRIP · barra topo institucional · ink-marinho
+   ========================================================= */
+.govstrip {
+  background: var(--ink-marinho);
+  color: var(--cartolina);
+  font-size: 11px;
+  font-family: var(--f-mono);
+  letter-spacing: .02em;
+  padding: 5px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.govstrip .sep { color: var(--ink-3); }
+
+/* Stripe de livro de registo · três linhas verticais brass */
+.book-stripe {
+  height: 6px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--brass-500) 0,
+      var(--brass-500) 2px,
+      var(--cartolina) 2px,
+      var(--cartolina) 4px,
+      var(--ink-marinho) 4px,
+      var(--ink-marinho) 5px,
+      var(--cartolina) 5px,
+      var(--cartolina) 14px
+    );
+  border-bottom: 1px solid var(--ink-marinho);
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: var(--cartolina);
+  border-bottom: 1px solid var(--ink-marinho);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 13px;
+}
+.topbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-marinho);
+  font-family: var(--f-serif);
+  text-decoration: none;
+}
+.topbar .brand:hover { text-decoration: none; }
+.topbar .brand .mark {
+  width: 38px;
+  height: 38px;
+  background: var(--ink-marinho);
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Ícone livro aberto */
+.topbar .brand .mark::before {
+  content: '';
+  width: 22px;
+  height: 18px;
+  background: var(--cartolina);
+  border-radius: 1px;
+  position: relative;
+}
+.topbar .brand .mark::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 18px;
+  background: var(--ink-marinho);
+  top: 10px;
+}
+.topbar .brand .stack { display: flex; flex-direction: column; line-height: 1.05; }
+.topbar .brand span:nth-child(1) { font-size: 17px; font-weight: 600; letter-spacing: -.005em; }
+.topbar .brand small { font-size: 10px; color: var(--ink-3); font-family: var(--f-sans); letter-spacing: .04em; text-transform: uppercase; margin-top: 2px; }
+
+.topbar .nav { display: flex; gap: 4px; flex: 1; margin-left: 20px; }
+.topbar .nav a {
+  padding: 8px 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+  border-radius: 2px;
+  font-size: 13px;
+  text-decoration: none;
+}
+.topbar .nav a:hover { background: var(--cartolina-2); }
+.topbar .nav a.active { background: var(--ink-marinho); color: var(--cartolina); }
+
+.topbar .right { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.topbar .conn { display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--f-mono); color: var(--ink-3); }
+.topbar .conn .d { width: 6px; height: 6px; background: var(--good-500); border-radius: 50%; box-shadow: 0 0 0 3px rgba(90,124,66,.18); }
+
+.idbadge { display: flex; align-items: center; gap: 8px; padding: 4px 8px; background: var(--paper); border: 1px solid var(--line-2); border-radius: 2px; }
+.idbadge .av { width: 28px; height: 28px; border-radius: 50%; background: var(--ink-marinho); color: var(--cartolina); font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); }
+.idbadge .who { line-height: 1.2; }
+.idbadge .who b { font-size: 12px; display: block; color: var(--ink-marinho); font-family: var(--f-sans); }
+.idbadge .who span { font-size: 10px; color: var(--ink-3); }
+
+/* =========================================================
+   SCENE NAV
+   ========================================================= */
+.scenenav {
+  background: var(--cartolina);
+  border-bottom: 1px solid var(--line);
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 65px;
+  z-index: 70;
+}
+.scenenav a {
+  padding: 12px 14px;
+  font-size: 11px;
+  font-family: var(--f-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.scenenav a:hover { color: var(--ink-1); }
+.scenenav a.active { color: var(--ink-marinho); border-bottom-color: var(--brass-500); }
+
+/* =========================================================
+   SCENE
+   ========================================================= */
+.scene { padding: 36px 24px; border-bottom: 1px solid var(--line-2); }
+.scene.alt { background: var(--bg); }
+.scene-h { max-width: 1280px; margin: 0 auto 22px; display: flex; align-items: flex-start; gap: 18px; }
+.scene-h .sn {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  background: var(--ink-marinho);
+  color: var(--cartolina);
+  padding: 6px 10px;
+  border-radius: 2px;
+  flex: 0 0 auto;
+}
+.scene-h .lab { flex: 1; }
+.scene-h .lab b { display: block; font-size: 18px; color: var(--ink-marinho); font-weight: 600; letter-spacing: -.005em; font-family: var(--f-serif); }
+.scene-h .lab span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+.scene-c { max-width: 1280px; margin: 0 auto; }
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+.t-h1 { font-family: var(--f-serif); font-size: 38px; font-weight: 600; letter-spacing: -.012em; color: var(--ink-marinho); line-height: 1.15; margin: 0; }
+.t-h2 { font-family: var(--f-serif); font-size: 26px; font-weight: 600; letter-spacing: -.008em; color: var(--ink-marinho); line-height: 1.2; }
+.t-h3 { font-family: var(--f-serif); font-size: 18px; font-weight: 600; color: var(--ink-marinho); }
+.t-overline { font-family: var(--f-mono); font-size: 10px; letter-spacing: .08em; color: var(--ink-3); text-transform: uppercase; }
+.t-meta { font-size: 12px; color: var(--ink-3); }
+.mono { font-family: var(--f-mono); }
+.serif { font-family: var(--f-serif); }
+.num { text-align: right; font-family: var(--f-mono); }
+
+.headline {
+  font-family: var(--f-serif);
+  font-weight: 600;
+  letter-spacing: -.018em;
+  color: var(--ink-marinho);
+  line-height: 1.05;
+}
+.headline.xl { font-size: 52px; font-weight: 700; }
+.headline.lg { font-size: 38px; }
+.headline.md { font-size: 28px; }
+.deck {
+  font-family: var(--f-serif);
+  font-style: italic;
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Section rule · livros encadernados */
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0 14px;
+}
+.section-rule::before, .section-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ink-marinho);
+}
+.section-rule b {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-marinho);
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: var(--sh-1);
+}
+.card .hd {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line-2);
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+.card .hd b { color: var(--ink-marinho); font-weight: 600; font-family: var(--f-sans); }
+.card .bd { padding: 14px 16px; }
+.card.flat { box-shadow: none; }
+.card.dark { background: var(--ink-marinho); color: var(--cartolina); border-color: var(--ink-noir); }
+.card.dark .hd { background: var(--ink-noir); border-bottom-color: var(--ink-1); color: var(--cartolina); }
+.card.dark .hd b { color: var(--cartolina); }
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--ink-marinho);
+  color: var(--cartolina);
+  border: 1px solid var(--ink-marinho);
+  border-radius: 2px;
+  font-family: var(--f-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .12s;
+}
+.btn:hover { background: var(--ink-noir); text-decoration: none; }
+.btn.lg { padding: 10px 18px; font-size: 14px; }
+.btn.sm { padding: 5px 10px; font-size: 11px; }
+.btn.block { width: 100%; justify-content: center; }
+.btn.secondary { background: var(--paper); color: var(--ink-marinho); border-color: var(--ink-marinho); }
+.btn.secondary:hover { background: var(--cartolina-2); }
+.btn.ghost { background: transparent; color: var(--ink-2); border-color: transparent; }
+.btn.ghost:hover { background: var(--cartolina-2); }
+.btn.brass { background: var(--brass-700); color: #fff; border-color: var(--brass-700); }
+.btn.brass:hover { background: var(--brass-900); }
+.btn.danger { background: var(--livro-700); color: #fff; border-color: var(--livro-700); }
+
+/* =========================================================
+   FORM
+   ========================================================= */
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { font-size: 11px; color: var(--ink-3); font-family: var(--f-mono); letter-spacing: .04em; text-transform: uppercase; }
+.input, .select, .textarea {
+  font-family: var(--f-sans);
+  font-size: 14px;
+  color: var(--ink-marinho);
+  background: var(--paper);
+  border: 1px solid var(--ink-3);
+  border-radius: 2px;
+  padding: 8px 12px;
+}
+.input.lg, .select.lg { padding: 11px 14px; font-size: 15px; }
+.input.sm, .select.sm { padding: 5px 8px; font-size: 12px; }
+.input:focus, .select:focus, .textarea:focus { outline: 0; border-color: var(--ink-marinho); box-shadow: 0 0 0 3px rgba(30,58,95,.12); }
+.input.mono { font-family: var(--f-mono); }
+.input.serif { font-family: var(--f-serif); }
+.textarea { font-family: var(--f-sans); resize: vertical; min-height: 80px; }
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--f-sans);
+  background: var(--cartolina-2);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+.badge.ink { background: var(--ink-marinho); color: var(--cartolina); border-color: var(--ink-marinho); }
+.badge.livro { background: var(--livro-100); color: var(--livro-900); border-color: var(--livro-300); }
+.badge.green { background: var(--good-50); color: var(--good-900); border-color: var(--good-100); }
+.badge.amber { background: var(--warn-50); color: var(--warn-700); border-color: var(--warn-100); }
+.badge.brass { background: var(--brass-50); color: var(--brass-700); border-color: var(--brass-100); }
+
+/* =========================================================
+   CROSS-TAGS
+   ========================================================= */
+.cross {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .02em;
+  background: var(--cartolina-2);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.cross::before { content: '↗'; opacity: .55; }
+.cross.ok { background: var(--good-50); color: var(--good-700); border-color: var(--good-100); }
+.cross.warn { background: var(--warn-50); color: var(--warn-700); border-color: var(--warn-100); }
+.cross.brass { background: var(--brass-50); color: var(--brass-700); border-color: var(--brass-100); }
+.cross.ink { background: var(--ink-marinho); color: var(--cartolina); border-color: var(--ink-marinho); }
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  padding: 10px 14px;
+  background: var(--cartolina-2);
+  border-bottom: 2px solid var(--ink-marinho);
+}
+.table tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: middle;
+  color: var(--ink-1);
+}
+.table tbody tr:hover { background: var(--cartolina-2); }
+.table .num { font-family: var(--f-mono); text-align: right; }
+
+/* =========================================================
+   KPI
+   ========================================================= */
+.kpi {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+.kpi .lbl { font-family: var(--f-mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-3); text-transform: uppercase; }
+.kpi .num { font-family: var(--f-serif); font-size: 28px; font-weight: 600; color: var(--ink-marinho); margin-top: 4px; line-height: 1.1; text-align: left; }
+.kpi .delta { font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+.kpi .delta.up { color: var(--good-700); }
+.kpi .delta.down { color: var(--livro-700); }
+.kpi .delta.up::before { content: '▲'; font-size: 8px; }
+.kpi .delta.down::before { content: '▼'; font-size: 8px; }
+
+/* =========================================================
+   BANNERS
+   ========================================================= */
+.banner {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 2px;
+  border-left: 3px solid;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.banner .ic {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 2px;
+  position: relative;
+}
+.banner .ic::before {
+  content: 'i';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-serif);
+  font-style: italic;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.banner.ink { background: var(--cartolina-2); border-color: var(--ink-marinho); }
+.banner.ink .ic { background: var(--ink-marinho); }
+.banner.livro { background: var(--livro-50); border-color: var(--livro-700); color: var(--livro-900); }
+.banner.livro .ic { background: var(--livro-700); }
+.banner.amber { background: var(--warn-50); border-color: var(--warn-500); color: var(--warn-700); }
+.banner.amber .ic { background: var(--warn-500); }
+.banner.green { background: var(--good-50); border-color: var(--good-500); color: var(--good-900); }
+.banner.green .ic { background: var(--good-500); }
+.banner.brass { background: var(--brass-50); border-color: var(--brass-700); color: var(--brass-900); }
+.banner.brass .ic { background: var(--brass-700); }
+
+/* =========================================================
+   ROWS
+   ========================================================= */
+.row { display: flex; gap: 8px; align-items: center; }
+.row.spread { justify-content: space-between; }
+.row.wrap { flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; }
+.grid { display: grid; gap: 14px; }
+.grid.g-2 { grid-template-columns: 1fr 1fr; }
+.grid.g-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid.g-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.kv { display: flex; gap: 12px; font-size: 13px; }
+.kv .k { min-width: 130px; color: var(--ink-3); font-family: var(--f-mono); font-size: 11px; }
+.kv .v { color: var(--ink-marinho); flex: 1; font-family: var(--f-serif); }
+.kv .v.sans { font-family: var(--f-sans); }
+.kv .v.mono { font-family: var(--f-mono); }
+
+/* =========================================================
+   AVATARES
+   ========================================================= */
+.av {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ink-marinho);
+  color: var(--cartolina);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-mono);
+  flex: 0 0 auto;
+}
+.av.sm { width: 28px; height: 28px; font-size: 11px; }
+.av.lg { width: 56px; height: 56px; font-size: 18px; }
+.av.xl { width: 72px; height: 72px; font-size: 22px; }
+.av.brass { background: var(--brass-700); }
+.av.bebe { background: var(--good-700); }
+.av.falec { background: var(--ink-3); position: relative; }
+.av.falec::after {
+  content: '✝';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  background: var(--paper);
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--ink-marinho);
+  border: 1px solid var(--ink-3);
+}
+
+/* =========================================================
+   SIGNATURE COMPONENT 1 · ASSENTO · documento serifado
+   ========================================================= */
+.assento {
+  background: var(--paper);
+  border: 1px solid var(--ink-marinho);
+  border-radius: 2px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+}
+.assento .header-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--brass-500) 0%, var(--ink-marinho) 50%, var(--livro-700) 100%);
+}
+.assento .hd {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--line-2);
+  background: var(--cartolina);
+  text-align: center;
+}
+.assento .hd .pais {
+  font-family: var(--f-serif);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-marinho);
+  margin-bottom: 4px;
+}
+.assento .hd .titulo {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink-marinho);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.assento .hd .num {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.assento .bd {
+  padding: 22px 32px;
+  font-family: var(--f-serif);
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink-1);
+}
+.assento .bd .nome-grande {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--ink-marinho);
+  display: block;
+  margin: 6px 0;
+}
+.assento .ft {
+  padding: 16px 24px;
+  border-top: 1px solid var(--line-2);
+  background: var(--cartolina);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.assento .ft .qr {
+  width: 56px;
+  height: 56px;
+  background: var(--ink-marinho);
+  border: 4px solid var(--cartolina);
+  outline: 1px solid var(--ink-marinho);
+  position: relative;
+}
+.assento .ft .qr::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  background:
+    repeating-linear-gradient(0deg, var(--cartolina) 0, var(--cartolina) 2px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(90deg, var(--cartolina) 0, var(--cartolina) 2px, transparent 2px, transparent 4px);
+}
+
+/* Variantes do assento */
+.assento.nascimento { border-top: 5px solid var(--good-500); }
+.assento.casamento { border-top: 5px solid var(--brass-500); }
+.assento.obito { border-top: 5px solid var(--ink-3); }
+.assento.divorcio { border-top: 5px solid var(--livro-700); }
+.assento.nome { border-top: 5px solid var(--ink-marinho); }
+.assento.provisorio {
+  border: 1px dashed var(--brass-500);
+  background: var(--cartolina);
+}
+.assento.provisorio .hd .titulo { color: var(--brass-700); }
+
+/* Selo · brass relevo */
+.selo {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 2px solid var(--brass-700);
+  color: var(--brass-700);
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 2px;
+  transform: rotate(-2deg);
+  background: rgba(168,126,63,.05);
+  box-shadow: inset 0 0 0 1px var(--brass-300);
+}
+.selo.ink { border-color: var(--ink-marinho); color: var(--ink-marinho); box-shadow: inset 0 0 0 1px var(--ink-3); }
+.selo.green { border-color: var(--good-700); color: var(--good-700); }
+.selo.livro { border-color: var(--livro-700); color: var(--livro-700); }
+
+/* =========================================================
+   SIGNATURE COMPONENT 2 · CÉDULA · cartão infantil
+   ========================================================= */
+.cedula {
+  background: var(--paper);
+  border: 1px solid var(--ink-marinho);
+  border-radius: 4px;
+  width: 320px;
+  height: 200px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+  display: flex;
+  flex-direction: column;
+}
+.cedula .ced-h {
+  background: var(--ink-marinho);
+  color: var(--cartolina);
+  padding: 8px 14px;
+  font-family: var(--f-serif);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.cedula .ced-h b { font-size: 11px; font-weight: 500; display: block; opacity: .8; }
+.cedula .ced-b {
+  padding: 12px 14px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
+}
+.cedula .ced-b .photo {
+  width: 64px;
+  height: 80px;
+  background: var(--cartolina-3);
+  border: 1px solid var(--ink-marinho);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--ink-3);
+  font-family: var(--f-serif);
+}
+.cedula .ced-b .info { font-size: 11px; line-height: 1.4; }
+.cedula .ced-b .info b { font-family: var(--f-serif); font-size: 14px; color: var(--ink-marinho); display: block; margin-bottom: 4px; }
+.cedula .ced-b .info span { font-family: var(--f-mono); color: var(--ink-3); display: block; margin-bottom: 2px; font-size: 10px; }
+.cedula .ced-f {
+  background: var(--cartolina);
+  padding: 6px 14px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  color: var(--ink-3);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line-2);
+}
+
+/* =========================================================
+   SIGNATURE COMPONENT 3 · ÁRVORE FAMILIAR
+   ========================================================= */
+.arvore-fam {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 24px;
+}
+.arvore-fam svg { width: 100%; height: auto; }
+.arvore-fam .leg { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line-2); font-size: 11px; color: var(--ink-3); }
+.arvore-fam .leg span { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); }
+.arvore-fam .leg .dot { width: 10px; height: 10px; border-radius: 50%; }
+.arvore-fam .leg .dot.viv { background: var(--good-500); }
+.arvore-fam .leg .dot.fal { background: var(--ink-3); }
+.arvore-fam .leg .dot.bebe { background: var(--brass-500); }
+
+/* =========================================================
+   SIGNATURE COMPONENT 4 · TIMELINE-VIDA
+   ========================================================= */
+.timeline-vida {
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--ink-marinho);
+}
+.timeline-vida .ev {
+  position: relative;
+  padding: 0 0 24px 24px;
+}
+.timeline-vida .ev:last-child { padding-bottom: 0; }
+.timeline-vida .ev::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink-marinho);
+  border: 3px solid var(--cartolina);
+  box-shadow: 0 0 0 1px var(--ink-marinho);
+}
+.timeline-vida .ev.nasc::before { background: var(--good-700); }
+.timeline-vida .ev.casa::before { background: var(--brass-700); }
+.timeline-vida .ev.obit::before { background: var(--ink-3); }
+.timeline-vida .ev.now::before { background: var(--livro-700); animation: pulse 2s infinite; }
+.timeline-vida .ev .yr {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .04em;
+  display: block;
+  margin-bottom: 2px;
+}
+.timeline-vida .ev .ti {
+  font-family: var(--f-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink-marinho);
+  display: block;
+  margin-bottom: 4px;
+}
+.timeline-vida .ev .desc {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(122,40,32,.5); }
+  50% { box-shadow: 0 0 0 8px rgba(122,40,32,0); }
+}
+
+/* =========================================================
+   SIGNATURE COMPONENT 5 · REGIME DE BENS
+   ========================================================= */
+.regime-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 18px;
+  cursor: pointer;
+  transition: border-color .15s, transform .15s;
+}
+.regime-card.active {
+  border-color: var(--brass-700);
+  background: var(--brass-50);
+  border-width: 2px;
+  padding: 17px;
+}
+.regime-card:hover { border-color: var(--ink-marinho); }
+.regime-card .nome { font-family: var(--f-serif); font-size: 15px; font-weight: 600; color: var(--ink-marinho); margin-bottom: 8px; }
+.regime-card .visual { display: flex; gap: 4px; align-items: stretch; height: 32px; margin: 12px 0; }
+.regime-card .visual .barra { flex: 1; border-radius: 1px; }
+.regime-card .visual .barra.a { background: var(--ink-marinho); }
+.regime-card .visual .barra.b { background: var(--brass-500); }
+.regime-card .visual .barra.both { background: linear-gradient(90deg, var(--ink-marinho) 50%, var(--brass-500) 50%); }
+.regime-card .visual .barra.shared { background: linear-gradient(90deg, var(--ink-marinho), var(--brass-500)); }
+.regime-card .desc { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+
+/* =========================================================
+   SIGNATURE COMPONENT 6 · ASSENTO PROVISÓRIO
+   ========================================================= */
+.assento-prov {
+  background: var(--cartolina);
+  border: 2px dashed var(--brass-500);
+  border-radius: 2px;
+  padding: 18px 20px;
+  position: relative;
+}
+.assento-prov::before {
+  content: 'PROVISÓRIO';
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  background: var(--brass-700);
+  color: var(--cartolina);
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.assento-prov .num-prov {
+  font-family: var(--f-mono);
+  font-size: 22px;
+  color: var(--brass-700);
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin: 4px 0;
+}
+.assento-prov .info { font-family: var(--f-serif); font-size: 14px; line-height: 1.7; color: var(--ink-1); }
+
+/* =========================================================
+   DESKTOP FRAME (padrão recurrente)
+   ========================================================= */
+.desktop-frame {
+  background: var(--bg);
+  border: 1px solid var(--ink-marinho);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+}
+.dt-toolbar {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+.dt-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.dt-toolbar .dot.r { background: #E55B4F; }
+.dt-toolbar .dot.y { background: #E5C24F; }
+.dt-toolbar .dot.g { background: #5BC267; }
+.dt-toolbar .url { background: var(--cartolina-2); border-radius: 2px; padding: 5px 14px; font-family: var(--f-mono); font-size: 11px; color: var(--ink-3); flex: 1; display: flex; align-items: center; gap: 8px; }
+.dt-toolbar .url::before { content: '🔒'; font-size: 9px; opacity: .6; }
+.dt-body { padding: 24px; }
+
+/* =========================================================
+   PHONE & TABLET
+   ========================================================= */
+.phone {
+  width: 360px;
+  background: var(--ink-noir);
+  border-radius: 32px;
+  padding: 12px;
+  box-shadow: var(--sh-3);
+}
+.phone .screen {
+  background: var(--paper);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  height: 720px;
+  display: flex;
+  flex-direction: column;
+}
+.phone .statusbar {
+  background: var(--paper);
+  padding: 10px 18px;
+  font-size: 11px;
+  font-family: var(--f-mono);
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-2);
+}
+
+.tablet {
+  width: 760px;
+  background: var(--ink-noir);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--sh-3);
+}
+.tablet .screen {
+  background: var(--paper);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+.sidebar {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 16px;
+}
+.sidebar h4 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-marinho); font-family: var(--f-serif); }
+.sidebar .nav-side { display: flex; flex-direction: column; gap: 1px; margin: 12px 0; }
+.sidebar .nav-side a { padding: 7px 10px; font-size: 12px; color: var(--ink-2); border-radius: 2px; display: flex; gap: 8px; align-items: center; justify-content: space-between; text-decoration: none; }
+.sidebar .nav-side a:hover { background: var(--cartolina-2); }
+.sidebar .nav-side a.active { background: var(--ink-marinho); color: var(--cartolina); font-weight: 500; }
+.sidebar .nav-side .ct { font-family: var(--f-mono); font-size: 10px; color: var(--ink-3); }
+.sidebar .nav-side a.active .ct { color: var(--cartolina-3); }
+
+/* =========================================================
+   MAPA MZ
+   ========================================================= */
+.mz-map svg { width: 100%; height: auto; display: block; }
+.mz-map .prov { fill: var(--cartolina-3); stroke: var(--paper); stroke-width: 1.5; transition: fill .15s; }
+.mz-map .prov:hover { fill: var(--ink-3); }
+.mz-map .prov.q1 { fill: #E0CC97; }
+.mz-map .prov.q2 { fill: #C9A867; }
+.mz-map .prov.q3 { fill: #A87E3F; }
+.mz-map .prov.q4 { fill: #4A361A; }
+
+/* =========================================================
+   PULL QUOTE
+   ========================================================= */
+.pull-quote {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink-marinho);
+  border-left: 3px solid var(--brass-500);
+  padding: 4px 0 4px 16px;
+  margin: 14px 0;
+}
+.pull-quote cite {
+  display: block;
+  font-size: 12px;
+  font-style: normal;
+  font-family: var(--f-sans);
+  color: var(--ink-3);
+  margin-top: 8px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   SIGNATURE FIELDS · linhas para assinatura
+   ========================================================= */
+.sig-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 14px;
+}
+.sig-field {
+  flex: 1;
+  text-align: center;
+}
+.sig-field .line {
+  border-bottom: 1px solid var(--ink-marinho);
+  min-height: 36px;
+  font-family: cursive;
+  font-size: 16px;
+  color: var(--ink-marinho);
+  padding-bottom: 2px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sig-field .label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-top: 4px;
+}
