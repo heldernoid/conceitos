@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Reconstrução · Resiliência Climática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>INGD · DNRN · DNGT</span><span class="sep">·</span><span>Reconstrução · 184 dias depois</span><span style="margin-left:auto">reconstrucao.resiliencia.gov.mz · v0.3</span></div>
+<div class="alert-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Resiliência Climática</span><small>Reconstrução · pós-evento</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel INGD</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="terreno.html">Terreno</a>
+    <a href="voluntario.html">Voluntário</a>
+    <a href="ajuda.html">Ajuda</a>
+    <a href="reconstrucao.html" class="active">Reconstrução</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm" style="background:var(--verde-700)">JS</div><div class="who"><b>Sr. José Sitole</b><span>Mecúfi · pós-Chido</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Avaliação danos</a>
+  <a href="#cena2">Cena 2 · DUAT validado</a>
+  <a href="#cena3">Cena 3 · Processo guiado</a>
+  <a href="#cena4">Cena 4 · Materiais</a>
+  <a href="#cena5">Cena 5 · Equipa de obra</a>
+  <a href="#cena6">Cena 6 · Entrega das casas</a>
+  <a href="#cena7">Cena 7 · Novo endereço</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Avaliação inicial dos danos · 2 dias após Chido</b><span>Sr. José Sitole · 42a · 7 pessoas no agregado · casa destruída · machamba alagada · cross-Terras avalia DUAT</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>09:14</span><span>📶 4G</span></div>
+          <div style="background:var(--ceu-700);color:#fff;padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85;letter-spacing:.1em">AVALIAÇÃO PROPRIEDADE · INGD</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Sr. José Sitole · Mecúfi</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner alert" style="margin-bottom:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Avaliação obrigatória 48h após o evento.</b> Sem esta avaliação · não há kit de reconstrução.</div></div>
+
+            <h3 style="margin:0 0 10px;font-family:var(--f-serif);font-size:14px">Estado da minha propriedade</h3>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:6px">CASA</div>
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--laranja-50);border-left:3px solid var(--laranja-500)">
+              <div class="row spread"><span style="font-size:12px;font-weight:600">Destruição total</span><span class="badge alert" style="font-size:9px">100%</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">Telhado · paredes parciais · tudo perdido</span>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:6px">MACHAMBA · 1,2 ha</div>
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--amber-50);border-left:3px solid var(--amber-500)">
+              <div class="row spread"><span style="font-size:12px;font-weight:600">Alagamento parcial</span><span class="badge warn" style="font-size:9px">68%</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">Mandioca perdida · milho aguenta · próximas chuvas?</span>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:6px">ANIMAIS</div>
+            <div class="card" style="margin-bottom:14px;padding:10px;background:var(--cinza-50);border-left:3px solid var(--cinza-500)">
+              <div class="row spread"><span style="font-size:12px;font-weight:600">4 cabras perdidas</span><span class="badge cinza" style="font-size:9px">−4</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">8 galinhas vivas · vizinhos as protegeram</span>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:6px">FOTOS · 6 ANEXADAS</div>
+            <div class="grid g-3" style="gap:6px;margin-bottom:14px">
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Casa</div>
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Telhado</div>
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Machamba</div>
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Mandioca</div>
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Cabras</div>
+              <div style="aspect-ratio:1;background:var(--cinza-300);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-family:var(--f-mono)">📷 Família</div>
+            </div>
+
+            <button class="btn block lg">Submeter avaliação</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Sr. José Sitole · perfil</b></div>
+          <div class="bd">
+            <div class="row" style="gap:10px;align-items:center;margin-bottom:10px">
+              <div class="av lg" style="background:var(--verde-700)">JS</div>
+              <div style="flex:1"><b style="font-family:var(--f-serif);font-size:15px">José Sitole</b><div class="t-meta" style="font-size:11px">42a · BI 110100382418 · cross-eBI ✓</div></div>
+            </div>
+            <div style="font-size:12px;line-height:1.7">
+              <div class="row spread"><span style="color:var(--ink-3)">Família</span><b>7 pessoas · 4 menores · 1 idosa</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Profissão</span><b>Agricultor · subsistência</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">DUAT</span><b>1,2 ha · Lei 19/97 · cross-Terras</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Encontrado em Cena 02 · Terreno</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic"></span><div><b>Continuidade narrativa.</b> Sr. José Sitole foi censado pelo Aníbal Cossa em <a href="terreno.html#cena2" style="color:var(--ceu-700)">Surface 3 · Cena 2 · Terreno</a>. Sobrinho Bruno foi sinalizado como desaparecido · regressou 4 dias depois. Anastácia (sogra, 71a) foi evacuada de helicóptero. Família agora começa fase de reconstrução.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Como avaliação determina apoio</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li><b>Destruição total</b> · kit reconstrução completo · zinco + cimento + madeira · ≈ 360 USD</li>
+              <li><b>Destruição parcial</b> · kit reparação · ≈ 140 USD</li>
+              <li><b>Machamba alagada</b> · sementes nova plantação · ≈ 80 USD</li>
+              <li><b>Animais perdidos</b> · subsídio único · ≈ 30 USD/cabra</li>
+              <li><b>Subsídio mensal</b> · 4 meses · 170 USD/mês · cross-INSS</li>
+            </ul>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0">Avaliação dimensiona apoio · sem necessidade de pedidos múltiplos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>DUAT validado · cross-Terras · 14 dias depois</b><span>Lei 19/97 · DUAT 1,2 ha de Sr. José confirmado · zona segura · pode reconstruir no mesmo lugar</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">reconstrucao.resiliencia.gov.mz/duat/110100382418</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><div><div class="t-overline">VALIDAÇÃO DUAT · CROSS-TERRAS</div><h2 class="t-h2" style="margin:4px 0">DUAT 1,2 ha · Mecúfi · zona segura</h2></div><span class="badge good">aprovado · pode reconstruir</span></div>
+
+        <div class="grid g-2" style="gap:18px;margin-bottom:18px">
+          <div class="card good">
+            <div class="hd"><b>Decisão · cross-Terras</b></div>
+            <div class="bd">
+              <p style="font-size:13px;line-height:1.7;margin:0 0 10px">DUAT de Sr. José Sitole foi avaliado pela Direcção Provincial dos Serviços de Geografia e Cadastro · Cabo Delgado. Resultado:</p>
+              <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                <li><b>Localização</b> · 14 km no interior · não-costeira</li>
+                <li><b>Cota altimétrica</b> · 28 m acima do nível do mar</li>
+                <li><b>Histórico inundações</b> · 0 últimos 50 anos</li>
+                <li><b>Decisão</b> · pode reconstruir no mesmo lugar</li>
+              </ul>
+              <p style="font-size:12px;line-height:1.6;margin:14px 0 0;color:var(--verde-700);font-weight:500">218 famílias em zona costeira de Quissanga não tiveram a mesma sorte · serão realocadas.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Documentação cross-Terras</b></div>
+            <div class="bd">
+              <table class="table" style="font-size:12px">
+                <tbody>
+                  <tr><td>DUAT n.º</td><td class="mono">DUAT-CD-2018-04412</td></tr>
+                  <tr><td>Titular</td><td>José Sitole</td></tr>
+                  <tr><td>Área</td><td class="num">1,2 ha</td></tr>
+                  <tr><td>Coordenadas</td><td class="mono">−13.28, 40.51</td></tr>
+                  <tr><td>Régulo</td><td>Mahique de Cheringoma</td></tr>
+                  <tr><td>Validade</td><td>50 anos · até 2068</td></tr>
+                  <tr><td>Estado</td><td><span class="badge good" style="font-size:9px">activo</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Decisões de realocação · 28 famílias afectadas</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Família</th><th>DUAT actual</th><th>Decisão</th><th>Razão</th></tr></thead>
+              <tbody>
+                <tr><td>Sitole · 7 pessoas</td><td>−13.28, 40.51 · Mecúfi interior</td><td><span class="badge good" style="font-size:9px">manter</span></td><td>Zona segura · 14 km da costa</td></tr>
+                <tr><td>Macuácua · 5 pessoas</td><td>−12.41, 40.55 · Quissanga costa</td><td><span class="badge alert" style="font-size:9px">realocar</span></td><td>Zona crítica · próx. ciclone destrói tudo</td></tr>
+                <tr><td>Cossa · 4 pessoas</td><td>−12.96, 40.51 · Pemba</td><td><span class="badge good" style="font-size:9px">manter</span></td><td>Casa cimento · zona elevada</td></tr>
+                <tr><td>Tembe · 6 pessoas</td><td>−12.42, 40.52 · Quissanga costa</td><td><span class="badge alert" style="font-size:9px">realocar</span></td><td>Zona crítica</td></tr>
+                <tr><td colspan="4" style="background:var(--bg-2);font-style:italic;color:var(--ink-3)">+ 24 famílias · 18 mantém · 6 realocar</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="banner alert" style="margin-top:18px"><span class="ic"></span><div><b>Princípio · não se reconstrói no mesmo sítio se foi destruído.</b> Lei 19/97 + plano de gestão de risco INGD permitem recusar reconstrução em zonas críticas. Família tem direito a DUAT alternativo · não fica desabrigada · mas casa nova é em local seguro.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Processo guiado de reconstrução · 6 passos</b><span>App orienta Sr. José passo a passo · seleccionar materiais · escolher equipa · acompanhar obra · aprovar entrega</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>11:42</span><span>📶 4G</span></div>
+          <div style="background:var(--verde-700);color:#fff;padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">RECONSTRUÇÃO · 6 PASSOS</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Sr. José · passo 3 de 6</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="t-overline" style="font-size:9px;margin-bottom:10px">PROGRESSO</div>
+
+            <div class="card" style="margin-bottom:6px;padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><span style="font-size:12px"><b>1 · Avaliação inicial</b></span><span class="badge good" style="font-size:9px">✓ feito</span></div>
+              <span style="font-size:10px;color:var(--ink-3)">14.12.2024 · 09:14</span>
+            </div>
+            <div class="card" style="margin-bottom:6px;padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><span style="font-size:12px"><b>2 · DUAT validado</b></span><span class="badge good" style="font-size:9px">✓ feito</span></div>
+              <span style="font-size:10px;color:var(--ink-3)">28.12.2024 · cross-Terras</span>
+            </div>
+            <div class="card" style="margin-bottom:6px;padding:10px;background:var(--areia-100);border-left:3px solid var(--ceu-700)">
+              <div class="row spread"><span style="font-size:12px"><b>3 · Escolher materiais</b></span><span class="badge ceu" style="font-size:9px">em curso</span></div>
+              <span style="font-size:10px;color:var(--ink-3)">prazo · 14 dias</span>
+            </div>
+            <div class="card" style="margin-bottom:6px;padding:10px">
+              <div class="row spread"><span style="font-size:12px;color:var(--ink-3)">4 · Escolher equipa de obra</span></div>
+            </div>
+            <div class="card" style="margin-bottom:6px;padding:10px">
+              <div class="row spread"><span style="font-size:12px;color:var(--ink-3)">5 · Acompanhar obra (6-8 semanas)</span></div>
+            </div>
+            <div class="card" style="margin-bottom:14px;padding:10px">
+              <div class="row spread"><span style="font-size:12px;color:var(--ink-3)">6 · Aprovar entrega + assinar</span></div>
+            </div>
+
+            <div class="banner ceu" style="font-size:11px;margin-bottom:14px"><span class="ic"></span><div>Está no <b>passo 3</b>. Tem 14 dias para escolher modelo de casa e materiais.</div></div>
+
+            <button class="btn block lg success">Continuar passo 3 →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Os 6 passos · transparente</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Avaliação inicial</b> · 48h após evento · INGD valida danos</li>
+              <li><b>Validação DUAT</b> · 14 dias · cross-Terras decide se mantém ou realoca</li>
+              <li><b>Escolha de materiais</b> · 14 dias · família escolhe modelo casa entre 3 opções</li>
+              <li><b>Escolha de equipa</b> · 7 dias · famílias podem agrupar-se · cooperar</li>
+              <li><b>Acompanhamento da obra</b> · 6-8 semanas · check-points cada 2 semanas</li>
+              <li><b>Aprovação final</b> · família valida · documentos cross-Vida Civil</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="banner good"><span class="ic"></span><div><b>Família tem voz em cada passo.</b> Não é "INGD reconstrói para si" · é "INGD apoia a família a reconstruir". Família escolhe modelo de casa, equipa, ritmo. INGD garante recursos e padrão mínimo de qualidade.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Modelos de casa · 3 opções</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li><b>A · Tradicional reforçada</b> · paredes pau-a-pique melhorado · telhado zinco · 2 quartos · 26 m² · ≈ 290 USD materiais</li>
+              <li><b>B · Cimento + zinco</b> · paredes blocos cimento · telhado zinco fixo · 2 quartos · 32 m² · ≈ 360 USD materiais</li>
+              <li><b>C · Cimento + telha</b> · paredes blocos · telha · 3 quartos · 42 m² · ≈ 480 USD · família contribui 120 USD</li>
+            </ul>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0">Sr. José Sitole prefere modelo B · subsídio cobre 100%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Materiais distribuídos · entregues no DUAT · 28 famílias receberam</b><span>QR em cada bloco de cimento · cada chapa de zinco · família assina recepção · inventário público</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">reconstrucao.resiliencia.gov.mz/materiais/sitole-110100382418</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">Materiais entregues · família Sitole</h2><span class="badge good">28.01.2025 · entregue</span></div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="card">
+            <div class="hd"><b>Inventário · modelo B · 32 m²</b></div>
+            <div class="bd" style="padding:0">
+              <table class="table" style="font-size:12px">
+                <thead><tr><th>Material</th><th>Qtd</th><th>QR</th><th>Estado</th></tr></thead>
+                <tbody>
+                  <tr><td>Blocos de cimento</td><td class="num">2 400</td><td class="mono" style="font-size:10px">RC-04412-BL</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Sacos de cimento 50 kg</td><td class="num">42</td><td class="mono" style="font-size:10px">RC-04412-CM</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Areia · m³</td><td class="num">8</td><td class="mono" style="font-size:10px">RC-04412-AR</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Brita · m³</td><td class="num">4</td><td class="mono" style="font-size:10px">RC-04412-BT</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Chapas de zinco · 3,6 m</td><td class="num">28</td><td class="mono" style="font-size:10px">RC-04412-ZN</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Vigas de eucalipto · 5 m</td><td class="num">12</td><td class="mono" style="font-size:10px">RC-04412-EU</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Pregos · kg</td><td class="num">14</td><td class="mono" style="font-size:10px">RC-04412-PR</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Portas · 80 cm</td><td class="num">3</td><td class="mono" style="font-size:10px">RC-04412-PT</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                  <tr><td>Janelas · 80×60</td><td class="num">4</td><td class="mono" style="font-size:10px">RC-04412-JN</td><td><span class="badge good" style="font-size:9px">recebido</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card good">
+              <div class="hd"><b>Valor total · auditável</b></div>
+              <div class="bd">
+                <div style="font-size:13px;line-height:1.7">
+                  <div class="row spread"><span style="color:var(--ink-3)">Materiais</span><b>360 USD</b></div>
+                  <div class="row spread"><span style="color:var(--ink-3)">Transporte para DUAT</span><b>14 USD</b></div>
+                  <div class="row spread"><span style="color:var(--ink-3)">Equipa de obra (Cena 5)</span><b>180 USD</b></div>
+                  <div class="row spread" style="font-weight:600;border-top:2px solid var(--line);margin-top:6px;padding-top:6px"><span>Total</span><span style="color:var(--verde-700)">554 USD</span></div>
+                </div>
+                <p class="t-meta" style="font-size:11px;margin:10px 0 0">Custo médio por casa · Modelo B · 32 m² · 4-7 pessoas.</p>
+              </div>
+            </div>
+
+            <div class="banner ceu"><span class="ic"></span><div><b>Cada material com QR.</b> Joana Mahique Cossa pode ver no Surface 5 que estes 360 USD vieram do Banco Mundial · entregues a 28.01.2025 · scaneados e assinados pelo Sr. José.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Combate ao desvio</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li>Cada bloco/chapa scaneado na entrega</li>
+                  <li>Família assina recepção · cross-eBI</li>
+                  <li>Régulo Mahique de Cheringoma confirma localização</li>
+                  <li>Auditoria CIP em paralelo · não 18 meses depois</li>
+                  <li>Vizinhos podem fotografar e reportar</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Equipa de obra · 5 famílias agrupam-se · economia colectiva</b><span>Sr. José + Macuácua + Cossa + Sitole2 + Tembe · 5 casas · 1 equipa · 4 pedreiros · 6 semanas</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">reconstrucao.resiliencia.gov.mz/equipa/grupo-014</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><div><div class="t-overline">GRUPO 014 · MECÚFI</div><h2 class="t-h2" style="margin:4px 0">5 famílias · 1 equipa de obra · 6 semanas</h2></div><span class="badge good">aprovado · obra a começar</span></div>
+
+        <div class="grid g-2" style="gap:18px;margin-bottom:18px">
+          <div class="card">
+            <div class="hd"><b>5 famílias agrupadas</b></div>
+            <div class="bd" style="padding:0">
+              <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px">
+                <div class="row spread"><span><b>1 · Sitole · 7 pessoas</b></span><span class="badge ceu" style="font-size:9px">Mod. B</span></div>
+                <span style="color:var(--ink-3);font-size:11px">DUAT 1,2 ha · interior · primeira obra</span>
+              </div>
+              <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px">
+                <div class="row spread"><span><b>2 · Macuácua · 5 pessoas</b></span><span class="badge ceu" style="font-size:9px">Mod. A</span></div>
+                <span style="color:var(--ink-3);font-size:11px">Realocada · novo DUAT · família vizinha</span>
+              </div>
+              <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px">
+                <div class="row spread"><span><b>3 · Cossa · 4 pessoas</b></span><span class="badge ceu" style="font-size:9px">Mod. B</span></div>
+                <span style="color:var(--ink-3);font-size:11px">DUAT vizinho · contribui 0 USD</span>
+              </div>
+              <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px">
+                <div class="row spread"><span><b>4 · Sitole-Norte · 6 pessoas</b></span><span class="badge ceu" style="font-size:9px">Mod. C</span></div>
+                <span style="color:var(--ink-3);font-size:11px">Família alargada do Sr. José · contribui 120 USD</span>
+              </div>
+              <div style="padding:10px 14px;font-size:12px">
+                <div class="row spread"><span><b>5 · Tembe · 8 pessoas</b></span><span class="badge ceu" style="font-size:9px">Mod. C</span></div>
+                <span style="color:var(--ink-3);font-size:11px">Maior agregado · 8 pessoas · contribui 120 USD</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Equipa · 4 pedreiros locais</b></div>
+              <div class="bd">
+                <div class="row" style="gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2);font-size:12px">
+                  <div class="av sm">DM</div>
+                  <div style="flex:1"><b>Domingos Macuácua</b><div class="t-meta" style="font-size:10px">Mestre pedreiro · 22 anos · cred. INGD-CD-2018</div></div>
+                </div>
+                <div class="row" style="gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2);font-size:12px">
+                  <div class="av sm">JC</div>
+                  <div style="flex:1"><b>Joaquim Cossa</b><div class="t-meta" style="font-size:10px">Pedreiro · 8 anos</div></div>
+                </div>
+                <div class="row" style="gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2);font-size:12px">
+                  <div class="av sm">FT</div>
+                  <div style="flex:1"><b>Fernando Tembe</b><div class="t-meta" style="font-size:10px">Pedreiro · 4 anos</div></div>
+                </div>
+                <div class="row" style="gap:10px;align-items:center;padding:6px 0;font-size:12px">
+                  <div class="av sm warn">EM</div>
+                  <div style="flex:1"><b>Estêvão Mahique</b><div class="t-meta" style="font-size:10px">Aprendiz · 1.º ano · cross-Trabalho formação</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="banner good"><span class="ic"></span><div><b>Cross-Trabalho · empregos locais.</b> Reconstrução não importa pedreiros · contrata localmente. 184 famílias afectadas geram 38 contratos para pedreiros e aprendizes. Estêvão Mahique aprende oficio · cross-INSS · contrato registado.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Cronograma · 6 semanas</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li><b>Sem 1-2</b> · Fundações · 5 casas em paralelo</li>
+                  <li><b>Sem 3-4</b> · Paredes · até parede de cumeeira</li>
+                  <li><b>Sem 5</b> · Telhados · zinco/telha</li>
+                  <li><b>Sem 6</b> · Acabamentos · portas · janelas · pintura</li>
+                </ul>
+                <p class="t-meta" style="font-size:11px;margin:10px 0 0">Cada 2 semanas · check-point com Aníbal Cossa · INGD avalia progresso</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic"></span><div><b>Princípio · economia colectiva.</b> 5 famílias juntas · 1 equipa · custo unitário menor · obra mais rápida · qualidade homogénea. Cada família escolheu o seu modelo · mas executa-se em paralelo. Vizinhos colaboram · transporte de água · supervisão · refeições partilhadas.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Entrega da casa · 184 dias após Chido · 28.06.2025</b><span>Sr. José assina aprovação final · cross-Vida Civil regista nova residência · cerimónia simbólica comunitária</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>15:42</span><span>📶 4G</span></div>
+          <div style="background:var(--verde-700);color:#fff;padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85;letter-spacing:.1em">CASA ENTREGUE · APROVAÇÃO FINAL</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Família Sitole · 184 dias depois</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner good" style="margin-bottom:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Casa concluída.</b> Modelo B · 32 m² · zinco fixo · 2 quartos · cozinha exterior · latrina.</div></div>
+
+            <h3 style="margin:0 0 10px;font-family:var(--f-serif);font-size:14px">Confirmação final · Sr. José</h3>
+
+            <div class="t-overline" style="font-size:9px;margin:14px 0 8px">CHECKLIST DE ENTREGA</div>
+            <div style="font-size:12px;line-height:2">
+              <div class="row spread"><span>Paredes em conformidade</span><span class="badge good" style="font-size:9px">✓</span></div>
+              <div class="row spread"><span>Telhado fixo · sem fugas</span><span class="badge good" style="font-size:9px">✓</span></div>
+              <div class="row spread"><span>Portas e janelas funcionais</span><span class="badge good" style="font-size:9px">✓</span></div>
+              <div class="row spread"><span>Latrina externa</span><span class="badge good" style="font-size:9px">✓</span></div>
+              <div class="row spread"><span>Cozinha exterior</span><span class="badge good" style="font-size:9px">✓</span></div>
+              <div class="row spread"><span>Sem defeitos visíveis</span><span class="badge good" style="font-size:9px">✓</span></div>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin:14px 0 8px">EQUIPA DE OBRA · CROSS-TRABALHO</div>
+            <p style="font-size:12px;margin:0 0 14px;color:var(--ink-3)">Domingos Macuácua (mestre) · 4 pedreiros · 6 semanas · sem incidentes</p>
+
+            <div class="banner ceu" style="font-size:11px;margin-bottom:14px"><span class="ic"></span><div><b>Após assinar · cross-Vida Civil regista nova residência.</b> Sr. José pode actualizar BI cara família.</div></div>
+
+            <button class="btn block lg success">✓ Aprovar e assinar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Cerimónia simbólica comunitária</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 10px">Em 28.06.2025 · 184 dias após Chido · 5 famílias do Grupo 014 reúnem-se. Régulo Mahique de Cheringoma preside. Cada família corta uma fita simbólica nas suas portas. Padre Manuel Cossa abençoa. Maria Nhantumbo (paramédica Cruz Vermelha) participa.</p>
+            <p style="font-size:12px;line-height:1.6;margin:0;color:var(--ink-3);font-style:italic">"Não é só uma casa que se entrega · é dignidade que se restitui."</p>
+          </div>
+        </div>
+
+        <div class="banner good"><span class="ic"></span><div><b>184 dias · 7068 das 8412 casas reconstruídas.</b> 84% concluído. Restantes 1344 famílias maioritariamente em casos complexos · realocações · DUATs em sucessão · disputas familiares. Target final · 100% até Dez 2026.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Pull quote · Sr. José</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Achava que ia esperar 2 anos como aconteceu com o Idai aos meus tios na Beira. Em 6 meses estamos em casa nova. Filhos voltaram à escola em Maio."<cite>Sr. José Sitole · 28.06.2025</cite></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Cross-Vida Civil · novo endereço actualizado em 4 dias</b><span>BI · cédulas dos filhos · alteração de residência · serviços públicos notificados automaticamente</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">reconstrucao.resiliencia.gov.mz/cross-vida-civil/sitole-110100382418</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><div><div class="t-overline">CROSS-VIDA CIVIL · ACTUALIZAÇÃO PÓS-RECONSTRUÇÃO</div><h2 class="t-h2" style="margin:4px 0">Família Sitole · documentos actualizados</h2></div><span class="badge good">4 dias · concluído</span></div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="card">
+            <div class="hd"><b>Documentos actualizados · 7 pessoas</b></div>
+            <div class="bd" style="padding:0">
+              <table class="table" style="font-size:12px">
+                <thead><tr><th>Pessoa</th><th>Documento</th><th>Estado</th></tr></thead>
+                <tbody>
+                  <tr><td>José Sitole · 42a</td><td>BI · novo endereço</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Cremilda Sitole · 38a</td><td>BI · novo endereço</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Manuel Sitole · 14a</td><td>Cédula + BI provisório</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Adélia Sitole · 11a</td><td>Cédula</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Júlio Sitole · 6a</td><td>Cédula</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Anastácia Sitole · 71a</td><td>BI · novo endereço</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                  <tr><td>Bruno Sitole · 22a</td><td>BI · novo endereço</td><td><span class="badge good" style="font-size:9px">✓</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Serviços notificados · automaticamente</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.85">
+                  <li><b>cross-Saúde</b> · cartão SIS-MA actualizado · Centro Saúde da nova zona</li>
+                  <li><b>cross-Educação</b> · escola dos 3 filhos · transporte escolar</li>
+                  <li><b>cross-AT</b> · NUIT mantém · endereço fiscal</li>
+                  <li><b>cross-INSS</b> · subsídio mensal redirecionado</li>
+                  <li><b>cross-Bo Moçambique</b> · M-Pesa associado novo endereço</li>
+                  <li><b>cross-Eleições</b> · STAE actualiza caderno eleitoral</li>
+                  <li><b>cross-MTel</b> · operadora GSM actualiza endereço</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="banner good"><span class="ic"></span><div><b>Família não passa por 7 balcões.</b> Cross-Vida Civil propaga novo endereço para todos os serviços. Actualização única · efeito em todo o ecossistema. Princípio fundamental do pacote 10 (Vida Civil) aplicado aqui.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Continuidade narrativa · ecossistema completo</b></div>
+              <div class="bd">
+                <p style="font-size:13px;line-height:1.7;margin:0">Sr. José Sitole percorreu agora todos os pacotes:</p>
+                <ul style="margin:8px 0 0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li><b>Surface 3 Terreno</b> · censado por Aníbal · 14.12.2024</li>
+                  <li><b>Surface 4 Voluntário</b> · família atendida por Maria · cuidados</li>
+                  <li><b>Surface 5 Ajuda</b> · 1 120 USD rastreáveis</li>
+                  <li><b>Surface 6 Reconstrução</b> · casa nova · 184 dias</li>
+                  <li><b>cross-Vida Civil</b> · documentos actualizados · 4 dias</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner ceu" style="margin-top:18px"><span class="ic"></span><div><b>Validação cumulativa do ecossistema.</b> Se o pacote 11 funciona · todos os 10 anteriores funcionaram juntos. Família Sitole · 7 pessoas · interagiu sem fricção com 14 sistemas diferentes durante 184 dias. Esta era a promessa do Conceitos · cumprida.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--noir-1);color:var(--noir-text-2);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--ceu-700);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:18px;height:18px;border:2.5px solid var(--paper);border-radius:50%;border-top-color:transparent;border-right-color:transparent;transform:rotate(-45deg)"></div><div style="position:absolute;width:4px;height:4px;background:var(--laranja-500);border-radius:50%"></div></div>
+        <div>
+          <div style="font-size:15px;color:var(--noir-text);font-weight:600">Reconstrução · pós-evento</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 6 de 7 · DESIGN-reconstrucao.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--noir-text-3)">cross-Terras · cross-Vida Civil · cross-Saúde · cross-Educação · cross-AT · cross-INSS · cross-Bo Moçambique · cross-Eleições · cross-MTel · cross-Trabalho · cross-CFJP. Sr. José Sitole, família Sitole, Domingos Macuácua, Joaquim Cossa, Fernando Tembe, Estêvão Mahique, Régulo Mahique de Cheringoma são personas fictícias.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="ajuda.html" class="btn ghost sm" style="color:var(--noir-text-2)">‹ Ajuda</a><a href="memorial.html" class="btn ghost sm" style="color:var(--noir-text-2)">Próxima · Memorial ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

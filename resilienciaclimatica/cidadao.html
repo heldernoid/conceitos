@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Cidadão · Resiliência Climática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>INGD · INAM</span><span class="sep">·</span><span>Cidadão · app móvel</span><span style="margin-left:auto">cidadao.resiliencia.gov.mz · v0.3</span></div>
+<div class="alert-stripe live"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Resiliência Climática</span><small>Cidadão · em risco</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel INGD</a>
+    <a href="cidadao.html" class="active">Cidadão</a>
+    <a href="terreno.html">Terreno</a>
+    <a href="voluntario.html">Voluntário</a>
+    <a href="ajuda.html">Ajuda</a>
+    <a href="reconstrucao.html">Reconstrução</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm">FM</div><div class="who"><b>Felisberto Manjate</b><span>Maxixe · Inhambane</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · SMS de alerta</a>
+  <a href="#cena2">Cena 2 · Plano familiar</a>
+  <a href="#cena3">Cena 3 · Kit emergência</a>
+  <a href="#cena4">Cena 4 · Evacuar</a>
+  <a href="#cena5">Cena 5 · Em abrigo</a>
+  <a href="#cena6">Cena 6 · Contactar família</a>
+  <a href="#cena7">Cena 7 · Pedido socorro</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Felisberto recebe SMS de alerta · 04:42</b><span>Tempestade tropical no Canal · alerta laranja · Maxixe pode ser afectada · 36h até landfall</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>04:42</span><span>📶 4G · 78%</span></div>
+          <div style="background:var(--noir-1);color:var(--noir-text);padding:12px 18px;text-align:center">
+            <div style="font-family:var(--f-mono);font-size:9px;color:var(--noir-text-2);letter-spacing:.1em">SMS · INGD ALERTA</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="alerta-pulsante laranja" style="margin-bottom:18px;padding:14px;flex-direction:column;text-align:center">
+              <div class="nv" style="margin:0 auto 10px">L2</div>
+              <div class="info" style="text-align:center">
+                <div class="lvl">Alerta laranja</div>
+                <div class="titulo" style="font-size:16px">Tempestade tropical no Canal</div>
+                <div class="desc">Pode atingir Inhambane · 36h até landfall</div>
+              </div>
+            </div>
+
+            <div style="background:var(--areia-100);padding:14px;border-radius:2px;font-size:13px;line-height:1.6;margin-bottom:14px">
+              <p style="margin:0 0 10px;font-family:var(--f-serif)"><b>Felisberto · alerta importante.</b></p>
+              <p style="margin:0 0 8px">Tempestade tropical formou-se no Canal de Moçambique. Trajectória prevista pode atingir Maxixe em <b style="color:var(--laranja-700)">36h</b>.</p>
+              <p style="margin:0">Comece já a preparação. Não há razão para pânico · há razão para começar.</p>
+            </div>
+
+            <button class="btn alert block lg" style="margin-bottom:8px">Ver plano de evacuação</button>
+            <button class="btn secondary block" style="margin-bottom:8px">Ver kit de emergência</button>
+            <button class="btn ghost block" style="font-size:12px">Mais tarde · acompanhar</button>
+
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line-2);font-size:11px;color:var(--ink-3);text-align:center">
+              Disponível em: PT · Macua · Changana<br>
+              <span style="color:var(--ceu-700)">RFM 90.5 · transmissões em curso</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Como o alerta chega</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>SMS</b> · todas as redes · cross-MTN, Vodacom, Tmcel</li>
+              <li><b>App push</b> · se instalada</li>
+              <li><b>Rádio Moçambique 90.5 FM</b> · transmissão automática</li>
+              <li><b>Sirenes físicas</b> · zonas costeiras críticas</li>
+              <li><b>Régulo + comunidade</b> · cross-CFJP · cobre quem não tem GSM</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner alert"><span class="ic"></span><div><b>Princípio · 4 níveis de alerta · 4 tons.</b> Verde "monitorize" → Amarelo "prepare-se" → Laranja "comece a evacuar" → Vermelho "evacue agora". Cada nível tem mensagem específica · sem ambiguidade.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Linguagem inclusiva</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0">Em zonas com baixa alfabetização em português, alertas críticos enviados em <b>Macua</b> (norte), <b>Sena</b> (centro), <b>Changana</b> (sul). Áudio em rádio comunitário em todas as línguas locais.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Plano familiar · Joana, Lara, e os avós</b><span>4 pessoas no agregado · 2 adultos · 1 bebé · 1 idoso · plano personalizado</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>04:48</span><span>📶 4G</span></div>
+          <div style="background:var(--ceu-700);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-family:var(--f-mono);font-size:9px;opacity:.8">PLANO FAMILIAR</div><div style="font-family:var(--f-serif);font-size:14px;margin-top:2px">Família Manjate Sumane</div></div>
+            <span class="badge alert" style="font-size:9px">L2 activo</span>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <h3 style="margin:0 0 10px;font-family:var(--f-serif);font-size:15px;color:var(--ceu-900)">A minha família · 4 pessoas</h3>
+
+            <div class="card" style="margin-bottom:8px;padding:10px">
+              <div class="row" style="gap:10px;align-items:center"><div class="av sm">FM</div><div style="flex:1;font-size:12px"><b>Felisberto · 38a</b><div style="color:var(--ink-3);font-size:11px">Adulto saudável</div></div></div>
+            </div>
+            <div class="card" style="margin-bottom:8px;padding:10px">
+              <div class="row" style="gap:10px;align-items:center"><div class="av sm" style="background:var(--verde-700)">JS</div><div style="flex:1;font-size:12px"><b>Joana · 34a · enfermeira</b><div style="color:var(--ink-3);font-size:11px">Adulta · médica de profissão</div></div></div>
+            </div>
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--laranja-50);border-color:var(--laranja-100)">
+              <div class="row" style="gap:10px;align-items:center"><div class="av sm" style="background:var(--laranja-500)">L</div><div style="flex:1;font-size:12px"><b>Lara · 5 meses · bebé</b><div style="color:var(--laranja-700);font-size:11px">⚠ prioridade · cuidados especiais</div></div></div>
+            </div>
+            <div class="card" style="margin-bottom:14px;padding:10px;background:var(--amber-50);border-color:var(--amber-100)">
+              <div class="row" style="gap:10px;align-items:center"><div class="av sm" style="background:var(--amber-500)">FT</div><div style="flex:1;font-size:12px"><b>Filomena · 64a · sogra</b><div style="color:var(--amber-700);font-size:11px">⚠ idosa · medicação diária</div></div></div>
+            </div>
+
+            <div class="t-overline" style="margin-bottom:8px">PONTOS DE ENCONTRO</div>
+            <div style="font-size:12px;line-height:1.6;margin-bottom:14px">
+              <p style="margin:0 0 6px"><b>1.º · em casa</b> · sala de estar · sob a mesa</p>
+              <p style="margin:0 0 6px"><b>2.º · vizinho Domingos</b> · 80m · casa de cimento</p>
+              <p style="margin:0"><b>3.º · Escola Primária</b> · 600m · abrigo INGD</p>
+            </div>
+
+            <div class="t-overline" style="margin-bottom:8px">CONTACTO FORA DA ZONA</div>
+            <div style="font-size:12px;background:var(--areia-100);padding:10px;border-radius:2px;margin-bottom:14px">
+              <b>Júlia Sumane Tembe · irmã da Joana</b><br>
+              <span style="color:var(--ink-3)">Beira · Sofala · +258 84 218 4218</span>
+            </div>
+
+            <button class="btn block lg">Editar plano</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Plano dimensionado pela família</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 12px">Quando Felisberto se registou (cross-Vida Civil), a app já sabia a composição da família. Plano gerou-se automaticamente:</p>
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li><b>Bebé Lara</b> · prioridade · fraldas, leite, medicamentos infantis</li>
+              <li><b>Filomena 64a</b> · medicação diária · stock 7 dias guardado</li>
+              <li><b>Joana enfermeira</b> · pode prestar 1.º socorros</li>
+              <li><b>Animais</b> · 2 cabras + 14 galinhas · plano vizinho</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic"></span><div><b>Cross-Vida Civil dimensiona automaticamente.</b> A app conhece composição familiar via assento de nascimento, idade, condição de saúde se declarada (cross-Saúde). Plano não é genérico · é específico desta família.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Pontos de encontro · porquê 3</b></div>
+          <div class="bd">
+            <p style="font-size:12px;line-height:1.6;margin:0">Princípio universal de planeamento de emergência · 3 pontos hierárquicos. Casa → vizinho próximo de cimento → abrigo público. Se 1.º falha, próximo. Se 2.º falha, abrigo INGD designado · cross-INGD geolocaliza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Kit de emergência · checklist personalizado</b><span>7 dias · 4 pessoas · 1 bebé · 1 idosa com medicação · cross-Saúde stock</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="kit-emergencia">
+        <div class="t-overline" style="margin-bottom:14px">KIT FAMÍLIA MANJATE SUMANE · 7 DIAS</div>
+        <div class="item">
+          <div class="ico">💧</div>
+          <div class="desc"><b>Água potável</b><span>2L/pessoa/dia + Lara 1L · = 64L total</span></div>
+          <div class="qtd">64 L</div>
+        </div>
+        <div class="item">
+          <div class="ico">🍞</div>
+          <div class="desc"><b>Comida não-perecível</b><span>arroz, feijão, conservas, biscoitos</span></div>
+          <div class="qtd">8 kg</div>
+        </div>
+        <div class="item">
+          <div class="ico">🍼</div>
+          <div class="desc"><b>Leite em pó · Lara</b><span>fórmula infantil · 5 meses · biberões</span></div>
+          <div class="qtd">2 latas</div>
+        </div>
+        <div class="item">
+          <div class="ico">💊</div>
+          <div class="desc"><b>Medicação · Filomena</b><span>hipertensão · diabetes · cross-Saúde stock 7d</span></div>
+          <div class="qtd">7 dias</div>
+        </div>
+        <div class="item">
+          <div class="ico">🩹</div>
+          <div class="desc"><b>1.º socorros</b><span>Joana sabe usar · paracetamol · pensos · sais</span></div>
+          <div class="qtd">1 caixa</div>
+        </div>
+        <div class="item">
+          <div class="ico">🔦</div>
+          <div class="desc"><b>Lanterna + pilhas</b><span>LED · pilhas AA · power bank</span></div>
+          <div class="qtd">1+8</div>
+        </div>
+        <div class="item">
+          <div class="ico">📻</div>
+          <div class="desc"><b>Rádio a pilhas</b><span>RFM 90.5 · transmissão de emergência</span></div>
+          <div class="qtd">1</div>
+        </div>
+        <div class="item">
+          <div class="ico">📄</div>
+          <div class="desc"><b>Documentos · cópias</b><span>4 BIs · cédula Lara · saco impermeável</span></div>
+          <div class="qtd">1 saco</div>
+        </div>
+        <div class="item">
+          <div class="ico">🐐</div>
+          <div class="desc"><b>Plano animais</b><span>2 cabras + 14 galinhas · vizinho Domingos</span></div>
+          <div class="qtd">acordado</div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>Estado actual do kit</b></div>
+          <div class="bd">
+            <div class="row spread" style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--line-2)"><span>Itens completos</span><span class="badge good">7 de 9</span></div>
+            <div class="row spread" style="font-size:13px;padding:6px 0;border-bottom:1px solid var(--line-2)"><span>Água potável</span><span class="badge warn">42L de 64L</span></div>
+            <div class="row spread" style="font-size:13px;padding:6px 0"><span>Leite em pó · Lara</span><span class="badge alert">1 lata · falta 1</span></div>
+            <p class="t-meta" style="font-size:11px;margin:14px 0 0">Felisberto tem 36h para completar. App lembra a cada 6h.</p>
+          </div>
+        </div>
+
+        <div class="banner warn"><span class="ic"></span><div><b>Medicação cross-Saúde.</b> Filomena toma medicação diária. Cross-Saúde alerta: stock em casa cobre 7 dias · suficiente. Em abrigos INGD · farmácia móvel disponibiliza reposição.</div></div>
+
+        <div class="card good">
+          <div class="hd"><b>Plano para os animais</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 8px"><b>2 cabras + 14 galinhas</b> · Felisberto e Domingos (vizinho) acordaram que se a Felisberto evacuar para abrigo, Domingos cuida dos animais. Domingos vive em casa de cimento, fica.</p>
+            <p style="font-size:12px;line-height:1.6;margin:0;font-style:italic;color:var(--ink-3)">Animais não vão para abrigos públicos · regulamentação INGD permite mas espaço é prioritário para humanos · acordos comunitários fazem o resto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Alerta sobe para L3 · evacuar agora</b><span>14h depois · ciclone confirmado · Cat 3 · landfall em 8h · evacuação imediata</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>18:42</span><span>📶 3G · 42%</span></div>
+          <div style="background:var(--laranja-700);color:#fff;padding:12px 18px;text-align:center;animation:live-pulse 1.5s infinite">
+            <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:.1em">⚠ ALERTA VERMELHO · L3</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="alerta-pulsante vermelho" style="margin-bottom:18px;padding:14px;flex-direction:column;text-align:center">
+              <div class="nv" style="margin:0 auto 10px">L3</div>
+              <div class="info" style="text-align:center">
+                <div class="lvl">Vermelho · evacuar agora</div>
+                <div class="titulo" style="font-size:18px;color:var(--paper)">Cat 3 · landfall 8h</div>
+                <div class="desc" style="color:var(--noir-text-2)">Maxixe na zona crítica · saia já para abrigo</div>
+              </div>
+            </div>
+
+            <div style="background:var(--laranja-50);padding:14px;border-radius:2px;font-size:13px;line-height:1.6;margin-bottom:14px;border-left:3px solid var(--laranja-500)">
+              <p style="margin:0 0 8px;font-family:var(--f-serif)"><b>Felisberto · evacue agora.</b></p>
+              <p style="margin:0">Vá para o seu abrigo designado:</p>
+              <p style="margin:6px 0 0;font-family:var(--f-mono);font-size:14px;color:var(--laranja-700);font-weight:600">Escola Primária 25 de Junho<br>600 m · 8 minutos a pé</p>
+            </div>
+
+            <button class="btn alert block lg" style="margin-bottom:8px;font-size:15px">📍 Direcções para abrigo</button>
+            <button class="btn secondary block" style="margin-bottom:8px">Ver mapa do percurso</button>
+            <button class="btn ghost block" style="font-size:11px;color:var(--laranja-700)">Não posso evacuar · pedir ajuda</button>
+
+            <div style="margin-top:14px;padding:10px;background:var(--areia-100);border-radius:2px;font-size:11px;text-align:center;color:var(--ink-2)">
+              Lembre-se · documentos · medicação Filomena · leite Lara · rádio
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card alert">
+          <div class="hd"><b>Linha do tempo · 14h até aqui</b></div>
+          <div class="bd">
+            <div style="font-family:var(--f-mono);font-size:11px;line-height:1.85">
+              <div class="row" style="gap:14px;padding:4px 0"><span style="color:var(--ink-3);min-width:60px">04:42</span><span><b>L1 → L2</b> · perturbação detectada</span></div>
+              <div class="row" style="gap:14px;padding:4px 0"><span style="color:var(--ink-3);min-width:60px">04:48</span><span>Felisberto vê plano familiar</span></div>
+              <div class="row" style="gap:14px;padding:4px 0"><span style="color:var(--ink-3);min-width:60px">11:14</span><span>Kit completo · água + leite Lara comprados</span></div>
+              <div class="row" style="gap:14px;padding:4px 0"><span style="color:var(--ink-3);min-width:60px">14:18</span><span>Trajectória confirmada · Maxixe atingida</span></div>
+              <div class="row" style="gap:14px;padding:4px 0"><span style="color:var(--ink-3);min-width:60px">17:30</span><span>L2 → L3 · evacuação obrigatória</span></div>
+              <div class="row" style="gap:14px;padding:4px 0;background:var(--laranja-50)"><span style="color:var(--laranja-700);min-width:60px;font-weight:600">18:42</span><span style="color:var(--laranja-700);font-weight:600">SMS L3 · vai agora</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner alert"><span class="ic"></span><div><b>Tempo de aviso · 14 horas.</b> Suficiente para preparar kit, organizar família, cuidar dos animais. Quando L3 chega, família já está pronta. Esta antecipação é a diferença entre 73 mortos (Chido) e 1303 mortos (Idai · onde o aviso foi muito menor).</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Cross-system durante evacuação</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li><b>cross-INGD</b> · Felisberto marcado como "em evacuação"</li>
+              <li><b>cross-Vida Civil</b> · família 4 pessoas para abrigo</li>
+              <li><b>cross-Saúde</b> · medicação Filomena pré-aprovada na farmácia móvel</li>
+              <li><b>cross-Trabalho</b> · empregador notificado · ausência justificada</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Em abrigo · Escola 25 de Junho · 19:08</b><span>Família registada via cross-eBI · cama atribuída · medicação distribuída · refeição</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>19:08</span><span>📶 3G</span></div>
+          <div style="background:var(--verde-700);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-family:var(--f-mono);font-size:9px;opacity:.85">EM ABRIGO</div><div style="font-family:var(--f-serif);font-size:14px;margin-top:2px">Escola Primária 25 de Junho</div></div>
+            <span class="badge good" style="font-size:9px">✓ registado</span>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner good" style="margin-bottom:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Família registada.</b> 4 pessoas em segurança no abrigo.</div></div>
+
+            <h3 style="margin:0 0 10px;font-family:var(--f-serif);font-size:14px">A vossa estadia</h3>
+            <div style="font-size:12px;background:var(--areia-100);padding:12px;border-radius:2px;margin-bottom:14px">
+              <div class="row spread" style="padding:3px 0"><span style="color:var(--ink-3)">Sala atribuída</span><b>Sala 04 · 14m²</b></div>
+              <div class="row spread" style="padding:3px 0"><span style="color:var(--ink-3)">Camas</span><b>3 + berço Lara</b></div>
+              <div class="row spread" style="padding:3px 0"><span style="color:var(--ink-3)">Coordenador</span><b>Padre Manuel Cossa</b></div>
+              <div class="row spread" style="padding:3px 0"><span style="color:var(--ink-3)">Pessoas no abrigo</span><b>142 / 280</b></div>
+            </div>
+
+            <div class="t-overline" style="margin-bottom:8px">SERVIÇOS DISPONÍVEIS</div>
+            <ul style="margin:0 0 14px;padding-left:18px;font-size:12px;line-height:1.85">
+              <li>Refeições · 6h · 12h · 18h</li>
+              <li>Farmácia móvel · medicação Filomena reservada</li>
+              <li>Posto médico · Dr. Pedro Cossa</li>
+              <li>Cuidados infantis · Lara sala separada para bebés</li>
+              <li>Carregadores telemóvel · até 22h</li>
+            </ul>
+
+            <button class="btn block">Mensagem ao coordenador</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="abrigo-card">
+          <div class="ab-h">
+            <div><div class="nome">Escola Primária 25 de Junho</div><div class="local">Maxixe · Inhambane · Padre Manuel Cossa coord.</div></div>
+            <div class="lotacao"><span class="ocup">142</span><span class="cap">/280</span></div>
+          </div>
+          <div class="barra"><div class="fill" style="width:51%"></div></div>
+          <p class="t-meta" style="font-size:11px;margin:8px 0 0">51% · há espaço · família Manjate Sumane chegou às 19:08</p>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Como é o registo · 4 minutos</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Felisberto apresenta BI à entrada · cross-eBI confirma identidade</li>
+              <li>Sistema reconhece família 4 pessoas · cross-Vida Civil</li>
+              <li>Sala atribuída automaticamente · prioridade idosa + bebé</li>
+              <li>Medicação Filomena pré-aprovada · farmácia móvel</li>
+              <li>Lara em lista de bebés · cuidados extras se necessário</li>
+              <li>Júlia (irmã da Joana, em Beira) notificada por SMS</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="banner good"><span class="ic"></span><div><b>4 minutos do BI até cama atribuída.</b> Sem este pacote · registo manual em papel · 30 minutos por família · trabalhadores cansados · erros frequentes · família esperaria à porta. Aqui · cross-system reconhece tudo.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Contactar família · "estamos bem"</b><span>Após landfall · ciclone passou · GSM intermitente · mensagem prioritária via INGD</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:42</span><span>📶 ⚠ GSM falha</span></div>
+          <div style="background:var(--ceu-700);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-family:var(--f-mono);font-size:9px;opacity:.85">PÓS-LANDFALL · 06:42</div><div style="font-family:var(--f-serif);font-size:14px;margin-top:2px">Contactar família</div></div>
+            <span class="badge warn" style="font-size:9px">GSM intermit.</span>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner warn" style="margin-bottom:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Rede GSM instável.</b> Mensagens prioritárias passam · chamadas não.</div></div>
+
+            <div style="background:var(--areia-100);padding:14px;border-radius:2px;margin-bottom:14px">
+              <div class="t-overline" style="font-size:9px;margin-bottom:8px">MENSAGEM PRIORITÁRIA · INGD</div>
+              <p style="font-family:var(--f-serif);font-size:13px;line-height:1.6;margin:0">"Estamos os 4 bem. Em abrigo Escola 25 Junho. Lara bem. Filomena com medicação. Vamos esperar. Beijos."</p>
+              <hr class="hr">
+              <div class="row spread" style="font-size:11px"><span style="color:var(--ink-3)">Para</span><span>Júlia · Beira · +258 84 218 4218</span></div>
+              <div class="row spread" style="font-size:11px"><span style="color:var(--ink-3)">Via</span><span class="cross ok">cross-INGD prioritário</span></div>
+            </div>
+
+            <button class="btn block">Enviar mensagem (1/3 hoje)</button>
+
+            <div style="margin-top:18px">
+              <div class="t-overline" style="margin-bottom:8px">RECEBIDAS · 2</div>
+              <div class="card" style="margin-bottom:8px;padding:10px">
+                <div class="row spread" style="font-size:11px;margin-bottom:6px"><b>Júlia · Beira</b><span style="color:var(--ink-3)">04:18</span></div>
+                <p style="font-size:12px;font-family:var(--f-serif);margin:0">"Que alívio. Ficamos aqui se precisarem. Beijos a todos."</p>
+              </div>
+              <div class="card" style="padding:10px">
+                <div class="row spread" style="font-size:11px;margin-bottom:6px"><b>Domingos · vizinho</b><span style="color:var(--ink-3)">05:22</span></div>
+                <p style="font-size:12px;font-family:var(--f-serif);margin:0">"Animais bem. Casa do Felisberto sem telhado mas em pé."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="banner ceu"><span class="ic"></span><div><b>Sistema de mensagens prioritárias.</b> Em catástrofe · GSM normalmente sobrecarrega ou falha. INGD reserva canal técnico para mensagens curtas (140 caracteres) entre famílias e contactos fora da zona. 3 mensagens por pessoa por dia · suficiente.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Como funciona em 4 passos</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Felisberto escreve mensagem curta · 140 char</li>
+              <li>App envia via canal INGD (não rede normal)</li>
+              <li>INGD entrega à torre da Júlia · prioridade absoluta</li>
+              <li>Júlia recebe SMS comum · pode responder por canal normal</li>
+            </ol>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0">Funcionou no Idai · 84% das mensagens entregues nas primeiras 24h pós-landfall.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Lista de pessoas seguras · INGD</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Após registo no abrigo, Felisberto e família entram automaticamente em <b>lista pública INGD de pessoas seguras</b> · acessível por qualquer parente que pesquise por nome ou BI.</p>
+            <p style="font-size:12px;line-height:1.6;margin:0;color:var(--ink-3);font-style:italic">Princípio · "se quiser saber se alguém está seguro, não tem que esperar 3 dias por notícias".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Pedido de socorro · vizinho idoso isolado</b><span>Sr. Macuácua · 78a · sozinho · não conseguiu evacuar · Felisberto sinaliza no mapa</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1000px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>07:14</span><span>📶 GSM</span></div>
+          <div style="background:var(--laranja-700);color:#fff;padding:12px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">PEDIDO DE SOCORRO</div>
+            <div style="font-family:var(--f-serif);font-size:14px;margin-top:2px">Vizinho em risco</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner alert" style="margin-bottom:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Sr. Macuácua · 78a · sozinho em casa.</b> Felisberto viu-o ontem · ele recusou evacuar · agora não atende telemóvel.</div></div>
+
+            <div class="field" style="margin-bottom:10px">
+              <label>Pessoa em risco</label>
+              <input class="input sm" value="Sr. Macuácua · 78a · vizinho"/>
+            </div>
+            <div class="field" style="margin-bottom:10px">
+              <label>Localização</label>
+              <input class="input sm mono" value="Casa em palhota · 80m da minha · −23.85, 35.32"/>
+            </div>
+            <div class="field" style="margin-bottom:10px">
+              <label>Última observação</label>
+              <input class="input sm" value="Ontem 16h · estava sentado fora · recusou ir"/>
+            </div>
+            <div class="field" style="margin-bottom:14px">
+              <label>Estado actual · auto-avaliação</label>
+              <select class="select sm">
+                <option>Não consigo confirmar · não atende</option>
+              </select>
+            </div>
+
+            <button class="btn alert block lg" style="margin-bottom:8px">Enviar pedido socorro</button>
+            <p class="t-meta" style="font-size:11px;text-align:center;margin:0">Equipa de busca SAR mobiliza em até 30 min</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card alert">
+          <div class="hd"><b>Como o pedido é tratado</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Felisberto submete · GPS automático · cross-eBI confirma vizinhança</li>
+              <li>INGD valida · Sr. Macuácua existe · 78a · cross-Vida Civil</li>
+              <li>Cross-CFJP · régulo confirma "sim, mora ali, sozinho"</li>
+              <li>Equipa SAR mobilizada · prioridade idoso isolado</li>
+              <li>Felisberto recebe update · "equipa a caminho · ETA 22 min"</li>
+              <li>Quando encontrado · Felisberto e família imediata da Sr. Macuácua notificados</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic"></span><div><b>Idosos isolados são prioridade absoluta.</b> 13% das vítimas de Chido eram idosos sem rede de apoio que recusaram evacuar. Próximo plano · INGD identifica antes da época "vizinho-protector designado" para cada idoso isolado.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Outros pedidos hoje · zona</b></div>
+          <div class="bd" style="padding:0">
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px"><div class="row spread"><span><b>Sr. Macuácua · 78a</b><br><span style="color:var(--ink-3);font-size:11px">Felisberto Manjate · 80m</span></span><span class="badge alert" style="font-size:9px">SAR a caminho</span></div></div>
+            <div style="padding:10px 14px;border-bottom:1px solid var(--line-2);font-size:12px"><div class="row spread"><span><b>Família Sitole</b> · 5 pessoas<br><span style="color:var(--ink-3);font-size:11px">vizinha · zona inundada</span></span><span class="badge warn" style="font-size:9px">avaliação</span></div></div>
+            <div style="padding:10px 14px;font-size:12px"><div class="row spread"><span><b>Cabras Felisberto</b> · com Domingos<br><span style="color:var(--ink-3);font-size:11px">só verificar · não urgente</span></span><span class="badge good" style="font-size:9px">resolvido</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--noir-1);color:var(--noir-text-2);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--ceu-700);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:18px;height:18px;border:2.5px solid var(--paper);border-radius:50%;border-top-color:transparent;border-right-color:transparent;transform:rotate(-45deg)"></div><div style="position:absolute;width:4px;height:4px;background:var(--laranja-500);border-radius:50%"></div></div>
+        <div>
+          <div style="font-size:15px;color:var(--noir-text);font-weight:600">Cidadão · em risco</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 2 de 7 · DESIGN-cidadao.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--noir-text-3)">cross-INGD · cross-INAM · cross-Vida Civil · cross-Saúde · cross-Trabalho · cross-CFJP · cross-MTN/Vodacom/Tmcel. Felisberto Manjate, Joana Sumane, Lara Manjate Sumane, Filomena Cossa Tembe, Padre Manuel Cossa, Sr. Macuácua são personas fictícias.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="painel.html" class="btn ghost sm" style="color:var(--noir-text-2)">‹ Painel INGD</a><a href="terreno.html" class="btn ghost sm" style="color:var(--noir-text-2)">Próxima · Terreno ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
