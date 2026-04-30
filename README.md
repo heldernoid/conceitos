@@ -25,6 +25,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 08 | [Terras Digitais](https://conceitos.org/projectos/terrasdigitais/) | Disponível |
 | 09 | [Sociedade Aberta](https://conceitos.org/projectos/sociedadeaberta/) | Disponível |
 | 10 | [Vida Civil](https://conceitos.org/projectos/vidacivil/) | Disponível |
+| 11 | [Resiliência Climática](https://conceitos.org/projectos/resilienciaclimatica/) | Disponível |
 
 ### Saúde Digital
 
@@ -66,6 +67,10 @@ Reimaginação do acesso à informação pública com cinco superfícies: portal
 
 Reimaginação do registo civil com seis superfícies: portal do cidadão, conservatória, família, hospital, sucessão e gestão de dados sensíveis.
 
+### Resiliência Climática
+
+Reimaginação da resposta a desastres naturais com oito superfícies: portal do cidadão, painel de gestão, ajuda humanitária, reconstrução, voluntariado, terreno, memorial e coordenação de campo.
+
 ## Estrutura
 
 ```
@@ -82,7 +87,8 @@ conceitos/
     ├── transportesdigitais/ # 07 · Transportes Digitais
     ├── terrasdigitais/      # 08 · Terras Digitais
     ├── sociedadeaberta/     # 09 · Sociedade Aberta
-    └── vidacivil/           # 10 · Vida Civil
+    ├── vidacivil/           # 10 · Vida Civil
+    └── resilienciaclimatica/ # 11 · Resiliência Climática
 ```
 
 Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.
