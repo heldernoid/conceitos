@@ -26,6 +26,8 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 | 09 | [Sociedade Aberta](https://conceitos.org/projectos/sociedadeaberta/) | Disponível |
 | 10 | [Vida Civil](https://conceitos.org/projectos/vidacivil/) | Disponível |
 | 11 | [Resiliência Climática](https://conceitos.org/projectos/resilienciaclimatica/) | Disponível |
+| 12 | [Eleições Digitais](https://conceitos.org/projectos/eleicoesdigitais/) | Disponível |
+| 13 | [Senda](https://conceitos.org/projectos/senda/) | Disponível |
 
 ### Saúde Digital
 
@@ -71,6 +73,14 @@ Reimaginação do registo civil com seis superfícies: portal do cidadão, conse
 
 Reimaginação da resposta a desastres naturais com oito superfícies: portal do cidadão, painel de gestão, ajuda humanitária, reconstrução, voluntariado, terreno, memorial e coordenação de campo.
 
+### Eleições Digitais
+
+Reimaginação do processo eleitoral com sete superfícies: portal do cidadão, mesa de voto, observação eleitoral, resultados, painel da CNE, primeira vez e integração com Vida Civil.
+
+### Senda
+
+Reimaginação do sistema nacional de equivalências e candidaturas académicas com oito superfícies: registo, candidatura, trajectória, equivalências, resultados, verificação de certificados e painel institucional.
+
 ## Estrutura
 
 ```
@@ -88,7 +98,9 @@ conceitos/
     ├── terrasdigitais/      # 08 · Terras Digitais
     ├── sociedadeaberta/     # 09 · Sociedade Aberta
     ├── vidacivil/           # 10 · Vida Civil
-    └── resilienciaclimatica/ # 11 · Resiliência Climática
+    ├── resilienciaclimatica/ # 11 · Resiliência Climática
+    ├── eleicoesdigitais/    # 12 · Eleições Digitais
+    └── senda/               # 13 · Senda
 ```
 
 Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.

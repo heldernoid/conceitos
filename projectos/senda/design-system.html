@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema · SENDA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .demo-block { padding: 40px 24px; max-width: 1280px; margin: 0 auto; border-bottom: 1px solid var(--border-2); }
+  .swatch { display: flex; flex-direction: column; gap: 6px; padding: 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; }
+  .swatch .chip { width: 100%; height: 56px; border-radius: 4px; }
+  .swatch .lbl { font-size: 11px; font-family: var(--f-mono); color: var(--text); font-weight: 600; }
+  .swatch .val { font-size: 10px; font-family: var(--f-mono); color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>SENDA · Sistema Nacional</span><span class="sep">·</span><span>design-system</span><span style="margin-left:auto">v0.5</span></div>
+<div class="senda-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">S</span><span class="stack"><span>SENDA</span><small>Design System</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema</a>
+    <a href="painel.html">Painel</a>
+    <a href="trajectoria.html">Trajectória</a>
+    <a href="candidatura.html">Candidatura</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="registar.html">Registar</a>
+    <a href="verificacao.html">Verificação</a>
+    <a href="equivalencias.html">Equivalências</a>
+  </nav>
+</header>
+
+<section class="demo-block">
+  <div class="t-overline">Capa</div>
+  <h1 class="headline xl" style="margin:14px 0 12px">Componentes · azul SENDA</h1>
+  <p class="deck" style="max-width:760px">Inter para UI · JetBrains Mono para NUEL académico, hashes, números · Lora para diploma. Paleta azul institucional académico fortemente alinhada com identidade existente · variações para hitos académicos (primário, secundário, superior, contínua).</p>
+</section>
+
+<!-- PALETA -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>Paleta</b></div>
+
+  <div class="t-overline" style="margin:14px 0 8px">Azul SENDA · institucional</div>
+  <div class="grid" style="grid-template-columns:repeat(6,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#0d2845"></div><div class="lbl">blue-950</div><div class="val">#0d2845</div></div>
+    <div class="swatch"><div class="chip" style="background:#123860"></div><div class="lbl">blue-900</div><div class="val">#123860 · deep</div></div>
+    <div class="swatch"><div class="chip" style="background:#153f6e"></div><div class="lbl">blue-800</div><div class="val">#153f6e · hover</div></div>
+    <div class="swatch"><div class="chip" style="background:#1a4f8a"></div><div class="lbl">blue-700</div><div class="val">#1a4f8a · PRIMARY</div></div>
+    <div class="swatch"><div class="chip" style="background:#2d68a3"></div><div class="lbl">blue-500</div><div class="val">#2d68a3</div></div>
+    <div class="swatch"><div class="chip" style="background:#0ea5e9"></div><div class="lbl">accent</div><div class="val">#0ea5e9 · destaque</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Hitos académicos · cores semânticas</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#16a34a"></div><div class="lbl">hito-primário</div><div class="val">#16a34a · 1ª-7ª</div></div>
+    <div class="swatch"><div class="chip" style="background:#1a4f8a"></div><div class="lbl">hito-secundário</div><div class="val">#1a4f8a · 8ª-12ª</div></div>
+    <div class="swatch"><div class="chip" style="background:#b68813"></div><div class="lbl">hito-superior</div><div class="val">#b68813 · licenciatura+</div></div>
+    <div class="swatch"><div class="chip" style="background:#6b7280"></div><div class="lbl">hito-contínua</div><div class="val">#6b7280 · pós-formação</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Grupos de exames · 4 áreas</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#dc2626"></div><div class="lbl">grupo A</div><div class="val">Letras</div></div>
+    <div class="swatch"><div class="chip" style="background:#2d68a3"></div><div class="lbl">grupo B</div><div class="val">Sociais/Económicas</div></div>
+    <div class="swatch"><div class="chip" style="background:#16a34a"></div><div class="lbl">grupo C</div><div class="val">Engenharias</div></div>
+    <div class="swatch"><div class="chip" style="background:#b68813"></div><div class="lbl">grupo D</div><div class="val">Saúde/Biológicas</div></div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section class="demo-block">
+  <div class="section-rule"><b>Tipografia · 3 famílias</b></div>
+  <div class="grid g-2" style="margin-top:18px;gap:32px">
+    <div>
+      <h1 class="headline xl">Headline · Inter 48</h1>
+      <h1 class="headline lg" style="margin:14px 0">Headline · Inter 36</h1>
+      <h2 class="headline md" style="margin:14px 0">Headline · Inter 26</h2>
+      <p class="deck" style="margin:18px 0">Deck · Inter 17 · sub-headlines descritivos</p>
+      <h2 class="t-h2" style="margin:18px 0 6px">Section · Inter 24</h2>
+      <h3 class="t-h3" style="margin:0">Section · Inter 17</h3>
+    </div>
+    <div>
+      <p style="font-size:14px;line-height:1.6">Corpo principal · Inter 14 · UI · formulários · tabelas. <a href="#">Link</a> dentro do parágrafo.</p>
+      <p class="serif" style="font-size:18px;line-height:1.6;margin:14px 0;color:var(--blue-900)">Lora · 18 · serif · só no diploma e em pull-quotes solenes.</p>
+      <p class="t-meta" style="margin:14px 0">Meta · Inter 12 · text-3 · timestamps</p>
+      <p class="mono" style="font-size:13px;margin:14px 0">Mono · NUEL académico · 2027-MZ-A1B2C3D4 · hashes 0x4f8a...</p>
+      <p class="t-overline" style="margin:14px 0">Overline · uppercase mono 10 letterspacing</p>
+      <p class="pull-quote" style="margin:18px 0">"Cradle-to-credential · uma identidade académica · uma vida."<cite>Princípio fundador SENDA</cite></p>
+    </div>
+  </div>
+</section>
+
+<!-- BUTTONS / BADGES -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>Botões e pílulas</b></div>
+  <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:18px;margin-bottom:24px">
+    <button class="btn">Primary</button>
+    <button class="btn lg">Primary lg</button>
+    <button class="btn success">Success</button>
+    <button class="btn danger">Danger</button>
+    <button class="btn secondary">Secondary</button>
+    <button class="btn ghost">Ghost</button>
+  </div>
+  <div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:18px">
+    <span class="badge">badge</span>
+    <span class="badge blue">institucional</span>
+    <span class="badge success">✓ válido</span>
+    <span class="badge warning">⚠ pendente</span>
+    <span class="badge danger">✕ revogado</span>
+    <span class="badge info">info</span>
+    <span class="badge dark">dark</span>
+  </div>
+  <div class="row" style="gap:6px;flex-wrap:wrap">
+    <span class="cross">cross-Educação Digital</span>
+    <span class="cross ok">cross-Vida Civil ✓</span>
+    <span class="cross warn">cross-MECTS pendente</span>
+    <span class="cross alert">cross-Justiça disputa</span>
+    <span class="cross blue">cross-Migrações</span>
+  </div>
+</section>
+
+<!-- SIGNATURE 1 · TRAJECTORIA -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 1 · Trajectória cradle-to-credential</b></div>
+  <div class="trajectoria" style="max-width:780px;margin-top:18px">
+    <div class="t-overline" style="margin-bottom:6px">PEDRO MANJATE SUMANE · NUEL ACAD. 2015-MZ-PMS-4218</div>
+    <h3 class="t-h3" style="margin:0 0 18px">12 anos de escola + 4 anos universidade · 16 anos auditáveis</h3>
+    <div class="trajectoria-line">
+      <div class="traj-item primario"><span class="ano">2015</span><span class="titulo">1.ª classe</span><div class="descr">EP25 Junho · Maxixe · Inhambane · prof. Esperança Cossa</div></div>
+      <div class="traj-item primario"><span class="ano">2016</span><span class="titulo">2.ª classe</span><div class="descr">transição automática · cross-Educação Digital</div></div>
+      <div class="traj-item primario"><span class="ano">2017</span><span class="titulo">3.ª classe</span></div>
+      <div class="traj-item primario"><span class="ano">2018</span><span class="titulo">4.ª classe</span><div class="descr">família muda Maxixe → Maputo · transferência cross-Terras</div></div>
+      <div class="traj-item primario"><span class="ano">2019</span><span class="titulo">5.ª classe</span><div class="descr">EP Polana · Maputo Cidade · KaMpfumo</div></div>
+      <div class="traj-item primario"><span class="ano">2020</span><span class="titulo">6.ª classe</span></div>
+      <div class="traj-item hito primario"><span class="ano">2021</span><span class="titulo">⭑ Certificado 7.ª classe SENDA</span><div class="descr">1.º hito académico oficial · NUEL académico activado</div></div>
+      <div class="traj-item secundario"><span class="ano">2022</span><span class="titulo">8.ª classe</span><div class="descr">ES Francisco Manyanga · Maputo</div></div>
+      <div class="traj-item secundario"><span class="ano">2023</span><span class="titulo">9.ª classe</span></div>
+      <div class="traj-item hito secundario"><span class="ano">2024</span><span class="titulo">⭑ Certificado 10.ª classe SENDA</span><div class="descr">2.º hito · transição para ensino secundário superior</div></div>
+      <div class="traj-item secundario"><span class="ano">2025</span><span class="titulo">11.ª classe</span><div class="descr">ES 25 de Setembro · Maxixe (regresso família)</div></div>
+      <div class="traj-item hito secundario"><span class="ano">2026</span><span class="titulo">⭑ Certificado 12.ª classe SENDA</span><div class="descr">3.º hito · candidato ao ensino superior</div></div>
+      <div class="traj-item superior"><span class="ano">2027</span><span class="titulo">Exame nacional · candidatura SENDA</span><div class="descr">colocado UEM · Engenharia Informática · 1.ª preferência</div></div>
+      <div class="traj-item superior"><span class="ano">2028</span><span class="titulo">1.º ano UEM · Eng. Informática</span></div>
+      <div class="traj-item superior"><span class="ano">2029</span><span class="titulo">2.º ano UEM · vota pela 1.ª vez nas Gerais</span><div class="descr">cross-Eleições Digitais · 14.10.2029</div></div>
+      <div class="traj-item superior"><span class="ano">2030</span><span class="titulo">3.º ano UEM</span></div>
+      <div class="traj-item superior"><span class="ano">2031</span><span class="titulo">4.º ano UEM</span></div>
+      <div class="traj-item hito superior"><span class="ano">2032</span><span class="titulo">⭑ Diploma de Licenciatura SENDA</span><div class="descr">4.º hito · Engenharia Informática · 240 créditos · empregabilidade cross-Trabalho</div></div>
+      <div class="traj-item continua"><span class="ano">2034+</span><span class="titulo">Formação contínua</span><div class="descr">cursos · certificações · mestrado eventual · trajectória prossegue</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 2 · PROGRAMA-CARD -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>Componente 2 · Programa-card · cartão de curso</b></div>
+  <div class="col" style="gap:14px;margin-top:18px;max-width:1080px">
+    <div class="programa-card">
+      <div class="left">
+        <div class="nome-curso">Engenharia Informática</div>
+        <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+        <div class="faculdade">Faculdade de Engenharia · Maputo</div>
+        <div class="tags">
+          <span class="grupo-tag c">GRUPO C</span>
+          <span class="badge" style="font-size:10px">Licenciatura · 4 anos · 240 ECTS</span>
+        </div>
+        <p style="font-size:12px;color:var(--text-3);margin:0">Curso de referência em informática · acreditado · primeira escolha de Pedro Manjate Sumane.</p>
+      </div>
+      <div class="right">
+        <div class="stat-row"><span class="lbl">Vagas</span><span class="val">120</span></div>
+        <div class="stat-row"><span class="lbl">Candidatos 2027</span><span class="val">428</span></div>
+        <div class="stat-row"><span class="lbl">Nota corte 2026</span><span class="val">15,7</span></div>
+        <div class="stat-row"><span class="lbl">Sua nota acesso</span><span class="val" style="color:var(--success-dark)">16,5</span></div>
+        <div class="elig qualificado">✓ QUALIFICADO</div>
+      </div>
+    </div>
+
+    <div class="programa-card">
+      <div class="left">
+        <div class="nome-curso">Direito</div>
+        <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+        <div class="faculdade">Faculdade de Direito · Maputo</div>
+        <div class="tags">
+          <span class="grupo-tag a">GRUPO A</span>
+          <span class="badge" style="font-size:10px">Licenciatura · 5 anos · 300 ECTS</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="stat-row"><span class="lbl">Vagas</span><span class="val">180</span></div>
+        <div class="stat-row"><span class="lbl">Candidatos</span><span class="val">912</span></div>
+        <div class="stat-row"><span class="lbl">Nota corte 2026</span><span class="val">17,2</span></div>
+        <div class="stat-row"><span class="lbl">Sua nota acesso</span><span class="val" style="color:var(--warning-dark)">16,5</span></div>
+        <div class="elig cond">⚠ CONDICIONAL</div>
+      </div>
+    </div>
+
+    <div class="programa-card">
+      <div class="left">
+        <div class="nome-curso">Medicina</div>
+        <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+        <div class="faculdade">Faculdade de Medicina · Maputo</div>
+        <div class="tags">
+          <span class="grupo-tag d">GRUPO D</span>
+          <span class="badge" style="font-size:10px">Licenciatura · 6 anos · 360 ECTS</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="stat-row"><span class="lbl">Vagas</span><span class="val">90</span></div>
+        <div class="stat-row"><span class="lbl">Candidatos</span><span class="val">1 218</span></div>
+        <div class="stat-row"><span class="lbl">Nota corte 2026</span><span class="val">18,4</span></div>
+        <div class="stat-row"><span class="lbl">Sua nota acesso</span><span class="val" style="color:var(--danger-dark)">16,5</span></div>
+        <div class="elig nao">✕ NÃO QUALIFICADO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 3 · PREFERENCIAS -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 3 · Preferências · 8 stack ordenável</b></div>
+  <div class="preferencias" style="max-width:780px;margin-top:18px">
+    <div class="pref-row placed">
+      <div class="num-pref">1</div>
+      <div class="info-pref"><b>Engenharia Informática</b><span>UEM · Faculdade de Engenharia · corte 15,7 · sua nota 16,5</span></div>
+      <div class="actions"><span class="badge success" style="font-size:10px">✓ COLOCADO</span></div>
+    </div>
+    <div class="pref-row">
+      <div class="num-pref">2</div>
+      <div class="info-pref"><b>Engenharia Informática</b><span>UP · Maputo · corte 14,8 · sua nota 16,5 · 2.ª escolha</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row">
+      <div class="num-pref">3</div>
+      <div class="info-pref"><b>Eng. Sistemas Informação</b><span>ISCTEM · corte 13,4 · sua nota 16,5</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row cutoff-low">
+      <div class="num-pref">4</div>
+      <div class="info-pref"><b>Direito</b><span>UEM · corte 17,2 · sua nota 16,5 · CONDICIONAL</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row">
+      <div class="num-pref">5</div>
+      <div class="info-pref"><b>Engenharia Civil</b><span>UEM · corte 14,2 · sua nota 16,5</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row">
+      <div class="num-pref">6</div>
+      <div class="info-pref"><b>Gestão</b><span>UEM · corte 13,8 · sua nota 16,5</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row no-cutoff">
+      <div class="num-pref">7</div>
+      <div class="info-pref"><b>Eng. Civil</b><span>UCM · Beira · corte 12,6 · sua nota 16,5</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+    <div class="pref-row no-cutoff">
+      <div class="num-pref">8</div>
+      <div class="info-pref"><b>Informática Aplicada</b><span>ISPG · Gaza · corte 11,8 · safety net</span></div>
+      <div class="actions"><div class="drag">⋮⋮</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 4 · SCORE-CALC -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>Componente 4 · Score calculator · cálculo transparente</b></div>
+  <div class="score-calc" style="max-width:780px;margin-top:18px">
+    <div class="hd">
+      <b>Nota de acesso · Pedro Manjate Sumane</b>
+      <div class="total">16,46</div>
+    </div>
+    <div class="calc-row" style="background:var(--gray-100);font-weight:600">
+      <span class="lbl">Componente</span>
+      <span class="val">Valor</span>
+      <span class="peso">Peso</span>
+      <span class="res">Contribui</span>
+    </div>
+    <div class="calc-row">
+      <span class="lbl">Média 12.ª classe · cross-Educação Digital</span>
+      <span class="val">15,8</span>
+      <span class="peso">×0,4</span>
+      <span class="res">6,32</span>
+    </div>
+    <div class="calc-row">
+      <span class="lbl">Exame nacional · Matemática (Grupo C)</span>
+      <span class="val">17,5</span>
+      <span class="peso">×0,3</span>
+      <span class="res">5,25</span>
+    </div>
+    <div class="calc-row">
+      <span class="lbl">Exame nacional · Física (Grupo C)</span>
+      <span class="val">16,4</span>
+      <span class="peso">×0,2</span>
+      <span class="res">3,28</span>
+    </div>
+    <div class="calc-row">
+      <span class="lbl">Exame nacional · Português (geral)</span>
+      <span class="val">16,1</span>
+      <span class="peso">×0,1</span>
+      <span class="res">1,61</span>
+    </div>
+    <div class="calc-row subtotal">
+      <span class="lbl">Total ponderado</span>
+      <span class="val">—</span>
+      <span class="peso">1,0</span>
+      <span class="res" style="color:var(--blue-900);font-size:14px">16,46</span>
+    </div>
+  </div>
+  <p class="t-meta" style="margin:14px auto 0;max-width:780px;font-size:11px;font-style:italic">Algoritmo publicado em github.com/senda-mz · qualquer cidadão pode auditar fórmula. Dados das fontes (cross-Educação Digital, exames nacionais) são imutáveis · cálculo é determinístico.</p>
+</section>
+
+<!-- SIGNATURE 5 · RANKING -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 5 · Ranking público anonimizado</b></div>
+  <div class="ranking" style="max-width:980px;margin-top:18px">
+    <div class="hd">
+      <b>Classificação · Engenharia Informática · UEM · Ciclo 2027/2028</b>
+      <span class="badge blue" style="font-size:10px">120 vagas · 428 candidatos</span>
+    </div>
+    <div class="rank-row" style="background:var(--gray-50);font-size:10px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:0.06em;color:var(--text-3);font-weight:600">
+      <span>Pos.</span>
+      <span>NUEL académico</span>
+      <span style="text-align:right">12.ª classe</span>
+      <span style="text-align:right">Exame</span>
+      <span style="text-align:center">Estado</span>
+    </div>
+    <div class="rank-row above-cutoff">
+      <span class="pos">1</span>
+      <span class="nuel">2009-MZ-BG-1024</span>
+      <span class="score-cell">18,0</span>
+      <span class="score-cell">189,5/200</span>
+      <span class="estado placed">COLOCADO</span>
+    </div>
+    <div class="rank-row above-cutoff">
+      <span class="pos">2</span>
+      <span class="nuel">2009-MZ-CS-2384</span>
+      <span class="score-cell">17,5</span>
+      <span class="score-cell">186,0/200</span>
+      <span class="estado placed">COLOCADO</span>
+    </div>
+    <div class="rank-row above-cutoff">
+      <span class="pos">42</span>
+      <span class="nuel">2009-MZ-AM-7142</span>
+      <span class="score-cell">16,8</span>
+      <span class="score-cell">170,0/200</span>
+      <span class="estado placed">COLOCADO</span>
+    </div>
+    <div class="rank-row above-cutoff eu">
+      <span class="pos">68</span>
+      <span class="nuel">2009-MZ-PMS-4218 (eu)</span>
+      <span class="score-cell">15,8</span>
+      <span class="score-cell">170,0/200</span>
+      <span class="estado placed">✓ COLOCADO</span>
+    </div>
+    <div class="rank-row above-cutoff">
+      <span class="pos">119</span>
+      <span class="nuel">2009-MZ-NM-9214</span>
+      <span class="score-cell">14,4</span>
+      <span class="score-cell">158,0/200</span>
+      <span class="estado placed">COLOCADO</span>
+    </div>
+    <div class="rank-row above-cutoff">
+      <span class="pos">120</span>
+      <span class="nuel">2009-MZ-AT-3142</span>
+      <span class="score-cell">14,2</span>
+      <span class="score-cell">157,0/200</span>
+      <span class="estado placed">COLOCADO</span>
+    </div>
+    <div class="cutoff-line">— LINHA DE CORTE · NOTA 15,70 · 120ª POSIÇÃO —</div>
+    <div class="rank-row below-cutoff">
+      <span class="pos">121</span>
+      <span class="nuel">2009-MZ-LM-8412</span>
+      <span class="score-cell">14,1</span>
+      <span class="score-cell">156,0/200</span>
+      <span class="estado below">PRÓX. PREF.</span>
+    </div>
+    <div class="rank-row below-cutoff">
+      <span class="pos">122</span>
+      <span class="nuel">2009-MZ-FT-6184</span>
+      <span class="score-cell">14,0</span>
+      <span class="score-cell">155,5/200</span>
+      <span class="estado below">PRÓX. PREF.</span>
+    </div>
+  </div>
+  <p class="t-meta" style="margin:14px auto 0;max-width:980px;font-size:11px;font-style:italic">Cada candidato vê-se · vê os outros como NUEL académico · não nome. Cidadão acima do corte é colocado nesta preferência · cidadão abaixo é avaliado na próxima preferência · cascata até preferência 8 ou esgotar elegibilidade.</p>
+</section>
+
+<!-- SIGNATURE 6 · DIPLOMA -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>Componente 6 · Diploma fac-símile · réplica do físico</b></div>
+  <div class="diploma" style="margin-top:18px">
+    <div class="content">
+      <div class="inst-header">
+        <div class="inst-logo">UEM</div>
+        <div class="inst-name">Universidade Eduardo Mondlane</div>
+        <div class="inst-sub">Fundada em 1962 · Maputo, Moçambique</div>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="cert-type-block">
+        <div class="cert-type-pt">Diploma de Licenciatura</div>
+        <div class="cert-type-en">Undergraduate Degree Diploma</div>
+      </div>
+
+      <hr style="border:0;border-top:1px solid var(--blue-900);opacity:0.3;margin:14px 0" />
+
+      <div class="legal-block">
+        <p>O Reitor da Universidade Eduardo Mondlane, no uso das competências que lhe são conferidas pelo Estatuto da UEM e pela legislação vigente, certifica que:</p>
+        <p class="legal-en">The Rector of Eduardo Mondlane University, pursuant to the powers conferred by the UEM Statute and applicable legislation, hereby certifies that:</p>
+      </div>
+
+      <div class="student-name-block">
+        <div class="student-name">Ana Cristina Tembe</div>
+        <div class="student-bi">Portadora do BI n.º ****-***4521 / National ID: ****-***4521</div>
+      </div>
+
+      <div class="cert-body">
+        <p class="cert-conclui">concluiu com aproveitamento o curso de · <em>successfully completed the degree programme in</em></p>
+        <div class="cert-field">Engenharia Informática · Computer Science Engineering</div>
+        <p class="cert-requisitos">tendo sido aprovada em todos os requisitos académicos exigidos pelo plano curricular do curso</p>
+        <p class="cert-requisitos en"><em>having fulfilled all academic requirements set forth by the programme curriculum</em></p>
+        <div class="cert-details">em Junho de 2025 · 240 créditos / June 2025 · 240 credits</div>
+      </div>
+
+      <hr class="rule-double" />
+
+      <div class="signature-area">
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <div class="sig-name">Prof. Dr. António José Cumbe</div>
+          <div class="sig-title">Reitor / Rector</div>
+        </div>
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <div class="sig-name">Dra. Maria da Graça Mondlane</div>
+          <div class="sig-title">Registadora / Registrar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <div class="footer-date">Maputo · 15 de Junho de 2025</div>
+      <div class="footer-center">
+        <div class="footer-senda-label">SENDA · SISTEMA ELECTRÓNICO NACIONAL DE DADOS ACADÉMICOS</div>
+      </div>
+      <div class="footer-qr">
+        <div class="qr-placeholder">QR</div>
+        <div>VERIFIQUE EM</div>
+        <div style="color:var(--blue-700);font-weight:600">senda.gov.mz</div>
+        <div style="margin-top:2px">2025-MZ-UEM-A3F9K2L1</div>
+      </div>
+    </div>
+  </div>
+  <p class="t-meta" style="margin:18px auto 0;max-width:720px;font-size:11px;font-style:italic;text-align:center">Watermark SENDA repetido em diagonal · QR no rodapé liga ao verificador público · DOC ID único na rede SENDA · bilingue PT/EN para reconhecimento internacional</p>
+</section>
+
+<!-- SIGNATURE 7 · VERIFICACAO -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 7 · Verificação pública · 3 estados</b></div>
+  <div class="grid g-3" style="margin-top:18px;gap:18px;align-items:start">
+
+    <div class="verif-publica valid">
+      <div class="status">
+        <div class="status-icon">✓</div>
+        <div class="status-label">DIPLOMA VÁLIDO</div>
+        <div class="status-sub">Verificado por SENDA · 30.04.2026</div>
+      </div>
+      <div class="details">
+        <div class="detail-grid">
+          <div class="detail-item full"><div class="detail-lbl">Titular</div><div class="detail-val">Ana Cristina Tembe</div></div>
+          <div class="detail-item"><div class="detail-lbl">Curso</div><div class="detail-val">Eng. Informática</div></div>
+          <div class="detail-item"><div class="detail-lbl">Ano</div><div class="detail-val">2025</div></div>
+          <div class="detail-item"><div class="detail-lbl">Instituição</div><div class="detail-val">UEM</div></div>
+          <div class="detail-item"><div class="detail-lbl">Créditos</div><div class="detail-val">240 ECTS</div></div>
+        </div>
+      </div>
+      <div class="docid-block">
+        <div class="t-overline" style="margin-bottom:4px">DOC ID</div>
+        <div class="docid-val">2025-MZ-UEM-A3F9K2L1</div>
+      </div>
+    </div>
+
+    <div class="verif-publica revoked">
+      <div class="status">
+        <div class="status-icon">✕</div>
+        <div class="status-label">REVOGADO</div>
+        <div class="status-sub">Cancelado por fraude · 14.02.2026</div>
+      </div>
+      <div class="details">
+        <div class="detail-grid">
+          <div class="detail-item full"><div class="detail-lbl">Razão</div><div class="detail-val" style="color:var(--danger-dark)">Plágio de tese · processo TES-2025-184</div></div>
+          <div class="detail-item full"><div class="detail-lbl">Decisão</div><div class="detail-val">UEM · Conselho Académico</div></div>
+          <div class="detail-item"><div class="detail-lbl">Data revog.</div><div class="detail-val">14.02.2026</div></div>
+          <div class="detail-item"><div class="detail-lbl">Recurso</div><div class="detail-val">Aberto</div></div>
+        </div>
+      </div>
+      <div class="docid-block">
+        <div class="t-overline" style="margin-bottom:4px">DOC ID</div>
+        <div class="docid-val">2024-MZ-UEM-X8Y2K4M9</div>
+      </div>
+    </div>
+
+    <div class="verif-publica pending">
+      <div class="status">
+        <div class="status-icon">!</div>
+        <div class="status-label">EM EQUIVALÊNCIA</div>
+        <div class="status-sub">Diploma estrangeiro · processo MECTS aberto</div>
+      </div>
+      <div class="details">
+        <div class="detail-grid">
+          <div class="detail-item full"><div class="detail-lbl">Titular</div><div class="detail-val">Joana Cossa Sumane</div></div>
+          <div class="detail-item"><div class="detail-lbl">Origem</div><div class="detail-val">Portugal · UPorto</div></div>
+          <div class="detail-item"><div class="detail-lbl">Curso orig.</div><div class="detail-val">Enfermagem</div></div>
+          <div class="detail-item full"><div class="detail-lbl">Estado</div><div class="detail-val">Análise técnica · 18 dias úteis</div></div>
+        </div>
+      </div>
+      <div class="docid-block">
+        <div class="t-overline" style="margin-bottom:4px">PROCESSO MECTS</div>
+        <div class="docid-val">EQ-2026-PT-0418</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section class="demo-block" style="background:var(--gray-50)">
+  <div class="section-rule"><b>KPI · estados</b></div>
+  <div class="grid g-4" style="margin-top:18px;gap:14px">
+    <div class="kpi"><div class="lbl">Trajectórias activas</div><div class="num">9,4 M</div><div class="delta up">+ 2 184/dia</div></div>
+    <div class="kpi success"><div class="lbl">Diplomas emitidos · 30 dias</div><div class="num">12 480</div><div class="delta up">94% no prazo</div></div>
+    <div class="kpi warning"><div class="lbl">Equivalências em curso</div><div class="num">418</div><div class="delta">média 22 dias úteis</div></div>
+    <div class="kpi danger"><div class="lbl">Revogações</div><div class="num">8</div><div class="delta">2026 · cross-Justiça</div></div>
+  </div>
+  <div class="grid g-4" style="margin-top:14px;gap:14px">
+    <div class="kpi dark"><div class="lbl">Painel SENDA · MECTS</div><div class="num">98,2%</div><div class="delta">cobertura nacional</div></div>
+    <div class="kpi"><div class="lbl">Verificações públicas · 30d</div><div class="num">184 K</div><div class="delta">empregadores + diáspora</div></div>
+    <div class="kpi"><div class="lbl">Universidades + institutos</div><div class="num">44</div><div class="delta">públicos + privados</div></div>
+    <div class="kpi"><div class="lbl">Escolas K-12 · cobertura</div><div class="num">3 218</div><div class="delta">cross-Educação Digital</div></div>
+  </div>
+</section>
+
+<!-- BANNERS -->
+<section class="demo-block">
+  <div class="section-rule"><b>Banners · 5 estados</b></div>
+  <div class="grid g-2" style="margin-top:18px;gap:14px">
+    <div class="banner info"><span class="ic"></span><div><b>Trajectória actualizada.</b> Última sincronização há 4 minutos · cross-Educação Digital ✓ · cross-Vida Civil ✓.</div></div>
+    <div class="banner success"><span class="ic"></span><div><b>Diploma emitido.</b> Ana Cristina Tembe · Engenharia Informática · UEM · QR público gerado em 2 segundos.</div></div>
+    <div class="banner warning"><span class="ic"></span><div><b>Equivalência pendente.</b> Joana Cossa Sumane · diploma de Portugal · análise técnica MECTS · 18 dias úteis restantes.</div></div>
+    <div class="banner danger"><span class="ic"></span><div><b>Diploma revogado.</b> Decisão UEM Conselho Académico · plágio de tese · cidadão pode recorrer ao TES em 30 dias.</div></div>
+    <div class="banner dark"><span class="ic"></span><div><b>Painel SENDA · modo manhã eleitoral 2029.</b> Pedro Manjate Sumane votou às 09:14 · agora regressa ao 2.º ano UEM · trajectória SENDA prossegue.</div></div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--blue-950);color:rgba(255,255,255,0.7);margin-top:40px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--blue-700);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px">S</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700">SENDA · Sistema</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">v0.5 · 7 componentes signature</div>
+        </div>
+      </div>
+    </div>
+    <a href="painel.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">Próxima · Painel SENDA ›</a>
+  </div>
+</footer>
+
+</body>
+</html>

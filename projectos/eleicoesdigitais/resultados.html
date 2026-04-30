@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Resultados · Eleições Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>STED · CNED · TES</span><span class="sep">·</span><span>Resultados · transparência total</span><span style="margin-left:auto">resultados.eleicoes.gov.mz · v0.4</span></div>
+<div class="party-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Eleições Digitais</span><small>Resultados públicos</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel STED</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="primeira-vez.html">Auto-inscrição</a>
+    <a href="mesa.html">Mesa</a>
+    <a href="observador.html">Observador</a>
+    <a href="resultados.html" class="active">Resultados</a>
+  </nav>
+  <div class="right"><span class="conn"><span class="d live"></span> contagem ao vivo</span></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Live nacional</a>
+  <a href="#cena2">Cena 2 · Por mesa</a>
+  <a href="#cena3">Cena 3 · Histórico 1994-2024</a>
+  <a href="#cena4">Cena 4 · Auditoria cidadã</a>
+  <a href="#cena5">Cena 5 · Contestações</a>
+  <a href="#cena6">Cena 6 · Proclamação · TES</a>
+  <a href="#cena7">Cena 7 · Jurisprudência</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene dark" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Resultados nacionais ao vivo · 14.10.2029 · 21:42</b><span>84% das mesas concluídas · MDP lidera com 38,2% · contagem em curso · transmissão pública RM/TVM em paralelo</span></div></div>
+  <div class="scene-c">
+    <div class="row spread" style="margin-bottom:24px;align-items:flex-end">
+      <div>
+        <div class="t-overline" style="color:var(--dourado-300);margin-bottom:8px">ELEIÇÃO DO PRESIDENTE DA REPÚBLICA · 2029</div>
+        <h1 class="headline xl dark" style="margin:0 0 8px;font-size:42px;color:var(--papel-100)">Contagem em curso</h1>
+        <p style="color:var(--tinta-100);margin:0;font-size:15px">14,1 milhões de votos contados · 84% das 18 422 mesas concluídas · resultado provisório</p>
+      </div>
+      <div class="row" style="gap:8px">
+        <span class="badge dourado" style="font-size:11px">resultado provisório</span>
+        <span class="conn"><span class="d live"></span> live</span>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:24px">
+      <div class="contagem">
+        <div class="hd" style="padding:14px 18px;border-bottom:1px solid var(--tinta-500);background:var(--tinta-900);display:flex;justify-content:space-between;font-size:12px;color:var(--papel-100)"><b>Eleição Presidencial · contagem nacional</b><span class="badge carimbo" style="font-size:9px">EM CONTAGEM · 84% MESAS</span></div>
+        <div style="background:var(--paper)">
+          <div class="barra-partido">
+            <div class="sigla party-mdp">📖 MDP</div>
+            <div class="gauge"><div class="fill fill-mdp" style="width:38%">38%</div></div>
+            <div class="pct">38,2%</div>
+            <div class="votos">5,4 M</div>
+          </div>
+          <div class="barra-partido">
+            <div class="sigla party-pvn">🌳 PVN</div>
+            <div class="gauge"><div class="fill fill-pvn" style="width:32%">32%</div></div>
+            <div class="pct">31,8%</div>
+            <div class="votos">4,5 M</div>
+          </div>
+          <div class="barra-partido">
+            <div class="sigla party-uc">🤝 UC</div>
+            <div class="gauge"><div class="fill fill-uc" style="width:20%">20%</div></div>
+            <div class="pct">19,8%</div>
+            <div class="votos">2,8 M</div>
+          </div>
+          <div class="barra-partido">
+            <div class="sigla party-at">🌾 AT</div>
+            <div class="gauge"><div class="fill fill-at" style="width:10%">10%</div></div>
+            <div class="pct">10,2%</div>
+            <div class="votos">1,4 M</div>
+          </div>
+        </div>
+        <div style="padding:14px 18px;border-top:1px solid var(--line-2);background:var(--papel-100);font-size:12px">
+          <div class="row spread"><span style="color:var(--ink-3)">Votos válidos</span><b class="mono">14,1 M</b></div>
+          <div class="row spread"><span style="color:var(--ink-3)">Brancos</span><b class="mono">142 K</b></div>
+          <div class="row spread"><span style="color:var(--ink-3)">Nulos</span><b class="mono">88 K</b></div>
+          <div class="row spread" style="margin-top:6px;padding-top:6px;border-top:1px solid var(--line);font-weight:600"><span>Participação</span><b style="color:var(--dourado-700)">14,3 M de 16,8 M · 91%</b></div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="kpi dark"><div class="lbl">Mesas concluídas</div><div class="num">15 474 / 18 422</div><div class="delta">84% · 21:42</div></div>
+        <div class="kpi dark dourado"><div class="lbl">Tempo médio · contagem por mesa</div><div class="num">42 min</div><div class="delta">vs 4h em 2014</div></div>
+        <div class="kpi dark verde"><div class="lbl">Match STED ↔ OCI</div><div class="num">99,7%</div><div class="delta">17 168 mesas validadas</div></div>
+        <div class="kpi dark"><div class="lbl">Próximo update · automático</div><div class="num">15 min</div><div class="delta">22:00 estimado</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Resultado por mesa · Mesa 0142 destacada</b><span>Cidadão pode descer ao detalhe da sua mesa · ver acta · hash · validações · 18 422 mesas todas auditáveis</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">resultados.eleicoes.gov.mz/mesa/0142</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><div><div class="t-overline">DETALHE · MESA 0142 · MAXIXE · INHAMBANE</div><h2 class="t-h2" style="margin:4px 0">Escola Primária 25 de Junho</h2></div><span class="cross ok">acta hash 0x4f8a...218a</span></div>
+
+        <div class="grid g-2" style="gap:18px;margin-bottom:18px">
+          <div class="card">
+            <div class="hd"><b>Resultado · Mesa 0142</b></div>
+            <div class="bd">
+              <div class="contagem">
+                <div class="barra-partido">
+                  <div class="sigla party-mdp">📖 MDP</div>
+                  <div class="gauge"><div class="fill fill-mdp" style="width:42%">42%</div></div>
+                  <div class="pct">42,2%</div>
+                  <div class="votos">174</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-pvn">🌳 PVN</div>
+                  <div class="gauge"><div class="fill fill-pvn" style="width:28%">28%</div></div>
+                  <div class="pct">28,6%</div>
+                  <div class="votos">118</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-uc">🤝 UC</div>
+                  <div class="gauge"><div class="fill fill-uc" style="width:21%">21%</div></div>
+                  <div class="pct">21,4%</div>
+                  <div class="votos">88</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-at">🌾 AT</div>
+                  <div class="gauge"><div class="fill fill-at" style="width:7%">7%</div></div>
+                  <div class="pct">7,8%</div>
+                  <div class="votos">32</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="hd"><b>Validações · 7 assinaturas</b></div>
+            <div class="bd">
+              <table class="table" style="font-size:11px">
+                <tbody>
+                  <tr><td>Aurélio Tembe (Pres.)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Joaquim Cossa (Esc.)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Mariana Macuácua (Esc.)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Lucinda Mussa (Sec.)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Cabo Sumane (MININT)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Joana Mahique Cossa (OCI)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  <tr><td>Anastácio Mussa (OCI)</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                </tbody>
+              </table>
+              <div class="row" style="gap:6px;margin-top:14px">
+                <button class="btn sm">Acta PDF</button>
+                <button class="btn sm secondary">Vídeo contagem</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Comparação · Maxixe (32 mesas)</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>Mesa</th><th>Local</th><th>MDP</th><th>PVN</th><th>UC</th><th>AT</th><th>Total</th></tr></thead>
+              <tbody>
+                <tr style="background:var(--dourado-50)"><td><b>0142</b></td><td>EP 25 Junho</td><td class="num">174</td><td class="num">118</td><td class="num">88</td><td class="num">32</td><td class="num"><b>418</b></td></tr>
+                <tr><td>0218</td><td>CC Maxixe-Norte</td><td class="num">182</td><td class="num">132</td><td class="num">94</td><td class="num">42</td><td class="num">478</td></tr>
+                <tr><td>0418</td><td>ES 25 Setembro</td><td class="num">218</td><td class="num">142</td><td class="num">98</td><td class="num">32</td><td class="num">500</td></tr>
+                <tr><td>0512</td><td>CC Bairro Liberdade</td><td class="num">142</td><td class="num">98</td><td class="num">68</td><td class="num">22</td><td class="num">364</td></tr>
+                <tr><td colspan="7" style="background:var(--bg-2);font-style:italic;color:var(--ink-3)">+ 28 mesas · total Maxixe 16 218 votos válidos</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Histórico nacional · 1994-2029 · 7 eleições gerais</b><span>Acesso a todos os resultados desde a 1.ª eleição multipartidária · arquivo público permanente · académicos podem auditar 35 anos</span></div></div>
+  <div class="scene-c">
+    <div class="card">
+      <div class="hd"><b>7 eleições presidenciais · 1994-2029</b></div>
+      <div class="bd" style="padding:0">
+        <table class="table">
+          <thead><tr><th>Ano</th><th>Eleitores</th><th>Participação</th><th>Vencedor</th><th>%</th><th>Acesso</th></tr></thead>
+          <tbody>
+            <tr style="background:var(--dourado-50);font-weight:600"><td>2029</td><td class="num">16,8 M</td><td class="num">91%</td><td>MDP (provisório)</td><td class="num">38,2%</td><td><span class="badge carimbo" style="font-size:9px">live</span></td></tr>
+            <tr><td>2024</td><td class="num">14,2 M</td><td class="num">68%</td><td>—</td><td class="num">—</td><td><span class="cross ok" style="font-size:9px">arquivo público</span></td></tr>
+            <tr><td>2019</td><td class="num">13,1 M</td><td class="num">71%</td><td>—</td><td class="num">—</td><td><span class="cross ok" style="font-size:9px">arquivo público</span></td></tr>
+            <tr><td>2014</td><td class="num">10,8 M</td><td class="num">48%</td><td>—</td><td class="num">—</td><td><span class="cross" style="font-size:9px">arquivo</span></td></tr>
+            <tr><td>2009</td><td class="num">9,2 M</td><td class="num">44%</td><td>—</td><td class="num">—</td><td><span class="cross" style="font-size:9px">arquivo</span></td></tr>
+            <tr><td>2004</td><td class="num">8,4 M</td><td class="num">42%</td><td>—</td><td class="num">—</td><td><span class="cross" style="font-size:9px">arquivo</span></td></tr>
+            <tr><td>1999</td><td class="num">7,2 M</td><td class="num">68%</td><td>—</td><td class="num">—</td><td><span class="cross" style="font-size:9px">arquivo</span></td></tr>
+            <tr><td>1994</td><td class="num">6,1 M</td><td class="num">88%</td><td>—</td><td class="num">—</td><td><span class="cross" style="font-size:9px">arquivo</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid g-2" style="gap:18px;margin-top:18px">
+      <div class="banner verde"><span class="ic"></span><div><b>Participação 2029 · 91%.</b> Recorde absoluto desde 1994 (88%). Atribuído à eliminação da fricção de inscrição · auto-inscrição aos 18 + mesa próxima da casa.</div></div>
+
+      <div class="banner tinta"><span class="ic"></span><div><b>Arquivo aberto · 35 anos.</b> Todos os resultados · todas as mesas · todas as actas · desde 1994 · pesquisáveis. Pesquisadores, jornalistas, estudantes podem cruzar dados ao longo de 7 eleições.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Auditoria cidadã · qualquer pessoa · 30 segundos</b><span>Cidadão pode descarregar acta de qualquer mesa · validar hash · pesquisar discrepâncias · sem login · sem pagamento · sem identificação</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1180px;margin:0 auto">
+      <div class="card">
+        <div class="hd"><b>3 níveis de auditoria cidadã</b></div>
+        <div class="bd">
+          <h4 style="margin:0 0 6px;font-size:13px">Nível 1 · Cidadão comum · 30 segundos</h4>
+          <ul style="margin:0 0 14px;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>Pesquisa mesa onde votou · Mesa 0142</li>
+            <li>Vê resultado · 412 válidos · MDP/PVN/UC/AT</li>
+            <li>Descarrega acta PDF</li>
+            <li>App valida hash automaticamente</li>
+          </ul>
+
+          <h4 style="margin:0 0 6px;font-size:13px">Nível 2 · Cidadão atento · 5 minutos</h4>
+          <ul style="margin:0 0 14px;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>Pesquisa por distrito · 14 distritos Inhambane</li>
+            <li>Cruza com participação histórica</li>
+            <li>Identifica anomalias visíveis</li>
+            <li>Submete query a STED · resposta 24h</li>
+          </ul>
+
+          <h4 style="margin:0 0 6px;font-size:13px">Nível 3 · Pesquisador · 1+ hora</h4>
+          <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>Descarrega dataset completo · CSV · 18 422 linhas</li>
+            <li>Cruza com cross-Vida Civil · cross-Terras</li>
+            <li>Análise estatística · Benford · clustering</li>
+            <li>Publica em paper · cita resultados</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>API pública · open data</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 10px">STED publica API REST aberta. Sem chave. Sem rate-limit (até 1 000 req/h). Documentação em GitHub · cross-Sociedade Aberta.</p>
+            <div style="background:var(--tinta-900);color:var(--dourado-300);padding:10px;border-radius:2px;font-family:var(--f-mono);font-size:11px;line-height:1.6;overflow-x:auto;white-space:nowrap">
+              GET /api/v1/mesa/0142<br>
+              GET /api/v1/distrito/maxixe/2029<br>
+              GET /api/v1/historico/1994-2029<br>
+              GET /api/v1/contestacoes/abertas
+            </div>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>4 218 cidadãos descarregaram dataset 2029 nas primeiras 24h.</b> Análise estatística feita por 14 universidades · 8 jornalistas independentes · 22 OSCs · 4 pesquisadores internacionais. Auditoria distribuída · não-centralizável.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Princípio · "auditor é o cidadão"</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Não é só TES, OCI, CIP que auditam. <b>Cada cidadão é um auditor.</b> 16,3 milhões de auditores em paralelo · cobertura impossível para qualquer comissão central. Sistema sai mais robusto · não menos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Contestações · 8 graves nacionais · TES decide</b><span>4 sobre tinta indelével · 2 sobre fiscais a discutir · 2 sobre detidos preventivos · todas resolvidas em 14 dias · processo público</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">resultados.eleicoes.gov.mz/contestacoes/2029</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">8 contestações graves · todas em apuração TES</h2><span class="cross alert">cross-TES decide</span></div>
+
+        <div class="card" style="margin-bottom:18px">
+          <div class="hd"><b>Lista pública de contestações</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Origem</th><th>Tipo</th><th>Estado</th><th>Decisão TES</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">CONT-2029-0001</td><td>Mesa 0418 · Maxixe</td><td>Tinta indelével falhou</td><td><span class="badge dourado" style="font-size:9px">apuração</span></td><td>Pendente · 18.10</td></tr>
+                <tr><td class="mono">CONT-2029-0002</td><td>Mesa 1218 · Pemba</td><td>Tinta indelével falhou</td><td><span class="badge dourado" style="font-size:9px">apuração</span></td><td>Pendente · 18.10</td></tr>
+                <tr><td class="mono">CONT-2029-0003</td><td>Mesa 0842 · Beira</td><td>Tinta indelével falhou</td><td><span class="badge verde" style="font-size:9px">resolvida</span></td><td>Lote tinta substituído · sem voto duplo</td></tr>
+                <tr><td class="mono">CONT-2029-0004</td><td>Mesa 2184 · Quelimane</td><td>Tinta indelével falhou</td><td><span class="badge verde" style="font-size:9px">resolvida</span></td><td>Idem · sem voto duplo</td></tr>
+                <tr><td class="mono">CONT-2029-0005</td><td>Mesa 1842 · Tete</td><td>Disputa fiscais MDP/PVN</td><td><span class="badge verde" style="font-size:9px">resolvida</span></td><td>MININT pacificou · contagem prosseguiu</td></tr>
+                <tr><td class="mono">CONT-2029-0006</td><td>Mesa 4218 · Nampula</td><td>Disputa fiscais UC/AT</td><td><span class="badge verde" style="font-size:9px">resolvida</span></td><td>Idem</td></tr>
+                <tr><td class="mono">CONT-2029-0007</td><td>EP Niassa</td><td>Detido preventivo · mesa móvel atrasada</td><td><span class="badge dourado" style="font-size:9px">apuração</span></td><td>TES homologa voto excepcional</td></tr>
+                <tr><td class="mono">CONT-2029-0008</td><td>EP Cabo Delgado</td><td>Detido preventivo idem</td><td><span class="badge dourado" style="font-size:9px">apuração</span></td><td>TES idem</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="banner tinta"><span class="ic"></span><div><b>0 contestações sobre fraude sistémica.</b> Todas as 8 são incidentes localizados · 4 técnicos (tinta) · 2 disciplinares (disputa) · 2 logísticos (mesa móvel). Zero contestações sobre adulteração de actas, voto duplicado validado, ou manipulação algorítmica.</div></div>
+
+          <div class="card">
+            <div class="hd"><b>Processo TES · 14 dias úteis</b></div>
+            <div class="bd">
+              <ol style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                <li>Recepção da contestação · 24h</li>
+                <li>Notificação a STED + OCI · 48h</li>
+                <li>Recolha de evidência · 7 dias</li>
+                <li>Audição de partes · 3 dias</li>
+                <li>Decisão fundamentada · 1 dia</li>
+                <li>Recurso ao Tribunal Comum · opcional · 30 dias</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Proclamação solene · TES · 28.10.2029 · 14 dias depois</b><span>Dr. Salomão Bila preside · 100% mesas validadas · resultado final · Beatriz Cossa Tembe (MDP) eleita Presidente · juramento na cerimónia</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:780px;margin:0 auto;padding:48px 24px;background:var(--paper);border:2px solid var(--dourado-500);text-align:center;box-shadow:var(--sh-3)">
+      <div class="t-overline" style="margin-bottom:24px;color:var(--dourado-700)">TRIBUNAL ELEITORAL SUPERIOR · TES · 28.10.2029 · MAPUTO</div>
+
+      <h1 class="headline xl gold" style="font-family:var(--f-serif);font-style:italic;font-weight:600;margin:0 0 32px;font-size:38px">Proclamação Solene</h1>
+
+      <p style="font-family:var(--f-serif);font-size:17px;line-height:1.65;color:var(--ink-1);margin:0 0 24px">Em cumprimento do disposto na Lei 9/2014 · após validação completa das 18 422 mesas eleitorais · resolução das 8 contestações registadas · e auditoria final dos boletins físicos em cofre lacrado nos 11 Tribunais Provinciais · este Tribunal Eleitoral Superior:</p>
+
+      <hr class="hr heavy" style="border-color:var(--dourado-500);margin:24px 0">
+
+      <p style="font-family:var(--f-serif);font-size:17px;line-height:1.7;color:var(--ink-1);margin:0 0 24px"><b>PROCLAMA</b></p>
+
+      <p style="font-family:var(--f-serif);font-size:22px;line-height:1.4;color:var(--tinta-900);margin:0 0 14px">Beatriz Cossa Tembe</p>
+      <p style="font-size:13px;color:var(--ink-3);margin:0 0 24px">Movimento Democrático Popular · MDP</p>
+
+      <p style="font-family:var(--f-serif);font-size:17px;line-height:1.65;color:var(--ink-1);margin:0 0 24px"><b>Presidente da República de Moçambique</b><br>com 38,4% dos votos válidos · 5,42 milhões de votos · mandato de 5 anos · 14.01.2030 a 14.01.2035</p>
+
+      <hr class="hr heavy" style="border-color:var(--dourado-500);margin:24px 0">
+
+      <div style="font-family:var(--f-serif);font-size:14px;line-height:1.7;color:var(--ink-2);font-style:italic;margin:24px 0">"Este resultado é fruto da participação livre e consciente de 16,3 milhões de cidadãos moçambicanos · obtido através de processo electoral cumprido com integridade · validado em todas as suas etapas · e merece o respeito de todos."</div>
+
+      <hr class="hr heavy" style="border-color:var(--dourado-500);margin:24px 0">
+
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);font-family:var(--f-mono)">
+        <span>Dr. Salomão Bila · Presidente TES</span>
+        <span>28.10.2029 · 11:00</span>
+      </div>
+
+      <div class="row" style="gap:6px;margin-top:24px;justify-content:center">
+        <button class="btn gold">Acta solene PDF</button>
+        <button class="btn secondary">Vídeo cerimónia</button>
+      </div>
+    </div>
+
+    <div class="grid g-2" style="gap:18px;margin-top:32px;max-width:1080px;margin-left:auto;margin-right:auto">
+      <div class="banner dourado"><span class="ic"></span><div><b>Cerimónia transmitida em directo · RM/TVM/Privadas.</b> 4,8 milhões de espectadores em simultâneo. 14 chefes de Estado africanos presentes. Sistema cumpriu · país honrou · resultado aceite por todas as 4 forças políticas em 48h.</div></div>
+
+      <div class="card">
+        <div class="hd"><b>Resultado final · 4 partidos</b></div>
+        <div class="bd">
+          <div class="contagem">
+            <div class="barra-partido"><div class="sigla party-mdp">📖 MDP</div><div class="gauge"><div class="fill fill-mdp" style="width:38%">38%</div></div><div class="pct">38,4%</div><div class="votos">5,42 M</div></div>
+            <div class="barra-partido"><div class="sigla party-pvn">🌳 PVN</div><div class="gauge"><div class="fill fill-pvn" style="width:32%">32%</div></div><div class="pct">31,9%</div><div class="votos">4,52 M</div></div>
+            <div class="barra-partido"><div class="sigla party-uc">🤝 UC</div><div class="gauge"><div class="fill fill-uc" style="width:20%">20%</div></div><div class="pct">19,7%</div><div class="votos">2,79 M</div></div>
+            <div class="barra-partido"><div class="sigla party-at">🌾 AT</div><div class="gauge"><div class="fill fill-at" style="width:10%">10%</div></div><div class="pct">10,0%</div><div class="votos">1,42 M</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Jurisprudência TES · 35 anos de decisões</b><span>1994-2029 · todas as decisões TES públicas · arquivadas · pesquisáveis · construção da memória democrática moçambicana</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:18px;max-width:1180px;margin:0 auto">
+      <div class="card">
+        <div class="hd"><b>Decisões TES · marcos históricos</b></div>
+        <div class="bd" style="padding:0">
+          <table class="table" style="font-size:12px">
+            <thead><tr><th>Ano</th><th>Caso</th><th>Decisão</th></tr></thead>
+            <tbody>
+              <tr><td>1999</td><td>Contestação resultados</td><td>Recontagem nacional · 4 províncias</td></tr>
+              <tr><td>2004</td><td>Direito de observação</td><td>OCI passa a ter acreditação automática</td></tr>
+              <tr><td>2009</td><td>Voto da diáspora</td><td>Embaixadas como mesas · 12 países</td></tr>
+              <tr><td>2014</td><td>Voto detido preventivo</td><td>Mesa móvel obrigatória</td></tr>
+              <tr><td>2019</td><td>Acessibilidade</td><td>Boletim em braille obrigatório</td></tr>
+              <tr><td>2023</td><td>Auto-inscrição 18+</td><td>STED Digital homologado · base do P12</td></tr>
+              <tr><td>2024</td><td>Caderno público</td><td>Anonimização parcial · NUEL público</td></tr>
+              <tr style="background:var(--dourado-50);font-weight:600"><td>2029</td><td>8 contestações graves</td><td>Tinta · disputa · detidos · todas resolvidas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="banner verde"><span class="ic"></span><div><b>35 anos de jurisprudência electoral.</b> Cada decisão TES é precedente para a próxima eleição. Sistema aprende com a sua própria história · não reinventa cada ciclo. Estabilidade institucional construída década a década.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Pull quote · Dr. Salomão Bila · TES</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Em 1994 · contámos votos à mão · à luz de candeeiros · em escolas sem electricidade. Não havia cross-systems · não havia auto-inscrição · não havia internet. Havia papel · havia cidadãos · havia coragem. Em 2029 · temos tudo isto · mais ferramentas · mais confiança. Mas o essencial não mudou. Continuam a ser cidadãos · com papel · com coragem. Que assim continue."<cite>Dr. Salomão Bila · Presidente TES · 28.10.2029</cite></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="hd"><b>Memória democrática · 35 anos</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Arquivo TES · pesquisável · indexado · com busca booleana · download CSV. Estudantes de direito da UEM citam casos. Jornalistas como Joana cruzam decisões. Cidadãos curiosos exploram. <b>Sistema é tão forte quanto a memória que partilha.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--tinta-900);color:var(--tinta-100);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--tinta-700);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:22px;height:22px;border:2px solid var(--papel-100);border-radius:1px"></div><div style="position:absolute;font-family:'IBM Plex Serif',serif;color:var(--carimbo-300);font-size:18px;font-weight:700;line-height:1">✕</div></div>
+        <div>
+          <div style="font-size:15px;color:var(--papel-100);font-weight:600">Resultados públicos</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 6 de 7 · DESIGN-resultados.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--cinza-300)">cross-TES · cross-Sociedade Aberta · cross-RM/TVM · cross-OCI · cross-Vida Civil · cross-eBI · cross-MININT. Beatriz Cossa Tembe, Anastácio Mahique, Florêncio Sumane, Esperança Macamo, Dr. Salomão Bila são personas fictícias. STED, CNED, TES, OCI, MDP, PVN, UC, AT são entidades fictícias.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="observador.html" class="btn ghost sm" style="color:var(--tinta-100)">‹ Observador</a><a href="cross-vidacivil.html" class="btn ghost sm" style="color:var(--tinta-100)">Próxima · Cross-Vida Civil ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

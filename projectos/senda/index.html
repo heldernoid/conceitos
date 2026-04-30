@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>SENDA · Sistema Electrónico Nacional de Dados Académicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip">
+  <span>República de Moçambique</span><span class="sep">·</span>
+  <span>SENDA</span><span class="sep">·</span>
+  <span>Sistema Electrónico Nacional de Dados Académicos</span>
+  <span style="margin-left:auto">senda.gov.mz · v0.5</span>
+</div>
+<div class="senda-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark">S</span>
+    <span class="stack"><span>SENDA</span><small>Sistema Nacional</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel SENDA</a>
+    <a href="trajectoria.html">Trajectória</a>
+    <a href="candidatura.html">Candidatura</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="registar.html">Registar</a>
+    <a href="verificacao.html">Verificação</a>
+    <a href="equivalencias.html">Equivalências</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> sistema operacional</span>
+  </div>
+</header>
+
+<!-- HERO · azul-deep institucional -->
+<section style="padding:80px 24px 64px;background:linear-gradient(135deg,#123860 0%,#0d2845 100%);color:#fff;border-bottom:4px solid var(--accent);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,0.03);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-80px;left:30%;width:280px;height:280px;border-radius:50%;background:rgba(14,165,233,0.06);pointer-events:none"></div>
+
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:end;position:relative">
+    <div>
+      <div class="t-overline" style="margin-bottom:18px;color:var(--accent)">PROTÓTIPO · INFRAESTRUTURA NACIONAL DE DADOS ACADÉMICOS</div>
+      <h1 class="headline xl dark" style="margin:0 0 18px;font-size:56px;color:#fff">A vida académica<br>numa só plataforma.<br><span style="color:var(--accent)">Para sempre.</span></h1>
+      <p class="deck dark" style="max-width:720px;margin:0 0 28px;font-size:18px">Cradle-to-credential. SENDA acompanha cada cidadão moçambicano da 1.ª classe ao último grau académico · 50+ anos de registos · auditável · permanente · transferível. Escolas, universidades e MECTS no mesmo sistema · uma única identidade académica nacional.</p>
+
+      <div class="row" style="gap:8px;flex-wrap:wrap">
+        <span class="badge dark" style="font-size:11px">7 superfícies</span>
+        <span class="badge dark" style="font-size:11px">49 cenas</span>
+        <span class="badge dark" style="font-size:11px">14 cross-systems</span>
+        <span class="badge" style="font-size:11px;background:var(--accent);color:#fff;border:0">1,2 M alunos · 44 universidades · 3 200 escolas</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="card dark" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);padding:24px">
+        <div style="font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px">CADERNO ACADÉMICO NACIONAL · ABRIL 2026</div>
+        <div style="font-family:var(--f-mono);font-size:48px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-0.02em;margin-bottom:6px">9 482 184</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:18px">Trajectórias académicas activas · da 1.ª classe ao doutoramento</div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+          <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Primário (1ª-7ª)</span><b style="color:#fff;font-family:var(--f-mono)">5,4 M</b></div>
+          <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Secundário (8ª-12ª)</span><b style="color:#fff;font-family:var(--f-mono)">2,8 M</b></div>
+          <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Superior + médio</span><b style="color:#fff;font-family:var(--f-mono)">1,1 M</b></div>
+          <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7)"><span>Diplomados (vivos)</span><b style="color:#fff;font-family:var(--f-mono)">218 K</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 PILARES -->
+<section style="padding:48px 24px;background:#fff">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>Os 4 pilares · cradle-to-credential</b></div>
+    <div class="grid g-4" style="gap:18px;margin-top:18px">
+      <div class="card" style="padding:20px;border-left:3px solid var(--hito-primario)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-primario)">PILAR 1</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Trajectória persistente</h3>
+        <p class="t-meta" style="font-size:13px">1 NUEL académico · da 1.ª classe ao último grau · 50+ anos. Mudança de escola · transferência entre províncias · diáspora · tudo segue o cidadão.</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:3px solid var(--hito-secundario)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-secundario)">PILAR 2</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Candidatura única nacional</h3>
+        <p class="t-meta" style="font-size:13px">Uma candidatura · 8 preferências · 44 universidades. Ranking público anonimizado · colocação automática por preferência. Sem 4 candidaturas a 4 universidades.</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:3px solid var(--hito-superior)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-superior)">PILAR 3</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Diploma verificável em 3 segundos</h3>
+        <p class="t-meta" style="font-size:13px">QR no diploma · empregador valida · embaixada audita · diáspora sem fricção. Adulteração detectada · revogação imediata. Anti-fraude por desenho.</p>
+      </div>
+      <div class="card" style="padding:20px;border-left:3px solid var(--hito-continua)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-continua)">PILAR 4</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Equivalências sem labirinto</h3>
+        <p class="t-meta" style="font-size:13px">Diáspora regressa com diploma estrangeiro · refugiado vem sem documentos · MECTS homologa em 30 dias úteis. Workflow único · transparente · auditável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 SUPERFICIES -->
+<section style="padding:48px 24px;background:var(--gray-50);border-top:1px solid var(--border)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>Sete superfícies · do MECTS ao empregador</b></div>
+
+    <div class="grid" style="grid-template-columns:1.6fr 1fr 1fr;gap:18px;margin-top:18px">
+      <a href="painel.html" class="card dark" style="padding:28px;text-decoration:none;display:block;grid-row:span 2">
+        <div class="t-overline" style="color:var(--accent);margin-bottom:12px">Surface 1 · destacada</div>
+        <h2 class="headline lg dark" style="margin:0 0 14px;color:#fff">Painel SENDA.<br>Vista nacional.</h2>
+        <p style="color:rgba(255,255,255,0.75);font-size:14px;line-height:1.6;margin:0 0 18px">Eng.ª Hortênsia Bila · directora SENDA. 9,4M trajectórias activas · 44 universidades · 3 200 escolas · cobertura por província · equivalências MECTS · diplomas emitidos hoje · sistema vivo.</p>
+        <div class="row" style="gap:6px;flex-wrap:wrap">
+          <span class="cross dark">cross-Educação Digital</span>
+          <span class="cross dark">cross-Vida Civil</span>
+          <span class="cross dark">cross-MECTS</span>
+          <span class="cross dark">cross-Migrações</span>
+        </div>
+      </a>
+
+      <a href="trajectoria.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--hito-primario)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-primario)">Surface 2</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Trajectória · Pedro</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">12 anos de escola · 1.ª classe → 12.ª · transferências · cross-Educação Digital.</p>
+      </a>
+
+      <a href="candidatura.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--hito-secundario)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-secundario)">Surface 3</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Candidatura · Pedro</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Wizard 4 passos · 8 preferências · 44 universidades · 1 exame nacional.</p>
+      </a>
+
+      <a href="resultados.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--hito-secundario)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-secundario)">Surface 4</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Resultados · ranking</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Pedro colocado · 1.ª preferência UEM · ranking público anonimizado · transparência.</p>
+      </a>
+
+      <a href="registar.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--hito-superior)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-superior)">Surface 5</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Registar · UEM</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Maria Cumbe · ciclo completo · matrícula → notas → diploma. Caso · Ana Cristina Tembe.</p>
+      </a>
+
+      <a href="verificacao.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--accent)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--accent)">Surface 6</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Verificação pública</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">3 segundos · QR · empregador SA · embaixada · diáspora · anti-fraude.</p>
+      </a>
+
+      <a href="equivalencias.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--hito-continua);grid-column:span 2">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--hito-continua)">Surface 7</div>
+        <h3 class="t-h3" style="margin:0 0 8px">Equivalências MECTS · cradle-to-credential simbólico</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">3 casos · diáspora regressa de Portugal · estrangeiro angolano vem · refugiado RDC sem documentos · trajectória completa de Felisberto · 50 anos · 1985→2035.</p>
+      </a>
+
+      <a href="design-system.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block">
+        <div class="t-overline" style="margin-bottom:8px">Sistema</div>
+        <h3 class="t-h3" style="margin:0 0 8px">7 componentes signature</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Trajectória · programa-card · preferências · score-calc · ranking · diploma · verificação.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPIO -->
+<section style="padding:64px 24px;background:#fff;border-top:1px solid var(--border)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>Princípio · "uma identidade académica · uma vida"</b></div>
+    <div class="grid g-2" style="margin-top:18px;gap:48px">
+      <div>
+        <p class="pull-quote">"O sistema antigo perdia trajectórias com cada mudança de escola · com cada incêndio em arquivo · com cada caixa de papel encharcada num ciclone. SENDA não esquece. Não perde. Não muda de mãos. É o cidadão que muda · não o seu registo académico."<cite>Princípio fundador · SENDA</cite></p>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-2);margin-top:24px">Por baixo das 7 superfícies está uma única identidade académica nacional · o <b>NUEL académico SENDA</b> · distinto do BI, do NUIT, do NUEL eleitoral. Esta identidade nasce na 1.ª classe e morre com o cidadão. Tudo o que ele estuda · em Moçambique ou no estrangeiro · agrega-se a este registo único. Empregadores verificam. Universidades aceitam. MECTS audita. Estado funciona.</p>
+      </div>
+      <div class="col" style="gap:14px">
+        <div class="card" style="padding:18px">
+          <div class="t-overline" style="margin-bottom:10px">14 cross-systems · ecossistema integrado</div>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <span class="cross blue">cross-Educação Digital</span>
+            <span class="cross blue">cross-Vida Civil</span>
+            <span class="cross blue">cross-eBI</span>
+            <span class="cross blue">cross-Migrações</span>
+            <span class="cross blue">cross-Justiça</span>
+            <span class="cross blue">cross-AT</span>
+            <span class="cross blue">cross-Sociedade Aberta</span>
+            <span class="cross blue">cross-Trabalho</span>
+            <span class="cross blue">cross-Eleições Digitais</span>
+            <span class="cross blue">cross-Saúde</span>
+            <span class="cross blue">cross-MECTS</span>
+            <span class="cross blue">cross-Resiliência Climática</span>
+            <span class="cross blue">cross-CFJP</span>
+            <span class="cross blue">cross-MNEC</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <div class="t-overline" style="margin-bottom:10px">Trajectória ilustrada · Pedro · 16 anos no sistema</div>
+          <div style="font-family:var(--f-mono);font-size:11px;line-height:1.85;color:var(--text-2)">
+            <div><span style="color:var(--hito-primario)">2015–2021</span> · 1.ª–7.ª classe · EP25Junho Maxixe · <b style="color:var(--hito-primario)">⭑ certificado 7.ª</b></div>
+            <div><span style="color:var(--hito-secundario)">2022–2026</span> · 8.ª–12.ª classe · ES Manyanga + ES25Setembro · <b style="color:var(--hito-secundario)">⭑ certificados 10.ª e 12.ª</b></div>
+            <div><span style="color:var(--hito-superior)">2027</span> · exame nacional · candidatura · admitido UEM Eng. Informática</div>
+            <div><span style="color:var(--hito-superior)">2028–2031</span> · 4 anos UEM · <b style="color:var(--hito-superior)">⭑ Licenciatura SENDA</b></div>
+            <div><span style="color:var(--hito-continua)">2032+</span> · cross-Trabalho · empregabilidade · formação contínua</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:48px 24px;background:var(--blue-950);color:rgba(255,255,255,0.75)">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--blue-700);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px;letter-spacing:-0.5px">S</div>
+        <div>
+          <div style="font-size:18px;color:#fff;font-weight:700;letter-spacing:-0.3px">SENDA</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Sistema Electrónico Nacional de Dados Académicos</div>
+        </div>
+      </div>
+      <p style="font-size:13px;line-height:1.6;margin:18px 0 0;max-width:760px;color:rgba(255,255,255,0.6)">Protótipo de demonstração criado por <a href="https://www.linkedin.com/in/helmo/" style="color:var(--accent)">Hélder Monteiro</a> para imaginar a infraestrutura nacional de dados académicos de Moçambique. Cradle-to-credential · da 1.ª classe ao último grau · permanente · auditável · transferível. Universidades, escolas, candidatos e diplomados mencionados neste protótipo são fictícios. SENDA é uma marca de prototipagem.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

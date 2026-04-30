@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Mesa de voto · Aurélio · Eleições Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>STED · CNED</span><span class="sep">·</span><span>Mesa 0142 · dia eleitoral</span><span style="margin-left:auto">14.10.2029 · 06:00 → 19:00</span></div>
+<div class="party-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Eleições Digitais</span><small>Mesa · presidente</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel STED</a>
+    <a href="cidadao.html">Cidadão</a>
+    <a href="primeira-vez.html">Auto-inscrição</a>
+    <a href="mesa.html" class="active">Mesa</a>
+    <a href="observador.html">Observador</a>
+    <a href="resultados.html">Resultados</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm">AT</div><div class="who"><b>Aurélio Tembe</b><span>Pres. Mesa 0142</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Abertura · 06:00</a>
+  <a href="#cena2">Cena 2 · Eleitor chega</a>
+  <a href="#cena3">Cena 3 · BI scaneado · cross-eBI</a>
+  <a href="#cena4">Cena 4 · Vota em papel</a>
+  <a href="#cena5">Cena 5 · Casos especiais</a>
+  <a href="#cena6">Cena 6 · Acta de contagem</a>
+  <a href="#cena7">Cena 7 · Encerramento · 19:00</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Abertura da mesa · 06:00 · 14.10.2029</b><span>Aurélio Tembe · 67a · prof. reformado · 5.ª eleição como presidente · tablet rugged STED · checklist de abertura · 4 selos</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:760px 1fr;gap:32px;justify-content:center;max-width:1180px;margin:0 auto;align-items:flex-start">
+      <div class="tablet">
+        <div class="screen" style="height:580px">
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div class="row spread" style="align-items:center">
+              <div>
+                <div style="font-family:var(--f-mono);font-size:9px;opacity:.85;letter-spacing:.1em">MESA 0142 · STED · DIA ELEITORAL</div>
+                <div style="font-family:var(--f-serif);font-size:18px;margin-top:2px">Bom dia, presidente Aurélio</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:var(--f-mono);font-size:24px;color:var(--dourado-300);font-weight:700">06:00</div>
+                <div style="font-family:var(--f-mono);font-size:9px;color:var(--tinta-100)">14.10.2029 · DOMINGO</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:22px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="banner dourado" style="margin-bottom:14px"><span class="ic"></span><div><b>Mesa abre às 06:00 em ponto.</b> Cidadãos podem entrar a partir de agora. Toque o sino para anunciar a abertura.</div></div>
+
+            <h3 class="t-h3" style="margin:0 0 10px">Checklist de abertura · 4 selos obrigatórios</h3>
+            <div class="col" style="gap:6px">
+              <div class="row spread" style="padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700);border-radius:2px"><span style="font-size:13px"><b>Selo 1 · Mesa montada</b><br><span style="color:var(--ink-3);font-size:11px">3 mesas · biombos · urna lacrada · cabines</span></span><span class="badge verde" style="font-size:9px">✓ 05:42</span></div>
+              <div class="row spread" style="padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700);border-radius:2px"><span style="font-size:13px"><b>Selo 2 · Equipa presente</b><br><span style="color:var(--ink-3);font-size:11px">Aurélio + 2 escrutinadores + secretário + fiscal MININT</span></span><span class="badge verde" style="font-size:9px">✓ 05:48</span></div>
+              <div class="row spread" style="padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700);border-radius:2px"><span style="font-size:13px"><b>Selo 3 · Observadores presentes</b><br><span style="color:var(--ink-3);font-size:11px">2 OCI · Joana Mahique Cossa + Anastácio Mussa</span></span><span class="badge verde" style="font-size:9px">✓ 05:52</span></div>
+              <div class="row spread" style="padding:10px;background:var(--verde-50);border-left:3px solid var(--verde-700);border-radius:2px"><span style="font-size:13px"><b>Selo 4 · Boletins contados</b><br><span style="color:var(--ink-3);font-size:11px">418 boletins lacrados · 1 por eleitor · padrão CNED</span></span><span class="badge verde" style="font-size:9px">✓ 05:58</span></div>
+            </div>
+
+            <button class="btn block lg gold" style="margin-top:18px">Abrir mesa · 06:00</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Aurélio Tembe · presidente</b></div>
+          <div class="bd">
+            <div class="row" style="gap:10px;align-items:center;margin-bottom:10px">
+              <div class="av lg">AT</div>
+              <div style="flex:1"><b style="font-family:var(--f-serif);font-size:15px">Aurélio Tembe</b><div class="t-meta" style="font-size:11px">67a · prof. matemática reformado · CFJP-IH-2014 · cred. CNED</div></div>
+            </div>
+            <div style="font-size:12px;line-height:1.7">
+              <div class="row spread"><span style="color:var(--ink-3)">Eleições como presidente</span><b>5.ª · desde 2009</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Mesa 0142</span><b>desde 2014</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Treino STED · 2029</span><b>3 dias · 14h</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Subsídio dia eleitoral</span><b>4 200 MT (~63 USD)</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner tinta"><span class="ic"></span><div><b>Tablet rugged STED.</b> 12" · IP67 · funciona com chuva · GSM + WiFi · 18h bateria · sincroniza cada 15 minutos com servidor central. Backup off-line completo · funciona sem rede até 8h.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Equipa da mesa · 6 pessoas</b></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td><b>Aurélio Tembe</b></td><td>Presidente · CNED</td></tr>
+                <tr><td>Joaquim Cossa</td><td>1.º escrutinador</td></tr>
+                <tr><td>Mariana Macuácua</td><td>2.ª escrutinadora</td></tr>
+                <tr><td>Lucinda Mussa</td><td>Secretária · regista actas</td></tr>
+                <tr><td>Cabo Sumane</td><td>Fiscal MININT · ordem</td></tr>
+                <tr><td>Joana Mahique Cossa</td><td>Observadora OCI</td></tr>
+                <tr><td>Anastácio Mussa</td><td>Observador OCI</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Eleitor chega · Felisberto · 09:14</b><span>Felisberto Manjate · veio com Pedro (1.º voto · 1.º filho) e Joana · família a votar junto · cumprimenta Aurélio · entra na fila</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1180px;margin:0 auto;align-items:flex-start">
+      <div class="card">
+        <div class="hd"><b>Fluxo do eleitor · 4 passos</b></div>
+        <div class="bd" style="padding:0">
+          <div style="padding:14px;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:50px 1fr;gap:14px;align-items:center">
+            <div style="width:40px;height:40px;background:var(--tinta-700);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:18px;font-weight:600">1</div>
+            <div><b>Entra · apresenta BI</b><div style="color:var(--ink-3);font-size:12px">Aurélio cumprimenta · pede BI · 1.º escrutinador scaneia</div></div>
+          </div>
+          <div style="padding:14px;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:50px 1fr;gap:14px;align-items:center">
+            <div style="width:40px;height:40px;background:var(--tinta-700);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:18px;font-weight:600">2</div>
+            <div><b>cross-eBI valida em 2 segundos</b><div style="color:var(--ink-3);font-size:12px">Biometria + foto · NUEL aparece · estado · não votou ainda hoje</div></div>
+          </div>
+          <div style="padding:14px;border-bottom:1px solid var(--line-2);display:grid;grid-template-columns:50px 1fr;gap:14px;align-items:center">
+            <div style="width:40px;height:40px;background:var(--tinta-700);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:18px;font-weight:600">3</div>
+            <div><b>Recebe boletim · vai para cabine</b><div style="color:var(--ink-3);font-size:12px">Boletim com selo CNED · marca X · dobra · sai da cabine</div></div>
+          </div>
+          <div style="padding:14px;display:grid;grid-template-columns:50px 1fr;gap:14px;align-items:center">
+            <div style="width:40px;height:40px;background:var(--carimbo-500);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:18px;font-weight:600">4</div>
+            <div><b>Deposita na urna · marca dedo · sai</b><div style="color:var(--ink-3);font-size:12px">Tinta indelével dedo indicador esquerdo · NUEL marcado "votou" · 14:42</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>Família Manjate Sumane · 09:14</b></div>
+          <div class="bd">
+            <div class="row" style="gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-2)">
+              <div class="av sm verde">FM</div>
+              <div style="flex:1;font-size:13px"><b>Felisberto Manjate · 41a</b><div style="color:var(--ink-3);font-size:11px">5.º voto · sempre Mesa 0142 · vota em UC</div></div>
+              <span class="badge verde" style="font-size:9px">na fila</span>
+            </div>
+            <div class="row" style="gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-2)">
+              <div class="av sm verde">JM</div>
+              <div style="flex:1;font-size:13px"><b>Joana Sumane Manjate · 38a</b><div style="color:var(--ink-3);font-size:11px">3.º voto · vota em PVN</div></div>
+              <span class="badge verde" style="font-size:9px">na fila</span>
+            </div>
+            <div class="row" style="gap:10px;align-items:center;padding:10px 0">
+              <div class="av sm dourado">PM</div>
+              <div style="flex:1;font-size:13px"><b>Pedro Manjate Sumane · 20a 6m</b><div style="color:var(--ink-3);font-size:11px">1.º voto · estuda em Maputo · pediu transferência para Maxixe · vota em ?</div></div>
+              <span class="badge dourado" style="font-size:9px">1.º voto</span>
+            </div>
+            <p style="font-size:12px;line-height:1.6;margin:14px 0 0;color:var(--ink-2);font-style:italic">3 votos · 3 escolhas · família democrática · cada um vota como entender. Anonimato preserva discordância familiar legítima.</p>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>Pedro · momento simbólico do 11.º pacote ↔ 12.º.</b> Em 2026 · ele tinha 17 anos. Em 2027 · auto-inscrito (Surface 3). Em 2029 · vota pela primeira vez · com pais · Mesa 0142 · 600m de casa. Geração Z · primeira a usar este sistema desde os 18.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>BI scaneado · cross-eBI · 2 segundos</b><span>Aurélio scaneia BI · sistema valida · NUEL aparece · estado "ainda não votou hoje" · entrega boletim · regista timestamp</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:760px 1fr;gap:32px;justify-content:center;max-width:1180px;margin:0 auto;align-items:flex-start">
+      <div class="tablet">
+        <div class="screen" style="height:580px">
+          <div style="background:var(--carimbo-500);color:var(--paper);padding:14px 18px">
+            <div class="row spread" style="align-items:center">
+              <div>
+                <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">VALIDAÇÃO · CROSS-EBI</div>
+                <div style="font-family:var(--f-serif);font-size:18px;margin-top:2px">Eleitor identificado em 1,8s</div>
+              </div>
+              <div style="font-family:var(--f-mono);font-size:18px;font-weight:700">09:14:08</div>
+            </div>
+          </div>
+
+          <div style="padding:22px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="caderno-publico" style="margin-bottom:14px">
+              <div class="av-eleitor">FM</div>
+              <div class="info"><b>Felisberto Manjate</b><span class="mono">NUEL 0418-218-184 · BI 110100382184</span></div>
+              <div class="meta"><div class="estado estado-ok">PODE VOTAR</div></div>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">VERIFICAÇÃO · 4 PONTOS · 1,8 SEGUNDOS</div>
+            <div class="verif-cruzada" style="margin-bottom:14px">
+              <div class="item"><div class="ic">✓</div><div class="info"><b>Foto facial · 96,4% match</b><span>178 pontos · acima threshold 92%</span></div></div>
+              <div class="item"><div class="ic">✓</div><div class="info"><b>Digital indicador direito · 98,2%</b><span>Acima threshold 95%</span></div></div>
+              <div class="item"><div class="ic">✓</div><div class="info"><b>NUEL activo · cross-Vida Civil</b><span>Vivacidade confirmada · 14h ago</span></div></div>
+              <div class="item"><div class="ic">✓</div><div class="info"><b>Não votou hoje em outra mesa</b><span>cross-STED nacional · NUEL livre</span></div></div>
+            </div>
+
+            <button class="btn block lg success">Entregar boletim · marcar entrada</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Bloqueio anti-fraude · 4 camadas</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:12px;line-height:1.85">
+              <li><b>Biometria</b> · BI tem que ser do eleitor · 2 pontos</li>
+              <li><b>NUEL único</b> · cada cidadão tem só 1</li>
+              <li><b>Lock nacional</b> · STED bloqueia NUEL em 2.ª mesa em tempo real · não pode votar 2 vezes</li>
+              <li><b>Tinta indelével</b> · dedo marcado · barreira física complementar</li>
+            </ol>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;color:var(--carimbo-700);font-weight:500">Tentativa de voto duplicado bloqueia em 2 segundos · alerta MININT · investigação imediata.</p>
+          </div>
+        </div>
+
+        <div class="banner carimbo"><span class="ic"></span><div><b>Tentativa real detectada · Eleições 2024.</b> 84 NUELs tentaram votar 2x em mesas diferentes. Sistema bloqueou todos. 14 ficaram sem voto válido (1.ª mesa contada). 70 foram identificados como erro · revertido · puderam votar normalmente.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Privacidade na validação</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0">Aurélio vê NUEL · nome · estado. <b>Não vê</b> · histórico de votos · partido · biometria bruta. Tablet só mostra o necessário para validar. Logs auditáveis · CNPDP supervisiona.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Vota em papel · cabine · urna · tinta no dedo</b><span>Felisberto recebe boletim com selo CNED · vai para cabine · marca X em UC · dobra · deposita na urna · marca dedo · sai com dedo violeta</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:1fr 380px;gap:32px;max-width:1180px;margin:0 auto">
+      <div class="col" style="gap:18px">
+        <div class="card">
+          <div class="hd"><b>O acto físico de votar · 2 minutos</b></div>
+          <div class="bd">
+            <div style="font-size:13px;line-height:1.85">
+              <p style="margin:0 0 12px"><b>09:14:42</b> · Felisberto recebe boletim físico · selo CNED · número de série invisível ao olho · só sob luz UV (anti-falsificação).</p>
+              <p style="margin:0 0 12px"><b>09:15:18</b> · Entra na cabine · biombo de pano · privacidade absoluta. Marca X com caneta no quadrado da UC.</p>
+              <p style="margin:0 0 12px"><b>09:16:14</b> · Sai da cabine · boletim dobrado em 4. Caminha para urna lacrada.</p>
+              <p style="margin:0 0 12px"><b>09:16:42</b> · Deposita boletim na urna · todos vêem · contador da urna sobe para 47.</p>
+              <p style="margin:0 0 0"><b>09:16:58</b> · Marca dedo indicador esquerdo em tinta indelével violeta. Aurélio diz: "obrigado · até daqui a 5 anos." Felisberto sai.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner dourado"><span class="ic"></span><div><b>O voto é em papel · auditável sem electricidade.</b> Mesmo que toda a infra-estrutura digital falhasse hoje · à meia-noite · contagem podia ser feita à luz de velas. Papel é a última linha de defesa da democracia.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Tinta indelével · 5 dias · violeta</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Tinta com nitrato de prata · violeta · marca dedo indicador esquerdo. Não sai com lavagem · só com renovação celular natural · 5-7 dias. Permite verificação visual rápida em fila · barreira contra voto duplicado mesmo se sistema digital falhasse.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="boletim">
+        <div class="topo">
+          <div class="titulo">Eleição do Presidente da República</div>
+          <div class="sub">CNED · 14 OUT 2029 · MESA 0142</div>
+        </div>
+        <div class="instrucao">Marque com X · um só quadrado · à direita do candidato escolhido</div>
+        <div class="partidos">
+          <div class="partido">
+            <div class="simbolo" style="color:#3A6788">📖</div>
+            <div class="nome"><b>MDP</b><span class="sigla">Beatriz Cossa Tembe</span></div>
+            <div class="quadrado"></div>
+          </div>
+          <div class="partido">
+            <div class="simbolo" style="color:#5A8466">🌳</div>
+            <div class="nome"><b>PVN</b><span class="sigla">Anastácio Mahique</span></div>
+            <div class="quadrado"></div>
+          </div>
+          <div class="partido marcado">
+            <div class="simbolo" style="color:#C46150">🤝</div>
+            <div class="nome"><b>UC</b><span class="sigla">Florêncio Sumane</span></div>
+            <div class="quadrado"></div>
+          </div>
+          <div class="partido">
+            <div class="simbolo" style="color:#8B6F47">🌾</div>
+            <div class="nome"><b>AT</b><span class="sigla">Esperança Macamo</span></div>
+            <div class="quadrado"></div>
+          </div>
+        </div>
+        <div class="rodape">Voto válido · UC · contado para União Cívica</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Casos especiais · 14 ao longo do dia</b><span>Idosa com dificuldade · cego · ferido · deficiência intelectual · cidadão fora caderno · Aurélio gere com calma · todos votam</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:18px;max-width:1180px;margin:0 auto">
+      <div class="card carimbo">
+        <div class="hd"><b>Caso 1 · D. Margarida Tembe · 78a · cega</b><span class="badge dourado" style="font-size:9px">11:42</span></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0 0 10px">Veio com filha · Aurélio oferece boletim em braille (16 ex preparados pela CNED). Filha acompanha até cabine · respeita privacidade · D. Margarida marca sozinha em braille · deposita na urna.</p>
+          <p style="font-size:11px;color:var(--ink-3);margin:0;font-style:italic">cross-Saúde regista necessidade especial · em 2034 sistema saberá oferecer braille automaticamente.</p>
+        </div>
+      </div>
+
+      <div class="card carimbo">
+        <div class="hd"><b>Caso 2 · Sr. Macuácua · 84a · cadeira de rodas</b><span class="badge dourado" style="font-size:9px">12:18</span></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0">Mesa 0142 tem rampa (regra desde 2014). Sr. Macuácua entra · Aurélio adapta cabine para sentado. Vota normalmente. Sai · família espera. <b>Acessibilidade não é privilégio · é obrigação STED.</b></p>
+        </div>
+      </div>
+
+      <div class="card carimbo">
+        <div class="hd"><b>Caso 3 · D. Hortência · não está no caderno</b><span class="badge carimbo" style="font-size:9px">14:08</span></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0">D. Hortência (28a) estava no caso da contestação · Painel STED Cena 6. Decisão saiu há 6 meses · ela <b>está</b> no caderno agora. Aurélio confirma · vota normalmente. Caso resolvido · sistema funcionou.</p>
+        </div>
+      </div>
+
+      <div class="card carimbo">
+        <div class="hd"><b>Caso 4 · Pedro · 1.º voto · trémulo</b><span class="badge dourado" style="font-size:9px">15:32</span></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0 0 10px">Pedro chega sozinho · pais já votaram · ele queria votar separado para sentir o seu próprio momento. Mãos a tremer. Aurélio nota · sorri · diz: "É assim na 1.ª · todos passámos por isso. Calma." Pedro vota. Sai com dedo violeta.</p>
+          <p style="font-size:13px;line-height:1.7;margin:0;font-style:italic;color:var(--dourado-700)">"Senti que cumpri uma coisa importante."</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd"><b>Caso 5 · Sr. Cossa · BI roubado ontem</b></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0">BI roubado 13.10. Sem documento. Aurélio escala para cross-eBI · biometria + foto bate · NUEL identificado · bola de carimbo de "voto excepcional" · acta regista · TES homologa em 14 dias.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd"><b>Caso 6-14 · 9 outros</b></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.7;margin:0">Eleitor de outra mesa por engano (redirecionado · 2km), gestante a parir hoje (mesa móvel hospitalar), 2 estrangeiros que pensaram poder votar (não podem · explicou-se), 1 menor que tentou (tinha 17 · cordialmente recusou), idosa que não sabe ler (acompanhante fiscal MININT garante imparcialidade), 4 outros simples.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner verde" style="margin-top:18px;max-width:1180px;margin-left:auto;margin-right:auto"><span class="ic"></span><div><b>14 casos especiais ao longo do dia.</b> 0 pessoas saíram sem votar (excepto não-elegíveis). Aurélio · 67 anos · 5.ª eleição · faz isto com paciência cívica. <b>O sistema é tecnológico · mas a confiança é humana.</b></div></div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Acta de contagem · 19:42 · 412 boletins</b><span>Encerrada às 19:00 · contagem pública · 2 escrutinadores · 6 fiscais · 2 observadores OCI · jornalista Joana Mahique Cossa filma</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">mesa.eleicoes.gov.mz/0142/acta</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><div><div class="t-overline">ACTA DE CONTAGEM · MESA 0142</div><h2 class="t-h2" style="margin:4px 0">412 boletins contados · Maxixe · 14.10.2029</h2></div><span class="badge dourado">19:42 · contagem concluída</span></div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="card">
+            <div class="hd"><b>Resultado · Mesa 0142</b></div>
+            <div class="bd">
+              <div class="contagem">
+                <div class="barra-partido">
+                  <div class="sigla party-mdp">📖 MDP</div>
+                  <div class="gauge"><div class="fill fill-mdp" style="width:42%">42%</div></div>
+                  <div class="pct">42,2%</div>
+                  <div class="votos">174</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-pvn">🌳 PVN</div>
+                  <div class="gauge"><div class="fill fill-pvn" style="width:28%">28%</div></div>
+                  <div class="pct">28,6%</div>
+                  <div class="votos">118</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-uc">🤝 UC</div>
+                  <div class="gauge"><div class="fill fill-uc" style="width:21%">21%</div></div>
+                  <div class="pct">21,4%</div>
+                  <div class="votos">88</div>
+                </div>
+                <div class="barra-partido">
+                  <div class="sigla party-at">🌾 AT</div>
+                  <div class="gauge"><div class="fill fill-at" style="width:7%">7%</div></div>
+                  <div class="pct">7,8%</div>
+                  <div class="votos">32</div>
+                </div>
+              </div>
+
+              <table class="table" style="font-size:12px;margin-top:14px">
+                <tbody>
+                  <tr><td>Votos válidos</td><td class="num"><b>412</b></td></tr>
+                  <tr><td>Votos brancos</td><td class="num">4</td></tr>
+                  <tr><td>Votos nulos</td><td class="num">2</td></tr>
+                  <tr style="background:var(--bg-2);font-weight:600"><td>TOTAL · BOLETINS</td><td class="num">418</td></tr>
+                  <tr><td>Eleitores na mesa</td><td class="num">418</td></tr>
+                  <tr><td>Participação</td><td class="num" style="color:var(--verde-700)">100%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Validações · acta hash</b></div>
+              <div class="bd">
+                <table class="table" style="font-size:11px">
+                  <tbody>
+                    <tr><td>Aurélio (Pres.)</td><td class="mono" style="font-size:9px">0x4f8a...AT</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Joaquim (1.º Esc.)</td><td class="mono" style="font-size:9px">0x4f8a...JC</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Mariana (2.ª Esc.)</td><td class="mono" style="font-size:9px">0x4f8a...MM</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Lucinda (Sec.)</td><td class="mono" style="font-size:9px">0x4f8a...LM</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Cabo Sumane (MININT)</td><td class="mono" style="font-size:9px">0x4f8a...CS</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Joana Cossa (OCI)</td><td class="mono" style="font-size:9px">0x4f8a...JC</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                    <tr><td>Anastácio Mussa (OCI)</td><td class="mono" style="font-size:9px">0x4f8a...AM</td><td><span class="badge verde" style="font-size:8px">✓</span></td></tr>
+                  </tbody>
+                </table>
+                <p class="t-meta" style="font-size:11px;margin:10px 0 0">7 assinaturas digitais + acta física assinada à mão pelos 7. Acta digitalizada PDF + hash publicado.</p>
+              </div>
+            </div>
+
+            <div class="banner verde"><span class="ic"></span><div><b>Acta enviada para STED nacional em 19:48.</b> Aparece em painel resultados (Surface 6) em 19:49. Cidadão pode descarregar PDF da acta · ver hash · comparar. Transparência absoluta.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Boletins físicos · cofre lacrado</b></div>
+              <div class="bd">
+                <p style="font-size:13px;line-height:1.7;margin:0">418 boletins guardados em cofre lacrado · selo de cera + assinaturas. Transportados pela MININT para Tribunal Distrital. Permanecem 5 anos para auditoria. Se contagem digital for contestada · 418 papéis recontam-se à mão.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Encerramento · 19:00 · 13 horas em pé · Aurélio sorri</b><span>Mesa 0142 cumpriu · 418 votaram · 100% · sem incidentes graves · 5.ª eleição do Aurélio · pull quote final</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:760px 1fr;gap:32px;justify-content:center;max-width:1180px;margin:0 auto;align-items:flex-start">
+      <div class="tablet">
+        <div class="screen" style="height:540px">
+          <div style="background:var(--dourado-500);color:var(--tinta-900);padding:14px 18px">
+            <div class="row spread" style="align-items:center">
+              <div>
+                <div style="font-family:var(--f-mono);font-size:9px;opacity:.85;letter-spacing:.1em">MESA 0142 · ENCERRADA</div>
+                <div style="font-family:var(--f-serif);font-size:18px;margin-top:2px">Obrigado, presidente Aurélio</div>
+              </div>
+              <div style="font-family:var(--f-mono);font-size:18px;font-weight:700">19:48</div>
+            </div>
+          </div>
+
+          <div style="padding:22px;flex:1;overflow-y:auto;background:var(--paper)">
+            <div class="kpi" style="margin-bottom:14px;background:var(--dourado-50);border-color:var(--dourado-300)">
+              <div class="lbl">PARTICIPAÇÃO · MESA 0142</div>
+              <div class="num" style="color:var(--dourado-700);font-size:48px">100%</div>
+              <div class="delta">418 de 418 eleitores · Maxixe</div>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">RESUMO DO DIA</div>
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Abertura</td><td class="num">06:00</td></tr>
+                <tr><td>Encerramento</td><td class="num">19:00</td></tr>
+                <tr><td>Duração</td><td class="num">13h00</td></tr>
+                <tr><td>Eleitores</td><td class="num">418</td></tr>
+                <tr><td>Casos especiais</td><td class="num">14</td></tr>
+                <tr><td>Incidências graves</td><td class="num">0</td></tr>
+                <tr><td>Tempo médio por eleitor</td><td class="num">1m 52s</td></tr>
+                <tr><td>Acta enviada</td><td class="num">19:48</td></tr>
+                <tr><td>Subsídio</td><td class="num">4 200 MT</td></tr>
+              </tbody>
+            </table>
+
+            <div class="banner gold" style="margin-top:14px;background:var(--dourado-50);color:var(--dourado-700)" class="banner dourado"><span class="ic"></span><div style="color:var(--ink-1)"><b>Pode ir para casa · obrigado pelo serviço cívico.</b> Próximas eleições · 2034 · Pedro fará 25 anos.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card dourado">
+          <div class="hd"><b>Pull quote · Aurélio Tembe</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Sou presidente desta mesa há 5 eleições. 2009 · era em papel · sistema cheio de buracos · gente fora dos cadernos. Hoje · 14.10.2029 · contei 418 votos. Não faltou um. Pedro Manjate Sumane votou pela 1.ª vez · pais ao lado. É a melhor eleição que vi em 67 anos de vida."<cite>Aurélio Tembe · 19:48 · 14.10.2029</cite></p>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>STED 2029 · participação nacional 91%.</b> Recorde histórico em Moçambique. 16,3 M de 17,9 M elegíveis votaram. Sistema cumpriu.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Continuidade · 11 pacotes</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">A Mesa 0142 do Aurélio existe porque · cross-Vida Civil regista 418 cidadãos · cross-Terras dá-lhes endereço · cross-eBI valida-os · cross-Sociedade Aberta torna-os auditáveis · cross-Justiça (TES) dá-lhes recurso · cross-Resiliência tinha plano se houvesse ciclone. <b>Os 11 pacotes anteriores convergem aqui.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--tinta-900);color:var(--tinta-100);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--tinta-700);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:22px;height:22px;border:2px solid var(--papel-100);border-radius:1px"></div><div style="position:absolute;font-family:'IBM Plex Serif',serif;color:var(--carimbo-300);font-size:18px;font-weight:700;line-height:1">✕</div></div>
+        <div>
+          <div style="font-size:15px;color:var(--papel-100);font-weight:600">Mesa de voto · Aurélio</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 4 de 7 · DESIGN-mesa.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--cinza-300)">cross-eBI · cross-Vida Civil · cross-MININT · cross-OCI · cross-Saúde · cross-CNPDP · cross-TES. Aurélio Tembe, Joaquim Cossa, Mariana Macuácua, Lucinda Mussa, Cabo Sumane, Joana Mahique Cossa, Anastácio Mussa, D. Margarida Tembe, Sr. Macuácua, D. Hortência, Sr. Cossa são personas fictícias. MDP, PVN, UC, AT são partidos fictícios.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="primeira-vez.html" class="btn ghost sm" style="color:var(--tinta-100)">‹ Auto-inscrição</a><a href="observador.html" class="btn ghost sm" style="color:var(--tinta-100)">Próxima · Observador ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

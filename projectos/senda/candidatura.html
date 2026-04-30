@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Candidatura · Pedro · SENDA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .wizard-bar { display:flex; align-items:center; gap:0; margin:18px 0 24px; }
+  .wizard-step { flex:1; padding:14px 18px; background:#fff; border:1px solid var(--border); display:flex; align-items:center; gap:10px; font-size:13px; }
+  .wizard-step:first-child { border-radius: 6px 0 0 6px; }
+  .wizard-step:last-child { border-radius: 0 6px 6px 0; }
+  .wizard-step + .wizard-step { border-left:0; }
+  .wizard-step.active { background:var(--blue-700); color:#fff; border-color:var(--blue-700); font-weight:600; }
+  .wizard-step.done { background:var(--success-bg); color:var(--success-dark); border-color:rgba(22,163,74,0.3); }
+  .wizard-step .num { width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.2); color:inherit; display:flex; align-items:center; justify-content:center; font-family:var(--f-mono); font-size:11px; font-weight:700; }
+  .wizard-step.active .num { background:rgba(255,255,255,0.3); color:#fff; }
+  .wizard-step.done .num { background:var(--success); color:#fff; }
+  .wizard-step:not(.active):not(.done) .num { background:var(--gray-200); color:var(--text-3); }
+</style>
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>SENDA · candidatura nacional</span><span class="sep">·</span><span>Concurso 2027</span><span style="margin-left:auto">candidatura.senda.gov.mz · v0.5</span></div>
+<div class="senda-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">S</span><span class="stack"><span>SENDA</span><small>Candidatura · wizard</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel</a>
+    <a href="trajectoria.html">Trajectória</a>
+    <a href="candidatura.html" class="active">Candidatura</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="registar.html">Registar</a>
+    <a href="verificacao.html">Verificação</a>
+    <a href="equivalencias.html">Equivalências</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm">PM</div><div class="who"><b>Pedro Manjate Sumane</b><span>Candidato 2027</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Início · perfil</a>
+  <a href="#cena2">Cena 2 · Browser de cursos</a>
+  <a href="#cena3">Cena 3 · Passo 1 · Verificação</a>
+  <a href="#cena4">Cena 4 · Passo 2 · Preferências</a>
+  <a href="#cena5">Cena 5 · Passo 3 · Exame</a>
+  <a href="#cena6">Cena 6 · Passo 4 · Revisão</a>
+  <a href="#cena7">Cena 7 · Submissão · paralelo nacional</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Início · perfil verificado · 12.ª classe concluída</b><span>Pedro abre candidatura · sistema já tem 12 anos de notas · cross-Educação Digital · não precisa de upload · não precisa de fotocópia</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz</div></div>
+      <div class="dt-body">
+        <div style="background:linear-gradient(135deg,var(--blue-700) 0%,var(--blue-900) 100%);color:#fff;padding:32px;border-radius:8px;margin-bottom:24px">
+          <div class="row spread" style="align-items:flex-end">
+            <div>
+              <div class="t-overline" style="color:var(--accent);margin-bottom:8px">CONCURSO NACIONAL DE ACESSO AO ENSINO SUPERIOR · 2027/2028</div>
+              <h1 class="headline xl dark" style="margin:0 0 8px;font-size:36px;color:#fff">Bem-vindo, Pedro.</h1>
+              <p style="color:rgba(255,255,255,0.8);margin:0;font-size:15px">Uma candidatura · 8 preferências · 44 universidades · 1 exame nacional · 1 colocação automática.</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px">PRAZO</div>
+              <div style="font-family:var(--f-mono);font-size:24px;color:var(--accent);font-weight:700">42 dias</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.6)">termina 31.07.2027</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:24px">
+          <div class="card success">
+            <div class="hd"><b>O seu perfil académico · verificado</b><span class="badge success" style="font-size:9px">cross-Educação Digital ✓</span></div>
+            <div class="bd">
+              <p style="font-size:13px;line-height:1.6;margin:0 0 14px">Não precisa de carregar nada. SENDA tem todas as suas notas dos últimos 12 anos. Cross-Educação Digital sincronizou. Cross-Vida Civil confirmou idade. Pode candidatar-se já.</p>
+
+              <div class="row spread" style="padding:8px 0;border-bottom:1px solid var(--border-2);font-size:13px"><span style="color:var(--text-2)">12.ª classe · ES 25 Setembro · Maxixe</span><b style="color:var(--success-dark);font-family:var(--f-mono)">média 15,8</b></div>
+              <div class="row spread" style="padding:8px 0;border-bottom:1px solid var(--border-2);font-size:13px"><span style="color:var(--text-2)">10.ª classe · ES Manyanga · Maputo</span><b style="font-family:var(--f-mono)">média 15,2</b></div>
+              <div class="row spread" style="padding:8px 0;border-bottom:1px solid var(--border-2);font-size:13px"><span style="color:var(--text-2)">7.ª classe · EP Polana · Maputo</span><b style="font-family:var(--f-mono)">média 14,8</b></div>
+              <div class="row spread" style="padding:8px 0;font-size:13px"><span style="color:var(--text-2)">Hitos SENDA validados</span><b class="badge success" style="font-size:10px">3 de 3 ✓</b></div>
+
+              <div class="banner success" style="margin:14px 0 0;padding:10px;font-size:12px"><span class="ic"></span><div><b>Está apto a candidatar-se ao ensino superior.</b> Todas as condições de elegibilidade preenchidas.</div></div>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Calendário do concurso</b></div>
+              <div class="bd" style="padding:0">
+                <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);display:flex;gap:12px;align-items:center">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--success)"></div>
+                  <div style="flex:1;font-size:13px"><b>Candidaturas abertas</b><div style="color:var(--text-3);font-size:11px">01.06.2027 · feito ✓</div></div>
+                </div>
+                <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);display:flex;gap:12px;align-items:center">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--warning)"></div>
+                  <div style="flex:1;font-size:13px"><b>Você está aqui</b><div style="color:var(--text-3);font-size:11px">19.06.2027 · 42 dias para submeter</div></div>
+                </div>
+                <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);display:flex;gap:12px;align-items:center">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--gray-300)"></div>
+                  <div style="flex:1;font-size:13px"><b>Encerramento</b><div style="color:var(--text-3);font-size:11px">31.07.2027</div></div>
+                </div>
+                <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);display:flex;gap:12px;align-items:center">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--gray-300)"></div>
+                  <div style="flex:1;font-size:13px"><b>Exame nacional</b><div style="color:var(--text-3);font-size:11px">14-18.08.2027 · 4 provas</div></div>
+                </div>
+                <div style="padding:12px 16px;display:flex;gap:12px;align-items:center">
+                  <div style="width:8px;height:8px;border-radius:50%;background:var(--gray-300)"></div>
+                  <div style="flex:1;font-size:13px"><b>Resultados</b><div style="color:var(--text-3);font-size:11px">15.09.2027 · colocação automática</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="banner info"><span class="ic"></span><div><b>Como antes · só que melhor.</b> Em 2024 candidatava-se a 4 universidades · 4 emolumentos · 4 exames · podia ser admitido em 4 e ter que escolher. Agora · 1 candidatura · 8 preferências · 1 colocação inteligente.</div></div>
+          </div>
+        </div>
+
+        <button class="btn lg" style="margin-top:24px;font-size:15px;padding:14px 24px">Iniciar candidatura · Passo 1 ›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Browser de cursos · 44 universidades · 218 cursos</b><span>Pedro filtra · pesquisa · compara · vê elegibilidade em tempo real · 3 cores: qualificado verde, condicional amarelo, não-qualificado vermelho</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz/cursos</div></div>
+      <div class="dt-body">
+        <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">218 cursos · 44 universidades · escolha até 8 para ordenar</h2><span class="badge blue" style="font-size:11px">Pedro · 12.ª média 15,8 · Grupo C qualificado</span></div>
+
+        <div class="grid" style="grid-template-columns:240px 1fr;gap:24px;align-items:flex-start">
+          <!-- Filter sidebar -->
+          <aside class="card" style="padding:18px">
+            <h4 style="margin:0 0 14px;font-size:13px;font-weight:600">Filtros</h4>
+
+            <div class="field" style="margin-bottom:14px">
+              <label>Pesquisar</label>
+              <input class="input sm" value="engenharia" />
+            </div>
+
+            <div class="field" style="margin-bottom:14px">
+              <label>Instituição</label>
+              <select class="select sm">
+                <option>Todas (44)</option>
+                <option>UEM · Univ. Eduardo Mondlane</option>
+                <option>UP · Univ. Pedagógica</option>
+                <option>UCM · Univ. Católica</option>
+                <option>UniLúrio · Univ. Lúrio</option>
+                <option>ISCTEM · IST Ciências e Tec.</option>
+                <option>UniZambeze · Univ. Zambeze</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin-bottom:14px">
+              <label>Área</label>
+              <select class="select sm">
+                <option>Todas</option>
+                <option selected>Engenharia e Tecnologia</option>
+                <option>Medicina e Saúde</option>
+                <option>Gestão e Economia</option>
+                <option>Direito e C. Sociais</option>
+                <option>Educação</option>
+                <option>Ciências Naturais</option>
+              </select>
+            </div>
+
+            <div class="t-overline" style="margin:14px 0 8px">Grau</div>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="checkbox" checked /> &nbsp;Licenciatura (180)</label>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="checkbox" /> &nbsp;Instituto Médio (28)</label>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="checkbox" /> &nbsp;Mestrado (10)</label>
+
+            <div class="t-overline" style="margin:14px 0 8px">Elegibilidade</div>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="radio" name="el" /> &nbsp;Todos</label>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="radio" name="el" checked /> &nbsp;Qualificado</label>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="radio" name="el" /> &nbsp;Condicional</label>
+            <label class="row" style="font-size:12px;padding:4px 0;cursor:pointer"><input type="radio" name="el" /> &nbsp;Mostrar todos</label>
+
+            <hr style="margin:14px 0">
+            <button class="btn block sm">Aplicar filtros</button>
+          </aside>
+
+          <!-- Results -->
+          <div class="col" style="gap:12px">
+            <div class="row spread" style="font-size:12px;color:var(--text-3);padding:0 4px">
+              <span><b style="color:var(--text)">14 cursos</b> em Engenharia e Tecnologia · qualificado</span>
+              <select class="select sm" style="font-size:11px"><option>Ordenar · nota corte ↑</option><option>Vagas ↓</option><option>Universidade</option></select>
+            </div>
+
+            <div class="programa-card">
+              <div class="left">
+                <div class="nome-curso">Engenharia Informática</div>
+                <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+                <div class="faculdade">Faculdade de Engenharia · Maputo</div>
+                <div class="tags">
+                  <span class="grupo-tag c">GRUPO C</span>
+                  <span class="badge" style="font-size:10px">Licenciatura · 4 anos · 240 ECTS</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="stat-row"><span class="lbl">Vagas</span><span class="val">120</span></div>
+                <div class="stat-row"><span class="lbl">Corte 2026</span><span class="val">15,7</span></div>
+                <div class="stat-row"><span class="lbl">Sua estimativa</span><span class="val" style="color:var(--success-dark)">16,5</span></div>
+                <div class="elig qualificado">✓ QUALIFICADO</div>
+                <button class="btn success sm block" style="margin-top:6px">+ Adicionar</button>
+              </div>
+            </div>
+
+            <div class="programa-card">
+              <div class="left">
+                <div class="nome-curso">Engenharia Informática</div>
+                <div class="instituicao">UP · Universidade Pedagógica</div>
+                <div class="faculdade">Maputo</div>
+                <div class="tags">
+                  <span class="grupo-tag c">GRUPO C</span>
+                  <span class="badge" style="font-size:10px">Licenciatura · 4 anos</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="stat-row"><span class="lbl">Vagas</span><span class="val">90</span></div>
+                <div class="stat-row"><span class="lbl">Corte 2026</span><span class="val">14,8</span></div>
+                <div class="stat-row"><span class="lbl">Sua estimativa</span><span class="val" style="color:var(--success-dark)">16,5</span></div>
+                <div class="elig qualificado">✓ QUALIFICADO</div>
+                <button class="btn success sm block" style="margin-top:6px">+ Adicionar</button>
+              </div>
+            </div>
+
+            <div class="programa-card">
+              <div class="left">
+                <div class="nome-curso">Engenharia Civil</div>
+                <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+                <div class="faculdade">Faculdade de Engenharia</div>
+                <div class="tags">
+                  <span class="grupo-tag c">GRUPO C</span>
+                  <span class="badge" style="font-size:10px">Licenciatura · 5 anos · 300 ECTS</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="stat-row"><span class="lbl">Vagas</span><span class="val">100</span></div>
+                <div class="stat-row"><span class="lbl">Corte 2026</span><span class="val">14,2</span></div>
+                <div class="stat-row"><span class="lbl">Sua estimativa</span><span class="val" style="color:var(--success-dark)">16,5</span></div>
+                <div class="elig qualificado">✓ QUALIFICADO</div>
+                <button class="btn success sm block" style="margin-top:6px">+ Adicionar</button>
+              </div>
+            </div>
+
+            <div class="programa-card">
+              <div class="left">
+                <div class="nome-curso">Direito</div>
+                <div class="instituicao">UEM · Universidade Eduardo Mondlane</div>
+                <div class="faculdade">Faculdade de Direito</div>
+                <div class="tags">
+                  <span class="grupo-tag a">GRUPO A</span>
+                  <span class="badge" style="font-size:10px">Licenciatura · 5 anos</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="stat-row"><span class="lbl">Vagas</span><span class="val">180</span></div>
+                <div class="stat-row"><span class="lbl">Corte 2026</span><span class="val">17,2</span></div>
+                <div class="stat-row"><span class="lbl">Sua estimativa</span><span class="val" style="color:var(--warning-dark)">16,5</span></div>
+                <div class="elig cond">⚠ CONDICIONAL</div>
+                <button class="btn secondary sm block" style="margin-top:6px">+ Adicionar</button>
+              </div>
+            </div>
+
+            <p class="t-meta" style="text-align:center;font-size:12px;margin:8px 0">+ 10 outros cursos qualificados · ver mais ›</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Passo 1 · Verificação · perfil + dados pessoais</b><span>Sistema mostra tudo o que sabe sobre Pedro · pré-preenchido · cidadão confirma · cross-Vida Civil + cross-Educação Digital + cross-Saúde</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz/passo/1</div></div>
+      <div class="dt-body">
+        <div class="wizard-bar">
+          <div class="wizard-step active"><div class="num">1</div>Verificação</div>
+          <div class="wizard-step"><div class="num">2</div>Preferências</div>
+          <div class="wizard-step"><div class="num">3</div>Exame Nacional</div>
+          <div class="wizard-step"><div class="num">4</div>Revisão</div>
+        </div>
+
+        <div class="grid g-2" style="gap:24px">
+          <div class="card success">
+            <div class="hd"><b>Identidade · cross-Vida Civil</b><span class="badge success" style="font-size:9px">verificado</span></div>
+            <div class="bd">
+              <table class="table" style="font-size:13px">
+                <tbody>
+                  <tr><td>Nome</td><td><b>Pedro Manjate Sumane</b></td></tr>
+                  <tr><td>BI</td><td class="mono">110100412812</td></tr>
+                  <tr><td>NUEL académico</td><td class="mono" style="color:var(--blue-700);font-weight:600">2015-MZ-PMS-4218</td></tr>
+                  <tr><td>Data de nascimento</td><td>14.04.2009 · 18 anos</td></tr>
+                  <tr><td>Província</td><td>Inhambane</td></tr>
+                  <tr><td>Distrito</td><td>Maxixe</td></tr>
+                  <tr><td>Morada</td><td style="font-size:12px">Av. Liberdade 4218 · Maxixe</td></tr>
+                  <tr><td>Encarregado</td><td>Felisberto Manjate</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card success">
+            <div class="hd"><b>Académico · cross-Educação Digital</b><span class="badge success" style="font-size:9px">verificado</span></div>
+            <div class="bd">
+              <table class="table" style="font-size:13px">
+                <tbody>
+                  <tr><td>12.ª classe · 2026</td><td><b style="color:var(--success-dark);font-family:var(--f-mono)">média 15,8</b></td></tr>
+                  <tr><td>ES 25 Setembro · Maxixe</td><td class="mono" style="font-size:11px">2026-MZ-ES25S-12C-PMS</td></tr>
+                  <tr><td>Área de estudo</td><td>Ciências e Tecnologias</td></tr>
+                  <tr><td>Matemática</td><td class="num">17 · 16 · 17</td></tr>
+                  <tr><td>Física</td><td class="num">16 · 16 · 17</td></tr>
+                  <tr><td>Química</td><td class="num">15 · 16 · 16</td></tr>
+                  <tr><td>Português</td><td class="num">14 · 15 · 14</td></tr>
+                  <tr><td>Hitos SENDA</td><td><span class="badge success" style="font-size:9px">7ª · 10ª · 12ª ✓</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card" style="grid-column:span 2">
+            <div class="hd"><b>Confirmação · 3 declarações</b></div>
+            <div class="bd">
+              <label class="row" style="font-size:13px;padding:10px 0;border-bottom:1px solid var(--border-2);cursor:pointer;align-items:flex-start">
+                <input type="checkbox" checked style="margin-top:3px" />
+                <div style="margin-left:10px"><b>Confirmo que os dados acima estão correctos</b><div style="color:var(--text-3);font-size:11px;margin-top:2px">Posso disputar via cross-Justiça em 14 dias se identificar erro</div></div>
+              </label>
+              <label class="row" style="font-size:13px;padding:10px 0;border-bottom:1px solid var(--border-2);cursor:pointer;align-items:flex-start">
+                <input type="checkbox" checked style="margin-top:3px" />
+                <div style="margin-left:10px"><b>Aceito que os meus dados sejam usados para colocação automática</b><div style="color:var(--text-3);font-size:11px;margin-top:2px">Universidades vêem o meu NUEL académico, perfil e nota · não veem o meu BI</div></div>
+              </label>
+              <label class="row" style="font-size:13px;padding:10px 0;cursor:pointer;align-items:flex-start">
+                <input type="checkbox" checked style="margin-top:3px" />
+                <div style="margin-left:10px"><b>Aceito participar em rankings públicos anonimizados</b><div style="color:var(--text-3);font-size:11px;margin-top:2px">Sou identificado como NUEL · não como nome · cidadão pode ver-se sem ver os outros nominalmente</div></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:24px">
+          <button class="btn ghost">‹ Voltar</button>
+          <button class="btn lg">Passo 2 · Preferências ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Passo 2 · Preferências · 8 cursos ordenados</b><span>Pedro escolheu 8 · arrasta para ordenar · 1.ª preferência é onde mais quer entrar · sistema atribui na maior preferência onde for admitido</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz/passo/2</div></div>
+      <div class="dt-body">
+        <div class="wizard-bar">
+          <div class="wizard-step done"><div class="num">✓</div>Verificação</div>
+          <div class="wizard-step active"><div class="num">2</div>Preferências</div>
+          <div class="wizard-step"><div class="num">3</div>Exame Nacional</div>
+          <div class="wizard-step"><div class="num">4</div>Revisão</div>
+        </div>
+
+        <div class="grid" style="grid-template-columns:1.4fr 1fr;gap:24px;align-items:flex-start">
+          <div class="preferencias">
+            <div class="hd" style="padding:14px 18px;border-bottom:1px solid var(--border);background:var(--gray-50);display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">As suas preferências · arraste para ordenar</b><span class="badge blue" style="font-size:10px">8 de 8</span></div>
+
+            <div class="pref-row placed">
+              <div class="num-pref">1</div>
+              <div class="info-pref"><b>Engenharia Informática</b><span>UEM · Maputo · corte 15,7 · sua nota 16,5 · 1.ª escolha</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row">
+              <div class="num-pref">2</div>
+              <div class="info-pref"><b>Engenharia Informática</b><span>UP · Maputo · corte 14,8 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row">
+              <div class="num-pref">3</div>
+              <div class="info-pref"><b>Eng. Sistemas Informação</b><span>ISCTEM · Maputo · corte 13,4 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row">
+              <div class="num-pref">4</div>
+              <div class="info-pref"><b>Engenharia Civil</b><span>UEM · Maputo · corte 14,2 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row cutoff-low">
+              <div class="num-pref">5</div>
+              <div class="info-pref"><b>Direito</b><span>UEM · corte 17,2 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge warning" style="font-size:9px">COND.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row">
+              <div class="num-pref">6</div>
+              <div class="info-pref"><b>Gestão de Empresas</b><span>UEM · corte 13,8 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row no-cutoff">
+              <div class="num-pref">7</div>
+              <div class="info-pref"><b>Engenharia Civil</b><span>UCM · Beira · corte 12,6 · sua nota 16,5</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+            <div class="pref-row no-cutoff">
+              <div class="num-pref">8</div>
+              <div class="info-pref"><b>Informática Aplicada</b><span>ISPG · Gaza · corte 11,8 · safety net</span></div>
+              <div class="actions"><span class="badge success" style="font-size:9px">QUAL.</span><div class="drag" style="margin-left:6px">⋮⋮</div></div>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="banner info"><span class="ic"></span><div><b>Como funciona a colocação automática.</b> Sistema avalia a sua candidatura na 1.ª preferência. Se for colocado · pára. Se não · avalia 2.ª. E assim em cascata até 8.ª · ou esgotar elegibilidades.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Probabilidade de colocação · simulação</b></div>
+              <div class="bd">
+                <p style="font-size:12px;color:var(--text-3);margin:0 0 10px">Baseado no histórico 2024-2026 e sua nota estimada 16,5</p>
+
+                <div style="font-size:13px">
+                  <div class="row spread" style="padding:6px 0;border-bottom:1px solid var(--border-2)"><span>1.ª · Eng. Inf. UEM</span><b style="color:var(--success-dark);font-family:var(--f-mono)">85%</b></div>
+                  <div class="row spread" style="padding:6px 0;border-bottom:1px solid var(--border-2)"><span>2.ª · Eng. Inf. UP</span><b style="color:var(--success-dark);font-family:var(--f-mono)">12%</b></div>
+                  <div class="row spread" style="padding:6px 0;border-bottom:1px solid var(--border-2)"><span>3.ª-4.ª</span><b class="mono">2%</b></div>
+                  <div class="row spread" style="padding:6px 0"><span>5.ª-8.ª (safety nets)</span><b class="mono">1%</b></div>
+                </div>
+
+                <div class="banner success" style="margin-top:14px;padding:10px;font-size:12px"><span class="ic"></span><div><b>Probabilidade total de colocação · 100%.</b> Sempre · porque tem 8.ª preferência com corte muito baixo.</div></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Regras das preferências</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li><b>Mínimo 1 preferência</b>, máximo 8</li>
+                  <li>Pode ser <b>mesmo curso · universidades diferentes</b></li>
+                  <li>Pode ser <b>cursos diferentes · mesma universidade</b></li>
+                  <li>Pode ser <b>condicional</b> mas com risco · MIT 2.ª chance</li>
+                  <li>Pode ser <b>mistura</b> · safety net na última posição</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:24px">
+          <button class="btn ghost">‹ Passo 1</button>
+          <button class="btn lg">Passo 3 · Exame ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Passo 3 · Exame nacional · 4 provas · Grupo C</b><span>SENDA gera convocatória automática · Pedro recebe local + sala + horário · 4 provas em 5 dias · Matemática · Física · Química · Português</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz/passo/3</div></div>
+      <div class="dt-body">
+        <div class="wizard-bar">
+          <div class="wizard-step done"><div class="num">✓</div>Verificação</div>
+          <div class="wizard-step done"><div class="num">✓</div>Preferências</div>
+          <div class="wizard-step active"><div class="num">3</div>Exame Nacional</div>
+          <div class="wizard-step"><div class="num">4</div>Revisão</div>
+        </div>
+
+        <h2 class="t-h2" style="margin:0 0 14px">Convocatória ao exame nacional · Grupo C · Engenharias e Tecnologia</h2>
+
+        <div class="grid g-2" style="gap:24px">
+          <div class="card">
+            <div class="hd"><b>4 provas · 5 dias · Maxixe</b><span class="badge blue" style="font-size:10px">14-18.08.2027</span></div>
+            <div class="bd" style="padding:0">
+              <div style="padding:14px 18px;border-bottom:1px solid var(--border-2);display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center">
+                <div><div style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">14.08</div><div style="font-family:var(--f-mono);font-size:13px;font-weight:600">07h30</div></div>
+                <div><b>Matemática</b><div style="color:var(--text-3);font-size:12px">prova de 4 horas · 50 questões · 200 pontos</div></div>
+                <span class="grupo-tag c" style="font-size:10px;font-family:var(--f-mono);font-weight:700;padding:2px 8px;color:#fff;background:var(--grupo-c);border-radius:4px">C · OBRIG</span>
+              </div>
+              <div style="padding:14px 18px;border-bottom:1px solid var(--border-2);display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center">
+                <div><div style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">15.08</div><div style="font-family:var(--f-mono);font-size:13px;font-weight:600">07h30</div></div>
+                <div><b>Física</b><div style="color:var(--text-3);font-size:12px">prova de 4 horas · 40 questões · 200 pontos</div></div>
+                <span class="grupo-tag c" style="font-size:10px;font-family:var(--f-mono);font-weight:700;padding:2px 8px;color:#fff;background:var(--grupo-c);border-radius:4px">C · OBRIG</span>
+              </div>
+              <div style="padding:14px 18px;border-bottom:1px solid var(--border-2);display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center">
+                <div><div style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">17.08</div><div style="font-family:var(--f-mono);font-size:13px;font-weight:600">07h30</div></div>
+                <div><b>Química</b><div style="color:var(--text-3);font-size:12px">prova de 3 horas · 30 questões · 150 pontos · opcional · pode ignorar se cursos não pedem</div></div>
+                <span class="badge" style="font-size:10px">OPCIONAL</span>
+              </div>
+              <div style="padding:14px 18px;display:grid;grid-template-columns:90px 1fr auto;gap:14px;align-items:center">
+                <div><div style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">18.08</div><div style="font-family:var(--f-mono);font-size:13px;font-weight:600">14h00</div></div>
+                <div><b>Português</b><div style="color:var(--text-3);font-size:12px">prova de 3 horas · todos os candidatos · 150 pontos</div></div>
+                <span class="grupo-tag a" style="font-size:10px;font-family:var(--f-mono);font-weight:700;padding:2px 8px;color:#fff;background:var(--grupo-a);border-radius:4px">GERAL · OBRIG</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card success">
+              <div class="hd"><b>Local atribuído · cross-Terras</b></div>
+              <div class="bd">
+                <p style="font-size:14px;font-weight:700;margin:0 0 4px;color:var(--blue-900)">ES 25 de Setembro · Maxixe</p>
+                <p style="font-size:12px;color:var(--text-3);margin:0 0 10px">Av. Liberdade 218 · Maxixe · 600m de casa de Pedro · automático cross-Terras</p>
+
+                <table class="table" style="font-size:12px">
+                  <tbody>
+                    <tr><td>Sala</td><td><b>Sala 14</b> · 1.º piso</td></tr>
+                    <tr><td>Lugar</td><td class="mono">B-04 · 2.ª fila · meio</td></tr>
+                    <tr><td>Cabeçalho</td><td class="mono">2027-MZ-PMS-C04</td></tr>
+                    <tr><td>Carteira</td><td>Levar BI · caneta azul</td></tr>
+                    <tr><td>Apresentação</td><td>30 minutos antes</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="banner info"><span class="ic"></span><div><b>Sistema antigo · candidato viajava 80 km para fazer exame em outra escola.</b> SENDA · cada candidato faz exame na escola mais próxima · cross-Terras valida proximidade · 18 422 candidatos no Grupo C · 412 escolas usadas como salas.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Pedro pode preparar-se</b></div>
+              <div class="bd">
+                <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+                  <li><b>Exames anteriores</b> · 2014-2026 · públicos · cross-Sociedade Aberta</li>
+                  <li><b>Plataforma de simulação</b> · cross-Educação Digital · gratuita</li>
+                  <li><b>Estatística por questão</b> · % acerto histórico · pode ver onde candidatos falham</li>
+                  <li><b>Sem cunha</b> · provas anonimizadas · correctores não sabem nome</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row spread" style="margin-top:24px">
+          <button class="btn ghost">‹ Passo 2</button>
+          <button class="btn lg">Passo 4 · Revisão ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Passo 4 · Revisão final · um botão para submeter</b><span>Pedro vê resumo de tudo · 8 preferências ordenadas · convocatória de exame · pode editar até 31.07 · depois é definitivo</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">candidatura.senda.gov.mz/passo/4</div></div>
+      <div class="dt-body">
+        <div class="wizard-bar">
+          <div class="wizard-step done"><div class="num">✓</div>Verificação</div>
+          <div class="wizard-step done"><div class="num">✓</div>Preferências</div>
+          <div class="wizard-step done"><div class="num">✓</div>Exame Nacional</div>
+          <div class="wizard-step active"><div class="num">4</div>Revisão</div>
+        </div>
+
+        <h2 class="t-h2" style="margin:0 0 14px">Revise · submeta · pode editar até 31.07.2027</h2>
+
+        <div class="grid" style="grid-template-columns:1.5fr 1fr;gap:24px">
+          <div class="col" style="gap:14px">
+            <div class="card success">
+              <div class="hd"><b>Resumo da candidatura</b><span class="badge success" style="font-size:9px">PRONTO PARA SUBMETER</span></div>
+              <div class="bd">
+                <table class="table" style="font-size:13px">
+                  <tbody>
+                    <tr><td><b>Identidade</b></td><td>Pedro Manjate Sumane · NUEL 2015-MZ-PMS-4218</td></tr>
+                    <tr><td><b>Académico</b></td><td>12.ª classe · ES 25 Setembro · média 15,8</td></tr>
+                    <tr><td><b>Hitos</b></td><td><span class="badge success" style="font-size:9px">7ª · 10ª · 12ª ✓</span></td></tr>
+                    <tr><td><b>Preferências</b></td><td>8 cursos · ordenados · qualificado em 7 · condicional em 1</td></tr>
+                    <tr><td><b>Exame</b></td><td>4 provas · ES 25 Setembro · 14-18.08.2027</td></tr>
+                    <tr><td><b>Probabilidade colocação</b></td><td><b style="color:var(--success-dark);font-family:var(--f-mono)">100% · 85% na 1.ª pref</b></td></tr>
+                    <tr><td><b>Custo</b></td><td><b style="color:var(--success-dark)">0 MT · candidatura nacional gratuita</b></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>8 preferências · ordem final</b></div>
+              <div class="bd" style="padding:0">
+                <table class="table" style="font-size:12px">
+                  <tbody>
+                    <tr><td class="mono" style="font-weight:700;color:var(--success-dark)">1</td><td>Eng. Informática</td><td>UEM · Maputo</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">2</td><td>Eng. Informática</td><td>UP · Maputo</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">3</td><td>Eng. Sistemas Informação</td><td>ISCTEM</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">4</td><td>Engenharia Civil</td><td>UEM</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">5</td><td>Direito</td><td>UEM</td><td><span class="badge warning" style="font-size:9px">COND.</span></td></tr>
+                    <tr><td class="mono">6</td><td>Gestão de Empresas</td><td>UEM</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">7</td><td>Engenharia Civil</td><td>UCM · Beira</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                    <tr><td class="mono">8</td><td>Informática Aplicada</td><td>ISPG · Gaza</td><td><span class="badge success" style="font-size:9px">QUAL.</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <button class="btn lg block success" style="font-size:15px;padding:16px">Submeter candidatura · definitivo</button>
+            <p class="t-meta" style="font-size:11px;text-align:center;font-style:italic;margin:0">Pode editar preferências e dados até 31.07.2027 23:59</p>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="banner info"><span class="ic"></span><div><b>Em 2024 · pais de Pedro pagaram emolumentos.</b> 4 universidades × 1 200 MT cada = 4 800 MT só em emolumentos. Aqui · 0 MT. Direito de candidatar-se ao ensino superior é universal · automático · gratuito.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>O que acontece a seguir</b></div>
+              <div class="bd">
+                <ol style="margin:0;padding-left:18px;font-size:12px;line-height:1.85">
+                  <li><b>Hoje</b> · candidatura submetida · número EQ-2027-PMS-4218</li>
+                  <li><b>14-18.08</b> · faz exames · ES 25 Setembro · 600m de casa</li>
+                  <li><b>30.08</b> · resultados de exame publicados · pode ver no portal</li>
+                  <li><b>15.09</b> · resultados de colocação · "está colocado em..."</li>
+                  <li><b>16-30.09</b> · prazo para aceitar colocação ou recusar</li>
+                  <li><b>Out 2027</b> · matrícula directa na universidade · cross-Vida Civil + cross-Educação Digital · sem fila</li>
+                  <li><b>Fev 2028</b> · primeiro dia de aulas · 1.º ano</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="hd"><b>Disputas e recursos</b></div>
+              <div class="bd">
+                <p style="font-size:12px;line-height:1.6;margin:0">Se erro nas notas verificadas · cross-Justiça em 14 dias. Se discordância da nota de exame · recurso à comissão técnica em 7 dias. Se discordância da colocação · recurso ao TES em 30 dias. Tudo público · auditável · cross-Sociedade Aberta.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Submissão · 218 412 candidatos em paralelo · sistema escala</b><span>Pedro é 1 de 218 412 candidaturas em 2027 · sistema processa todas · matching algorithm corre em 4 horas no dia 15.09</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:32px;max-width:1080px;margin:0 auto">
+      <div class="card" style="background:var(--blue-950);color:#fff;border-color:var(--blue-800)">
+        <div class="hd" style="background:var(--blue-900);border-bottom-color:var(--blue-800);color:#fff"><b style="color:#fff">Pulsação nacional · 19.06.2027 · 16h42</b><span class="conn"><span class="d live"></span> live</span></div>
+        <div class="bd">
+          <div style="font-family:var(--f-mono);font-size:42px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-0.02em;margin-bottom:6px">218 412</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:18px">Candidaturas submetidas · concurso 2027/2028</div>
+
+          <div style="border-top:1px solid var(--blue-800);padding-top:14px">
+            <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Grupo A · Letras</span><b style="color:#fff;font-family:var(--f-mono)">42 184</b></div>
+            <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Grupo B · Sociais/Económicas</span><b style="color:#fff;font-family:var(--f-mono)">68 218</b></div>
+            <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7);margin-bottom:6px"><span>Grupo C · Engenharias/Tec</span><b style="color:var(--accent);font-family:var(--f-mono)">62 482 (Pedro)</b></div>
+            <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.7)"><span>Grupo D · Saúde/Biológicas</span><b style="color:#fff;font-family:var(--f-mono)">45 528</b></div>
+          </div>
+
+          <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--blue-800);font-size:12px">
+            <div class="row spread" style="margin-bottom:4px;color:rgba(255,255,255,0.7)"><span>Vagas totais nacionais</span><b style="color:#fff;font-family:var(--f-mono)">42 184</b></div>
+            <div class="row spread" style="color:rgba(255,255,255,0.7)"><span>Rácio nacional</span><b style="color:var(--accent);font-family:var(--f-mono)">5,2 candidatos / vaga</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>Algoritmo de colocação · transparente · publicado</b></div>
+          <div class="bd">
+            <pre style="background:var(--blue-950);color:var(--accent);padding:14px;border-radius:6px;font-family:var(--f-mono);font-size:11px;line-height:1.7;margin:0;overflow-x:auto">// SENDA Match Algorithm v3.2
+// github.com/senda-mz/match-algorithm
+
+for cada candidato in ordem(score_DESC):
+  for pref in candidato.preferencias:
+    if curso.vagas > 0 and candidato.score >= curso.cutoff:
+      colocar(candidato, curso)
+      curso.vagas -= 1
+      break
+  else:
+    candidato.estado = "sem colocação"</pre>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Algoritmo determinístico · mesma entrada · sempre mesmo resultado. Cidadão pode auditar · pesquisador pode replicar · jornalista pode validar.</p>
+          </div>
+        </div>
+
+        <div class="banner success"><span class="ic"></span><div><b>15.09.2027 · 04:00 · algoritmo corre.</b> 218 412 candidatos colocados em 4 horas. 14:00 · resultados publicados. Pedro recebe SMS · "Está colocado em Eng. Informática · UEM". Vida muda.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Pull quote · Felisberto · pai</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Eu candidatei-me à UEM em 2007. Levei a mãe e a tia comigo. Pagámos os emolumentos. Esperámos 6 horas para entregar os papéis. Voltei a casa cansado. Pedro fez tudo num computador · enquanto eu cozinhava o jantar. Custou-lhe 0 meticais. Ainda assim · vou levá-lo eu próprio à UEM em Outubro. Há coisas que SENDA não pode substituir."<cite>Felisberto Manjate · 41 anos · 19.06.2027</cite></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--blue-950);color:rgba(255,255,255,0.7);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--blue-700);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:18px">S</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700">Candidatura · Pedro</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Surface 3 de 7 · DESIGN-candidatura.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:rgba(255,255,255,0.5)">cross-Educação Digital · cross-Vida Civil · cross-Terras · cross-Justiça · cross-Sociedade Aberta. Pedro Manjate Sumane, Felisberto Manjate são personas fictícias. Universidades, cursos, cortes referenciados são compostos para protótipo. Algoritmo de matching ilustrativo · não funcional.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="trajectoria.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">‹ Trajectória</a><a href="resultados.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">Próxima · Resultados ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

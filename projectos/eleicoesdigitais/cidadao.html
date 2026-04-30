@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Cidadão · Eleições Digitais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>República de Moçambique</span><span class="sep">·</span><span>STED · cidadão</span><span class="sep">·</span><span>"estou recenseado?"</span><span style="margin-left:auto">cidadao.eleicoes.gov.mz · v0.4</span></div>
+<div class="party-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark"></span><span class="stack"><span>Eleições Digitais</span><small>Cidadão · phone</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="painel.html">Painel STED</a>
+    <a href="cidadao.html" class="active">Cidadão</a>
+    <a href="primeira-vez.html">Auto-inscrição</a>
+    <a href="mesa.html">Mesa</a>
+    <a href="observador.html">Observador</a>
+    <a href="resultados.html">Resultados</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm verde">FM</div><div class="who"><b>Felisberto Manjate</b><span>Maxixe · Inhambane</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Estou recenseado?</a>
+  <a href="#cena2">Cena 2 · Mesa atribuída</a>
+  <a href="#cena3">Cena 3 · Histórico de votos</a>
+  <a href="#cena4">Cena 4 · Verificação cruzada</a>
+  <a href="#cena5">Cena 5 · Pedir transferência</a>
+  <a href="#cena6">Cena 6 · Contestar erro</a>
+  <a href="#cena7">Cena 7 · Comprovativo</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>"Estou recenseado?" · pergunta de 30 segundos</b><span>Felisberto Manjate · 38a · vota desde 2014 · sempre Mesa 0142 · abre app · vê estado em tempo real</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>14:18</span><span>📶 4G</span></div>
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85;letter-spacing:.1em">ELEIÇÕES DIGITAIS · STED</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">O meu registo eleitoral</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+
+            <div class="caderno-publico" style="margin-bottom:14px">
+              <div class="av-eleitor">FM</div>
+              <div class="info"><b>Felisberto Manjate</b><span class="mono">NUEL 0418-218-184</span></div>
+              <div class="meta"><div class="estado estado-ok">ACTIVO</div></div>
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin:14px 0 8px">RESUMO</div>
+            <div style="font-size:13px;line-height:1.85">
+              <div class="row spread"><span style="color:var(--ink-3)">BI</span><b class="mono">110100382184</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Idade</span><b>38 anos</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Província</span><b>Inhambane</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Distrito</span><b>Maxixe</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Mesa atribuída</span><b style="color:var(--carimbo-500)">Mesa 0142</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Próximo voto</span><b>14.10.2029</b></div>
+            </div>
+
+            <div class="banner verde" style="margin:18px 0;padding:10px;font-size:12px"><span class="ic"></span><div><b>Está activo no caderno.</b> Pode votar nas próximas eleições. Sem necessidade de fazer nada.</div></div>
+
+            <button class="btn block lg">Ver mesa no mapa</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Princípio · "perguntar é grátis · sempre"</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 10px">No sistema antigo · cidadão tinha que viajar a uma sede STAE · esperar · pedir comprovativo · pagar fotocópias · provar identidade. Para perguntar uma coisa simples: <em>"estou recenseado?"</em></p>
+            <p style="font-size:13px;line-height:1.7;margin:0">Aqui · cidadão abre app · 30 segundos · sabe. <b>Acesso ao próprio registo eleitoral é direito constitucional · não privilégio.</b></p>
+          </div>
+        </div>
+
+        <div class="banner tinta"><span class="ic"></span><div><b>Felisberto não fez nada para estar aqui.</b> Auto-inscrição em 2007 quando fez 18 anos · cross-Vida Civil. 2014 votou pela primeira vez. Mesa 0142 atribuída automaticamente · Escola Primária 25 de Junho · 600m de casa.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Continuidade · 11 pacotes</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 8px">Felisberto Manjate é o cidadão central da série Conceitos. Em todos os 11 pacotes anteriores · ele interagiu com diferentes serviços públicos. Aqui · finalmente · vota · com toda a infra-estrutura do ecossistema a suportá-lo.</p>
+            <div class="row" style="gap:6px;flex-wrap:wrap;margin-top:10px">
+              <span class="cross ok">cross-Vida Civil ✓ idade</span>
+              <span class="cross ok">cross-eBI ✓ identidade</span>
+              <span class="cross ok">cross-Terras ✓ endereço</span>
+              <span class="cross ok">cross-AT ✓ NUIT distinto NUEL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Mesa atribuída · Mesa 0142 · 600m de casa</b><span>Cross-Terras tem endereço · STED atribui mesa mais próxima · Felisberto vê no mapa · com presidente, escrutinadores, fiscais</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>14:19</span><span>📶 4G</span></div>
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">A MINHA MESA</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Mesa 0142</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+
+            <div class="mesa-card" style="margin-bottom:14px">
+              <div class="topo">
+                <div><div class="lbl">MESA Nº</div><div class="num-mesa">0142</div></div>
+                <span class="badge dourado" style="font-size:9px">a sua</span>
+              </div>
+              <div class="corpo">
+                <div class="nome">Escola Primária 25 de Junho</div>
+                <div class="endereco">Av. Liberdade · Maxixe</div>
+                <div class="lotacao"><span style="color:var(--ink-3)">Eleitores</span><span class="mono"><b>418</b> / 500</span></div>
+                <div class="barra"><div class="fill" style="width:84%"></div></div>
+              </div>
+            </div>
+
+            <div style="background:var(--papel-100);height:140px;display:flex;align-items:center;justify-content:center;border:1px dashed var(--line);border-radius:2px;color:var(--ink-3);font-size:11px;font-family:var(--f-mono);margin-bottom:14px">
+              📍 mapa · 600m de casa<br>caminho a pé · 8 minutos
+            </div>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">EQUIPA DA MESA</div>
+            <div style="font-size:12px;line-height:1.6">
+              <div class="row" style="gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2)"><div class="av sm">AT</div><div><b>Aurélio Tembe</b> · presidente<br><span style="color:var(--ink-3)">prof. reformado · cred. 2024</span></div></div>
+              <div class="row" style="gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line-2)"><div class="av sm">JC</div><div><b>Joaquim Cossa</b> · 1.º escrutinador</div></div>
+              <div class="row" style="gap:8px;align-items:center;padding:6px 0"><div class="av sm">MM</div><div><b>Mariana Macuácua</b> · 2.ª escrutinadora</div></div>
+            </div>
+
+            <button class="btn block lg" style="margin-top:18px">Como chegar lá</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Atribuição automática · cross-Terras</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 10px">Algoritmo simples e auditável:</p>
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.7">
+              <li>Cidadão tem endereço registado · cross-Terras (Pacote 8)</li>
+              <li>STED tem lista de mesas com coordenadas GPS</li>
+              <li>Calcula distância · atribui a mesa mais próxima com capacidade</li>
+              <li>Cidadão pode pedir transferência se trabalha noutra zona (Cena 5)</li>
+            </ol>
+            <p style="font-size:12px;line-height:1.6;margin:14px 0 0;color:var(--ink-3);font-style:italic">Algoritmo publicado em open-source · cross-Sociedade Aberta · qualquer pessoa pode verificar.</p>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>Felisberto sempre vota na mesma mesa.</b> Não muda · porque o endereço dele não mudou. Em 2014 a mesa atribuída era a mesma. Em 2019 também. Em 2024 também. Estabilidade reforça confiança · "esta é a minha mesa · sempre".</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Equipa da mesa · 6 pessoas</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li><b>Presidente</b> · Aurélio Tembe · responsável legal · cred. CNED</li>
+              <li><b>2 escrutinadores</b> · contam votos publicamente</li>
+              <li><b>1 secretário</b> · regista actas</li>
+              <li><b>1 fiscal MININT</b> · neutro · ordem · não interfere</li>
+              <li><b>1 observador OCI</b> · audita · regista incidências</li>
+            </ul>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0">Cidadão pode ver os nomes antes do dia eleitoral · transparência total.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Histórico de votos · 4 eleições</b><span>2014 · 2019 · 2024 · próxima 2029 · Felisberto sabe quando votou · onde votou · sem saber em quem (anonimato preservado)</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>14:21</span><span>📶 4G</span></div>
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">HISTÓRICO PESSOAL</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">As minhas eleições</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+
+            <div class="banner cinza" style="font-size:11px;margin-bottom:14px;padding:10px"><span class="ic"></span><div><b>Sistema sabe que votou · não sabe em quem.</b> Anonimato do voto é absoluto.</div></div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--bg-2);border-left:3px solid var(--dourado-500)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Eleições Gerais 2029</b><span class="badge dourado" style="font-size:9px">próxima</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">14.10.2029 · Mesa 0142 · daqui a 30 meses</span>
+            </div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--paper);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Eleições Gerais 2024</b><span class="badge verde" style="font-size:9px">✓ votou</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">09.10.2024 · Mesa 0142 · 11:42 · acta hash 0x4f8a...</span>
+            </div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--paper);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Autárquicas 2023</b><span class="badge cinza" style="font-size:9px">não votou</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">11.10.2023 · Mesa 0142 · ausente · sem penalização</span>
+            </div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--paper);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Eleições Gerais 2019</b><span class="badge verde" style="font-size:9px">✓ votou</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">15.10.2019 · Mesa 0142 · 09:18</span>
+            </div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--paper);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Autárquicas 2018</b><span class="badge cinza" style="font-size:9px">não votou</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">10.10.2018 · trabalho fora · sem penalização</span>
+            </div>
+
+            <div class="card" style="margin-bottom:8px;padding:10px;background:var(--paper);border-left:3px solid var(--verde-700)">
+              <div class="row spread"><b style="font-size:14px;font-family:var(--f-serif)">Eleições Gerais 2014</b><span class="badge verde" style="font-size:9px">✓ 1.º voto</span></div>
+              <span style="font-size:11px;color:var(--ink-3)">15.10.2014 · Mesa 0142 · 26 anos · primeira vez</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>O que o sistema sabe e não sabe</b></div>
+          <div class="bd">
+            <table class="table" style="font-size:13px">
+              <tbody>
+                <tr><td><b>Sabe</b></td><td>Que Felisberto entrou na mesa</td></tr>
+                <tr><td></td><td>Hora de entrada</td></tr>
+                <tr><td></td><td>Que recebeu boletim</td></tr>
+                <tr><td></td><td>Que devolveu boletim na urna</td></tr>
+                <tr><td><b>Não sabe</b></td><td>Em quem Felisberto votou</td></tr>
+                <tr><td></td><td>Boletim físico não tem ID do eleitor</td></tr>
+                <tr><td></td><td>Anonimato absoluto · constitucional</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="banner tinta"><span class="ic"></span><div><b>Voto facultativo em Moçambique.</b> Não votar não tem penalização. Sistema regista ausência · não pune. Aceita-se que cidadão tenha razões · trabalho · doença · ausência. Em Pacote 12 · sistema apoia mas não obriga.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Por que histórico importa</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li>Cidadão acompanha a sua participação cívica</li>
+              <li>Se sistema diz "votou em 2024" e cidadão sabe que não votou · alerta · contestação</li>
+              <li>Pesquisadores podem analisar abstenção sem comprometer anonimato</li>
+              <li>Cidadão pode descarregar comprovativo para CV cívico (Cena 7)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Verificação cruzada · 4 fontes auditáveis</b><span>Felisberto pode auditar próprio registo · cross-eBI biométrica · cross-Vida Civil idade · cross-Terras endereço · cross-Vida Civil vivacidade</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">cidadao.eleicoes.gov.mz/auditar</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">Auditar o meu registo · 4 fontes</h2><span class="badge verde">tudo válido</span></div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="verif-cruzada">
+            <div class="topo">REGISTO · FELISBERTO MANJATE · NUEL 0418-218-184</div>
+            <div class="item"><div class="ic">✓</div><div class="info"><b>Identidade · cross-eBI</b><span>BI 110100382184 · biometria + foto · validadas 14.04.2025</span></div><span class="badge verde" style="font-size:9px">VÁLIDO</span></div>
+            <div class="item"><div class="ic">✓</div><div class="info"><b>Idade · cross-Vida Civil</b><span>Nascido 18.04.1988 · 38 anos · ≥ 18 OK</span></div><span class="badge verde" style="font-size:9px">VÁLIDO</span></div>
+            <div class="item"><div class="ic">✓</div><div class="info"><b>Vivacidade · cross-Vida Civil</b><span>Sem registo de óbito · activo</span></div><span class="badge verde" style="font-size:9px">VÁLIDO</span></div>
+            <div class="item"><div class="ic">✓</div><div class="info"><b>Endereço · cross-Terras</b><span>Av. da Liberdade 4218 · Maxixe · Inhambane · DUAT-IH-2018-184</span></div><span class="badge verde" style="font-size:9px">VÁLIDO</span></div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card">
+              <div class="hd"><b>Hash de validação</b></div>
+              <div class="bd">
+                <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Cada vez que cross-system valida · gera hash imutável. Cidadão pode comparar com hash público.</p>
+                <table class="table" style="font-size:11px">
+                  <tbody>
+                    <tr><td>cross-eBI</td><td class="mono" style="font-size:10px">0x4f8a...218a</td></tr>
+                    <tr><td>cross-Vida Civil idade</td><td class="mono" style="font-size:10px">0x8c12...4f81</td></tr>
+                    <tr><td>cross-Vida Civil vivacidade</td><td class="mono" style="font-size:10px">0x2e91...c4d8</td></tr>
+                    <tr><td>cross-Terras</td><td class="mono" style="font-size:10px">0x6a73...9e21</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="banner verde"><span class="ic"></span><div><b>Auditoria pessoal · 30 segundos.</b> Felisberto pode ver as 4 fontes que sustentam o registo dele. Se alguma falhar · ícone vermelho · contestação directa (Cena 6).</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Princípio · "o cidadão é o auditor"</b></div>
+              <div class="bd">
+                <p style="font-size:13px;line-height:1.7;margin:0">Não é só CIP, OCI, CNED, TES que auditam. <b>Cada cidadão é um auditor</b> do seu próprio registo. Os algoritmos · publicados. Os hashes · públicos. Os cruzamentos · transparentes. 14,2 milhões de auditores em paralelo · cobertura impossível para qualquer comissão central.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Pedir transferência · "trabalho noutra zona"</b><span>Felisberto vai estar em Pemba a trabalhar no dia eleitoral · pede transferência temporária · cross-Terras valida · 4 dias úteis</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>14:24</span><span>📶 4G</span></div>
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">PEDIDO DE TRANSFERÊNCIA</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Vou estar fora no dia eleitoral</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--paper)">
+
+            <div class="banner dourado" style="margin-bottom:14px;padding:10px;font-size:11px"><span class="ic"></span><div>Disponível para Eleições 2029 a partir de Maio 2029 · 5 meses antes do dia eleitoral.</div></div>
+
+            <h3 style="margin:0 0 10px;font-family:var(--f-serif);font-size:14px">Razão da transferência</h3>
+
+            <select class="select block" style="width:100%;margin-bottom:10px;font-size:13px">
+              <option>Trabalho temporário noutra zona</option>
+              <option>Estudo · universidade</option>
+              <option>Saúde · tratamento médico</option>
+              <option>Refugiado · zona de conflito</option>
+              <option>Outro</option>
+            </select>
+
+            <div class="field" style="margin-bottom:10px">
+              <label>Mesa pretendida</label>
+              <select class="select"><option>Mesa 0742 · Centro Cívico Pemba</option></select>
+            </div>
+
+            <div class="field" style="margin-bottom:10px">
+              <label>Datas · de</label>
+              <input class="input" value="01.10.2029" style="font-family:var(--f-mono);font-size:13px"/>
+            </div>
+
+            <div class="field" style="margin-bottom:14px">
+              <label>até</label>
+              <input class="input" value="20.10.2029" style="font-family:var(--f-mono);font-size:13px"/>
+            </div>
+
+            <div class="banner tinta" style="font-size:11px;margin-bottom:14px;padding:10px"><span class="ic"></span><div><b>Mesa 0742 confirma capacidade.</b> 412/500 · pode receber. Decisão STED em 4 dias úteis.</div></div>
+
+            <button class="btn block lg success">Submeter pedido</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Edge cases · onde se vota</b></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td><b>Trabalha noutra zona temporariamente</b></td><td>Pedido de transferência temporária · 5 meses antes</td></tr>
+                <tr><td><b>Mudou de morada definitivamente</b></td><td>cross-Terras propaga automaticamente · mesa nova atribuída</td></tr>
+                <tr><td><b>Diáspora · embaixada</b></td><td>cross-Migrações · 12 embaixadas como mesas · voto antecipado</td></tr>
+                <tr><td><b>Detido preventivo (não condenado)</b></td><td>Mesa móvel · estabelecimento prisional</td></tr>
+                <tr><td><b>Refugiado interno · zona de conflito</b></td><td>Mesa do abrigo · cross-Resiliência</td></tr>
+                <tr><td><b>Sem-abrigo</b></td><td>Mesa mais próxima do último endereço · ou pedido manual</td></tr>
+                <tr><td><b>Hospital de longa permanência</b></td><td>Mesa móvel · enfermeira credenciada</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>Voto não exige residência fixa.</b> Sistema reconhece que vidas reais são móveis · trabalho temporário, estudo, saúde. 4 dias úteis para STED responder · suficiente para planear.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Histórico de pedidos · país</b></div>
+          <div class="bd">
+            <div style="font-size:13px;line-height:1.85">
+              <div class="row spread"><span style="color:var(--ink-3)">Pedidos · 2024 (Eleições)</span><b>184 218</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Aprovados</span><b style="color:var(--verde-700)">96,4%</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Rejeitados (mesa cheia · razão insuficiente)</span><b style="color:var(--ink-3)">3,6%</b></div>
+              <div class="row spread"><span style="color:var(--ink-3)">Tempo médio de decisão</span><b>2,4 dias</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Contestação · "isto está errado"</b><span>Felisberto detecta erro no endereço · contestação enviada · cross-Terras revisa · 14 dias para decisão · escala para TES se necessário</span></div></div>
+  <div class="scene-c">
+    <div class="desktop-frame">
+      <div class="dt-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="url">cidadao.eleicoes.gov.mz/contestar</div></div>
+      <div class="dt-body" style="background:var(--bg)">
+        <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">Contestar erro no meu registo</h2><span class="cross alert">cross-TES escalável</span></div>
+
+        <div class="grid g-2" style="gap:18px">
+          <div class="card">
+            <div class="hd"><b>Tipos de contestação</b></div>
+            <div class="bd">
+              <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+                <li><b>Endereço incorrecto</b> · escala para cross-Terras</li>
+                <li><b>Idade incorrecta</b> · escala para cross-Vida Civil + DNRN</li>
+                <li><b>Sou eu mas BI errado</b> · escala para cross-eBI</li>
+                <li><b>Identifico-me mas estou marcado como falecido</b> · escala urgente para cross-Vida Civil</li>
+                <li><b>Mesa atribuída demasiado longe</b> · revisão por proximidade</li>
+                <li><b>Sou cidadão MZ mas STED diz que não</b> · escala para cross-Migrações</li>
+                <li><b>Outra inconsistência</b> · STED investiga</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col" style="gap:14px">
+            <div class="card carimbo">
+              <div class="hd"><b>Processo · 14 dias úteis</b></div>
+              <div class="bd">
+                <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.7">
+                  <li><b>Dia 1</b> · cidadão contesta · evidência opcional (foto, BI, certidão)</li>
+                  <li><b>Dia 1-3</b> · STED encaminha para cross-system relevante</li>
+                  <li><b>Dia 3-10</b> · cross-system investiga · cidadão acompanha estado</li>
+                  <li><b>Dia 10-14</b> · STED decide · notifica cidadão</li>
+                  <li><b>Se cidadão discorda</b> · escala para TES · 30 dias adicionais</li>
+                  <li><b>Se TES discorda</b> · cidadão pode recorrer ao tribunal comum</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="banner tinta"><span class="ic"></span><div><b>Princípio · "presunção a favor do cidadão".</b> Se sistema diz uma coisa e cidadão diz outra · presume-se que o cidadão tem razão até prova em contrário. Sistema não é infalível · cidadão é a verdade primária.</div></div>
+
+            <div class="card">
+              <div class="hd"><b>Caso ilustrativo · Sr. Domingos Cossa · 71a</b></div>
+              <div class="bd">
+                <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Sr. Domingos foi marcado como falecido em 14.12.2024 (Chido). Mas está vivo. Família contestou em Janeiro 2026 (regressou da diáspora SA). Cross-Vida Civil revisão urgente · 4 dias · NUEL reactivado.</p>
+                <p style="font-size:11px;color:var(--ink-3);margin:0;font-style:italic">Decisão · Painel STED Cena 6 · ainda hoje · Adelina Cuamba assinará reactivação.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Comprovativo · QR + assinatura digital</b><span>Felisberto descarrega comprovativo de inscrição · QR validável por qualquer pessoa · útil para CV, vistos, declarações</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;justify-content:center;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>14:28</span><span>📶 4G</span></div>
+          <div style="background:var(--tinta-900);color:var(--papel-100);padding:14px 18px">
+            <div style="font-family:var(--f-mono);font-size:9px;opacity:.85">CERTIDÃO DE RECENSEAMENTO</div>
+            <div style="font-family:var(--f-serif);font-size:15px;margin-top:2px">Documento oficial · STED</div>
+          </div>
+          <div style="padding:18px;flex:1;overflow-y:auto;background:var(--papel-50)">
+
+            <div style="text-align:center;border:2px solid var(--tinta-900);padding:18px;background:var(--paper)">
+              <div style="font-family:var(--f-serif);font-size:14px;color:var(--tinta-900);font-weight:600;letter-spacing:.04em">CERTIDÃO DE RECENSEAMENTO</div>
+              <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);margin-top:4px">CNED · STED · 30.04.2026</div>
+
+              <hr style="margin:14px 0;border-top:2px solid var(--tinta-900);border-bottom:0">
+
+              <div style="font-family:var(--f-serif);font-size:18px;font-weight:600;margin:10px 0">Felisberto Manjate</div>
+              <div style="font-family:var(--f-mono);font-size:11px;color:var(--ink-2);margin-bottom:14px">NUEL 0418-218-184</div>
+
+              <div style="font-size:12px;line-height:1.85;text-align:left">
+                <div class="row spread"><span style="color:var(--ink-3)">BI</span><b class="mono">110100382184</b></div>
+                <div class="row spread"><span style="color:var(--ink-3)">Idade</span><b>38 anos</b></div>
+                <div class="row spread"><span style="color:var(--ink-3)">Mesa</span><b>0142 · Maxixe</b></div>
+                <div class="row spread"><span style="color:var(--ink-3)">Estado</span><b style="color:var(--verde-700)">activo</b></div>
+              </div>
+
+              <div style="margin:18px auto;width:120px;height:120px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <rect width="100" height="100" fill="#fff"/>
+                  <g fill="#0E1525">
+                    <rect x="0" y="0" width="20" height="20"/>
+                    <rect x="80" y="0" width="20" height="20"/>
+                    <rect x="0" y="80" width="20" height="20"/>
+                    <rect x="5" y="5" width="10" height="10" fill="#fff"/>
+                    <rect x="85" y="5" width="10" height="10" fill="#fff"/>
+                    <rect x="5" y="85" width="10" height="10" fill="#fff"/>
+                    <rect x="30" y="0" width="5" height="5"/>
+                    <rect x="40" y="5" width="5" height="5"/>
+                    <rect x="50" y="0" width="5" height="5"/>
+                    <rect x="60" y="5" width="5" height="5"/>
+                    <rect x="70" y="0" width="5" height="5"/>
+                    <rect x="35" y="35" width="30" height="30"/>
+                    <rect x="40" y="40" width="20" height="20" fill="#fff"/>
+                    <rect x="45" y="45" width="10" height="10"/>
+                    <rect x="0" y="30" width="5" height="5"/>
+                    <rect x="10" y="40" width="5" height="5"/>
+                    <rect x="0" y="50" width="5" height="5"/>
+                    <rect x="10" y="60" width="5" height="5"/>
+                    <rect x="0" y="70" width="5" height="5"/>
+                    <rect x="80" y="30" width="5" height="5"/>
+                    <rect x="90" y="40" width="5" height="5"/>
+                    <rect x="80" y="50" width="5" height="5"/>
+                    <rect x="90" y="60" width="5" height="5"/>
+                    <rect x="80" y="70" width="5" height="5"/>
+                    <rect x="30" y="80" width="5" height="5"/>
+                    <rect x="40" y="90" width="5" height="5"/>
+                    <rect x="50" y="80" width="5" height="5"/>
+                    <rect x="60" y="90" width="5" height="5"/>
+                    <rect x="70" y="80" width="5" height="5"/>
+                  </g>
+                </svg>
+              </div>
+
+              <div style="font-family:var(--f-mono);font-size:9px;color:var(--ink-3);text-align:center;margin-top:6px">VALIDAR EM cnedglobal.gov.mz/q/<br>0418-218-184</div>
+
+              <hr style="margin:14px 0;border-top:1px solid var(--line);border-bottom:0">
+
+              <div style="font-family:var(--f-serif);font-size:9px;color:var(--ink-3);font-style:italic;line-height:1.5">Esta certidão é assinada digitalmente pelo CNED · válida por 90 dias · QR permite verificação offline</div>
+            </div>
+
+            <button class="btn block lg" style="margin-top:14px">Descarregar PDF · enviar email</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Para que serve · usos comuns</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Comprovativo de cidadania activa · CV cívico</li>
+              <li>Pedido de visto · alguns países pedem</li>
+              <li>Bolsas de estudo · prova de elegibilidade</li>
+              <li>Alguns concursos públicos · prova de inscrição</li>
+              <li>Certidão pessoal · arquivo familiar</li>
+              <li>Reclamações no fim do dia eleitoral · prova de inscrição</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner verde"><span class="ic"></span><div><b>QR validável offline.</b> Quem recebe certidão pode validar com app STED · ou no site público · sem precisar de Felisberto. Hash do QR liga à NUEL pública. Se documento foi adulterado · QR não valida.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Pull quote · Felisberto</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Em 2007 fiz 18 anos · não sabia o que era recensear-me. Em 2014 votei pela primeira vez · alguém me disse 'estás recenseado'. Em 2029 · vou ver no telemóvel antes do dia. É só isto que muda. Mas isto · muda tudo."<cite>Felisberto Manjate · 30.04.2026</cite></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--tinta-900);color:var(--tinta-100);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:10px">
+        <div style="width:38px;height:38px;background:var(--tinta-700);border-radius:2px;display:flex;align-items:center;justify-content:center;position:relative"><div style="width:22px;height:22px;border:2px solid var(--papel-100);border-radius:1px"></div><div style="position:absolute;font-family:'IBM Plex Serif',serif;color:var(--carimbo-300);font-size:18px;font-weight:700;line-height:1">✕</div></div>
+        <div>
+          <div style="font-size:15px;color:var(--papel-100);font-weight:600">Cidadão</div>
+          <div style="font-size:10px;letter-spacing:.04em;text-transform:uppercase">Surface 2 de 7 · DESIGN-cidadao.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:var(--cinza-300)">cross-Vida Civil · cross-eBI · cross-Terras · cross-AT · cross-Migrações · cross-Resiliência · cross-Sociedade Aberta · cross-TES. Felisberto Manjate, Aurélio Tembe, Joaquim Cossa, Mariana Macuácua, Sr. Domingos Cossa são personas fictícias.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="painel.html" class="btn ghost sm" style="color:var(--tinta-100)">‹ Painel STED</a><a href="primeira-vez.html" class="btn ghost sm" style="color:var(--tinta-100)">Próxima · Auto-inscrição ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
