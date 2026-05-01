@@ -6,7 +6,7 @@
 
 ## Por que esta surface é a destacada
 
-Cândida é o ponto de entrada do produto. Tudo o resto · triagem · editora · publicação · existe porque ela usou Vona em vez de Facebook. Se Cândida não confia · sistema falha. Esta surface mostra como conquistar essa confiança em 60 segundos · do primeiro ecrã ao primeiro envio.
+Cândida é o ponto de entrada do produto. Tudo o resto · triagem · editora · publicação · existe porque ela usou KuVona em vez de Facebook. Se Cândida não confia · sistema falha. Esta surface mostra como conquistar essa confiança em 60 segundos · do primeiro ecrã ao primeiro envio.
 
 ## 7 cenas · escolhas de design
 
@@ -28,7 +28,7 @@ Cândida é o ponto de entrada do produto. Tudo o resto · triagem · editora ·
 
 **Por que sem registo de início?** · Adicionar fricção a quem só quer testemunhar é perder casos urgentes. Reputação ★ é construída com submissões sucessivas · não com formulário inicial.
 
-**Por que "4-15 minutos" no primeiro ecrã?** · Honesto desde o início. Quem quer instant gratification vai para Twitter · não para Vona. Vona não compete em velocidade · compete em confiança.
+**Por que "4-15 minutos" no primeiro ecrã?** · Honesto desde o início. Quem quer instant gratification vai para Twitter · não para KuVona. KuVona não compete em velocidade · compete em confiança.
 
 **Por que limite de 4 fotos?** · Mais é ruído editorial. 4 ângulos cobrem contexto. Restrição força disciplina.
 

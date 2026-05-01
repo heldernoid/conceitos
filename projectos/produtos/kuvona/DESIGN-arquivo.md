@@ -6,7 +6,7 @@
 
 ## Por que arquivo precisa de surface dedicada
 
-Material arquivado é o tesouro e o risco de Vona. **Tesouro** · 1 247 testemunhos de violência doméstica permitem ver padrões que publicação individual ocultaria. **Risco** · arquivo grande é alvo · vigilância · pressão. Esta surface mostra como o sistema equilibra acesso editorial responsável com proteção de fontes.
+Material arquivado é o tesouro e o risco de KuVona. **Tesouro** · 1 247 testemunhos de violência doméstica permitem ver padrões que publicação individual ocultaria. **Risco** · arquivo grande é alvo · vigilância · pressão. Esta surface mostra como o sistema equilibra acesso editorial responsável com proteção de fontes.
 
 ## 7 cenas · estrutura
 

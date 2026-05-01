@@ -1,4 +1,4 @@
-# Vona · Conceitos
+# KuVona · Conceitos
 
 Plataforma de jornalismo e transparência cívica. Publicação, triagem, arquivo e acesso judicial a informação de interesse público — desenhada para jornalistas, editoras e cidadãs moçambicanas.
 

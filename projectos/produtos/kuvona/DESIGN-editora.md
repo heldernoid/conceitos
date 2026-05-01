@@ -6,7 +6,7 @@
 
 ## Por que Beatriz é a outra protagonista
 
-Cândida é o "porquê". Beatriz é o "como". Ambas são protagonistas porque o produto não funciona sem as duas. **Surface 3 é a câmara da decisão · a sala onde Vona é Vona ou não é.** Esta é a interface profissional · ferramenta de trabalho · não app de consumidor.
+Cândida é o "porquê". Beatriz é o "como". Ambas são protagonistas porque o produto não funciona sem as duas. **Surface 3 é a câmara da decisão · a sala onde KuVona é KuVona ou não é.** Esta é a interface profissional · ferramenta de trabalho · não app de consumidor.
 
 ## 7 cenas · ergonomia editorial
 
@@ -26,7 +26,7 @@ Cândida é o "porquê". Beatriz é o "como". Ambas são protagonistas porque o 
 
 ## Decisão crítica · interface profissional vs consumer
 
-Beatriz não usa Vona como Cândida usa. Ela tem dashboard · keyboard shortcuts · multi-window. **Esta surface não tenta ser bonita · tenta ser eficiente.** IBM Plex Mono em meta · IBM Plex Serif em headlines · Sans em UI. Densa · sóbria · profissional.
+Beatriz não usa KuVona como Cândida usa. Ela tem dashboard · keyboard shortcuts · multi-window. **Esta surface não tenta ser bonita · tenta ser eficiente.** IBM Plex Mono em meta · IBM Plex Serif em headlines · Sans em UI. Densa · sóbria · profissional.
 
 ## Decisão crítica · 3 destinos · não 7
 
@@ -42,6 +42,6 @@ Apenas publicar · arquivar · descartar. Mais opções confundem · diluem resp
 
 ## Pull quotes possíveis para Beatriz
 
-> "Hoje publiquei 22. Descartei 19. Salvei talvez 3 vidas com aquele descarte de Maxixe. Não há prémio para isso · não há manchete. Mas é o que faz Vona ser Vona."
+> "Hoje publiquei 22. Descartei 19. Salvei talvez 3 vidas com aquele descarte de Maxixe. Não há prémio para isso · não há manchete. Mas é o que faz KuVona ser KuVona."
 
 > "Quando a foto da Cândida chega · paro o briefing das 14h. É urgente. Mas não publico antes de ver. Nunca antes de ver."

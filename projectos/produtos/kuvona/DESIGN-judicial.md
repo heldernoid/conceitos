@@ -12,7 +12,7 @@ Sistema só funciona se houver caminho legítimo para autoridades acederem mater
 
 **Cena 1 · Juíz Cumbe · caso real.** Perfil + processo 4742/2026 · "acidente Av. 24 Julho foi tentativa de homicídio". PGR investiga · pede acesso ao material arquivado pelo CJC.
 
-**Cena 2 · pedido formal · vona.mz/judicial · dia 1.** Formulário público · processo · juíz · cédula · descrição precisa · motivo razoável · vias alternativas tentadas · compromissos do tribunal.
+**Cena 2 · pedido formal · kuvona.mz/judicial · dia 1.** Formulário público · processo · juíz · cédula · descrição precisa · motivo razoável · vias alternativas tentadas · compromissos do tribunal.
 
 **Cena 3 · CJC analisa · 5 dias · 3 perspectivas.** Filomena (advogada · perspectiva legal) · Beatriz (editora · perspectiva editorial) · auditor académico (perspectiva externa). Convergência das 3 = decisão robusta.
 
@@ -20,7 +20,7 @@ Sistema só funciona se houver caminho legítimo para autoridades acederem mater
 
 **Cena 5 · execução · entrega controlada · auditável.** Cronologia 30 dias completa. Protocolo técnico · sala segura · pen drive cifrada · hashes registados · acta assinada · destruição prevista 6 meses após trânsito em julgado.
 
-**Cena 6 · auditoria pública mensal.** vona.mz/transparencia/junho2026 · linha "1 pedido cumprido · processo 4742 · descrição genérica · sem identificar fonte". Detalhes pormenor sem comprometer privacidade.
+**Cena 6 · auditoria pública mensal.** kuvona.mz/transparencia/junho2026 · linha "1 pedido cumprido · processo 4742 · descrição genérica · sem identificar fonte". Detalhes pormenor sem comprometer privacidade.
 
 **Cena 7 · pedido indeferido · 2026-06-03 · sigilo de fonte preservado.** Caso Nampula · concussão · whistleblower (categoria 5). CJC indefere · tribunal aceita. Plano se tribunal não aceitasse · recurso · purga em última instância.
 
@@ -55,6 +55,6 @@ Publicação mensal mostra · número · tribunal · crime alegado · análise C
 - Sem ocultação de pedidos do relatório mensal (todos públicos)
 - Sem entrega informal por email (sala segura · sempre)
 
-## O que distingue Vona de redacções tradicionais
+## O que distingue KuVona de redacções tradicionais
 
-Tradicional · "trust us · we protect sources". Vona · "trust us porque mostramos como protegemos · cada caso · publicamente". Auditoria não é segredo · é prática.
+Tradicional · "trust us · we protect sources". KuVona · "trust us porque mostramos como protegemos · cada caso · publicamente". Auditoria não é segredo · é prática.

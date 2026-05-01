@@ -6,13 +6,13 @@
 
 ## Por que esta surface fecha o ciclo da narrativa
 
-Cândida testemunhou (1) · IA triou (2) · Beatriz decidiu (3) · agora o público lê (4). Esta surface é o output visível · o que faz Vona valer a pena. Mas é também declaração editorial · "isto é o que escolhemos publicar · isto é como mostramos".
+Cândida testemunhou (1) · IA triou (2) · Beatriz decidiu (3) · agora o público lê (4). Esta surface é o output visível · o que faz KuVona valer a pena. Mas é também declaração editorial · "isto é o que escolhemos publicar · isto é como mostramos".
 
 ## 7 cenas · estrutura
 
-**Cena 1 · notícia da Cândida · vona.mz/n/4721.** Página completa de artigo · headline em Plex Serif 42px · deck · badge "verificado" · imagem hero (rosto borrado) · corpo de texto · footer com editora responsável + tempo de revisão + link para auditoria.
+**Cena 1 · notícia da Cândida · kuvona.mz/n/4721.** Página completa de artigo · headline em Plex Serif 42px · deck · badge "verificado" · imagem hero (rosto borrado) · corpo de texto · footer com editora responsável + tempo de revisão + link para auditoria.
 
-**Cena 2 · badges de verificação · 3 níveis.** Verificado · parcial · em desenvolvimento. Cada notícia tem badge · sem ambiguidade. Click abre auditoria pública (vona.mz/audit/4721) com checks técnicos · decisão editorial · histórico da fonte.
+**Cena 2 · badges de verificação · 3 níveis.** Verificado · parcial · em desenvolvimento. Cada notícia tem badge · sem ambiguidade. Click abre auditoria pública (kuvona.mz/audit/4721) com checks técnicos · decisão editorial · histórico da fonte.
 
 **Cena 3 · 8 itens excluídos por princípio.** Nome da Cândida · GPS exacto · patente das viaturas · rosto do ferido · suspeitas · identidade dos condutores · botão viral · comentários públicos. Privacidade em 3 camadas.
 
@@ -26,15 +26,15 @@ Cândida testemunhou (1) · IA triou (2) · Beatriz decidiu (3) · agora o públ
 
 ## Decisão crítica · sem comentários · sem reactions
 
-Comentários abertos em jornais MZ tornam-se rapidamente fóruns de ódio · ataque pessoal · desinformação. Vona escolhe não ter. Compromisso com profundidade sobre engagement.
+Comentários abertos em jornais MZ tornam-se rapidamente fóruns de ódio · ataque pessoal · desinformação. KuVona escolhe não ter. Compromisso com profundidade sobre engagement.
 
 ## Decisão crítica · sem ads · sem tracking
 
-Financiado por subscrição leitor + fundo fundador. Sem cookies de terceiros. Sem pixel Facebook. Leitor não é monitorizado. Vona não sabe quem leu o quê. **Privacidade do leitor é o complemento da privacidade da fonte.**
+Financiado por subscrição leitor + fundo fundador. Sem cookies de terceiros. Sem pixel Facebook. Leitor não é monitorizado. KuVona não sabe quem leu o quê. **Privacidade do leitor é o complemento da privacidade da fonte.**
 
 ## Decisão crítica · auditoria pública por defeito
 
-vona.mz/audit/4721 é acessível a qualquer um · sem credenciais · sem login. Mostra todos os checks técnicos · decisão editorial · histórico da fonte (com fonte anonimizada). Comparar com qualquer jornal tradicional · auditoria geralmente impossível ou requer FOIA.
+kuvona.mz/audit/4721 é acessível a qualquer um · sem credenciais · sem login. Mostra todos os checks técnicos · decisão editorial · histórico da fonte (com fonte anonimizada). Comparar com qualquer jornal tradicional · auditoria geralmente impossível ou requer FOIA.
 
 ## O que NÃO está nesta surface (deliberado)
 

@@ -1,6 +1,6 @@
-# Vona · princípios fundadores
+# KuVona · princípios fundadores
 
-**Vona** · do changana "vona" · ver. Aplicação de testemunho cidadão para Moçambique. Operada pelo **Centro de Jornalismo Cidadão · CJC-MZ** · consórcio independente fictício.
+**KuVona** · do changana "vona" · ver. Aplicação de testemunho cidadão para Moçambique. Operada pelo **Centro de Jornalismo Cidadão · CJC-MZ** · consórcio independente fictício.
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### 1 · Cidadão é fonte · não polícia
 
-A polícia não tem acesso privilegiado a Vona. Não há API · não há push automático · não há canal traseiro. A polícia é leitora · igual a qualquer cidadã.
+A polícia não tem acesso privilegiado a KuVona. Não há API · não há push automático · não há canal traseiro. A polícia é leitora · igual a qualquer cidadã.
 
 Material publicado é território público · qualquer um consulta livremente · incluindo a polícia. Material arquivado é território editorial protegido · só com pedido judicial específico · auditável publicamente.
 
@@ -39,7 +39,7 @@ Cada testemunho passa por verificação automática antes de chegar à fila edit
 - **Detecção de IA generativa** · modelos open-source
 - **Watermark do device** se disponível (Apple/Samsung APIs)
 
-Material que falha verificação não é descartado · é marcado **"verificação incompleta"** · editora decide. **Vona não confia · verifica.**
+Material que falha verificação não é descartado · é marcado **"verificação incompleta"** · editora decide. **KuVona não confia · verifica.**
 
 ### 6 · Transparência operacional pública · mensal
 
@@ -58,14 +58,14 @@ Todo mês CJC-MZ publica relatório público com números crus:
 
 ### 7 · Linchamento não · suspeitas sem flagrante são descartadas
 
-Vona aceita testemunho de:
+KuVona aceita testemunho de:
 
 - ✅ Acidente · em curso ou recente
 - ✅ Evento público · manifestação · cerimónia
 - ✅ Ambiente · poluição · destruição · desastre
 - ✅ Acto criminoso em flagrante (rapto em curso · agressão visível)
 
-Vona **não aceita** testemunho de:
+KuVona **não aceita** testemunho de:
 
 - ❌ Suspeita sem flagrante ("este homem parece suspeito")
 - ❌ Acusação a pessoa identificável sem prova
@@ -76,7 +76,7 @@ Editora descarta material destas categorias automaticamente · cidadão recebe a
 
 ### 8 · IA tria · humano decide
 
-A IA tem 6 funções claras dentro de Vona · todas sob supervisão humana:
+A IA tem 6 funções claras dentro de KuVona · todas sob supervisão humana:
 
 | Função | O que faz | O que NÃO faz |
 |---|---|---|

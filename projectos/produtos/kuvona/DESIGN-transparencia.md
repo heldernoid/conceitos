@@ -6,7 +6,7 @@
 
 ## Por que esta surface fecha o sistema
 
-Vona não é transparente sobre operações individuais (sigilo de fonte). Compensa sendo radicalmente transparente sobre o sistema. **Cidadão pode confiar mesmo sem ver tudo · porque vê números crus · pode validar com auditor · pode comparar mês a mês · pode contestar.**
+KuVona não é transparente sobre operações individuais (sigilo de fonte). Compensa sendo radicalmente transparente sobre o sistema. **Cidadão pode confiar mesmo sem ver tudo · porque vê números crus · pode validar com auditor · pode comparar mês a mês · pode contestar.**
 
 ## 7 cenas · estrutura
 
@@ -36,9 +36,9 @@ Jornalistas externos podem analisar dados independentemente. Académicos podem f
 
 Após 30 páginas de números · uma voz humana. Beatriz escreve não como porta-voz institucional mas como editora que cometeu erros · que se preocupa · que agradece. Risco · pode parecer auto-promoção. Mitigação · ela é autocrítica · admite incertezas (ex · "não sei se vamos ganhar a guerra contra IA generativa").
 
-## Comparação · transparência convencional vs Vona
+## Comparação · transparência convencional vs KuVona
 
-| Item | Jornal tradicional | Vona |
+| Item | Jornal tradicional | KuVona |
 |---|---|---|
 | Volume mensal | nunca publicado | número exacto |
 | Taxa de descarte | nunca publicado | tabela com 7 razões |
@@ -59,7 +59,7 @@ Não é "olha como somos bons". É "podes verificar". Cada número é falsificá
 - Sem comparações com outras redacções (não somos competição)
 - Sem prémios ou awards (gerem incentivos errados)
 - Sem testimonials de fontes felizes (anonimato)
-- Sem advertising rates (Vona não vende ads)
+- Sem advertising rates (KuVona não vende ads)
 
 ## Pull quote da carta da editora-chefe · Maio 2026
 
