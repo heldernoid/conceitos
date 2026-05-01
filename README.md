@@ -79,10 +79,6 @@ Site estático puro: HTML5, CSS3 com variáveis de design, SVG e JavaScript mín
 
 Estes protótipos são conceitos visuais independentes, sem afiliação a qualquer entidade governamental, organização ou empresa. São exercícios de imaginação cívica partilhados em domínio público. Nenhum dado apresentado é real.
 
-## Usar os protótipos
-
-Estes designs são pensados para ser usados como ponto de partida para construir produtos reais. Se usares um protótipo como base para o teu projecto, remove o snippet do Google Analytics (`G-P01B93QSYD`) do `<head>` de cada ficheiro HTML - serve apenas para medir visitas no conceitos.org e não tem utilidade fora deste contexto.
-
 ## Colaborar
 
 Colaborações são bem-vindas: crítica de design, novas ideias de projectos, correcções ou melhorias de acessibilidade. Abre uma issue ou um pull request.
