@@ -149,7 +149,7 @@ Estes designs são pensados para ser usados como ponto de partida para construir
 
 ## Colaborar
 
-Contribuições são bem-vindas: crítica de design, novas ideias de projectos, correcções ou melhorias de acessibilidade. Abre uma issue ou um pull request.
+Colaborações são bem-vindas: crítica de design, novas ideias de projectos, correcções ou melhorias de acessibilidade. Abre uma issue ou um pull request.
 
 ---
 
