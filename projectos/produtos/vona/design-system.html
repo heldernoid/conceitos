@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema · Vona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>Vona · sistema</span><span class="sep">·</span><span>Tokens · componentes · 6 signatures</span><span style="margin-left:auto">v0.1</span></div>
+<div class="vona-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">V</span><span class="stack"><span>Vona</span><small>Sistema</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema</a>
+    <a href="cidada.html">Cidadã</a>
+    <a href="triagem.html">Triagem IA</a>
+    <a href="editora.html">Editora</a>
+    <a href="publicacao.html">Publicação</a>
+    <a href="arquivo.html">Arquivo</a>
+    <a href="judicial.html">Judicial</a>
+    <a href="transparencia.html">Transparência</a>
+  </nav>
+</header>
+
+<!-- PALETA -->
+<section class="scene">
+  <div class="scene-h"><div class="sn">01</div><div class="lab"><b>Paleta · sobriedade jornalística</b><span>4 famílias · tinta + papel + semáforo (urgente/relevante/padrão) + estados (publicado/descartado). Sem cores decorativas · cada cor é função.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-4" style="gap:14px">
+      <div class="card">
+        <div style="height:80px;background:var(--tinta-900)"></div>
+        <div class="bd"><b style="font-size:13px">Tinta · marca</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#0c0c0b · primary · texto</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--papel-50);border:1px solid var(--border)"></div>
+        <div class="bd"><b style="font-size:13px">Papel · base</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#fafaf7 · fundo · respiração</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--urgente-600)"></div>
+        <div class="bd"><b style="font-size:13px">Urgente</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#dc2626 · 4 min · vida em risco</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--relevante-500)"></div>
+        <div class="bd"><b style="font-size:13px">Relevante</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#f59e0b · 15 min · notícia</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--padrao-600)"></div>
+        <div class="bd"><b style="font-size:13px">Padrão</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#334e68 · fila normal</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--publicado-600)"></div>
+        <div class="bd"><b style="font-size:13px">Publicado</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#16a34a · sai · público</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:var(--descartado-400)"></div>
+        <div class="bd"><b style="font-size:13px">Descartado</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">#9ca3af · não publica</div></div>
+      </div>
+      <div class="card">
+        <div style="height:80px;background:linear-gradient(90deg,var(--urgente-600) 0%,var(--urgente-600) 33%,var(--relevante-500) 33%,var(--relevante-500) 66%,var(--padrao-600) 66%,var(--padrao-600) 100%)"></div>
+        <div class="bd"><b style="font-size:13px">Stripe Vona</b><div class="t-meta" style="font-family:var(--f-mono);font-size:11px;margin-top:4px">3 cores · 3 prioridades</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section class="scene alt">
+  <div class="scene-h"><div class="sn">02</div><div class="lab"><b>Tipografia · IBM Plex · trio jornalístico</b><span>Plex Serif para títulos · Plex Sans para corpo · Plex Mono para metadata e indicadores. Não é uma escolha consumer · é uma escolha redaccional.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:32px">
+      <div>
+        <h1 class="headline xl" style="margin:0 0 8px">Plex Serif · headline</h1>
+        <p class="t-meta">font-family · IBM Plex Serif · 700 · 56px · linha 1.1</p>
+        <hr>
+        <h2 class="headline lg" style="margin:18px 0 8px">Plex Serif · h2 · 36px</h2>
+        <h3 class="headline md" style="margin:18px 0 8px">Plex Serif · h3 · 26px</h3>
+        <p class="pull-quote" style="font-size:18px">"Quando a foto da Cândida chega · paro o briefing das 14h. É urgente. Mas não publico antes de ver. Nunca antes de ver."<cite>Beatriz Macuácua · editora · CJC-MZ</cite></p>
+      </div>
+      <div>
+        <p style="font-size:17px;color:var(--text);line-height:1.6;font-weight:400">Plex Sans · corpo de texto · 17px · weight 400. <b>Negrito é Plex Sans 600</b>. <em>Itálico é serif</em> deliberadamente · contraste de família · não só de inclinação. Tom é de revista séria · não app social.</p>
+
+        <hr>
+
+        <p class="t-overline">PLEX MONO · OVERLINE · 10PX · LETTER-SPACING 0.08EM</p>
+        <p style="font-family:var(--f-mono);font-size:13px;color:var(--text-2);margin-top:12px">Plex Mono · 13px · timestamps, GPS, hashes, IDs · qualquer coisa que precisa de aparência técnica · valores · `${codigo}` · 2026-05-04T14:22:18Z</p>
+
+        <hr>
+
+        <div class="banner tinta" style="margin-top:14px"><span class="ic">▸</span><div>Cada família tem propósito · Serif = autoridade jornalística · Sans = clareza · Mono = precisão técnica.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEMAFORO -->
+<section class="scene">
+  <div class="scene-h"><div class="sn">03</div><div class="lab"><b>Signature 1 · Semáforo · 3 prioridades</b><span>O componente que aparece em mais sítios. Define quanto tempo a editora tem para reagir.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-3" style="gap:18px;margin-bottom:24px">
+      <div class="card urgente">
+        <div class="bd">
+          <div class="row" style="gap:10px;margin-bottom:10px"><span class="semaforo urgente"><span class="dot"></span> URGENTE</span></div>
+          <h4 class="t-h3" style="margin:0 0 6px">Vida em risco · 4 min</h4>
+          <p class="t-meta" style="font-size:12px;line-height:1.55">Acidente em curso · violência visível · ambulância. IA sinaliza · alerta editora · prioridade absoluta.</p>
+        </div>
+      </div>
+      <div class="card relevante">
+        <div class="bd">
+          <div class="row" style="gap:10px;margin-bottom:10px"><span class="semaforo relevante"><span class="dot"></span> RELEVANTE</span></div>
+          <h4 class="t-h3" style="margin:0 0 6px">Notícia clara · 15 min</h4>
+          <p class="t-meta" style="font-size:12px;line-height:1.55">Cheia em curso · concentração pública · evento · animal raivoso. Importante mas sem vida em risco imediato.</p>
+        </div>
+      </div>
+      <div class="card padrao">
+        <div class="bd">
+          <div class="row" style="gap:10px;margin-bottom:10px"><span class="semaforo padrao"><span class="dot"></span> PADRÃO</span></div>
+          <h4 class="t-h3" style="margin:0 0 6px">Fila normal · 60 min</h4>
+          <p class="t-meta" style="font-size:12px;line-height:1.55">Buraco na via · árvore caída · queixa de serviço público · denúncia ambiental sem urgência.</p>
+        </div>
+      </div>
+    </div>
+    <div class="banner info"><span class="ic">i</span><div><b>IA sugere · editora confirma com 1 toque.</b> Discordâncias são registadas e alimentam melhoria do modelo trimestralmente · processo público.</div></div>
+  </div>
+</section>
+
+<!-- TESTEMUNHO-CARD -->
+<section class="scene alt">
+  <div class="scene-h"><div class="sn">04</div><div class="lab"><b>Signature 2 · Testemunho-card</b><span>Cartão na fila editorial · thumbnail + meta + acções · em 3 estados de prioridade.</span></div></div>
+  <div class="scene-c">
+    <div class="col" style="gap:14px;max-width:760px">
+
+      <div class="testemunho-card urgente">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--urgente-700) 0%,#000 100%)"><span class="verify">✓</span></div>
+        <div class="info">
+          <div class="meta-top">
+            <span class="semaforo urgente"><span class="dot"></span> URGENTE</span>
+            <span class="badge" style="font-size:9px">acidente</span>
+          </div>
+          <b>Acidente · Av. 24 Julho · 2 viaturas · 1 ferido</b>
+          <p class="desc">Cândida Sitoe · vendedora · 3 min após captura · GPS bate · EXIF intacto.</p>
+          <div class="meta">14:25 · ★ 4,8 · 4 fotos · 0 áudio</div>
+        </div>
+        <div class="actions">
+          <button class="btn publicado sm">Publicar</button>
+          <button class="btn secondary sm">Ver</button>
+        </div>
+      </div>
+
+      <div class="testemunho-card relevante">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--relevante-500) 0%,var(--relevante-700) 100%)"><span class="verify">✓</span></div>
+        <div class="info">
+          <div class="meta-top">
+            <span class="semaforo relevante"><span class="dot"></span> RELEVANTE</span>
+            <span class="badge" style="font-size:9px">cheia</span>
+          </div>
+          <b>Cheia · Tete · Rio Revubuè · ponte interrompida</b>
+          <p class="desc">Manuel Mucavele · agricultor · 12 min · validado · 3 testemunhos paralelos.</p>
+          <div class="meta">14:14 · ★ 4,2 · 3 fotos · 1 áudio · cluster #142</div>
+        </div>
+        <div class="actions">
+          <button class="btn publicado sm">Publicar</button>
+          <button class="btn secondary sm">Ver</button>
+        </div>
+      </div>
+
+      <div class="testemunho-card padrao">
+        <div class="thumb" style="background:linear-gradient(135deg,var(--padrao-500) 0%,var(--padrao-700) 100%)"><span class="verify">✓</span></div>
+        <div class="info">
+          <div class="meta-top">
+            <span class="semaforo padrao"><span class="dot"></span> PADRÃO</span>
+            <span class="badge" style="font-size:9px">via pública</span>
+          </div>
+          <b>Buraco · Av. Marginal · perto Hotel Cardoso</b>
+          <p class="desc">Olga Macuácua · empregada doméstica · 23 min · GPS bate · 1 testemunho similar há 2 dias.</p>
+          <div class="meta">14:02 · ★ 4,5 · 2 fotos · cluster #138</div>
+        </div>
+        <div class="actions">
+          <button class="btn publicado sm">Publicar</button>
+          <button class="btn secondary sm">Ver</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- IA-SCORES -->
+<section class="scene">
+  <div class="scene-h"><div class="sn">05</div><div class="lab"><b>Signature 3 · IA-scores · painel de triagem</b><span>O que a IA sugere · sem esconder confiança · sem decidir · ferramenta da editora.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px">
+      <div class="ia-scores">
+        <div class="hd">
+          <span class="ai-badge">IA · TRIAGEM</span>
+          <span class="t-meta" style="font-size:11px;margin-left:auto">testemunho #4721</span>
+        </div>
+
+        <div class="t-overline" style="margin:8px 0">URGÊNCIA · SUGESTÃO</div>
+        <div class="score-row">
+          <span class="label">Vida em risco</span>
+          <div class="bar alert"><div class="fill" style="width:88%"></div></div>
+          <span class="val">88%</span>
+        </div>
+        <div class="score-row">
+          <span class="label">Acidente em curso</span>
+          <div class="bar alert"><div class="fill" style="width:92%"></div></div>
+          <span class="val">92%</span>
+        </div>
+        <div class="score-row">
+          <span class="label">Notícia pública</span>
+          <div class="bar"><div class="fill" style="width:74%"></div></div>
+          <span class="val">74%</span>
+        </div>
+
+        <hr>
+
+        <div class="t-overline" style="margin:8px 0">CONTEÚDO · DETECÇÃO</div>
+        <div class="score-row">
+          <span class="label">Violência gráfica</span>
+          <div class="bar"><div class="fill" style="width:18%"></div></div>
+          <span class="val">18%</span>
+        </div>
+        <div class="score-row">
+          <span class="label">IA generativa</span>
+          <div class="bar"><div class="fill" style="width:4%"></div></div>
+          <span class="val">4%</span>
+        </div>
+        <div class="score-row">
+          <span class="label">Identifica vítima</span>
+          <div class="bar warn"><div class="fill" style="width:42%"></div></div>
+          <span class="val">42%</span>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="banner info"><span class="ic">i</span><div><b>O que a IA não faz.</b> Reconhecimento facial · identificação de pessoas · decisão de publicação · acesso a material arquivado para treino.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>Beatriz vê · pode discordar</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 12px">A IA sugere "urgente" com 92% de confiança em acidente em curso. Beatriz vê os scores · pode aceitar (1 toque) ou descer para "relevante" (1 toque). Discordância fica registada.</p>
+            <div class="row" style="gap:8px"><button class="btn sm publicado">Aceitar urgência</button><button class="btn sm secondary">Descer para relevante</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECISAO-TRACKER -->
+<section class="scene alt">
+  <div class="scene-h"><div class="sn">06</div><div class="lab"><b>Signature 4 · Decisão-tracker</b><span>Mostra à editora onde está o testemunho no fluxo · 5 passos.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px">
+      <div class="decisao-tracker">
+        <div class="step done"><div class="num">1</div><div class="body"><b>Recebido · 14:22:18</b><div class="meta">cândida.s · 4G · tecno spark 7</div></div></div>
+        <div class="step done"><div class="num">2</div><div class="body"><b>Verificação automática · 14:22:34</b><div class="meta">EXIF ✓ · GPS ✓ · IA gen 4% · hash não circulou</div></div></div>
+        <div class="step done"><div class="num">3</div><div class="body"><b>Triagem IA · 14:22:51</b><div class="meta">urgente 92% · acidente 88% · notícia 74%</div></div></div>
+        <div class="step active"><div class="num">4</div><div class="body"><b>Em revisão · Beatriz · 14:23:02</b><div class="meta">aguarda decisão · prazo 4 min</div></div></div>
+        <div class="step"><div class="num">5</div><div class="body"><b>Publicação ou arquivo</b><div class="meta">decisão final · gera notificação ao cidadão</div></div></div>
+      </div>
+
+      <div>
+        <h3 class="t-h2" style="margin:0 0 12px;font-size:22px">10 minutos · 5 passos</h3>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-2);margin:0 0 14px">Cada passo é registado · cada timestamp é auditável · cada decisão tem autor humano. <b>O cidadão recebe notificação ao fim · "publicado às 14:32" ou "arquivado · razão X".</b></p>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-2);margin:0">Editora pode escalar para revisor sénior se duvidar (passo 4.1). Pode pedir mais material à fonte (passo 4.2). Ambos registados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFICACAO-PANEL -->
+<section class="scene">
+  <div class="scene-h"><div class="sn">07</div><div class="lab"><b>Signature 5 · Verificação-panel · checks anti-fake</b><span>O que a IA testa · com resultado visível · ok / warn / fail.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px">
+      <div class="verificacao-panel">
+        <div class="hd"><b>Verificação · testemunho #4721</b><span class="badge dark" style="font-size:9px">automático</span></div>
+
+        <div class="check ok">
+          <div class="ic">✓</div>
+          <div class="info"><b>EXIF intacto</b><div class="meta">tecno spark 7 · sem stripping · sem edição</div></div>
+          <span class="val">100%</span>
+        </div>
+        <div class="check ok">
+          <div class="ic">✓</div>
+          <div class="info"><b>GPS plausível</b><div class="meta">-25.965° 32.586° · Av. 24 Julho · raio 12 m</div></div>
+          <span class="val">100%</span>
+        </div>
+        <div class="check ok">
+          <div class="ic">✓</div>
+          <div class="info"><b>Timestamp recente</b><div class="meta">capturada há 3 min · janela &lt; 30 min</div></div>
+          <span class="val">100%</span>
+        </div>
+        <div class="check ok">
+          <div class="ic">✓</div>
+          <div class="info"><b>Hash não circula</b><div class="meta">não existe nas bases públicas · não é repost</div></div>
+          <span class="val">100%</span>
+        </div>
+        <div class="check warn">
+          <div class="ic">!</div>
+          <div class="info"><b>Identifica vítima</b><div class="meta">42% de identificabilidade · pode precisar borrar rosto</div></div>
+          <span class="val">42%</span>
+        </div>
+        <div class="check ok">
+          <div class="ic">✓</div>
+          <div class="info"><b>Não-IA generativa</b><div class="meta">4% probabilidade · score baixo · provavelmente real</div></div>
+          <span class="val">4%</span>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>3 estados de check</b></div>
+          <div class="bd">
+            <div class="row" style="gap:10px;margin-bottom:8px"><div style="width:24px;height:24px;border-radius:50%;background:var(--publicado-100);color:var(--publicado-700);display:flex;align-items:center;justify-content:center;font-weight:700">✓</div><span style="font-size:13px"><b>OK</b> · passa · sem ação</span></div>
+            <div class="row" style="gap:10px;margin-bottom:8px"><div style="width:24px;height:24px;border-radius:50%;background:var(--relevante-100);color:var(--relevante-700);display:flex;align-items:center;justify-content:center;font-weight:700">!</div><span style="font-size:13px"><b>Warn</b> · editora vê · pode acetar com nota</span></div>
+            <div class="row" style="gap:10px"><div style="width:24px;height:24px;border-radius:50%;background:var(--urgente-100);color:var(--urgente-700);display:flex;align-items:center;justify-content:center;font-weight:700">×</div><span style="font-size:13px"><b>Fail</b> · marcado "verificação incompleta" · editora decide</span></div>
+          </div>
+        </div>
+
+        <div class="banner publicado"><span class="ic">✓</span><div><b>Vona não confia · verifica.</b> Testemunho que falha verificação não é descartado · é marcado · editora decide.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATORIO-PUBLICO -->
+<section class="scene dark">
+  <div class="scene-h"><div class="sn">08</div><div class="lab"><b>Signature 6 · Relatório público</b><span>Componente da Surface 7 · Maio 2026 · números crus · auditável.</span></div></div>
+  <div class="scene-c">
+    <div class="relatorio-publico">
+      <div class="hd"><b>Maio 2026 · Relatório de Transparência</b><span class="badge dark" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);font-size:9px">público · não-editado</span></div>
+      <div class="body">
+        <div class="stat-grid" style="margin-bottom:32px">
+          <div class="stat"><div class="lbl">Recebidos</div><div class="num">8 412</div><div class="delta">+ 14% vs Abr</div></div>
+          <div class="stat"><div class="lbl">Publicados</div><div class="num">2 184</div><div class="delta">26% taxa publicação</div></div>
+          <div class="stat"><div class="lbl">Descartados</div><div class="num">5 968</div><div class="delta">71% · razões abaixo</div></div>
+        </div>
+
+        <hr style="border-color:var(--tinta-700);margin:24px 0">
+
+        <div class="stat-grid">
+          <div class="stat"><div class="lbl">Pedidos judiciais recebidos</div><div class="num">14</div><div class="delta">12 acedidos · 2 indeferidos</div></div>
+          <div class="stat"><div class="lbl">Erros publicados</div><div class="num">3</div><div class="delta">corrigidos &lt; 24h · todos</div></div>
+          <div class="stat"><div class="lbl">Decisões contestadas</div><div class="num">28</div><div class="delta">8 revertidas após revisão</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:#000;color:rgba(255,255,255,0.7);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--tinta-900);font-weight:800;font-size:20px;font-family:var(--f-serif)">V</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700;font-family:var(--f-serif)">Vona · sistema</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Foundation · DESIGN-system.md</div>
+        </div>
+      </div>
+    </div>
+    <a href="cidada.html" class="btn urgente">Avançar para Surface 1 · Cidadã ›</a>
+  </div>
+</footer>
+
+</body>
+</html>
