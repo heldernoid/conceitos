@@ -17,93 +17,29 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 
 ### Públicos · serviços públicos reimaginados
 
-| # | Projecto | Estado |
-|---|----------|--------|
-| 01 | [Saúde Digital](https://conceitos.org/projectos/publicos/saudedigital/) | Disponível |
-| 02 | [Governo Digital](https://conceitos.org/projectos/publicos/governodigital/) | Disponível |
-| 03 | [Educação Digital](https://conceitos.org/projectos/publicos/educacaodigital/) | Disponível |
-| 04 | [Finanças Digitais](https://conceitos.org/projectos/publicos/financasdigitais/) | Disponível |
-| 05 | [Justiça Digital](https://conceitos.org/projectos/publicos/justicadigital/) | Disponível |
-| 06 | [Trabalho Digital](https://conceitos.org/projectos/publicos/trabalhodigital/) | Disponível |
-| 07 | [Transportes Digitais](https://conceitos.org/projectos/publicos/transportesdigitais/) | Disponível |
-| 08 | [Terras Digitais](https://conceitos.org/projectos/publicos/terrasdigitais/) | Disponível |
-| 09 | [Sociedade Aberta](https://conceitos.org/projectos/publicos/sociedadeaberta/) | Disponível |
-| 10 | [Vida Civil](https://conceitos.org/projectos/publicos/vidacivil/) | Disponível |
-| 11 | [Resiliência Climática](https://conceitos.org/projectos/publicos/resilienciaclimatica/) | Disponível |
-| 12 | [Eleições Digitais](https://conceitos.org/projectos/publicos/eleicoesdigitais/) | Disponível |
-| 13 | [Senda](https://conceitos.org/projectos/publicos/senda/) | Disponível |
+| # | Projecto |
+|---|----------|
+| 01 | [Saúde Digital](projectos/publicos/saudedigital/) |
+| 02 | [Governo Digital](projectos/publicos/governodigital/) |
+| 03 | [Educação Digital](projectos/publicos/educacaodigital/) |
+| 04 | [Finanças Digitais](projectos/publicos/financasdigitais/) |
+| 05 | [Justiça Digital](projectos/publicos/justicadigital/) |
+| 06 | [Trabalho Digital](projectos/publicos/trabalhodigital/) |
+| 07 | [Transportes Digitais](projectos/publicos/transportesdigitais/) |
+| 08 | [Terras Digitais](projectos/publicos/terrasdigitais/) |
+| 09 | [Sociedade Aberta](projectos/publicos/sociedadeaberta/) |
+| 10 | [Vida Civil](projectos/publicos/vidacivil/) |
+| 11 | [Resiliência Climática](projectos/publicos/resilienciaclimatica/) |
+| 12 | [Eleições Digitais](projectos/publicos/eleicoesdigitais/) |
+| 13 | [Senda](projectos/publicos/senda/) |
 
 ### Produtos · ferramentas para o quotidiano
 
-| # | Projecto | Estado |
-|---|----------|--------|
-| P01 | [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) | Disponível |
-| P02 | [KuVona](https://conceitos.org/projectos/produtos/kuvona/) | Disponível |
-| P03 | [Comunidade](https://conceitos.org/projectos/produtos/comunidade/) | Disponível |
-
-### Saúde Digital
-
-Reimaginação da plataforma nacional de saúde com cinco superfícies interligadas: registo clínico electrónico (EMR), app do cidadão, farmácia comunitária, vigilância epidemiológica e auditoria clínica.
-
-### Governo Digital
-
-Reimaginação dos serviços de governação civil e transparência do Estado com cinco superfícies: bilhete de identidade electrónico (eBI), app do cidadão, balcão de atendimento digitalizado, orçamento aberto e auditoria pública.
-
-### Educação Digital
-
-Reimaginação da plataforma nacional de educação com cinco superfícies: gestão escolar integrada (SIGE), portal do professor, caderno electrónico do aluno, biblioteca pública nacional e portal de matrículas.
-
-### Finanças Digitais
-
-Reimaginação do sistema fiscal e orçamental com cinco superfícies: portal do cidadão (NUIT e IRS pessoal), declaração comercial (IRPC), eFactura para independentes e comerciantes, portal da Autoridade Tributária e interoperabilidade com a SISTAFE.
-
-### Justiça Digital
-
-Reimaginação do acesso à justiça com cinco superfícies: portal do cidadão (acompanhamento processual e certidões), tribunal comunitário digitalizado, cadastro predial, portal do MJCR e registos públicos (civil, comercial e predial).
-
-### Trabalho Digital
-
-Reimaginação do sistema de trabalho e protecção social com cinco superfícies: portal do trabalhador, portal do empregador, INSS (segurança social), IGT (inspecção do trabalho) e INEFP (formação profissional).
-
-### Transportes Digitais
-
-Reimaginação do sistema nacional de transportes com cinco superfícies: portal do condutor, portal do operador, INATTER (inspecção e licenciamento), transporte multimodal e PRM (passagem de fronteira).
-
-### Terras Digitais
-
-Reimaginação do sistema de gestão fundiária com cinco superfícies: portal do cidadão, portal da empresa, SPGC (cadastro e gestão), fiscalização e dashboard nacional.
-
-### Sociedade Aberta
-
-Reimaginação do acesso à informação pública com cinco superfícies: portal do cidadão, portal da empresa, ferramentas para jornalistas, plataforma pública de dados abertos e portal do titular de dados.
-
-### Vida Civil
-
-Reimaginação do registo civil com seis superfícies: portal do cidadão, conservatória, família, hospital, sucessão e gestão de dados sensíveis.
-
-### Resiliência Climática
-
-Reimaginação da resposta a desastres naturais com oito superfícies: portal do cidadão, painel de gestão, ajuda humanitária, reconstrução, voluntariado, terreno, memorial e coordenação de campo.
-
-### Eleições Digitais
-
-Reimaginação do processo eleitoral com sete superfícies: portal do cidadão, mesa de voto, observação eleitoral, resultados, painel da CNE, primeira vez e integração com Vida Civil.
-
-### Senda
-
-Reimaginação do sistema nacional de equivalências e candidaturas académicas com oito superfícies: registo, candidatura, trajectória, equivalências, resultados, verificação de certificados e painel institucional.
-
-### Lavoura
-
-Assistente agrícola digital para o agricultor moçambicano com oito superfícies: onboarding, caderno de campo, planeamento de plantio, diagnóstico de culturas, mercado local, agenda, associação de produtores e painel de gestão.
-
-### KuVona
-
-Plataforma de jornalismo e transparência cívica com sete superfícies: portal da cidadã, editora, triagem, publicação, arquivo, transparência e acesso judicial a informação de interesse público.
-
-### Comunidade
-
-Plataforma de doações e transparência comunitária com sete superfícies: portal do doador, portal do recebedor, fluxo de doação, verificação, auditoria, painel de estado e relatório público.
+| # | Projecto |
+|---|----------|
+| P01 | [Lavoura](projectos/produtos/lavoura/) |
+| P02 | [KuVona](projectos/produtos/kuvona/) |
+| P03 | [Comunidade](projectos/produtos/comunidade/) |
 
 ## Estrutura
 
