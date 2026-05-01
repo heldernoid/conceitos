@@ -1,0 +1,1121 @@
+/* =========================================================
+   LAVOURA · Assistente Agrícola Digital de Moçambique
+   v0.1 · Abril 2026
+   ─────────────────────────────────────────────────────────
+   Paleta: terra · folha · sol · céu
+   Tipografia: Inter (UI) + Lora (headlines campanha) + Mono
+   Princípio: visível ao sol · botões grandes · áudio sempre
+   ========================================================= */
+
+:root {
+  /* ── TERRA · castanho · primary ── */
+  --terra-50:    #faf6f1;
+  --terra-100:   #f0e4d2;
+  --terra-200:   #e0c8a4;
+  --terra-300:   #c9a772;
+  --terra-500:   #95683d;
+  --terra-700:   #6b4423;   /* PRIMARY · marca Lavoura */
+  --terra-800:   #523319;
+  --terra-900:   #3a2410;
+  --terra-950:   #241509;
+
+  /* ── FOLHA · verde · crescimento/sucesso ── */
+  --folha-50:    #f3faea;
+  --folha-100:   #e2f5cd;
+  --folha-300:   #a3d062;
+  --folha-500:   #65a30d;
+  --folha-600:   #4d7c0f;   /* sucesso · "está bom" */
+  --folha-700:   #3f6212;
+  --folha-900:   #1a2e05;
+
+  /* ── SOL · amarelo · atenção/alerta ── */
+  --sol-50:      #fffbeb;
+  --sol-100:     #fef3c7;
+  --sol-300:     #fcd34d;
+  --sol-500:     #f59e0b;   /* atenção · "olha bem" */
+  --sol-600:     #d97706;
+  --sol-700:     #b45309;
+  --sol-900:     #78350f;
+
+  /* ── CÉU · azul · clima/chuva ── */
+  --ceu-50:      #f0f9ff;
+  --ceu-100:     #e0f2fe;
+  --ceu-300:     #7dd3fc;
+  --ceu-500:     #0ea5e9;
+  --ceu-600:     #0284c7;   /* clima · chuva · vento */
+  --ceu-800:     #075985;
+
+  /* ── ALERTA · vermelho · problema ── */
+  --perigo-50:   #fef2f2;
+  --perigo-500:  #ef4444;
+  --perigo-600:  #dc2626;   /* praga · seca · perda */
+  --perigo-700:  #b91c1c;
+  --perigo-900:  #7f1d1d;
+
+  /* ── PEDRA · cinzas warm ── */
+  --pedra-50:    #fafaf9;
+  --pedra-100:   #f5f5f4;
+  --pedra-200:   #e7e5e4;
+  --pedra-300:   #d6d3d1;
+  --pedra-400:   #a8a29e;
+  --pedra-500:   #78716c;   /* texto secundário */
+  --pedra-600:   #57534e;
+  --pedra-700:   #44403c;   /* texto principal */
+  --pedra-900:   #1c1917;
+
+  /* ── Surface ── */
+  --bg-page:     #faf6f1;   /* terra-50 · papel quente */
+  --bg-card:     #ffffff;
+  --bg-subtle:   #f5f0e8;   /* warm subtle */
+  --text:        #1c1917;
+  --text-2:      #44403c;
+  --text-3:      #78716c;
+  --border:      #e7e5e4;
+  --border-2:    #f0e4d2;
+
+  /* ── Sombras ── */
+  --sh-1: 0 1px 3px rgba(60,30,10,0.08), 0 1px 2px rgba(60,30,10,0.04);
+  --sh-2: 0 4px 12px rgba(60,30,10,0.10), 0 2px 4px rgba(60,30,10,0.05);
+  --sh-3: 0 8px 24px rgba(60,30,10,0.14), 0 4px 8px rgba(60,30,10,0.06);
+
+  /* ── Tipografia ── */
+  --f-ui:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-serif: 'Lora', 'Source Serif Pro', Georgia, serif;
+  --f-mono:  'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 14px;
+  --r-4: 20px;
+
+  /* Tamanhos para uso ao sol · dedo grosso */
+  --tap-min: 56px;
+  --ico-lg: 32px;
+  --ico-xl: 48px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text);
+  font-family: var(--f-ui);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--terra-700); text-decoration: none; }
+a:hover { color: var(--terra-800); text-decoration: underline; text-underline-offset: 2px; }
+
+img, svg { display: block; max-width: 100%; }
+
+hr { border: 0; border-top: 1px solid var(--border); margin: 14px 0; }
+hr.thick { border-top: 3px solid var(--terra-700); margin: 24px 0; }
+
+::selection { background: var(--terra-200); color: var(--terra-900); }
+
+/* =========================================================
+   GOVSTRIP · faixa institucional
+   ========================================================= */
+.govstrip {
+  background: var(--terra-950);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  font-family: var(--f-mono);
+  letter-spacing: 0.02em;
+  padding: 5px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.govstrip .sep { color: rgba(255,255,255,0.35); }
+
+.lavoura-stripe {
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--terra-700) 0%, var(--terra-700) 25%,
+    var(--folha-600) 25%, var(--folha-600) 50%,
+    var(--sol-500) 50%, var(--sol-500) 75%,
+    var(--ceu-600) 75%, var(--ceu-600) 100%
+  );
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+  box-shadow: 0 1px 0 var(--border);
+}
+.topbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--terra-900);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.topbar .brand:hover { text-decoration: none; }
+.topbar .brand .mark {
+  width: 40px;
+  height: 40px;
+  background: var(--terra-700);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  font-family: var(--f-serif);
+}
+.topbar .brand .stack { display: flex; flex-direction: column; line-height: 1.1; }
+.topbar .brand span:nth-child(1) {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--terra-900);
+  font-family: var(--f-serif);
+}
+.topbar .brand small {
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1px;
+}
+.topbar .nav { display: flex; gap: 2px; flex: 1; margin-left: 16px; }
+.topbar .nav a {
+  padding: 8px 12px;
+  color: var(--text-2);
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.topbar .nav a:hover { background: var(--terra-50); color: var(--terra-700); }
+.topbar .nav a.active { background: var(--terra-700); color: #fff; }
+.topbar .nav a.active:hover { background: var(--terra-800); color: #fff; }
+.topbar .right { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+.topbar .conn { display: flex; align-items: center; gap: 6px; font-size: 11px; font-family: var(--f-mono); color: var(--text-3); }
+.topbar .conn .d { width: 6px; height: 6px; background: var(--folha-500); border-radius: 50%; }
+.topbar .conn.offline .d { background: var(--sol-500); }
+
+.idbadge { display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; background: var(--terra-50); border: 1px solid var(--border); border-radius: 999px; }
+.idbadge .av { width: 32px; height: 32px; border-radius: 50%; background: var(--folha-600); color: #fff; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.idbadge .who { line-height: 1.2; }
+.idbadge .who b { font-size: 13px; display: block; color: var(--text); font-weight: 600; }
+.idbadge .who span { font-size: 10px; color: var(--text-3); }
+
+/* =========================================================
+   SCENE NAV
+   ========================================================= */
+.scenenav {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 65px;
+  z-index: 70;
+}
+.scenenav a {
+  padding: 12px 14px;
+  font-size: 11px;
+  font-family: var(--f-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 500;
+}
+.scenenav a:hover { color: var(--text); text-decoration: none; }
+.scenenav a.active { color: var(--terra-700); border-bottom-color: var(--terra-700); }
+
+/* =========================================================
+   SCENE
+   ========================================================= */
+.scene { padding: 36px 24px; border-bottom: 1px solid var(--border-2); }
+.scene.alt { background: var(--bg-subtle); }
+.scene.dark { background: var(--terra-900); color: rgba(255,255,255,0.92); }
+.scene.folha { background: var(--folha-700); color: #fff; }
+.scene-h { max-width: 1280px; margin: 0 auto 22px; display: flex; align-items: flex-start; gap: 18px; }
+.scene-h .sn {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  background: var(--terra-700);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  flex: 0 0 auto;
+}
+.scene.dark .scene-h .sn { background: var(--sol-500); color: var(--terra-900); }
+.scene.folha .scene-h .sn { background: var(--sol-500); color: var(--folha-900); }
+.scene-h .lab { flex: 1; }
+.scene-h .lab b { display: block; font-size: 17px; color: var(--terra-900); font-weight: 700; letter-spacing: -0.005em; font-family: var(--f-serif); }
+.scene.dark .scene-h .lab b, .scene.folha .scene-h .lab b { color: #fff; }
+.scene-h .lab span { display: block; font-size: 12px; color: var(--text-3); margin-top: 4px; }
+.scene.dark .scene-h .lab span, .scene.folha .scene-h .lab span { color: rgba(255,255,255,0.75); }
+.scene-c { max-width: 1280px; margin: 0 auto; }
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+.t-h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.012em; color: var(--terra-900); line-height: 1.15; margin: 0; font-family: var(--f-serif); }
+.t-h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.005em; color: var(--terra-900); line-height: 1.2; margin: 0; font-family: var(--f-serif); }
+.t-h3 { font-size: 17px; font-weight: 600; color: var(--text); margin: 0; }
+.t-overline { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--text-3); text-transform: uppercase; font-weight: 600; }
+.t-meta { font-size: 12px; color: var(--text-3); }
+.mono { font-family: var(--f-mono); }
+.serif { font-family: var(--f-serif); }
+.num { text-align: right; font-family: var(--f-mono); }
+
+.headline {
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--terra-900);
+  line-height: 1.1;
+  font-family: var(--f-serif);
+}
+.headline.xl { font-size: 52px; }
+.headline.lg { font-size: 36px; }
+.headline.md { font-size: 26px; }
+.headline.dark { color: #fff; }
+
+.deck { color: var(--text-2); font-size: 17px; line-height: 1.55; }
+.deck.dark { color: rgba(255,255,255,0.85); }
+
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0 14px;
+}
+.section-rule::before, .section-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--terra-700);
+}
+.section-rule b {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terra-700);
+  font-weight: 700;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  overflow: hidden;
+  box-shadow: var(--sh-1);
+}
+.card .hd {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-2);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+.card .hd b { color: var(--text); font-weight: 600; font-size: 14px; }
+.card .bd { padding: 16px 18px; }
+.card.flat { box-shadow: none; }
+.card.dark { background: var(--terra-800); color: #fff; border-color: var(--terra-700); }
+.card.dark .hd { background: var(--terra-900); border-bottom-color: var(--terra-700); }
+.card.dark .hd b { color: #fff; }
+.card.folha { border-left: 4px solid var(--folha-600); }
+.card.sol { border-left: 4px solid var(--sol-500); }
+.card.ceu { border-left: 4px solid var(--ceu-600); }
+.card.perigo { border-left: 4px solid var(--perigo-600); }
+.card.terra { border-left: 4px solid var(--terra-700); }
+
+/* =========================================================
+   BUTTONS · grandes · dedo grosso · ao sol
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--terra-700);
+  color: #fff;
+  border: 2px solid var(--terra-700);
+  border-radius: var(--r-2);
+  font-family: var(--f-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s, transform 0.08s;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.btn:active { transform: scale(0.98); }
+.btn:hover { background: var(--terra-800); border-color: var(--terra-800); text-decoration: none; color: #fff; }
+.btn.lg { padding: 14px 24px; font-size: 16px; min-height: 56px; }
+.btn.xl { padding: 18px 28px; font-size: 18px; min-height: 64px; }
+.btn.sm { padding: 7px 14px; font-size: 13px; min-height: 36px; }
+.btn.block { width: 100%; }
+.btn.folha { background: var(--folha-600); border-color: var(--folha-600); }
+.btn.folha:hover { background: var(--folha-700); border-color: var(--folha-700); }
+.btn.sol { background: var(--sol-500); border-color: var(--sol-500); color: var(--terra-900); }
+.btn.sol:hover { background: var(--sol-600); border-color: var(--sol-600); color: var(--terra-900); }
+.btn.perigo { background: var(--perigo-600); border-color: var(--perigo-600); }
+.btn.secondary { background: #fff; color: var(--terra-700); border-color: var(--terra-300); }
+.btn.secondary:hover { background: var(--terra-50); color: var(--terra-800); border-color: var(--terra-500); }
+.btn.ghost { background: transparent; color: var(--text-2); border-color: transparent; }
+.btn.ghost:hover { background: var(--pedra-100); color: var(--text); border-color: transparent; }
+
+/* Botão de áudio · sempre presente */
+.btn-audio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  background: var(--ceu-100);
+  color: var(--ceu-800);
+  border: 2px solid var(--ceu-300);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.btn-audio:hover { background: var(--ceu-300); }
+.btn-audio.playing { background: var(--ceu-600); color: #fff; border-color: var(--ceu-600); animation: audio-pulse 1.4s infinite; }
+@keyframes audio-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(2,132,199,0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(2,132,199,0); }
+}
+
+/* Botão de fala · entrada por voz */
+.btn-mic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--sol-500);
+  color: var(--terra-900);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: var(--sh-2);
+}
+
+/* Floating audio orb · all-screen */
+.fab-audio {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--terra-700);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: var(--sh-3);
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 12px; color: var(--text-2); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+.input, .select, .textarea {
+  font-family: var(--f-ui);
+  font-size: 16px;
+  color: var(--text);
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: var(--r-2);
+  padding: 12px 14px;
+  min-height: 48px;
+}
+.input.lg, .select.lg { padding: 16px 18px; font-size: 17px; min-height: 56px; }
+.input.sm, .select.sm { padding: 6px 10px; font-size: 13px; min-height: 36px; }
+.input:focus, .select:focus, .textarea:focus { outline: 0; border-color: var(--terra-700); box-shadow: 0 0 0 3px rgba(107,68,35,0.15); }
+.input.mono { font-family: var(--f-mono); }
+.textarea { resize: vertical; min-height: 88px; }
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--pedra-100);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.badge.folha { background: var(--folha-100); color: var(--folha-700); border-color: var(--folha-300); }
+.badge.sol { background: var(--sol-100); color: var(--sol-700); border-color: var(--sol-300); }
+.badge.ceu { background: var(--ceu-100); color: var(--ceu-800); border-color: var(--ceu-300); }
+.badge.perigo { background: var(--perigo-50); color: var(--perigo-700); border-color: rgba(220,38,38,0.3); }
+.badge.terra { background: var(--terra-100); color: var(--terra-800); border-color: var(--terra-300); }
+.badge.dark { background: var(--terra-900); color: #fff; border-color: var(--terra-900); }
+
+/* Lang pill · trilingue */
+.lang-pill {
+  display: inline-flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff;
+}
+.lang-pill button {
+  padding: 6px 14px;
+  background: transparent;
+  border: 0;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--f-ui);
+  cursor: pointer;
+  color: var(--text-3);
+}
+.lang-pill button.active { background: var(--terra-700); color: #fff; }
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table thead th {
+  text-align: left;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+  padding: 10px 14px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+.table tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border-2); vertical-align: middle; }
+.table tbody tr:hover { background: var(--terra-50); }
+.table .num { font-family: var(--f-mono); text-align: right; }
+
+/* =========================================================
+   KPI · grandes
+   ========================================================= */
+.kpi {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  padding: 18px 20px;
+}
+.kpi .lbl {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.kpi .num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--terra-900);
+  margin-top: 6px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: left;
+  font-family: var(--f-serif);
+}
+.kpi.folha .num { color: var(--folha-700); }
+.kpi.sol .num { color: var(--sol-700); }
+.kpi.ceu .num { color: var(--ceu-800); }
+.kpi.perigo .num { color: var(--perigo-700); }
+.kpi .delta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 6px;
+}
+.kpi.dark { background: var(--terra-800); border-color: var(--terra-700); }
+.kpi.dark .lbl { color: rgba(255,255,255,0.6); }
+.kpi.dark .num { color: #fff; }
+.kpi.dark .delta { color: rgba(255,255,255,0.7); }
+
+/* =========================================================
+   BANNERS
+   ========================================================= */
+.banner {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--r-2);
+  border-left: 4px solid;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.banner .ic {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+.banner.folha { background: var(--folha-50); border-color: var(--folha-600); color: var(--folha-900); }
+.banner.folha .ic { background: var(--folha-600); }
+.banner.sol { background: var(--sol-50); border-color: var(--sol-500); color: var(--sol-900); }
+.banner.sol .ic { background: var(--sol-500); color: var(--terra-900); }
+.banner.ceu { background: var(--ceu-50); border-color: var(--ceu-600); color: var(--ceu-800); }
+.banner.ceu .ic { background: var(--ceu-600); }
+.banner.perigo { background: var(--perigo-50); border-color: var(--perigo-600); color: var(--perigo-700); }
+.banner.perigo .ic { background: var(--perigo-600); }
+.banner.terra { background: var(--terra-50); border-color: var(--terra-700); color: var(--terra-900); }
+.banner.terra .ic { background: var(--terra-700); }
+
+/* =========================================================
+   ROWS / GRID
+   ========================================================= */
+.row { display: flex; gap: 8px; align-items: center; }
+.row.spread { justify-content: space-between; }
+.row.wrap { flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; }
+.grid { display: grid; gap: 14px; }
+.grid.g-2 { grid-template-columns: 1fr 1fr; }
+.grid.g-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid.g-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+.av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--terra-700);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.av.sm { width: 32px; height: 32px; font-size: 12px; }
+.av.lg { width: 56px; height: 56px; font-size: 18px; }
+.av.xl { width: 80px; height: 80px; font-size: 24px; }
+.av.folha { background: var(--folha-600); }
+.av.sol { background: var(--sol-500); color: var(--terra-900); }
+.av.ceu { background: var(--ceu-600); }
+
+/* =========================================================
+   MESU AVATAR · o conselheiro digital
+   ========================================================= */
+.mesu {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--terra-50);
+  border: 2px solid var(--terra-300);
+  border-radius: 999px;
+  padding: 4px 14px 4px 4px;
+}
+.mesu .face {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--terra-500) 0%, var(--terra-700) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.mesu .face::before, .mesu .face::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  top: 14px;
+}
+.mesu .face::before { left: 10px; }
+.mesu .face::after { right: 10px; }
+.mesu .name { font-size: 12px; font-weight: 600; color: var(--terra-800); }
+
+/* =========================================================
+   SIGNATURE 1 · MACHAMBA-CARD · cartão de parcela
+   ========================================================= */
+.machamba-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--r-3);
+  overflow: hidden;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.machamba-card:hover { border-color: var(--terra-500); box-shadow: var(--sh-2); }
+.machamba-card .map {
+  height: 140px;
+  background:
+    radial-gradient(circle at 30% 40%, var(--folha-300) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, var(--terra-300) 0%, transparent 40%),
+    linear-gradient(135deg, var(--folha-100) 0%, var(--terra-100) 100%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10px;
+}
+.machamba-card .map .gps {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  background: rgba(255,255,255,0.85);
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--text-2);
+}
+.machamba-card .info {
+  padding: 14px 18px;
+}
+.machamba-card .info b {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--terra-900);
+  font-family: var(--f-serif);
+}
+.machamba-card .info .meta {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+.machamba-card .info .stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-2);
+}
+.machamba-card .info .stat {
+  text-align: center;
+}
+.machamba-card .info .stat .v {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--terra-800);
+}
+.machamba-card .info .stat .l {
+  font-size: 10px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+.machamba-card .culture-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.culture-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  color: #fff;
+}
+.culture-tag.tomate { background: var(--perigo-600); }
+.culture-tag.milho { background: var(--sol-600); }
+.culture-tag.feijao { background: var(--folha-700); }
+.culture-tag.mandioca { background: var(--terra-500); }
+.culture-tag.couve { background: var(--folha-600); }
+.culture-tag.cebola { background: var(--terra-300); color: var(--terra-900); }
+
+/* =========================================================
+   SIGNATURE 2 · TAREFA-ROW · tarefa do dia
+   ========================================================= */
+.tarefa-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 44px;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2);
+  align-items: center;
+  transition: background 0.12s;
+  margin-bottom: 8px;
+}
+.tarefa-row:hover { background: var(--terra-50); }
+.tarefa-row .check {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--terra-300);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  font-size: 20px;
+  color: transparent;
+  transition: all 0.15s;
+}
+.tarefa-row .check:hover { border-color: var(--folha-600); background: var(--folha-50); }
+.tarefa-row.done .check { background: var(--folha-600); border-color: var(--folha-600); color: #fff; }
+.tarefa-row .info { min-width: 0; }
+.tarefa-row .info b { font-size: 15px; color: var(--text); display: block; line-height: 1.3; }
+.tarefa-row.done .info b { text-decoration: line-through; color: var(--text-3); }
+.tarefa-row .info .meta { font-size: 12px; color: var(--text-3); margin-top: 2px; display: flex; gap: 8px; align-items: center; }
+.tarefa-row .info .meta .culture-tag { padding: 1px 6px; font-size: 9px; }
+
+/* =========================================================
+   SIGNATURE 3 · CALENDAR-STRIP · 12 meses fita horizontal
+   ========================================================= */
+.calendar-strip {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  overflow: hidden;
+}
+.calendar-strip .strip {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.calendar-strip .month {
+  text-align: center;
+  padding: 10px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--f-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-right: 1px solid var(--border-2);
+  position: relative;
+}
+.calendar-strip .month:last-child { border-right: 0; }
+.calendar-strip .month.now { background: var(--terra-700); color: #fff; }
+.calendar-strip .month.now::after {
+  content: 'hoje';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  background: var(--terra-700);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.calendar-strip .seasons {
+  position: relative;
+  height: 80px;
+  background: linear-gradient(to right,
+    var(--ceu-100) 0%, var(--ceu-100) 25%,
+    var(--folha-100) 25%, var(--folha-100) 75%,
+    var(--sol-100) 75%, var(--sol-100) 100%);
+}
+.calendar-strip .crop-band {
+  position: absolute;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+}
+.calendar-strip .crop-band.tomate { background: var(--perigo-600); top: 8px; left: 0%; width: 33%; }
+.calendar-strip .crop-band.milho { background: var(--sol-600); top: 42px; left: 16%; width: 50%; }
+
+/* =========================================================
+   SIGNATURE 4 · DIAGNOSTICO-CAMERA · folha doente
+   ========================================================= */
+.diag-camera {
+  background: var(--terra-900);
+  border-radius: var(--r-3);
+  overflow: hidden;
+  position: relative;
+}
+.diag-camera .viewfinder {
+  height: 380px;
+  background:
+    radial-gradient(circle at 50% 50%, var(--folha-700) 0%, var(--folha-900) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.diag-camera .leaf-frame {
+  position: absolute;
+  inset: 60px;
+  border: 3px dashed var(--sol-300);
+  border-radius: 50% 0 50% 50%;
+  pointer-events: none;
+}
+.diag-camera .controls {
+  padding: 18px;
+  background: var(--terra-900);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.diag-camera .controls .capture {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border: 4px solid var(--sol-500);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.diag-camera .result {
+  background: #fff;
+  padding: 18px;
+}
+.diag-camera .result.ok { border-top: 4px solid var(--folha-600); }
+.diag-camera .result.warn { border-top: 4px solid var(--sol-500); }
+.diag-camera .result.bad { border-top: 4px solid var(--perigo-600); }
+
+/* =========================================================
+   SIGNATURE 5 · PRECO-BOARD · painel de preços
+   ========================================================= */
+.preco-board {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-3);
+  overflow: hidden;
+}
+.preco-board .hd {
+  background: var(--terra-900);
+  color: #fff;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.preco-board .hd b { color: #fff; font-weight: 600; font-size: 14px; }
+.preco-board .market {
+  display: grid;
+  grid-template-columns: 1fr 100px 80px;
+  gap: 14px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-2);
+  align-items: center;
+}
+.preco-board .market:last-child { border-bottom: 0; }
+.preco-board .market b { font-size: 14px; color: var(--text); }
+.preco-board .market .price {
+  font-family: var(--f-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--terra-800);
+  text-align: right;
+}
+.preco-board .market .delta {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.preco-board .market .delta.up { background: var(--folha-100); color: var(--folha-700); }
+.preco-board .market .delta.down { background: var(--perigo-50); color: var(--perigo-600); }
+.preco-board .market .delta.same { background: var(--pedra-100); color: var(--text-3); }
+.preco-board .market .meta { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+/* =========================================================
+   SIGNATURE 6 · CADERNO-ENTRY · diário da machamba
+   ========================================================= */
+.caderno-entry {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--terra-300);
+  border-radius: var(--r-2);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.caderno-entry .date {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.caderno-entry .body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  font-family: var(--f-serif);
+}
+.caderno-entry .body em {
+  color: var(--text-3);
+  font-style: italic;
+}
+.caderno-entry .photos {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.caderno-entry .photos .photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  background: var(--folha-100);
+  border: 1px solid var(--border);
+}
+.caderno-entry .audio {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--ceu-700);
+  font-weight: 500;
+}
+.caderno-entry.terra { border-left-color: var(--terra-700); }
+.caderno-entry.folha { border-left-color: var(--folha-600); }
+.caderno-entry.sol { border-left-color: var(--sol-500); }
+.caderno-entry.perigo { border-left-color: var(--perigo-600); }
+
+/* =========================================================
+   PHONE FRAME
+   ========================================================= */
+.phone {
+  width: 380px;
+  background: #1a1a1a;
+  border-radius: 36px;
+  padding: 12px;
+  box-shadow: var(--sh-3);
+}
+.phone .screen {
+  background: var(--bg-page);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  height: 760px;
+  display: flex;
+  flex-direction: column;
+}
+.phone .statusbar {
+  background: #fff;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-family: var(--f-mono);
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border-2);
+}
+.phone .header {
+  background: #fff;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.phone .header h1 { margin: 0; font-size: 18px; font-family: var(--f-serif); color: var(--terra-900); }
+.phone .header small { font-size: 11px; color: var(--text-3); display: block; }
+
+.phone .body { padding: 18px; flex: 1; overflow-y: auto; }
+
+.phone .tabbar {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 6px 0;
+}
+.phone .tabbar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  font-size: 9px;
+  color: var(--text-3);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.phone .tabbar a.active { color: var(--terra-700); }
+.phone .tabbar a .ico { font-size: 22px; line-height: 1; }
+
+/* Pull quote */
+.pull-quote {
+  font-family: var(--f-serif);
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--terra-900);
+  border-left: 4px solid var(--terra-700);
+  padding: 4px 0 4px 16px;
+  margin: 14px 0;
+}
+.pull-quote cite {
+  display: block;
+  font-size: 12px;
+  font-style: normal;
+  font-family: var(--f-ui);
+  color: var(--text-3);
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}

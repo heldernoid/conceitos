@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Sistema · Lavoura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+<style>
+  .demo-block { padding: 40px 24px; max-width: 1280px; margin: 0 auto; border-bottom: 1px solid var(--border-2); }
+  .swatch { display: flex; flex-direction: column; gap: 6px; padding: 12px; background: #fff; border: 1px solid var(--border); border-radius: 6px; }
+  .swatch .chip { width: 100%; height: 56px; border-radius: 4px; }
+  .swatch .lbl { font-size: 11px; font-family: var(--f-mono); color: var(--text); font-weight: 600; }
+  .swatch .val { font-size: 10px; font-family: var(--f-mono); color: var(--text-3); }
+</style>
+</head>
+<body>
+
+<div class="govstrip"><span>Lavoura · sistema</span><span class="sep">·</span><span>v0.1 · paleta · tipografia · 6 signatures</span><span style="margin-left:auto">design-system</span></div>
+<div class="lavoura-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">L</span><span class="stack"><span>Lavoura</span><small>Design System</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Sistema</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="plantio.html">Plantio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="mercado.html">Mercado</a>
+    <a href="caderno.html">Caderno</a>
+    <a href="associacao.html">Associação</a>
+  </nav>
+</header>
+
+<section class="demo-block">
+  <div class="t-overline">Capa</div>
+  <h1 class="headline xl" style="margin:14px 0 12px">Lavoura · sistema de design</h1>
+  <p class="deck" style="max-width:760px">Paleta terra · campo · sol · céu. Tipografia Inter para UI · Lora para headlines em registo serif. Botões grandes · ícones grandes · cores fortes para visibilidade ao sol. Áudio em todo o lado. 3 línguas. Offline-first. Foi pensado para uma produtora a ler com 1 metro de distância · uma mão suja de terra · sob luz forte de meio-dia.</p>
+</section>
+
+<!-- PALETA -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Paleta · 4 famílias temáticas</b></div>
+
+  <div class="t-overline" style="margin:14px 0 8px">Terra · primary · castanho de barro</div>
+  <div class="grid" style="grid-template-columns:repeat(7,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#241509"></div><div class="lbl">terra-950</div><div class="val">#241509</div></div>
+    <div class="swatch"><div class="chip" style="background:#3a2410"></div><div class="lbl">terra-900</div><div class="val">#3a2410</div></div>
+    <div class="swatch"><div class="chip" style="background:#523319"></div><div class="lbl">terra-800</div><div class="val">#523319</div></div>
+    <div class="swatch"><div class="chip" style="background:#6b4423"></div><div class="lbl">terra-700</div><div class="val">#6b4423 · PRIMARY</div></div>
+    <div class="swatch"><div class="chip" style="background:#95683d"></div><div class="lbl">terra-500</div><div class="val">#95683d</div></div>
+    <div class="swatch"><div class="chip" style="background:#c9a772"></div><div class="lbl">terra-300</div><div class="val">#c9a772</div></div>
+    <div class="swatch"><div class="chip" style="background:#f0e4d2"></div><div class="lbl">terra-100</div><div class="val">#f0e4d2</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Folha · sucesso / crescimento · verde lima</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#1a2e05"></div><div class="lbl">folha-900</div><div class="val">#1a2e05</div></div>
+    <div class="swatch"><div class="chip" style="background:#3f6212"></div><div class="lbl">folha-700</div><div class="val">#3f6212</div></div>
+    <div class="swatch"><div class="chip" style="background:#4d7c0f"></div><div class="lbl">folha-600</div><div class="val">#4d7c0f · sucesso</div></div>
+    <div class="swatch"><div class="chip" style="background:#65a30d"></div><div class="lbl">folha-500</div><div class="val">#65a30d</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Sol · atenção · âmbar</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#78350f"></div><div class="lbl">sol-900</div><div class="val">#78350f</div></div>
+    <div class="swatch"><div class="chip" style="background:#b45309"></div><div class="lbl">sol-700</div><div class="val">#b45309</div></div>
+    <div class="swatch"><div class="chip" style="background:#f59e0b"></div><div class="lbl">sol-500</div><div class="val">#f59e0b · atenção</div></div>
+    <div class="swatch"><div class="chip" style="background:#fcd34d"></div><div class="lbl">sol-300</div><div class="val">#fcd34d</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Céu · clima / chuva · azul</div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#075985"></div><div class="lbl">ceu-800</div><div class="val">#075985</div></div>
+    <div class="swatch"><div class="chip" style="background:#0284c7"></div><div class="lbl">ceu-600</div><div class="val">#0284c7 · clima</div></div>
+    <div class="swatch"><div class="chip" style="background:#0ea5e9"></div><div class="lbl">ceu-500</div><div class="val">#0ea5e9</div></div>
+    <div class="swatch"><div class="chip" style="background:#7dd3fc"></div><div class="lbl">ceu-300</div><div class="val">#7dd3fc</div></div>
+  </div>
+
+  <div class="t-overline" style="margin:18px 0 8px">Perigo · praga · seca · vermelho</div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:10px">
+    <div class="swatch"><div class="chip" style="background:#7f1d1d"></div><div class="lbl">perigo-900</div><div class="val">#7f1d1d</div></div>
+    <div class="swatch"><div class="chip" style="background:#dc2626"></div><div class="lbl">perigo-600</div><div class="val">#dc2626 · praga</div></div>
+    <div class="swatch"><div class="chip" style="background:#ef4444"></div><div class="lbl">perigo-500</div><div class="val">#ef4444</div></div>
+  </div>
+</section>
+
+<!-- TIPOGRAFIA -->
+<section class="demo-block">
+  <div class="section-rule"><b>Tipografia · 3 famílias</b></div>
+  <div class="grid g-2" style="margin-top:18px;gap:32px">
+    <div>
+      <h1 class="headline xl">Headline · Lora 52</h1>
+      <h1 class="headline lg" style="margin:14px 0">Headline · Lora 36</h1>
+      <h2 class="headline md" style="margin:14px 0">Headline · Lora 26</h2>
+      <p class="deck" style="margin:18px 0">Deck · Inter 17 · sub-headlines descritivos</p>
+      <p class="t-h3" style="margin:14px 0">Section title · Inter 17</p>
+    </div>
+    <div>
+      <p style="font-size:15px;line-height:1.6">Corpo · Inter 15 · UI · maior do que o standard porque cidadão lê ao sol · com olhos cansados após manhã na machamba.</p>
+      <p class="serif" style="font-size:18px;line-height:1.6;margin:14px 0;color:var(--terra-800);font-style:italic">Lora · 18 · serif · headlines de campanha · pull quotes · momentos de prosa solene.</p>
+      <p class="t-meta" style="margin:14px 0">Meta · Inter 12 · text-3 · timestamps · localizações</p>
+      <p class="mono" style="font-size:13px;margin:14px 0">Mono · 13.8 mt/kg · 4,2 ton · GPS -25.91°S · IDs técnicos</p>
+      <p class="t-overline" style="margin:14px 0">Overline · uppercase mono 10 letterspacing</p>
+      <p class="pull-quote" style="margin:18px 0">"Cresci a ver a minha mãe vender mandioca. Hoje vendo tomate. A diferença é que sei o preço antes de levar a caixa."<cite>Sara · 34 anos · Boane</cite></p>
+    </div>
+  </div>
+</section>
+
+<!-- BUTTONS / BADGES -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Botões · grandes · dedo grosso · ao sol</b></div>
+  <div class="row" style="gap:8px;flex-wrap:wrap;margin-top:18px;margin-bottom:24px">
+    <button class="btn">Primary</button>
+    <button class="btn lg">Primary lg</button>
+    <button class="btn xl">Primary xl · 64px</button>
+    <button class="btn folha">Folha · sucesso</button>
+    <button class="btn sol">Sol · atenção</button>
+    <button class="btn perigo">Perigo</button>
+    <button class="btn secondary">Secondary</button>
+    <button class="btn ghost">Ghost</button>
+  </div>
+
+  <div class="row" style="gap:14px;align-items:center;margin-bottom:24px">
+    <button class="btn-audio">▶</button>
+    <button class="btn-audio playing">||</button>
+    <button class="btn-mic">🎤</button>
+    <span class="t-meta">Botões de áudio · sempre visíveis · cidadão ouve em vez de ler · Mesu fala em 3 línguas</span>
+  </div>
+
+  <div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:18px">
+    <span class="badge">badge</span>
+    <span class="badge folha">✓ está bom</span>
+    <span class="badge sol">⚠ atenção</span>
+    <span class="badge ceu">☂ chuva</span>
+    <span class="badge perigo">✕ praga</span>
+    <span class="badge terra">terra</span>
+    <span class="badge dark">dark</span>
+  </div>
+
+  <div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:14px">
+    <span class="culture-tag tomate">TOMATE</span>
+    <span class="culture-tag milho">MILHO</span>
+    <span class="culture-tag feijao">FEIJÃO</span>
+    <span class="culture-tag mandioca">MANDIOCA</span>
+    <span class="culture-tag couve">COUVE</span>
+    <span class="culture-tag cebola">CEBOLA</span>
+  </div>
+
+  <div class="row" style="gap:14px;align-items:center">
+    <span class="lang-pill"><button class="active">PT</button><button>Changana</button><button>Macua</button></span>
+    <span class="t-meta">Selector trilingue · presente em todas as superfícies · acessível em 1 toque</span>
+  </div>
+</section>
+
+<!-- MESU -->
+<section class="demo-block">
+  <div class="section-rule"><b>Mesu · o conselheiro digital</b></div>
+  <div class="grid g-2" style="gap:32px;margin-top:18px;align-items:flex-start">
+    <div>
+      <div class="row" style="gap:12px;align-items:center;margin-bottom:14px">
+        <span class="mesu"><div class="face"></div><div class="name">Mesu</div></span>
+        <span class="t-meta">"Mesu" = "olho" em Changana · vê a machamba contigo</span>
+      </div>
+      <p style="font-size:14px;line-height:1.65;margin:0 0 14px">Mesu é o assistente que conversa com a Sara. Não é chatbot frio · não é régulo autoritário · não é técnico distante. É <b>extensionista paciente</b> · prático · que fala a língua dela · que se cala quando ela sabe e se faz ouvir quando precisa.</p>
+
+      <p style="font-size:14px;line-height:1.65;margin:0">Mesu nunca diz "Tu deves". Diz "Sara · vê só · choveu pouco esta semana · talvez seja boa altura para regar". <b>Sugere · não impõe.</b> Sara é a dona da machamba.</p>
+    </div>
+
+    <div class="card terra">
+      <div class="hd"><b>Tom de Mesu · 5 regras</b><span class="t-meta">guia de voz</span></div>
+      <div class="bd">
+        <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+          <li><b>Sempre cumprimenta</b> · "Bom dia Sara" · "Boa tarde mamã"</li>
+          <li><b>Nomeia coisas concretas</b> · "as tuas tomateiras" · não "as suas plantações"</li>
+          <li><b>Dá razão antes de recomendação</b> · "choveu 4mm · então rega"</li>
+          <li><b>Reconhece quando não sabe</b> · "esta praga não consigo identificar bem · vê com o extensionista"</li>
+          <li><b>Não usa jargão</b> · "fungo" não "Phytophthora infestans" · só científico se Sara perguntar mais</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 1 · MACHAMBA-CARD -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Componente 1 · Machamba-card · cartão de parcela</b></div>
+  <div class="grid g-3" style="gap:14px;margin-top:18px">
+    <div class="machamba-card">
+      <div class="map">
+        <span class="gps">-25.985° · 32.418°</span>
+      </div>
+      <div class="info">
+        <b>Machamba do tomate</b>
+        <div class="meta">Boane · Mahubo · 2,4 ha</div>
+        <div class="culture-tags">
+          <span class="culture-tag tomate">TOMATE</span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">2,4</div><div class="l">hectares</div></div>
+          <div class="stat"><div class="v">52</div><div class="l">dias plantado</div></div>
+          <div class="stat"><div class="v">38</div><div class="l">para colher</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="machamba-card">
+      <div class="map" style="background:linear-gradient(135deg, var(--sol-100) 0%, var(--sol-300) 100%)">
+        <span class="gps">-25.987° · 32.421°</span>
+      </div>
+      <div class="info">
+        <b>Machamba do milho</b>
+        <div class="meta">Boane · Mahubo · 2,8 ha</div>
+        <div class="culture-tags">
+          <span class="culture-tag milho">MILHO</span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">2,8</div><div class="l">hectares</div></div>
+          <div class="stat"><div class="v">110</div><div class="l">dias plantado</div></div>
+          <div class="stat"><div class="v">28</div><div class="l">para colher</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="machamba-card">
+      <div class="map" style="background:linear-gradient(135deg, var(--folha-100) 0%, var(--folha-300) 100%)">
+        <span class="gps">-25.984° · 32.416°</span>
+      </div>
+      <div class="info">
+        <b>Hortinha · perto de casa</b>
+        <div class="meta">Boane · Mahubo · 0,8 ha</div>
+        <div class="culture-tags">
+          <span class="culture-tag couve">COUVE</span>
+          <span class="culture-tag feijao">FEIJÃO</span>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v">0,8</div><div class="l">hectares</div></div>
+          <div class="stat"><div class="v">∞</div><div class="l">contínua</div></div>
+          <div class="stat"><div class="v">7</div><div class="l">dias colheita</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 2 · TAREFA-ROW -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 2 · Tarefa-row · tarefa do dia</b></div>
+  <div style="max-width:680px;margin:18px auto 0">
+    <div class="tarefa-row done">
+      <div class="check">✓</div>
+      <div class="info">
+        <b>Regar tomateiras · cedo</b>
+        <div class="meta"><span class="culture-tag tomate">TOMATE</span> · 06h00 · sol forte previsto</div>
+      </div>
+      <button class="btn-audio">▶</button>
+    </div>
+
+    <div class="tarefa-row">
+      <div class="check"></div>
+      <div class="info">
+        <b>Verificar pragas nas folhas</b>
+        <div class="meta"><span class="culture-tag tomate">TOMATE</span> · usa o diagnóstico Mesu se vires manchas</div>
+      </div>
+      <button class="btn-audio">▶</button>
+    </div>
+
+    <div class="tarefa-row">
+      <div class="check"></div>
+      <div class="info">
+        <b>Aplicar adubo de cobertura</b>
+        <div class="meta"><span class="culture-tag milho">MILHO</span> · ureia · 100 kg/ha · enquanto está seco</div>
+      </div>
+      <button class="btn-audio">▶</button>
+    </div>
+
+    <div class="tarefa-row">
+      <div class="check"></div>
+      <div class="info">
+        <b>Colher couves para o mercado</b>
+        <div class="meta"><span class="culture-tag couve">COUVE</span> · 20-30 maços · venda à porta amanhã</div>
+      </div>
+      <button class="btn-audio">▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 3 · CALENDAR-STRIP -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Componente 3 · Calendar-strip · 12 meses agrícolas</b></div>
+  <div style="max-width:980px;margin:18px auto 0">
+    <div class="calendar-strip">
+      <div class="strip">
+        <div class="month">Jul</div>
+        <div class="month">Ago</div>
+        <div class="month">Set</div>
+        <div class="month">Out</div>
+        <div class="month now">Nov</div>
+        <div class="month">Dez</div>
+        <div class="month">Jan</div>
+        <div class="month">Fev</div>
+        <div class="month">Mar</div>
+        <div class="month">Abr</div>
+        <div class="month">Mai</div>
+        <div class="month">Jun</div>
+      </div>
+      <div class="seasons">
+        <div class="crop-band tomate">🍅 Tomate · ciclo 1 · plantio Jul → colheita Out</div>
+        <div class="crop-band milho">🌽 Milho · plantio Out → colheita Mar</div>
+      </div>
+      <div style="padding:14px 18px;background:#fff;border-top:1px solid var(--border);font-size:11px;color:var(--text-3)">
+        <span style="display:inline-block;width:14px;height:14px;background:var(--ceu-100);vertical-align:middle;border-radius:2px"></span> Estação seca ·
+        <span style="display:inline-block;width:14px;height:14px;background:var(--folha-100);margin-left:6px;vertical-align:middle;border-radius:2px"></span> Estação das chuvas ·
+        <span style="display:inline-block;width:14px;height:14px;background:var(--sol-100);margin-left:6px;vertical-align:middle;border-radius:2px"></span> Calor seco
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 4 · DIAGNOSTICO -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 4 · Diagnóstico-camera · folha doente</b></div>
+  <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;margin-top:18px;align-items:flex-start">
+    <div class="diag-camera">
+      <div class="viewfinder">
+        <div class="leaf-frame"></div>
+        <div style="position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.6);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-family:var(--f-mono)">Aponta para a folha doente</div>
+      </div>
+      <div class="controls">
+        <button class="btn ghost" style="color:#fff">📷 Galeria</button>
+        <button class="capture"></button>
+        <button class="btn ghost" style="color:#fff">🔄</button>
+      </div>
+      <div class="result warn">
+        <div class="row spread" style="margin-bottom:10px">
+          <b style="color:var(--sol-700);font-size:15px">⚠ Possível · míldio do tomate</b>
+          <span class="badge sol" style="font-size:10px">82% certeza</span>
+        </div>
+        <p style="font-size:13px;line-height:1.6;margin:0 0 12px">As manchas castanhas com aréola amarelada nas folhas inferiores são típicas de míldio. <b>Aparece quando há humidade alta + temperatura baixa</b> · choveu esta semana · risco real.</p>
+        <div class="row" style="gap:8px"><button class="btn folha sm">Ver tratamento</button><button class="btn-audio">▶</button></div>
+      </div>
+    </div>
+
+    <div class="col" style="gap:14px;padding-top:14px">
+      <div class="card">
+        <div class="hd"><b>Como funciona offline</b></div>
+        <div class="bd">
+          <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Modelo de classificação de imagens corre <b>no telemóvel da Sara</b> · não na nuvem. Reconhece 28 pragas e doenças mais comuns em culturas MZ · com 78-92% de precisão.</p>
+          <p style="font-size:13px;line-height:1.6;margin:0">Quando há rede · imagens duvidosas (abaixo de 70%) sobem para revisão por agrónomo · resposta em 24h. Sara não fica à espera.</p>
+        </div>
+      </div>
+
+      <div class="banner sol"><span class="ic">!</span><div><b>Mesu nunca diz "está tudo bem"</b> sem certeza alta. Em caso de dúvida · diz "não consigo confirmar · vê com o extensionista do SDAE em Boane · tens encontro marcado para quinta".</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE 5 · PRECO-BOARD -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Componente 5 · Preço-board · 3 mercados em tempo quase real</b></div>
+  <div style="max-width:680px;margin:18px auto 0">
+    <div class="preco-board">
+      <div class="hd">
+        <div><b>Tomate · 1 kg · hoje 30.04.2026</b><div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px">3 mercados · preço médio</div></div>
+        <span class="badge dark" style="font-size:10px">actualizado há 2h</span>
+      </div>
+
+      <div class="market">
+        <div>
+          <b>Mercado do Zimpeto</b>
+          <div class="meta">Maputo Cidade · 38 km de Boane · grossista</div>
+        </div>
+        <div class="price">42 MT</div>
+        <div class="delta up">↑ 8%</div>
+      </div>
+
+      <div class="market">
+        <div>
+          <b>Mercado do Bazar</b>
+          <div class="meta">Matola · 22 km de Boane · retalho</div>
+        </div>
+        <div class="price">52 MT</div>
+        <div class="delta same">=</div>
+      </div>
+
+      <div class="market">
+        <div>
+          <b>Agregador · Hortifruti SA</b>
+          <div class="meta">Visita machambas · paga em 7 dias</div>
+        </div>
+        <div class="price">38 MT</div>
+        <div class="delta down">↓ 4%</div>
+      </div>
+    </div>
+
+    <div class="banner ceu" style="margin-top:14px"><span class="ic">i</span><div><b>Subiu 8% no Zimpeto</b> porque a chuva atrasou os tomates de Inhambane. <b>Boa altura para vender · próxima semana pode descer.</b> Hortifruti paga menos mas vem buscar à machamba · poupas 2 800 MT em transporte.</div></div>
+  </div>
+</section>
+
+<!-- SIGNATURE 6 · CADERNO -->
+<section class="demo-block">
+  <div class="section-rule"><b>Componente 6 · Caderno-entry · diário da machamba</b></div>
+  <div style="max-width:680px;margin:18px auto 0">
+    <div class="caderno-entry terra">
+      <div class="date">06.11.2026 · 06h12 · machamba do tomate</div>
+      <div class="body">
+        Reguei as tomateiras antes do sol. Mesu disse para regar cedo porque ia ficar quente · acertou. Vi 3 plantas com folhas amarelas na fila do meio · vou fotografar amanhã. <em>O Joel ajudou a levar os baldes.</em>
+      </div>
+      <div class="photos">
+        <div class="photo"></div>
+        <div class="photo" style="background:var(--terra-100)"></div>
+      </div>
+      <div class="audio">🔊 Áudio · 22 segundos · em Changana</div>
+    </div>
+
+    <div class="caderno-entry sol">
+      <div class="date">04.11.2026 · 14h28 · machamba do tomate</div>
+      <div class="body">
+        Apareceu praga nas folhas baixas. Mesu disse que era míldio · 82% certeza. Pulverizei com sulfato de cobre · 4 colheres · 20 litros · uma vez. Próxima quinta vou ver se passou.
+      </div>
+    </div>
+
+    <div class="caderno-entry folha">
+      <div class="date">28.10.2026 · 16h00 · venda</div>
+      <div class="body">
+        Vendi <b>120 kg de couve</b> à dona Olga · 35 mt/kg. Total · <b>4 200 MT</b>. Comprei sementes de feijão para a Esperança plantar com a turma da escola. <em>Ela ficou feliz.</em>
+      </div>
+    </div>
+
+    <div class="caderno-entry perigo">
+      <div class="date">14.10.2026 · 09h44 · machamba do milho</div>
+      <div class="body">
+        <b>Cabra fugiu</b> e comeu uma fila inteira de milho novo. Vou pedir ao Manuel do vizinho para ajudar a fechar a vedação no fim-de-semana. Perdi cerca de 30 plantas.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNERS -->
+<section class="demo-block" style="background:var(--bg-subtle)">
+  <div class="section-rule"><b>Banners · 5 estados</b></div>
+  <div class="grid g-2" style="margin-top:18px;gap:14px">
+    <div class="banner folha"><span class="ic">✓</span><div><b>Está bom.</b> Tomateiras com bom aspecto · todas as tarefas de hoje feitas · pode descansar à tarde se quiser.</div></div>
+    <div class="banner sol"><span class="ic">!</span><div><b>Olha bem.</b> Manchas escuras nas folhas baixas do tomate · pode ser míldio · diagnostica com a câmara antes que se espalhe.</div></div>
+    <div class="banner ceu"><span class="ic">☂</span><div><b>Vai chover.</b> Próximas 36 horas · 18-22 mm previstos · adia a aplicação de adubo · espera por terça-feira.</div></div>
+    <div class="banner perigo"><span class="ic">✕</span><div><b>Praga confirmada.</b> Lagarta-do-cartucho na fila norte do milho · age esta semana · espera-te uma quebra de 20% se não tratar agora.</div></div>
+    <div class="banner terra"><span class="ic">i</span><div><b>Mesu sugere.</b> Já passaram 38 dias desde o transplante · próxima semana é a fase boa para amarrar as tomateiras às canas · prepara-te.</div></div>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section class="demo-block">
+  <div class="section-rule"><b>KPIs · estados</b></div>
+  <div class="grid g-4" style="margin-top:18px;gap:14px">
+    <div class="kpi"><div class="lbl">Hectares totais</div><div class="num">6,0</div><div class="delta">3 parcelas</div></div>
+    <div class="kpi folha"><div class="lbl">Receita 2026 até hoje</div><div class="num">182 K MT</div><div class="delta">tomate + couve · vs 142 K em 2025</div></div>
+    <div class="kpi sol"><div class="lbl">Tarefas hoje</div><div class="num">4</div><div class="delta">2 feitas · 2 a fazer</div></div>
+    <div class="kpi perigo"><div class="lbl">Praga activa</div><div class="num">1</div><div class="delta">míldio · tomateiras fila do meio</div></div>
+  </div>
+  <div class="grid g-4" style="margin-top:14px;gap:14px">
+    <div class="kpi dark"><div class="lbl">Próxima colheita</div><div class="num">38d</div><div class="delta">tomate · 2,4 ha · ~ 4 ton est.</div></div>
+    <div class="kpi"><div class="lbl">Preço hoje · Zimpeto</div><div class="num">42 MT</div><div class="delta">↑ 8% · boa altura</div></div>
+    <div class="kpi"><div class="lbl">Chuva últimos 7d</div><div class="num">4 mm</div><div class="delta">abaixo média sazonal</div></div>
+    <div class="kpi"><div class="lbl">Sincronização</div><div class="num">14 min</div><div class="delta">offline há 3h · normal</div></div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--terra-950);color:rgba(255,255,255,0.7);margin-top:40px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--terra-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;font-family:var(--f-serif)">L</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700;font-family:var(--f-serif)">Lavoura · sistema</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">v0.1 · 6 componentes signature</div>
+        </div>
+      </div>
+    </div>
+    <a href="onboarding.html" class="btn sol sm">Próxima · Onboarding ›</a>
+  </div>
+</footer>
+
+</body>
+</html>

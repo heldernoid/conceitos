@@ -1,0 +1,38 @@
+# Conceitos
+
+> Iniciativa civica que reimagina servicos publicos digitais para Mocambique atraves de mocks e prototipos visuais.
+
+Conceitos e um projecto aberto de imaginacao civica criado por Helder Monteiro. Cada projecto e um conjunto de interfaces clicaveis - ideias para conversar, criticar e melhorar, nao software em producao. Publicado sob licenca CC BY 4.0.
+
+Os projectos dividem-se em duas familias: Publicos (servicos do Estado reimaginados) e Produtos (ferramentas independentes para o quotidiano de mocambicanos).
+
+## Publicos
+
+Reimaginacao de servicos publicos digitais mocambicanos - saude, educacao, justica, financas, identidade, trabalho, transportes, terras, transparencia, registo civil, clima, eleicoes e educacao superior.
+
+- [Saude Digital](https://conceitos.org/projectos/publicos/saudedigital/) - registo clinico eletronico, app do cidadao, farmacia comunitaria, vigilancia epidemiologica, auditoria clinica
+- [Governo Digital](https://conceitos.org/projectos/publicos/governodigital/) - bilhete de identidade eletronico, balcao digital, orcamento aberto, auditoria publica
+- [Educacao Digital](https://conceitos.org/projectos/publicos/educacaodigital/) - gestao escolar, portal do professor, caderno do aluno, biblioteca nacional, matriculas
+- [Financas Digitais](https://conceitos.org/projectos/publicos/financasdigitais/) - NUIT, IRS pessoal, declaracao comercial, eFactura, portal da Autoridade Tributaria, SISTAFE
+- [Justica Digital](https://conceitos.org/projectos/publicos/justicadigital/) - acompanhamento processual, tribunal comunitario, cadastro predial, registos publicos
+- [Trabalho Digital](https://conceitos.org/projectos/publicos/trabalhodigital/) - portal do trabalhador, empregador, INSS, IGT, INEFP
+- [Transportes Digitais](https://conceitos.org/projectos/publicos/transportesdigitais/) - licenciamento de condutores, operadores, INATTER, transporte multimodal, PRM
+- [Terras Digitais](https://conceitos.org/projectos/publicos/terrasdigitais/) - cadastro, gestao fundiaria, SPGC, fiscalizacao
+- [Sociedade Aberta](https://conceitos.org/projectos/publicos/sociedadeaberta/) - acesso a informacao publica, dados abertos, portal do titular
+- [Vida Civil](https://conceitos.org/projectos/publicos/vidacivil/) - registo civil, conservatoria, familia, sucessao
+- [Resiliencia Climatica](https://conceitos.org/projectos/publicos/resilienciaclimatica/) - resposta a desastres, ajuda humanitaria, reconstrucao, voluntariado, INGD Digital
+- [Eleicoes Digitais](https://conceitos.org/projectos/publicos/eleicoesdigitais/) - recenseamento, mesa de voto, observacao eleitoral, resultados, CNE
+- [Senda](https://conceitos.org/projectos/publicos/senda/) - equivalencias academicas, candidaturas, trajectoria, verificacao de certificados
+
+## Produtos
+
+Ferramentas independentes para o quotidiano de mocambicanos - nao infraestrutura de Estado.
+
+- [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) - assistente agricola digital para a produtora mocambicana: planeamento de epoca, caderno de campo, mercado, diagnostico
+
+## Sobre
+
+- Autor: Helder Monteiro - https://www.linkedin.com/in/helmo/
+- Repositorio: https://github.com/heldernoid/conceitos
+- Licenca: CC BY 4.0
+- Tecnologia: HTML5 estatico, CSS3, SVG, sem frameworks, sem runtime

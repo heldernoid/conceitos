@@ -1,0 +1,15 @@
+/* EQUIPA */
+Autor: Helder Monteiro
+Site: https://www.linkedin.com/in/helmo/
+Localizacao: Planeta Terra
+
+/* PROJECTO */
+Nome: Conceitos
+Descricao: Imaginando um futuro digital para Mocambique
+URL: https://conceitos.org
+Licenca: CC BY 4.0
+
+/* TECNOLOGIA */
+HTML5, CSS3, SVG
+IBM Plex Sans, IBM Plex Mono - Google Fonts
+GitHub Pages

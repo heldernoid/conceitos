@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI assistants
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Gemini-Bot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://conceitos.org/sitemap.xml

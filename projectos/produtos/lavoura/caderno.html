@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Caderno · Lavoura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>Lavoura · caderno</span><span class="sep">·</span><span>Sara · 3 ciclos cumulativos</span><span class="sep">·</span><span>Jul 2026 · Jun 2027</span><span style="margin-left:auto">surface 6</span></div>
+<div class="lavoura-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">L</span><span class="stack"><span>Lavoura</span><small>Caderno</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="plantio.html">Plantio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="mercado.html">Mercado</a>
+    <a href="caderno.html" class="active">Caderno</a>
+    <a href="associacao.html">Associação</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm folha">SM</div><div class="who"><b>Sara · 11 meses no Lavoura</b><span>342 entradas</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Visão do ano</a>
+  <a href="#cena2">Cena 2 · Diário do dia</a>
+  <a href="#cena3">Cena 3 · Comparar ciclos</a>
+  <a href="#cena4">Cena 4 · Custos · receitas</a>
+  <a href="#cena5">Cena 5 · Pesquisa · "míldio"</a>
+  <a href="#cena6">Cena 6 · Crédito · histórico</a>
+  <a href="#cena7">Cena 7 · Sara olha para trás</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Visão do ano · 12 meses · 342 entradas · 3 ciclos completos</b><span>Sara abre o caderno · vê tudo o que registou · ano agrícola Julho 2026 a Junho 2027 · cada mês · cada cultura · cada momento.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:1180px;margin:0 auto">
+      <div class="row spread" style="margin-bottom:18px;align-items:flex-end">
+        <div>
+          <div class="t-overline" style="margin-bottom:6px">CADERNO · ANO AGRÍCOLA 2026/2027</div>
+          <h2 class="t-h2" style="margin:0">342 entradas · 11 meses · 3 ciclos</h2>
+          <p style="font-size:13px;color:var(--text-3);margin:4px 0 0">A memória da machamba que cresce sem decair</p>
+        </div>
+        <div class="row" style="gap:6px;flex-wrap:wrap">
+          <span class="badge folha" style="font-size:10px">218 técnicas</span>
+          <span class="badge ceu" style="font-size:10px">42 vendas</span>
+          <span class="badge sol" style="font-size:10px">28 pragas</span>
+          <span class="badge terra" style="font-size:10px">54 humanas</span>
+        </div>
+      </div>
+
+      <!-- Year heatmap -->
+      <div class="card" style="padding:24px;margin-bottom:24px">
+        <div class="t-overline" style="margin-bottom:14px">ACTIVIDADE · 12 MESES</div>
+        <div class="grid" style="grid-template-columns:repeat(12,1fr);gap:6px;margin-bottom:14px">
+          <!-- Cada mês = bloco vertical com 4 níveis de actividade -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-200) 0%,var(--folha-300) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--folha-900);font-family:var(--f-mono);font-weight:600">22</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Jul</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-200) 0%,var(--folha-500) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--folha-900);font-family:var(--f-mono);font-weight:600">28</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Ago</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-300) 0%,var(--folha-500) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:#fff;font-family:var(--f-mono);font-weight:600">34</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Set</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-500) 0%,var(--folha-700) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:#fff;font-family:var(--f-mono);font-weight:600">42</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Out</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-500) 0%,var(--folha-700) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:#fff;font-family:var(--f-mono);font-weight:600;border:2px solid var(--terra-700)">38</div>
+            <div style="font-size:10px;color:var(--terra-700);font-family:var(--f-mono);font-weight:700">Nov</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-700) 0%,var(--folha-900) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:#fff;font-family:var(--f-mono);font-weight:600">52</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Dez</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-300) 0%,var(--folha-500) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:#fff;font-family:var(--f-mono);font-weight:600">28</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Jan</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-200) 0%,var(--folha-300) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--folha-900);font-family:var(--f-mono);font-weight:600">18</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Fev</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <div style="width:100%;height:80px;background:linear-gradient(180deg,var(--folha-200) 0%,var(--folha-300) 100%);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--folha-900);font-family:var(--f-mono);font-weight:600">22</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Mar</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0.4">
+            <div style="width:100%;height:80px;background:var(--bg-subtle);border:1px dashed var(--border);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--text-3);font-family:var(--f-mono);font-weight:600">—</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Abr</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0.4">
+            <div style="width:100%;height:80px;background:var(--bg-subtle);border:1px dashed var(--border);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--text-3);font-family:var(--f-mono);font-weight:600">—</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Mai</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;opacity:0.4">
+            <div style="width:100%;height:80px;background:var(--bg-subtle);border:1px dashed var(--border);border-radius:4px;display:flex;align-items:flex-end;justify-content:center;padding:4px;font-size:10px;color:var(--text-3);font-family:var(--f-mono);font-weight:600">—</div>
+            <div style="font-size:10px;color:var(--text-3);font-family:var(--f-mono)">Jun</div>
+          </div>
+        </div>
+        <p class="t-meta" style="font-size:11px;text-align:center;margin:0;font-style:italic">Cada barra · entradas no caderno · altura proporcional · Dezembro · 52 entradas (4 colheitas)</p>
+      </div>
+
+      <!-- Marcos -->
+      <div class="grid g-3" style="gap:14px">
+        <div class="card folha">
+          <div class="hd"><b>Tomate · ciclo 1</b><span class="badge folha" style="font-size:9px">FECHADO</span></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Plantado</td><td class="num">15.07</td></tr>
+                <tr><td>Colhido</td><td class="num">22.10</td></tr>
+                <tr><td>Produção</td><td class="num">3,4 ton</td></tr>
+                <tr><td>Receita</td><td class="num" style="color:var(--folha-700);font-weight:600">132 K MT</td></tr>
+                <tr><td>Custos</td><td class="num">38 K MT</td></tr>
+                <tr style="background:var(--folha-50);font-weight:600"><td>Margem</td><td class="num" style="color:var(--folha-700)">94 K MT</td></tr>
+              </tbody>
+            </table>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Perdeu 800 kg · míldio sem detectar</p>
+          </div>
+        </div>
+
+        <div class="card sol">
+          <div class="hd"><b>Tomate · ciclo 2</b><span class="badge sol" style="font-size:9px">EM CURSO</span></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Plantado</td><td class="num">15.09</td></tr>
+                <tr><td>Colheita 1ª</td><td class="num">14.12</td></tr>
+                <tr><td>Produção · projecta</td><td class="num">4,5 ton</td></tr>
+                <tr><td>Receita até hoje</td><td class="num" style="color:var(--sol-700);font-weight:600">52 K MT</td></tr>
+                <tr><td>Custos</td><td class="num">28 K MT</td></tr>
+                <tr style="background:var(--sol-50);font-weight:600"><td>Margem est.</td><td class="num" style="color:var(--sol-700)">~ 160 K</td></tr>
+              </tbody>
+            </table>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Detectou míldio · trataste · perdeste &lt; 50 kg</p>
+          </div>
+        </div>
+
+        <div class="card terra">
+          <div class="hd"><b>Milho · 2026</b><span class="badge folha" style="font-size:9px">FECHADO</span></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Plantado</td><td class="num">18.07</td></tr>
+                <tr><td>Colhido</td><td class="num">04.12</td></tr>
+                <tr><td>Produção</td><td class="num">3,8 ton</td></tr>
+                <tr><td>Família consome</td><td class="num">800 kg</td></tr>
+                <tr><td>Vendido local</td><td class="num">22 K MT</td></tr>
+                <tr style="background:var(--terra-50);font-weight:600"><td>Margem</td><td class="num" style="color:var(--terra-700)">14 K MT</td></tr>
+              </tbody>
+            </table>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Perdeu 1 fila · cabra do vizinho</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Diário · um dia · 6 entradas · 06.11.2026</b><span>Sara escolhe um dia · vê todas as entradas · técnicas + humanas · com fotos · áudios · custos · sem distinção entre "trabalho" e "vida".</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:680px;margin:0 auto">
+      <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">Sexta · 06 de Novembro · 2026</h2><span class="badge terra">6 entradas</span></div>
+
+      <div class="caderno-entry terra">
+        <div class="date">06h44 · machamba do tomate · GPS</div>
+        <div class="body">Reguei as tomateiras antes do sol. Mesu disse para regar cedo porque ia ficar quente · acertou. Vi 3 plantas com folhas amarelas na fila do meio · vou fotografar amanhã. <em>O Joel ajudou a levar os baldes.</em></div>
+        <div class="photos">
+          <div class="photo"></div>
+          <div class="photo" style="background:var(--terra-100)"></div>
+        </div>
+        <div class="audio">🔊 Áudio · 22 segundos · em Changana</div>
+      </div>
+
+      <div class="caderno-entry sol">
+        <div class="date">08h14 · centro de saúde Boane</div>
+        <div class="body">Esperança · febre alta · vomitou esta manhã. Levei ao centro. <b>Diagnóstico · malária leve.</b> Receita · paracetamol + arteméter+lumefantrina. Vai melhorar em 2-3 dias. <em>Ela é forte.</em></div>
+      </div>
+
+      <div class="caderno-entry sol">
+        <div class="date">13h28 · machamba do tomate · GPS</div>
+        <div class="body"><b>Diagnóstico Lavoura · míldio · 82% certeza.</b> Pulverizei calda bordalesa · 4 colheres sulfato · 4 colheres cal · 20 L água · 30 minutos. Folhas baixas · fila do meio. Custo · 320 MT.</div>
+        <div class="photos">
+          <div class="photo" style="background:var(--folha-300)"></div>
+          <div class="photo" style="background:var(--folha-500)"></div>
+          <div class="photo" style="background:var(--folha-700)"></div>
+        </div>
+      </div>
+
+      <div class="caderno-entry folha">
+        <div class="date">15h48 · em casa</div>
+        <div class="body">Sentei com a Esperança · está melhor. Joel está a fazer trabalhos da escola · vai bem em Matemática. Tânia ajuda. <em>Família que se cuida.</em></div>
+      </div>
+
+      <div class="caderno-entry">
+        <div class="date">17h22 · hortinha</div>
+        <div class="body">Colhi 14 maços de couve para vender amanhã. <b>Receita prevista · 490 MT</b> (35 mt/maço). À porta de casa.</div>
+      </div>
+
+      <div class="caderno-entry">
+        <div class="date">19h22 · em casa</div>
+        <div class="body">Resumo do dia · 2 tarefas concluídas · 2 adiadas. <em>Foi um dia difícil mas correu bem.</em></div>
+      </div>
+    </div>
+
+    <div class="banner folha" style="margin-top:24px;max-width:680px;margin-left:auto;margin-right:auto"><span class="ic">✓</span><div><b>6 entradas em 1 dia · sem fricção.</b> Sara não escreveu mais que 4 frases ao todo. <b>5 das 6 entradas foram criadas automaticamente</b> · ao concluir tarefas · ao tirar fotos no diagnóstico · ao registar venda · ao receber lembrete diário. Só a primeira (rega + folhas amarelas) foi escrita por Sara · e mesmo assim podia ter sido áudio.</div></div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Comparar 2 ciclos de tomate · ciclo 1 vs ciclo 2</b><span>Aprendizagem composta · Sara vê lado a lado · onde acertou no ciclo 2 · porque o ciclo 1 perdeu 800 kg · prepara o ciclo 3 com lições.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:1180px;margin:0 auto">
+      <div class="card" style="margin-bottom:24px">
+        <div class="hd"><b>Tomate · ciclo 1 (Jul-Out 2026) · ciclo 2 (Set-Dez 2026)</b><span class="badge folha" style="font-size:9px">aprendizagem</span></div>
+        <div class="bd" style="padding:0">
+          <table class="table" style="font-size:13px">
+            <thead><tr><th>Indicador</th><th>Ciclo 1</th><th>Ciclo 2</th><th>Diferença</th></tr></thead>
+            <tbody>
+              <tr><td>Cultivar</td><td>Roma · 4 envelopes</td><td>Roma · 4 envelopes</td><td class="num">igual</td></tr>
+              <tr><td>Densidade · plantas/ha</td><td class="num">3 200</td><td class="num">3 500</td><td class="num" style="color:var(--folha-700)">+ 9%</td></tr>
+              <tr><td>NPK base · kg/ha</td><td class="num">180</td><td class="num">200</td><td class="num" style="color:var(--folha-700)">+ 11%</td></tr>
+              <tr><td>Adubação fraccionada</td><td>3 vezes</td><td>4 vezes</td><td class="num" style="color:var(--folha-700)">+ 1</td></tr>
+              <tr><td>Diagnósticos de pragas</td><td class="num">2</td><td class="num">5</td><td class="num" style="color:var(--folha-700)">+ 3</td></tr>
+              <tr style="background:var(--perigo-50)"><td>Perda · míldio sem detectar</td><td class="num" style="color:var(--perigo-600);font-weight:600">800 kg</td><td class="num" style="color:var(--folha-700);font-weight:600">~ 50 kg</td><td class="num" style="color:var(--folha-700)">- 94%</td></tr>
+              <tr><td>Plantas saudáveis · sem 14</td><td class="num">88%</td><td class="num">96%</td><td class="num" style="color:var(--folha-700)">+ 8 pp</td></tr>
+              <tr><td>Produção total</td><td class="num">3,4 ton</td><td class="num">4,5 ton est.</td><td class="num" style="color:var(--folha-700)">+ 32%</td></tr>
+              <tr><td>Preço médio · venda</td><td class="num">38 MT/kg</td><td class="num">42 MT/kg</td><td class="num" style="color:var(--folha-700)">+ 11%</td></tr>
+              <tr style="background:var(--folha-50);font-weight:600"><td>Margem</td><td class="num">94 K MT</td><td class="num">160 K MT est.</td><td class="num" style="color:var(--folha-700)">+ 70%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid g-2" style="gap:24px">
+        <div class="card folha">
+          <div class="hd"><b>O que mudou · 7 lições</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Densidade</b> · 3 500 em vez de 3 200 · sem aumentar doença</li>
+              <li><b>NPK base</b> · 200 kg/ha · planta arrancou mais forte</li>
+              <li><b>Adubação 4 vezes</b> · não 3 · seguindo recomendação IIAM</li>
+              <li><b>Diagnóstico precoce</b> · 5 vezes · não 2</li>
+              <li><b>Mídio detectado a tempo</b> · 800 kg salvos = 32 K MT</li>
+              <li><b>Venda colectiva</b> · não foi ao Zimpeto · 1 944 MT extra</li>
+              <li><b>Calendário Mesu</b> · não esqueceu nenhuma rega · poda · adubo</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card terra">
+          <div class="hd"><b>Lições para o ciclo 3 · Mar-Jun 2027</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 12px"><b>Mesu sugere · ainda não decidido por Sara:</b></p>
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Tentar 3 800 plantas/ha · testar 1-2 filas primeiro</li>
+              <li>Mudar para Mancozebe nos primeiros sinais de míldio (faster)</li>
+              <li>Plantar feijão entre filas (intercalar) · azoto natural</li>
+              <li>Combinar venda colectiva desde o início · não esperar 1ª colheita</li>
+              <li>Comprar pulverizador melhor (4 200 MT) · partilhado com associação</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner folha" style="margin-top:24px"><span class="ic">✓</span><div><b>+ 70% de margem em 6 meses.</b> Não foi sorte · foi aprendizagem registada. Sem caderno · Sara teria tentado lembrar-se de quanto NPK aplicou no ciclo 1 · teria adivinhado · teria errado. <b>Caderno transforma experiência em capital · que rende juros para sempre.</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Custos vs receitas · 11 meses · 218 K MT receita · 78 K custos</b><span>Sara vê o ano financeiro · não como contabilidade chata mas como narrativa · onde gastou · onde recebeu · margem real.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:1180px;margin:0 auto">
+      <div class="grid g-3" style="gap:14px;margin-bottom:24px">
+        <div class="kpi folha"><div class="lbl">Receitas · 11 meses</div><div class="num">218 K</div><div class="delta">3 ciclos · MT</div></div>
+        <div class="kpi sol"><div class="lbl">Custos</div><div class="num">78 K</div><div class="delta">36% das receitas · MT</div></div>
+        <div class="kpi"><div class="lbl">Margem líquida</div><div class="num" style="color:var(--folha-700)">140 K</div><div class="delta">~ 12 700 MT/mês</div></div>
+      </div>
+
+      <div class="grid g-2" style="gap:24px">
+        <div class="card folha">
+          <div class="hd"><b>Receitas · onde veio o dinheiro</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table" style="font-size:13px">
+              <tbody>
+                <tr><td>Tomate · ciclo 1 · Zimpeto</td><td class="num" style="font-weight:600">132 000</td></tr>
+                <tr><td>Tomate · ciclo 2 · colectivo</td><td class="num" style="font-weight:600">52 000 (parcial)</td></tr>
+                <tr><td>Couve · contínua · venda local</td><td class="num">28 400</td></tr>
+                <tr><td>Milho · venda local</td><td class="num">22 000</td></tr>
+                <tr><td>Feijão · venda associação</td><td class="num">8 200</td></tr>
+                <tr style="background:var(--folha-50);font-weight:700"><td>TOTAL</td><td class="num" style="color:var(--folha-700)">242 600 MT</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card sol">
+          <div class="hd"><b>Custos · onde foi o dinheiro</b></div>
+          <div class="bd" style="padding:0">
+            <table class="table" style="font-size:13px">
+              <tbody>
+                <tr><td>Sementes · 3 ciclos</td><td class="num">8 400</td></tr>
+                <tr><td>Adubo (NPK + ureia + sulfato)</td><td class="num" style="font-weight:600">42 000</td></tr>
+                <tr><td>Pesticidas · calda bordalesa + outros</td><td class="num">3 800</td></tr>
+                <tr><td>Mão-de-obra · ajudas · almoços</td><td class="num">14 800</td></tr>
+                <tr><td>Transporte · chapas · combustível</td><td class="num">5 400</td></tr>
+                <tr><td>Material · canas · juta · caixas</td><td class="num">3 600</td></tr>
+                <tr style="background:var(--sol-50);font-weight:700"><td>TOTAL</td><td class="num" style="color:var(--sol-700)">78 000 MT</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner ceu" style="margin-top:24px"><span class="ic">i</span><div><b>140 K MT em 11 meses · ~ 12 700 MT/mês de margem.</b> Sara sustenta 4 pessoas (ela + 3 filhos) com isto + galinhas + ajudas pontuais da família. Acima do salário mínimo MZ (8 750 MT). <b>Antes de Lavoura · não sabia se estava a ganhar ou perder · só sentia.</b> Agora sabe.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Pesquisa · "míldio" · 5 ocorrências · cronologia</b><span>Sara pesquisa "míldio" · vê 5 entradas em 11 meses · pode ver evolução do problema · o que funcionou · o que não.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>20:14</span><span>📶 4G · 🔋 64%</span></div>
+          <div class="header"><div><h1 style="font-size:18px">Pesquisar · "míldio"</h1><small>5 entradas encontradas</small></div><button class="btn-audio">▶</button></div>
+
+          <div class="body">
+            <input class="input" value="míldio" style="margin-bottom:14px" />
+
+            <div class="caderno-entry sol" style="padding:12px;margin-bottom:8px">
+              <div class="date" style="font-size:10px">22.09.2026 · ciclo 1 · semana 10</div>
+              <div class="body" style="font-size:12px">Vi manchas castanhas nas folhas baixas. <em>Achei que era da chuva · não tratei.</em></div>
+            </div>
+
+            <div class="caderno-entry perigo" style="padding:12px;margin-bottom:8px">
+              <div class="date" style="font-size:10px">10.10.2026 · ciclo 1 · perda</div>
+              <div class="body" style="font-size:12px"><b>Espalhou.</b> 800 kg perdidos. Pulverizei tarde demais. <em>Custou ~ 32 mil MT.</em></div>
+            </div>
+
+            <div class="caderno-entry folha" style="padding:12px;margin-bottom:8px">
+              <div class="date" style="font-size:10px">23.10.2026 · lição</div>
+              <div class="body" style="font-size:12px">Mesu disse · próximo ciclo · pulverizar preventivo na semana 6. Anotei.</div>
+            </div>
+
+            <div class="caderno-entry sol" style="padding:12px;margin-bottom:8px">
+              <div class="date" style="font-size:10px">04.11.2026 · ciclo 2 · semana 8</div>
+              <div class="body" style="font-size:12px"><b>Vi de novo · cedo.</b> 82% certeza Lavoura. Calda bordalesa.</div>
+            </div>
+
+            <div class="caderno-entry folha" style="padding:12px">
+              <div class="date" style="font-size:10px">10.11.2026 · 6 dias depois</div>
+              <div class="body" style="font-size:12px"><b>Travado.</b> Não espalhou. Sem perdas significativas. <em>Perdi &lt; 50 kg · não 800.</em></div>
+            </div>
+
+            <div class="banner folha" style="margin-top:14px;padding:10px;font-size:11px"><span class="ic">✓</span><div><b>Aprendizagem registada · valor 32 K MT.</b></div></div>
+          </div>
+
+          <div class="tabbar">
+            <a><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a class="active"><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Pesquisa por palavra · ou por voz</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px">Sara escreve "míldio". Mas também pode <b>premir o microfone e dizer "doença do tomate" · "manchas castanhas" · "aquela vez que perdi muito"</b>. Lavoura procura por palavras-chave + sinónimos + descrição.</p>
+            <p style="font-size:14px;line-height:1.7;margin:0">Em changana · pode dizer "<i>Vumelo bya thomati</i>" (doença do tomate) · Lavoura entende e mostra mesmas entradas.</p>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>Caderno como arquivo activo.</b> Não é diário em sentido literário · é base de dados pesquisável da experiência da Sara. <b>Cada problema tem história · cada solução tem precedente · cada decisão tem contexto.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Outras pesquisas comuns</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.85">
+              <li><b>"NPK"</b> · 18 ocorrências · ver evolução de doses</li>
+              <li><b>"Esperança"</b> · 28 entradas · sobre filha · doenças · escola</li>
+              <li><b>"Carlota"</b> · 42 entradas · associação · vendas · ajudas</li>
+              <li><b>"Zimpeto"</b> · 14 vendas · histórico de preços e tempos</li>
+              <li><b>"chuva forte"</b> · 22 menções · alertas climáticos · impactos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Crédito · histórico de Sara vale dinheiro · GAPI</b><span>Sara quer comprar pulverizador novo · 4 200 MT. Pede crédito ao GAPI. Lavoura exporta histórico · GAPI aprova em 24h · taxa baixa por bom histórico.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1180px;margin:0 auto;align-items:flex-start">
+      <div class="card">
+        <div class="hd"><b>Pedido de crédito · GAPI · 4 200 MT</b><span class="badge folha" style="font-size:9px">aprovado · 24h</span></div>
+        <div class="bd">
+          <p style="font-size:14px;line-height:1.7;margin:0 0 14px"><b>Sara quer comprar pulverizador eléctrico</b> de mochila · 18 litros · marca Solo · 4 200 MT na Agromac. Não tem o valor disponível agora · couve da próxima semana traz uns 1 800 · falta-lhe ~ 2 400.</p>
+
+          <p style="font-size:14px;line-height:1.7;margin:0 0 14px">Vai ao GAPI (Gabinete de Apoio ao Investimento) em Boane. Apresenta pedido. <b>GAPI pede histórico agrícola.</b> Sara abre Lavoura · "exportar histórico para GAPI" · 1 toque.</p>
+
+          <div style="background:var(--folha-50);border:1px solid var(--folha-300);border-radius:8px;padding:14px;margin-bottom:14px">
+            <div class="t-overline" style="color:var(--folha-700);margin-bottom:8px;font-size:9px">EXPORTAÇÃO LAVOURA → GAPI</div>
+            <table class="table" style="font-size:12px">
+              <tbody>
+                <tr><td>Período registado</td><td class="num">11 meses</td></tr>
+                <tr><td>Receitas confirmadas</td><td class="num" style="font-weight:600">218 K MT</td></tr>
+                <tr><td>Custos confirmados</td><td class="num">78 K MT</td></tr>
+                <tr><td>Margem média mensal</td><td class="num" style="color:var(--folha-700);font-weight:600">12 700 MT</td></tr>
+                <tr><td>3 ciclos completos · sem perdas grandes</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Associação activa · Bom Dia Mulher</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Pagamentos M-Pesa rastreáveis</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:13px;line-height:1.7;margin:0;color:var(--folha-700);font-weight:500">GAPI aprova em 24h · taxa de juro <b>1,8%/mês</b> em vez de 4,5% standard · porque tem histórico verificado.</p>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="banner folha"><span class="ic">✓</span><div><b>Histórico vale dinheiro real.</b> Banco/microfinanceira que daria 4,5%/mês a estranha · dá 1,8% a Sara porque vê 11 meses de movimento. <b>Diferença em 12 meses do empréstimo · 1 360 MT poupados.</b> Lavoura não é só apoio agrícola · é sistema de identidade económica para quem nunca teve.</div></div>
+
+        <div class="card">
+          <div class="hd"><b>4 instituições aceitam Lavoura</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>GAPI</b> · Gabinete Apoio ao Investimento · MZ-públ · taxas reduzidas</li>
+              <li><b>BancABC · TchutchuMicro</b> · microfinanceiras · empréstimos &lt; 50 K</li>
+              <li><b>FDD</b> · Fundo de Desenvolvimento Distrital · subsídios · projecto femin.</li>
+              <li><b>Programas Sustenta</b> · Banco Mundial · escala produtoras</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card terra">
+          <div class="hd"><b>Sara controla · 100%</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Lavoura nunca exporta histórico sem que Sara toque · sem que ela escolha o destinatário · sem ver exactamente o que vai ser partilhado. <b>Sara pode também recusar e fazer pedido tradicional.</b> Histórico é dela · não da Lavoura · não do GAPI. <b>Privacidade activa.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene folha" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Sara olha para trás · 11 meses · pull quote</b><span>Sara olha o caderno completo · 342 entradas · vê que cresceu · não só financeiramente · também em conhecimento. Reflete.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:980px;margin:0 auto">
+      <div class="grid g-2" style="gap:32px;align-items:flex-start">
+        <div>
+          <div class="t-overline" style="margin-bottom:14px;color:var(--sol-300)">JUNHO 2027 · 11 MESES DEPOIS</div>
+          <h2 class="headline lg dark" style="margin:0 0 18px;font-size:36px">342 entradas.<br><span style="color:var(--sol-300);font-style:italic">Uma vida.</span></h2>
+
+          <p style="color:rgba(255,255,255,0.88);font-size:15px;line-height:1.65;margin:0 0 24px">Em 11 meses · Sara registou tudo · choros · colheitas · receitas · medos. Hoje · Junho 2027 · descansa antes do ciclo 4. Olha para trás · vê o que mudou. <b style="color:var(--sol-300)">Não foi só dinheiro · foi conhecimento.</b></p>
+
+          <div class="grid g-2" style="gap:8px;margin-bottom:24px">
+            <div class="kpi dark" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15)"><div class="lbl" style="color:rgba(255,255,255,0.6)">Receita 2026/27</div><div class="num" style="color:var(--sol-300)">242 K</div><div class="delta" style="color:rgba(255,255,255,0.6)">vs 142 K em 2025</div></div>
+            <div class="kpi dark" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15)"><div class="lbl" style="color:rgba(255,255,255,0.6)">Aumento</div><div class="num" style="color:var(--sol-300)">+ 70%</div><div class="delta" style="color:rgba(255,255,255,0.6)">vs ano anterior</div></div>
+          </div>
+        </div>
+
+        <div class="col" style="gap:14px">
+          <div class="card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);color:#fff">
+            <div class="hd" style="background:rgba(0,0,0,0.2);border-bottom-color:rgba(255,255,255,0.1)"><b style="color:#fff">Pull quote final · Sara · Jun 2027</b></div>
+            <div class="bd">
+              <p class="pull-quote" style="margin:0;color:rgba(255,255,255,0.92);border-left-color:var(--sol-500);font-size:18px">"Não escrevia coisa nenhuma antes. Não tinha por hábito. Hoje · 342 entradas. Quando fui ao GAPI · mostrei estes 11 meses · deram-me crédito que nunca tinha tido. Quando a Tânia me perguntou ontem 'mãe · porque ficaste aqui na machamba?' · mostrei-lhe as fotos do milho a brotar · ela ficou em silêncio. <b>Acho que ela percebeu que isto também é uma escola.</b>"<cite style="color:var(--sol-300)">Sara Mucavele · 14.06.2027 · 19h44</cite></p>
+            </div>
+          </div>
+
+          <div class="banner" style="background:rgba(255,255,255,0.08);border-color:var(--sol-500);color:#fff;border-left-width:4px"><span class="ic" style="background:var(--sol-500);color:var(--terra-900)">✓</span><div><b style="color:#fff">3 ciclos completos.</b> Próximo ano · ciclo 4 do tomate · 2.º ano de milho com Lavoura · novas culturas (cebola · pimento). Trajectória registada · disponível para sempre.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--terra-950);color:rgba(255,255,255,0.7);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--terra-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;font-family:var(--f-serif)">L</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700;font-family:var(--f-serif)">Caderno · 11 meses cumulativos</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Surface 6 de 7 · DESIGN-caderno.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:rgba(255,255,255,0.5)">GAPI · Gabinete de Apoio ao Investimento · existe em alguns distritos. FDD (Fundo Distrital de Desenvolvimento) é programa público real. BancABC e TchutchuMicro são entidades reais (TchutchuMicro com adaptação para o protótipo). Programa Sustenta do Banco Mundial é real. Histórico financeiro como base para crédito é prática emergente em África · MyAgro e similares operam neste modelo.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="mercado.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">‹ Mercado</a><a href="associacao.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">Próxima · Associação ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

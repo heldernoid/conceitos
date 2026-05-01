@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Mercado · Lavoura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>Lavoura · mercado</span><span class="sep">·</span><span>Sara · vender tomate</span><span class="sep">·</span><span>14.12.2026 · 1.ª colheita</span><span style="margin-left:auto">surface 5</span></div>
+<div class="lavoura-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">L</span><span class="stack"><span>Lavoura</span><small>Mercado</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="plantio.html">Plantio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="mercado.html" class="active">Mercado</a>
+    <a href="caderno.html">Caderno</a>
+    <a href="associacao.html">Associação</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm folha">SM</div><div class="who"><b>Sara · 1ª colheita</b><span>1 200 kg · hoje</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Preços hoje</a>
+  <a href="#cena2">Cena 2 · 3 caminhos</a>
+  <a href="#cena3">Cena 3 · Zimpeto · sozinha</a>
+  <a href="#cena4">Cena 4 · Agregador · vem buscar</a>
+  <a href="#cena5">Cena 5 · Colectivo · associação</a>
+  <a href="#cena6">Cena 6 · Decisão · cálculo</a>
+  <a href="#cena7">Cena 7 · Venda concluída</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>14.12.2026 · 05h42 · Sara abre Lavoura · vê preços</b><span>Hoje colhe os primeiros 1 200 kg do ciclo 2 · Mesu já tem preços actualizados de 3 mercados · subiu 8% no Zimpeto · boa altura para vender.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>05:42</span><span>📶 4G · 🔋 92%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:18px">Tomate · hoje</h1>
+              <small>Sáb · 14 Dez · 1ª colheita</small>
+            </div>
+            <button class="btn-audio">▶</button>
+          </div>
+
+          <div class="body">
+            <div class="card terra" style="padding:14px;margin-bottom:14px;background:var(--terra-50)">
+              <div class="row" style="gap:8px;align-items:center;margin-bottom:8px">
+                <span class="mesu" style="padding:2px 12px 2px 2px"><div class="face" style="width:28px;height:28px"></div><div class="name" style="font-size:11px">Mesu</div></span>
+              </div>
+              <p style="font-family:var(--f-serif);font-size:14px;line-height:1.5;color:var(--terra-900);margin:0">Bom dia Sara. Vais colher hoje? <b>O preço subiu 8% no Zimpeto · está em 42 mt/kg.</b> A chuva atrasou os tomates de Inhambane · esta semana é boa para vender.</p>
+            </div>
+
+            <!-- Preços -->
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">PREÇO POR KG · ACTUALIZADO HÁ 2H</div>
+
+            <div class="card" style="padding:14px;margin-bottom:8px;border-left:4px solid var(--folha-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:14px">Mercado do Zimpeto</b>
+                <span class="badge folha" style="font-size:10px">↑ 8%</span>
+              </div>
+              <div class="row spread" style="align-items:flex-end">
+                <div>
+                  <div class="t-meta" style="font-size:10px">Maputo Cidade · grossista</div>
+                  <div class="t-meta" style="font-size:10px;margin-top:2px">38 km · 800 MT transporte estimado</div>
+                </div>
+                <div style="font-family:var(--f-mono);font-size:22px;font-weight:700;color:var(--folha-700);line-height:1">42 MT</div>
+              </div>
+            </div>
+
+            <div class="card" style="padding:14px;margin-bottom:8px;border-left:4px solid var(--ceu-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:14px">Mercado do Bazar</b>
+                <span class="badge" style="font-size:10px">=</span>
+              </div>
+              <div class="row spread" style="align-items:flex-end">
+                <div>
+                  <div class="t-meta" style="font-size:10px">Matola · retalho</div>
+                  <div class="t-meta" style="font-size:10px;margin-top:2px">22 km · 400 MT transporte</div>
+                </div>
+                <div style="font-family:var(--f-mono);font-size:22px;font-weight:700;color:var(--ceu-800);line-height:1">52 MT</div>
+              </div>
+            </div>
+
+            <div class="card" style="padding:14px;margin-bottom:14px;border-left:4px solid var(--sol-500)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:14px">Hortifruti SA · agregador</b>
+                <span class="badge perigo" style="font-size:10px">↓ 4%</span>
+              </div>
+              <div class="row spread" style="align-items:flex-end">
+                <div>
+                  <div class="t-meta" style="font-size:10px">Vem buscar · paga 7 dias</div>
+                  <div class="t-meta" style="font-size:10px;margin-top:2px">0 km · 0 MT transporte</div>
+                </div>
+                <div style="font-family:var(--f-mono);font-size:22px;font-weight:700;color:var(--sol-700);line-height:1">38 MT</div>
+              </div>
+            </div>
+
+            <div class="banner ceu" style="padding:10px;font-size:11px"><span class="ic">i</span><div>Tendência · próximas 2 semanas · provável <b>descer</b> conforme tomates de Inhambane chegam.</div></div>
+
+            <button class="btn xl block" style="margin-top:14px">Onde vou vender? ›</button>
+          </div>
+
+          <div class="tabbar">
+            <a><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a class="active"><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>De onde vêm os preços</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Sistema de Informação de Mercados Agrícolas (SIMA)</b> · MZ · agência pública · publica preços diários dos 4 grandes mercados desde 2014</li>
+              <li><b>Agregadores formais</b> · Hortifruti SA · Frutos do Sol · ECA · partilham tabela actualizada</li>
+              <li><b>Crowd · associações verificadas</b> · 14 grupos como Bom Dia Mulher reportam preços que cobram em mercados locais · cruzados</li>
+              <li><b>Histórico · 24 meses</b> · Lavoura mostra tendência · não só preço de hoje</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>Antes de Lavoura · Sara ligava para a Carlota · "viste o preço hoje?"</b> Carlota tinha que ir ao Zimpeto ou perguntar a alguém. Lavoura faz isto automático · 5h42 da manhã · sem ligações. <b>Tempo poupado · informação melhor.</b></div></div>
+
+        <div class="card sol">
+          <div class="hd"><b>Por que o Bazar é mais caro mas Sara não vai</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 8px"><b>Bazar (Matola) · 52 MT · retalho.</b> Sara venderia mais por kg mas vende para consumidor final · 1-2 kg de cada vez · demora horas · rende menos volume.</p>
+            <p style="font-size:13px;line-height:1.6;margin:0"><b>Zimpeto · 42 MT · grossista.</b> Vende 200-300 kg num cliente só · 30 minutos · volta a casa cedo. Margem total melhor para grandes quantidades.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>3 caminhos para vender · Mesu calcula líquido para cada</b><span>Sara tem 1 200 kg para vender hoje. Mesu mostra os 3 caminhos lado a lado · receita bruta · custos · líquido · tempo · risco. Decisão informada.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-3" style="gap:18px;max-width:1180px;margin:0 auto">
+      <div class="card folha" style="border-width:2px">
+        <div class="hd" style="background:var(--folha-50)"><b>Caminho 1 · Zimpeto · sozinha</b><span class="badge folha" style="font-size:9px">RECOMENDADO</span></div>
+        <div class="bd">
+          <div style="font-family:var(--f-mono);font-size:32px;font-weight:700;color:var(--folha-700);line-height:1;margin-bottom:4px">49 600</div>
+          <div class="t-meta" style="font-size:11px;margin-bottom:14px">MT líquido · após custos</div>
+
+          <table class="table" style="font-size:12px;margin-bottom:14px">
+            <tbody>
+              <tr><td>1 200 kg × 42 MT</td><td class="num">50 400</td></tr>
+              <tr><td>Transporte · chapa</td><td class="num" style="color:var(--perigo-600)">- 800</td></tr>
+              <tr><td>Comissão</td><td class="num">0</td></tr>
+              <tr style="font-weight:600;background:var(--folha-50)"><td>LÍQUIDO</td><td class="num" style="color:var(--folha-700)">49 600</td></tr>
+            </tbody>
+          </table>
+
+          <div class="t-overline" style="font-size:9px;margin-bottom:6px">CUSTO HUMANO</div>
+          <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>5h da manhã sair de casa</li>
+            <li>1h de chapa até Zimpeto</li>
+            <li>3-5h no mercado a vender</li>
+            <li>Volta às 14h-16h</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card sol" style="border-width:2px">
+        <div class="hd" style="background:var(--sol-50)"><b>Caminho 2 · Hortifruti</b><span class="badge sol" style="font-size:9px">CÓMODO</span></div>
+        <div class="bd">
+          <div style="font-family:var(--f-mono);font-size:32px;font-weight:700;color:var(--sol-700);line-height:1;margin-bottom:4px">45 600</div>
+          <div class="t-meta" style="font-size:11px;margin-bottom:14px">MT · mas só recebe em 7 dias</div>
+
+          <table class="table" style="font-size:12px;margin-bottom:14px">
+            <tbody>
+              <tr><td>1 200 kg × 38 MT</td><td class="num">45 600</td></tr>
+              <tr><td>Transporte</td><td class="num" style="color:var(--folha-700)">0</td></tr>
+              <tr><td>Comissão</td><td class="num">0</td></tr>
+              <tr style="font-weight:600;background:var(--sol-50)"><td>LÍQUIDO</td><td class="num" style="color:var(--sol-700)">45 600</td></tr>
+            </tbody>
+          </table>
+
+          <div class="t-overline" style="font-size:9px;margin-bottom:6px">CUSTO HUMANO</div>
+          <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>Vem buscar à machamba 9h</li>
+            <li>Sara fica em casa</li>
+            <li>0h no mercado</li>
+            <li>Recebe M-Pesa em 7 dias</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card terra" style="border-width:2px">
+        <div class="hd" style="background:var(--terra-50)"><b>Caminho 3 · Colectivo</b><span class="badge terra" style="font-size:9px">ASSOCIAÇÃO</span></div>
+        <div class="bd">
+          <div style="font-family:var(--f-mono);font-size:32px;font-weight:700;color:var(--terra-700);line-height:1;margin-bottom:4px">52 800</div>
+          <div class="t-meta" style="font-size:11px;margin-bottom:14px">MT · 8 mulheres juntas</div>
+
+          <table class="table" style="font-size:12px;margin-bottom:14px">
+            <tbody>
+              <tr><td>1 200 kg × 44 MT</td><td class="num">52 800</td></tr>
+              <tr><td>Transporte · partilhado</td><td class="num" style="color:var(--perigo-600)">- 200</td></tr>
+              <tr><td>Comissão Carlota · 2%</td><td class="num" style="color:var(--perigo-600)">- 1 056</td></tr>
+              <tr style="font-weight:600;background:var(--terra-50)"><td>LÍQUIDO</td><td class="num" style="color:var(--terra-700)">51 544</td></tr>
+            </tbody>
+          </table>
+
+          <div class="t-overline" style="font-size:9px;margin-bottom:6px">CUSTO HUMANO</div>
+          <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+            <li>Carlota negoceia · 8 ton total</li>
+            <li>Sara entrega 1 200 kg local</li>
+            <li>Volume · preço melhor</li>
+            <li>Recebe em 3 dias</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="banner folha" style="margin-top:24px;max-width:1180px;margin-left:auto;margin-right:auto"><span class="ic">✓</span><div><b>Caminho 3 dá mais dinheiro mas só funciona se Carlota tiver agregado 8 toneladas.</b> Hoje a associação só tem 6 ton agregadas (faltam 2) · Mesu marca o caminho 3 como "sujeito a confirmação"; pode mudar para Caminho 1 se até às 7h não houver confirmação.</div></div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Caminho 1 · Zimpeto · sozinha · plano completo</b><span>Sara escolhe Zimpeto. Mesu monta plano · sair 5h · chapa 5h30 · chegar 6h45 · vender 7h-12h · voltar 14h. Lista do que levar.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:14</span><span>📶 4G · 🔋 88%</span></div>
+          <div class="header"><div><h1 style="font-size:18px">Plano · Zimpeto</h1><small>Hoje · 14 Dez · 1 200 kg</small></div><button class="btn-audio">▶</button></div>
+
+          <div class="body">
+            <!-- Timeline -->
+            <div class="card folha" style="padding:14px;margin-bottom:14px;background:var(--folha-50)">
+              <b style="font-size:13px;color:var(--folha-700);display:block;margin-bottom:10px">⏰ Hoje · cronologia</b>
+
+              <div style="position:relative;padding-left:24px">
+                <div style="position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--folha-300)"></div>
+
+                <div style="position:relative;padding:6px 0;font-size:12px">
+                  <div style="position:absolute;left:-22px;top:8px;width:14px;height:14px;background:var(--folha-600);border-radius:50%"></div>
+                  <b>05h00 · Colher</b><div style="color:var(--text-3);margin-top:2px">Joel ajuda · 60 min · 1 200 kg em 24 caixas</div>
+                </div>
+
+                <div style="position:relative;padding:6px 0;font-size:12px">
+                  <div style="position:absolute;left:-22px;top:8px;width:14px;height:14px;background:var(--folha-600);border-radius:50%"></div>
+                  <b>06h00 · Carregar chapa</b><div style="color:var(--text-3);margin-top:2px">Aguardar chapa de Boane → Maputo</div>
+                </div>
+
+                <div style="position:relative;padding:6px 0;font-size:12px">
+                  <div style="position:absolute;left:-22px;top:8px;width:14px;height:14px;background:var(--folha-600);border-radius:50%"></div>
+                  <b>06h45 · Chegar Zimpeto</b><div style="color:var(--text-3);margin-top:2px">Procurar lugar · zona dos hortifrutícolas</div>
+                </div>
+
+                <div style="position:relative;padding:6px 0;font-size:12px">
+                  <div style="position:absolute;left:-22px;top:8px;width:14px;height:14px;background:var(--folha-600);border-radius:50%"></div>
+                  <b>07h00-12h00 · Vender</b><div style="color:var(--text-3);margin-top:2px">Grossistas · 200-300 kg cada</div>
+                </div>
+
+                <div style="position:relative;padding:6px 0;font-size:12px">
+                  <div style="position:absolute;left:-22px;top:8px;width:14px;height:14px;background:var(--folha-600);border-radius:50%"></div>
+                  <b>14h00 · Voltar a casa</b><div style="color:var(--text-3);margin-top:2px">Almoço com filhos · descansar</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista -->
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">LEVAR</div>
+            <div class="tarefa-row" style="margin-bottom:6px"><div class="check"></div><div class="info"><b>BI · NUIT</b><div class="meta">checkpoints · taxa SIMA</div></div></div>
+            <div class="tarefa-row" style="margin-bottom:6px"><div class="check"></div><div class="info"><b>24 caixas plásticas</b><div class="meta">50 kg cada</div></div></div>
+            <div class="tarefa-row" style="margin-bottom:6px"><div class="check"></div><div class="info"><b>Balança</b><div class="meta">verificar peso · grossista pode contestar</div></div></div>
+            <div class="tarefa-row" style="margin-bottom:6px"><div class="check"></div><div class="info"><b>Dinheiro · troco</b><div class="meta">100 e 200 MT · 2 000 MT total</div></div></div>
+            <div class="tarefa-row" style="margin-bottom:6px"><div class="check"></div><div class="info"><b>Comida · água</b><div class="meta">5 horas no mercado · sol forte</div></div></div>
+
+            <div class="banner ceu" style="margin-top:14px;padding:10px;font-size:11px"><span class="ic">i</span><div><b>Mesu liga-te ao Zimpeto.</b> Quando chegares · ativa GPS · vou registar tempo · vendas · preço médio · útil para o caderno.</div></div>
+
+            <button class="btn xl block" style="margin-top:14px">✓ Vou agora</button>
+          </div>
+
+          <div class="tabbar">
+            <a><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a class="active"><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Lavoura organiza · Sara executa</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px"><b>Sara não precisa lembrar-se de tudo.</b> Cronologia · lista de coisas a levar · contactos de chapeiros conhecidos · documentos · troco. Tudo num só ecrã.</p>
+            <p style="font-size:14px;line-height:1.7;margin:0">Cada item vem da experiência das outras 8 mulheres da associação · Lavoura aprendeu nas vendas anteriores quem foi · o que faltou · o que correu mal. <b>Inteligência colectiva embebida.</b></p>
+          </div>
+        </div>
+
+        <div class="banner sol"><span class="ic">!</span><div><b>Não esquece o BI.</b> A primeira vez que Sara foi ao Zimpeto · há 4 anos · esqueceu o BI · não pôde pagar a taxa SIMA · teve que voltar a casa para buscar · perdeu 2 horas · sol já forte · vendeu mal. <b>Lavoura nunca esquece o BI.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Joel ajuda · 12 anos</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Joel acorda às 4h45 · ajuda a colher · carregar caixas. Aprende. <b>Lavoura regista no caderno · "Joel ajudou na colheita 14.12 · 60 min".</b> Daqui a 5 anos quando Joel tiver 17 · este registo será memória útil · talvez ele continue a tradição.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Caminho 2 · Hortifruti SA · agregador formal</b><span>Cenário alternativo · Sara escolhe agregador. Vê informação completa · histórico de pagamentos · contrato simples · M-Pesa em 7 dias.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1180px;margin:0 auto">
+      <div class="card sol">
+        <div class="hd"><b>Hortifruti SA · perfil verificado</b><span class="badge folha" style="font-size:9px">★ 4,6/5 · 218 vendas</span></div>
+        <div class="bd">
+          <div class="row" style="gap:14px;align-items:flex-start;margin-bottom:14px">
+            <div style="width:64px;height:64px;background:var(--sol-500);color:var(--terra-900);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;font-family:var(--f-serif);flex-shrink:0">H</div>
+            <div>
+              <b style="font-size:16px;font-family:var(--f-serif)">Hortifruti SA</b>
+              <p style="font-size:12px;color:var(--text-3);margin:4px 0 0;line-height:1.5">Agregador desde 2018 · sede Matola · 4 carrinhas refrigeradas · serve cadeias Shoprite e Pick n Pay</p>
+            </div>
+          </div>
+
+          <div class="t-overline" style="margin:14px 0 8px;font-size:9px">CONDIÇÕES DE COMPRA</div>
+          <table class="table" style="font-size:12px">
+            <tbody>
+              <tr><td>Preço hoje · tomate Roma A1</td><td class="num" style="font-weight:600">38 MT/kg</td></tr>
+              <tr><td>Volume mínimo</td><td class="num">200 kg</td></tr>
+              <tr><td>Pagamento</td><td>M-Pesa · 7 dias úteis</td></tr>
+              <tr><td>Recolha</td><td>Vem buscar · sem custo</td></tr>
+              <tr><td>Critério qualidade</td><td>Sem manchas · &gt; 60g · firmeza</td></tr>
+              <tr><td>Rejeitos</td><td>~ 5% · paga preço B (28 MT)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="t-overline" style="margin:14px 0 8px;font-size:9px">HISTÓRICO COM SARA</div>
+          <table class="table" style="font-size:12px">
+            <tbody>
+              <tr><td>Vendas anteriores</td><td class="num">3</td></tr>
+              <tr><td>Total vendido</td><td class="num">2,8 ton</td></tr>
+              <tr><td>Pagamentos no prazo</td><td class="num" style="color:var(--folha-700)">3/3 ✓</td></tr>
+              <tr><td>Preço médio</td><td class="num">36 MT</td></tr>
+            </tbody>
+          </table>
+
+          <button class="btn xl block sol" style="margin-top:14px">Aceitar 38 MT · 1 200 kg</button>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>Quando vale a pena · agregador</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Sara tem outras coisas a fazer hoje</b> · centro de saúde · escola · funeral</li>
+              <li><b>Está doente</b> · não consegue carregar caixas</li>
+              <li><b>Volume grande</b> · &gt; 800 kg · mais difícil de transportar</li>
+              <li><b>Sem chapa disponível</b> · greve · ciclone · feriado</li>
+              <li><b>Confia no agregador</b> · histórico bom · pagamento seguro</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner sol"><span class="ic">!</span><div><b>Risco do caminho 2.</b> Pagamento em 7 dias significa que se Sara precisar de dinheiro hoje (medicação · escola) · não tem. <b>Lavoura mostra o saldo previsto · ajuda a planear fluxo de caixa.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>O ranking dos agregadores</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0 0 8px"><b>Lavoura tem 14 agregadores na rede · cada um tem perfil público · estrelas · histórico.</b></p>
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li>Hortifruti SA · ★ 4,6 · 218 vendas · pago no prazo</li>
+              <li>Frutos do Sol · ★ 4,2 · 142 vendas · 1 atraso (2024)</li>
+              <li>Boane Fresh · ★ 3,8 · 84 vendas · 4 atrasos</li>
+              <li>X Comércio · ★ 2,1 · denúncia activa · <b>Lavoura desaconselha</b></li>
+            </ul>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Avaliações vêm das produtoras · não dos agregadores. Sistema de reputação é controle social.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Caminho 3 · venda colectiva · Carlota negoceia 8 toneladas</b><span>8 mulheres da Bom Dia Mulher juntam tomate · Carlota chama agregador maior · Frutos do Sol · negocia 44 MT/kg porque é volume. Sara vende a 44 sem ir ao Zimpeto.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>05:48</span><span>📶 4G · 🔋 91%</span></div>
+          <div class="header"><div><h1 style="font-size:18px">Venda colectiva</h1><small>Bom Dia Mulher · 14 Dez</small></div><button class="btn-audio">▶</button></div>
+
+          <div class="body">
+            <div class="card terra" style="padding:14px;margin-bottom:14px;background:var(--terra-50)">
+              <div class="row spread" style="margin-bottom:8px">
+                <b style="font-size:13px;color:var(--terra-900)">Bom Dia Mulher</b>
+                <span class="badge folha" style="font-size:10px">8 produtoras</span>
+              </div>
+              <p style="font-size:12px;color:var(--text-2);line-height:1.5;margin:0">Carlota propôs venda colectiva ontem à noite · 6 já confirmaram · 2 ainda não responderam.</p>
+            </div>
+
+            <!-- Volumes -->
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">VOLUMES PROPOSTOS</div>
+            <table class="table" style="font-size:12px;margin-bottom:14px">
+              <tbody>
+                <tr><td><b>Sara</b> (tu)</td><td class="num">1 200 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Carlota</td><td class="num">1 800 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Olga</td><td class="num">1 100 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Esperança M.</td><td class="num">600 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Lurdes</td><td class="num">800 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Dália</td><td class="num">500 kg</td><td><span class="badge folha" style="font-size:9px">✓</span></td></tr>
+                <tr><td>Júlia</td><td class="num">— kg</td><td><span class="badge sol" style="font-size:9px">⏳</span></td></tr>
+                <tr><td>Felicidade</td><td class="num">— kg</td><td><span class="badge sol" style="font-size:9px">⏳</span></td></tr>
+                <tr style="font-weight:600;background:var(--terra-50)"><td>SUBTOTAL · 6 sim</td><td class="num">6 000 kg</td><td>3/4 do alvo</td></tr>
+              </tbody>
+            </table>
+
+            <div class="t-overline" style="font-size:9px;margin-bottom:8px">PROPOSTA · FRUTOS DO SOL</div>
+            <div class="card folha" style="padding:14px;margin-bottom:14px;background:var(--folha-50)">
+              <div class="row spread" style="margin-bottom:8px">
+                <span style="font-size:13px;color:var(--folha-900)">Preço · 8 ton ou mais</span>
+                <b style="font-family:var(--f-mono);font-size:18px;color:var(--folha-700)">44 MT/kg</b>
+              </div>
+              <div class="row spread" style="margin-bottom:8px;font-size:12px">
+                <span style="color:var(--folha-700)">Pagamento</span>
+                <b>3 dias úteis</b>
+              </div>
+              <div class="row spread" style="font-size:12px">
+                <span style="color:var(--folha-700)">Recolha</span>
+                <b>15.12 · 8h00 · casa Carlota</b>
+              </div>
+            </div>
+
+            <div class="banner sol" style="padding:10px;font-size:11px"><span class="ic">!</span><div>Falta 2 ton · Carlota está a chamar Júlia e Felicidade. Decisão final · 7h00.</div></div>
+
+            <div class="row" style="gap:8px;margin-top:14px">
+              <button class="btn folha xl block">Confirmar 1 200 kg</button>
+            </div>
+          </div>
+
+          <div class="tabbar">
+            <a><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a class="active"><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">👥</span>Grupo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card folha">
+          <div class="hd"><b>O poder do colectivo · 6 vs 1</b></div>
+          <div class="bd">
+            <table class="table" style="font-size:12px">
+              <thead><tr><th>Sara · sozinha</th><th>Sara · em grupo de 8</th></tr></thead>
+              <tbody>
+                <tr><td>1 200 kg</td><td>8 000 kg total · 1 200 dela</td></tr>
+                <tr><td>Vende 38-42 MT</td><td>Vende 44 MT</td></tr>
+                <tr><td>Custo transporte 800 MT</td><td>Custo partilhado · 200 MT</td></tr>
+                <tr><td>5h no mercado</td><td>0h · entrega em casa Carlota</td></tr>
+                <tr style="font-weight:600;background:var(--folha-50)"><td>Líquido · 49 600</td><td>Líquido · 51 544</td></tr>
+              </tbody>
+            </table>
+            <p class="t-meta" style="font-size:11px;margin:10px 0 0;font-style:italic">Diferença · 1 944 MT · não muito · mas <b>5 horas a mais com os filhos · sem ir ao Zimpeto · sem cansaço</b>. Esse é o valor real.</p>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic">i</span><div><b>Carlota lidera · não Lavoura.</b> A app não decide a venda colectiva · Carlota decide. Lavoura é a ferramenta · escreve a proposta · faz contas · mostra a quem está a faltar confirmar · envia M-Pesa quando chega o dinheiro. <b>Tecnologia ao serviço da liderança humana existente · não substituto.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Como Lavoura suporta · 4 funções</b></div>
+          <div class="bd">
+            <ol style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Convocar</b> · Carlota propõe · 8 mulheres recebem notificação</li>
+              <li><b>Confirmar</b> · cada uma diz quanto tem · ajusta em qualquer momento</li>
+              <li><b>Calcular</b> · Lavoura faz contas líquidas · cada uma vê o seu</li>
+              <li><b>Distribuir</b> · quando dinheiro chega · M-Pesa automático · cada uma recebe a sua parte · comissão de Carlota saída automaticamente</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Decisão · Sara escolhe colectivo · 1 944 MT a mais e 5 horas livres</b><span>06h28 · Júlia confirma 600 kg · Carlota anuncia que atingiu 8 ton · venda colectiva confirmada · Sara não vai ao Zimpeto.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:28</span><span>📶 4G · 🔋 87%</span></div>
+
+          <div style="flex:1;background:linear-gradient(180deg,var(--folha-700) 0%,var(--folha-900) 100%);color:#fff;display:flex;flex-direction:column;padding:36px 28px;justify-content:center;text-align:center">
+
+            <div style="width:80px;height:80px;background:var(--folha-50);color:var(--folha-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:700;margin:0 auto 20px">✓</div>
+
+            <h1 style="font-family:var(--f-serif);font-size:26px;margin:0 0 12px;color:#fff;line-height:1.2">Venda colectiva confirmada</h1>
+
+            <p style="font-size:15px;line-height:1.55;color:rgba(255,255,255,0.92);margin:0 0 24px">Júlia confirmou 600 kg · Felicidade entra com 800 kg. <b style="color:var(--sol-300)">8 200 kg total · preço fechado a 44 MT.</b></p>
+
+            <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:18px;margin-bottom:20px;text-align:left">
+              <div class="t-overline" style="color:var(--sol-300);margin-bottom:10px;font-size:9px">A TUA PARTE</div>
+
+              <table style="width:100%;font-size:13px;color:rgba(255,255,255,0.92)">
+                <tr><td style="padding:4px 0">1 200 kg × 44</td><td style="text-align:right;font-family:var(--f-mono)">52 800</td></tr>
+                <tr><td style="padding:4px 0">- Transporte partilhado</td><td style="text-align:right;font-family:var(--f-mono);color:rgba(255,255,255,0.6)">- 200</td></tr>
+                <tr><td style="padding:4px 0">- Comissão Carlota 2%</td><td style="text-align:right;font-family:var(--f-mono);color:rgba(255,255,255,0.6)">- 1 056</td></tr>
+                <tr style="border-top:1px solid rgba(255,255,255,0.2);font-weight:700;color:var(--sol-300)"><td style="padding:8px 0 0">LÍQUIDO</td><td style="text-align:right;padding:8px 0 0;font-family:var(--f-mono);font-size:18px">51 544 MT</td></tr>
+              </table>
+            </div>
+
+            <div class="card" style="background:rgba(0,0,0,0.2);border-color:rgba(255,255,255,0.15);padding:14px;margin-bottom:18px;text-align:left">
+              <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:6px"><span>Recolha</span><b style="color:#fff;font-family:var(--f-mono)">15.12 · 08h00</b></div>
+              <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:6px"><span>Local</span><b style="color:#fff">Casa da Carlota</b></div>
+              <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:6px"><span>Pagamento M-Pesa</span><b style="color:#fff">~ 18.12</b></div>
+              <div class="row spread" style="font-size:12px;color:rgba(255,255,255,0.8)"><span>Hoje</span><b style="color:var(--sol-300);font-family:var(--f-mono)">5h livres</b></div>
+            </div>
+
+            <button class="btn xl block" style="background:var(--sol-500);border-color:var(--sol-500);color:var(--terra-900);font-size:15px">Continuar</button>
+          </div>
+
+          <div class="tabbar">
+            <a class="active"><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">👥</span>Grupo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>O que Sara faz hoje em vez de ir ao Zimpeto</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px"><b>06h28 · venda confirmada · não tem que sair de casa.</b></p>
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li>Toma pequeno-almoço com os 3 filhos</li>
+              <li>Vai à hortinha · colhe 30 maços de couve para a Olga vender amanhã</li>
+              <li>Cose uniforme da Tânia que rasgou na escola</li>
+              <li>Visita a mãe doente em Inharrime · primeira vez em 3 semanas</li>
+              <li>Volta · jantar · histórias · dorme cedo</li>
+            </ul>
+            <p style="font-size:13px;line-height:1.7;margin:14px 0 0;color:var(--terra-700);font-weight:500"><b>Esse é o valor.</b> Não 1 944 MT extra. É um dia inteiro de vida. É a mãe a abraçar.</p>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>Decisão tomada em 46 minutos.</b> Das 5h42 (abriu Lavoura) às 6h28 (confirmou venda). 46 minutos para tomar a melhor decisão para 1 200 kg de tomate · que demoraram 14 semanas a crescer. <b>Tecnologia que comprime decisão · não amplia trabalho.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Mesu actualiza calendário</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">"Domingo · descanso. Segunda · começa preparação para colheita 2 (18.12) · 4 toneladas previstas. Recolha colectiva pode repetir-se. Carlota já anunciou interesse no grupo."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene folha" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Venda concluída · 18.12 · M-Pesa chega · 51 544 MT no telemóvel</b><span>4 dias depois · Sara recebe SMS de M-Pesa · 51 544 MT creditados · Lavoura confirma · entra no caderno · pull quote final.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:1080px;margin:0 auto">
+      <div class="grid g-2" style="gap:32px;align-items:flex-start">
+        <div>
+          <div class="t-overline" style="margin-bottom:14px;color:var(--sol-300)">18.12.2026 · 11h22 · M-PESA</div>
+          <h2 class="headline lg dark" style="margin:0 0 18px;font-size:38px">51 544 MT<br><span style="color:var(--sol-300);font-style:italic">no telemóvel.</span></h2>
+
+          <p style="color:rgba(255,255,255,0.88);font-size:15px;line-height:1.65;margin:0 0 24px"><b>1.ª colheita do ciclo 2 vendida.</b> Diferença para o sistema antigo · Sara não foi ao Zimpeto · não pagou 800 MT de chapa · vendeu a 44 MT em vez de 42 · não perdeu 5 horas. <b style="color:var(--sol-300)">Líquido = 51 544 · 1 944 a mais que sozinha · 5 horas a mais com os filhos.</b></p>
+
+          <div class="grid g-3" style="gap:8px;margin-bottom:24px">
+            <div class="kpi dark" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15)"><div class="lbl" style="color:rgba(255,255,255,0.6)">1ª colheita</div><div class="num" style="color:#fff">1 200 kg</div><div class="delta" style="color:rgba(255,255,255,0.6)">14.12</div></div>
+            <div class="kpi dark" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15)"><div class="lbl" style="color:rgba(255,255,255,0.6)">Próximas</div><div class="num" style="color:var(--sol-300)">3 vagas</div><div class="delta" style="color:rgba(255,255,255,0.6)">18 · 22 · 28 Dez</div></div>
+            <div class="kpi dark" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15)"><div class="lbl" style="color:rgba(255,255,255,0.6)">Total est.</div><div class="num" style="color:var(--sol-300)">200 K</div><div class="delta" style="color:rgba(255,255,255,0.6)">MT · ciclo 2</div></div>
+          </div>
+        </div>
+
+        <div class="col" style="gap:14px">
+          <div class="card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);color:#fff">
+            <div class="hd" style="background:rgba(0,0,0,0.2);border-bottom-color:rgba(255,255,255,0.1)"><b style="color:#fff">SMS · M-Pesa · 11h22</b></div>
+            <div class="bd">
+              <div style="background:#fff;color:var(--text);padding:14px;border-radius:8px;font-family:var(--f-mono);font-size:12px;line-height:1.6">
+                M-PESA: Recebeu 51 544.00 MT de FRUTOS DO SOL. Saldo: 53 218.00 MT. Ref: TXN-2026-12-18-9421
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.15);color:#fff">
+            <div class="hd" style="background:rgba(0,0,0,0.2);border-bottom-color:rgba(255,255,255,0.1)"><b style="color:#fff">Pull quote final · Sara</b></div>
+            <div class="bd">
+              <p class="pull-quote" style="margin:0;color:rgba(255,255,255,0.92);border-left-color:var(--sol-500);font-size:18px">"Em 2024 vendi tomate a 32 mt/kg porque levei 3 dias para encontrar quem comprasse o lote inteiro. Em 2026 · vendi a 44 sem sair de casa · 8 mulheres juntas. Aprendi com o Lavoura uma coisa que ninguém me tinha ensinado · <b>juntas valemos mais que sozinhas.</b>"<cite style="color:var(--sol-300)">Sara Mucavele · 18.12.2026</cite></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--terra-950);color:rgba(255,255,255,0.7);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--terra-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;font-family:var(--f-serif)">L</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700;font-family:var(--f-serif)">Mercado · vender o tomate</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Surface 5 de 7 · DESIGN-mercado.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:rgba(255,255,255,0.5)">Mercado do Zimpeto e Bazar da Matola são reais. SIMA (Sistema de Informação de Mercados Agrícolas) é programa público real. Hortifruti SA · Frutos do Sol · ECA · Boane Fresh são fictícios mas tipo de operador é representativo. M-Pesa é serviço da Vodacom MZ · operacional. Preços e quantidades são ilustrativas para protótipo · variações reais devem ser confirmadas com fontes actuais.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="diagnostico.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">‹ Diagnóstico</a><a href="caderno.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">Próxima · Caderno ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

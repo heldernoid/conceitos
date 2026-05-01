@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Agenda da machamba · Lavoura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip"><span>Lavoura · agenda</span><span class="sep">·</span><span>Sara · Boane</span><span class="sep">·</span><span>06.11.2026 · sexta-feira</span><span style="margin-left:auto">surface 2</span></div>
+<div class="lavoura-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="mark">L</span><span class="stack"><span>Lavoura</span><small>Agenda</small></span></a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="agenda.html" class="active">Agenda</a>
+    <a href="plantio.html">Plantio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="mercado.html">Mercado</a>
+    <a href="caderno.html">Caderno</a>
+    <a href="associacao.html">Associação</a>
+  </nav>
+  <div class="right"><div class="idbadge"><div class="av sm folha">SM</div><div class="who"><b>Sara Mucavele</b><span>4 meses no Lavoura</span></div></div></div>
+</header>
+
+<nav class="scenenav">
+  <a href="#cena1" class="active">Cena 1 · Hoje · 4 tarefas</a>
+  <a href="#cena2">Cena 2 · Calendário 12 meses</a>
+  <a href="#cena3">Cena 3 · Próximos 7 dias</a>
+  <a href="#cena4">Cena 4 · Clima · alertas</a>
+  <a href="#cena5">Cena 5 · Tarefa concluída</a>
+  <a href="#cena6">Cena 6 · Replanear</a>
+  <a href="#cena7">Cena 7 · Sara fecha o dia</a>
+</nav>
+
+<!-- CENA 1 -->
+<section class="scene" id="cena1">
+  <div class="scene-h"><div class="sn">Cena 01</div><div class="lab"><b>Sexta · 06h12 · Sara abre Lavoura · 4 tarefas para hoje</b><span>Sara está na cozinha · café preto · Esperança ainda dorme. Abre Lavoura · Mesu já tem o dia preparado · 4 tarefas curtas · 2 horas de trabalho.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:12</span><span>📶 4G · 🔋 88%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:20px">Bom dia Sara</h1>
+              <small>Sexta · 6 de Novembro · sol forte</small>
+            </div>
+            <button class="btn-audio">▶</button>
+          </div>
+
+          <div class="body">
+            <!-- Mesu greeting -->
+            <div class="card terra" style="padding:14px;margin-bottom:14px;background:var(--terra-50)">
+              <div class="row" style="gap:8px;align-items:center;margin-bottom:8px">
+                <span class="mesu" style="padding:2px 12px 2px 2px"><div class="face" style="width:28px;height:28px"></div><div class="name" style="font-size:11px">Mesu</div></span>
+              </div>
+              <p style="font-family:var(--f-serif);font-size:15px;line-height:1.5;color:var(--terra-900);margin:0">As tomateiras precisam de água hoje. Choveu pouco esta semana · 4 mm. Próximas 3 manhãs vão ser frescas · regue antes das 9h.</p>
+            </div>
+
+            <!-- KPIs hoje -->
+            <div class="grid g-2" style="gap:8px;margin-bottom:18px">
+              <div class="card" style="padding:12px;text-align:center;background:var(--bg-page)">
+                <div style="font-family:var(--f-serif);font-size:24px;font-weight:700;color:var(--terra-900);line-height:1">4</div>
+                <div style="font-size:10px;color:var(--text-3);text-transform:uppercase;font-weight:600;margin-top:2px">Tarefas hoje</div>
+              </div>
+              <div class="card" style="padding:12px;text-align:center;background:var(--bg-page)">
+                <div style="font-family:var(--f-serif);font-size:24px;font-weight:700;color:var(--ceu-700);line-height:1">28°C</div>
+                <div style="font-size:10px;color:var(--text-3);text-transform:uppercase;font-weight:600;margin-top:2px">Máxima · sol</div>
+              </div>
+            </div>
+
+            <div class="row spread" style="margin-bottom:10px">
+              <h3 style="font-family:var(--f-serif);font-size:16px;margin:0">Para hoje</h3>
+              <span class="badge folha" style="font-size:10px">2h trabalho</span>
+            </div>
+
+            <!-- Tarefas -->
+            <div class="tarefa-row" style="margin-bottom:6px">
+              <div class="check"></div>
+              <div class="info">
+                <b>Regar tomateiras · cedo</b>
+                <div class="meta"><span class="culture-tag tomate" style="font-size:9px">TOMATE</span> · 06h00 · ~ 30 min</div>
+              </div>
+              <button class="btn-audio">▶</button>
+            </div>
+
+            <div class="tarefa-row" style="margin-bottom:6px">
+              <div class="check"></div>
+              <div class="info">
+                <b>Verificar pragas · folhas baixas</b>
+                <div class="meta"><span class="culture-tag tomate" style="font-size:9px">TOMATE</span> · 06h30 · usa diagnóstico</div>
+              </div>
+              <button class="btn-audio">▶</button>
+            </div>
+
+            <div class="tarefa-row" style="margin-bottom:6px">
+              <div class="check"></div>
+              <div class="info">
+                <b>Aplicar adubo de cobertura</b>
+                <div class="meta"><span class="culture-tag milho" style="font-size:9px">MILHO</span> · 07h30 · ureia 100 kg/ha</div>
+              </div>
+              <button class="btn-audio">▶</button>
+            </div>
+
+            <div class="tarefa-row" style="margin-bottom:6px">
+              <div class="check"></div>
+              <div class="info">
+                <b>Colher couves para amanhã</b>
+                <div class="meta"><span class="culture-tag couve" style="font-size:9px">COUVE</span> · ~ 30 maços</div>
+              </div>
+              <button class="btn-audio">▶</button>
+            </div>
+          </div>
+
+          <div class="tabbar">
+            <a class="active"><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>Como Mesu monta o dia</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px"><b>Mesu olha 4 sinais às 04h00 da manhã · antes da Sara acordar</b> · estado das culturas (semana 8 do tomate · semana 16 do milho) · clima previsto (sol forte 28°C · vento fraco) · histórico (último adubo no milho foi há 18 dias · pediu nova aplicação) · calendário comunitário da associação (ninguém combinou nada para hoje).</p>
+
+            <p style="font-size:14px;line-height:1.7;margin:0">Junta tudo · gera 4 tarefas concretas · ordena por prioridade do clima (regar antes do sol forte) · estima tempo total. <b>Quando Sara abrir às 06h12 · está pronto.</b></p>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>2 horas de trabalho · não 8.</b> Mesu não enche o dia para parecer útil. Se há pouco a fazer · diz pouco. Se há muito · diz e prioriza. Sara já tem 12.ª classe · 3 filhos · cozinha · galinhas · não precisa que app lhe encha mais a cabeça.</div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Pré-requisitos para esta vista</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.85">
+              <li><b>Onboarding completo</b> · 3 machambas + 4 culturas registadas (Surface 1)</li>
+              <li><b>Pelo menos 14 dias de uso</b> · ritmo da Sara aprendido</li>
+              <li><b>Clima sincronizado</b> · última actualização do INAM há &lt; 6h (cache local)</li>
+              <li><b>Caderno activo</b> · entradas anteriores informam Mesu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 2 -->
+<section class="scene alt" id="cena2">
+  <div class="scene-h"><div class="sn">Cena 02</div><div class="lab"><b>Calendário 12 meses · vista do ano agrícola</b><span>Sara abre o calendário · vê as culturas dispostas no tempo · estação seca · estação das chuvas · 2 ciclos de tomate · 1 de milho · onde está agora.</span></div></div>
+  <div class="scene-c">
+    <div style="max-width:980px;margin:0 auto">
+      <div class="row spread" style="margin-bottom:18px"><h2 class="t-h2" style="margin:0">Calendário agrícola · Boane · 2026/2027</h2><div class="row" style="gap:8px"><span class="badge folha">2 ciclos tomate</span><span class="badge sol">1 ciclo milho</span><span class="badge ceu">contínua · couve</span></div></div>
+
+      <div class="calendar-strip">
+        <div class="strip">
+          <div class="month">Jul</div>
+          <div class="month">Ago</div>
+          <div class="month">Set</div>
+          <div class="month">Out</div>
+          <div class="month now">Nov</div>
+          <div class="month">Dez</div>
+          <div class="month">Jan</div>
+          <div class="month">Fev</div>
+          <div class="month">Mar</div>
+          <div class="month">Abr</div>
+          <div class="month">Mai</div>
+          <div class="month">Jun</div>
+        </div>
+        <div class="seasons" style="height:140px;background:linear-gradient(to right, var(--ceu-100) 0%, var(--ceu-100) 25%, var(--folha-100) 25%, var(--folha-100) 75%, var(--sol-100) 75%, var(--sol-100) 100%);position:relative">
+          <!-- Tomate ciclo 1 (Jul-Out) -->
+          <div class="crop-band tomate" style="top:8px;left:0%;width:33%">🍅 Tomate · ciclo 1 · feito ✓</div>
+          <!-- Tomate ciclo 2 (Ago-Dez)  -->
+          <div class="crop-band tomate" style="top:42px;left:8%;width:33%;background:var(--perigo-700)">🍅 Tomate · ciclo 2 · em curso · 38d colheita</div>
+          <!-- Milho (Out-Mar) -->
+          <div class="crop-band milho" style="top:76px;left:25%;width:42%">🌽 Milho · ciclo único · em curso · 28d colheita</div>
+          <!-- Feijão (Abr-Jun) entressafra -->
+          <div class="crop-band" style="background:var(--folha-700);color:#fff;top:110px;left:75%;width:25%;height:24px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:600;position:absolute">🫘 Feijão · entressafra</div>
+        </div>
+        <div style="padding:14px 18px;background:#fff;border-top:1px solid var(--border);font-size:11px;color:var(--text-3);display:flex;gap:14px;flex-wrap:wrap">
+          <span><span style="display:inline-block;width:14px;height:14px;background:var(--ceu-100);vertical-align:middle;border-radius:2px"></span> Estação seca · Jul-Set</span>
+          <span><span style="display:inline-block;width:14px;height:14px;background:var(--folha-100);vertical-align:middle;border-radius:2px"></span> Estação das chuvas · Out-Mar</span>
+          <span><span style="display:inline-block;width:14px;height:14px;background:var(--sol-100);vertical-align:middle;border-radius:2px"></span> Calor seco · Abr-Jun</span>
+        </div>
+      </div>
+
+      <div class="grid g-3" style="gap:14px;margin-top:24px">
+        <div class="card folha">
+          <div class="hd"><b>Tomate · ciclo 1 · feito</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Plantado 15.07 · colhido 22.10. <b>4,2 ton</b> vendidas · 38-42 mt/kg · Zimpeto.</p>
+            <p style="font-size:12px;color:var(--folha-700);font-weight:600;margin:0">Receita · 168 K MT · custo · 38 K MT</p>
+          </div>
+        </div>
+
+        <div class="card sol">
+          <div class="hd"><b>Tomate · ciclo 2 · em curso</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Plantado 15.09 · colheita prevista 14.12. <b>Semana 8 · 38 dias para colheita.</b></p>
+            <p style="font-size:12px;color:var(--sol-700);font-weight:600;margin:0">Estimativa · 4-5 ton · risco míldio activo</p>
+          </div>
+        </div>
+
+        <div class="card terra">
+          <div class="hd"><b>Milho · em curso</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.6;margin:0 0 10px">Plantado 18.07 · colheita prevista 04.12. <b>Semana 16 · floração · grão a formar.</b></p>
+            <p style="font-size:12px;color:var(--terra-700);font-weight:600;margin:0">Estimativa · ~ 4 ton (consumo familiar + venda local)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 3 -->
+<section class="scene" id="cena3">
+  <div class="scene-h"><div class="sn">Cena 03</div><div class="lab"><b>Próximos 7 dias · vista de semana</b><span>Sara desliza para baixo · vê os próximos 7 dias · cada dia com 1-3 tarefas · clima previsto · datas-chave (mercado · reunião associação)</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:18</span><span>📶 4G · 🔋 87%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:18px">Próximos 7 dias</h1>
+              <small>06 a 12 de Novembro</small>
+            </div>
+            <button class="btn-audio">▶</button>
+          </div>
+
+          <div class="body">
+            <!-- Sex (hoje) -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:4px solid var(--terra-700);background:var(--terra-50)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px;color:var(--terra-900)">Sex · 06 Nov</b>
+                <span style="font-size:11px;color:var(--text-3)">☀️ 28°C</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                4 tarefas · regar · pragas · adubo · couves
+              </div>
+              <div style="font-size:10px;color:var(--terra-700);font-weight:600;margin-top:4px">HOJE</div>
+            </div>
+
+            <!-- Sab -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--ceu-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px">Sáb · 07 Nov</b>
+                <span style="font-size:11px;color:var(--ceu-700)">☂ 12 mm</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                <b>Vai chover</b> · 2 tarefas · vender couves no mercado de Boane · não regar
+              </div>
+            </div>
+
+            <!-- Dom -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--ceu-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px">Dom · 08 Nov</b>
+                <span style="font-size:11px;color:var(--ceu-700)">☂ 8 mm</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                Descanso · Igreja · 0 tarefas atribuídas
+              </div>
+            </div>
+
+            <!-- Seg -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--folha-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px">Seg · 09 Nov</b>
+                <span style="font-size:11px;color:var(--text-3)">⛅ 26°C</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                3 tarefas · adubar tomate (depois da chuva) · monitorar míldio · plantar cebola na hortinha
+              </div>
+            </div>
+
+            <!-- Ter -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--folha-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px">Ter · 10 Nov</b>
+                <span style="font-size:11px;color:var(--text-3)">☀️ 30°C</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                2 tarefas · regar tomate · capinar milho
+              </div>
+            </div>
+
+            <!-- Qua · associação -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--sol-500);background:var(--sol-50)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px;color:var(--sol-900)">Qua · 11 Nov · 👥</b>
+                <span style="font-size:11px;color:var(--sol-700)">⏰ 14h00</span>
+              </div>
+              <div style="font-size:11px;color:var(--sol-900);line-height:1.6">
+                <b>Reunião Bom Dia Mulher</b> · em casa da Carlota · compras agregadas · planeada
+              </div>
+            </div>
+
+            <!-- Qui -->
+            <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:3px solid var(--folha-600)">
+              <div class="row spread" style="margin-bottom:6px">
+                <b style="font-size:13px">Qui · 12 Nov</b>
+                <span style="font-size:11px;color:var(--text-3)">☀️ 31°C</span>
+              </div>
+              <div style="font-size:11px;color:var(--text-2);line-height:1.6">
+                1 tarefa · regar tomate · pico de calor da semana
+              </div>
+            </div>
+          </div>
+
+          <div class="tabbar">
+            <a class="active"><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>O que Mesu antecipa para a Sara</b></div>
+          <div class="bd">
+            <ul style="margin:0;padding-left:18px;font-size:13px;line-height:1.85">
+              <li><b>Sábado · vai chover 12mm</b> · não regar · ir vender couves antes</li>
+              <li><b>Domingo · descanso</b> · zero tarefas (Sara é cristã evangélica · não trabalha ao domingo)</li>
+              <li><b>Segunda · adubar tomate</b> depois da chuva · solo húmido absorve melhor</li>
+              <li><b>Quarta · reunião associação</b> · 14h em casa da Carlota · sincronizada do calendário do grupo</li>
+              <li><b>Quinta · 31°C</b> · regar reforçado · pico semanal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic">i</span><div><b>Mesu sabe quando é domingo.</b> Aprendeu nos primeiros 4 meses · Sara nunca abriu Lavoura ao domingo · nunca fez tarefas. Mesu deixou de propor. <b>Respeita ritmo · não impõe ritmo.</b> Em culturas islâmicas · respeitaria sextas-feiras. Em famílias com escola · respeitaria horários escolares.</div></div>
+
+        <div class="card folha">
+          <div class="hd"><b>Sincronização com a associação</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Carlota marcou a reunião de quarta no Lavoura dela na segunda passada. Apareceu nas agendas das 8 mulheres automaticamente. <b>Não houve SMS · não houve WhatsApp · não houve "alguém viu a hora?".</b> Sara recebeu notificação de manhã · "amanhã às 14h em casa da Carlota · compras agregadas · ir com lápis e caderno".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 4 -->
+<section class="scene alt" id="cena4">
+  <div class="scene-h"><div class="sn">Cena 04</div><div class="lab"><b>Clima · alertas atempados · 24-48h</b><span>Sara está na hortinha quando recebe SMS · "vai chover muito amanhã · 18 mm · adia adubação". Não tinha rede · SMS chegou. Cross-INAM.</span></div></div>
+  <div class="scene-c">
+    <div class="grid g-2" style="gap:24px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div>
+        <div class="card ceu" style="margin-bottom:14px">
+          <div class="hd" style="background:var(--ceu-600);color:#fff"><b style="color:#fff">Alerta climático · 06h44 SMS</b><span class="badge dark" style="font-size:9px;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3);color:#fff">recebido offline</span></div>
+          <div class="bd">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:6px;padding:14px;font-family:var(--f-mono);font-size:13px;line-height:1.6;color:var(--text);margin-bottom:14px">
+              LAVOURA: Sara · vai chover muito amanhã sábado em Boane · 18-22 mm · 14h-22h · vento moderado · adia adubação do milho · trata pragas hoje · Mesu
+            </div>
+
+            <p style="font-size:13px;line-height:1.6;margin:0 0 8px"><b>SMS gratuita</b> via cross-INAM (Instituto Nacional de Meteorologia) · enviada quando Lavoura detecta:</p>
+            <ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7">
+              <li>Chuva &gt; 10mm prevista nas próximas 48h</li>
+              <li>Temperatura &gt; 35°C ou &lt; 8°C</li>
+              <li>Vento &gt; 60 km/h</li>
+              <li>Risco de geada (zonas de altitude)</li>
+              <li>Início de estação das chuvas (alerta sazonal)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner sol"><span class="ic">!</span><div><b>SMS funciona sem dados móveis · sem rede 4G.</b> Mesmo em zonas onde só há sinal de voz · Sara recebe alertas. INAM emite via short code 1411 · gratuito para o produtor · paga-se por bolsa de carbono em parceria.</div></div>
+      </div>
+
+      <div class="col" style="gap:14px">
+        <div class="card">
+          <div class="hd"><b>4 níveis de alerta climático</b></div>
+          <div class="bd" style="padding:0">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);border-left:4px solid var(--folha-600);display:grid;grid-template-columns:80px 1fr;gap:10px">
+              <span class="badge folha" style="font-size:10px">VERDE</span>
+              <div style="font-size:12px;line-height:1.5"><b>Tudo bem</b> · clima previsto normal · sem alertas</div>
+            </div>
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);border-left:4px solid var(--ceu-600);display:grid;grid-template-columns:80px 1fr;gap:10px">
+              <span class="badge ceu" style="font-size:10px">AZUL</span>
+              <div style="font-size:12px;line-height:1.5"><b>Chuva fraca</b> · 5-15 mm · adiar regas e adubação · normal</div>
+            </div>
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border-2);border-left:4px solid var(--sol-500);display:grid;grid-template-columns:80px 1fr;gap:10px">
+              <span class="badge sol" style="font-size:10px">AMARELO</span>
+              <div style="font-size:12px;line-height:1.5"><b>Chuva forte ou calor</b> · 15-30 mm · &gt; 32°C · agir hoje</div>
+            </div>
+            <div style="padding:12px 16px;border-left:4px solid var(--perigo-600);display:grid;grid-template-columns:80px 1fr;gap:10px">
+              <span class="badge perigo" style="font-size:10px">VERMELHO</span>
+              <div style="font-size:12px;line-height:1.5"><b>Tempestade · ciclone · seca extrema</b> · proteger o que dá · ouvir rádio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card terra">
+          <div class="hd"><b>Lições da época Idai · 2019</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Quando Idai atingiu Sofala em Março 2019 · alertas chegaram tarde · muitos produtores perderam tudo. Lavoura activa <b>"protocolo ciclone"</b> 96h antes · sugere colher tudo o que estiver pronto · proteger sementes · esvaziar estufa. Não previne dano · mas reduz perdas. <b>SMS preto/laranja · prioritária absoluta.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 5 -->
+<section class="scene" id="cena5">
+  <div class="scene-h"><div class="sn">Cena 05</div><div class="lab"><b>Tarefa concluída · check + foto + nota</b><span>06h44 · Sara terminou de regar · toca no check da tarefa · pode tirar foto · pode adicionar nota · Mesu confirma e marca o tempo real.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>06:44</span><span>📶 SEM REDE · 🔋 81%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:18px">Tarefa · regar tomateiras</h1>
+              <small>Concluir · machamba do tomate</small>
+            </div>
+          </div>
+
+          <div class="body">
+            <div class="card folha" style="padding:16px;margin-bottom:14px">
+              <div class="row" style="gap:12px;align-items:center">
+                <div style="width:48px;height:48px;background:var(--folha-600);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700">✓</div>
+                <div style="flex:1">
+                  <b style="font-size:15px;color:var(--folha-700)">Marcar como concluída?</b>
+                  <div style="font-size:11px;color:var(--text-3);margin-top:2px">06h00-06h44 · 44 min · estimaste 30</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-bottom:14px">
+              <div class="t-overline" style="margin-bottom:8px;font-size:9px">FOTO · OPCIONAL</div>
+              <button class="card" style="width:100%;padding:24px;text-align:center;background:var(--bg-page);border:2px dashed var(--border);color:var(--text-3);cursor:pointer">
+                <div style="font-size:28px;margin-bottom:6px">📷</div>
+                <div style="font-size:12px">Tirar foto · machamba</div>
+              </button>
+            </div>
+
+            <div class="field" style="margin-bottom:14px">
+              <label>Nota · opcional</label>
+              <textarea class="textarea" placeholder="Algo que viste? Algo que correu mal?" style="min-height:60px">Vi 3 plantas com folhas amarelas na fila do meio. O Joel ajudou a levar os baldes.</textarea>
+            </div>
+
+            <div class="field" style="margin-bottom:18px">
+              <label>Áudio · opcional</label>
+              <button class="card" style="width:100%;padding:14px;text-align:center;background:var(--ceu-50);border:2px solid var(--ceu-300);color:var(--ceu-800);cursor:pointer">
+                <div class="row" style="gap:10px;justify-content:center;align-items:center">
+                  <div style="width:36px;height:36px;background:var(--ceu-600);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px">🎤</div>
+                  <span style="font-size:13px;font-weight:600">Gravar nota falada</span>
+                </div>
+              </button>
+            </div>
+
+            <button class="btn xl block folha">✓ Concluir tarefa</button>
+
+            <div class="banner sol" style="margin-top:14px;padding:10px;font-size:11px"><span class="ic">!</span><div><b>Sem rede agora.</b> Vou guardar localmente · sincronizo quando voltar a 4G.</div></div>
+          </div>
+
+          <div class="tabbar">
+            <a><span class="ico">🏠</span>Início</a>
+            <a class="active"><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>3 maneiras de concluir uma tarefa</b></div>
+          <div class="bd">
+            <h4 style="margin:0 0 6px;font-size:14px">1 · Toque rápido · 2 segundos</h4>
+            <p style="font-size:12px;color:var(--text-2);line-height:1.6;margin:0 0 12px">Sara só toca no círculo da tarefa · ✓ aparece · pronto. Nada de foto · nada de nota.</p>
+
+            <h4 style="margin:0 0 6px;font-size:14px">2 · Com foto · 15 segundos</h4>
+            <p style="font-size:12px;color:var(--text-2);line-height:1.6;margin:0 0 12px">Foto entra no caderno · vira evidência · útil para ver evolução do tomate semana a semana.</p>
+
+            <h4 style="margin:0 0 6px;font-size:14px">3 · Com nota e voz · 1-2 minutos</h4>
+            <p style="font-size:12px;color:var(--text-2);line-height:1.6;margin:0">Sara tem 22 segundos a dizer "vi 3 folhas amarelas na fila do meio · próximo Joel ajudou". Tudo entra no caderno · vira contexto futuro.</p>
+          </div>
+        </div>
+
+        <div class="banner sol"><span class="ic">!</span><div><b>Atenção · 3 plantas com folhas amarelas.</b> Mesu lê a nota · marca diagnóstico de pragas como tarefa próxima · pré-prepara o módulo de câmara para folha amarela. <b>Tudo o que Sara escreve alimenta tudo o que vem a seguir.</b></div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Sem rede · sem stress</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Boane perde 4G várias vezes por dia · especialmente nas machambas mais afastadas. Lavoura grava tudo localmente em SQLite · sincroniza quando volta sinal. Sara nunca vê erro · nunca perde dado · nunca espera spinner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 6 -->
+<section class="scene alt" id="cena6">
+  <div class="scene-h"><div class="sn">Cena 06</div><div class="lab"><b>Replanear · "Mesu · não vou conseguir hoje"</b><span>Esperança ficou doente · Sara tem que a levar ao centro de saúde · não vai dar para fazer 4 tarefas · Lavoura aceita · replaneia.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>08:14</span><span>📶 4G · 🔋 76%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:18px">Replanear hoje</h1>
+              <small>3 tarefas pendentes</small>
+            </div>
+            <button class="btn-audio">▶</button>
+          </div>
+
+          <div class="body">
+            <div class="card terra" style="padding:14px;margin-bottom:14px;background:var(--terra-50)">
+              <div class="row" style="gap:8px;align-items:center;margin-bottom:8px">
+                <span class="mesu" style="padding:2px 12px 2px 2px"><div class="face" style="width:28px;height:28px"></div><div class="name" style="font-size:11px">Mesu</div></span>
+              </div>
+              <p style="font-family:var(--f-serif);font-size:14px;line-height:1.5;color:var(--terra-900);margin:0">A Esperança está doente. Espero que melhore. O que precisas hoje?</p>
+            </div>
+
+            <div class="col" style="gap:8px;margin-bottom:18px">
+              <button class="btn xl block secondary" style="text-align:left;justify-content:flex-start;padding:14px 18px">
+                <div style="text-align:left;flex:1">
+                  <div style="font-size:14px;font-weight:700;color:var(--terra-900)">Adia tudo para amanhã</div>
+                  <div style="font-size:11px;color:var(--text-3);font-weight:400;margin-top:2px">3 tarefas movem-se para sábado</div>
+                </div>
+                <span style="font-size:18px;color:var(--terra-700)">→</span>
+              </button>
+
+              <button class="btn xl block" style="background:var(--folha-600);border-color:var(--folha-600);text-align:left;justify-content:flex-start;padding:14px 18px">
+                <div style="text-align:left;flex:1">
+                  <div style="font-size:14px;font-weight:700">Faço só o essencial · pragas</div>
+                  <div style="font-size:11px;opacity:0.85;font-weight:400;margin-top:2px">15 min · míldio espera não · resto adia</div>
+                </div>
+                <span style="font-size:18px">→</span>
+              </button>
+
+              <button class="btn xl block secondary" style="text-align:left;justify-content:flex-start;padding:14px 18px">
+                <div style="text-align:left;flex:1">
+                  <div style="font-size:14px;font-weight:700;color:var(--terra-900)">Pede à Carlota fazer pragas</div>
+                  <div style="font-size:11px;color:var(--text-3);font-weight:400;margin-top:2px">Vizinha · associação · pode passar</div>
+                </div>
+                <span style="font-size:18px;color:var(--terra-700)">→</span>
+              </button>
+
+              <button class="btn xl block ghost" style="text-align:left;justify-content:flex-start;padding:14px 18px">
+                <div style="text-align:left;flex:1">
+                  <div style="font-size:14px;font-weight:700;color:var(--terra-900)">Outra coisa · falo eu</div>
+                  <div style="font-size:11px;color:var(--text-3);font-weight:400;margin-top:2px">Diz-me em voz · Mesu ajusta</div>
+                </div>
+                <span style="font-size:18px;color:var(--terra-700)">🎤</span>
+              </button>
+            </div>
+
+            <div class="banner ceu" style="padding:10px;font-size:11px"><span class="ic">i</span><div>O médico do centro de saúde de Boane abre às 8h00. <b>Vai · não te preocupes com a machamba.</b></div></div>
+          </div>
+
+          <div class="tabbar">
+            <a class="active"><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>O que aconteceu · 08h00</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px"><b>Esperança acordou com febre alta · vomitou.</b> Sara sente-lhe a testa · está quente · provável malária. Decide ir ao centro de saúde de Boane · 7 km. Joel fica com a Tânia.</p>
+            <p style="font-size:14px;line-height:1.7;margin:0">Sara abre Lavoura no carro · enquanto Joel pede à motoreta da vizinha. Toca em "replanear hoje". Mesu aparece · oferece 4 caminhos. Sara escolhe <b>"faço só o essencial · pragas"</b> · vai voltar de tarde fazer 15 minutos · resto adia para sábado.</p>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>Mesu não pressiona.</b> Não diz "atenção · vais perder dia". Diz "espero que a Esperança melhore". <b>Reconhece prioridade humana antes de prioridade agrícola.</b> Sara vai ao centro de saúde · regressa às 13h · aplica pesticida em 15 minutos · vai descansar.</div></div>
+
+        <div class="card sol">
+          <div class="hd"><b>Pedido de ajuda · Carlota</b></div>
+          <div class="bd">
+            <p style="font-size:13px;line-height:1.7;margin:0">Sara podia ter escolhido a 3.ª opção · Lavoura enviaria mensagem à Carlota com a localização da machamba do tomate · folhas baixas com manchas · pedido para passar com pulverizador. Carlota responderia "vou às 10h". Lavoura registaria troca como ajuda mútua dentro da associação. <b>Tecido social digitalizado · não substituído.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA 7 -->
+<section class="scene" id="cena7">
+  <div class="scene-h"><div class="sn">Cena 07</div><div class="lab"><b>Sara fecha o dia · 19h22 · Esperança a dormir · revisão</b><span>Esperança recuperou (era malária leve · paracetamol). Sara chega a casa · jantar feito · 19h22 abre Lavoura para fechar o dia.</span></div></div>
+  <div class="scene-c">
+    <div class="grid" style="grid-template-columns:380px 1fr;gap:32px;max-width:1080px;margin:0 auto;align-items:flex-start">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>19:22</span><span>📶 4G · 🔋 32%</span></div>
+
+          <div class="header">
+            <div>
+              <h1 style="font-size:18px">Resumo do dia</h1>
+              <small>Sexta · 6 de Novembro</small>
+            </div>
+            <button class="btn-audio">▶</button>
+          </div>
+
+          <div class="body">
+            <div class="card folha" style="padding:14px;margin-bottom:14px;background:var(--folha-50)">
+              <div class="row" style="gap:8px;align-items:center;margin-bottom:8px">
+                <span class="mesu" style="padding:2px 12px 2px 2px"><div class="face" style="width:28px;height:28px"></div><div class="name" style="font-size:11px">Mesu</div></span>
+              </div>
+              <p style="font-family:var(--f-serif);font-size:14px;line-height:1.55;color:var(--folha-900);margin:0">Foi um dia difícil mas correu bem · regaste antes do hospital · trataste pragas à tarde · adiaste o resto. A machamba aguenta. Espero que a Esperança esteja melhor.</p>
+            </div>
+
+            <div class="grid g-2" style="gap:8px;margin-bottom:14px">
+              <div class="card folha" style="padding:12px;text-align:center">
+                <div style="font-family:var(--f-serif);font-size:24px;font-weight:700;color:var(--folha-700);line-height:1">2</div>
+                <div style="font-size:10px;color:var(--folha-700);text-transform:uppercase;font-weight:600;margin-top:2px">Concluídas</div>
+              </div>
+              <div class="card sol" style="padding:12px;text-align:center">
+                <div style="font-family:var(--f-serif);font-size:24px;font-weight:700;color:var(--sol-700);line-height:1">2</div>
+                <div style="font-size:10px;color:var(--sol-700);text-transform:uppercase;font-weight:600;margin-top:2px">Adiadas · sábado</div>
+              </div>
+            </div>
+
+            <div class="t-overline" style="margin:14px 0 8px;font-size:9px">CADERNO DE HOJE</div>
+            <div class="caderno-entry folha" style="padding:12px;margin-bottom:6px">
+              <div class="date" style="font-size:10px">06h44 · machamba do tomate</div>
+              <div class="body" style="font-size:13px">Reguei. Vi 3 plantas com folhas amarelas na fila do meio. <em>O Joel ajudou.</em></div>
+            </div>
+            <div class="caderno-entry sol" style="padding:12px;margin-bottom:6px">
+              <div class="date" style="font-size:10px">13h28 · machamba do tomate</div>
+              <div class="body" style="font-size:13px">Pulverizei sulfato de cobre · 4 colheres · 20 litros · folhas baixas.</div>
+            </div>
+            <div class="caderno-entry terra" style="padding:12px">
+              <div class="date" style="font-size:10px">10h00 · centro de saúde Boane</div>
+              <div class="body" style="font-size:13px">Esperança · malária leve · paracetamol · vai melhorar.</div>
+            </div>
+
+            <div class="banner ceu" style="margin-top:14px;padding:10px;font-size:11px"><span class="ic">i</span><div>Amanhã · 5 tarefas · vai chover às 14h · sai cedo.</div></div>
+          </div>
+
+          <div class="tabbar">
+            <a class="active"><span class="ico">🏠</span>Início</a>
+            <a><span class="ico">🌱</span>Machamba</a>
+            <a><span class="ico">📷</span>Diag</a>
+            <a><span class="ico">💰</span>Mercado</a>
+            <a><span class="ico">📓</span>Caderno</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:14px;padding-top:14px">
+        <div class="card">
+          <div class="hd"><b>O fim do dia tem ritual · não só dados</b></div>
+          <div class="bd">
+            <p style="font-size:14px;line-height:1.7;margin:0 0 12px"><b>Mesu não despeja números.</b> Não diz "completaste 50% das tarefas". Diz <em>"foi um dia difícil mas correu bem"</em>. <b>Reconhece a humanidade do dia · não reduz a métrica.</b></p>
+            <p style="font-size:14px;line-height:1.7;margin:0">Sara recebe 3 informações úteis · concluído (2) · adiado (2) · caderno de 3 entradas. Suficiente para fechar o dia em paz · saber que não esqueceu nada. <b>Termina convidando para amanhã sem culpa.</b></p>
+          </div>
+        </div>
+
+        <div class="banner folha"><span class="ic">✓</span><div><b>3 entradas no caderno hoje.</b> 1 técnica (rega + folhas amarelas) · 1 técnica (pesticida) · 1 humana (Esperança). Lavoura não separa "trabalho" de "vida" · porque para Sara isso não é uma separação. Caderno é diário integral.</div></div>
+
+        <div class="card terra">
+          <div class="hd"><b>Pull quote · Sara · fim do dia</b></div>
+          <div class="bd">
+            <p class="pull-quote" style="margin:0">"Quando a Esperança ficou doente · pensei que ia perder a machamba do tomate. Levei-a ao centro · voltei · pulverizei só as folhas baixas · 15 minutos · pronto. Mesu adiou o resto sem chiar. À noite · disse-me que correu bem. Acho que correu mesmo bem · graças a Deus e graças a este telemóvel."<cite>Sara Mucavele · 06.11.2026 · 19h22</cite></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:32px 24px;background:var(--terra-950);color:rgba(255,255,255,0.7);margin-top:24px">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--terra-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;font-family:var(--f-serif)">L</div>
+        <div>
+          <div style="font-size:15px;color:#fff;font-weight:700;font-family:var(--f-serif)">Agenda · Sara · 06.11.2026</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Surface 2 de 7 · DESIGN-agenda.md</div>
+        </div>
+      </div>
+      <p style="font-size:12px;line-height:1.6;margin:14px 0 0;max-width:680px;color:rgba(255,255,255,0.5)">Sara, Joel, Tânia, Esperança, Carlota Macuácua são personagens fictícias. INAM (Instituto Nacional de Meteorologia) é organismo público real de MZ. Centro de Saúde de Boane existe. Quantidades de chuva, tarefas e estimativas de produção são ilustrativas para o protótipo.</p>
+    </div>
+    <div class="row" style="gap:8px"><a href="onboarding.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">‹ Onboarding</a><a href="plantio.html" class="btn ghost sm" style="color:rgba(255,255,255,0.7)">Próxima · Plantio ›</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

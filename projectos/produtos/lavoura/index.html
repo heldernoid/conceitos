@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=1280" />
+<title>Lavoura · Assistente Agrícola Digital de Moçambique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared/styles.css" />
+</head>
+<body>
+
+<div class="govstrip">
+  <span>Produto · Lavoura MZ</span><span class="sep">·</span>
+  <span>Assistente Agrícola Digital</span><span class="sep">·</span>
+  <span>Offline-first · 3 línguas</span>
+  <span style="margin-left:auto">lavoura.app · v0.1 · protótipo</span>
+</div>
+<div class="lavoura-stripe"></div>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark">L</span>
+    <span class="stack"><span>Lavoura</span><small>Assistente Agrícola</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html" class="active">Visão geral</a>
+    <a href="design-system.html">Sistema</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="agenda.html">Agenda</a>
+    <a href="plantio.html">Plantio</a>
+    <a href="diagnostico.html">Diagnóstico</a>
+    <a href="mercado.html">Mercado</a>
+    <a href="caderno.html">Caderno</a>
+    <a href="associacao.html">Associação</a>
+  </nav>
+  <div class="right">
+    <span class="lang-pill"><button class="active">PT</button><button>Changana</button><button>Macua</button></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="padding:80px 24px 64px;background:linear-gradient(135deg,#3a2410 0%,#241509 100%);color:#fff;border-bottom:4px solid var(--sol-500);position:relative;overflow:hidden">
+  <div style="position:absolute;top:-80px;right:-80px;width:380px;height:380px;border-radius:50%;background:rgba(245,158,11,0.08);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-60px;left:20%;width:280px;height:280px;border-radius:50%;background:rgba(77,124,15,0.12);pointer-events:none"></div>
+
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:end;position:relative">
+    <div>
+      <div class="t-overline" style="margin-bottom:18px;color:var(--sol-300)">PROTÓTIPO · ASSISTENTE AGRÍCOLA · OFFLINE-FIRST</div>
+      <h1 class="headline xl dark" style="margin:0 0 18px;font-size:60px">A tua machamba<br>contigo · sem rede.<br><span style="color:var(--sol-300);font-style:italic">Mesu vê.</span></h1>
+      <p class="deck dark" style="max-width:680px;margin:0 0 28px;font-size:18px">Lavoura é um companheiro digital para o produtor moçambicano · acompanha desde o primeiro dia da preparação da terra até à venda no mercado. Funciona offline · sincroniza quando há rede · fala português · changana e macua · escuta-te quando preferes falar a escrever.</p>
+
+      <div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:24px">
+        <span class="badge dark" style="font-size:11px">7 superfícies</span>
+        <span class="badge dark" style="font-size:11px">Offline-first</span>
+        <span class="badge dark" style="font-size:11px">3 línguas · PT · Changana · Macua</span>
+        <span class="badge" style="font-size:11px;background:var(--sol-500);color:var(--terra-900);border:0;font-weight:700">Sara · Boane · 6 ha</span>
+      </div>
+
+      <div class="row" style="gap:12px">
+        <a href="onboarding.html" class="btn lg" style="background:var(--sol-500);border-color:var(--sol-500);color:var(--terra-900)">Começar com a Sara ›</a>
+        <a href="design-system.html" class="btn lg secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.3)">Ver sistema</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="card dark" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);padding:24px">
+        <div class="row" style="gap:10px;margin-bottom:14px">
+          <div class="mesu" style="background:rgba(245,158,11,0.15);border-color:var(--sol-500);padding:4px 14px 4px 4px">
+            <div class="face"></div>
+            <div class="name" style="color:#fff">Mesu · o conselheiro</div>
+          </div>
+        </div>
+        <p style="font-family:var(--f-serif);font-size:18px;color:#fff;line-height:1.5;margin:0 0 16px;font-style:italic">"Bom dia, Sara. As tuas tomateiras precisam de água hoje. Choveu pouco esta semana · 4 mm. Próximas 3 manhãs vão ser frescas · regue antes das 9h."</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;font-size:12px;color:rgba(255,255,255,0.6);font-family:var(--f-mono)">06.11.2026 · 06h12 · áudio disponível em Changana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 PRINCIPIOS -->
+<section style="padding:48px 24px;background:#fff">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>4 princípios · Lavoura</b></div>
+    <div class="grid g-4" style="gap:18px;margin-top:18px">
+      <div class="card folha" style="padding:22px">
+        <div style="font-size:36px;margin-bottom:10px">🌾</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif);font-size:18px;color:var(--folha-700)">Acompanha · não substitui</h3>
+        <p class="t-meta" style="font-size:13px;line-height:1.55">Lavoura caminha contigo · não decide por ti. Sara sabe da sua machamba · Mesu lembra o que ela já sabe e sugere o que ela ainda não viu.</p>
+      </div>
+      <div class="card sol" style="padding:22px">
+        <div style="font-size:36px;margin-bottom:10px">📡</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif);font-size:18px;color:var(--sol-700)">Funciona sem rede</h3>
+        <p class="t-meta" style="font-size:13px;line-height:1.55">Boane perde 4G por horas. Mocuba por dias. Lavoura não pára. Tudo o que precisas funciona offline · sincroniza quando voltar.</p>
+      </div>
+      <div class="card ceu" style="padding:22px">
+        <div style="font-size:36px;margin-bottom:10px">🗣️</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif);font-size:18px;color:var(--ceu-800)">Fala em 3 línguas · escuta voz</h3>
+        <p class="t-meta" style="font-size:13px;line-height:1.55">Português · Changana · Macua. Mesu lê em voz alta. Aceita perguntas faladas. Não exige saber escrever bem.</p>
+      </div>
+      <div class="card terra" style="padding:22px">
+        <div style="font-size:36px;margin-bottom:10px">📓</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif);font-size:18px;color:var(--terra-700)">Memória que cresce</h3>
+        <p class="t-meta" style="font-size:13px;line-height:1.55">Cada ciclo é registado. Ao 3.º ano · sabes quanto rendeu cada parcela · quanto custou · que praga apareceu em Janeiro. Aprendizagem composta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 SUPERFICIES -->
+<section style="padding:48px 24px;background:var(--bg-subtle);border-top:1px solid var(--border)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>Sete superfícies · um ciclo agrícola completo</b></div>
+
+    <div class="grid" style="grid-template-columns:1.6fr 1fr 1fr;gap:18px;margin-top:18px">
+      <a href="onboarding.html" class="card dark" style="padding:28px;text-decoration:none;display:block;grid-row:span 2;background:linear-gradient(135deg,var(--terra-800) 0%,var(--terra-900) 100%);border-color:var(--terra-700)">
+        <div class="t-overline" style="color:var(--sol-300);margin-bottom:12px">SURFACE 1 · DESTACADA</div>
+        <h2 class="headline lg dark" style="margin:0 0 14px;color:#fff">Onboarding.<br>Sara entra.</h2>
+        <p style="color:rgba(255,255,255,0.78);font-size:14px;line-height:1.6;margin:0 0 18px">Primeira utilização. Sara regista as 3 parcelas com GPS · escolhe culturas · liga-se à associação Bom Dia Mulher. 12 minutos do download à primeira tarefa atribuída.</p>
+        <div class="row" style="gap:6px;flex-wrap:wrap">
+          <span class="badge" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);font-size:10px">Onboarding 5 passos</span>
+          <span class="badge" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);font-size:10px">GPS offline</span>
+          <span class="badge" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);font-size:10px">Voz · Changana</span>
+        </div>
+      </a>
+
+      <a href="agenda.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--folha-600)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--folha-700)">Surface 2</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Agenda da machamba</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Calendário 12 meses · tarefas hoje · alertas de chuva · 7 próximos dias.</p>
+      </a>
+
+      <a href="plantio.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--perigo-600)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--perigo-600)">Surface 3</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Plantio · tomate</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Wizard · sementeira → transplante → tutorado · com vídeo e voz.</p>
+      </a>
+
+      <a href="diagnostico.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--sol-500)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--sol-700)">Surface 4</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Diagnóstico de pragas</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Foto da folha · Mesu identifica · recomenda · funciona offline.</p>
+      </a>
+
+      <a href="mercado.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--ceu-600)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--ceu-800)">Surface 5</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Mercado · vender</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Preços Zimpeto · Bazaruto · agregadores · transporte · contratos.</p>
+      </a>
+
+      <a href="caderno.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--terra-700)">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--terra-700)">Surface 6</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Caderno · memória</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">3 ciclos cumulativos · custos · receitas · o que aprendeste.</p>
+      </a>
+
+      <a href="associacao.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block;border-left:4px solid var(--folha-600);grid-column:span 2">
+        <div class="t-overline" style="margin-bottom:8px;color:var(--folha-700)">Surface 7</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">Associação Bom Dia Mulher · 8 produtoras juntas</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Grupo · partilha problemas · compras agregadas (sementes · adubo) · venda colectiva ao agregador · pull quote final da Sara.</p>
+      </a>
+
+      <a href="design-system.html" class="card" style="padding:18px;text-decoration:none;color:inherit;display:block">
+        <div class="t-overline" style="margin-bottom:8px">Sistema</div>
+        <h3 class="t-h3" style="margin:0 0 8px;font-family:var(--f-serif)">6 componentes signature</h3>
+        <p class="t-meta" style="font-size:12px;line-height:1.5">Machamba · tarefa · calendário · diagnóstico · preços · caderno.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section style="padding:64px 24px;background:#fff;border-top:1px solid var(--border)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="section-rule"><b>O ano da Sara · ciclo 2026/2027</b></div>
+    <div class="grid g-2" style="margin-top:18px;gap:48px;align-items:flex-start">
+      <div>
+        <h2 class="headline md" style="margin:0 0 14px">Sara Mucavele tem 34 anos · 6 hectares em Boane · 3 filhos · uma motoreta vermelha</h2>
+        <p style="font-size:15px;line-height:1.7;color:var(--text-2);margin:0 0 16px">Cresceu em Inharrime · Inhambane. O pai era pescador · a mãe vendia mandioca cozida na rua. Mudou-se para Boane em 2014 quando casou com o Manuel · funcionário do INSAA. Começou com meio hectare de couve em 2018. Em 2022 plantou tomate pela primeira vez · perdeu metade para a traça. Em 2024 acertou · vendeu 4,2 toneladas ao Zimpeto. Em 2026 baixou Lavoura.</p>
+
+        <p style="font-size:15px;line-height:1.7;color:var(--text-2);margin:0">Não é caso especial. É uma das 1,4 milhões de produtoras moçambicanas que vivem entre subsistência e mercado · que sabem mais da sua machamba do que qualquer técnico · mas que perdem dinheiro todos os anos por falta de informação atempada. <b style="color:var(--terra-800)">Lavoura existe para fechar essa fenda.</b></p>
+      </div>
+      <div class="col" style="gap:14px">
+        <div class="card folha">
+          <div class="hd"><b>O que a Sara plantou em 2026</b></div>
+          <div class="bd">
+            <div class="grid g-2" style="gap:12px">
+              <div>
+                <div class="culture-tag tomate" style="margin-bottom:6px">TOMATE</div>
+                <div style="font-size:13px;line-height:1.6"><b>2,4 ha</b> · cultivar Roma · destino Mercado Zimpeto · 2 ciclos/ano</div>
+              </div>
+              <div>
+                <div class="culture-tag milho" style="margin-bottom:6px">MILHO</div>
+                <div style="font-size:13px;line-height:1.6"><b>2,8 ha</b> · cultivar Matuba · 1 ciclo · família + venda local</div>
+              </div>
+              <div>
+                <div class="culture-tag couve" style="margin-bottom:6px">COUVE</div>
+                <div style="font-size:13px;line-height:1.6"><b>0,4 ha</b> · todo o ano · venda à porta de casa</div>
+              </div>
+              <div>
+                <div class="culture-tag feijao" style="margin-bottom:6px">FEIJÃO</div>
+                <div style="font-size:13px;line-height:1.6"><b>0,4 ha</b> · feijão-nhemba · após o milho · entressafra</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="banner ceu"><span class="ic">i</span><div><b>O Manuel já não está.</b> Faleceu de malária complicada em 2024. Sara herdou o DUAT · cria sozinha 3 filhos · Joel 12 · Tânia 9 · Esperança 5. A motoreta vermelha era do Manuel · agora é dela.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUME -->
+<section style="padding:48px 24px;background:var(--terra-900);color:rgba(255,255,255,0.85)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="row spread" style="margin-bottom:24px;align-items:flex-end">
+      <div>
+        <h2 class="headline md dark" style="margin:0">Lavoura em números</h2>
+        <p class="deck dark" style="margin:6px 0 0">Protótipo · domínio agrícola · não governamental</p>
+      </div>
+      <a href="onboarding.html" class="btn sol">Começar →</a>
+    </div>
+    <div class="grid g-4" style="gap:14px">
+      <div class="kpi dark"><div class="lbl">Superfícies</div><div class="num">7</div><div class="delta">+ foundation</div></div>
+      <div class="kpi dark"><div class="lbl">Cenas</div><div class="num">49</div><div class="delta">7 por superfície</div></div>
+      <div class="kpi dark"><div class="lbl">Línguas</div><div class="num">3</div><div class="delta">PT · Changana · Macua</div></div>
+      <div class="kpi dark"><div class="lbl">Componentes signature</div><div class="num">6</div><div class="delta">machamba · tarefa · calendário · diagnóstico · preços · caderno</div></div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:48px 24px;background:var(--terra-950);color:rgba(255,255,255,0.7)">
+  <div style="max-width:1280px;margin:0 auto" class="row spread">
+    <div>
+      <div class="row" style="gap:12px">
+        <div style="width:42px;height:42px;background:var(--terra-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;font-family:var(--f-serif)">L</div>
+        <div>
+          <div style="font-size:18px;color:#fff;font-weight:700;font-family:var(--f-serif)">Lavoura</div>
+          <div style="font-size:10px;letter-spacing:0.04em;text-transform:uppercase">Assistente Agrícola Digital · Moçambique</div>
+        </div>
+      </div>
+      <p style="font-size:13px;line-height:1.6;margin:18px 0 0;max-width:760px;color:rgba(255,255,255,0.55)">Protótipo de design criado por <a href="https://www.linkedin.com/in/helmo/" style="color:var(--sol-300)">Hélder Monteiro</a> para imaginar um companheiro digital ao serviço do produtor agrícola moçambicano. Sara Mucavele · Manuel · Joel · Tânia · Esperança · associação Bom Dia Mulher · agregadores referenciados são personagens fictícias. Distritos · mercados · cultivares · pragas mencionados existem ou são plausíveis · mas casos individuais e quantidades são ilustrativos. Lavoura é uma marca de prototipagem · não um produto comercial.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
