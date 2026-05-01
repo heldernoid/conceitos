@@ -28,7 +28,8 @@ Reimaginacao de servicos publicos digitais mocambicanos - saude, educacao, justi
 
 Ferramentas independentes para o quotidiano de mocambicanos - nao infraestrutura de Estado.
 
-- [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) - assistente agricola digital para a produtora mocambicana: planeamento de epoca, caderno de campo, mercado, diagnostico
+- [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) - assistente agricola digital para o agricultor mocambicano: planeamento de epoca, caderno de campo, mercado, diagnostico
+- [KuVona](https://conceitos.org/projectos/produtos/kuvona/) - plataforma de jornalismo e transparencia civica: publicacao, triagem, arquivo e acesso judicial a informacao de interesse publico
 
 ## Sobre
 

@@ -2,12 +2,12 @@
 
 Plataforma de jornalismo e transparência cívica. Publicação, triagem, arquivo e acesso judicial a informação de interesse público — desenhada para jornalistas, editoras e cidadãs moçambicanas.
 
-[→ Abrir protótipo](https://conceitos.org/projectos/produtos/vona/)
+[→ Abrir protótipo](https://conceitos.org/projectos/produtos/kuvona/)
 
 ## Estrutura
 
 ```
-vona/
+kuvona/
 ├── index.html           # Visão geral e navegação
 ├── cidada.html          # Portal da Cidadã
 ├── editora.html         # Editora
