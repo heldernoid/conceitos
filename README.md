@@ -93,7 +93,7 @@ Reimaginação do sistema nacional de equivalências e candidaturas académicas 
 
 ### Lavoura
 
-Assistente agrícola digital para a produtora moçambicana com oito superfícies: onboarding, caderno de campo, planeamento de plantio, diagnóstico de culturas, mercado local, agenda, associação de produtores e painel de gestão.
+Assistente agrícola digital para o agricultor moçambicano com oito superfícies: onboarding, caderno de campo, planeamento de plantio, diagnóstico de culturas, mercado local, agenda, associação de produtores e painel de gestão.
 
 ## Estrutura
 
