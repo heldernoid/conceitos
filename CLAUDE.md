@@ -22,8 +22,8 @@ Ver `AGENTS.md` para contexto completo do repositório.
 ### Construir produto real a partir de um protótipo
 
 1. Remove o snippet GA (`G-P01B93QSYD`) do `<head>` de cada HTML
-2. Usa `PRINCIPIOS.md` como base para o documento de requisitos
-3. Usa `DESIGN-*.md` para cada superfície como PRD por ecrã
+2. Usa `DESIGN-*.md` para cada superfície como PRD por ecrã
+3. Nos produtos (Lavoura, KuVona, Comunidade), lê `PRINCIPIOS.md` para personas e restrições
 4. Mantém as restrições deliberadas: sem gamification, privacidade como restrição de sistema
 
 ### Stack

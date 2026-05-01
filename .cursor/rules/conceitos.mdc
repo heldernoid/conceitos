@@ -15,7 +15,7 @@ Ver `AGENTS.md` na raiz para contexto completo.
 
 - `projectos/publicos/` — 13 serviços públicos reimaginados
 - `projectos/produtos/` — 3 produtos consumer (Lavoura, KuVona, Comunidade)
-- Cada projecto tem: `PRINCIPIOS.md`, `DESIGN-*.md`, `design-system.html`, `shared/styles.css`
+- Cada projecto tem: `DESIGN-*.md`, `design-system.html`, `shared/styles.css`; Produtos também têm `PRINCIPIOS.md`
 
 ## Regras ao editar
 
@@ -27,6 +27,6 @@ Ver `AGENTS.md` na raiz para contexto completo.
 
 ## Ao criar specs a partir dos protótipos
 
-- `PRINCIPIOS.md` → documento de requisitos e personas
+- `PRINCIPIOS.md` → personas e restrições (existe nos Produtos, não em todos os projectos)
 - `DESIGN-*.md` → PRD por superfície, inclui o que foi deliberadamente excluído
 - `design-system.html` → tokens visuais e componentes

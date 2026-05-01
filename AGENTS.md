@@ -50,7 +50,7 @@ Cada projecto segue sempre este padrão de ficheiros:
 | `index.html` | Landing com hero, 8 princípios fundadores, navegação para superfícies |
 | `design-system.html` | Paleta, tipografia, componentes signature |
 | `*.html` (5-9 ficheiros) | Superfícies: portais, fluxos, painéis, ferramentas |
-| `PRINCIPIOS.md` | Documento fundador: 8 princípios + personas + operador fictício |
+| `PRINCIPIOS.md` | Documento fundador: 8 princípios + personas + operador fictício (presente nos Produtos) |
 | `DESIGN-*.md` | Decisões de design por superfície + "o que deliberadamente NÃO está aqui" |
 | `shared/styles.css` | ~1000 linhas · tokens CSS + componentes (único ficheiro em shared/) |
 
@@ -60,7 +60,7 @@ Cada projecto segue sempre este padrão de ficheiros:
 
 ### 1. Ler antes de codificar
 
-- `PRINCIPIOS.md` — princípios de design, personas, e restrições deliberadas
+- `PRINCIPIOS.md` — princípios de design, personas, e restrições deliberadas (presente nos Produtos)
 - `DESIGN-*.md` — cada decisão por superfície, incluindo o que foi conscientemente excluído
 - `design-system.html` — tokens visuais, componentes, tipografia
 
@@ -73,8 +73,7 @@ HTML — serve apenas para medir visitas no conceitos.org, não tem utilidade no
 
 Ao gerar specs ou arquitectura a partir destes protótipos:
 
-- Respeita as personas definidas em `PRINCIPIOS.md` — representam o utilizador real,
-  não um utilizador abstracto
+- Nos produtos (Lavoura, KuVona, Comunidade), lê `PRINCIPIOS.md` para personas e restrições deliberadas
 - Mantém os princípios fundadores — cada um existe por razão específica
 - Respeita o que está deliberadamente ausente (ver secção abaixo)
 

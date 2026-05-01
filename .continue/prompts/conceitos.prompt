@@ -12,7 +12,7 @@ Estrutura:
 - projectos/produtos/ — Lavoura (P01), KuVona (P02), Comunidade (P03)
 
 Cada projecto tem:
-- PRINCIPIOS.md — 8 princípios fundadores + personas + operador fictício
+- PRINCIPIOS.md — 8 princípios fundadores + personas + operador fictício (presente nos Produtos)
 - DESIGN-*.md — decisões por superfície + o que foi deliberadamente excluído
 - design-system.html — tokens visuais e componentes
 - shared/styles.css — único ficheiro em shared/
@@ -21,5 +21,5 @@ Stack: HTML5 estático · CSS3 · SVG inline · sem frameworks
 
 Ao construir produto real a partir destes protótipos:
 1. Remove GA snippet (G-P01B93QSYD) de cada <head>
-2. Usa PRINCIPIOS.md como base de requisitos
+2. Nos produtos, lê PRINCIPIOS.md para personas e restrições deliberadas
 3. Usa DESIGN-*.md como PRD por superfície

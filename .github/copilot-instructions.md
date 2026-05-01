@@ -10,8 +10,8 @@ Ver `AGENTS.md` na raiz para contexto completo.
 
 - `projectos/publicos/` — 13 serviços públicos reimaginados (saúde, educação, etc.)
 - `projectos/produtos/` — 3 produtos consumer (Lavoura, KuVona, Comunidade)
-- Cada projecto tem: `PRINCIPIOS.md` (princípios + personas), `DESIGN-*.md`
-  (decisões por superfície), `design-system.html`, `shared/styles.css`
+- Cada projecto tem: `DESIGN-*.md` (decisões por superfície), `design-system.html`, `shared/styles.css`
+- Produtos (Lavoura, KuVona, Comunidade) também têm `PRINCIPIOS.md` (princípios + personas)
 
 ## Convenções a respeitar
 
@@ -24,6 +24,6 @@ Ver `AGENTS.md` na raiz para contexto completo.
 ## Para construir produto real
 
 1. Remove o snippet Google Analytics (`G-P01B93QSYD`) de cada `<head>`
-2. Lê `PRINCIPIOS.md` para entender personas e restrições deliberadas
+2. Nos produtos, lê `PRINCIPIOS.md` para personas e restrições deliberadas
 3. Lê `DESIGN-*.md` para decisões de design por superfície
 4. Atribuição: Baseado em Conceitos por Hélder Monteiro - https://conceitos.org (CC BY 4.0)

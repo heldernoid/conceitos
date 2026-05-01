@@ -10,7 +10,7 @@ Ver `AGENTS.md` na raiz para contexto completo.
 
 - `projectos/publicos/` — 13 serviços públicos reimaginados
 - `projectos/produtos/` — 3 produtos (Lavoura, KuVona, Comunidade)
-- `PRINCIPIOS.md` em cada projecto — princípios fundadores e personas
+- `PRINCIPIOS.md` nos Produtos (Lavoura, KuVona, Comunidade) — princípios fundadores e personas
 - `DESIGN-*.md` em cada projecto — decisões de design por superfície
 
 ## Stack
