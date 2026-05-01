@@ -39,6 +39,7 @@ Este repositório contém o código-fonte do site [conceitos.org](https://concei
 |---|----------|--------|
 | P01 | [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) | Disponível |
 | P02 | [KuVona](https://conceitos.org/projectos/produtos/kuvona/) | Disponível |
+| P03 | [Comunidade](https://conceitos.org/projectos/produtos/comunidade/) | Disponível |
 
 ### Saúde Digital
 
@@ -100,6 +101,10 @@ Assistente agrícola digital para o agricultor moçambicano com oito superfície
 
 Plataforma de jornalismo e transparência cívica com sete superfícies: portal da cidadã, editora, triagem, publicação, arquivo, transparência e acesso judicial a informação de interesse público.
 
+### Comunidade
+
+Plataforma de doações e transparência comunitária com sete superfícies: portal do doador, portal do recebedor, fluxo de doação, verificação, auditoria, painel de estado e relatório público.
+
 ## Estrutura
 
 ```
@@ -124,7 +129,8 @@ conceitos/
     │   └── senda/               # 13 · Senda
     └── produtos/
         ├── lavoura/             # P01 · Lavoura
-        └── kuvona/              # P02 · KuVona
+        ├── kuvona/              # P02 · KuVona
+        └── comunidade/          # P03 · Comunidade
 ```
 
 Cada pasta de projecto contém: `index.html`, superfícies (`*.html`), `design-system.html`, `shared/styles.css` e ficheiros `DESIGN-*.md` com as decisões de design.

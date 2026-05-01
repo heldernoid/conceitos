@@ -30,6 +30,7 @@ Ferramentas independentes para o quotidiano de mocambicanos - nao infraestrutura
 
 - [Lavoura](https://conceitos.org/projectos/produtos/lavoura/) - assistente agricola digital para o agricultor mocambicano: planeamento de epoca, caderno de campo, mercado, diagnostico
 - [KuVona](https://conceitos.org/projectos/produtos/kuvona/) - plataforma de jornalismo e transparencia civica: publicacao, triagem, arquivo e acesso judicial a informacao de interesse publico
+- [Comunidade](https://conceitos.org/projectos/produtos/comunidade/) - plataforma de doacoes e transparencia comunitaria: doador, recebedor, verificacao, auditoria e painel de estado
 
 ## Sobre
 
