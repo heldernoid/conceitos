@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 · Conceitos</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAFAF7">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231B5E3F'/><g stroke='%23E07A5F' stroke-width='1.4' stroke-linecap='round'><line x1='16' y1='6' x2='16' y2='9'/><line x1='11' y1='7.5' x2='12.2' y2='10.2'/><line x1='21' y1='7.5' x2='19.8' y2='10.2'/><line x1='7' y1='10.5' x2='9.2' y2='12.4'/><line x1='25' y1='10.5' x2='22.8' y2='12.4'/><line x1='4' y1='15' x2='6.8' y2='16'/><line x1='28' y1='15' x2='25.2' y2='16'/></g><path d='M8 19 a8 8 0 0 1 16 0 z' fill='%23E8B547'/><line x1='5' y1='19' x2='27' y2='19' stroke='%23ffffff' stroke-width='1.2' stroke-linecap='round'/><g stroke='%23ffffff' stroke-width='1' stroke-linecap='round' stroke-opacity='.85'><line x1='8' y1='23' x2='11' y2='23'/><line x1='13.5' y1='25' x2='18.5' y2='25'/><line x1='21' y1='23' x2='24' y2='23'/></g></svg>">
+
+<!-- IBM Plex (Google Fonts) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:        #FAFAF7;
+  --bg-2:      #F2F1EB;
+  --paper:     #FFFFFF;
+  --ink:       #1A1A1A;
+  --ink-2:     #3A3A3A;
+  --ink-3:     #5E5E5E;
+  --ink-4:     #8A8A8A;
+  --line:      #D9D7CF;
+  --line-2:    #E6E4DC;
+  --green-900: #0F3D27;
+  --green-700: #1B5E3F;
+  --green-500: #247A52;
+  --green-100: #E4EFE9;
+  --r-2: 4px;
+  --max: 1200px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;height:100%}
+body{
+  font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none;transition:opacity .15s,color .15s}
+a:focus-visible{outline:2px solid var(--green-700);outline-offset:3px;border-radius:2px}
+
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+@media(min-width:900px){.wrap{padding:0 48px}}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;
+}
+
+/* Top bar */
+.topbar{
+  position:sticky;top:0;z-index:10;
+  background:rgba(250,250,247,.9);
+  backdrop-filter:saturate(140%) blur(8px);
+  -webkit-backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .row{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--ink)}
+.brand .mark{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--green-700);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.brand .stack{display:flex;flex-direction:column;line-height:1.05}
+.brand .stack span{font-size:15px;letter-spacing:-.005em}
+.brand .stack small{font-size:11px;color:var(--ink-3);font-weight:400;letter-spacing:.02em}
+
+.topnav{display:none;align-items:center;gap:28px}
+.topnav a{font-size:14px;color:var(--ink-2);font-weight:500}
+.topnav a:hover{color:var(--green-700)}
+.topnav a.gh{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);padding:6px 12px;border-radius:var(--r-2);
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.02em;
+}
+.topnav a.gh:hover{border-color:var(--ink-2);color:var(--ink)}
+@media(min-width:760px){.topnav{display:flex}}
+
+/* 404 stage */
+.stage{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:64px 24px;
+  border-bottom:1px solid var(--line);
+}
+.stage .inner{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:24px;
+}
+.num-404{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:clamp(7rem,20vw,14rem);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.04em;
+  color:var(--green-700);
+  opacity:.15;
+  user-select:none;
+  pointer-events:none;
+}
+.stage h1{
+  font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:600;
+  letter-spacing:-.02em;
+  margin:0;
+}
+.stage p{
+  color:var(--ink-3);
+  font-size:1rem;
+  max-width:40ch;
+  margin:0;
+  line-height:1.6;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 22px;font-size:15px;font-weight:500;
+  border-radius:var(--r-2);border:1px solid transparent;
+  min-height:44px;transition:background .15s,border-color .15s;
+}
+.btn-primary{background:var(--green-700);color:#fff}
+.btn-primary:hover{background:var(--green-900)}
+
+/* Footer */
+footer{
+  border-top:1px solid var(--line);
+  background:var(--bg);
+  padding:36px 0 48px;
+}
+footer .row{
+  display:flex;flex-wrap:wrap;gap:24px;
+  justify-content:space-between;align-items:flex-start;
+  font-size:13px;color:var(--ink-3);
+}
+footer .lf{display:flex;flex-direction:column;gap:6px;max-width:42ch}
+footer .lf b{color:var(--ink);font-weight:600}
+footer a{color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+footer a:hover{color:var(--green-700);text-decoration-color:var(--green-700)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap row">
+    <a href="https://conceitos.org" class="brand">
+      <span class="mark">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#E07A5F" stroke-width="1.4" stroke-linecap="round">
+            <line x1="16" y1="6" x2="16" y2="9"/>
+            <line x1="11" y1="7.5" x2="12.2" y2="10.2"/>
+            <line x1="21" y1="7.5" x2="19.8" y2="10.2"/>
+            <line x1="7"  y1="10.5" x2="9.2" y2="12.4"/>
+            <line x1="25" y1="10.5" x2="22.8" y2="12.4"/>
+            <line x1="4"  y1="15" x2="6.8"  y2="16"/>
+            <line x1="28" y1="15" x2="25.2" y2="16"/>
+          </g>
+          <path d="M8 19 a8 8 0 0 1 16 0 z" fill="#E8B547"/>
+          <line x1="5" y1="19" x2="27" y2="19" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+          <g stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-opacity=".85">
+            <line x1="8"  y1="23" x2="11" y2="23"/>
+            <line x1="13.5" y1="25" x2="18.5" y2="25"/>
+            <line x1="21" y1="23" x2="24" y2="23"/>
+          </g>
+        </svg>
+      </span>
+      <span class="stack">
+        <span>Conceitos</span>
+        <small>conceitos.org</small>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Navegação principal">
+      <a href="https://conceitos.org/#publicos">Públicos</a>
+      <a href="https://conceitos.org/#produtos">Produtos</a>
+      <a href="https://conceitos.org/#manifesto">Sobre</a>
+      <a href="https://conceitos.org/#colaborar">Colaborar</a>
+      <a class="gh" href="https://github.com/heldernoid/conceitos" target="_blank" rel="noopener">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </nav>
+  </div>
+</header>
+
+<div class="stage">
+  <div class="inner">
+    <div class="num-404" aria-hidden="true">404</div>
+    <div class="eyebrow">Página não encontrada</div>
+    <h1>Esta página não existe.</h1>
+    <p>O URL que seguiste pode ter mudado, sido removido ou nunca ter existido.</p>
+    <a href="https://conceitos.org" class="btn btn-primary">
+      Voltar ao início
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap row">
+    <div class="lf">
+      <b>Conceitos · <span aria-label="Bandeira de Moçambique" role="img">🇲🇿</span></b>
+      <span>Iniciativa cívica de design especulativo. Open source, sem fins lucrativos, sem afiliação oficial a entidades governamentais.</span>
+      <span style="color:var(--ink-4);font-size:12px;margin-top:6px">© 2026 · <a href="https://www.linkedin.com/in/helmo/" target="_blank" rel="noopener">Hélder Monteiro</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
