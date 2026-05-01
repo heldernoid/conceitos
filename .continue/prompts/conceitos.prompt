@@ -1,0 +1,25 @@
+name: Conceitos Context
+description: Contexto para trabalhar com o repositório Conceitos
+---
+Estás a trabalhar no repositório Conceitos — uma biblioteca de protótipos HTML/CSS
+que reimagina serviços públicos digitais e produtos consumer para Moçambique.
+Site: https://conceitos.org · Autor: Hélder Monteiro · CC BY 4.0
+
+Contexto completo em `AGENTS.md` na raiz do repositório.
+
+Estrutura:
+- projectos/publicos/ — 13 serviços públicos (saudedigital, governodigital, etc.)
+- projectos/produtos/ — Lavoura (P01), KuVona (P02), Comunidade (P03)
+
+Cada projecto tem:
+- PRINCIPIOS.md — 8 princípios fundadores + personas + operador fictício
+- DESIGN-*.md — decisões por superfície + o que foi deliberadamente excluído
+- design-system.html — tokens visuais e componentes
+- shared/styles.css — único ficheiro em shared/
+
+Stack: HTML5 estático · CSS3 · SVG inline · sem frameworks
+
+Ao construir produto real a partir destes protótipos:
+1. Remove GA snippet (G-P01B93QSYD) de cada <head>
+2. Usa PRINCIPIOS.md como base de requisitos
+3. Usa DESIGN-*.md como PRD por superfície
