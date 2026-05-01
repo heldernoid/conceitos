@@ -2,20 +2,23 @@
 
 Reimaginação do processo eleitoral com sete superfícies: portal do cidadão, mesa de voto, observação eleitoral, resultados, painel da CNE, primeira vez e integração com Vida Civil.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/eleicoesdigitais/)
 
-- [Visão geral](index.html)
-- [Portal do Cidadão](cidadao.html)
-- [Mesa de Voto](mesa.html)
-- [Observador Eleitoral](observador.html)
-- [Resultados](resultados.html)
-- [Painel CNE](painel.html)
-- [Primeira Vez](primeira-vez.html)
-- [Integração Vida Civil](cross-vidacivil.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-cidadao.md · DESIGN-mesa.md · DESIGN-observador.md · DESIGN-resultados.md · DESIGN-painel.md · DESIGN-primeira-vez.md · DESIGN-cross-vidacivil.md · DESIGN-system.md
+```
+eleicoesdigitais/
+├── index.html           # Visão geral e navegação
+├── cidadao.html         # Portal do Cidadão
+├── mesa.html            # Mesa de Voto
+├── observador.html      # Observador Eleitoral
+├── resultados.html      # Resultados
+├── painel.html          # Painel CNE
+├── primeira-vez.html    # Primeira Vez
+├── cross-vidacivil.html # Integração Vida Civil
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

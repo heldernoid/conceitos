@@ -2,18 +2,21 @@
 
 Reimaginação do sistema de gestão fundiária com cinco superfícies: portal do cidadão, portal da empresa, SPGC, fiscalização e dashboard nacional.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/terrasdigitais/)
 
-- [Visão geral](index.html)
-- [Portal do Cidadão](cidadao.html)
-- [Portal da Empresa](empresa.html)
-- [SPGC — Cadastro e Gestão](spgc.html)
-- [Fiscalização](fiscal.html)
-- [Dashboard Nacional](dashboard.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-cidadao.md · DESIGN-empresa.md · DESIGN-spgc.md · DESIGN-fiscal.md · DESIGN-dashboard.md · DESIGN-system.md
+```
+terrasdigitais/
+├── index.html           # Visão geral e navegação
+├── cidadao.html         # Portal do Cidadão
+├── empresa.html         # Portal da Empresa
+├── spgc.html            # SPGC — Cadastro e Gestão
+├── fiscal.html          # Fiscalização
+├── dashboard.html       # Dashboard Nacional
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

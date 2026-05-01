@@ -2,18 +2,21 @@
 
 Reimaginação da plataforma nacional de saúde com cinco superfícies interligadas: registo clínico electrónico, app do cidadão, farmácia comunitária, vigilância epidemiológica e auditoria clínica.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/saudedigital/)
 
-- [Visão geral](index.html)
-- [EMR — Registo Clínico Electrónico](emr.html)
-- [eHealth — App do Cidadão](ehealth.html)
-- [Farmácia Comunitária](pharmacy.html)
-- [Vigilância Epidemiológica](surveillance.html)
-- [Auditoria Clínica](audit.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-emr.md · DESIGN-ehealth.md · DESIGN-pharmacy.md · DESIGN-surveillance.md · DESIGN-audit.md · DESIGN-system.md
+```
+saudedigital/
+├── index.html           # Visão geral e navegação
+├── emr.html             # EMR — Registo Clínico Electrónico
+├── ehealth.html         # eHealth — App do Cidadão
+├── pharmacy.html        # Farmácia Comunitária
+├── surveillance.html    # Vigilância Epidemiológica
+├── audit.html           # Auditoria Clínica
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

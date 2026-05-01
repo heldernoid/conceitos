@@ -2,19 +2,22 @@
 
 Reimaginação do registo civil com seis superfícies: portal do cidadão, conservatória, família, hospital, sucessão e gestão de dados sensíveis.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/vidacivil/)
 
-- [Visão geral](index.html)
-- [Portal do Cidadão](cidadao.html)
-- [Conservatória](conservatoria.html)
-- [Família](familia.html)
-- [Hospital](hospital.html)
-- [Sucessão](sucessao.html)
-- [Dados Sensíveis](sensivel.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-cidadao.md · DESIGN-conservatoria.md · DESIGN-familia.md · DESIGN-hospital.md · DESIGN-sucessao.md · DESIGN-sensivel.md · DESIGN-system.md
+```
+vidacivil/
+├── index.html           # Visão geral e navegação
+├── cidadao.html         # Portal do Cidadão
+├── conservatoria.html   # Conservatória
+├── familia.html         # Família
+├── hospital.html        # Hospital
+├── sucessao.html        # Sucessão
+├── sensivel.html        # Dados Sensíveis
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

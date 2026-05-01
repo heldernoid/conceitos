@@ -2,20 +2,23 @@
 
 Assistente agrícola digital para a produtora moçambicana. Planeamento de época, registo de campo, mercado local e alertas climáticos — desenhado para Sara Mucavele e produtoras como ela.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/produtos/lavoura/)
 
-- [Visão geral](index.html)
-- [Onboarding](onboarding.html)
-- [Caderno de Campo](caderno.html)
-- [Plantio](plantio.html)
-- [Diagnóstico](diagnostico.html)
-- [Mercado](mercado.html)
-- [Agenda](agenda.html)
-- [Associação](associacao.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-onboarding.md · DESIGN-caderno.md · DESIGN-plantio.md · DESIGN-diagnostico.md · DESIGN-mercado.md · DESIGN-agenda.md · DESIGN-associacao.md · DESIGN-system.md
+```
+lavoura/
+├── index.html           # Visão geral e navegação
+├── onboarding.html      # Onboarding
+├── caderno.html         # Caderno de Campo
+├── plantio.html         # Plantio
+├── diagnostico.html     # Diagnóstico
+├── mercado.html         # Mercado
+├── agenda.html          # Agenda
+├── associacao.html      # Associação
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Produtos](../) · [← conceitos.org](https://conceitos.org/#produtos)

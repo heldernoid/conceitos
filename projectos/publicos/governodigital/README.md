@@ -2,18 +2,21 @@
 
 Reimaginação dos serviços de governação civil e transparência do Estado com cinco superfícies: bilhete de identidade electrónico, app do cidadão, balcão de atendimento digitalizado, orçamento aberto e auditoria pública.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/governodigital/)
 
-- [Visão geral](index.html)
-- [eBI — Bilhete de Identidade Electrónico](ebi.html)
-- [App do Cidadão](cidadao.html)
-- [Balcão Digital](balcao.html)
-- [Orçamento Aberto](orcamento.html)
-- [Auditoria Pública](auditoria.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-ebi.md · DESIGN-cidadao.md · DESIGN-balcao.md · DESIGN-orcamento.md · DESIGN-auditoria.md · DESIGN-system.md
+```
+governodigital/
+├── index.html           # Visão geral e navegação
+├── ebi.html             # eBI — Bilhete de Identidade Electrónico
+├── cidadao.html         # App do Cidadão
+├── balcao.html          # Balcão Digital
+├── orcamento.html       # Orçamento Aberto
+├── auditoria.html       # Auditoria Pública
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

@@ -2,20 +2,23 @@
 
 Reimaginação do sistema nacional de equivalências e candidaturas académicas com oito superfícies: registo, candidatura, trajectória, equivalências, resultados, verificação de certificados e painel institucional.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/senda/)
 
-- [Visão geral](index.html)
-- [Registar](registar.html)
-- [Candidatura](candidatura.html)
-- [Trajectória](trajectoria.html)
-- [Equivalências](equivalencias.html)
-- [Resultados](resultados.html)
-- [Verificação](verificacao.html)
-- [Painel](painel.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-registar.md · DESIGN-candidatura.md · DESIGN-trajectoria.md · DESIGN-equivalencias.md · DESIGN-resultados.md · DESIGN-verificacao.md · DESIGN-painel.md · DESIGN-system.md
+```
+senda/
+├── index.html           # Visão geral e navegação
+├── registar.html        # Registar
+├── candidatura.html     # Candidatura
+├── trajectoria.html     # Trajectória
+├── equivalencias.html   # Equivalências
+├── resultados.html      # Resultados
+├── verificacao.html     # Verificação
+├── painel.html          # Painel
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

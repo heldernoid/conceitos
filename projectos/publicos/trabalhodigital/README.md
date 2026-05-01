@@ -2,18 +2,21 @@
 
 Reimaginação do sistema de trabalho e protecção social com cinco superfícies: portal do trabalhador, portal do empregador, INSS, IGT e INEFP.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/trabalhodigital/)
 
-- [Visão geral](index.html)
-- [Portal do Trabalhador](trabalhador.html)
-- [Portal do Empregador](empregador.html)
-- [INSS — Segurança Social](inss.html)
-- [IGT — Inspecção do Trabalho](igt.html)
-- [INEFP — Formação Profissional](inefp.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-trabalhador.md · DESIGN-empregador.md · DESIGN-inss.md · DESIGN-igt.md · DESIGN-inefp.md · DESIGN-system.md
+```
+trabalhodigital/
+├── index.html           # Visão geral e navegação
+├── trabalhador.html     # Portal do Trabalhador
+├── empregador.html      # Portal do Empregador
+├── inss.html            # INSS — Segurança Social
+├── igt.html             # IGT — Inspecção do Trabalho
+├── inefp.html           # INEFP — Formação Profissional
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)

@@ -2,18 +2,21 @@
 
 Reimaginação do sistema nacional de transportes com cinco superfícies: portal do condutor, portal do operador, INATTER, transporte multimodal e PRM.
 
-## Superfícies
+[→ Abrir protótipo](https://conceitos.org/projectos/publicos/transportesdigitais/)
 
-- [Visão geral](index.html)
-- [Portal do Condutor](condutor.html)
-- [Portal do Operador](operador.html)
-- [INATTER — Inspecção e Licenciamento](inatter.html)
-- [Transporte Multimodal](multimodal.html)
-- [PRM — Passagem de Fronteira](prm.html)
-- [Sistema de Design](design-system.html)
+## Estrutura
 
-## Documentação de design
-
-DESIGN-condutor.md · DESIGN-operador.md · DESIGN-inatter.md · DESIGN-multimodal.md · DESIGN-prm.md · DESIGN-system.md
+```
+transportesdigitais/
+├── index.html           # Visão geral e navegação
+├── condutor.html        # Portal do Condutor
+├── operador.html        # Portal do Operador
+├── inatter.html         # INATTER — Inspecção e Licenciamento
+├── multimodal.html      # Transporte Multimodal
+├── prm.html             # PRM — Passagem de Fronteira
+├── design-system.html   # Sistema de Design
+├── shared/styles.css
+└── DESIGN-*.md          # Documentação de design por superfície
+```
 
 [← Públicos](../) · [← conceitos.org](https://conceitos.org/#publicos)
