@@ -91,6 +91,10 @@ Reimaginação do processo eleitoral com sete superfícies: portal do cidadão, 
 
 Reimaginação do sistema nacional de equivalências e candidaturas académicas com oito superfícies: registo, candidatura, trajectória, equivalências, resultados, verificação de certificados e painel institucional.
 
+### Lavoura
+
+Assistente agrícola digital para a produtora moçambicana com oito superfícies: onboarding, caderno de campo, planeamento de plantio, diagnóstico de culturas, mercado local, agenda, associação de produtores e painel de gestão.
+
 ## Estrutura
 
 ```
