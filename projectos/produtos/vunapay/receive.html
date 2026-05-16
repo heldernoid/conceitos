@@ -45,10 +45,10 @@
     background: #fff;
     border-radius: 12px;
     padding: 10px;
-    display: grid; grid-template-columns: repeat(20, 1fr); grid-template-rows: repeat(20, 1fr); gap: 0;
+    display: grid; grid-template-columns: repeat(25, 1fr); grid-template-rows: repeat(25, 1fr); gap: 0;
     border: 1px solid var(--line-2);
   }
-  .qr-mock i { background: #0D1117; }
+  .qr-mock i { background: transparent; }
   .qr-center {
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: 36px; height: 36px; border-radius: 8px; background: var(--brand);
@@ -241,31 +241,41 @@ function toggleTheme() {
   html.setAttribute('data-theme', next);
   localStorage.setItem('vunapaymz-theme', next);
 }
-// Generate a deterministic QR-style placeholder
+// QR-style placeholder with proper finder patterns, separators and timing
 (function () {
   var grid = document.getElementById('qr1');
   if (!grid) return;
-  // pseudo-random pattern based on a fixed seed
-  var seed = 73;
-  function rand() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-  for (var i = 0; i < 400; i++) {
-    var cell = document.createElement('i');
-    var r = Math.floor(i / 20), c = i % 20;
-    var corner = (r < 4 && c < 4) || (r < 4 && c > 15) || (r > 15 && c < 4);
-    if (corner) {
-      var inFrame = (r === 0 || r === 3 || c === 0 || c === 3 || r === 0 || r === 15 || c === 19 || (r > 15 && (r === 19 || c === 0 || c === 3)));
-      if ((r === 0 || r === 3) && c < 4) cell.style.background = '#0D1117';
-      else if ((r === 1 || r === 2) && (c === 0 || c === 3)) cell.style.background = '#0D1117';
-      else if ((r === 1 || r === 2) && (c === 1 || c === 2)) cell.style.background = '#0D1117';
-      else if ((r === 0 || r === 3) && c > 15) cell.style.background = '#0D1117';
-      else if ((r === 1 || r === 2) && (c === 16 || c === 19)) cell.style.background = '#0D1117';
-      else if ((r === 1 || r === 2) && (c === 17 || c === 18)) cell.style.background = '#0D1117';
-      else if ((r === 16 || r === 19) && c < 4) cell.style.background = '#0D1117';
-      else if ((r === 17 || r === 18) && (c === 0 || c === 3)) cell.style.background = '#0D1117';
-      else if ((r === 17 || r === 18) && (c === 1 || c === 2)) cell.style.background = '#0D1117';
-    } else if (rand() > 0.55) {
-      cell.style.background = '#0D1117';
+  var S = 25;
+  var m = new Array(S * S).fill(null);
+  function set(r, c, v) { if (r >= 0 && r < S && c >= 0 && c < S) m[r * S + c] = v; }
+  function get(r, c) { return (r >= 0 && r < S && c >= 0 && c < S) ? m[r * S + c] : null; }
+
+  // 7x7 finder pattern + 1-cell white separator
+  function finder(or, oc) {
+    for (var r = 0; r < 7; r++) for (var c = 0; c < 7; c++)
+      set(or+r, oc+c, (r===0||r===6||c===0||c===6||( r>=2&&r<=4&&c>=2&&c<=4)) ? 1 : 0);
+    for (var i = -1; i <= 7; i++) {
+      set(or-1, oc+i, 0); set(or+7, oc+i, 0);
+      set(or+i, oc-1, 0); set(or+i, oc+7, 0);
     }
+  }
+  finder(0, 0); finder(0, S-7); finder(S-7, 0);
+
+  // Timing patterns on row 6 and col 6
+  for (var i = 8; i < S-8; i++) {
+    if (get(6, i) === null) set(6, i, i%2===0 ? 1 : 0);
+    if (get(i, 6) === null) set(i, 6, i%2===0 ? 1 : 0);
+  }
+
+  // Pseudo-random data for the rest
+  var seed = 137;
+  function rand() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  for (var idx = 0; idx < S*S; idx++) if (m[idx] === null) m[idx] = rand() > 0.48 ? 1 : 0;
+
+  // Render
+  for (var idx = 0; idx < S*S; idx++) {
+    var cell = document.createElement('i');
+    if (m[idx] === 1) cell.style.background = '#0D1117';
     grid.appendChild(cell);
   }
 })();
