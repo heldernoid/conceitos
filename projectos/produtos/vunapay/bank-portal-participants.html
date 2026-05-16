@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Bank Portal · Participants</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>(function(){var t=localStorage.getItem('vunapaymz-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+  .net-banner {
+    background: linear-gradient(135deg, var(--good-subtle), var(--brand-subtle));
+    border: 1px solid var(--good); border-radius: var(--r-card);
+    padding: 18px 22px; margin-bottom: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .net-banner__title { font-size: 15px; font-weight: 600; color: var(--good); display: flex; align-items: center; gap: 10px; }
+  .net-banner__sub { font-size: 12px; color: var(--ink-2); margin-top: 4px; font-family: var(--font-mono); }
+  .net-banner__count { font-size: 28px; font-weight: 600; font-family: var(--font-mono); color: var(--good); letter-spacing: -0.01em; }
+  .net-pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--good); animation: pulse 1.4s ease-in-out infinite; }
+
+  .layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+  @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } }
+
+  .bank-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 1400px) { .bank-grid { grid-template-columns: repeat(2, 1fr); } }
+  .bank-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
+  .bank-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .bank-card__accent { height: 3px; background: var(--bank-color, var(--brand)); }
+  .bank-card__body { padding: 16px; }
+  .bank-card__head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .bank-card__name { font-size: 14px; font-weight: 600; }
+  .bank-card__city { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .bank-card__status { margin-left: auto; }
+  .bank-card__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-mini__label { font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat-mini__value { font-family: var(--font-mono); font-size: 15px; font-weight: 500; margin-top: 2px; }
+  .bank-card__footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 16px; border-top: 1px solid var(--line-2);
+    background: var(--bg-2); font-size: 12px;
+  }
+  .bank-card__footer a { color: var(--brand); font-weight: 500; }
+
+  .health-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; height: fit-content; position: sticky; top: 24px; }
+  .health-card h3 { font-size: 13px; font-weight: 600; margin: 0 0 14px; }
+  .matrix { display: grid; grid-template-columns: 36px repeat(8, 1fr); gap: 2px; font-size: 9px; }
+  .matrix .cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border-radius: 2px; color: var(--ink-3); font-family: var(--font-mono); }
+  .matrix .label { background: transparent; }
+  .matrix .self { background: var(--ink-4); }
+  .matrix .ok { background: var(--good); color: white; font-weight: 500; }
+  .matrix .warn-c { background: var(--warn); color: white; font-weight: 500; }
+
+  .incident { padding: 12px; background: var(--warn-subtle); border: 1px solid var(--warn); border-radius: 8px; margin-top: 16px; font-size: 12px; }
+  .incident__title { font-weight: 600; color: var(--warn); display: flex; align-items: center; gap: 6px; }
+
+  .legend-row { display: flex; gap: 12px; font-size: 11px; color: var(--ink-3); margin-top: 12px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; vertical-align: middle; margin-right: 4px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html" class="active">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="portal">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__brand-mark">SP</div>
+      <div>
+        <div class="sidebar__brand-name">VunaPay</div>
+        <div class="sidebar__brand-sub">Banco de Beira · Portal</div>
+      </div>
+    </div>
+    <a class="nav-item" href="bank-portal-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Visão geral</a>
+    <a class="nav-item" href="bank-portal-transactions.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Transações</a>
+    <a class="nav-item nav-item--active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Bancos participantes</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Liquidação</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Disputas</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Relatórios</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>Definições</a>
+    <div class="sidebar__user">
+      <span class="avatar avatar--sm" style="background:#FFF9E0;color:#B45309;">LM</span>
+      <div style="flex:1;"><div class="sidebar__user-name">Luísa Mondlane</div><div class="sidebar__user-role">Compliance Officer</div></div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" style="width:28px;height:28px;">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-header">
+      <div>
+        <div class="portal-header__title">Bancos participantes</div>
+        <div class="portal-header__sub">Estado da rede VunaPay · todas as instituições conectadas</div>
+      </div>
+    </div>
+
+    <div class="net-banner">
+      <div>
+        <div class="net-banner__title"><span class="net-pulse"></span>Rede VunaPay - OPERACIONAL</div>
+        <div class="net-banner__sub">Última actualização: 05/05/2026 14:32:18 UTC+2</div>
+      </div>
+      <div style="text-align: right;">
+        <div class="net-banner__count">8 / 8</div>
+        <div style="font-size: 12px; color: var(--ink-2); font-weight: 500;">bancos activos</div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div class="bank-grid">
+        <!-- BDM -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#007A4D;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdm">BDM</span>
+              <div><div class="bank-card__name">Banco de Maputo</div><div class="bank-card__city">Maputo</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">3.421</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 11,2M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">1.8s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,99%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDMMMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDB -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#0066CC;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdb">BDB</span>
+              <div><div class="bank-card__name">Banco de Beira <span class="text-3" style="font-weight:400; font-size:11px;">· o seu banco</span></div><div class="bank-card__city">Beira</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">2.984</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 9,8M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">1.7s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">100,00%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDBRMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDT -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#8B5CF6;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdt">BDT</span>
+              <div><div class="bank-card__name">Banco de Tete</div><div class="bank-card__city">Tete</div></div>
+              <div class="bank-card__status"><span class="badge badge--warn">Degradado</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">1.244</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 4,1M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-warn">3.2s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,82%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDTEMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDN -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#D97706;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdn">BDN</span>
+              <div><div class="bank-card__name">Banco de Nampula</div><div class="bank-card__city">Nampula</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">2.103</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 6,7M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">1.9s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,97%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDNAMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDS -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#059669;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bds">BDS</span>
+              <div><div class="bank-card__name">Banco de Sofala</div><div class="bank-card__city">Beira</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">1.876</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 5,4M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">1.6s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,98%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDSOMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDI -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#DC2626;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdi">BDI</span>
+              <div><div class="bank-card__name">Banco de Inhambane</div><div class="bank-card__city">Inhambane</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">1.012</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 2,9M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">2.0s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,94%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDINMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDNI -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#7C3AED;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdni">BDNI</span>
+              <div><div class="bank-card__name">Banco de Niassa</div><div class="bank-card__city">Lichinga</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">782</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 1,9M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">2.1s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,91%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDNIMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+
+        <!-- BDZ -->
+        <div class="bank-card">
+          <div class="bank-card__accent" style="--bank-color:#0891B2;"></div>
+          <div class="bank-card__body">
+            <div class="bank-card__head">
+              <span class="bank-logo bank-bdz">BDZ</span>
+              <div><div class="bank-card__name">Banco de Zambézia</div><div class="bank-card__city">Quelimane</div></div>
+              <div class="bank-card__status"><span class="badge badge--good">Activo</span></div>
+            </div>
+            <div class="bank-card__stats">
+              <div><div class="stat-mini__label">Transações hoje</div><div class="stat-mini__value">1.410</div></div>
+              <div><div class="stat-mini__label">Volume hoje</div><div class="stat-mini__value">MZN 4,3M</div></div>
+              <div><div class="stat-mini__label">Tempo médio</div><div class="stat-mini__value text-good">1.9s</div></div>
+              <div><div class="stat-mini__label">Uptime 30d</div><div class="stat-mini__value">99,96%</div></div>
+            </div>
+          </div>
+          <div class="bank-card__footer">
+            <span class="text-3">BIC: BDZAMZMA</span>
+            <a href="bank-portal-transactions.html">Ver transações →</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="health-card">
+        <h3>Latência par-a-par</h3>
+        <div style="font-size: 11px; color: var(--ink-3); margin-bottom: 10px;">tempo médio de liquidação · ms · últimos 60min</div>
+        <div class="matrix">
+          <div class="cell label"></div>
+          <div class="cell label">BDM</div><div class="cell label">BDB</div><div class="cell label">BDT</div><div class="cell label">BDN</div><div class="cell label">BDS</div><div class="cell label">BDI</div><div class="cell label">NIA</div><div class="cell label">BDZ</div>
+
+          <div class="cell label">BDM</div>
+          <div class="cell self"></div><div class="cell ok">1.8</div><div class="cell warn-c">3.2</div><div class="cell ok">1.9</div><div class="cell ok">1.6</div><div class="cell ok">2.0</div><div class="cell ok">2.1</div><div class="cell ok">1.9</div>
+
+          <div class="cell label">BDB</div>
+          <div class="cell ok">1.8</div><div class="cell self"></div><div class="cell warn-c">3.1</div><div class="cell ok">1.8</div><div class="cell ok">1.5</div><div class="cell ok">1.9</div><div class="cell ok">2.0</div><div class="cell ok">1.7</div>
+
+          <div class="cell label">BDT</div>
+          <div class="cell warn-c">3.2</div><div class="cell warn-c">3.1</div><div class="cell self"></div><div class="cell warn-c">3.4</div><div class="cell warn-c">3.0</div><div class="cell warn-c">3.5</div><div class="cell warn-c">3.3</div><div class="cell warn-c">3.2</div>
+
+          <div class="cell label">BDN</div>
+          <div class="cell ok">1.9</div><div class="cell ok">1.8</div><div class="cell warn-c">3.4</div><div class="cell self"></div><div class="cell ok">1.8</div><div class="cell ok">2.1</div><div class="cell ok">1.8</div><div class="cell ok">1.9</div>
+
+          <div class="cell label">BDS</div>
+          <div class="cell ok">1.6</div><div class="cell ok">1.5</div><div class="cell warn-c">3.0</div><div class="cell ok">1.8</div><div class="cell self"></div><div class="cell ok">1.8</div><div class="cell ok">1.9</div><div class="cell ok">1.7</div>
+
+          <div class="cell label">BDI</div>
+          <div class="cell ok">2.0</div><div class="cell ok">1.9</div><div class="cell warn-c">3.5</div><div class="cell ok">2.1</div><div class="cell ok">1.8</div><div class="cell self"></div><div class="cell ok">2.0</div><div class="cell ok">1.9</div>
+
+          <div class="cell label">NIA</div>
+          <div class="cell ok">2.1</div><div class="cell ok">2.0</div><div class="cell warn-c">3.3</div><div class="cell ok">1.8</div><div class="cell ok">1.9</div><div class="cell ok">2.0</div><div class="cell self"></div><div class="cell ok">2.0</div>
+
+          <div class="cell label">BDZ</div>
+          <div class="cell ok">1.9</div><div class="cell ok">1.7</div><div class="cell warn-c">3.2</div><div class="cell ok">1.9</div><div class="cell ok">1.7</div><div class="cell ok">1.9</div><div class="cell ok">2.0</div><div class="cell self"></div>
+        </div>
+
+        <div class="legend-row">
+          <span><span class="legend-dot" style="background: var(--good);"></span>&lt; 2.5s</span>
+          <span><span class="legend-dot" style="background: var(--warn);"></span>2.5–5s</span>
+          <span><span class="legend-dot" style="background: var(--critical);"></span>&gt; 5s</span>
+        </div>
+
+        <div class="incident">
+          <div class="incident__title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            BDT - latência elevada
+          </div>
+          <div style="margin-top: 4px; color: var(--ink-2);">
+            Banco de Tete está com tempo médio acima do SLA (3.2s vs 3.0s). Equipa do BDT notificada às 14:18. Investigação em curso.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script>
+function toggleTheme(){var h=document.documentElement,d=h.getAttribute('data-theme')==='dark',n=d?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('vunapaymz-theme',n);}
+</script>
+</body>
+</html>

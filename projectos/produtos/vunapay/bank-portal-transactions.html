@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Bank Portal · Transactions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>(function(){var t=localStorage.getItem('vunapaymz-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+  .tx-layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+  @media (max-width: 1100px) { .tx-layout { grid-template-columns: 1fr; } }
+
+  .filter-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; height: fit-content; position: sticky; top: 24px; }
+  .filter-panel h3 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin: 0 0 10px; }
+  .filter-section { padding: 14px 0; border-bottom: 1px solid var(--line-2); }
+  .filter-section:first-of-type { padding-top: 0; }
+  .filter-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .filter-radio { display: flex; gap: 6px; }
+  .filter-radio label { flex: 1; padding: 6px 8px; text-align: center; font-size: 12px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+  .filter-radio input { display: none; }
+  .filter-radio input:checked + label { background: var(--brand-subtle); color: var(--brand); border-color: var(--brand); }
+  .check-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13px; cursor: pointer; }
+  .check-row input { accent-color: var(--brand); }
+  .check-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .filter-actions { display: flex; gap: 8px; padding-top: 16px; }
+
+  .summary-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r-card); margin-bottom: 14px; font-size: 13px; }
+  .summary-bar strong { font-family: var(--font-mono); color: var(--ink); font-weight: 600; }
+
+  .tx-pagination { display: flex; justify-content: space-between; align-items: center; padding: 14px 0 0; font-size: 13px; color: var(--ink-3); }
+  .page-btns { display: flex; gap: 4px; }
+  .page-btns button { width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; font-size: 12px; }
+  .page-btns button:hover { background: var(--bg-2); }
+  .page-btns button.active { background: var(--brand); color: white; border-color: var(--brand); }
+
+  .input-mini { width: 100%; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); font: inherit; font-size: 13px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
+  .expand-row td { background: var(--bg-2); padding: 16px 24px; }
+  .expand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 24px; font-size: 13px; }
+  .expand-grid dt { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.04em; }
+  .expand-grid dd { margin: 2px 0 0; font-family: var(--font-mono); font-size: 12px; }
+
+  tr.expandable { cursor: pointer; }
+  .chev { display: inline-block; transition: transform 0.2s; color: var(--ink-3); }
+  tr.open .chev { transform: rotate(90deg); }
+
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--good); animation: pulse 1.4s ease-in-out infinite; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html" class="active">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="portal">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__brand-mark">SP</div>
+      <div>
+        <div class="sidebar__brand-name">VunaPay</div>
+        <div class="sidebar__brand-sub">Banco de Beira · Portal</div>
+      </div>
+    </div>
+    <a class="nav-item" href="bank-portal-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Visão geral</a>
+    <a class="nav-item nav-item--active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>Transações</a>
+    <a class="nav-item" href="bank-portal-participants.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Bancos participantes</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Liquidação</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Disputas</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Relatórios</a>
+    <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>Definições</a>
+    <div class="sidebar__user">
+      <span class="avatar avatar--sm" style="background:#FFF9E0;color:#B45309;">LM</span>
+      <div style="flex:1;"><div class="sidebar__user-name">Luísa Mondlane</div><div class="sidebar__user-role">Compliance Officer</div></div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" style="width:28px;height:28px;">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-header">
+      <div>
+        <div class="portal-header__title">Transações</div>
+        <div class="portal-header__sub">Monitor completo · BDB origem ou destino</div>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn btn--secondary btn--sm">Exportar CSV</button>
+        <button class="btn btn--secondary btn--sm">Exportar PDF</button>
+      </div>
+    </div>
+
+    <div class="tx-layout">
+      <aside class="filter-panel">
+        <h3>Filtros</h3>
+
+        <div class="filter-section">
+          <label style="font-size:12px;color:var(--ink-3); display:block; margin-bottom:6px;">Período</label>
+          <div class="input-row">
+            <input class="input-mini" type="text" value="05/05/2026" />
+            <input class="input-mini" type="text" value="05/05/2026" />
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <label style="font-size:12px;color:var(--ink-3); display:block; margin-bottom:6px;">Direcção</label>
+          <div class="filter-radio">
+            <input type="radio" name="dir" id="dir-all" checked><label for="dir-all">Todas</label>
+            <input type="radio" name="dir" id="dir-out"><label for="dir-out">Enviadas</label>
+            <input type="radio" name="dir" id="dir-in"><label for="dir-in">Recebidas</label>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <label style="font-size:12px;color:var(--ink-3); display:block; margin-bottom:6px;">Estado</label>
+          <label class="check-row"><input type="checkbox" checked> Liquidada</label>
+          <label class="check-row"><input type="checkbox" checked> Processando</label>
+          <label class="check-row"><input type="checkbox" checked> Falhada</label>
+        </div>
+
+        <div class="filter-section">
+          <label style="font-size:12px;color:var(--ink-3); display:block; margin-bottom:6px;">Banco contraparte</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#007A4D;"></span> Banco de Maputo</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#0066CC;"></span> Banco de Beira</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#8B5CF6;"></span> Banco de Tete</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#D97706;"></span> Banco de Nampula</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#059669;"></span> Banco de Sofala</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#DC2626;"></span> Banco de Inhambane</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#7C3AED;"></span> Banco de Niassa</label>
+          <label class="check-row"><input type="checkbox" checked> <span class="check-dot" style="background:#0891B2;"></span> Banco de Zambézia</label>
+        </div>
+
+        <div class="filter-section">
+          <label style="font-size:12px;color:var(--ink-3); display:block; margin-bottom:6px;">Valor (MZN)</label>
+          <div class="input-row">
+            <input class="input-mini" type="text" placeholder="Mín" />
+            <input class="input-mini" type="text" placeholder="Máx" />
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button class="btn btn--primary btn--sm flex-1">Aplicar</button>
+          <button class="btn btn--ghost btn--sm flex-1">Limpar</button>
+        </div>
+      </aside>
+
+      <section>
+        <div class="summary-bar">
+          <span><span class="live-dot"></span>Mostrando <strong>1–50</strong> de <strong>1.247</strong> · Total: <strong>MZN 8.492.300,00</strong></span>
+          <span style="color: var(--ink-3);">Filtrado: hoje, todos os bancos</span>
+        </div>
+
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th></th>
+              <th>ID</th>
+              <th>Hora</th>
+              <th>Remetente</th>
+              <th>Destinatário</th>
+              <th style="text-align:right;">Valor</th>
+              <th style="text-align:right;">Tempo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="expandable open" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-A3F8C291</td>
+              <td class="num-cell">14:32:18</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdm" style="margin-right:6px;">BDM</span>Ana Cossa</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td class="num-cell" style="text-align:right;">MZN 1.500,00</td>
+              <td class="num-cell text-good" style="text-align:right;">2.3s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+            <tr class="expand-row">
+              <td colspan="8">
+                <dl class="expand-grid">
+                  <div><dt>Conta origem</dt><dd>BDM 0021-4521-008834</dd></div>
+                  <div><dt>Conta destino</dt><dd>BDB 0044-8834-112209</dd></div>
+                  <div><dt>Telefone origem</dt><dd>+258 84 234 5678</dd></div>
+                  <div><dt>Telefone destino</dt><dd>+258 85 345 6789</dd></div>
+                  <div><dt>Nota</dt><dd style="font-family: var(--font-sans); font-style: italic;">"Renda de Maio"</dd></div>
+                  <div><dt>Assinatura central</dt><dd>0x8a4f...c291 ✓</dd></div>
+                </dl>
+              </td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-7B2D4E18</td>
+              <td class="num-cell">14:32:11</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Pedro Cumbe</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdt" style="margin-right:6px;">BDT</span>Fátima Sitoe</td>
+              <td class="num-cell" style="text-align:right;">MZN 12.500,00</td>
+              <td class="num-cell text-good" style="text-align:right;">1.7s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-9F1A6C03</td>
+              <td class="num-cell">14:32:04</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdi" style="margin-right:6px;">BDI</span>Rosa Mavie</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td class="num-cell" style="text-align:right;">MZN 500,00</td>
+              <td class="num-cell text-good" style="text-align:right;">1.4s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-2E5B8801</td>
+              <td class="num-cell">14:31:58</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdn" style="margin-right:6px;">BDN</span>João Nhantumbo</td>
+              <td class="num-cell" style="text-align:right;">MZN 5.000,00</td>
+              <td class="num-cell text-processing" style="text-align:right;">processando…</td>
+              <td><span class="badge badge--processing">Processando</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-CC4F9217</td>
+              <td class="num-cell">14:31:52</td>
+              <td><span class="bank-logo bank-logo--sm bank-bds" style="margin-right:6px;">BDS</span>Anabela Tivane</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Pedro Cumbe</td>
+              <td class="num-cell" style="text-align:right;">MZN 50.000,00</td>
+              <td class="num-cell text-good" style="text-align:right;">2.1s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-44E207BD</td>
+              <td class="num-cell">14:31:39</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Pedro Cumbe</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdm" style="margin-right:6px;">BDM</span>Ana Cossa</td>
+              <td class="num-cell" style="text-align:right;">MZN 2.000,00</td>
+              <td class="num-cell text-critical" style="text-align:right;">tempo limite</td>
+              <td><span class="badge badge--critical">Falhada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-1A88E305</td>
+              <td class="num-cell">14:31:46</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdz" style="margin-right:6px;">BDZ</span>Tomás Chibuto</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td class="num-cell" style="text-align:right;">MZN 1.500,00</td>
+              <td class="num-cell text-good" style="text-align:right;">1.6s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-77BC1A92</td>
+              <td class="num-cell">14:31:33</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdni" style="margin-right:6px;">BDNI</span>Esperança Lopes</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td class="num-cell" style="text-align:right;">MZN 850,00</td>
+              <td class="num-cell text-good" style="text-align:right;">1.9s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-55E8D440</td>
+              <td class="num-cell">14:31:21</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Luísa Mondlane</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdt" style="margin-right:6px;">BDT</span>Fátima Sitoe</td>
+              <td class="num-cell" style="text-align:right;">MZN 3.250,00</td>
+              <td class="num-cell text-good" style="text-align:right;">1.8s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+
+            <tr class="expandable" onclick="toggleRow(this)">
+              <td><span class="chev">▸</span></td>
+              <td class="id-cell">SWP-20260505-8F09A1B6</td>
+              <td class="num-cell">14:31:08</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdm" style="margin-right:6px;">BDM</span>Ana Cossa</td>
+              <td><span class="bank-logo bank-logo--sm bank-bdb" style="margin-right:6px;">BDB</span>Carlos Machava</td>
+              <td class="num-cell" style="text-align:right;">MZN 750,00</td>
+              <td class="num-cell text-good" style="text-align:right;">2.0s</td>
+              <td><span class="badge badge--good">Liquidada</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tx-pagination">
+          <span>50 por página</span>
+          <div class="page-btns">
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>…</button>
+            <button>25</button>
+            <button>›</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+function toggleTheme(){var h=document.documentElement,d=h.getAttribute('data-theme')==='dark',n=d?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('vunapaymz-theme',n);}
+function toggleRow(row){
+  row.classList.toggle('open');
+  var next = row.nextElementSibling;
+  if (next && next.classList.contains('expand-row')) {
+    next.style.display = row.classList.contains('open') ? 'table-row' : 'none';
+  }
+}
+document.querySelectorAll('.expand-row').forEach(function(r){
+  var prev = r.previousElementSibling;
+  if (prev && !prev.classList.contains('open')) r.style.display = 'none';
+});
+</script>
+</body>
+</html>

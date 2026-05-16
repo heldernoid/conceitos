@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Bank Portal · Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>(function(){var t=localStorage.getItem('vunapaymz-theme')||'light';document.documentElement.setAttribute('data-theme',t);})();</script>
+<style>
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 1100px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 1100px) { .charts-row { grid-template-columns: 1fr; } }
+  .chart-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; }
+  .chart-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .chart-head__title { font-size: 14px; font-weight: 600; }
+  .chart-head__sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .bars { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; align-items: end; height: 180px; padding: 0 4px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .bar { width: 100%; background: var(--brand); border-radius: 4px 4px 0 0; transition: opacity 0.2s; }
+  .bar:hover { opacity: 0.8; }
+  .bar-label { font-size: 11px; color: var(--ink-3); font-family: var(--font-mono); }
+  .bar-value { font-size: 10px; color: var(--ink-3); font-family: var(--font-mono); margin-bottom: -4px; }
+  .hist { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; align-items: end; height: 160px; }
+  .hist-bar { background: var(--processing); border-radius: 3px 3px 0 0; }
+  .hist-label { font-size: 10px; color: var(--ink-3); font-family: var(--font-mono); text-align: center; margin-top: 6px; }
+  .live-row td { animation: pulse 2.4s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--good); animation: pulse 1.4s ease-in-out infinite; margin-right: 6px; }
+  .net-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    background: var(--good-subtle); color: var(--good);
+    font-size: 12px; font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html" class="active">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="portal">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__brand-mark">SP</div>
+      <div>
+        <div class="sidebar__brand-name">VunaPay</div>
+        <div class="sidebar__brand-sub">Banco de Beira · Portal</div>
+      </div>
+    </div>
+    <a class="nav-item nav-item--active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Visão geral
+    </a>
+    <a class="nav-item" href="bank-portal-transactions.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      Transações
+    </a>
+    <a class="nav-item" href="bank-portal-participants.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Bancos participantes
+    </a>
+    <a class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Liquidação
+    </a>
+    <a class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Disputas
+    </a>
+    <a class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Relatórios
+    </a>
+    <a class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>
+      Definições
+    </a>
+
+    <div class="sidebar__user">
+      <span class="avatar avatar--sm" style="background:#FFF9E0;color:#B45309;">LM</span>
+      <div style="flex:1;">
+        <div class="sidebar__user-name">Luísa Mondlane</div>
+        <div class="sidebar__user-role">Compliance Officer</div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema" style="width:28px;height:28px;">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="portal-main">
+    <div class="portal-header">
+      <div>
+        <div class="portal-header__title">Visão geral</div>
+        <div class="portal-header__sub">Banco de Beira - actividade na rede VunaPay · Terça, 5 de Maio de 2026</div>
+      </div>
+      <div style="display:flex; gap: 8px; align-items:center;">
+        <span class="net-status"><span class="live-dot"></span> Rede operacional</span>
+        <button class="btn btn--secondary btn--sm">Exportar</button>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-card__label">Transações hoje</div>
+        <div class="stat-card__value">14.832</div>
+        <div class="stat-card__trend stat-card__trend--up">↑ 12,3% vs ontem</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Volume hoje</div>
+        <div class="stat-card__value">MZN 47.284.500</div>
+        <div class="stat-card__trend stat-card__trend--up">↑ 8,1% vs ontem</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Tempo médio de liquidação</div>
+        <div class="stat-card__value text-good">1.9s</div>
+        <div class="stat-card__trend stat-card__trend--up">↓ 0,3s vs ontem</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__label">Taxa de sucesso</div>
+        <div class="stat-card__value">99,97%</div>
+        <div class="stat-card__trend stat-card__trend--up">↑ 0,02 pts vs ontem</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-head__title">Volume - últimos 7 dias</div>
+            <div class="chart-head__sub">MZN milhões · transações em que o BDB é origem ou destino</div>
+          </div>
+          <span class="badge">7d</span>
+        </div>
+        <div class="bars">
+          <div class="bar-col"><span class="bar-value">38,2</span><div class="bar" style="height:60%;"></div><span class="bar-label">Qua</span></div>
+          <div class="bar-col"><span class="bar-value">41,5</span><div class="bar" style="height:68%;"></div><span class="bar-label">Qui</span></div>
+          <div class="bar-col"><span class="bar-value">39,1</span><div class="bar" style="height:62%;"></div><span class="bar-label">Sex</span></div>
+          <div class="bar-col"><span class="bar-value">28,8</span><div class="bar" style="height:46%; background: var(--ink-4);"></div><span class="bar-label">Sáb</span></div>
+          <div class="bar-col"><span class="bar-value">22,4</span><div class="bar" style="height:36%; background: var(--ink-4);"></div><span class="bar-label">Dom</span></div>
+          <div class="bar-col"><span class="bar-value">43,7</span><div class="bar" style="height:72%;"></div><span class="bar-label">Seg</span></div>
+          <div class="bar-col"><span class="bar-value">47,3</span><div class="bar" style="height:78%; background: var(--brand-2);"></div><span class="bar-label">Hoje</span></div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="chart-head__title">Velocidade de liquidação</div>
+            <div class="chart-head__sub">distribuição · hoje</div>
+          </div>
+        </div>
+        <div class="hist">
+          <div><div class="hist-bar" style="height:30%;"></div><div class="hist-label">&lt;1s</div></div>
+          <div><div class="hist-bar" style="height:88%;"></div><div class="hist-label">1-2s</div></div>
+          <div><div class="hist-bar" style="height:68%;"></div><div class="hist-label">2-3s</div></div>
+          <div><div class="hist-bar" style="height:22%;"></div><div class="hist-label">3-4s</div></div>
+          <div><div class="hist-bar" style="height:8%;"></div><div class="hist-label">4-5s</div></div>
+          <div><div class="hist-bar" style="height:3%;"></div><div class="hist-label">5-6s</div></div>
+          <div><div class="hist-bar" style="height:1%;"></div><div class="hist-label">6-9s</div></div>
+          <div><div class="hist-bar" style="height:0.5%;"></div><div class="hist-label">9s+</div></div>
+        </div>
+        <div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3);">
+          <span>Mediana: <span class="mono text-good">1.7s</span></span>
+          <span>P99: <span class="mono">3.4s</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <div class="chart-head__title">Feed de transações ao vivo</div>
+          <div class="chart-head__sub">últimas 8 transações · BDB como origem ou destino · actualiza a cada segundo</div>
+        </div>
+        <span class="net-status"><span class="live-dot"></span> ao vivo</span>
+      </div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Hora</th>
+            <th>De</th>
+            <th>Para</th>
+            <th style="text-align:right;">Valor</th>
+            <th style="text-align:right;">Liquidação</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="live-row" style="--d:0s;">
+            <td class="id-cell">SWP-20260505-A3F8C291</td>
+            <td class="num-cell">14:32:18</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdm" style="vertical-align:middle;margin-right:6px;">BDM</span>Banco de Maputo</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td class="num-cell" style="text-align:right;">MZN 1.500,00</td>
+            <td class="num-cell text-good" style="text-align:right;">2.3s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-7B2D4E18</td>
+            <td class="num-cell">14:32:11</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdt" style="vertical-align:middle;margin-right:6px;">BDT</span>Banco de Tete</td>
+            <td class="num-cell" style="text-align:right;">MZN 12.500,00</td>
+            <td class="num-cell text-good" style="text-align:right;">1.7s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-9F1A6C03</td>
+            <td class="num-cell">14:32:04</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdi" style="vertical-align:middle;margin-right:6px;">BDI</span>Banco de Inhambane</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td class="num-cell" style="text-align:right;">MZN 500,00</td>
+            <td class="num-cell text-good" style="text-align:right;">1.4s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-2E5B8801</td>
+            <td class="num-cell">14:31:58</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdn" style="vertical-align:middle;margin-right:6px;">BDN</span>Banco de Nampula</td>
+            <td class="num-cell" style="text-align:right;">MZN 5.000,00</td>
+            <td class="num-cell text-processing" style="text-align:right;">processando…</td>
+            <td><span class="badge badge--processing">Processando</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-CC4F9217</td>
+            <td class="num-cell">14:31:52</td>
+            <td><span class="bank-logo bank-logo--sm bank-bds" style="vertical-align:middle;margin-right:6px;">BDS</span>Banco de Sofala</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td class="num-cell" style="text-align:right;">MZN 50.000,00</td>
+            <td class="num-cell text-good" style="text-align:right;">2.1s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-1A88E305</td>
+            <td class="num-cell">14:31:46</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdz" style="vertical-align:middle;margin-right:6px;">BDZ</span>Banco de Zambézia</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td class="num-cell" style="text-align:right;">MZN 1.500,00</td>
+            <td class="num-cell text-good" style="text-align:right;">1.6s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-44E207BD</td>
+            <td class="num-cell">14:31:39</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdm" style="vertical-align:middle;margin-right:6px;">BDM</span>Banco de Maputo</td>
+            <td class="num-cell" style="text-align:right;">MZN 2.000,00</td>
+            <td class="num-cell text-critical" style="text-align:right;">tempo limite</td>
+            <td><span class="badge badge--critical">Falhada</span></td>
+          </tr>
+          <tr>
+            <td class="id-cell">SWP-20260505-77BC1A92</td>
+            <td class="num-cell">14:31:33</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdni" style="vertical-align:middle;margin-right:6px;">BDNI</span>Banco de Niassa</td>
+            <td><span class="bank-logo bank-logo--sm bank-bdb" style="vertical-align:middle;margin-right:6px;">BDB</span>Banco de Beira</td>
+            <td class="num-cell" style="text-align:right;">MZN 850,00</td>
+            <td class="num-cell text-good" style="text-align:right;">1.9s</td>
+            <td><span class="badge badge--good">Liquidada</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script>
+function toggleTheme(){var h=document.documentElement,d=h.getAttribute('data-theme')==='dark',n=d?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('vunapaymz-theme',n);}
+</script>
+</body>
+</html>

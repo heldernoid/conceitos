@@ -9,7 +9,7 @@ Contexto completo em `AGENTS.md` na raiz do repositório.
 
 Estrutura:
 - projectos/publicos/ — 13 serviços públicos (saudedigital, governodigital, etc.)
-- projectos/produtos/ — Lavoura (P01), KuVona (P02), Comunidade (P03)
+- projectos/produtos/ — Lavoura (P01), KuVona (P02), Comunidade (P03), VunaPay (P04)
 
 Cada projecto tem:
 - PRINCIPIOS.md — 8 princípios fundadores + personas + operador fictício (presente nos Produtos)

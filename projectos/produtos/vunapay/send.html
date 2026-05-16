@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Send</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>
+  (function () {
+    var t = localStorage.getItem('vunapaymz-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  body { padding: 0 0 64px; }
+  .send-wrap { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .send-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px; gap: 16px; flex-wrap: wrap; }
+  .send-header h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .send-header p { margin: 2px 0 0; color: var(--ink-3); font-size: 13px; }
+  .send-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+  @media (max-width: 1280px) { .send-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 800px) { .send-grid { grid-template-columns: 1fr; } }
+
+  .step-frame {
+    width: 100%; max-width: 320px; height: 600px; margin: 0 auto;
+    background: var(--bg); border-radius: 32px; border: 1px solid var(--line);
+    box-shadow: var(--shadow-modal); overflow: hidden;
+    display: flex; flex-direction: column; padding: 18px 16px;
+  }
+  .step-label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; text-align: center; }
+
+  .step-back-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .step-back {
+    width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-2);
+  }
+  .step-title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* Recipient lookup */
+  .recent-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+  .recent-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .recent-cell__name { font-size: 10px; color: var(--ink-2); text-align: center; line-height: 1.2; }
+  .contact-card {
+    background: var(--brand-subtle); border-radius: var(--r-card);
+    padding: 12px; display: flex; align-items: center; gap: 10px;
+    margin-top: 14px;
+    animation: fadeIn 0.2s ease;
+  }
+  .contact-card__name { font-size: 13px; font-weight: 500; }
+  .contact-card__bank { font-size: 11px; color: var(--ink-2); display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+  .contact-card__verified { font-size: 11px; color: var(--good); display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+
+  /* Amount step */
+  .recipient-mini {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; background: var(--bg-2);
+    border-radius: var(--r-card);
+  }
+  .recipient-mini__name { font-size: 13px; font-weight: 500; }
+  .recipient-mini__bank { font-size: 11px; color: var(--ink-3); }
+  .quick-amounts { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .quick-amount-btn {
+    padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+    background: var(--surface); color: var(--ink-2);
+    cursor: pointer;
+  }
+  .quick-amount-btn:hover { border-color: var(--brand); color: var(--brand); }
+
+  /* Confirm step */
+  .confirm-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 14px; }
+  .confirm-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; gap: 10px; }
+  .confirm-row + .confirm-row { border-top: 1px solid var(--line-2); }
+  .confirm-row__label { font-size: 10px; color: var(--ink-3); letter-spacing: 0.02em; flex-shrink: 0; }
+  .confirm-row__value { font-size: 12px; font-weight: 500; text-align: right; min-width: 0; }
+  .confirm-row .amount-mid { font-size: 15px; }
+  .free-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; background: var(--good-subtle); color: var(--good); font-size: 11px; font-weight: 500; }
+
+  /* Processing */
+  .process-stage {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 16px;
+  }
+  .process-route {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin-bottom: 24px;
+  }
+  .process-bank-node {
+    width: 64px; height: 64px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 14px; letter-spacing: 0.02em;
+    background: var(--bank-color, var(--brand));
+    position: relative;
+  }
+  .process-bank-node::after {
+    content: ''; position: absolute; inset: -6px;
+    border: 2px solid var(--bank-color, var(--brand)); border-radius: 22px;
+    opacity: 0.4; animation: ping 1.4s ease-out infinite;
+  }
+  @keyframes ping { 0% { transform: scale(0.95); opacity: 0.5; } 100% { transform: scale(1.2); opacity: 0; } }
+  .process-line {
+    flex: 1; max-width: 80px; position: relative; height: 2px;
+    background: var(--line-2);
+  }
+  .process-line svg { position: absolute; inset: 0; width: 100%; height: 24px; top: -11px; }
+  .process-line__path { stroke: var(--brand); stroke-width: 2; stroke-dasharray: 6 4; fill: none; animation: flow 1.2s linear infinite; }
+  .process-particle {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    position: absolute; top: -3px; left: 0;
+    box-shadow: 0 0 8px var(--accent);
+    animation: travel 1.2s linear infinite;
+  }
+  @keyframes travel { 0% { left: 0; } 100% { left: calc(100% - 8px); } }
+
+  /* Success */
+  .success-stage {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 16px;
+  }
+  .success-check-big {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--good-subtle);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .success-check-big svg { width: 40px; height: 40px; color: var(--good); }
+  .success-check-big svg path { stroke-dasharray: 60; animation: draw-check 0.4s 0.2s ease both; }
+  .footer-cta { margin-top: auto; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html" class="active">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="send-wrap">
+  <div class="send-header">
+    <div>
+      <h1>Send money - full flow</h1>
+      <p>5 states · recipient → amount → confirm → processing → success</p>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="send-grid">
+
+    <!-- 1. RECIPIENT -->
+    <div>
+      <div class="step-label">1 · Destinatário</div>
+      <div class="step-frame">
+        <div class="step-back-row">
+          <div class="step-back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="step-title">Enviar dinheiro</div>
+        </div>
+        <input class="input" placeholder="Número de telefone ou nome" value="+258 85 345 6789">
+
+        <div class="contact-card">
+          <span class="avatar" style="background:#fff;color:#0066CC;">CM</span>
+          <div style="flex: 1;">
+            <div class="contact-card__name">Carlos Machava</div>
+            <div class="contact-card__bank">
+              <span class="bank-logo bank-logo--sm bank-bdb">BDB</span>
+              Banco de Beira
+            </div>
+            <div class="contact-card__verified">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Registado no VunaPay
+            </div>
+          </div>
+        </div>
+
+        <div class="step-label" style="text-align:left; margin-top: 18px;">Recentes</div>
+        <div class="recent-grid">
+          <div class="recent-cell">
+            <span class="avatar avatar--sm" style="background:#FEE4E2;color:#DC2626;">RM</span>
+            <span class="recent-cell__name">Rosa</span>
+          </div>
+          <div class="recent-cell">
+            <span class="avatar avatar--sm" style="background:#FFF9E0;color:#B45309;">FS</span>
+            <span class="recent-cell__name">Fátima</span>
+          </div>
+          <div class="recent-cell">
+            <span class="avatar avatar--sm" style="background:#E6F4EE;color:#007A4D;">JN</span>
+            <span class="recent-cell__name">João</span>
+          </div>
+          <div class="recent-cell">
+            <span class="avatar avatar--sm" style="background:#F3E8FF;color:#7C3AED;">PC</span>
+            <span class="recent-cell__name">Pedro</span>
+          </div>
+        </div>
+
+        <div class="footer-cta"><button class="btn btn--primary btn--full btn--lg">Continuar</button></div>
+      </div>
+    </div>
+
+    <!-- 2. AMOUNT -->
+    <div>
+      <div class="step-label">2 · Valor</div>
+      <div class="step-frame">
+        <div class="step-back-row">
+          <div class="step-back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="step-title">Quanto?</div>
+        </div>
+
+        <div class="recipient-mini">
+          <span class="avatar avatar--sm" style="background:#E0EDFF;color:#0066CC;">CM</span>
+          <div style="flex:1;">
+            <div class="recipient-mini__name">Carlos Machava</div>
+            <div class="recipient-mini__bank">Banco de Beira · +258 85 345 6789</div>
+          </div>
+        </div>
+
+        <div class="amount-input mt-16">
+          <span class="amount-input__prefix">MZN</span>
+          <input value="1.500,00">
+        </div>
+        <div class="t-small mt-8">Saldo disponível: <span class="mono">MZN 24.350,00</span></div>
+
+        <div class="quick-amounts">
+          <button class="quick-amount-btn">500</button>
+          <button class="quick-amount-btn">1.000</button>
+          <button class="quick-amount-btn">2.000</button>
+          <button class="quick-amount-btn">5.000</button>
+        </div>
+
+        <div class="field mt-16">
+          <label class="field-label">Nota (opcional)</label>
+          <input class="input" value="Renda de Maio" maxlength="50">
+          <div class="field-hint">12 / 50 caracteres</div>
+        </div>
+
+        <div class="footer-cta"><button class="btn btn--primary btn--full btn--lg">Continuar</button></div>
+      </div>
+    </div>
+
+    <!-- 3. CONFIRM -->
+    <div>
+      <div class="step-label">3 · Confirmar</div>
+      <div class="step-frame">
+        <div class="step-back-row">
+          <div class="step-back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="step-title">Confirmar</div>
+        </div>
+
+        <div class="confirm-card">
+          <div class="confirm-row">
+            <span class="confirm-row__label">PARA</span>
+            <span class="confirm-row__value">Carlos Machava</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">BANCO</span>
+            <span class="confirm-row__value" style="display:flex;align-items:center;gap:6px;justify-content:flex-end;"><span class="bank-logo bank-logo--sm bank-bdb">BDB</span>Banco de Beira</span>
+          </div>
+          <div class="confirm-row" style="background: var(--brand-subtle); margin: 4px -6px; padding: 10px 8px; border-radius: 6px;">
+            <span class="confirm-row__label" style="color: var(--brand); font-weight: 600;">VALOR</span>
+            <span class="amount-mid" style="color: var(--brand); font-weight: 600;">MZN 1.500,00</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">DA SUA CONTA</span>
+            <span class="confirm-row__value mono" style="font-size:12px;">BDM •••• 4521</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">NOTA</span>
+            <span class="confirm-row__value" style="font-style: italic; color: var(--ink-2);">"Renda de Maio"</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">TAXA</span>
+            <span class="free-pill">MZN 0,00 · grátis</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-row__label">TEMPO</span>
+            <span class="confirm-row__value text-good">&lt; 3 segundos</span>
+          </div>
+        </div>
+
+        <div class="t-small mt-16" style="text-align:center;">Introduza o seu PIN para confirmar</div>
+        <div class="pin-input mt-12">
+          <span class="pin-dot pin-dot--filled"></span>
+          <span class="pin-dot pin-dot--filled"></span>
+          <span class="pin-dot pin-dot--filled"></span>
+          <span class="pin-dot pin-dot--filled"></span>
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+        </div>
+
+        <div class="footer-cta"><button class="btn btn--primary btn--full btn--lg">Confirmar transferência</button></div>
+      </div>
+    </div>
+
+    <!-- 4. PROCESSING -->
+    <div>
+      <div class="step-label">4 · Em curso</div>
+      <div class="step-frame">
+        <div class="process-stage">
+          <div class="process-route">
+            <div class="process-bank-node bank-bdm" style="background:#007A4D;">BDM</div>
+            <div class="process-line">
+              <div class="process-particle"></div>
+              <svg viewBox="0 0 80 24" preserveAspectRatio="none">
+                <path class="process-line__path" d="M0 12 L80 12"/>
+              </svg>
+            </div>
+            <div class="process-bank-node bank-bdb" style="background:#0066CC;">BDB</div>
+          </div>
+
+          <div style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Transferindo…</div>
+          <div class="amount-large mt-8">MZN 1.500,00</div>
+          <div class="t-small mt-8">Banco de Maputo → Banco de Beira</div>
+
+          <div style="margin-top: 28px; display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--bg-2); border-radius: 999px;">
+            <span class="spinner" style="width:12px;height:12px;border-top-color:var(--brand);"></span>
+            <span class="t-small mono">VunaPay Central · liquidando</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SUCCESS -->
+    <div>
+      <div class="step-label">5 · Concluído</div>
+      <div class="step-frame">
+        <div class="success-stage">
+          <div class="success-check-big">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em;">Transferência concluída!</div>
+          <div class="amount-large mt-12">MZN 1.500,00</div>
+          <div class="t-small mt-8">enviados para Carlos Machava</div>
+
+          <div class="speed mt-16" style="font-size: 13px; padding: 6px 12px; background: var(--good-subtle); border-radius: 999px;">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 14h7l-1 8 9-12h-7z"/></svg>
+            Concluída em 2.3 segundos
+          </div>
+          <div class="mono mt-12" style="font-size: 10px; color: var(--ink-3);">SWP-20260505-A3F8C291</div>
+        </div>
+
+        <div class="footer-cta" style="display: flex; flex-direction: column; gap: 6px;">
+          <button class="btn btn--primary btn--full">Fazer outra</button>
+          <button class="btn btn--secondary btn--full">Partilhar comprovativo</button>
+          <button class="btn btn--ghost btn--full btn--sm">Ir para o início</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  var next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('vunapaymz-theme', next);
+}
+</script>
+</body>
+</html>

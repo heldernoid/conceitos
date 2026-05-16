@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Design System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>
+  (function () {
+    var t = localStorage.getItem('vunapaymz-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  .ds-wrap { max-width: 1200px; margin: 0 auto; padding: 32px 24px 96px; }
+  .ds-hero { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; gap: 24px; flex-wrap: wrap; }
+  .ds-hero h1 { margin: 0; font-size: 36px; font-weight: 600; letter-spacing: -0.02em; }
+  .ds-hero p { margin: 4px 0 0; color: var(--ink-3); font-size: 14px; }
+  .ds-section { margin-top: 56px; }
+  .ds-section__title { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+  .ds-section__sub { color: var(--ink-3); font-size: 13px; margin: 0 0 20px; }
+  .ds-row-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+  .swatch { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+  .swatch__chip { height: 64px; }
+  .swatch__meta { padding: 10px 12px; }
+  .swatch__name { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .swatch__hex { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .demo-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 20px; }
+  .demo-card h3 { font-size: 13px; font-weight: 500; color: var(--ink-3); margin: 0 0 14px; letter-spacing: 0.02em; }
+  .row-stack { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .stack-v { display: flex; flex-direction: column; gap: 12px; }
+  .ds-toolbar { position: sticky; top: 16px; z-index: 10; display: flex; justify-content: flex-end; }
+  .type-row { display: grid; grid-template-columns: 80px 1fr 100px; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+  .type-row:last-child { border-bottom: none; }
+  .type-row__token { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
+  .type-row__sample { color: var(--ink); }
+  .type-row__meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); text-align: right; }
+
+  .transfer-card {
+    display: grid; grid-template-columns: 1fr auto; gap: 12px;
+    padding: 14px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--r-card);
+  }
+  .tx-people { display: flex; align-items: center; gap: 10px; }
+  .tx-meta { font-size: 12px; color: var(--ink-3); margin-top: 2px; display: flex; gap: 8px; align-items: center; }
+  .tx-amount { font-family: var(--font-mono); font-weight: 600; font-size: 16px; text-align: right; }
+  .tx-time { font-size: 11px; color: var(--ink-3); margin-top: 4px; font-family: var(--font-mono); }
+
+  .success-mock {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card);
+    padding: 28px 20px; text-align: center;
+  }
+  .success-check {
+    width: 64px; height: 64px; margin: 0 auto 16px;
+    border-radius: 50%; background: var(--good-subtle);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .success-check svg { width: 32px; height: 32px; color: var(--good); }
+  .success-check svg path { stroke-dasharray: 60; animation: draw-check 0.5s 0.1s ease both; }
+
+  .empty-mock { text-align: center; padding: 24px 16px; }
+  .empty-icon { width: 48px; height: 48px; margin: 0 auto 12px; border-radius: 12px; background: var(--bg-2); display: inline-flex; align-items: center; justify-content: center; color: var(--ink-3); }
+  .pin-illus-row { display: flex; align-items: center; gap: 12px; justify-content: center; }
+  .modal-mock {
+    border: 1px solid var(--line); background: var(--surface); border-radius: var(--r-modal);
+    padding: 20px; box-shadow: var(--shadow-modal);
+    max-width: 380px;
+  }
+
+  /* in-page nav */
+  .ds-nav { position: sticky; top: 16px; align-self: start; }
+  .ds-nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .ds-nav a {
+    display: block; padding: 6px 10px; border-radius: 4px;
+    font-size: 12px; color: var(--ink-2); text-decoration: none;
+  }
+  .ds-nav a:hover { background: var(--bg-2); color: var(--ink); text-decoration: none; }
+  .ds-layout { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .ds-layout { grid-template-columns: 1fr; } .ds-nav { position: static; } .demo-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html" class="active">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="ds-wrap">
+  <div class="ds-toolbar">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="ds-hero">
+    <div>
+      <h1>VunaPay - Design System</h1>
+      <p>Sistema de pagamentos interbancários instantâneos · v0.1</p>
+    </div>
+    <div class="row-stack">
+      <span class="badge badge--good"><span class="badge__dot"></span> Living document</span>
+      <span class="badge">Inter · JetBrains Mono</span>
+    </div>
+  </div>
+
+  <div class="ds-layout mt-32">
+    <nav class="ds-nav">
+      <ul>
+        <li><a href="#brand">Brand</a></li>
+        <li><a href="#color">Colour</a></li>
+        <li><a href="#type">Typography</a></li>
+        <li><a href="#layout">Layout</a></li>
+        <li><a href="#buttons">Buttons</a></li>
+        <li><a href="#inputs">Inputs</a></li>
+        <li><a href="#amount">Amount input</a></li>
+        <li><a href="#phone">Phone input</a></li>
+        <li><a href="#pin">PIN entry</a></li>
+        <li><a href="#banks">Bank selector</a></li>
+        <li><a href="#status">Status badges</a></li>
+        <li><a href="#transfer">Transfer card</a></li>
+        <li><a href="#success">Success screen</a></li>
+        <li><a href="#avatar">Avatar</a></li>
+        <li><a href="#empty">Empty &amp; toast</a></li>
+        <li><a href="#modal">Modal</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <!-- BRAND -->
+      <section class="ds-section" id="brand">
+        <h2 class="ds-section__title">Brand</h2>
+        <p class="ds-section__sub">Trust through restraint. Speed through clarity. Mozambican green carries the brand; gold marks the central clearing node and selected delight moments.</p>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>Mark &amp; tagline</h3>
+            <div class="row-stack" style="gap: 14px;">
+              <div style="width:48px;height:48px;border-radius:10px;background:var(--brand);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:18px;letter-spacing:-0.02em;">SP</div>
+              <div>
+                <div style="font-weight:600; font-size:18px; letter-spacing:-0.01em;">VunaPay</div>
+                <div style="font-size:13px; color: var(--ink-3); font-style: italic;">Dinheiro na hora. Qualquer banco.</div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Voice</h3>
+            <ul style="margin:0; padding-left: 18px; color: var(--ink-2); font-size: 13px; line-height: 1.7;">
+              <li>Fast. Every word confirms instant.</li>
+              <li>Certain. No hedging on outcomes.</li>
+              <li>Local. Mozambican Portuguese, MZN, +258.</li>
+              <li>Better. Facts speak - no comparisons.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLOUR -->
+      <section class="ds-section" id="color">
+        <h2 class="ds-section__title">Colour</h2>
+        <p class="ds-section__sub">Toggle the theme in the top-right to compare. Both palettes share token names; only values change.</p>
+
+        <div class="ds-row-eyebrow mt-20">Surface &amp; ink</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__chip" style="background:var(--bg)"></div><div class="swatch__meta"><div class="swatch__name">--bg</div><div class="swatch__hex">page background</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--bg-2)"></div><div class="swatch__meta"><div class="swatch__name">--bg-2</div><div class="swatch__hex">panel fills</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--bg-3)"></div><div class="swatch__meta"><div class="swatch__name">--bg-3</div><div class="swatch__hex">elevated</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--surface);border-bottom:1px solid var(--line)"></div><div class="swatch__meta"><div class="swatch__name">--surface</div><div class="swatch__hex">cards / inputs</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--ink)"></div><div class="swatch__meta"><div class="swatch__name">--ink</div><div class="swatch__hex">primary text</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--ink-2)"></div><div class="swatch__meta"><div class="swatch__name">--ink-2</div><div class="swatch__hex">secondary</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--ink-3)"></div><div class="swatch__meta"><div class="swatch__name">--ink-3</div><div class="swatch__hex">tertiary</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--ink-4)"></div><div class="swatch__meta"><div class="swatch__name">--ink-4</div><div class="swatch__hex">disabled</div></div></div>
+        </div>
+
+        <div class="ds-row-eyebrow mt-24">Brand &amp; accent</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__chip" style="background:var(--brand)"></div><div class="swatch__meta"><div class="swatch__name">--brand</div><div class="swatch__hex">primary green</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--brand-2)"></div><div class="swatch__meta"><div class="swatch__name">--brand-2</div><div class="swatch__hex">brand pressed</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--brand-subtle)"></div><div class="swatch__meta"><div class="swatch__name">--brand-subtle</div><div class="swatch__hex">brand tint</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--accent)"></div><div class="swatch__meta"><div class="swatch__name">--accent</div><div class="swatch__hex">gold (clearing node)</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--accent-subtle)"></div><div class="swatch__meta"><div class="swatch__name">--accent-subtle</div><div class="swatch__hex">accent tint</div></div></div>
+        </div>
+
+        <div class="ds-row-eyebrow mt-24">Semantic</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__chip" style="background:var(--good)"></div><div class="swatch__meta"><div class="swatch__name">--good</div><div class="swatch__hex">success / settled</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--warn)"></div><div class="swatch__meta"><div class="swatch__name">--warn</div><div class="swatch__hex">warning / pending</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--critical)"></div><div class="swatch__meta"><div class="swatch__name">--critical</div><div class="swatch__hex">error / failed</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:var(--processing)"></div><div class="swatch__meta"><div class="swatch__name">--processing</div><div class="swatch__hex">in flight</div></div></div>
+        </div>
+
+        <div class="ds-row-eyebrow mt-24">Bank colour accents</div>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch__chip" style="background:#007A4D"></div><div class="swatch__meta"><div class="swatch__name">Banco de Maputo</div><div class="swatch__hex">BDM · #007A4D</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#0066CC"></div><div class="swatch__meta"><div class="swatch__name">Banco de Beira</div><div class="swatch__hex">BDB · #0066CC</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#8B5CF6"></div><div class="swatch__meta"><div class="swatch__name">Banco de Tete</div><div class="swatch__hex">BDT · #8B5CF6</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#D97706"></div><div class="swatch__meta"><div class="swatch__name">Banco de Nampula</div><div class="swatch__hex">BDN · #D97706</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#059669"></div><div class="swatch__meta"><div class="swatch__name">Banco de Sofala</div><div class="swatch__hex">BDS · #059669</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#DC2626"></div><div class="swatch__meta"><div class="swatch__name">Banco de Inhambane</div><div class="swatch__hex">BDI · #DC2626</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#7C3AED"></div><div class="swatch__meta"><div class="swatch__name">Banco de Niassa</div><div class="swatch__hex">BDNI · #7C3AED</div></div></div>
+          <div class="swatch"><div class="swatch__chip" style="background:#0891B2"></div><div class="swatch__meta"><div class="swatch__name">Banco de Zambézia</div><div class="swatch__hex">BDZ · #0891B2</div></div></div>
+        </div>
+      </section>
+
+      <!-- TYPE -->
+      <section class="ds-section" id="type">
+        <h2 class="ds-section__title">Typography</h2>
+        <p class="ds-section__sub">Inter for prose, JetBrains Mono for every figure: currency, phone, ID, timestamp.</p>
+        <div class="demo-card">
+          <div class="type-row"><div class="type-row__token">.t-display</div><div class="type-row__sample t-display">Dinheiro na hora</div><div class="type-row__meta">48 / 600</div></div>
+          <div class="type-row"><div class="type-row__token">.t-h1</div><div class="type-row__sample t-h1">Transferências recentes</div><div class="type-row__meta">32 / 600</div></div>
+          <div class="type-row"><div class="type-row__token">.t-h2</div><div class="type-row__sample t-h2">Confirmar transferência</div><div class="type-row__meta">24 / 600</div></div>
+          <div class="type-row"><div class="type-row__token">.t-h3</div><div class="type-row__sample t-h3">Enviar para Carlos Machava</div><div class="type-row__meta">18 / 600</div></div>
+          <div class="type-row"><div class="type-row__token">.t-body</div><div class="type-row__sample t-body">O seu PIN protege todas as suas transferências e é necessário para confirmar cada envio.</div><div class="type-row__meta">14 / 400</div></div>
+          <div class="type-row"><div class="type-row__token">.t-small</div><div class="type-row__sample t-small">Saldo disponível: MZN 24.350,00</div><div class="type-row__meta">13 / 400</div></div>
+          <div class="type-row"><div class="type-row__token">.t-micro</div><div class="type-row__sample t-micro">Estado da rede</div><div class="type-row__meta">11 / 500</div></div>
+        </div>
+
+        <div class="ds-row-eyebrow mt-20">Figures (mono)</div>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>Currency</h3>
+            <div class="amount-hero">MZN 1.500,00</div>
+            <div class="amount-large mt-12">MZN 24.350,00</div>
+            <div class="amount-mid mt-12">MZN 500,00</div>
+            <div class="amount-sm mt-8 text-2">MZN 0,00 - taxa</div>
+          </div>
+          <div class="demo-card">
+            <h3>Phone &amp; ID</h3>
+            <div class="mono" style="font-size:18px;">+258 84 234 5678</div>
+            <div class="mono mt-12" style="font-size:13px; color: var(--ink-2);">SWP-20260505-A3F8C291</div>
+            <div class="mono mt-12" style="font-size:13px; color: var(--ink-2);">05/05/2026 · 14:32:18</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAYOUT -->
+      <section class="ds-section" id="layout">
+        <h2 class="ds-section__title">Layout primitives</h2>
+        <p class="ds-section__sub">4-pt spacing base. Three radii. Hairline borders, no shadow except on modals.</p>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>Radii</h3>
+            <div class="row-stack">
+              <div style="width:80px;height:48px;background:var(--bg-2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-3);" class="mono">4 chip</div>
+              <div style="width:80px;height:48px;background:var(--bg-2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-3);" class="mono">8 card</div>
+              <div style="width:80px;height:48px;background:var(--bg-2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink-3);" class="mono">12 modal</div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Spacing scale</h3>
+            <div class="row-stack" style="align-items:flex-end;">
+              <div style="width:4px;height:24px;background:var(--brand);"></div>
+              <div style="width:8px;height:32px;background:var(--brand);"></div>
+              <div style="width:12px;height:40px;background:var(--brand);"></div>
+              <div style="width:16px;height:48px;background:var(--brand);"></div>
+              <div style="width:24px;height:56px;background:var(--brand);"></div>
+              <div style="width:32px;height:64px;background:var(--brand);"></div>
+            </div>
+            <div class="t-small mt-12 mono">4 · 8 · 12 · 16 · 24 · 32</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <section class="ds-section" id="buttons">
+        <h2 class="ds-section__title">Buttons</h2>
+        <p class="ds-section__sub">44px standard. 52px for primary CTAs in flows. Primary green is reserved for the single most important action per screen.</p>
+        <div class="demo-card">
+          <div class="row-stack">
+            <button class="btn btn--primary">Confirmar transferência</button>
+            <button class="btn btn--secondary">Cancelar</button>
+            <button class="btn btn--ghost">Saber mais</button>
+            <button class="btn btn--danger">Apagar</button>
+            <button class="btn btn--primary" disabled>Continuar</button>
+            <button class="btn btn--primary"><span class="spinner" style="border-top-color:#fff;"></span> A enviar</button>
+          </div>
+          <div class="row-stack mt-16">
+            <button class="btn btn--primary btn--lg">Fazer transferência</button>
+            <button class="btn btn--secondary btn--sm">Editar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- INPUTS -->
+      <section class="ds-section" id="inputs">
+        <h2 class="ds-section__title">Inputs</h2>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>States</h3>
+            <div class="stack-v">
+              <div class="field"><label class="field-label">Default</label><input class="input" placeholder="Nome completo"></div>
+              <div class="field"><label class="field-label">Filled</label><input class="input" value="Ana Cossa"></div>
+              <div class="field"><label class="field-label">Error</label><input class="input input--error" value="ana@"><div class="field-error">Email inválido</div></div>
+              <div class="field"><label class="field-label">Disabled</label><input class="input" value="Verificado" disabled></div>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Search</h3>
+            <div class="field">
+              <label class="field-label">Procurar destinatário</label>
+              <input class="input" placeholder="Número de telefone ou nome">
+              <div class="field-hint">Procura entre os seus contactos e na rede VunaPay.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AMOUNT -->
+      <section class="ds-section" id="amount">
+        <h2 class="ds-section__title">Amount input</h2>
+        <p class="ds-section__sub">The amount is the hero. Always prefixed with <span class="mono">MZN</span>, always mono.</p>
+        <div class="demo-card">
+          <div class="amount-input">
+            <span class="amount-input__prefix">MZN</span>
+            <input value="1.500,00">
+          </div>
+          <div class="t-small mt-8">Saldo disponível: <span class="mono">MZN 24.350,00</span></div>
+          <div class="row-stack mt-16">
+            <button class="btn btn--secondary btn--sm mono">500</button>
+            <button class="btn btn--secondary btn--sm mono">1.000</button>
+            <button class="btn btn--secondary btn--sm mono">2.000</button>
+            <button class="btn btn--secondary btn--sm mono">5.000</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHONE -->
+      <section class="ds-section" id="phone">
+        <h2 class="ds-section__title">Phone input</h2>
+        <p class="ds-section__sub">Country prefix is fixed. Flag is the Mozambican stripes - always visible to confirm context.</p>
+        <div class="demo-card">
+          <div class="phone-input">
+            <div class="phone-input__prefix"><span class="phone-input__flag"></span> +258</div>
+            <input placeholder="84 234 5678" value="84 234 5678">
+          </div>
+        </div>
+      </section>
+
+      <!-- PIN -->
+      <section class="ds-section" id="pin">
+        <h2 class="ds-section__title">PIN entry</h2>
+        <p class="ds-section__sub">Six dots. Filled animates with a small scale-up. Wrong PIN shakes - colour alone never carries the error.</p>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>Empty</h3>
+            <div class="pin-input">
+              <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+              <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Partial</h3>
+            <div class="pin-input">
+              <span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span>
+              <span class="pin-dot"></span><span class="pin-dot"></span><span class="pin-dot"></span>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Full</h3>
+            <div class="pin-input">
+              <span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span>
+              <span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span><span class="pin-dot pin-dot--filled"></span>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Error</h3>
+            <div class="pin-input">
+              <span class="pin-dot pin-dot--error pin-dot--filled"></span><span class="pin-dot pin-dot--error pin-dot--filled"></span><span class="pin-dot pin-dot--error pin-dot--filled"></span>
+              <span class="pin-dot pin-dot--error pin-dot--filled"></span><span class="pin-dot pin-dot--error pin-dot--filled"></span><span class="pin-dot pin-dot--error pin-dot--filled"></span>
+            </div>
+            <div class="field-error mt-12" style="justify-content:center;">PIN incorrecto. Tente novamente.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BANKS -->
+      <section class="ds-section" id="banks">
+        <h2 class="ds-section__title">Bank selector</h2>
+        <p class="ds-section__sub">List of all participating banks. Each row carries the bank's colour accent as a vertical bar.</p>
+        <div class="demo-card" style="padding: 0;">
+          <div id="bank-list"></div>
+        </div>
+      </section>
+
+      <!-- STATUS -->
+      <section class="ds-section" id="status">
+        <h2 class="ds-section__title">Status badges</h2>
+        <p class="ds-section__sub">Always colour + icon + word. Never colour alone.</p>
+        <div class="demo-card">
+          <div class="row-stack">
+            <span class="badge badge--good badge--lg">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Instantânea
+            </span>
+            <span class="badge badge--processing badge--lg">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.2-8.55" stroke-linecap="round"/></svg>
+              Processando
+            </span>
+            <span class="badge badge--critical badge--lg">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/></svg>
+              Falhada
+            </span>
+            <span class="badge badge--warn badge--lg">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
+              Pendente
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSFER CARD -->
+      <section class="ds-section" id="transfer">
+        <h2 class="ds-section__title">Transfer card</h2>
+        <p class="ds-section__sub">Compact row used in lists, history, and recent contacts.</p>
+        <div class="stack-v">
+          <div class="transfer-card">
+            <div class="tx-people">
+              <span class="avatar">CM</span>
+              <div>
+                <div style="font-weight:500;">Carlos Machava</div>
+                <div class="tx-meta">
+                  <span class="bank-logo bank-logo--sm bank-bdb">BDB</span>
+                  Banco de Beira
+                  <span class="speed">↓ 2.1s</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="tx-amount text-critical">− MZN 1.500,00</div>
+              <div class="tx-time">há 2 min</div>
+            </div>
+          </div>
+          <div class="transfer-card">
+            <div class="tx-people">
+              <span class="avatar">RM</span>
+              <div>
+                <div style="font-weight:500;">Rosa Mavie</div>
+                <div class="tx-meta">
+                  <span class="bank-logo bank-logo--sm bank-bdi">BDI</span>
+                  Banco de Inhambane
+                  <span class="speed">↓ 1.6s</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="tx-amount text-good">+ MZN 5.000,00</div>
+              <div class="tx-time">ontem · 18:42</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUCCESS -->
+      <section class="ds-section" id="success">
+        <h2 class="ds-section__title">Success screen</h2>
+        <p class="ds-section__sub">The moment of delight. Mono amount, the speed in seconds, the transaction ID - proof it happened.</p>
+        <div class="success-mock">
+          <div class="success-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="t-h2">Transferência concluída!</div>
+          <div class="amount-large mt-16">MZN 1.500,00</div>
+          <div class="t-small mt-8">enviados para Carlos Machava</div>
+          <div class="speed mt-16" style="justify-content:center; font-size: 13px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 14h7l-1 8 9-12h-7z"/></svg>
+            Concluída em 2.3 segundos
+          </div>
+          <div class="mono mt-12" style="font-size: 11px; color: var(--ink-3);">SWP-20260505-A3F8C291</div>
+        </div>
+      </section>
+
+      <!-- AVATAR -->
+      <section class="ds-section" id="avatar">
+        <h2 class="ds-section__title">Avatar</h2>
+        <p class="ds-section__sub">Initials only. Background colour hashed from the name so a person's identity stays consistent across screens.</p>
+        <div class="demo-card">
+          <div class="row-stack">
+            <span class="avatar avatar--sm" style="background:#FEE4E2; color:#D92D20;">AC</span>
+            <span class="avatar" style="background:#E0EDFF; color:#0066CC;">CM</span>
+            <span class="avatar avatar--lg" style="background:#FFF9E0; color:#B45309;">FS</span>
+            <span class="avatar avatar--xl" style="background:#E6F4EE; color:#007A4D;">JN</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- EMPTY & TOAST -->
+      <section class="ds-section" id="empty">
+        <h2 class="ds-section__title">Empty states &amp; toasts</h2>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h3>Empty</h3>
+            <div class="empty-mock">
+              <div class="empty-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8" stroke-linecap="round"/></svg>
+              </div>
+              <div style="font-weight:500;">Ainda não há transferências</div>
+              <div class="t-small mt-4">Faça a sua primeira transferência em segundos.</div>
+              <button class="btn btn--primary mt-16">Enviar dinheiro</button>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h3>Toasts</h3>
+            <div class="stack-v">
+              <div class="toast">Comprovativo copiado.</div>
+              <div class="toast toast--success">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Transferência enviada.
+              </div>
+              <div class="toast toast--error">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/></svg>
+                Saldo insuficiente.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODAL -->
+      <section class="ds-section" id="modal">
+        <h2 class="ds-section__title">Modal - confirm transfer</h2>
+        <p class="ds-section__sub">12px radius, 2px blur shadow at 8% opacity. Used only for explicit confirmations.</p>
+        <div class="modal-mock">
+          <div class="t-h3">Confirmar transferência</div>
+          <div class="t-small mt-4">A operação não pode ser revertida após confirmação.</div>
+          <div class="card mt-16" style="padding: 14px;">
+            <div class="row between">
+              <span class="t-small">Para</span>
+              <span style="font-weight:500;">Carlos Machava</span>
+            </div>
+            <hr class="divider mt-12 mb-12">
+            <div class="row between">
+              <span class="t-small">Valor</span>
+              <span class="amount-mid">MZN 1.500,00</span>
+            </div>
+            <hr class="divider mt-12 mb-12">
+            <div class="row between">
+              <span class="t-small">Taxa</span>
+              <span class="amount-sm text-good">MZN 0,00</span>
+            </div>
+          </div>
+          <div class="row gap-8 mt-20">
+            <button class="btn btn--secondary flex-1">Cancelar</button>
+            <button class="btn btn--primary flex-1">Confirmar</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  var next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('vunapaymz-theme', next);
+}
+
+// Bank selector list
+var BANKS = [
+  { code: 'BDM', name: 'Banco de Maputo', city: 'Maputo', cls: 'bank-bdm' },
+  { code: 'BDB', name: 'Banco de Beira', city: 'Beira', cls: 'bank-bdb' },
+  { code: 'BDT', name: 'Banco de Tete', city: 'Tete', cls: 'bank-bdt' },
+  { code: 'BDN', name: 'Banco de Nampula', city: 'Nampula', cls: 'bank-bdn' },
+  { code: 'BDS', name: 'Banco de Sofala', city: 'Beira', cls: 'bank-bds' },
+  { code: 'BDI', name: 'Banco de Inhambane', city: 'Inhambane', cls: 'bank-bdi' },
+  { code: 'BDNI', name: 'Banco de Niassa', city: 'Lichinga', cls: 'bank-bdni' },
+  { code: 'BDZ', name: 'Banco de Zambézia', city: 'Quelimane', cls: 'bank-bdz' },
+];
+var bankList = document.getElementById('bank-list');
+BANKS.forEach(function (b, i) {
+  var row = document.createElement('div');
+  row.style.cssText = 'display:flex; align-items:center; gap:12px; padding:12px 16px; cursor:pointer; transition: background 0.1s; border-bottom: 1px solid var(--line-2);';
+  if (i === BANKS.length - 1) row.style.borderBottom = 'none';
+  row.onmouseenter = function () { row.style.background = 'var(--bg-2)'; };
+  row.onmouseleave = function () { row.style.background = ''; };
+  row.innerHTML = '<span class="bank-logo ' + b.cls + '">' + b.code + '</span>'
+    + '<div style="flex:1;"><div style="font-weight:500;">' + b.name + '</div><div class="t-small">' + b.city + '</div></div>'
+    + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-3);"><polyline points="9 6 15 12 9 18" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  bankList.appendChild(row);
+});
+</script>
+</body>
+</html>

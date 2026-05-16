@@ -14,7 +14,7 @@ Ver `AGENTS.md` na raiz para contexto completo.
 ## Estrutura rápida
 
 - `projectos/publicos/` — 13 serviços públicos reimaginados
-- `projectos/produtos/` — 3 produtos consumer (Lavoura, KuVona, Comunidade)
+- `projectos/produtos/` — 4 produtos consumer (Lavoura, KuVona, Comunidade, VunaPay)
 - Cada projecto tem: `DESIGN-*.md`, `design-system.html`, `shared/styles.css`; Produtos também têm `PRINCIPIOS.md`
 
 ## Regras ao editar

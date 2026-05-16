@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Transaction detail</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>
+  (function () { var t = localStorage.getItem('vunapaymz-theme') || 'light'; document.documentElement.setAttribute('data-theme', t); })();
+</script>
+<style>
+  body { padding: 0 0 64px; }
+  .tx-wrap { max-width: 460px; margin: 0 auto; padding: 0 16px; }
+  .tx-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .tx-back { width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--ink-2); }
+  .tx-back:hover { background: var(--bg-2); }
+
+  .tx-hero { text-align: center; padding: 16px 0 24px; }
+  .tx-direction { font-size: 13px; font-weight: 500; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .tx-amount { font-family: var(--font-mono); font-weight: 600; font-size: 44px; letter-spacing: -0.02em; margin-top: 8px; }
+
+  .route-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; }
+  .route-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; }
+  .route-end { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+  .route-end__name { font-size: 12px; font-weight: 500; }
+  .route-end__bank { font-size: 11px; color: var(--ink-3); }
+  .route-end__acct { font-family: var(--font-mono); font-size: 10px; color: var(--ink-3); }
+  .route-mid { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .route-arrow {
+    width: 60px; height: 24px; position: relative;
+  }
+  .route-arrow svg { width: 100%; height: 100%; }
+  .route-arrow path { stroke: var(--brand); stroke-width: 1.5; fill: none; stroke-dasharray: 4 3; animation: flow 2s linear infinite; }
+  .route-arrow .arrowhead { fill: var(--brand); stroke: none; }
+  .route-speed { font-family: var(--font-mono); font-size: 11px; color: var(--good); font-weight: 500; }
+
+  .details-card { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 6px 14px; }
+  .det-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; gap: 12px; border-bottom: 1px solid var(--line-2); }
+  .det-row:last-child { border-bottom: none; }
+  .det-label { font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0; }
+  .det-value { font-size: 13px; font-weight: 500; text-align: right; }
+  .det-mono { font-family: var(--font-mono); font-size: 12px; }
+
+  .settlement-banner {
+    margin-top: 16px;
+    background: var(--good-subtle); border: 1px solid var(--good);
+    border-radius: var(--r-card); padding: 14px;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .settlement-banner svg { color: var(--good); flex-shrink: 0; margin-top: 1px; }
+  .settlement-banner__title { font-size: 13px; font-weight: 500; color: var(--good); }
+  .settlement-banner__sub { font-size: 12px; color: var(--ink-2); margin-top: 2px; }
+
+  .actions-row { display: flex; gap: 8px; margin-top: 20px; }
+  .free-pill { display: inline-flex; padding: 2px 8px; border-radius: 999px; background: var(--good-subtle); color: var(--good); font-size: 11px; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html">Receber</a>
+    <a href="transaction.html" class="active">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="tx-wrap">
+  <div class="tx-toolbar">
+    <button class="tx-back" aria-label="Voltar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="tx-hero">
+    <span class="badge badge--good badge--lg">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Instantânea
+    </span>
+    <div class="tx-direction" style="margin-top: 16px;">Enviado</div>
+    <div class="tx-amount">MZN 1.500,00</div>
+  </div>
+
+  <div class="route-card">
+    <div class="route-row">
+      <div class="route-end">
+        <span class="avatar avatar--lg" style="background:#E6F4EE;color:#007A4D;">AC</span>
+        <div>
+          <div class="route-end__name">Ana Cossa</div>
+          <div class="route-end__bank" style="display:flex;align-items:center;justify-content:center;gap:4px;">
+            <span class="bank-logo bank-logo--sm bank-bdm">BDM</span> Banco de Maputo
+          </div>
+          <div class="route-end__acct">•••• 4521</div>
+        </div>
+      </div>
+      <div class="route-mid">
+        <div class="route-arrow">
+          <svg viewBox="0 0 60 24" preserveAspectRatio="none">
+            <path d="M0 12 L52 12"/>
+            <polygon class="arrowhead" points="52,7 60,12 52,17"/>
+          </svg>
+        </div>
+        <div class="route-speed">2.3s</div>
+      </div>
+      <div class="route-end">
+        <span class="avatar avatar--lg" style="background:#E0EDFF;color:#0066CC;">CM</span>
+        <div>
+          <div class="route-end__name">Carlos Machava</div>
+          <div class="route-end__bank" style="display:flex;align-items:center;justify-content:center;gap:4px;">
+            <span class="bank-logo bank-logo--sm bank-bdb">BDB</span> Banco de Beira
+          </div>
+          <div class="route-end__acct">•••• 8834</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="settlement-banner">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <div class="settlement-banner__title">Valor creditado em 2.3 segundos</div>
+      <div class="settlement-banner__sub">O dinheiro está na conta do Carlos no Banco de Beira - não numa carteira intermediária.</div>
+    </div>
+  </div>
+
+  <div class="details-card">
+    <div class="det-row">
+      <span class="det-label">Data e hora</span>
+      <span class="det-value det-mono">05/05/2026 · 14:32:18</span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">ID</span>
+      <span class="det-value det-mono" style="display:flex; align-items:center; gap:6px;">
+        SWP-20260505-A3F8C291
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink-3);"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      </span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Remetente</span>
+      <span class="det-value">Ana Cossa<br><span class="det-mono text-3" style="font-weight:400;">+258 84 234 5678</span></span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Banco origem</span>
+      <span class="det-value" style="display:flex; align-items:center; gap:6px; justify-content:flex-end;">
+        <span class="bank-logo bank-logo--sm bank-bdm">BDM</span> Banco de Maputo
+      </span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Destinatário</span>
+      <span class="det-value">Carlos Machava<br><span class="det-mono text-3" style="font-weight:400;">+258 85 345 6789</span></span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Banco destino</span>
+      <span class="det-value" style="display:flex; align-items:center; gap:6px; justify-content:flex-end;">
+        <span class="bank-logo bank-logo--sm bank-bdb">BDB</span> Banco de Beira
+      </span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Valor</span>
+      <span class="amount-mid">MZN 1.500,00</span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Taxa</span>
+      <span class="free-pill">MZN 0,00 · grátis</span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Nota</span>
+      <span class="det-value" style="font-style:italic; color: var(--ink-2);">"Renda de Maio"</span>
+    </div>
+    <div class="det-row">
+      <span class="det-label">Liquidação</span>
+      <span class="det-value det-mono">BDB •••• 8834</span>
+    </div>
+  </div>
+
+  <div class="actions-row">
+    <button class="btn btn--secondary flex-1">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Partilhar
+    </button>
+    <button class="btn btn--ghost flex-1" style="color: var(--critical);">Reportar problema</button>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  var next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('vunapaymz-theme', next);
+}
+</script>
+</body>
+</html>

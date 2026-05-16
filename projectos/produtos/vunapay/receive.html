@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P01B93QSYD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-P01B93QSYD');
+  </script>
+<meta charset="UTF-8">
+<title>VunaPay - Receive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shared/styles.css">
+<script>
+  (function () {
+    var t = localStorage.getItem('vunapaymz-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  body { padding: 0 0 64px; }
+  .rec-wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  .rec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px; gap: 16px; flex-wrap: wrap; }
+  .rec-header h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .rec-header p { margin: 2px 0 0; color: var(--ink-3); font-size: 13px; }
+  .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 720px) { .rec-grid { grid-template-columns: 1fr; } }
+  .rec-step__label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; text-align: center; }
+  .rec-frame {
+    width: 100%; max-width: 360px; min-height: 720px; margin: 0 auto;
+    background: var(--bg); border-radius: 32px; border: 1px solid var(--line);
+    box-shadow: var(--shadow-modal); overflow: hidden;
+    display: flex; flex-direction: column; padding: 18px 18px;
+  }
+  .tabs { display: flex; gap: 4px; padding: 4px; background: var(--bg-2); border-radius: 999px; margin-bottom: 16px; }
+  .tab { flex: 1; padding: 8px 12px; border-radius: 999px; text-align: center; font-size: 13px; font-weight: 500; color: var(--ink-3); cursor: pointer; }
+  .tab--active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+
+  .qr-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 22px 16px; text-align: center; }
+  .qr-mock {
+    width: 200px; height: 200px; margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    display: grid; grid-template-columns: repeat(20, 1fr); grid-template-rows: repeat(20, 1fr); gap: 0;
+    border: 1px solid var(--line-2);
+  }
+  .qr-mock i { background: #0D1117; }
+  .qr-center {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 36px; height: 36px; border-radius: 8px; background: var(--brand);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 13px; letter-spacing: -0.01em;
+    border: 3px solid #fff;
+  }
+  .qr-wrap { position: relative; display: inline-block; }
+  .phone-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg-2); padding: 10px 14px; border-radius: 999px;
+    font-family: var(--font-mono); font-size: 14px; font-weight: 500;
+    margin-top: 16px;
+  }
+  .copy-btn {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--surface);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-2);
+  }
+  .me-card {
+    margin-top: 16px; display: flex; align-items: center; gap: 10px;
+    padding: 12px; background: var(--brand-subtle); border-radius: var(--r-card);
+  }
+
+  /* Pedir tab */
+  .request-list { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
+  .request-row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line-2); }
+  .request-row:last-child { border-bottom: none; }
+  .request-row__name { font-size: 13px; font-weight: 500; }
+  .request-row__sub { font-size: 11px; color: var(--ink-3); }
+  .request-row__amount { font-family: var(--font-mono); font-weight: 600; font-size: 13px; }
+  .footer-cta { margin-top: auto; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <span class="mark"></span>
+    <span class="stack"><span>VunaPay</span><small>Dinheiro na hora. Qualquer banco.</small></span>
+  </a>
+  <nav class="nav">
+    <a href="index.html">Visão geral</a>
+    <a href="design-system.html">Design</a>
+    <a href="home.html">Home</a>
+    <a href="onboarding.html">Onboarding</a>
+    <a href="send.html">Enviar</a>
+    <a href="receive.html" class="active">Receber</a>
+    <a href="transaction.html">Transacção</a>
+    <a href="bank-portal-dashboard.html">Dashboard</a>
+    <a href="bank-portal-participants.html">Participantes</a>
+    <a href="bank-portal-transactions.html">Transacções</a>
+    <a href="infrastructure.html">Infra-estrutura</a>
+  </nav>
+  <div class="right">
+    <span class="conn"><span class="d"></span> Demo · sincronizado</span>
+  </div>
+</header>
+
+
+<div class="rec-wrap">
+  <div class="rec-header">
+    <div>
+      <h1>Receive money</h1>
+      <p>Two tabs · Receber (your details) · Pedir (request)</p>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="rec-grid">
+    <!-- RECEBER -->
+    <div>
+      <div class="rec-step__label">Receber - partilhar os meus dados</div>
+      <div class="rec-frame">
+        <div class="tabs">
+          <div class="tab tab--active">Receber</div>
+          <div class="tab">Pedir</div>
+        </div>
+        <div class="qr-card">
+          <div class="qr-wrap">
+            <div class="qr-mock" id="qr1"></div>
+            <div class="qr-center">SP</div>
+          </div>
+          <div class="phone-pill">
+            +258 84 234 5678
+            <span class="copy-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </span>
+          </div>
+        </div>
+        <div class="me-card">
+          <span class="avatar" style="background:#fff;color:#007A4D;">AC</span>
+          <div style="flex:1;">
+            <div style="font-size:13px; font-weight:500;">Ana Cossa</div>
+            <div style="font-size:11px; color:var(--ink-2); display:flex; align-items:center; gap:4px;">
+              <span class="bank-logo bank-logo--sm bank-bdm">BDM</span>
+              Banco de Maputo
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-cta" style="display: flex; flex-direction: column; gap: 6px;">
+          <button class="btn btn--primary btn--full">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Partilhar
+          </button>
+          <button class="btn btn--ghost btn--full btn--sm">Guardar QR como imagem</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PEDIR -->
+    <div>
+      <div class="rec-step__label">Pedir - solicitar a alguém</div>
+      <div class="rec-frame">
+        <div class="tabs">
+          <div class="tab">Receber</div>
+          <div class="tab tab--active">Pedir</div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">A quem?</label>
+          <input class="input" value="Carlos Machava · +258 85 345 6789">
+        </div>
+
+        <div class="amount-input mt-12">
+          <span class="amount-input__prefix">MZN</span>
+          <input value="2.000,00">
+        </div>
+
+        <div class="field mt-12">
+          <label class="field-label">Para que é? <span class="text-3" style="font-weight:400;">(opcional)</span></label>
+          <input class="input" value="Almoço de sexta">
+        </div>
+
+        <button class="btn btn--primary btn--full mt-16">Enviar pedido</button>
+
+        <div style="margin-top: 20px;">
+          <div class="t-micro mb-8">Pedidos enviados</div>
+          <div class="request-list">
+            <div class="request-row">
+              <span class="avatar avatar--sm" style="background:#FEE4E2;color:#DC2626;">RM</span>
+              <div style="flex:1;">
+                <div class="request-row__name">Rosa Mavie</div>
+                <div class="request-row__sub">há 5 min · "Renda partilhada"</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="request-row__amount">MZN 5.000,00</div>
+                <span class="badge badge--warn" style="font-size:10px; padding: 2px 8px; margin-top: 2px;">Pendente</span>
+              </div>
+            </div>
+            <div class="request-row">
+              <span class="avatar avatar--sm" style="background:#E6F4EE;color:#007A4D;">JN</span>
+              <div style="flex:1;">
+                <div class="request-row__name">João Nhantumbo</div>
+                <div class="request-row__sub">ontem · "Almoço"</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="request-row__amount">MZN 350,00</div>
+                <span class="badge badge--good" style="font-size:10px; padding: 2px 8px; margin-top: 2px;">Pago</span>
+              </div>
+            </div>
+            <div class="request-row">
+              <span class="avatar avatar--sm" style="background:#F3E8FF;color:#7C3AED;">PC</span>
+              <div style="flex:1;">
+                <div class="request-row__name">Pedro Cumbe</div>
+                <div class="request-row__sub">2 dias · "Boleia"</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="request-row__amount">MZN 200,00</div>
+                <span class="badge badge--critical" style="font-size:10px; padding: 2px 8px; margin-top: 2px;">Recusado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleTheme() {
+  var html = document.documentElement;
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  var next = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('vunapaymz-theme', next);
+}
+// Generate a deterministic QR-style placeholder
+(function () {
+  var grid = document.getElementById('qr1');
+  if (!grid) return;
+  // pseudo-random pattern based on a fixed seed
+  var seed = 73;
+  function rand() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  for (var i = 0; i < 400; i++) {
+    var cell = document.createElement('i');
+    var r = Math.floor(i / 20), c = i % 20;
+    var corner = (r < 4 && c < 4) || (r < 4 && c > 15) || (r > 15 && c < 4);
+    if (corner) {
+      var inFrame = (r === 0 || r === 3 || c === 0 || c === 3 || r === 0 || r === 15 || c === 19 || (r > 15 && (r === 19 || c === 0 || c === 3)));
+      if ((r === 0 || r === 3) && c < 4) cell.style.background = '#0D1117';
+      else if ((r === 1 || r === 2) && (c === 0 || c === 3)) cell.style.background = '#0D1117';
+      else if ((r === 1 || r === 2) && (c === 1 || c === 2)) cell.style.background = '#0D1117';
+      else if ((r === 0 || r === 3) && c > 15) cell.style.background = '#0D1117';
+      else if ((r === 1 || r === 2) && (c === 16 || c === 19)) cell.style.background = '#0D1117';
+      else if ((r === 1 || r === 2) && (c === 17 || c === 18)) cell.style.background = '#0D1117';
+      else if ((r === 16 || r === 19) && c < 4) cell.style.background = '#0D1117';
+      else if ((r === 17 || r === 18) && (c === 0 || c === 3)) cell.style.background = '#0D1117';
+      else if ((r === 17 || r === 18) && (c === 1 || c === 2)) cell.style.background = '#0D1117';
+    } else if (rand() > 0.55) {
+      cell.style.background = '#0D1117';
+    }
+    grid.appendChild(cell);
+  }
+})();
+</script>
+</body>
+</html>

@@ -35,10 +35,11 @@ conceitos/
 │   │   ├── resilienciaclimatica/   # 11 · Resiliência Climática
 │   │   ├── eleicoesdigitais/       # 12 · Eleições Digitais
 │   │   └── senda/                  # 13 · Senda (equivalências académicas)
-│   └── produtos/                   # 3 produtos consumer
+│   └── produtos/                   # 4 produtos consumer
 │       ├── lavoura/                # P01 · assistente agrícola digital
 │       ├── kuvona/                 # P02 · jornalismo e transparência cívica
-│       └── comunidade/             # P03 · doações e transparência comunitária
+│       ├── comunidade/             # P03 · doações e transparência comunitária
+│       └── vunapay/                # P04 · rede de liquidação interbancária
 ```
 
 ## Estrutura de cada projecto
@@ -73,7 +74,7 @@ HTML — serve apenas para medir visitas no conceitos.org, não tem utilidade no
 
 Ao gerar specs ou arquitectura a partir destes protótipos:
 
-- Nos produtos (Lavoura, KuVona, Comunidade), lê `PRINCIPIOS.md` para personas e restrições deliberadas
+- Nos produtos com `PRINCIPIOS.md` (Lavoura, KuVona, Comunidade), lê-o para personas e restrições deliberadas
 - Mantém os princípios fundadores — cada um existe por razão específica
 - Respeita o que está deliberadamente ausente (ver secção abaixo)
 
@@ -114,6 +115,7 @@ Estes princípios aparecem em todos os projectos com variações:
 - **Lavoura (P01)**: Sara Macuácua — agricultora
 - **KuVona (P02)**: Cândida Sitoe + Beatriz Macuácua — jornalistas cidadãs
 - **Comunidade (P03)**: Mãe Eulália Sitoe + Rui Manjate + Tia Ercília Bila
+- **VunaPay (P04)**: produto financeiro/infra — sem personas narrativas definidas
 
 Nomes moçambicanos plausíveis, não clichê. "KuVona" = "ku vona" em changana
 (língua do sul de Moçambique) = "ver" em português.
